@@ -12,7 +12,7 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - API
 created: '2025-02-12'
-modified: '2025-02-12'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -24,12 +24,23 @@ apis:
       to inspect and manipulate the state of a node in an Orient database
       cluster. The expectation is that these will be used mainly for
       troubleshooting and recovery operations. 
-    humanURL: ' https://sonatype.com'
+    humanURL: https://help.sonatype.com/en/sonatype-nexus-repository.html
     tags:
-      - API
+      - Repository
+      - Artifact Management
+      - DevOps
     properties:
       - type: Documentation
-        url: ' https://sonatype.com'
+        url: https://help.sonatype.com/en/sonatype-nexus-repository.html
+      - type: Reference
+        url: https://help.sonatype.com/en/api-reference.html
+common:
+  - type: Portal
+    url: https://www.sonatype.com/
+  - type: Documentation
+    url: https://help.sonatype.com/
+  - type: Website
+    url: https://www.sonatype.com/
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
