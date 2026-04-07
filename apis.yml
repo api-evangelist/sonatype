@@ -8,8 +8,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-02-12'
 modified: '2026-03-16'
 url: >-
@@ -25,9 +24,9 @@ apis:
       operations.
     humanURL: https://help.sonatype.com/en/sonatype-nexus-repository.html
     tags:
-      - Repository
       - Artifact Management
       - DevOps
+      - Repository
     properties:
       - type: Documentation
         url: https://help.sonatype.com/en/sonatype-nexus-repository.html
