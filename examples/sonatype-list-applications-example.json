@@ -1,0 +1,40 @@
+{
+  "description": "Example response from GET /api/v2/applications listing all registered applications",
+  "request": {
+    "method": "GET",
+    "url": "https://iq.example.com/api/v2/applications",
+    "headers": {
+      "Authorization": "Basic base64(username:password)",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "applications": [
+        {
+          "id": "app-id-abc123",
+          "publicId": "my-ecommerce-app",
+          "name": "My E-Commerce Application",
+          "organizationId": "org-id-xyz789",
+          "contactUserName": "john.doe",
+          "applicationTags": []
+        },
+        {
+          "id": "app-id-def456",
+          "publicId": "payment-service",
+          "name": "Payment Service",
+          "organizationId": "org-id-xyz789",
+          "contactUserName": "jane.smith",
+          "applicationTags": [
+            {
+              "id": "tag-assign-001",
+              "tagId": "tag-pci-dss",
+              "applicationId": "app-id-def456"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

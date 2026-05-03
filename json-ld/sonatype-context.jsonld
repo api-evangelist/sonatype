@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "sonatype": "https://help.sonatype.com/en/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Application": {
+      "@id": "schema:SoftwareApplication",
+      "@type": "@id"
+    },
+    "PolicyViolation": {
+      "@id": "sonatype:PolicyViolation",
+      "@type": "@id"
+    },
+    "Vulnerability": {
+      "@id": "schema:TechArticle",
+      "@type": "@id"
+    },
+    "Organization": {
+      "@id": "schema:Organization",
+      "@type": "@id"
+    },
+
+    "id": "@id",
+    "name": "schema:name",
+    "publicId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "organizationId": {
+      "@id": "schema:isPartOf",
+      "@type": "xsd:string"
+    },
+    "policyName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "threatLevel": {
+      "@id": "sonatype:threatLevel",
+      "@type": "xsd:integer"
+    },
+    "packageUrl": {
+      "@id": "schema:softwareRequirements",
+      "@type": "xsd:string"
+    },
+    "waived": {
+      "@id": "sonatype:waived",
+      "@type": "xsd:boolean"
+    },
+    "version": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "applicationTags": {
+      "@id": "schema:keywords",
+      "@container": "@set"
+    }
+  }
+}

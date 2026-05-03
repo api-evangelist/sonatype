@@ -1,0 +1,276 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sonatype Software Supply Chain Security"
+  description: >-
+    Workflow capability for software supply chain security using Sonatype Lifecycle.
+    Covers application portfolio management, policy violation monitoring, vulnerability
+    intelligence, component analysis, SBOM generation, and waiver management. Used by
+    DevSecOps engineers, security teams, and compliance officers.
+  tags:
+    - Sonatype
+    - Software Supply Chain
+    - Security
+    - Vulnerability Management
+    - SBOM
+    - DevSecOps
+    - Policy
+    - Compliance
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SONATYPE_USERNAME: SONATYPE_USERNAME
+      SONATYPE_PASSWORD: SONATYPE_PASSWORD
+
+capability:
+  consumes:
+    - import: sonatype-lifecycle
+      location: ./shared/sonatype-lifecycle.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: sonatype-supply-chain-api
+      description: "Unified REST API for software supply chain security with Sonatype Lifecycle."
+      resources:
+        - path: /v1/applications
+          name: applications
+          description: "Application portfolio management"
+          operations:
+            - method: GET
+              name: list-applications
+              description: "List all applications in portfolio"
+              call: "sonatype-lifecycle.list-applications"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-application
+              description: "Register a new application"
+              call: "sonatype-lifecycle.create-application"
+              with:
+                publicId: "rest.publicId"
+                name: "rest.name"
+                organizationId: "rest.organizationId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-application
+              description: "Get application details by ID"
+              call: "sonatype-lifecycle.get-application"
+              with:
+                applicationId: "rest.applicationId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-application
+              description: "Remove an application from portfolio"
+              call: "sonatype-lifecycle.delete-application"
+              with:
+                applicationId: "rest.applicationId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/violations
+          name: policy-violations
+          description: "Policy violation monitoring"
+          operations:
+            - method: GET
+              name: list-violations
+              description: "List policy violations"
+              call: "sonatype-lifecycle.list-policy-violations"
+              with:
+                applicationId: "rest.applicationId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/waivers
+          name: policy-waivers
+          description: "Policy waiver management"
+          operations:
+            - method: GET
+              name: list-waivers
+              description: "List policy waivers"
+              call: "sonatype-lifecycle.list-waivers"
+              with:
+                ownerType: "rest.ownerType"
+                ownerId: "rest.ownerId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/search
+          name: component-search
+          description: "Component and vulnerability search"
+          operations:
+            - method: GET
+              name: search-component
+              description: "Search for a component by hash or PURL"
+              call: "sonatype-lifecycle.search-component"
+              with:
+                hash: "rest.hash"
+                packageUrl: "rest.packageUrl"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/vulnerabilities
+          name: vulnerabilities
+          description: "Vulnerability intelligence"
+          operations:
+            - method: GET
+              name: get-vulnerability
+              description: "Get vulnerability details by CVE or reference ID"
+              call: "sonatype-lifecycle.get-vulnerability"
+              with:
+                refId: "rest.refId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/reports
+          name: reports
+          description: "Scan reports and compliance metrics"
+          operations:
+            - method: GET
+              name: list-reports
+              description: "List reports for all applications"
+              call: "sonatype-lifecycle.list-reports"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-application-reports
+              description: "Get reports for a specific application"
+              call: "sonatype-lifecycle.get-application-reports"
+              with:
+                applicationId: "rest.applicationId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/sbom
+          name: sbom
+          description: "Software Bill of Materials generation"
+          operations:
+            - method: GET
+              name: get-spdx-report
+              description: "Generate SPDX SBOM for a scan"
+              call: "sonatype-lifecycle.get-spdx-report"
+              with:
+                applicationId: "rest.applicationId"
+                scanId: "rest.scanId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: sonatype-supply-chain-mcp
+      transport: http
+      description: "MCP server for AI-assisted software supply chain security with Sonatype Lifecycle."
+      tools:
+        - name: list-applications
+          description: "List all applications in the Sonatype Lifecycle portfolio"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.list-applications"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-application
+          description: "Register a new application in Sonatype Lifecycle"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "sonatype-lifecycle.create-application"
+          with:
+            publicId: "tools.publicId"
+            name: "tools.name"
+            organizationId: "tools.organizationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-application
+          description: "Get application details from Sonatype Lifecycle"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.get-application"
+          with:
+            applicationId: "tools.applicationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-policy-violations
+          description: "List policy violations for an application"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.list-policy-violations"
+          with:
+            applicationId: "tools.applicationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-policy-waivers
+          description: "List policy waivers for an owner"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.list-waivers"
+          with:
+            ownerType: "tools.ownerType"
+            ownerId: "tools.ownerId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-component
+          description: "Search for a component by hash or PURL to get vulnerability and policy data"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.search-component"
+          with:
+            hash: "tools.hash"
+            packageUrl: "tools.packageUrl"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-vulnerability
+          description: "Get detailed vulnerability information by CVE or Sonatype reference ID"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.get-vulnerability"
+          with:
+            refId: "tools.refId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-application-reports
+          description: "List scan reports for a specific application"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.get-application-reports"
+          with:
+            applicationId: "tools.applicationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: generate-spdx-sbom
+          description: "Generate an SPDX Software Bill of Materials for an application scan"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.get-spdx-report"
+          with:
+            applicationId: "tools.applicationId"
+            scanId: "tools.scanId"
+          outputParameters:
+            - type: object
+              mapping: "$."

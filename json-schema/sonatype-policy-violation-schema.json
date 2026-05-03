@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/sonatype/main/json-schema/sonatype-policy-violation-schema.json",
+  "title": "Sonatype Policy Violation",
+  "description": "A policy violation detected by Sonatype Lifecycle during a component scan.",
+  "type": "object",
+  "properties": {
+    "policyViolationId": {
+      "type": "string",
+      "description": "Unique identifier for this policy violation"
+    },
+    "policyId": {
+      "type": "string",
+      "description": "ID of the policy that was violated"
+    },
+    "policyName": {
+      "type": "string",
+      "description": "Name of the violated policy"
+    },
+    "threatLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Threat level from 0 (informational) to 10 (critical)"
+    },
+    "constraintViolations": {
+      "type": "array",
+      "description": "List of constraint violations that triggered the policy",
+      "items": {
+        "type": "object",
+        "properties": {
+          "constraintId": {"type": "string"},
+          "constraintName": {"type": "string"},
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "reason": {"type": "string"},
+                "reference": {
+                  "type": ["object", "null"],
+                  "properties": {
+                    "value": {"type": "string"},
+                    "type": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "description": "The component that triggered the violation",
+      "properties": {
+        "packageUrl": {"type": "string"},
+        "hash": {"type": "string"},
+        "componentIdentifier": {
+          "type": "object",
+          "properties": {
+            "format": {"type": "string"},
+            "coordinates": {
+              "type": "object",
+              "additionalProperties": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "waived": {
+      "type": "boolean",
+      "description": "Whether this violation has been waived"
+    },
+    "grandfathered": {
+      "type": "boolean",
+      "description": "Whether this violation is grandfathered"
+    }
+  },
+  "required": ["policyViolationId", "policyId", "policyName", "threatLevel"]
+}

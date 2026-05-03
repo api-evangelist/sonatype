@@ -1,0 +1,159 @@
+vocabulary:
+  name: Sonatype Lifecycle Vocabulary
+  description: >-
+    Vocabulary for Sonatype Lifecycle (IQ Server) covering software supply chain
+    security, software composition analysis, policy management, vulnerability
+    intelligence, SBOM, and DevSecOps concepts.
+  version: "1.0.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+  tags:
+    - Software Supply Chain
+    - Security
+    - DevSecOps
+    - SBOM
+
+terms:
+
+  # Core entities
+  - term: Application
+    definition: >-
+      A software application registered in Sonatype Lifecycle for continuous
+      software composition analysis, policy enforcement, and vulnerability tracking.
+    type: concept
+    tags: [Applications, Core]
+
+  - term: Organization
+    definition: >-
+      A hierarchical grouping of applications in Sonatype Lifecycle that allows
+      policies, roles, and configurations to be inherited.
+    type: concept
+    tags: [Organizations, Core]
+
+  - term: Component
+    definition: >-
+      A software dependency identified by coordinates (group, artifact, version)
+      or a Package URL (PURL) that is analyzed for vulnerabilities and policy compliance.
+    type: concept
+    tags: [Components, Core]
+
+  # Policy
+  - term: Policy
+    definition: >-
+      A set of rules that define acceptable and unacceptable component usage in
+      applications. Policies can be enforced at scan time to block builds or create violations.
+    type: concept
+    tags: [Policy, Core]
+
+  - term: Policy Violation
+    definition: >-
+      A component that violates one or more policies in an application scan, assigned
+      a threat level from 0 (informational) to 10 (critical).
+    type: concept
+    tags: [Policy, Core]
+
+  - term: Policy Waiver
+    definition: >-
+      An explicit exception granted for a policy violation, allowing a violating
+      component to pass policy checks for a specified period.
+    type: concept
+    tags: [Policy, Compliance]
+
+  - term: Threat Level
+    definition: >-
+      A numeric score from 0 to 10 indicating the severity of a policy violation.
+      Level 10 is critical, level 1 is informational.
+    type: concept
+    tags: [Policy, Security]
+
+  # Vulnerability
+  - term: Vulnerability
+    definition: >-
+      A known security weakness in a software component, identified by a CVE, SONATYPE,
+      or other reference ID. Sonatype provides proprietary vulnerability intelligence
+      beyond the National Vulnerability Database.
+    type: concept
+    tags: [Security, Vulnerability]
+
+  - term: Security Override
+    definition: >-
+      A Sonatype-specific adjustment to a published vulnerability's severity or
+      status, reflecting additional analysis or new information.
+    type: concept
+    tags: [Security, Vulnerability]
+
+  # Analysis
+  - term: Scan
+    definition: >-
+      The analysis of an application's software components at a specific stage in
+      the SDLC. Scans produce policy evaluation reports and vulnerability findings.
+    type: concept
+    tags: [Scanning, Core]
+
+  - term: Stage
+    definition: >-
+      A phase of the software development lifecycle (develop, build, stage, release,
+      operate) at which a scan is performed and policies are evaluated.
+    type: concept
+    tags: [Scanning, Core]
+
+  - term: Software Composition Analysis
+    definition: >-
+      The process of identifying open source and third-party components in an
+      application and evaluating them for security, license, and quality risks.
+    abbreviation: SCA
+    type: concept
+    tags: [Security, Core]
+
+  # SBOM
+  - term: SBOM
+    definition: >-
+      Software Bill of Materials — a formal, machine-readable inventory of software
+      components and their dependencies. Sonatype generates SBOM in SPDX and
+      CycloneDX formats.
+    type: concept
+    tags: [SBOM, Compliance]
+
+  - term: SPDX
+    definition: >-
+      Software Package Data Exchange — an open standard for SBOM formats, developed
+      by the Linux Foundation. Sonatype Lifecycle can generate SPDX SBOMs.
+    type: concept
+    tags: [SBOM, Standards]
+
+  - term: CycloneDX
+    definition: >-
+      An OWASP SBOM standard designed for use in application security contexts.
+      Sonatype Lifecycle generates CycloneDX SBOMs.
+    type: concept
+    tags: [SBOM, Standards]
+
+  - term: PURL
+    definition: >-
+      Package URL — a standardized URI format for identifying software packages
+      (e.g., pkg:maven/org.springframework/spring-core@5.3.25) used throughout
+      Sonatype's APIs.
+    type: concept
+    tags: [Components, Standards]
+
+  # Integration
+  - term: Repository Firewall
+    definition: >-
+      A Sonatype product that intercepts artifact downloads at the repository level
+      and quarantines components that violate policies or contain malware.
+    type: concept
+    tags: [Security, Integration]
+
+  - term: Source Control Integration
+    definition: >-
+      Sonatype Lifecycle's integration with SCM providers (GitHub, GitLab, Bitbucket)
+      to enable pull request analysis and automated developer notifications.
+    type: concept
+    tags: [Integration, DevSecOps]
+
+  - term: User Token
+    definition: >-
+      A Sonatype Lifecycle authentication token that users can create to authenticate
+      with the REST API instead of their username and password.
+    type: concept
+    tags: [Security, Authentication]

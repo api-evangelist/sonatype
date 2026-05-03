@@ -1,0 +1,307 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sonatype Lifecycle API"
+  description: "Sonatype Lifecycle (IQ Server) Public REST API for application portfolio management, policy enforcement, vulnerability analysis, SBOM generation, component search, and software supply chain security."
+  tags:
+    - Sonatype
+    - Software Supply Chain
+    - Security
+    - Vulnerability Management
+    - SBOM
+    - DevSecOps
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SONATYPE_USERNAME: SONATYPE_USERNAME
+      SONATYPE_PASSWORD: SONATYPE_PASSWORD
+
+capability:
+  consumes:
+    - type: http
+      namespace: sonatype-lifecycle
+      baseUri: https://{iq-server-host}
+      description: "Sonatype Lifecycle Public REST API v1.201.0"
+      authentication:
+        type: basic
+        username: "{{SONATYPE_USERNAME}}"
+        password: "{{SONATYPE_PASSWORD}}"
+      resources:
+        - name: applications
+          path: /api/v2/applications
+          description: "Manage applications in the Sonatype Lifecycle portfolio"
+          operations:
+            - name: list-applications
+              method: GET
+              description: "List all applications"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-application
+              method: POST
+              description: "Create a new application"
+              body:
+                type: json
+                data:
+                  publicId: "{{tools.publicId}}"
+                  name: "{{tools.name}}"
+                  organizationId: "{{tools.organizationId}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-application
+              method: GET
+              description: "Get application by ID"
+              inputParameters:
+                - name: applicationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Application ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-application
+              method: DELETE
+              description: "Delete an application"
+              inputParameters:
+                - name: applicationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Application ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: policy-violations
+          path: /api/v2/policyViolations
+          description: "Query and manage policy violations"
+          operations:
+            - name: list-policy-violations
+              method: GET
+              description: "List policy violations for an application report"
+              inputParameters:
+                - name: applicationId
+                  in: query
+                  type: string
+                  required: false
+                  description: "Application ID filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: policy-waivers
+          path: /api/v2/policyWaivers
+          description: "Manage policy waivers for violations"
+          operations:
+            - name: list-waivers
+              method: GET
+              description: "List policy waivers for an owner"
+              inputParameters:
+                - name: ownerType
+                  in: path
+                  type: string
+                  required: true
+                  description: "Owner type (application|organization|repository_manager)"
+                - name: ownerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Internal owner ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: component-search
+          path: /api/v2/search/component
+          description: "Search for components and vulnerabilities"
+          operations:
+            - name: search-component
+              method: GET
+              description: "Search for a component"
+              inputParameters:
+                - name: hash
+                  in: query
+                  type: string
+                  required: false
+                  description: "Component hash"
+                - name: packageUrl
+                  in: query
+                  type: string
+                  required: false
+                  description: "Package URL (PURL)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: vulnerabilities
+          path: /api/v2/vulnerabilities
+          description: "Vulnerability intelligence and lookups"
+          operations:
+            - name: get-vulnerability
+              method: GET
+              description: "Get vulnerability by reference ID"
+              inputParameters:
+                - name: refId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Vulnerability reference ID (CVE, SONATYPE, etc)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: reports
+          path: /api/v2/reports/applications
+          description: "Application scan reports and metrics"
+          operations:
+            - name: list-reports
+              method: GET
+              description: "List reports for all applications"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-application-reports
+              method: GET
+              description: "Get reports for a specific application"
+              inputParameters:
+                - name: applicationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Application ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: spdx
+          path: /api/v2/spdx
+          description: "Generate SPDX Software Bill of Materials"
+          operations:
+            - name: get-spdx-report
+              method: GET
+              description: "Generate SPDX SBOM for a scan report"
+              inputParameters:
+                - name: applicationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Application ID"
+                - name: scanId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Scan ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: users
+          path: /api/v2/users
+          description: "User account management"
+          operations:
+            - name: list-users
+              method: GET
+              description: "List users"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-user
+              method: POST
+              description: "Create a new user"
+              body:
+                type: json
+                data:
+                  username: "{{tools.username}}"
+                  password: "{{tools.password}}"
+                  firstName: "{{tools.firstName}}"
+                  lastName: "{{tools.lastName}}"
+                  email: "{{tools.email}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: sonatype-lifecycle-api
+      resources:
+        - path: /v1/applications
+          name: applications
+          description: "Application management"
+          operations:
+            - method: GET
+              name: list-applications
+              description: "List all applications"
+              call: "sonatype-lifecycle.list-applications"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/search
+          name: search
+          description: "Component search"
+          operations:
+            - method: GET
+              name: search-component
+              description: "Search for a component"
+              call: "sonatype-lifecycle.search-component"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: sonatype-lifecycle-mcp
+      transport: http
+      tools:
+        - name: list-applications
+          description: "List all applications in Sonatype Lifecycle"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.list-applications"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-component
+          description: "Search for a component by hash or PURL"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sonatype-lifecycle.search-component"
+          with:
+            hash: "tools.hash"
+            packageUrl: "tools.packageUrl"
+          outputParameters:
+            - type: object
+              mapping: "$."

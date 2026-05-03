@@ -1,0 +1,82 @@
+extends: spectral:oas
+rules:
+
+  # Sonatype Lifecycle API uses /api/v2/ versioning prefix
+  sonatype-path-version-prefix:
+    message: "Paths must start with /api/v2/"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/v2/"
+
+  # All operation summaries should use Title Case
+  sonatype-operation-summary-title-case:
+    message: "Operation summaries should use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  # All operations should have an operationId
+  sonatype-operation-id-required:
+    message: "Operations must have an operationId"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  # Owner type path parameters should follow {ownerType} convention
+  sonatype-owner-type-param-naming:
+    message: "Owner type parameters should use {ownerType}"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\{owner_type\\}|\\{ownertype\\}"
+
+  # Operations must have at least one tag
+  sonatype-operation-tags-required:
+    message: "Operations must have at least one tag"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  # API must define security schemes
+  sonatype-security-schemes-defined:
+    message: "API must define security schemes"
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  # Responses must document at least a 2xx response
+  sonatype-success-response-required:
+    message: "Operations must document at least one success response"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["204"]
+
+  # No trailing slashes on paths
+  sonatype-no-trailing-slash:
+    message: "Paths must not end with a trailing slash"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"

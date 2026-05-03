@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/sonatype/main/json-schema/sonatype-application-schema.json",
+  "title": "Sonatype Lifecycle Application",
+  "description": "An application registered in Sonatype Lifecycle for software composition analysis and policy enforcement.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Internal application identifier"
+    },
+    "publicId": {
+      "type": "string",
+      "description": "Public identifier used in API calls and reports"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the application"
+    },
+    "organizationId": {
+      "type": "string",
+      "description": "ID of the organization that owns this application"
+    },
+    "contactUserName": {
+      "type": ["string", "null"],
+      "description": "Username of the application contact"
+    },
+    "applicationTags": {
+      "type": "array",
+      "description": "Tags/categories assigned to this application",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "tagId": {"type": "string"},
+          "applicationId": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["id", "publicId", "name", "organizationId"]
+}

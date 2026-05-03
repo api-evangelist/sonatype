@@ -1,0 +1,49 @@
+{
+  "description": "Example response from GET /api/v2/search/component searching by package URL",
+  "request": {
+    "method": "GET",
+    "url": "https://iq.example.com/api/v2/search/component?packageUrl=pkg:maven/org.springframework/spring-core@5.3.25",
+    "headers": {
+      "Authorization": "Basic base64(username:password)",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "packageUrl": "pkg:maven/org.springframework/spring-core@5.3.25",
+      "hash": "a1b2c3d4e5f6789012345678",
+      "componentIdentifier": {
+        "format": "maven",
+        "coordinates": {
+          "groupId": "org.springframework",
+          "artifactId": "spring-core",
+          "version": "5.3.25",
+          "extension": "jar",
+          "classifier": ""
+        }
+      },
+      "securityData": {
+        "securityIssues": [
+          {
+            "source": "CVE",
+            "reference": "CVE-2023-20861",
+            "severity": 5.3,
+            "status": "Open",
+            "url": "https://ossindex.sonatype.org/vulnerability/CVE-2023-20861",
+            "threatCategory": "MODERATE"
+          }
+        ]
+      },
+      "licenseData": {
+        "declaredLicenses": [
+          {
+            "licenseId": "Apache-2.0",
+            "licenseName": "Apache License 2.0"
+          }
+        ],
+        "observedLicenses": []
+      }
+    }
+  }
+}

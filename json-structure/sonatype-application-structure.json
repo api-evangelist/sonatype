@@ -1,0 +1,18 @@
+{
+  "title": "Sonatype Lifecycle Application Structure",
+  "description": "JSON structure documentation for Sonatype Lifecycle application objects",
+  "structure": {
+    "id": "string - Internal application ID",
+    "publicId": "string - Public application ID (used in API paths)",
+    "name": "string - Display name",
+    "organizationId": "string - Owning organization ID",
+    "contactUserName": "string|null - Contact user",
+    "applicationTags": [
+      {
+        "id": "string - Tag assignment ID",
+        "tagId": "string - Tag ID",
+        "applicationId": "string - Application ID"
+      }
+    ]
+  }
+}
