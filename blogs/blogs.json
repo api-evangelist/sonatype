@@ -1,0 +1,13 @@
+{
+  "repo": "sonatype",
+  "feeds": [
+    {
+      "source": "https://www.sonatype.com/blog",
+      "feed_url": "https://www.sonatype.com/blog/rss.xml",
+      "saved": 10,
+      "title": "2024 Sonatype Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:36:45Z"
+}
