@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://www.sonatype.com/blog",
-      "feed_url": "https://www.sonatype.com/blog/rss.xml",
-      "saved": 10,
-      "title": "2024 Sonatype Blog"
+      "feed_url": "https://www.sonatype.com/blog/atom.xml",
+      "title": "2024 Sonatype Blog",
+      "saved": 1
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:36:45Z"
+  "post_count": 11,
+  "fetched": "2026-05-09T20:17:51Z"
 }
