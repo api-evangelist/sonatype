@@ -77,6 +77,11 @@ common:
     url: https://support.sonatype.com/
   - type: Pricing
     url: https://www.sonatype.com/products/pricing
+  - type: Integrations
+    url: https://www.sonatype.com/products/integrations
+integrations:
+  - name: Buy with AWS
+  - name: Microsoft Azure
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
