@@ -71,7 +71,7 @@ common:
     url: https://github.com/sonatype-nexus-community
   - type: Blog
     url: https://www.sonatype.com/blog
-  - type: Changelog
+  - type: ChangeLog
     url: https://help.sonatype.com/en/sonatype-iq-server-2025-release-notes.html
   - type: Support
     url: https://support.sonatype.com/
