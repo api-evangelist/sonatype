@@ -1,0 +1,228 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Auto Policy Waiver Exclusions
+  description: 'Sonatype Lifecycle Public REST API — Auto Policy Waiver Exclusions. 3 operations. Lead operation: Auto Policy
+    Waiver Exclusions. Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Auto Policy Waiver Exclusions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-auto-policy-waiver-exclusions
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Auto Policy Waiver Exclusions business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: api-v2-autoPolicyWaiverExclusions-ownerType-ownerId
+      path: /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}
+      operations:
+      - name: addautopolicywaiveexclusion
+        method: POST
+        description: Use this method to create an auto policy waiver exclusion for a specified auto policy waiver.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ownerType
+          in: path
+          type: string
+          description: Enter the ownerType to specify which resource type owns the auto waiver you want to apply a exclusion
+            to. Possible values are application, organization.
+          required: true
+        - name: ownerId
+          in: path
+          type: string
+          description: Enter the corresponding id for the ownerType specified above.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-autoPolicyWaiverExclusions-ownerType-ownerId-autoPolicyWaiverId
+      path: /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}/{autoPolicyWaiverId}
+      operations:
+      - name: getautopolicywaiverexclusions
+        method: GET
+        description: Use this method to retrieve auto policy waiver exclusions for the given owner and policy waiver.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ownerType
+          in: path
+          type: string
+          description: Enter the owner type.
+          required: true
+        - name: ownerId
+          in: path
+          type: string
+          description: Enter the owner id.
+          required: true
+        - name: autoPolicyWaiverId
+          in: path
+          type: string
+          description: Enter the id of the automatic policy waiver.
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Enter the page.
+        - name: pageSize
+          in: query
+          type: integer
+          description: Enter the page size.
+    - name: api-v2-autoPolicyWaiverExclusions-ownerType-ownerId-autoPolicyWaiverId-autoPolic
+      path: /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}/{autoPolicyWaiverId}/{autoPolicyWaiverExclusionId}
+      operations:
+      - name: deleteautopolicywaiverexclusion
+        method: DELETE
+        description: Use this method to delete an auto policy waiver exclusion, specified by the autoPolicyWaiverExclusionId.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ownerType
+          in: path
+          type: string
+          description: Enter the ownerType to specify the scope. A waiver exclusion corresponding to the autoPolicyWaiverExclusionId
+            provided and within the scope specified will be de
+          required: true
+        - name: ownerId
+          in: path
+          type: string
+          description: Enter the corresponding id for the ownerType specified above.
+          required: true
+        - name: autoPolicyWaiverId
+          in: path
+          type: string
+          description: Enter the relevant Auto Policy Waiver ID.
+          required: true
+        - name: autoPolicyWaiverExclusionId
+          in: path
+          type: string
+          description: Enter the autoPolicyWaiverId to be deleted
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-auto-policy-waiver-exclusions-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Auto Policy Waiver Exclusions. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/autopolicywaiverexclusions/{ownertype}/{ownerid}
+      name: api-v2-autopolicywaiverexclusions-ownertype-ownerid
+      description: REST surface for api-v2-autoPolicyWaiverExclusions-ownerType-ownerId.
+      operations:
+      - method: POST
+        name: addautopolicywaiveexclusion
+        description: Use this method to create an auto policy waiver exclusion for a specified auto policy waiver.
+        call: lifecycle-auto-policy-waiver-exclusions.addautopolicywaiveexclusion
+        with:
+          ownerType: rest.ownerType
+          ownerId: rest.ownerId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/autopolicywaiverexclusions/{ownertype}/{ownerid}/{autopolicywaiverid}
+      name: api-v2-autopolicywaiverexclusions-ownertype-ownerid-autopolicywaiverid
+      description: REST surface for api-v2-autoPolicyWaiverExclusions-ownerType-ownerId-autoPolicyWaiverId.
+      operations:
+      - method: GET
+        name: getautopolicywaiverexclusions
+        description: Use this method to retrieve auto policy waiver exclusions for the given owner and policy waiver.
+        call: lifecycle-auto-policy-waiver-exclusions.getautopolicywaiverexclusions
+        with:
+          ownerType: rest.ownerType
+          ownerId: rest.ownerId
+          autoPolicyWaiverId: rest.autoPolicyWaiverId
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/autopolicywaiverexclusions/{ownertype}/{ownerid}/{autopolicywaiverid}/{autopolicywaiverexclusionid}
+      name: api-v2-autopolicywaiverexclusions-ownertype-ownerid-autopolicywaiverid-autopolic
+      description: REST surface for api-v2-autoPolicyWaiverExclusions-ownerType-ownerId-autoPolicyWaiverId-autoPolic.
+      operations:
+      - method: DELETE
+        name: deleteautopolicywaiverexclusion
+        description: Use this method to delete an auto policy waiver exclusion, specified by the autoPolicyWaiverExclusionId.
+        call: lifecycle-auto-policy-waiver-exclusions.deleteautopolicywaiverexclusion
+        with:
+          ownerType: rest.ownerType
+          ownerId: rest.ownerId
+          autoPolicyWaiverId: rest.autoPolicyWaiverId
+          autoPolicyWaiverExclusionId: rest.autoPolicyWaiverExclusionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-auto-policy-waiver-exclusions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Auto Policy Waiver Exclusions. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-create-auto
+      description: Use this method to create an auto policy waiver exclusion for a specified auto policy waiver.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-auto-policy-waiver-exclusions.addautopolicywaiveexclusion
+      with:
+        ownerType: tools.ownerType
+        ownerId: tools.ownerId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-auto
+      description: Use this method to retrieve auto policy waiver exclusions for the given owner and policy waiver.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-auto-policy-waiver-exclusions.getautopolicywaiverexclusions
+      with:
+        ownerType: tools.ownerType
+        ownerId: tools.ownerId
+        autoPolicyWaiverId: tools.autoPolicyWaiverId
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-delete-auto
+      description: Use this method to delete an auto policy waiver exclusion, specified by the autoPolicyWaiverExclusionId.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-auto-policy-waiver-exclusions.deleteautopolicywaiverexclusion
+      with:
+        ownerType: tools.ownerType
+        ownerId: tools.ownerId
+        autoPolicyWaiverId: tools.autoPolicyWaiverId
+        autoPolicyWaiverExclusionId: tools.autoPolicyWaiverExclusionId
+      outputParameters:
+      - type: object
+        mapping: $.

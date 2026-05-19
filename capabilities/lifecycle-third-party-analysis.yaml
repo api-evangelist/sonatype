@@ -1,0 +1,152 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Third-Party Analysis
+  description: 'Sonatype Lifecycle Public REST API — Third-Party Analysis. 2 operations. Lead operation: Third-Party Analysis.
+    Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Third-Party Analysis
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-third-party-analysis
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Third-Party Analysis business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: api-v2-scan-applications-applicationId-sources-source
+      path: /api/v2/scan/applications/{applicationId}/sources/{source}
+      operations:
+      - name: scancomponents
+        method: POST
+        description: Use this method to perform an analysis of an SBOM.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the application internal id. Use the Applications REST API to retrieve theapplication internal
+            id.
+          required: true
+        - name: source
+          in: path
+          type: string
+          description: Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`
+          required: true
+        - name: stageId
+          in: query
+          type: string
+          description: Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected.
+            Allowed values are `develop`, `build`, `stage-release`
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-scan-applications-applicationId-status-scanRequestId
+      path: /api/v2/scan/applications/{applicationId}/status/{scanRequestId}
+      operations:
+      - name: getscanstatus
+        method: GET
+        description: SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the application internal id for the SBOM to be evaluated.
+          required: true
+        - name: scanRequestId
+          in: path
+          type: string
+          description: Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-third-party-analysis-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Third-Party Analysis. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/scan/applications/{applicationid}/sources/{source}
+      name: api-v2-scan-applications-applicationid-sources-source
+      description: REST surface for api-v2-scan-applications-applicationId-sources-source.
+      operations:
+      - method: POST
+        name: scancomponents
+        description: Use this method to perform an analysis of an SBOM.
+        call: lifecycle-third-party-analysis.scancomponents
+        with:
+          applicationId: rest.applicationId
+          source: rest.source
+          stageId: rest.stageId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/scan/applications/{applicationid}/status/{scanrequestid}
+      name: api-v2-scan-applications-applicationid-status-scanrequestid
+      description: REST surface for api-v2-scan-applications-applicationId-status-scanRequestId.
+      operations:
+      - method: GET
+        name: getscanstatus
+        description: SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.
+        call: lifecycle-third-party-analysis.getscanstatus
+        with:
+          applicationId: rest.applicationId
+          scanRequestId: rest.scanRequestId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-third-party-analysis-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Third-Party Analysis. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-perform-analysis
+      description: Use this method to perform an analysis of an SBOM.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-third-party-analysis.scancomponents
+      with:
+        applicationId: tools.applicationId
+        source: tools.source
+        stageId: tools.stageId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sbom-evaluation-is-asynchronous-operation
+      description: SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-third-party-analysis.getscanstatus
+      with:
+        applicationId: tools.applicationId
+        scanRequestId: tools.scanRequestId
+      outputParameters:
+      - type: object
+        mapping: $.

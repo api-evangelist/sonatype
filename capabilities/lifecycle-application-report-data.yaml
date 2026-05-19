@@ -1,0 +1,330 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Application Report Data
+  description: 'Sonatype Lifecycle Public REST API — Application Report Data. 5 operations. Lead operation: Application Report
+    Data. Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Application Report Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-application-report-data
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Application Report Data business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: api-v2-applications-applicationPublicId-reports-policyViolations-diff
+      path: /api/v2/applications/{applicationPublicId}/reports/policyViolations/diff
+      operations:
+      - name: getpolicyviolationdiff
+        method: GET
+        description: By configuring Lifecycle with SCM, policy evaluations can be linked to the Git commit hash. Use this
+          method to compare the violations between policy evaluations for 2 commits, by providing the linked commit hashes.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationPublicId
+          in: path
+          type: string
+          description: Enter the applicationPublicId, created at the time of creating the application
+          required: true
+        - name: fromCommit
+          in: query
+          type: string
+          description: Enter the commit hash linked to the earlier policy evaluation.
+          required: true
+        - name: toCommit
+          in: query
+          type: string
+          description: Enter the commit hash linked to the other (later) policy evaluation to compare.
+          required: true
+        - name: fromPolicyEvaluationId
+          in: query
+          type: string
+          description: Enter the policy evaluation Id linked to the earlier policy evaluation to compare
+        - name: toPolicyEvaluationId
+          in: query
+          type: string
+          description: Enter the policy evaluation Id linked to the other (later) policy evaluation to compare
+        - name: includeViolationTimes
+          in: query
+          type: boolean
+          description: Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set.
+    - name: api-v2-applications-applicationPublicId-reports-scanId
+      path: /api/v2/applications/{applicationPublicId}/reports/{scanId}
+      operations:
+      - name: getdata
+        method: GET
+        description: This is an older version of the endpoint. This call will now be redirected to /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationPublicId
+          in: path
+          type: string
+          description: Enter the applicationPublicId for the evaluated application.
+          required: true
+        - name: scanId
+          in: path
+          type: string
+          description: Enter the scanId (reportId) of the application report created after the evaluation.
+          required: true
+    - name: api-v2-applications-applicationPublicId-reports-scanId-dependencyTree
+      path: /api/v2/applications/{applicationPublicId}/reports/{scanId}/dependencyTree
+      operations:
+      - name: getdependencytree
+        method: GET
+        description: Use this method to retrieve the dependencies related to the component identified at the time of application
+          evaluation. This is currently available only for Java (Maven) and NPM applications.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationPublicId
+          in: path
+          type: string
+          description: Enter the applicationPublicId created at the time of creating the application.
+          required: true
+        - name: scanId
+          in: path
+          type: string
+          description: Enter the reportId (scanId) created at the time of evaluating the application.
+          required: true
+    - name: api-v2-applications-applicationPublicId-reports-scanId-policy
+      path: /api/v2/applications/{applicationPublicId}/reports/{scanId}/policy
+      operations:
+      - name: getpolicyviolations1
+        method: GET
+        description: 'Use this method to retrieve the policy violation data generated as a result of an application evaluation,
+          for each component identified in the application evaluation./n/nPermissions required: View IQ Elements'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationPublicId
+          in: path
+          type: string
+          description: Enter the applicationPublicId created at the time of creating the application.
+          required: true
+        - name: scanId
+          in: path
+          type: string
+          description: Enter the reportId (scanId) created at the time of evaluating the application.
+          required: true
+        - name: includeViolationTimes
+          in: query
+          type: boolean
+          description: Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set.
+    - name: api-v2-applications-applicationPublicId-reports-scanId-raw
+      path: /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw
+      operations:
+      - name: getrawdata
+        method: GET
+        description: 'Use this method to retrieve the ''raw'' data generated as a result of an application evaluation. ''raw''
+          data includes: the components identified in the application, and the licenses and vulnerabilities associated with
+          the identified components'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationPublicId
+          in: path
+          type: string
+          description: Enter the applicationPublicId (assigned at the time of creating a new application.)
+          required: true
+        - name: scanId
+          in: path
+          type: string
+          description: Enter the reportId (scanId) created at the time of evaluating the application. application.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-application-report-data-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Application Report Data. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/applications/{applicationpublicid}/reports/policyviolations/diff
+      name: api-v2-applications-applicationpublicid-reports-policyviolations-diff
+      description: REST surface for api-v2-applications-applicationPublicId-reports-policyViolations-diff.
+      operations:
+      - method: GET
+        name: getpolicyviolationdiff
+        description: By configuring Lifecycle with SCM, policy evaluations can be linked to the Git commit hash. Use this
+          method to compare the violations between policy evaluations for 2 commits, by providing the linked commit hashes.
+        call: lifecycle-application-report-data.getpolicyviolationdiff
+        with:
+          applicationPublicId: rest.applicationPublicId
+          fromCommit: rest.fromCommit
+          toCommit: rest.toCommit
+          fromPolicyEvaluationId: rest.fromPolicyEvaluationId
+          toPolicyEvaluationId: rest.toPolicyEvaluationId
+          includeViolationTimes: rest.includeViolationTimes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applications/{applicationpublicid}/reports/{scanid}
+      name: api-v2-applications-applicationpublicid-reports-scanid
+      description: REST surface for api-v2-applications-applicationPublicId-reports-scanId.
+      operations:
+      - method: GET
+        name: getdata
+        description: This is an older version of the endpoint. This call will now be redirected to /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw.
+        call: lifecycle-application-report-data.getdata
+        with:
+          applicationPublicId: rest.applicationPublicId
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applications/{applicationpublicid}/reports/{scanid}/dependencytree
+      name: api-v2-applications-applicationpublicid-reports-scanid-dependencytree
+      description: REST surface for api-v2-applications-applicationPublicId-reports-scanId-dependencyTree.
+      operations:
+      - method: GET
+        name: getdependencytree
+        description: Use this method to retrieve the dependencies related to the component identified at the time of application
+          evaluation. This is currently available only for Java (Maven) and NPM applications.
+        call: lifecycle-application-report-data.getdependencytree
+        with:
+          applicationPublicId: rest.applicationPublicId
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applications/{applicationpublicid}/reports/{scanid}/policy
+      name: api-v2-applications-applicationpublicid-reports-scanid-policy
+      description: REST surface for api-v2-applications-applicationPublicId-reports-scanId-policy.
+      operations:
+      - method: GET
+        name: getpolicyviolations1
+        description: 'Use this method to retrieve the policy violation data generated as a result of an application evaluation,
+          for each component identified in the application evaluation./n/nPermissions required: View IQ Elements'
+        call: lifecycle-application-report-data.getpolicyviolations1
+        with:
+          applicationPublicId: rest.applicationPublicId
+          scanId: rest.scanId
+          includeViolationTimes: rest.includeViolationTimes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applications/{applicationpublicid}/reports/{scanid}/raw
+      name: api-v2-applications-applicationpublicid-reports-scanid-raw
+      description: REST surface for api-v2-applications-applicationPublicId-reports-scanId-raw.
+      operations:
+      - method: GET
+        name: getrawdata
+        description: 'Use this method to retrieve the ''raw'' data generated as a result of an application evaluation. ''raw''
+          data includes: the components identified in the application, and the licenses and vulnerabilities associated with
+          the identified components'
+        call: lifecycle-application-report-data.getrawdata
+        with:
+          applicationPublicId: rest.applicationPublicId
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-application-report-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Application Report Data. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: configuring-lifecycle-scm-policy-evaluations
+      description: By configuring Lifecycle with SCM, policy evaluations can be linked to the Git commit hash. Use this method
+        to compare the violations between policy evaluations for 2 commits, by providing the linked commit hashes.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-report-data.getpolicyviolationdiff
+      with:
+        applicationPublicId: tools.applicationPublicId
+        fromCommit: tools.fromCommit
+        toCommit: tools.toCommit
+        fromPolicyEvaluationId: tools.fromPolicyEvaluationId
+        toPolicyEvaluationId: tools.toPolicyEvaluationId
+        includeViolationTimes: tools.includeViolationTimes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: this-is-older-version-endpoint
+      description: This is an older version of the endpoint. This call will now be redirected to /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-report-data.getdata
+      with:
+        applicationPublicId: tools.applicationPublicId
+        scanId: tools.scanId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-dependencies
+      description: Use this method to retrieve the dependencies related to the component identified at the time of application
+        evaluation. This is currently available only for Java (Maven) and NPM applications.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-report-data.getdependencytree
+      with:
+        applicationPublicId: tools.applicationPublicId
+        scanId: tools.scanId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-policy
+      description: 'Use this method to retrieve the policy violation data generated as a result of an application evaluation,
+        for each component identified in the application evaluation./n/nPermissions required: View IQ Elements'
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-report-data.getpolicyviolations1
+      with:
+        applicationPublicId: tools.applicationPublicId
+        scanId: tools.scanId
+        includeViolationTimes: tools.includeViolationTimes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-raw
+      description: 'Use this method to retrieve the ''raw'' data generated as a result of an application evaluation. ''raw''
+        data includes: the components identified in the application, and the licenses and vulnerabilities associated with
+        the identified components'
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-report-data.getrawdata
+      with:
+        applicationPublicId: tools.applicationPublicId
+        scanId: tools.scanId
+      outputParameters:
+      - type: object
+        mapping: $.

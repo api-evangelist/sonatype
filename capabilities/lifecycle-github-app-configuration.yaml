@@ -1,0 +1,192 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — GitHub App Configuration
+  description: 'Sonatype Lifecycle Public REST API — GitHub App Configuration. 3 operations. Lead operation: Generate GitHub
+    App manifest. Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - GitHub App Configuration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-github-app-configuration
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — GitHub App Configuration business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: api-v2-githubApp-manifest
+      path: /api/v2/githubApp/manifest
+      operations:
+      - name: generatemanifest
+        method: POST
+        description: Generate GitHub App manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ownerId
+          in: query
+          type: string
+          description: Owner (organization/application) ID
+          required: true
+        - name: organizationName
+          in: query
+          type: string
+          description: GitHub organization name
+          required: true
+    - name: api-v2-githubApp-redirect
+      path: /api/v2/githubApp/redirect
+      operations:
+      - name: handleredirect
+        method: GET
+        description: GitHub App registration redirect callback
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: string
+          description: Temporary manifest conversion code from GitHub
+          required: true
+        - name: state
+          in: query
+          type: string
+          description: OAuth state token for CSRF protection
+    - name: api-v2-githubApp-setupInstallation
+      path: /api/v2/githubApp/setupInstallation
+      operations:
+      - name: handleinstallationsetup
+        method: GET
+        description: Handle GitHub App installation setup callback with OAuth + PKCE
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: installation_id
+          in: query
+          type: integer
+          description: GitHub App installation ID
+          required: true
+        - name: state
+          in: query
+          type: string
+          description: State token for CSRF protection
+          required: true
+        - name: code
+          in: query
+          type: string
+          description: OAuth authorization code
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-github-app-configuration-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — GitHub App Configuration. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/githubapp/manifest
+      name: api-v2-githubapp-manifest
+      description: REST surface for api-v2-githubApp-manifest.
+      operations:
+      - method: POST
+        name: generatemanifest
+        description: Generate GitHub App manifest
+        call: lifecycle-github-app-configuration.generatemanifest
+        with:
+          ownerId: rest.ownerId
+          organizationName: rest.organizationName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/githubapp/redirect
+      name: api-v2-githubapp-redirect
+      description: REST surface for api-v2-githubApp-redirect.
+      operations:
+      - method: GET
+        name: handleredirect
+        description: GitHub App registration redirect callback
+        call: lifecycle-github-app-configuration.handleredirect
+        with:
+          code: rest.code
+          state: rest.state
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/githubapp/setupinstallation
+      name: api-v2-githubapp-setupinstallation
+      description: REST surface for api-v2-githubApp-setupInstallation.
+      operations:
+      - method: GET
+        name: handleinstallationsetup
+        description: Handle GitHub App installation setup callback with OAuth + PKCE
+        call: lifecycle-github-app-configuration.handleinstallationsetup
+        with:
+          installation_id: rest.installation_id
+          state: rest.state
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-github-app-configuration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — GitHub App Configuration. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: generate-github-app-manifest
+      description: Generate GitHub App manifest
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-github-app-configuration.generatemanifest
+      with:
+        ownerId: tools.ownerId
+        organizationName: tools.organizationName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: github-app-registration-redirect-callback
+      description: GitHub App registration redirect callback
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-github-app-configuration.handleredirect
+      with:
+        code: tools.code
+        state: tools.state
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: handle-github-app-installation-setup
+      description: Handle GitHub App installation setup callback with OAuth + PKCE
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-github-app-configuration.handleinstallationsetup
+      with:
+        installation_id: tools.installation_id
+        state: tools.state
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.

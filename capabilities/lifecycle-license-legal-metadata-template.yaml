@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — License Legal Metadata Template
+  description: 'Sonatype Lifecycle Public REST API — License Legal Metadata Template. 4 operations. Lead operation: License
+    Legal Metadata Template. Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - License Legal Metadata Template
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-license-legal-metadata-template
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — License Legal Metadata Template business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: api-v2-licenseLegalMetadata-report-template
+      path: /api/v2/licenseLegalMetadata/report-template
+      operations:
+      - name: getallattributionreporttemplates
+        method: GET
+        description: Use this method to retrieve templates for all reports.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: saveattributionreporttemplate
+        method: POST
+        description: Use this method to create or update a template.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-licenseLegalMetadata-report-template-id
+      path: /api/v2/licenseLegalMetadata/report-template/{id}
+      operations:
+      - name: deleteattributionreporttemplate
+        method: DELETE
+        description: Use this method to delete an existing template.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Enter the template id for the template to be deleted.
+          required: true
+      - name: getattributionreporttemplatebyid
+        method: GET
+        description: Use this method to retrieve a template for license legal metadata.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Enter the templateId for the report.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-license-legal-metadata-template-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — License Legal Metadata Template. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/licenselegalmetadata/report-template
+      name: api-v2-licenselegalmetadata-report-template
+      description: REST surface for api-v2-licenseLegalMetadata-report-template.
+      operations:
+      - method: GET
+        name: getallattributionreporttemplates
+        description: Use this method to retrieve templates for all reports.
+        call: lifecycle-license-legal-metadata-template.getallattributionreporttemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: saveattributionreporttemplate
+        description: Use this method to create or update a template.
+        call: lifecycle-license-legal-metadata-template.saveattributionreporttemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/report-template/{id}
+      name: api-v2-licenselegalmetadata-report-template-id
+      description: REST surface for api-v2-licenseLegalMetadata-report-template-id.
+      operations:
+      - method: DELETE
+        name: deleteattributionreporttemplate
+        description: Use this method to delete an existing template.
+        call: lifecycle-license-legal-metadata-template.deleteattributionreporttemplate
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getattributionreporttemplatebyid
+        description: Use this method to retrieve a template for license legal metadata.
+        call: lifecycle-license-legal-metadata-template.getattributionreporttemplatebyid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-license-legal-metadata-template-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — License Legal Metadata Template. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-retrieve-templates
+      description: Use this method to retrieve templates for all reports.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-license-legal-metadata-template.getallattributionreporttemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-create-update
+      description: Use this method to create or update a template.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-license-legal-metadata-template.saveattributionreporttemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-delete-existing
+      description: Use this method to delete an existing template.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-license-legal-metadata-template.deleteattributionreporttemplate
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-template
+      description: Use this method to retrieve a template for license legal metadata.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-license-legal-metadata-template.getattributionreporttemplatebyid
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

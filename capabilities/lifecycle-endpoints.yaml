@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Endpoints
+  description: 'Sonatype Lifecycle Public REST API — Endpoints. 1 operations. Lead operation: Endpoints. Self-contained Naftiko
+    capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Endpoints
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-endpoints
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Endpoints business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-endpoints-apiType
+      path: /api/v2/endpoints/{apiType}
+      operations:
+      - name: getopenapi
+        method: GET
+        description: Use this method to retrieve the OpenAPI documentation for the specified type of IQ Server REST API.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiType
+          in: path
+          type: string
+          description: Select the type of the API.<ul><li> `public` APIs are Generally Available and fully supported by Sonatype.</li><li>
+            `experimental` APIs are not production ready
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-endpoints-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Endpoints. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/endpoints/{apitype}
+      name: api-v2-endpoints-apitype
+      description: REST surface for api-v2-endpoints-apiType.
+      operations:
+      - method: GET
+        name: getopenapi
+        description: Use this method to retrieve the OpenAPI documentation for the specified type of IQ Server REST API.
+        call: lifecycle-endpoints.getopenapi
+        with:
+          apiType: rest.apiType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-endpoints-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Endpoints. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: use-this-method-retrieve-openapi
+      description: Use this method to retrieve the OpenAPI documentation for the specified type of IQ Server REST API.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-endpoints.getopenapi
+      with:
+        apiType: tools.apiType
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Configuration
+  description: 'Sonatype Lifecycle Public REST API — Configuration. 4 operations. Lead operation: Configuration. Self-contained
+    Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Configuration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-configuration
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Configuration business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-config
+      path: /api/v2/config
+      operations:
+      - name: deleteconfiguration1
+        method: DELETE
+        description: Use this method to disable one or more IQ Server system properties. The property names are case-sensitive.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: property
+          in: query
+          type: array
+          description: Enter the names of the system properties. Values provided for name are case-sensitive.
+      - name: getconfiguration1
+        method: GET
+        description: Use this method to retrieve the configured value for an IQ Server system property.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: property
+          in: query
+          type: array
+          description: Enter the names of the system properties. Values provided for name are case-sensitive.
+      - name: setconfiguration1
+        method: PUT
+        description: Use this method to configure one or more IQ Server system properties. The property names are case-sensitive.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-config-integrationVersions-cache
+      path: /api/v2/config/integrationVersions/cache
+      operations:
+      - name: invalidatecache
+        method: DELETE
+        description: Clear the integration version cache. Use this endpoint after a new integration version is released to
+          ensure IQ Server immediately recognizes the new version instead of waiting for cache expiration (10 minutes).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-configuration-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Configuration. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/config
+      name: api-v2-config
+      description: REST surface for api-v2-config.
+      operations:
+      - method: DELETE
+        name: deleteconfiguration1
+        description: Use this method to disable one or more IQ Server system properties. The property names are case-sensitive.
+        call: lifecycle-configuration.deleteconfiguration1
+        with:
+          property: rest.property
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getconfiguration1
+        description: Use this method to retrieve the configured value for an IQ Server system property.
+        call: lifecycle-configuration.getconfiguration1
+        with:
+          property: rest.property
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setconfiguration1
+        description: Use this method to configure one or more IQ Server system properties. The property names are case-sensitive.
+        call: lifecycle-configuration.setconfiguration1
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/config/integrationversions/cache
+      name: api-v2-config-integrationversions-cache
+      description: REST surface for api-v2-config-integrationVersions-cache.
+      operations:
+      - method: DELETE
+        name: invalidatecache
+        description: Clear the integration version cache. Use this endpoint after a new integration version is released to
+          ensure IQ Server immediately recognizes the new version instead of waiting for cache expiration (10 minutes).
+        call: lifecycle-configuration.invalidatecache
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-configuration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Configuration. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-disable-one
+      description: Use this method to disable one or more IQ Server system properties. The property names are case-sensitive.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-configuration.deleteconfiguration1
+      with:
+        property: tools.property
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-configured
+      description: Use this method to retrieve the configured value for an IQ Server system property.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-configuration.getconfiguration1
+      with:
+        property: tools.property
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-configure-one
+      description: Use this method to configure one or more IQ Server system properties. The property names are case-sensitive.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-configuration.setconfiguration1
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: clear-integration-version-cache-use
+      description: Clear the integration version cache. Use this endpoint after a new integration version is released to ensure
+        IQ Server immediately recognizes the new version instead of waiting for cache expiration (10 minutes).
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-configuration.invalidatecache
+      outputParameters:
+      - type: object
+        mapping: $.

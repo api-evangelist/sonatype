@@ -1,0 +1,1231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Firewall
+  description: 'Sonatype Lifecycle Public REST API — Firewall. 28 operations. Lead operation: Firewall. Self-contained Naftiko
+    capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Firewall
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-firewall
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Firewall business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-firewall-components-autoReleasedFromQuarantine
+      path: /api/v2/firewall/components/autoReleasedFromQuarantine
+      operations:
+      - name: getunquarantinelist
+        method: GET
+        description: Use this method to retrieve the details of components that are auto-released from quarantine.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Enter the page number.
+        - name: pageSize
+          in: query
+          type: integer
+          description: Enter the number of results to be returned for a page.
+        - name: policyId
+          in: query
+          type: string
+          description: Enter the `policyId`. When provided, the results will include the components that have a policy violation
+            for the policyId.
+        - name: componentName
+          in: query
+          type: string
+          description: Enter the component name. When provided, the results will include components with display names (case-insensitive)
+            that match the given name.
+        - name: sortBy
+          in: query
+          type: string
+          description: Enter the sort criteria `releaseQuarantineTime` or `quarantineTime`.
+        - name: asc
+          in: query
+          type: boolean
+          description: Select `true` to set the sort order to ascending.
+    - name: api-v2-firewall-components-quarantined
+      path: /api/v2/firewall/components/quarantined
+      operations:
+      - name: getquarantinelist
+        method: GET
+        description: Use this method to request a list of quarantined components.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Enter the starting page number for the response.
+        - name: pageSize
+          in: query
+          type: integer
+          description: Enter the page size for the response.
+        - name: policyId
+          in: query
+          type: array
+          description: Enter the list of policy IDs causing the quarantine.
+        - name: componentName
+          in: query
+          type: string
+          description: Enter the component name.
+        - name: repositoryPublicId
+          in: query
+          type: string
+          description: Enter the repository public ID of the quarantined component.
+        - name: quarantineTime
+          in: query
+          type: integer
+          description: Enter the quarantine time of the component.
+        - name: sortBy
+          in: query
+          type: string
+          description: Enter `quarantineTime` to sort the results by quarantine time.
+        - name: asc
+          in: query
+          type: boolean
+          description: Select the sort order.
+    - name: api-v2-firewall-components-repositoryManagerId-repositoryId-evaluate
+      path: /api/v2/firewall/components/{repositoryManagerId}/{repositoryId}/evaluate
+      operations:
+      - name: evaluatecomponents1
+        method: POST
+        description: Use this method to evaluate components (max. 100).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repositoryManagerId
+          in: path
+          type: string
+          description: Enter the repository manager ID.
+          required: true
+        - name: repositoryId
+          in: path
+          type: string
+          description: Enter the repository ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-firewall-connection-verify
+      path: /api/v2/firewall/connection/verify
+      operations:
+      - name: verifyconnectionandgetapplications
+        method: GET
+        description: Use this method to verify that the authenticated user has required permissions for firewall operations
+          and retrieve accessible applications.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-firewall-container-image-policyViolations-quarantined
+      path: /api/v2/firewall/container-image/policyViolations/quarantined
+      operations:
+      - name: getcontainerimagesinquarantine
+        method: GET
+        description: Use this method to find all container images currently in quarantine.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: api-v2-firewall-container-image-policyWaiver
+      path: /api/v2/firewall/container-image/policyWaiver
+      operations:
+      - name: getwaivers
+        method: GET
+        description: 'Use this method to get all policy waivers for container images. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: api-v2-firewall-container-image-containerImageId-policyWaiver
+      path: /api/v2/firewall/container-image/{containerImageId}/policyWaiver
+      operations:
+      - name: deletecontainerimagepolicywaiver
+        method: DELETE
+        description: Use this method to delete a container waiver, specified by the containerImageId.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: containerImageId
+          in: path
+          type: string
+          description: Enter the container id.
+          required: true
+      - name: addwaiver
+        method: POST
+        description: 'Use this method to create a waiver for all policy violations of a container Image. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: containerImageId
+          in: path
+          type: string
+          description: Enter the container image id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-firewall-metrics-embedded
+      path: /api/v2/firewall/metrics/embedded
+      operations:
+      - name: getfirewallmetrics
+        method: GET
+        description: Use this method to retrieve firewall dashboard metrics.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-firewall-namespace_confusion-format
+      path: /api/v2/firewall/namespace_confusion/{format}
+      operations:
+      - name: removeproprietarycomponentnames
+        method: DELETE
+        description: Removes proprietary component namespaces for the specified format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: path
+          type: string
+          description: Format for which the proprietary namespaces are being removed.
+          required: true
+      - name: addproprietarycomponentnames
+        method: POST
+        description: Adds a list of proprietary component namespaces for the specified format to prevent namespace confusion
+          attacks.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: path
+          type: string
+          description: Format for which the proprietary namespaces are being added.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-firewall-quarantine-summary
+      path: /api/v2/firewall/quarantine/summary
+      operations:
+      - name: getquarantinesummary
+        method: GET
+        description: Use this method to request a summary of quarantined components.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-firewall-quarantinedComponentView-configuration-anonymousAccess
+      path: /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess
+      operations:
+      - name: getquarantinedcomponentviewanonymousaccess
+        method: GET
+        description: Use this method to determine if the quarantined component(s) details can be accessed anonymously.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-firewall-quarantinedComponentView-configuration-anonymousAccess-enabled
+      path: /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess/{enabled}
+      operations:
+      - name: setquarantinedcomponentviewanonymousaccess
+        method: PUT
+        description: Use this method to enable/disable anonymous access to view the quarantined components.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: enabled
+          in: path
+          type: boolean
+          description: Select `true` or `false` to enable or disable anonymous access.
+          required: true
+    - name: api-v2-firewall-releaseQuarantine-configuration
+      path: /api/v2/firewall/releaseQuarantine/configuration
+      operations:
+      - name: getfirewallautounquarantineconfig
+        method: GET
+        description: Use this method to retrieve the configuration settings for auto-release from quarantine for repositories.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setfirewallautounquarantineconfig
+        method: PUT
+        description: Use this method to set the configurations for auto-release from quarantine for a list of repositories.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-firewall-releaseQuarantine-summary
+      path: /api/v2/firewall/releaseQuarantine/summary
+      operations:
+      - name: getfirewallunquarantinesummary
+        method: GET
+        description: Use this method to track how many components have been automatically released from quarantine over different
+          time periods.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-firewall-repositories-cascade-reevaluate-componentHash-componentHash
+      path: /api/v2/firewall/repositories/cascade-reevaluate/componentHash/{componentHash}
+      operations:
+      - name: initiatecascadereevaluation
+        method: POST
+        description: 'Initiate cascade re-evaluation for a component across repository hierarchies.<p>This operation asynchronously
+          re-evaluates the specified component across all repositories where the component exists.<p>The system will automatically
+          discover '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: componentHash
+          in: path
+          type: string
+          description: The component hash to re-evaluate across all repositories
+          required: true
+    - name: api-v2-firewall-repositories-cascade-reevaluate-status-requestId
+      path: /api/v2/firewall/repositories/cascade-reevaluate/status/{requestId}
+      operations:
+      - name: getcascadestatus
+        method: GET
+        description: Get the status of a cascade re-evaluation request.<p>Returns the current progress of a cascade re-evaluation
+          operation including the list of components that have been evaluated and those still pending. The overall status
+          will be 'pending' i
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: requestId
+          in: path
+          type: string
+          description: The cascade request ID to check status for
+          required: true
+    - name: api-v2-firewall-repositories-configuration-repositoryManagerId
+      path: /api/v2/firewall/repositories/configuration/{repositoryManagerId}
+      operations:
+      - name: getconfiguredrepositories
+        method: GET
+        description: Use this method to retrieve the configuration details of an existing repository manager.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repositoryManagerId
+          in: path
+          type: string
+          description: Enter the repository manager ID.
+          required: true
+        - name: sinceUtcTimestamp
+          in: query
+          type: integer
+          description: Enter the epoch time in milliseconds when the repository was last updated.
+      - name: configurerepositories
+        method: POST
+        description: Use this method to update the repositories for an existing repository manager.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repositoryManagerId
+          in: path
+          type: string
+          description: Enter the repository manager ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-firewall-repositoryContainer
+      path: /api/v2/firewall/repositoryContainer
+      operations:
+      - name: getrepositorycontainer
+        method: GET
+        description: Use this method to retrieve the ID and name for the repository container.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-firewall-repositoryManagers
+      path: /api/v2/firewall/repositoryManagers
+      operations:
+      - name: getrepositorymanagers
+        method: GET
+        description: Use this method to retrieve all configured repository managers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addrepositorymanager
+        method: POST
+        description: Use this method to add a new repository manager.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-firewall-repositoryManagers-repositoryManagerId
+      path: /api/v2/firewall/repositoryManagers/{repositoryManagerId}
+      operations:
+      - name: deleterepositorymanager
+        method: DELETE
+        description: Use this method to delete an existing repository manager.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repositoryManagerId
+          in: path
+          type: string
+          description: Enter the repository manager ID.
+          required: true
+      - name: getrepositorymanager
+        method: GET
+        description: Use this method to retrieve details of an existing repository manager.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repositoryManagerId
+          in: path
+          type: string
+          description: Enter the repository manager ID.
+          required: true
+    - name: api-v2-malware-defense-evaluate
+      path: /api/v2/malware-defense/evaluate
+      operations:
+      - name: evaluatemalware
+        method: POST
+        description: 'Evaluate malware for a list of components.<p>Use this endpoint to evaluate malware for a list of components
+          up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component
+          that are of '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-malware-defense-metrics
+      path: /api/v2/malware-defense/metrics
+      operations:
+      - name: getmalwaredefensemetrics
+        method: GET
+        description: The response contains malware defense API metrics.<p>Use this endpoint to get the count of malicious
+          components evaluated via malware defense API grouped by format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-firewall-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Firewall. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/firewall/components/autoreleasedfromquarantine
+      name: api-v2-firewall-components-autoreleasedfromquarantine
+      description: REST surface for api-v2-firewall-components-autoReleasedFromQuarantine.
+      operations:
+      - method: GET
+        name: getunquarantinelist
+        description: Use this method to retrieve the details of components that are auto-released from quarantine.
+        call: lifecycle-firewall.getunquarantinelist
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+          policyId: rest.policyId
+          componentName: rest.componentName
+          sortBy: rest.sortBy
+          asc: rest.asc
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/components/quarantined
+      name: api-v2-firewall-components-quarantined
+      description: REST surface for api-v2-firewall-components-quarantined.
+      operations:
+      - method: GET
+        name: getquarantinelist
+        description: Use this method to request a list of quarantined components.
+        call: lifecycle-firewall.getquarantinelist
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+          policyId: rest.policyId
+          componentName: rest.componentName
+          repositoryPublicId: rest.repositoryPublicId
+          quarantineTime: rest.quarantineTime
+          sortBy: rest.sortBy
+          asc: rest.asc
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/components/{repositorymanagerid}/{repositoryid}/evaluate
+      name: api-v2-firewall-components-repositorymanagerid-repositoryid-evaluate
+      description: REST surface for api-v2-firewall-components-repositoryManagerId-repositoryId-evaluate.
+      operations:
+      - method: POST
+        name: evaluatecomponents1
+        description: Use this method to evaluate components (max. 100).
+        call: lifecycle-firewall.evaluatecomponents1
+        with:
+          repositoryManagerId: rest.repositoryManagerId
+          repositoryId: rest.repositoryId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/connection/verify
+      name: api-v2-firewall-connection-verify
+      description: REST surface for api-v2-firewall-connection-verify.
+      operations:
+      - method: GET
+        name: verifyconnectionandgetapplications
+        description: Use this method to verify that the authenticated user has required permissions for firewall operations
+          and retrieve accessible applications.
+        call: lifecycle-firewall.verifyconnectionandgetapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/container-image/policyviolations/quarantined
+      name: api-v2-firewall-container-image-policyviolations-quarantined
+      description: REST surface for api-v2-firewall-container-image-policyViolations-quarantined.
+      operations:
+      - method: GET
+        name: getcontainerimagesinquarantine
+        description: Use this method to find all container images currently in quarantine.
+        call: lifecycle-firewall.getcontainerimagesinquarantine
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/container-image/policywaiver
+      name: api-v2-firewall-container-image-policywaiver
+      description: REST surface for api-v2-firewall-container-image-policyWaiver.
+      operations:
+      - method: GET
+        name: getwaivers
+        description: 'Use this method to get all policy waivers for container images. '
+        call: lifecycle-firewall.getwaivers
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/container-image/{containerimageid}/policywaiver
+      name: api-v2-firewall-container-image-containerimageid-policywaiver
+      description: REST surface for api-v2-firewall-container-image-containerImageId-policyWaiver.
+      operations:
+      - method: DELETE
+        name: deletecontainerimagepolicywaiver
+        description: Use this method to delete a container waiver, specified by the containerImageId.
+        call: lifecycle-firewall.deletecontainerimagepolicywaiver
+        with:
+          containerImageId: rest.containerImageId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addwaiver
+        description: 'Use this method to create a waiver for all policy violations of a container Image. '
+        call: lifecycle-firewall.addwaiver
+        with:
+          containerImageId: rest.containerImageId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/metrics/embedded
+      name: api-v2-firewall-metrics-embedded
+      description: REST surface for api-v2-firewall-metrics-embedded.
+      operations:
+      - method: GET
+        name: getfirewallmetrics
+        description: Use this method to retrieve firewall dashboard metrics.
+        call: lifecycle-firewall.getfirewallmetrics
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/namespace-confusion/{format}
+      name: api-v2-firewall-namespace-confusion-format
+      description: REST surface for api-v2-firewall-namespace_confusion-format.
+      operations:
+      - method: DELETE
+        name: removeproprietarycomponentnames
+        description: Removes proprietary component namespaces for the specified format.
+        call: lifecycle-firewall.removeproprietarycomponentnames
+        with:
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addproprietarycomponentnames
+        description: Adds a list of proprietary component namespaces for the specified format to prevent namespace confusion
+          attacks.
+        call: lifecycle-firewall.addproprietarycomponentnames
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/quarantine/summary
+      name: api-v2-firewall-quarantine-summary
+      description: REST surface for api-v2-firewall-quarantine-summary.
+      operations:
+      - method: GET
+        name: getquarantinesummary
+        description: Use this method to request a summary of quarantined components.
+        call: lifecycle-firewall.getquarantinesummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/quarantinedcomponentview/configuration/anonymousaccess
+      name: api-v2-firewall-quarantinedcomponentview-configuration-anonymousaccess
+      description: REST surface for api-v2-firewall-quarantinedComponentView-configuration-anonymousAccess.
+      operations:
+      - method: GET
+        name: getquarantinedcomponentviewanonymousaccess
+        description: Use this method to determine if the quarantined component(s) details can be accessed anonymously.
+        call: lifecycle-firewall.getquarantinedcomponentviewanonymousaccess
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/quarantinedcomponentview/configuration/anonymousaccess/{enabled}
+      name: api-v2-firewall-quarantinedcomponentview-configuration-anonymousaccess-enabled
+      description: REST surface for api-v2-firewall-quarantinedComponentView-configuration-anonymousAccess-enabled.
+      operations:
+      - method: PUT
+        name: setquarantinedcomponentviewanonymousaccess
+        description: Use this method to enable/disable anonymous access to view the quarantined components.
+        call: lifecycle-firewall.setquarantinedcomponentviewanonymousaccess
+        with:
+          enabled: rest.enabled
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/releasequarantine/configuration
+      name: api-v2-firewall-releasequarantine-configuration
+      description: REST surface for api-v2-firewall-releaseQuarantine-configuration.
+      operations:
+      - method: GET
+        name: getfirewallautounquarantineconfig
+        description: Use this method to retrieve the configuration settings for auto-release from quarantine for repositories.
+        call: lifecycle-firewall.getfirewallautounquarantineconfig
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setfirewallautounquarantineconfig
+        description: Use this method to set the configurations for auto-release from quarantine for a list of repositories.
+        call: lifecycle-firewall.setfirewallautounquarantineconfig
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/releasequarantine/summary
+      name: api-v2-firewall-releasequarantine-summary
+      description: REST surface for api-v2-firewall-releaseQuarantine-summary.
+      operations:
+      - method: GET
+        name: getfirewallunquarantinesummary
+        description: Use this method to track how many components have been automatically released from quarantine over different
+          time periods.
+        call: lifecycle-firewall.getfirewallunquarantinesummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/repositories/cascade-reevaluate/componenthash/{componenthash}
+      name: api-v2-firewall-repositories-cascade-reevaluate-componenthash-componenthash
+      description: REST surface for api-v2-firewall-repositories-cascade-reevaluate-componentHash-componentHash.
+      operations:
+      - method: POST
+        name: initiatecascadereevaluation
+        description: 'Initiate cascade re-evaluation for a component across repository hierarchies.<p>This operation asynchronously
+          re-evaluates the specified component across all repositories where the component exists.<p>The system will automatically
+          discover '
+        call: lifecycle-firewall.initiatecascadereevaluation
+        with:
+          componentHash: rest.componentHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/repositories/cascade-reevaluate/status/{requestid}
+      name: api-v2-firewall-repositories-cascade-reevaluate-status-requestid
+      description: REST surface for api-v2-firewall-repositories-cascade-reevaluate-status-requestId.
+      operations:
+      - method: GET
+        name: getcascadestatus
+        description: Get the status of a cascade re-evaluation request.<p>Returns the current progress of a cascade re-evaluation
+          operation including the list of components that have been evaluated and those still pending. The overall status
+          will be 'pending' i
+        call: lifecycle-firewall.getcascadestatus
+        with:
+          requestId: rest.requestId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/repositories/configuration/{repositorymanagerid}
+      name: api-v2-firewall-repositories-configuration-repositorymanagerid
+      description: REST surface for api-v2-firewall-repositories-configuration-repositoryManagerId.
+      operations:
+      - method: GET
+        name: getconfiguredrepositories
+        description: Use this method to retrieve the configuration details of an existing repository manager.
+        call: lifecycle-firewall.getconfiguredrepositories
+        with:
+          repositoryManagerId: rest.repositoryManagerId
+          sinceUtcTimestamp: rest.sinceUtcTimestamp
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: configurerepositories
+        description: Use this method to update the repositories for an existing repository manager.
+        call: lifecycle-firewall.configurerepositories
+        with:
+          repositoryManagerId: rest.repositoryManagerId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/repositorycontainer
+      name: api-v2-firewall-repositorycontainer
+      description: REST surface for api-v2-firewall-repositoryContainer.
+      operations:
+      - method: GET
+        name: getrepositorycontainer
+        description: Use this method to retrieve the ID and name for the repository container.
+        call: lifecycle-firewall.getrepositorycontainer
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/repositorymanagers
+      name: api-v2-firewall-repositorymanagers
+      description: REST surface for api-v2-firewall-repositoryManagers.
+      operations:
+      - method: GET
+        name: getrepositorymanagers
+        description: Use this method to retrieve all configured repository managers.
+        call: lifecycle-firewall.getrepositorymanagers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addrepositorymanager
+        description: Use this method to add a new repository manager.
+        call: lifecycle-firewall.addrepositorymanager
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/firewall/repositorymanagers/{repositorymanagerid}
+      name: api-v2-firewall-repositorymanagers-repositorymanagerid
+      description: REST surface for api-v2-firewall-repositoryManagers-repositoryManagerId.
+      operations:
+      - method: DELETE
+        name: deleterepositorymanager
+        description: Use this method to delete an existing repository manager.
+        call: lifecycle-firewall.deleterepositorymanager
+        with:
+          repositoryManagerId: rest.repositoryManagerId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getrepositorymanager
+        description: Use this method to retrieve details of an existing repository manager.
+        call: lifecycle-firewall.getrepositorymanager
+        with:
+          repositoryManagerId: rest.repositoryManagerId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/malware-defense/evaluate
+      name: api-v2-malware-defense-evaluate
+      description: REST surface for api-v2-malware-defense-evaluate.
+      operations:
+      - method: POST
+        name: evaluatemalware
+        description: 'Evaluate malware for a list of components.<p>Use this endpoint to evaluate malware for a list of components
+          up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component
+          that are of '
+        call: lifecycle-firewall.evaluatemalware
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/malware-defense/metrics
+      name: api-v2-malware-defense-metrics
+      description: REST surface for api-v2-malware-defense-metrics.
+      operations:
+      - method: GET
+        name: getmalwaredefensemetrics
+        description: The response contains malware defense API metrics.<p>Use this endpoint to get the count of malicious
+          components evaluated via malware defense API grouped by format.
+        call: lifecycle-firewall.getmalwaredefensemetrics
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-firewall-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Firewall. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: use-this-method-retrieve-details
+      description: Use this method to retrieve the details of components that are auto-released from quarantine.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getunquarantinelist
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+        policyId: tools.policyId
+        componentName: tools.componentName
+        sortBy: tools.sortBy
+        asc: tools.asc
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-request-list
+      description: Use this method to request a list of quarantined components.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getquarantinelist
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+        policyId: tools.policyId
+        componentName: tools.componentName
+        repositoryPublicId: tools.repositoryPublicId
+        quarantineTime: tools.quarantineTime
+        sortBy: tools.sortBy
+        asc: tools.asc
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-evaluate-components
+      description: Use this method to evaluate components (max. 100).
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-firewall.evaluatecomponents1
+      with:
+        repositoryManagerId: tools.repositoryManagerId
+        repositoryId: tools.repositoryId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-verify-that
+      description: Use this method to verify that the authenticated user has required permissions for firewall operations
+        and retrieve accessible applications.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.verifyconnectionandgetapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-find-all
+      description: Use this method to find all container images currently in quarantine.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getcontainerimagesinquarantine
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-get-all
+      description: 'Use this method to get all policy waivers for container images. '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getwaivers
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-delete-container
+      description: Use this method to delete a container waiver, specified by the containerImageId.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-firewall.deletecontainerimagepolicywaiver
+      with:
+        containerImageId: tools.containerImageId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-create-waiver
+      description: 'Use this method to create a waiver for all policy violations of a container Image. '
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-firewall.addwaiver
+      with:
+        containerImageId: tools.containerImageId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-firewall
+      description: Use this method to retrieve firewall dashboard metrics.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getfirewallmetrics
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removes-proprietary-component-namespaces-specified
+      description: Removes proprietary component namespaces for the specified format.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-firewall.removeproprietarycomponentnames
+      with:
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: adds-list-proprietary-component-namespaces
+      description: Adds a list of proprietary component namespaces for the specified format to prevent namespace confusion
+        attacks.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: lifecycle-firewall.addproprietarycomponentnames
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-request-summary
+      description: Use this method to request a summary of quarantined components.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getquarantinesummary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-determine-if
+      description: Use this method to determine if the quarantined component(s) details can be accessed anonymously.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getquarantinedcomponentviewanonymousaccess
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-enable-disable
+      description: Use this method to enable/disable anonymous access to view the quarantined components.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.setquarantinedcomponentviewanonymousaccess
+      with:
+        enabled: tools.enabled
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-configuration
+      description: Use this method to retrieve the configuration settings for auto-release from quarantine for repositories.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getfirewallautounquarantineconfig
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-set-configurations
+      description: Use this method to set the configurations for auto-release from quarantine for a list of repositories.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.setfirewallautounquarantineconfig
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-track-how
+      description: Use this method to track how many components have been automatically released from quarantine over different
+        time periods.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getfirewallunquarantinesummary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initiate-cascade-re-evaluation-component
+      description: 'Initiate cascade re-evaluation for a component across repository hierarchies.<p>This operation asynchronously
+        re-evaluates the specified component across all repositories where the component exists.<p>The system will automatically
+        discover '
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-firewall.initiatecascadereevaluation
+      with:
+        componentHash: tools.componentHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-status-cascade-re-evaluation
+      description: Get the status of a cascade re-evaluation request.<p>Returns the current progress of a cascade re-evaluation
+        operation including the list of components that have been evaluated and those still pending. The overall status will
+        be 'pending' i
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getcascadestatus
+      with:
+        requestId: tools.requestId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-configuration-2
+      description: Use this method to retrieve the configuration details of an existing repository manager.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getconfiguredrepositories
+      with:
+        repositoryManagerId: tools.repositoryManagerId
+        sinceUtcTimestamp: tools.sinceUtcTimestamp
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-update-repositories
+      description: Use this method to update the repositories for an existing repository manager.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-firewall.configurerepositories
+      with:
+        repositoryManagerId: tools.repositoryManagerId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-id
+      description: Use this method to retrieve the ID and name for the repository container.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getrepositorycontainer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-all
+      description: Use this method to retrieve all configured repository managers.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getrepositorymanagers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-add-new
+      description: Use this method to add a new repository manager.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-firewall.addrepositorymanager
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-delete-existing
+      description: Use this method to delete an existing repository manager.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-firewall.deleterepositorymanager
+      with:
+        repositoryManagerId: tools.repositoryManagerId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-details-2
+      description: Use this method to retrieve details of an existing repository manager.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getrepositorymanager
+      with:
+        repositoryManagerId: tools.repositoryManagerId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: evaluate-malware-list-components-p-use-this
+      description: 'Evaluate malware for a list of components.<p>Use this endpoint to evaluate malware for a list of components
+        up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component
+        that are of '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: lifecycle-firewall.evaluatemalware
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: response-contains-malware-defense-api
+      description: The response contains malware defense API metrics.<p>Use this endpoint to get the count of malicious components
+        evaluated via malware defense API grouped by format.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-firewall.getmalwaredefensemetrics
+      outputParameters:
+      - type: object
+        mapping: $.

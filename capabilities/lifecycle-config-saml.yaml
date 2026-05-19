@@ -1,0 +1,165 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Config SAML
+  description: 'Sonatype Lifecycle Public REST API — Config SAML. 4 operations. Lead operation: Config SAML. Self-contained
+    Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Config SAML
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-config-saml
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Config SAML business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-config-saml
+      path: /api/v2/config/saml
+      operations:
+      - name: deletesamlconfiguration
+        method: DELETE
+        description: Use this method to delete the SAML configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getsamlconfiguration
+        method: GET
+        description: Use this method to inspect the SAML configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: insertorupdatesamlconfiguration
+        method: PUT
+        description: Use this method to enable SSO using SAML. This request uses the content type multipart/form-data to transmit
+          the configuration to IQ Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-config-saml-metadata
+      path: /api/v2/config/saml/metadata
+      operations:
+      - name: getmetadata
+        method: GET
+        description: Use this method to retrieve IQ Server's metadata service provider descriptor.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-config-saml-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Config SAML. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/config/saml
+      name: api-v2-config-saml
+      description: REST surface for api-v2-config-saml.
+      operations:
+      - method: DELETE
+        name: deletesamlconfiguration
+        description: Use this method to delete the SAML configuration.
+        call: lifecycle-config-saml.deletesamlconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getsamlconfiguration
+        description: Use this method to inspect the SAML configuration.
+        call: lifecycle-config-saml.getsamlconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: insertorupdatesamlconfiguration
+        description: Use this method to enable SSO using SAML. This request uses the content type multipart/form-data to transmit
+          the configuration to IQ Server.
+        call: lifecycle-config-saml.insertorupdatesamlconfiguration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/config/saml/metadata
+      name: api-v2-config-saml-metadata
+      description: REST surface for api-v2-config-saml-metadata.
+      operations:
+      - method: GET
+        name: getmetadata
+        description: Use this method to retrieve IQ Server's metadata service provider descriptor.
+        call: lifecycle-config-saml.getmetadata
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-config-saml-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Config SAML. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-delete-saml
+      description: Use this method to delete the SAML configuration.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-config-saml.deletesamlconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-inspect-saml
+      description: Use this method to inspect the SAML configuration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-saml.getsamlconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-enable-sso
+      description: Use this method to enable SSO using SAML. This request uses the content type multipart/form-data to transmit
+        the configuration to IQ Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-saml.insertorupdatesamlconfiguration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-iq
+      description: Use this method to retrieve IQ Server's metadata service provider descriptor.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-saml.getmetadata
+      outputParameters:
+      - type: object
+        mapping: $.

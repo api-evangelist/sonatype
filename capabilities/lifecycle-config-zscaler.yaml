@@ -1,0 +1,336 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Config Zscaler
+  description: 'Sonatype Lifecycle Public REST API — Config Zscaler. 9 operations. Lead operation: Config Zscaler. Self-contained
+    Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Config Zscaler
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-config-zscaler
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Config Zscaler business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-config-zscaler
+      path: /api/v2/config/zscaler
+      operations:
+      - name: deleteconfiguration7
+        method: DELETE
+        description: Use this method to disable or remove the Zscaler configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getconfiguration8
+        method: GET
+        description: Use this method to review the configuration for a Zscaler server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setconfiguration7
+        method: PUT
+        description: Use this method to configure or update an existing Zscaler server configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-config-zscaler-testConfig
+      path: /api/v2/config/zscaler/testConfig
+      operations:
+      - name: testconfiguration1
+        method: POST
+        description: Use this method to test Zscaler server configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-config-zscaler-update
+      path: /api/v2/config/zscaler/update
+      operations:
+      - name: deleteallcategories
+        method: DELETE
+        description: Use this endpoint to delete all configured formats from your Zscaler instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: triggerupdateall
+        method: POST
+        description: Use this endpoint to trigger an update of all configured formats to your Zscaler instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-config-zscaler-update-format
+      path: /api/v2/config/zscaler/update/{format}
+      operations:
+      - name: deletecategory
+        method: DELETE
+        description: Use this endpoint to delete a specific format from your Zscaler instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: path
+          type: string
+          required: true
+      - name: triggerupdate
+        method: POST
+        description: Use this endpoint to trigger an update to your Zscaler instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: path
+          type: string
+          required: true
+    - name: api-v2-config-zscaler-zscalerLimits
+      path: /api/v2/config/zscaler/zscalerLimits
+      operations:
+      - name: getquota
+        method: GET
+        description: Returns the current Zscaler quota.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-config-zscaler-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Config Zscaler. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/config/zscaler
+      name: api-v2-config-zscaler
+      description: REST surface for api-v2-config-zscaler.
+      operations:
+      - method: DELETE
+        name: deleteconfiguration7
+        description: Use this method to disable or remove the Zscaler configuration.
+        call: lifecycle-config-zscaler.deleteconfiguration7
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getconfiguration8
+        description: Use this method to review the configuration for a Zscaler server.
+        call: lifecycle-config-zscaler.getconfiguration8
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setconfiguration7
+        description: Use this method to configure or update an existing Zscaler server configuration.
+        call: lifecycle-config-zscaler.setconfiguration7
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/config/zscaler/testconfig
+      name: api-v2-config-zscaler-testconfig
+      description: REST surface for api-v2-config-zscaler-testConfig.
+      operations:
+      - method: POST
+        name: testconfiguration1
+        description: Use this method to test Zscaler server configuration.
+        call: lifecycle-config-zscaler.testconfiguration1
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/config/zscaler/update
+      name: api-v2-config-zscaler-update
+      description: REST surface for api-v2-config-zscaler-update.
+      operations:
+      - method: DELETE
+        name: deleteallcategories
+        description: Use this endpoint to delete all configured formats from your Zscaler instance
+        call: lifecycle-config-zscaler.deleteallcategories
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: triggerupdateall
+        description: Use this endpoint to trigger an update of all configured formats to your Zscaler instance
+        call: lifecycle-config-zscaler.triggerupdateall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/config/zscaler/update/{format}
+      name: api-v2-config-zscaler-update-format
+      description: REST surface for api-v2-config-zscaler-update-format.
+      operations:
+      - method: DELETE
+        name: deletecategory
+        description: Use this endpoint to delete a specific format from your Zscaler instance
+        call: lifecycle-config-zscaler.deletecategory
+        with:
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: triggerupdate
+        description: Use this endpoint to trigger an update to your Zscaler instance
+        call: lifecycle-config-zscaler.triggerupdate
+        with:
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/config/zscaler/zscalerlimits
+      name: api-v2-config-zscaler-zscalerlimits
+      description: REST surface for api-v2-config-zscaler-zscalerLimits.
+      operations:
+      - method: GET
+        name: getquota
+        description: Returns the current Zscaler quota.
+        call: lifecycle-config-zscaler.getquota
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-config-zscaler-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Config Zscaler. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-disable-remove
+      description: Use this method to disable or remove the Zscaler configuration.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-config-zscaler.deleteconfiguration7
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-review-configuration
+      description: Use this method to review the configuration for a Zscaler server.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-zscaler.getconfiguration8
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-configure-update
+      description: Use this method to configure or update an existing Zscaler server configuration.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-zscaler.setconfiguration7
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-test-zscaler
+      description: Use this method to test Zscaler server configuration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: lifecycle-config-zscaler.testconfiguration1
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-endpoint-delete-all
+      description: Use this endpoint to delete all configured formats from your Zscaler instance
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-config-zscaler.deleteallcategories
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-endpoint-trigger-update
+      description: Use this endpoint to trigger an update of all configured formats to your Zscaler instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-config-zscaler.triggerupdateall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-endpoint-delete-specific
+      description: Use this endpoint to delete a specific format from your Zscaler instance
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-config-zscaler.deletecategory
+      with:
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-endpoint-trigger-update-2
+      description: Use this endpoint to trigger an update to your Zscaler instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-config-zscaler.triggerupdate
+      with:
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-current-zscaler-quota
+      description: Returns the current Zscaler quota.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-zscaler.getquota
+      outputParameters:
+      - type: object
+        mapping: $.

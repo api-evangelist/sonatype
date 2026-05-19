@@ -1,0 +1,490 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — License Legal Metadata Report
+  description: 'Sonatype Lifecycle Public REST API — License Legal Metadata Report. 9 operations. Lead operation: License
+    Legal Metadata Report. Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - License Legal Metadata Report
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-license-legal-metadata-report
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — License Legal Metadata Report business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: api-v2-licenseLegalMetadata-application-applicationId
+      path: /api/v2/licenseLegalMetadata/application/{applicationId}
+      operations:
+      - name: getlicenselegalapplicationreport
+        method: GET
+        description: Use this REST API to retrieve the raw license legal data for components in an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the application id or public id.
+          required: true
+    - name: api-v2-licenseLegalMetadata-application-applicationId-stage-stageId
+      path: /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}
+      operations:
+      - name: getlicenselegalapplicationreport1
+        method: GET
+        description: Use this method to retrieve the raw license legal data for components in an application based on the
+          application scan at a specific stage.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the application id or public id.
+          required: true
+        - name: stageId
+          in: path
+          type: string
+          description: Enter the stageId.
+          required: true
+    - name: api-v2-licenseLegalMetadata-application-applicationId-stage-stageId-report
+      path: /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report
+      operations:
+      - name: getlicenselegalapplicationhtmlreport
+        method: GET
+        description: Use this method to retrieve the license legal data for components in an application at a specific stage,
+          in HTML format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the application id or public id.
+          required: true
+        - name: stageId
+          in: path
+          type: string
+          description: Enter the stageId.
+          required: true
+      - name: getlicenselegalcustomapplicationhtmlreport
+        method: POST
+        description: Use this method to retrieve and customize the license legal data for components in an application at
+          a specific stage, in HTML format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the application id or public id.
+          required: true
+        - name: stageId
+          in: path
+          type: string
+          description: Enter the stageId.
+          required: true
+    - name: api-v2-licenseLegalMetadata-application-applicationId-stage-stageId-report-templ
+      path: /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report/templateId/{templateId}
+      operations:
+      - name: getlicenselegalcustomapplicationhtmlreport1
+        method: POST
+        description: Use this method to generate a license legal report in the specified HTML template format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the application id or public id.
+          required: true
+        - name: stageId
+          in: path
+          type: string
+          description: Enter the stageId.
+          required: true
+        - name: templateId
+          in: path
+          type: string
+          description: Enter the templateId for the HTML report format.
+          required: true
+    - name: api-v2-licenseLegalMetadata-multiApplication-activeUserFilter-report-templateId-
+      path: /api/v2/licenseLegalMetadata/multiApplication/activeUserFilter/report/templateId/{templateId}
+      operations:
+      - name: getlicenselegalmultiapplicationreportfromactiveuserfilter
+        method: POST
+        description: Use this method to generate license legal data in HTML format for applications ,on which the logged in
+          user has permissions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: templateId
+          in: path
+          type: string
+          description: Enter the templateId for the license legal data.
+          required: true
+    - name: api-v2-licenseLegalMetadata-multiApplication-report
+      path: /api/v2/licenseLegalMetadata/multiApplication/report
+      operations:
+      - name: getlicenselegalmultiapplicationhtmlreport
+        method: POST
+        description: Use this method to generate license legal data in HTML format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-licenseLegalMetadata-multiApplication-report-templateId-templateId
+      path: /api/v2/licenseLegalMetadata/multiApplication/report/templateId/{templateId}
+      operations:
+      - name: getlicenselegalcustommultiapplicationhtmlreport1
+        method: POST
+        description: Use this method to generate license legal data for all applications in HTML format based on the given
+          template.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: templateId
+          in: path
+          type: string
+          description: Enter the `templateId` for the HTML report.
+          required: true
+    - name: api-v2-licenseLegalMetadata-ownerType-ownerId-component
+      path: /api/v2/licenseLegalMetadata/{ownerType}/{ownerId}/component
+      operations:
+      - name: getlicenselegalcomponentreport
+        method: GET
+        description: Use this method to retrieve the raw license legal data for a component by specifying the component identifier
+          or package URL or the component hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ownerType
+          in: path
+          type: string
+          description: Enter the ownerType
+          required: true
+        - name: ownerId
+          in: path
+          type: string
+          description: Enter the ownerId corresponding to the ownerType.
+          required: true
+        - name: componentIdentifier
+          in: query
+          type: string
+          description: Enter the componentIdentifier consisting of format and coordinates.
+        - name: packageUrl
+          in: query
+          type: string
+          description: Enter the package URL.
+        - name: hash
+          in: query
+          type: string
+          description: Enter the component hash.
+        - name: identificationSource
+          in: query
+          type: string
+          description: Enter the identification source if a third party scan is used.
+        - name: scanId
+          in: query
+          type: string
+          description: Enter the scanId for the report where the component was identified (required if identified by third
+            party scan).
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-license-legal-metadata-report-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — License Legal Metadata Report. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/licenselegalmetadata/application/{applicationid}
+      name: api-v2-licenselegalmetadata-application-applicationid
+      description: REST surface for api-v2-licenseLegalMetadata-application-applicationId.
+      operations:
+      - method: GET
+        name: getlicenselegalapplicationreport
+        description: Use this REST API to retrieve the raw license legal data for components in an application.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalapplicationreport
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/application/{applicationid}/stage/{stageid}
+      name: api-v2-licenselegalmetadata-application-applicationid-stage-stageid
+      description: REST surface for api-v2-licenseLegalMetadata-application-applicationId-stage-stageId.
+      operations:
+      - method: GET
+        name: getlicenselegalapplicationreport1
+        description: Use this method to retrieve the raw license legal data for components in an application based on the
+          application scan at a specific stage.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalapplicationreport1
+        with:
+          applicationId: rest.applicationId
+          stageId: rest.stageId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/application/{applicationid}/stage/{stageid}/report
+      name: api-v2-licenselegalmetadata-application-applicationid-stage-stageid-report
+      description: REST surface for api-v2-licenseLegalMetadata-application-applicationId-stage-stageId-report.
+      operations:
+      - method: GET
+        name: getlicenselegalapplicationhtmlreport
+        description: Use this method to retrieve the license legal data for components in an application at a specific stage,
+          in HTML format.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalapplicationhtmlreport
+        with:
+          applicationId: rest.applicationId
+          stageId: rest.stageId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: getlicenselegalcustomapplicationhtmlreport
+        description: Use this method to retrieve and customize the license legal data for components in an application at
+          a specific stage, in HTML format.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalcustomapplicationhtmlreport
+        with:
+          applicationId: rest.applicationId
+          stageId: rest.stageId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/application/{applicationid}/stage/{stageid}/report/templateid/{templateid}
+      name: api-v2-licenselegalmetadata-application-applicationid-stage-stageid-report-templ
+      description: REST surface for api-v2-licenseLegalMetadata-application-applicationId-stage-stageId-report-templ.
+      operations:
+      - method: POST
+        name: getlicenselegalcustomapplicationhtmlreport1
+        description: Use this method to generate a license legal report in the specified HTML template format.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalcustomapplicationhtmlreport1
+        with:
+          applicationId: rest.applicationId
+          stageId: rest.stageId
+          templateId: rest.templateId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/multiapplication/activeuserfilter/report/templateid/{templateid}
+      name: api-v2-licenselegalmetadata-multiapplication-activeuserfilter-report-templateid
+      description: REST surface for api-v2-licenseLegalMetadata-multiApplication-activeUserFilter-report-templateId-.
+      operations:
+      - method: POST
+        name: getlicenselegalmultiapplicationreportfromactiveuserfilter
+        description: Use this method to generate license legal data in HTML format for applications ,on which the logged in
+          user has permissions.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalmultiapplicationreportfromactiveuserfilter
+        with:
+          templateId: rest.templateId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/multiapplication/report
+      name: api-v2-licenselegalmetadata-multiapplication-report
+      description: REST surface for api-v2-licenseLegalMetadata-multiApplication-report.
+      operations:
+      - method: POST
+        name: getlicenselegalmultiapplicationhtmlreport
+        description: Use this method to generate license legal data in HTML format.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalmultiapplicationhtmlreport
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/multiapplication/report/templateid/{templateid}
+      name: api-v2-licenselegalmetadata-multiapplication-report-templateid-templateid
+      description: REST surface for api-v2-licenseLegalMetadata-multiApplication-report-templateId-templateId.
+      operations:
+      - method: POST
+        name: getlicenselegalcustommultiapplicationhtmlreport1
+        description: Use this method to generate license legal data for all applications in HTML format based on the given
+          template.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalcustommultiapplicationhtmlreport1
+        with:
+          templateId: rest.templateId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/licenselegalmetadata/{ownertype}/{ownerid}/component
+      name: api-v2-licenselegalmetadata-ownertype-ownerid-component
+      description: REST surface for api-v2-licenseLegalMetadata-ownerType-ownerId-component.
+      operations:
+      - method: GET
+        name: getlicenselegalcomponentreport
+        description: Use this method to retrieve the raw license legal data for a component by specifying the component identifier
+          or package URL or the component hash.
+        call: lifecycle-license-legal-metadata-report.getlicenselegalcomponentreport
+        with:
+          ownerType: rest.ownerType
+          ownerId: rest.ownerId
+          componentIdentifier: rest.componentIdentifier
+          packageUrl: rest.packageUrl
+          hash: rest.hash
+          identificationSource: rest.identificationSource
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-license-legal-metadata-report-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — License Legal Metadata Report. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: use-this-rest-api-retrieve
+      description: Use this REST API to retrieve the raw license legal data for components in an application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-license-legal-metadata-report.getlicenselegalapplicationreport
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-raw
+      description: Use this method to retrieve the raw license legal data for components in an application based on the application
+        scan at a specific stage.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-license-legal-metadata-report.getlicenselegalapplicationreport1
+      with:
+        applicationId: tools.applicationId
+        stageId: tools.stageId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-license
+      description: Use this method to retrieve the license legal data for components in an application at a specific stage,
+        in HTML format.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-license-legal-metadata-report.getlicenselegalapplicationhtmlreport
+      with:
+        applicationId: tools.applicationId
+        stageId: tools.stageId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-and
+      description: Use this method to retrieve and customize the license legal data for components in an application at a
+        specific stage, in HTML format.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: lifecycle-license-legal-metadata-report.getlicenselegalcustomapplicationhtmlreport
+      with:
+        applicationId: tools.applicationId
+        stageId: tools.stageId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-generate-license
+      description: Use this method to generate a license legal report in the specified HTML template format.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-license-legal-metadata-report.getlicenselegalcustomapplicationhtmlreport1
+      with:
+        applicationId: tools.applicationId
+        stageId: tools.stageId
+        templateId: tools.templateId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-generate-license-2
+      description: Use this method to generate license legal data in HTML format for applications ,on which the logged in
+        user has permissions.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-license-legal-metadata-report.getlicenselegalmultiapplicationreportfromactiveuserfilter
+      with:
+        templateId: tools.templateId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-generate-license-3
+      description: Use this method to generate license legal data in HTML format.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-license-legal-metadata-report.getlicenselegalmultiapplicationhtmlreport
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-generate-license-4
+      description: Use this method to generate license legal data for all applications in HTML format based on the given template.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-license-legal-metadata-report.getlicenselegalcustommultiapplicationhtmlreport1
+      with:
+        templateId: tools.templateId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-raw-2
+      description: Use this method to retrieve the raw license legal data for a component by specifying the component identifier
+        or package URL or the component hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-license-legal-metadata-report.getlicenselegalcomponentreport
+      with:
+        ownerType: tools.ownerType
+        ownerId: tools.ownerId
+        componentIdentifier: tools.componentIdentifier
+        packageUrl: tools.packageUrl
+        hash: tools.hash
+        identificationSource: tools.identificationSource
+        scanId: tools.scanId
+      outputParameters:
+      - type: object
+        mapping: $.

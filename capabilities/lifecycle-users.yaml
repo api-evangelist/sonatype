@@ -1,0 +1,245 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Users
+  description: 'Sonatype Lifecycle Public REST API — Users. 5 operations. Lead operation: Users. Self-contained Naftiko capability
+    covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-users
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-users
+      path: /api/v2/users
+      operations:
+      - name: getall2
+        method: GET
+        description: Use this method to retrieve user details for all users.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realm
+          in: query
+          type: string
+          description: Enter the `realm`. Allowed values are `Internal`,`OAUTH2`, and `SAML`.
+      - name: add
+        method: POST
+        description: Use this method to create a new user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-users-username
+      path: /api/v2/users/{username}
+      operations:
+      - name: delete1
+        method: DELETE
+        description: Use this method to delete an existing user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: Enter the username to be deleted.
+          required: true
+        - name: realm
+          in: query
+          type: string
+          description: Enter the `realm`. Allowed values are `Internal`,`OAUTH2`, and `SAML`.
+      - name: get1
+        method: GET
+        description: Use this method to retrieve user details for the specified user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: Enter the username.
+          required: true
+        - name: realm
+          in: query
+          type: string
+          description: Enter the `realm`. Allowed values are `Internal`,`OAUTH2`, and `SAML`.
+      - name: update
+        method: PUT
+        description: Use this method to update user details for an existing internal user, by specifying the username.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: Enter the username.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-users-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Users. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/users
+      name: api-v2-users
+      description: REST surface for api-v2-users.
+      operations:
+      - method: GET
+        name: getall2
+        description: Use this method to retrieve user details for all users.
+        call: lifecycle-users.getall2
+        with:
+          realm: rest.realm
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: add
+        description: Use this method to create a new user.
+        call: lifecycle-users.add
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/users/{username}
+      name: api-v2-users-username
+      description: REST surface for api-v2-users-username.
+      operations:
+      - method: DELETE
+        name: delete1
+        description: Use this method to delete an existing user.
+        call: lifecycle-users.delete1
+        with:
+          username: rest.username
+          realm: rest.realm
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get1
+        description: Use this method to retrieve user details for the specified user.
+        call: lifecycle-users.get1
+        with:
+          username: rest.username
+          realm: rest.realm
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update
+        description: Use this method to update user details for an existing internal user, by specifying the username.
+        call: lifecycle-users.update
+        with:
+          username: rest.username
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Users. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: use-this-method-retrieve-user
+      description: Use this method to retrieve user details for all users.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-users.getall2
+      with:
+        realm: tools.realm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-create-new
+      description: Use this method to create a new user.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-users.add
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-delete-existing
+      description: Use this method to delete an existing user.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-users.delete1
+      with:
+        username: tools.username
+        realm: tools.realm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-user-2
+      description: Use this method to retrieve user details for the specified user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-users.get1
+      with:
+        username: tools.username
+        realm: tools.realm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-update-user
+      description: Use this method to update user details for an existing internal user, by specifying the username.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-users.update
+      with:
+        username: tools.username
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

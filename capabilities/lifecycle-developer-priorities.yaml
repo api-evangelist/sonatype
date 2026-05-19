@@ -1,0 +1,167 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Developer Priorities
+  description: 'Sonatype Lifecycle Public REST API — Developer Priorities. 2 operations. Lead operation: Developer Priorities.
+    Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Developer Priorities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-developer-priorities
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Developer Priorities business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: api-v2-developer-priorities-applicationId-scanId
+      path: /api/v2/developer/priorities/{applicationId}/{scanId}
+      operations:
+      - name: getpriorities
+        method: GET
+        description: Use this method to retrieve all priorities by providing the application ID and scan ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the applicationId.
+          required: true
+        - name: scanId
+          in: path
+          type: string
+          description: Enter the scanId.
+          required: true
+        - name: includeRemediation
+          in: query
+          type: boolean
+          description: Whether to include remediation type and version for the component or not
+        - name: page
+          in: query
+          type: integer
+          description: Current page number.
+        - name: pageSize
+          in: query
+          type: integer
+          description: Enter the no. of results that should be visible per page.
+        - name: componentNameFilter
+          in: query
+          type: string
+          description: Component name to filter by
+        - name: filterOnPolicyActions
+          in: query
+          type: boolean
+          description: Whether to enable Fail/Warn policy action filter or not
+    - name: api-v2-developer-priorities-applicationId-scanId-export
+      path: /api/v2/developer/priorities/{applicationId}/{scanId}/export
+      operations:
+      - name: getprioritiesexport
+        method: GET
+        description: Use this method to retrieve the priorities, by providing the applicationId and scanId.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the applicationId.
+          required: true
+        - name: scanId
+          in: path
+          type: string
+          description: Enter the scanId.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-developer-priorities-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Developer Priorities. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/developer/priorities/{applicationid}/{scanid}
+      name: api-v2-developer-priorities-applicationid-scanid
+      description: REST surface for api-v2-developer-priorities-applicationId-scanId.
+      operations:
+      - method: GET
+        name: getpriorities
+        description: Use this method to retrieve all priorities by providing the application ID and scan ID.
+        call: lifecycle-developer-priorities.getpriorities
+        with:
+          applicationId: rest.applicationId
+          scanId: rest.scanId
+          includeRemediation: rest.includeRemediation
+          page: rest.page
+          pageSize: rest.pageSize
+          componentNameFilter: rest.componentNameFilter
+          filterOnPolicyActions: rest.filterOnPolicyActions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/developer/priorities/{applicationid}/{scanid}/export
+      name: api-v2-developer-priorities-applicationid-scanid-export
+      description: REST surface for api-v2-developer-priorities-applicationId-scanId-export.
+      operations:
+      - method: GET
+        name: getprioritiesexport
+        description: Use this method to retrieve the priorities, by providing the applicationId and scanId.
+        call: lifecycle-developer-priorities.getprioritiesexport
+        with:
+          applicationId: rest.applicationId
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-developer-priorities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Developer Priorities. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-retrieve-all
+      description: Use this method to retrieve all priorities by providing the application ID and scan ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-developer-priorities.getpriorities
+      with:
+        applicationId: tools.applicationId
+        scanId: tools.scanId
+        includeRemediation: tools.includeRemediation
+        page: tools.page
+        pageSize: tools.pageSize
+        componentNameFilter: tools.componentNameFilter
+        filterOnPolicyActions: tools.filterOnPolicyActions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-priorities
+      description: Use this method to retrieve the priorities, by providing the applicationId and scanId.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-developer-priorities.getprioritiesexport
+      with:
+        applicationId: tools.applicationId
+        scanId: tools.scanId
+      outputParameters:
+      - type: object
+        mapping: $.

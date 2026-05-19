@@ -1,0 +1,176 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — SPDX
+  description: 'Sonatype Lifecycle Public REST API — SPDX. 2 operations. Lead operation: SPDX. Self-contained Naftiko capability
+    covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - SPDX
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-spdx
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — SPDX business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-spdx-applicationId-reports-scanId
+      path: /api/v2/spdx/{applicationId}/reports/{scanId}
+      operations:
+      - name: getbyscanid
+        method: GET
+        description: Use this method to generate SBOM(s) based on a specific application scan.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the applicationId for the application you want to generate the SBOM(s).
+          required: true
+        - name: scanId
+          in: path
+          type: string
+          description: Enter the scanId of the application scan.
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: Enter the format for the SBOM(s) to be generated.
+        - name: generateCycloneDx
+          in: query
+          type: boolean
+          description: Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive.
+        - name: spdxVersion
+          in: query
+          type: string
+          description: Enter the desired SPDX version, possible values are 2.2|2.3
+    - name: api-v2-spdx-applicationId-stages-stageId
+      path: /api/v2/spdx/{applicationId}/stages/{stageId}
+      operations:
+      - name: getlatestforstage
+        method: GET
+        description: Use this method to generate SBOM(s) based on the latest application evaluation report at the specified
+          stage.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the applicationId for the application you want to generate the SBOM(s).
+          required: true
+        - name: stageId
+          in: path
+          type: string
+          description: Specify the stageId for the application evaluation. Allowed values are `develop`, `build`, `stage-release`,
+            `release` and `operate`.
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: Enter the format for the SBOM(s) to be generated.
+        - name: generateCycloneDx
+          in: query
+          type: boolean
+          description: Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive.
+        - name: spdxVersion
+          in: query
+          type: string
+          description: Enter the desired SPDX version, possible values are 2.2|2.3
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-spdx-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — SPDX. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/spdx/{applicationid}/reports/{scanid}
+      name: api-v2-spdx-applicationid-reports-scanid
+      description: REST surface for api-v2-spdx-applicationId-reports-scanId.
+      operations:
+      - method: GET
+        name: getbyscanid
+        description: Use this method to generate SBOM(s) based on a specific application scan.
+        call: lifecycle-spdx.getbyscanid
+        with:
+          applicationId: rest.applicationId
+          scanId: rest.scanId
+          format: rest.format
+          generateCycloneDx: rest.generateCycloneDx
+          spdxVersion: rest.spdxVersion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/spdx/{applicationid}/stages/{stageid}
+      name: api-v2-spdx-applicationid-stages-stageid
+      description: REST surface for api-v2-spdx-applicationId-stages-stageId.
+      operations:
+      - method: GET
+        name: getlatestforstage
+        description: Use this method to generate SBOM(s) based on the latest application evaluation report at the specified
+          stage.
+        call: lifecycle-spdx.getlatestforstage
+        with:
+          applicationId: rest.applicationId
+          stageId: rest.stageId
+          format: rest.format
+          generateCycloneDx: rest.generateCycloneDx
+          spdxVersion: rest.spdxVersion
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-spdx-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — SPDX. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: use-this-method-generate-sbom-s
+      description: Use this method to generate SBOM(s) based on a specific application scan.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-spdx.getbyscanid
+      with:
+        applicationId: tools.applicationId
+        scanId: tools.scanId
+        format: tools.format
+        generateCycloneDx: tools.generateCycloneDx
+        spdxVersion: tools.spdxVersion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-generate-sbom-s-2
+      description: Use this method to generate SBOM(s) based on the latest application evaluation report at the specified
+        stage.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-spdx.getlatestforstage
+      with:
+        applicationId: tools.applicationId
+        stageId: tools.stageId
+        format: tools.format
+        generateCycloneDx: tools.generateCycloneDx
+        spdxVersion: tools.spdxVersion
+      outputParameters:
+      - type: object
+        mapping: $.

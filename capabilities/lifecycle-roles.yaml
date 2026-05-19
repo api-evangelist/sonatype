@@ -1,0 +1,256 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Roles
+  description: 'Sonatype Lifecycle Public REST API — Roles. 6 operations. Lead operation: Roles. Self-contained Naftiko capability
+    covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Roles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-roles
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Roles business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-roles
+      path: /api/v2/roles
+      operations:
+      - name: getroles
+        method: GET
+        description: Use this method to view the role IDs, role names and descriptions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addrole
+        method: POST
+        description: Use this method to create a new custom role with specified permissions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-roles-new
+      path: /api/v2/roles/new
+      operations:
+      - name: gettemplatefornewrole
+        method: GET
+        description: Use this method to retrieve a template for creating a new custom role, including all available permissions
+          that can be assigned.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-roles-roleId
+      path: /api/v2/roles/{roleId}
+      operations:
+      - name: deleterole
+        method: DELETE
+        description: Use this method to delete a custom role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleId
+          in: path
+          type: string
+          required: true
+      - name: getrolebyid
+        method: GET
+        description: Use this method to retrieve details for a specific role, including its permissions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleId
+          in: path
+          type: string
+          required: true
+      - name: updaterole
+        method: PUT
+        description: Use this method to update an existing custom role and its permissions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-roles-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Roles. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/roles
+      name: api-v2-roles
+      description: REST surface for api-v2-roles.
+      operations:
+      - method: GET
+        name: getroles
+        description: Use this method to view the role IDs, role names and descriptions.
+        call: lifecycle-roles.getroles
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addrole
+        description: Use this method to create a new custom role with specified permissions.
+        call: lifecycle-roles.addrole
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/new
+      name: api-v2-roles-new
+      description: REST surface for api-v2-roles-new.
+      operations:
+      - method: GET
+        name: gettemplatefornewrole
+        description: Use this method to retrieve a template for creating a new custom role, including all available permissions
+          that can be assigned.
+        call: lifecycle-roles.gettemplatefornewrole
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{roleid}
+      name: api-v2-roles-roleid
+      description: REST surface for api-v2-roles-roleId.
+      operations:
+      - method: DELETE
+        name: deleterole
+        description: Use this method to delete a custom role.
+        call: lifecycle-roles.deleterole
+        with:
+          roleId: rest.roleId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getrolebyid
+        description: Use this method to retrieve details for a specific role, including its permissions.
+        call: lifecycle-roles.getrolebyid
+        with:
+          roleId: rest.roleId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterole
+        description: Use this method to update an existing custom role and its permissions.
+        call: lifecycle-roles.updaterole
+        with:
+          roleId: rest.roleId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-roles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Roles. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: use-this-method-view-role
+      description: Use this method to view the role IDs, role names and descriptions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-roles.getroles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-create-new
+      description: Use this method to create a new custom role with specified permissions.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-roles.addrole
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-template
+      description: Use this method to retrieve a template for creating a new custom role, including all available permissions
+        that can be assigned.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-roles.gettemplatefornewrole
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-delete-custom
+      description: Use this method to delete a custom role.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-roles.deleterole
+      with:
+        roleId: tools.roleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-details
+      description: Use this method to retrieve details for a specific role, including its permissions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-roles.getrolebyid
+      with:
+        roleId: tools.roleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-update-existing
+      description: Use this method to update an existing custom role and its permissions.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-roles.updaterole
+      with:
+        roleId: tools.roleId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

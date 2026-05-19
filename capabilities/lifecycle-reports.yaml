@@ -1,0 +1,339 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Reports
+  description: 'Sonatype Lifecycle Public REST API — Reports. 7 operations. Lead operation: Reports. Self-contained Naftiko
+    capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-reports
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-reports-applications
+      path: /api/v2/reports/applications
+      operations:
+      - name: getall1
+        method: GET
+        description: 'Use this method to view all application reports for applications to which  you have access. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-reports-applications-applicationId
+      path: /api/v2/reports/applications/{applicationId}
+      operations:
+      - name: getbyapplicationid
+        method: GET
+        description: 'Use this method to retrieve the application reports for the specified application Id. You can view application
+          reports only for applications to which you have access. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the internal application Id. You can use the Applications REST API to get the internal application
+            Id.
+          required: true
+    - name: api-v2-reports-applications-applicationId-history
+      path: /api/v2/reports/applications/{applicationId}/history
+      operations:
+      - name: getreporthistoryforapplication
+        method: GET
+        description: 'Use this method to retrieve previous application scan reports (100 max.) for the specified application.
+          You can view application reports only for applications to which you have access.  '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the internal application Id. You can use the Applications REST API to get the internal application
+            Id.
+          required: true
+        - name: stage
+          in: query
+          type: string
+          description: Enter the specific stage, for which you want retrieve the scan history, e.g. 'build'
+        - name: limit
+          in: query
+          type: integer
+          description: Enter the exact no. of most recent reports to retrieve.
+    - name: api-v2-reports-components-quarantined
+      path: /api/v2/reports/components/quarantined
+      operations:
+      - name: getcomponentsinquarantine
+        method: GET
+        description: 'Use this method to retrieve all repository components that are quarantined. The response contains violation
+          details and the quarantine Id of the component. Use the quarantine Id,  to release the component from quarantine,
+          using the Release '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-reports-components-waivers
+      path: /api/v2/reports/components/waivers
+      operations:
+      - name: getcomponentswithwaivers
+        method: GET
+        description: Use this method to retrieve existing policy waivers by components. For an up-to-date response, ensure
+          that all application and repository reports are current and contain the most recent re-evaluation data.<p>You can
+          specify the format/ecosy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Enter the format/ecosystem of the component
+    - name: api-v2-reports-metrics
+      path: /api/v2/reports/metrics
+      operations:
+      - name: getmetrics
+        method: POST
+        description: Use this method to retrieve metrics data such as policy evaluation metrics, violation and remediation
+          metrics aggregated monthly or weekly.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-reports-waivers-stale
+      path: /api/v2/reports/waivers/stale
+      operations:
+      - name: getstalewaivers
+        method: GET
+        description: 'Stale waivers pose a risk because they could be applied unintentionally. Use this method to retrieve
+          stale waivers to eliminate this risk for future application evaluations. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-reports-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Reports. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/reports/applications
+      name: api-v2-reports-applications
+      description: REST surface for api-v2-reports-applications.
+      operations:
+      - method: GET
+        name: getall1
+        description: 'Use this method to view all application reports for applications to which  you have access. '
+        call: lifecycle-reports.getall1
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/reports/applications/{applicationid}
+      name: api-v2-reports-applications-applicationid
+      description: REST surface for api-v2-reports-applications-applicationId.
+      operations:
+      - method: GET
+        name: getbyapplicationid
+        description: 'Use this method to retrieve the application reports for the specified application Id. You can view application
+          reports only for applications to which you have access. '
+        call: lifecycle-reports.getbyapplicationid
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/reports/applications/{applicationid}/history
+      name: api-v2-reports-applications-applicationid-history
+      description: REST surface for api-v2-reports-applications-applicationId-history.
+      operations:
+      - method: GET
+        name: getreporthistoryforapplication
+        description: 'Use this method to retrieve previous application scan reports (100 max.) for the specified application.
+          You can view application reports only for applications to which you have access.  '
+        call: lifecycle-reports.getreporthistoryforapplication
+        with:
+          applicationId: rest.applicationId
+          stage: rest.stage
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/reports/components/quarantined
+      name: api-v2-reports-components-quarantined
+      description: REST surface for api-v2-reports-components-quarantined.
+      operations:
+      - method: GET
+        name: getcomponentsinquarantine
+        description: 'Use this method to retrieve all repository components that are quarantined. The response contains violation
+          details and the quarantine Id of the component. Use the quarantine Id,  to release the component from quarantine,
+          using the Release '
+        call: lifecycle-reports.getcomponentsinquarantine
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/reports/components/waivers
+      name: api-v2-reports-components-waivers
+      description: REST surface for api-v2-reports-components-waivers.
+      operations:
+      - method: GET
+        name: getcomponentswithwaivers
+        description: Use this method to retrieve existing policy waivers by components. For an up-to-date response, ensure
+          that all application and repository reports are current and contain the most recent re-evaluation data.<p>You can
+          specify the format/ecosy
+        call: lifecycle-reports.getcomponentswithwaivers
+        with:
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/reports/metrics
+      name: api-v2-reports-metrics
+      description: REST surface for api-v2-reports-metrics.
+      operations:
+      - method: POST
+        name: getmetrics
+        description: Use this method to retrieve metrics data such as policy evaluation metrics, violation and remediation
+          metrics aggregated monthly or weekly.
+        call: lifecycle-reports.getmetrics
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/reports/waivers/stale
+      name: api-v2-reports-waivers-stale
+      description: REST surface for api-v2-reports-waivers-stale.
+      operations:
+      - method: GET
+        name: getstalewaivers
+        description: 'Stale waivers pose a risk because they could be applied unintentionally. Use this method to retrieve
+          stale waivers to eliminate this risk for future application evaluations. '
+        call: lifecycle-reports.getstalewaivers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Reports. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: use-this-method-view-all
+      description: 'Use this method to view all application reports for applications to which  you have access. '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-reports.getall1
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-application
+      description: 'Use this method to retrieve the application reports for the specified application Id. You can view application
+        reports only for applications to which you have access. '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-reports.getbyapplicationid
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-previous
+      description: 'Use this method to retrieve previous application scan reports (100 max.) for the specified application.
+        You can view application reports only for applications to which you have access.  '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-reports.getreporthistoryforapplication
+      with:
+        applicationId: tools.applicationId
+        stage: tools.stage
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-all
+      description: 'Use this method to retrieve all repository components that are quarantined. The response contains violation
+        details and the quarantine Id of the component. Use the quarantine Id,  to release the component from quarantine,
+        using the Release '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-reports.getcomponentsinquarantine
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-existing
+      description: Use this method to retrieve existing policy waivers by components. For an up-to-date response, ensure that
+        all application and repository reports are current and contain the most recent re-evaluation data.<p>You can specify
+        the format/ecosy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-reports.getcomponentswithwaivers
+      with:
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-metrics
+      description: Use this method to retrieve metrics data such as policy evaluation metrics, violation and remediation metrics
+        aggregated monthly or weekly.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: lifecycle-reports.getmetrics
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stale-waivers-pose-risk-because
+      description: 'Stale waivers pose a risk because they could be applied unintentionally. Use this method to retrieve stale
+        waivers to eliminate this risk for future application evaluations. '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-reports.getstalewaivers
+      outputParameters:
+      - type: object
+        mapping: $.

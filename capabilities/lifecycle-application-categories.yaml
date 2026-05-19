@@ -1,0 +1,516 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Application Categories
+  description: 'Sonatype Lifecycle Public REST API — Application Categories. 10 operations. Lead operation: Application Categories.
+    Self-contained Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Application Categories
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-application-categories
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Application Categories business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: api-v2-applicationCategories-application
+      path: /api/v2/applicationCategories/application
+      operations:
+      - name: gettagsusedbyapplications
+        method: GET
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-applicationCategories-application-applicationPublicId
+      path: /api/v2/applicationCategories/application/{applicationPublicId}
+      operations:
+      - name: getapplicationapplicabletags
+        method: GET
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories available to a
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationPublicId
+          in: path
+          type: string
+          description: The application public ID
+          required: true
+    - name: api-v2-applicationCategories-application-applicationPublicId-applicable
+      path: /api/v2/applicationCategories/application/{applicationPublicId}/applicable
+      operations:
+      - name: getapplicabletagsbyapplicationpublicid
+        method: GET
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that can be ap
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationPublicId
+          in: path
+          type: string
+          description: Provide the application public ID assigned by IQ Server.
+          required: true
+    - name: api-v2-applicationCategories-organization-organizationId
+      path: /api/v2/applicationCategories/organization/{organizationId}
+      operations:
+      - name: gettags
+        method: GET
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories in use by appl
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organizationId
+          in: path
+          type: string
+          description: The organizationId assigned by IQ Server.
+          required: true
+      - name: addtag
+        method: POST
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to add a new application category
+          or tag.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organizationId
+          in: path
+          type: string
+          description: The organizationId assigned by IQ Server, for which you want to create the application category.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updatetag
+        method: PUT
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to update an existing application
+          category.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organizationId
+          in: path
+          type: string
+          description: The organizationId assigned by IQ Server.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-applicationCategories-organization-organizationId-applicable
+      path: /api/v2/applicationCategories/organization/{organizationId}/applicable
+      operations:
+      - name: getapplicabletags
+        method: GET
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that can be ap
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organizationId
+          in: path
+          type: string
+          description: The organizationId assigned by IQ Server, for which you want to retrieve the applicable tags or application
+            categories.
+          required: true
+    - name: api-v2-applicationCategories-organization-organizationId-applied
+      path: /api/v2/applicationCategories/organization/{organizationId}/applied
+      operations:
+      - name: getappliedtags
+        method: GET
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that can be ap
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organizationId
+          in: path
+          type: string
+          description: The organizationId assigned by IQ Server.
+          required: true
+    - name: api-v2-applicationCategories-organization-organizationId-policy
+      path: /api/v2/applicationCategories/organization/{organizationId}/policy
+      operations:
+      - name: getappliedpolicytags
+        method: GET
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that are appli
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organizationId
+          in: path
+          type: string
+          description: The organizationId assigned by IQ Server.
+          required: true
+    - name: api-v2-applicationCategories-organization-organizationId-tagId
+      path: /api/v2/applicationCategories/organization/{organizationId}/{tagId}
+      operations:
+      - name: deletetag
+        method: DELETE
+        description: 'Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to update an existing application
+          category.Use this method '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organizationId
+          in: path
+          type: string
+          description: The organizationId assigned by IQ Server, corresponding to the application category tag you want to
+            delete.
+          required: true
+        - name: tagId
+          in: path
+          type: string
+          description: The application category ID assigned by IQ Server, to be deleted.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-application-categories-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Application Categories. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/applicationcategories/application
+      name: api-v2-applicationcategories-application
+      description: REST surface for api-v2-applicationCategories-application.
+      operations:
+      - method: GET
+        name: gettagsusedbyapplications
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories.
+        call: lifecycle-application-categories.gettagsusedbyapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applicationcategories/application/{applicationpublicid}
+      name: api-v2-applicationcategories-application-applicationpublicid
+      description: REST surface for api-v2-applicationCategories-application-applicationPublicId.
+      operations:
+      - method: GET
+        name: getapplicationapplicabletags
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories available to a
+        call: lifecycle-application-categories.getapplicationapplicabletags
+        with:
+          applicationPublicId: rest.applicationPublicId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applicationcategories/application/{applicationpublicid}/applicable
+      name: api-v2-applicationcategories-application-applicationpublicid-applicable
+      description: REST surface for api-v2-applicationCategories-application-applicationPublicId-applicable.
+      operations:
+      - method: GET
+        name: getapplicabletagsbyapplicationpublicid
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that can be ap
+        call: lifecycle-application-categories.getapplicabletagsbyapplicationpublicid
+        with:
+          applicationPublicId: rest.applicationPublicId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applicationcategories/organization/{organizationid}
+      name: api-v2-applicationcategories-organization-organizationid
+      description: REST surface for api-v2-applicationCategories-organization-organizationId.
+      operations:
+      - method: GET
+        name: gettags
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories in use by appl
+        call: lifecycle-application-categories.gettags
+        with:
+          organizationId: rest.organizationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addtag
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to add a new application category
+          or tag.
+        call: lifecycle-application-categories.addtag
+        with:
+          organizationId: rest.organizationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetag
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to update an existing application
+          category.
+        call: lifecycle-application-categories.updatetag
+        with:
+          organizationId: rest.organizationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applicationcategories/organization/{organizationid}/applicable
+      name: api-v2-applicationcategories-organization-organizationid-applicable
+      description: REST surface for api-v2-applicationCategories-organization-organizationId-applicable.
+      operations:
+      - method: GET
+        name: getapplicabletags
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that can be ap
+        call: lifecycle-application-categories.getapplicabletags
+        with:
+          organizationId: rest.organizationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applicationcategories/organization/{organizationid}/applied
+      name: api-v2-applicationcategories-organization-organizationid-applied
+      description: REST surface for api-v2-applicationCategories-organization-organizationId-applied.
+      operations:
+      - method: GET
+        name: getappliedtags
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that can be ap
+        call: lifecycle-application-categories.getappliedtags
+        with:
+          organizationId: rest.organizationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applicationcategories/organization/{organizationid}/policy
+      name: api-v2-applicationcategories-organization-organizationid-policy
+      description: REST surface for api-v2-applicationCategories-organization-organizationId-policy.
+      operations:
+      - method: GET
+        name: getappliedpolicytags
+        description: Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to retrieve a list of application
+          categories that are appli
+        call: lifecycle-application-categories.getappliedpolicytags
+        with:
+          organizationId: rest.organizationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/applicationcategories/organization/{organizationid}/{tagid}
+      name: api-v2-applicationcategories-organization-organizationid-tagid
+      description: REST surface for api-v2-applicationCategories-organization-organizationId-tagId.
+      operations:
+      - method: DELETE
+        name: deletetag
+        description: 'Grouping applications with similar characteristics into categories makes policy management easier. You
+          can then create a policy that applies to a specific category. Use this method to update an existing application
+          category.Use this method '
+        call: lifecycle-application-categories.deletetag
+        with:
+          organizationId: rest.organizationId
+          tagId: rest.tagId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-application-categories-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Application Categories. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: grouping-applications-similar-characteristics-categories
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.gettagsusedbyapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-2
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories
+        available to a
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.getapplicationapplicabletags
+      with:
+        applicationPublicId: tools.applicationPublicId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-3
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories
+        that can be ap
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.getapplicabletagsbyapplicationpublicid
+      with:
+        applicationPublicId: tools.applicationPublicId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-4
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories
+        in use by appl
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.gettags
+      with:
+        organizationId: tools.organizationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-5
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to add a new application category or
+        tag.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-application-categories.addtag
+      with:
+        organizationId: tools.organizationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-6
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to update an existing application category.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.updatetag
+      with:
+        organizationId: tools.organizationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-7
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories
+        that can be ap
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.getapplicabletags
+      with:
+        organizationId: tools.organizationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-8
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories
+        that can be ap
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.getappliedtags
+      with:
+        organizationId: tools.organizationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-9
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories
+        that are appli
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-application-categories.getappliedpolicytags
+      with:
+        organizationId: tools.organizationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grouping-applications-similar-characteristics-categories-10
+      description: 'Grouping applications with similar characteristics into categories makes policy management easier. You
+        can then create a policy that applies to a specific category. Use this method to update an existing application category.Use
+        this method '
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-application-categories.deletetag
+      with:
+        organizationId: tools.organizationId
+        tagId: tools.tagId
+      outputParameters:
+      - type: object
+        mapping: $.

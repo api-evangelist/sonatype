@@ -1,0 +1,301 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Policy Evaluation
+  description: 'Sonatype Lifecycle Public REST API — Policy Evaluation. 5 operations. Lead operation: Policy Evaluation. Self-contained
+    Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Policy Evaluation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-policy-evaluation
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Policy Evaluation business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-evaluation-applications-applicationId
+      path: /api/v2/evaluation/applications/{applicationId}
+      operations:
+      - name: evaluatecomponents
+        method: POST
+        description: Use this method to request a component evaluation. This is step 1 of the 2 step policy evaluation for
+          components process.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-evaluation-applications-applicationId-promoteScan
+      path: /api/v2/evaluation/applications/{applicationId}/promoteScan
+      operations:
+      - name: promotescan
+        method: POST
+        description: Use this method to rescan older scans. This is done when the binaries of a previous build are now moving
+          to a new stage in the production pipeline. Using this method, you can avoid rebuilding the application and reuse
+          the scan metadata at t
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-evaluation-applications-applicationId-results-resultId
+      path: /api/v2/evaluation/applications/{applicationId}/results/{resultId}
+      operations:
+      - name: getcomponentevaluation
+        method: GET
+        description: 'This is step 2 of the policy evaluation process for components. Use the resultId obtained from the POST
+          response for the corresponding applicationId. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the internal applicationId (same as that sent in the POST request (step 1))
+          required: true
+        - name: resultId
+          in: path
+          type: string
+          description: Enter the resultId obtained from the POST response (step 1) used for component evaluation.
+          required: true
+    - name: api-v2-evaluation-applications-applicationId-sourceControlEvaluation
+      path: /api/v2/evaluation/applications/{applicationId}/sourceControlEvaluation
+      operations:
+      - name: evaluatesourcecontrol
+        method: POST
+        description: 'Use this method to request a source control evaluation for a specific application. This is step 1 of
+          the 2 step source control evaluation process. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-evaluation-applications-applicationId-status-statusId
+      path: /api/v2/evaluation/applications/{applicationId}/status/{statusId}
+      operations:
+      - name: getapplicationevaluationstatus
+        method: GET
+        description: 'This is step 2 of the policy evaluation process. Use the statusUrl obtained from the POST response for
+          the corresponding applicationId. '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: Enter the applicationId, for the which policy evaluation was requested.
+          required: true
+        - name: statusId
+          in: path
+          type: string
+          description: Enter the statusId value obtained as response of the POST call in step 1.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-policy-evaluation-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Policy Evaluation. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/evaluation/applications/{applicationid}
+      name: api-v2-evaluation-applications-applicationid
+      description: REST surface for api-v2-evaluation-applications-applicationId.
+      operations:
+      - method: POST
+        name: evaluatecomponents
+        description: Use this method to request a component evaluation. This is step 1 of the 2 step policy evaluation for
+          components process.
+        call: lifecycle-policy-evaluation.evaluatecomponents
+        with:
+          applicationId: rest.applicationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/evaluation/applications/{applicationid}/promotescan
+      name: api-v2-evaluation-applications-applicationid-promotescan
+      description: REST surface for api-v2-evaluation-applications-applicationId-promoteScan.
+      operations:
+      - method: POST
+        name: promotescan
+        description: Use this method to rescan older scans. This is done when the binaries of a previous build are now moving
+          to a new stage in the production pipeline. Using this method, you can avoid rebuilding the application and reuse
+          the scan metadata at t
+        call: lifecycle-policy-evaluation.promotescan
+        with:
+          applicationId: rest.applicationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/evaluation/applications/{applicationid}/results/{resultid}
+      name: api-v2-evaluation-applications-applicationid-results-resultid
+      description: REST surface for api-v2-evaluation-applications-applicationId-results-resultId.
+      operations:
+      - method: GET
+        name: getcomponentevaluation
+        description: 'This is step 2 of the policy evaluation process for components. Use the resultId obtained from the POST
+          response for the corresponding applicationId. '
+        call: lifecycle-policy-evaluation.getcomponentevaluation
+        with:
+          applicationId: rest.applicationId
+          resultId: rest.resultId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/evaluation/applications/{applicationid}/sourcecontrolevaluation
+      name: api-v2-evaluation-applications-applicationid-sourcecontrolevaluation
+      description: REST surface for api-v2-evaluation-applications-applicationId-sourceControlEvaluation.
+      operations:
+      - method: POST
+        name: evaluatesourcecontrol
+        description: 'Use this method to request a source control evaluation for a specific application. This is step 1 of
+          the 2 step source control evaluation process. '
+        call: lifecycle-policy-evaluation.evaluatesourcecontrol
+        with:
+          applicationId: rest.applicationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/evaluation/applications/{applicationid}/status/{statusid}
+      name: api-v2-evaluation-applications-applicationid-status-statusid
+      description: REST surface for api-v2-evaluation-applications-applicationId-status-statusId.
+      operations:
+      - method: GET
+        name: getapplicationevaluationstatus
+        description: 'This is step 2 of the policy evaluation process. Use the statusUrl obtained from the POST response for
+          the corresponding applicationId. '
+        call: lifecycle-policy-evaluation.getapplicationevaluationstatus
+        with:
+          applicationId: rest.applicationId
+          statusId: rest.statusId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-policy-evaluation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Policy Evaluation. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-request-component
+      description: Use this method to request a component evaluation. This is step 1 of the 2 step policy evaluation for components
+        process.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-policy-evaluation.evaluatecomponents
+      with:
+        applicationId: tools.applicationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-rescan-older
+      description: Use this method to rescan older scans. This is done when the binaries of a previous build are now moving
+        to a new stage in the production pipeline. Using this method, you can avoid rebuilding the application and reuse the
+        scan metadata at t
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-policy-evaluation.promotescan
+      with:
+        applicationId: tools.applicationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: this-is-step-2-policy
+      description: 'This is step 2 of the policy evaluation process for components. Use the resultId obtained from the POST
+        response for the corresponding applicationId. '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-policy-evaluation.getcomponentevaluation
+      with:
+        applicationId: tools.applicationId
+        resultId: tools.resultId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-request-source
+      description: 'Use this method to request a source control evaluation for a specific application. This is step 1 of the
+        2 step source control evaluation process. '
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lifecycle-policy-evaluation.evaluatesourcecontrol
+      with:
+        applicationId: tools.applicationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: this-is-step-2-policy-2
+      description: 'This is step 2 of the policy evaluation process. Use the statusUrl obtained from the POST response for
+        the corresponding applicationId. '
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-policy-evaluation.getapplicationevaluationstatus
+      with:
+        applicationId: tools.applicationId
+        statusId: tools.statusId
+      outputParameters:
+      - type: object
+        mapping: $.

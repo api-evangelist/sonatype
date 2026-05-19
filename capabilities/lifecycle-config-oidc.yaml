@@ -1,0 +1,133 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sonatype Lifecycle Public REST API — Config OIDC
+  description: 'Sonatype Lifecycle Public REST API — Config OIDC. 3 operations. Lead operation: Config OIDC. Self-contained
+    Naftiko capability covering one Sonatype business surface.'
+  tags:
+  - Sonatype
+  - Config OIDC
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONATYPE_API_KEY: SONATYPE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lifecycle-config-oidc
+    baseUri: ''
+    description: Sonatype Lifecycle Public REST API — Config OIDC business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-config-oidc
+      path: /api/v2/config/oidc
+      operations:
+      - name: deleteoidcconfiguration
+        method: DELETE
+        description: Use this method to delete the OIDC configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getoidcconfiguration
+        method: GET
+        description: Use this method to retrieve the OIDC configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: insertorupdateoidcconfiguration
+        method: PUT
+        description: Use this method to enable SSO using OpenID Connect (OIDC). This request uses the content type application/json
+          to transmit the configuration to IQ Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.SONATYPE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lifecycle-config-oidc-rest
+    port: 8080
+    description: REST adapter for Sonatype Lifecycle Public REST API — Config OIDC. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/config/oidc
+      name: api-v2-config-oidc
+      description: REST surface for api-v2-config-oidc.
+      operations:
+      - method: DELETE
+        name: deleteoidcconfiguration
+        description: Use this method to delete the OIDC configuration.
+        call: lifecycle-config-oidc.deleteoidcconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getoidcconfiguration
+        description: Use this method to retrieve the OIDC configuration.
+        call: lifecycle-config-oidc.getoidcconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: insertorupdateoidcconfiguration
+        description: Use this method to enable SSO using OpenID Connect (OIDC). This request uses the content type application/json
+          to transmit the configuration to IQ Server.
+        call: lifecycle-config-oidc.insertorupdateoidcconfiguration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lifecycle-config-oidc-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sonatype Lifecycle Public REST API — Config OIDC. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: use-this-method-delete-oidc
+      description: Use this method to delete the OIDC configuration.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: lifecycle-config-oidc.deleteoidcconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-retrieve-oidc
+      description: Use this method to retrieve the OIDC configuration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-oidc.getoidcconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: use-this-method-enable-sso
+      description: Use this method to enable SSO using OpenID Connect (OIDC). This request uses the content type application/json
+        to transmit the configuration to IQ Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: lifecycle-config-oidc.insertorupdateoidcconfiguration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
