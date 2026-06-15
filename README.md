@@ -1,104 +1,73 @@
-# Sonatype
+# Sonatype (sonatype)
 
-Sonatype provides software supply chain management solutions including Sonatype Lifecycle (IQ Server), Repository Firewall, SBOM Manager, and Nexus Repository. The Lifecycle Public REST API enables DevSecOps teams to automate application portfolio management, policy enforcement, vulnerability analysis, SBOM generation, and component scanning.
+Sonatype provides software supply chain management solutions including Sonatype Lifecycle (IQ Server), Sonatype Repository Firewall, SBOM Manager, and Nexus Repository. The Lifecycle Public REST API provides 188 endpoints for application portfolio management, policy enforcement, vulnerability reporting, component analysis, SBOM generation, source control integration, and software composition analysis across the SDLC.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
 ## Tags
 
-Software Supply Chain, Security, Vulnerability Management, SBOM, Software Composition Analysis, DevSecOps
+- Software Supply Chain
+- Security
+- Vulnerability Management
+- SBOM
+- Software Composition Analysis
+- DevSecOps
+
+## Timestamps
+
+- **Created:** 2025-02-12
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Sonatype Lifecycle API
 
-The Sonatype Lifecycle Public REST API (v1.201.0) provides 188 endpoints for managing applications, organizations, policies, policy violations, waivers, vulnerability analysis, SBOM generation (SPDX, CycloneDX), scan management, component search, reports, source control integration, users, and roles.
+The Sonatype Lifecycle Public REST API (v1.201.0) provides 188 endpoints for managing applications, organizations, policies, policy violations, waivers, vulnerability analysis, SBOM generation (SPDX, CycloneDX), scan management, component search, reports, source control integration, users, roles, and user tokens. Used by DevSecOps teams to automate software supply chain security and compliance workflows.
 
-**Human URL:** [https://help.sonatype.com/en/iq-api-reference.html](https://help.sonatype.com/en/iq-api-reference.html)
+- **Human URL:** [https://help.sonatype.com/en/iq-api-reference.html](https://help.sonatype.com/en/iq-api-reference.html)
+- **Base URL:** `https://{iq-server-host}/`
 
 #### Tags
 
-Software Supply Chain, Security, Policy, Vulnerability Management, SBOM, Software Composition Analysis, Applications, Organizations
+- Software Supply Chain
+- Security
+- Policy
+- Vulnerability Management
+- SBOM
+- Software Composition Analysis
+- Applications
+- Organizations
 
 #### Properties
 
 - [Documentation](https://help.sonatype.com/en/iq-api-reference.html)
 - [Reference](https://help.sonatype.com/en/rest-apis.html)
-- [OpenAPI](openapi/sonatype-lifecycle-openapi.yml)
-- [JSON Schema - Application](json-schema/sonatype-application-schema.json)
-- [JSON Schema - Policy Violation](json-schema/sonatype-policy-violation-schema.json)
-
-## Artifacts
-
-### OpenAPI Specifications
-
-| File | Description |
-|---|---|
-| [sonatype-lifecycle-openapi.yml](openapi/sonatype-lifecycle-openapi.yml) | Sonatype Lifecycle Public REST API v1.201.0 (188 paths) |
-
-### JSON Schema
-
-| File | Description |
-|---|---|
-| [sonatype-application-schema.json](json-schema/sonatype-application-schema.json) | Schema for Sonatype Lifecycle application objects |
-| [sonatype-policy-violation-schema.json](json-schema/sonatype-policy-violation-schema.json) | Schema for policy violation objects |
-
-### JSON Structure
-
-| File | Description |
-|---|---|
-| [sonatype-application-structure.json](json-structure/sonatype-application-structure.json) | Application object structure documentation |
-
-### JSON-LD
-
-| File | Description |
-|---|---|
-| [sonatype-context.jsonld](json-ld/sonatype-context.jsonld) | JSON-LD context for Sonatype Lifecycle entities |
-
-### Examples
-
-| File | Description |
-|---|---|
-| [sonatype-list-applications-example.json](examples/sonatype-list-applications-example.json) | List applications example |
-| [sonatype-search-component-example.json](examples/sonatype-search-component-example.json) | Search component by PURL example |
-
-### Spectral Rules
-
-| File | Description |
-|---|---|
-| [sonatype-rules.yml](rules/sonatype-rules.yml) | Spectral ruleset for Sonatype Lifecycle API conventions |
-
-### Naftiko Capabilities
-
-#### Shared Definitions
-
-| File | Description |
-|---|---|
-| [shared/sonatype-lifecycle.yaml](capabilities/shared/sonatype-lifecycle.yaml) | Per-API capability definition for Sonatype Lifecycle |
-
-#### Workflow Capabilities
-
-| File | Description | Tools |
-|---|---|---|
-| [software-supply-chain-security.yaml](capabilities/software-supply-chain-security.yaml) | Software supply chain security workflows for DevSecOps teams | 9 tools |
-
-### Vocabulary
-
-| File | Description |
-|---|---|
-| [sonatype-vocabulary.yml](vocabulary/sonatype-vocabulary.yml) | Sonatype Lifecycle vocabulary and domain terms |
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/openapi/sonatype-lifecycle-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Postman Collection](collections/sonatype-lifecycle.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sonatype-lifecycle.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/sonatype)
 - [Portal](https://www.sonatype.com/)
 - [Documentation](https://help.sonatype.com/)
 - [Website](https://www.sonatype.com/)
-- [GitHub](https://github.com/sonatype-nexus-community)
+- [Git Hub](https://github.com/sonatype-nexus-community)
 - [Blog](https://www.sonatype.com/blog)
 - [Changelog](https://help.sonatype.com/en/sonatype-iq-server-2025-release-notes.html)
 - [Support](https://support.sonatype.com/)
+- [Pricing](https://www.sonatype.com/products/pricing)
+- [Integrations](https://www.sonatype.com/products/integrations)
 
 ## Maintainers
 
-**FN:** Kin Lane  
+**FN:** Kin Lane
 **Email:** kin@apievangelist.com

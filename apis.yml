@@ -1,196 +1,85 @@
 aid: sonatype
 name: Sonatype
-description: Sonatype provides software supply chain management solutions including Sonatype Lifecycle (IQ Server), Sonatype
-  Repository Firewall, SBOM Manager, and Nexus Repository. The Lifecycle Public REST API provides 188 endpoints for application
-  portfolio management, policy enforcement, vulnerability reporting, component analysis, SBOM generation, source control integration,
-  and software composition analysis across the SDLC.
+description: >-
+  Sonatype provides software supply chain management solutions including Sonatype Lifecycle (IQ Server), Sonatype
+  Repository Firewall, SBOM Manager, and Nexus Repository. The Lifecycle Public REST API provides 188 endpoints for
+  application portfolio management, policy enforcement, vulnerability reporting, component analysis, SBOM generation,
+  source control integration, and software composition analysis across the SDLC.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Software Supply Chain
-- Security
-- Vulnerability Management
-- SBOM
-- Software Composition Analysis
-- DevSecOps
+  - Software Supply Chain
+  - Security
+  - Vulnerability Management
+  - SBOM
+  - Software Composition Analysis
+  - DevSecOps
 url: https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/apis.yml
 created: '2025-02-12'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: sonatype:sonatype-lifecycle-api
-  name: Sonatype Lifecycle API
-  description: The Sonatype Lifecycle Public REST API (v1.201.0) provides 188 endpoints for managing applications, organizations,
-    policies, policy violations, waivers, vulnerability analysis, SBOM generation (SPDX, CycloneDX), scan management, component
-    search, reports, source control integration, users, roles, and user tokens. Used by DevSecOps teams to automate software
-    supply chain security and compliance workflows.
-  humanURL: https://help.sonatype.com/en/iq-api-reference.html
-  baseURL: https://{iq-server-host}/
-  tags:
-  - Software Supply Chain
-  - Security
-  - Policy
-  - Vulnerability Management
-  - SBOM
-  - Software Composition Analysis
-  - Applications
-  - Organizations
-  properties:
-  - type: Documentation
-    url: https://help.sonatype.com/en/iq-api-reference.html
-  - type: Reference
-    url: https://help.sonatype.com/en/rest-apis.html
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/openapi/sonatype-lifecycle-openapi.yml
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-advanced-search.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-application-categories.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-application-report-data.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-applications.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-audit-logs.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-auto-policy-waiver-exclusions.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-auto-policy-waivers.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-ci-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-cpe-matching-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-claim-components.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-component-labels.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-component-search.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-components.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-composite-source-control.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-composite-source-control-validator.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-crowd.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-jira.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-mail.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-oidc.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-proxy-server.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-reverse-proxy-authentication.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-saml.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-source-control.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-config-zscaler.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-configure-artifactory-connection.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-cyclonedx.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-data-retention-policies.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-developer-priorities.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-endpoints.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-feature-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-firewall.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-github-app-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-license-legal-metadata-report.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-license-legal-metadata-template.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-license-overrides.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-organizations.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-policies.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-policy-evaluation.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-policy-violation-details.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-policy-waiver-reasons.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-policy-waiver-requests.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-policy-waivers.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-product-license.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-reports.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-repositories.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-role-memberships.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-roles.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-spdx.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-security-vulnerability-overrides.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-solutions.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-source-control.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-source-control-metrics.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-third-party-analysis.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-user-token-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-user-tokens.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-users.yaml
-  - type: NaftikoCapability
-    url: capabilities/lifecycle-vulnerability-details.yaml
-  contact:
-  - FN: Sonatype Support
-    url: https://support.sonatype.com/
+  - aid: sonatype:sonatype-lifecycle-api
+    name: Sonatype Lifecycle API
+    description: >-
+      The Sonatype Lifecycle Public REST API (v1.201.0) provides 188 endpoints for managing applications, organizations,
+      policies, policy violations, waivers, vulnerability analysis, SBOM generation (SPDX, CycloneDX), scan management,
+      component search, reports, source control integration, users, roles, and user tokens. Used by DevSecOps teams to
+      automate software supply chain security and compliance workflows.
+    humanURL: https://help.sonatype.com/en/iq-api-reference.html
+    baseURL: https://{iq-server-host}/
+    tags:
+      - Software Supply Chain
+      - Security
+      - Policy
+      - Vulnerability Management
+      - SBOM
+      - Software Composition Analysis
+      - Applications
+      - Organizations
+    properties:
+      - type: Documentation
+        url: https://help.sonatype.com/en/iq-api-reference.html
+      - type: Reference
+        url: https://help.sonatype.com/en/rest-apis.html
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/openapi/sonatype-lifecycle-openapi.yml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+    contact:
+      - FN: Sonatype Support
+        url: https://support.sonatype.com/
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/sonatype
-- type: Portal
-  url: https://www.sonatype.com/
-- type: Documentation
-  url: https://help.sonatype.com/
-- type: Website
-  url: https://www.sonatype.com/
-- type: GitHub
-  url: https://github.com/sonatype-nexus-community
-- type: Blog
-  url: https://www.sonatype.com/blog
-- type: ChangeLog
-  url: https://help.sonatype.com/en/sonatype-iq-server-2025-release-notes.html
-- type: Support
-  url: https://support.sonatype.com/
-- type: Pricing
-  url: https://www.sonatype.com/products/pricing
-- type: Integrations
-  url: https://www.sonatype.com/products/integrations
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/sonatype
+  - type: Portal
+    url: https://www.sonatype.com/
+  - type: Documentation
+    url: https://help.sonatype.com/
+  - type: Website
+    url: https://www.sonatype.com/
+  - type: GitHub
+    url: https://github.com/sonatype-nexus-community
+  - type: Blog
+    url: https://www.sonatype.com/blog
+  - type: ChangeLog
+    url: https://help.sonatype.com/en/sonatype-iq-server-2025-release-notes.html
+  - type: Support
+    url: https://support.sonatype.com/
+  - type: Pricing
+    url: https://www.sonatype.com/products/pricing
+  - type: Integrations
+    url: https://www.sonatype.com/products/integrations
 integrations:
-- name: Buy with AWS
-- name: Microsoft Azure
+  - name: Buy with AWS
+  - name: Microsoft Azure
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
