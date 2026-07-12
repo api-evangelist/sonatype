@@ -57,6 +57,10 @@ apis:
       - FN: Sonatype Support
         url: https://support.sonatype.com/
 common:
+  - type: DomainSecurity
+    url: security/sonatype-domain-security.yml
+  - type: Authentication
+    url: authentication/sonatype-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/sonatype
   - type: Portal
