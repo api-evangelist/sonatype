@@ -1,0 +1,90 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Config Proxy Server API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage the configuration of IQ Server with an existing HTTP proxy server.
+  name: Config Proxy Server
+paths:
+  /api/v2/config/httpProxyServer:
+    delete:
+      description: 'Use this method to remove an existing HTTP proxy server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteConfiguration_4
+      responses:
+        '204':
+          description: HTTP proxy server configuration deleted successfully.
+        '404':
+          description: No HTTP server configuration was found.
+      tags:
+      - Config Proxy Server
+    get:
+      description: 'Use this method to inspect an existing HTTP proxy server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getConfiguration_4
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiProxyServerConfigurationDTO'
+          description: The response contains:<ul><li>`hostname` is host name or IP address of the HTTP proxy server to use for outgoing HTTP connections.</li><li>`port` is the port number for the HTTP proxy server.</li><li>`username` is the username needed to authenticate with the HTTP proxy server.</li><li>`password` is always null, never included for security purposes.</li><li>`passwordIsIncluded` is always FALSE </li><li>`excludeHosts` is a list of host names that are to be excluded from using the HTTP proxy server.</li></ul>
+        '404':
+          description: No HTTP proxy server configuration exists.
+      tags:
+      - Config Proxy Server
+    put:
+      description: 'Use this method to create or update an existing HTTP proxy server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: setConfiguration_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiProxyServerConfigurationDTO'
+        description: 'The request JSON could include: <ul><li>`hostname` is host name or IP address of the HTTP proxy server to use for outgoing HTTP connections.</li><li>`port` is the port number for the HTTP proxy server.</li><li>`username` is the username used to authenticate with the HTTP proxy server.</li><li>`password` is the password used for authentication with the HTTP proxy server.</li><li>`passwordIsIncluded` should be `true` if password is included in the request.<ul><li>If `true` but the password is not included the password will be considered as `null`.</li><li>Can be `false` for update operations that do not a require password change. Note that updating the hostname and port requires a password to be provided.</li> </ul><li>`excludeHosts` is a list of host names that are to be excluded from using the HTTP proxy server.</li></ul>'
+      responses:
+        '204':
+          description: HTTP proxy server configuration successful.
+        '400':
+          description: Missing or invalid values.
+      tags:
+      - Config Proxy Server
+components:
+  schemas:
+    ApiProxyServerConfigurationDTO:
+      properties:
+        excludeHosts:
+          items:
+            type: string
+          type: array
+        hostname:
+          type: string
+        password:
+          type: string
+        passwordIsIncluded:
+          type: boolean
+        port:
+          format: int32
+          type: integer
+        username:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

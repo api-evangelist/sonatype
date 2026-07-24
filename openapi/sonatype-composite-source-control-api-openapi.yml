@@ -1,0 +1,155 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Composite Source Control API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use this REST API to access the composite source control management configuration (SCM) for an application or organization.
+
+
+    Composite source control configuration is defined as the configuration that is inherited from the parent organization or is directly assigned.'
+  name: Composite Source Control
+paths:
+  /api/v2/compositeSourceControl/{ownerType}/{internalOwnerId}:
+    get:
+      description: 'Use this method to retrieve the composite source control management (SCM) configuration settings.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getCompositeSourceControlByOwner
+      parameters:
+      - description: Select the ownerType of the entity (organization or application) for which you want to retrieve the composite source control configuration settings.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the id of the application or organization for which you want to retrieve the composite source control configuration settings
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCompositeSourceControlDTO'
+          description: The response contains values for the SCM configuration. For each value, the corresponding parent value will be shown, if applicable.<ul><li><code>id</code> is the internal identifier for the SCM configuration.</li><li><code>ownerId</code> is the identifier for the ownerType specified.</li><li><code>repositoryUrl</code> indicates the URL of application/organization. Will indicate 'null' for organizations.</li><li><code>provider</code> is the name of the source code host for the parent. Values can be Azure, GitHub, GitLab and Bitbucket.</li><li><code>username</code> is returned if found for the specific provider. Currently, the values are available for Bitbucket Server and Bitbucket Cloud.</li><li><code>token</code> is obfuscated and indicates the composite configuration for the source control host.<li><code>baseBranch</code> shows the base branch name.<li><code>remediationPullRequestsEnabled</code> indicates if the Automated Pull Request feature is enabled.</li><li><code>statusChecksEnabled</code> indicates if the status checks for the source code are enabled.</li><li><code>pullRequestCommentingEnabled</code> indicates if PR commenting is enabled for this application/organization.</li><li><code>sourceControlEvaluationsEnabled</code> indicates if the evaluations triggered by the IQ Server are enabled, for the Continuous Risk Profile feature.</li><li><code>sshEnabled</code> indicates if ssh settings are enabled.</li><li><code>commitStatusEnabled</code> indicates if commit status check is enabled.</li>
+      tags:
+      - Composite Source Control
+components:
+  schemas:
+    ApiCompositeValueDTOInteger:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          format: int32
+          type: integer
+        value:
+          format: int32
+          type: integer
+      type: object
+    GitHubAppInfo:
+      properties:
+        accountName:
+          type: string
+        configurationDate:
+          type: string
+        id:
+          type: string
+        installationId:
+          format: int64
+          type: integer
+        name:
+          type: string
+      type: object
+    ApiCompositeValueDTOBoolean:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          type: boolean
+        value:
+          type: boolean
+      type: object
+    ApiCompositeSourceControlDTO:
+      properties:
+        authenticationType:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        baseBranch:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        closePrAfterDays:
+          $ref: '#/components/schemas/ApiCompositeValueDTOInteger'
+        closePrAfterDaysOpenEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        closePrOnFailedChecksEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        commitStatusEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        githubApp:
+          $ref: '#/components/schemas/ApiCompositeValueDTOGitHubAppInfo'
+        id:
+          type: string
+        innerSourceAutomatedUpdatesEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        manualPullRequestsEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        ownerId:
+          type: string
+        provider:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        pullRequestCommentingEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        remediationPullRequestsEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        repositoryUrl:
+          type: string
+        sourceControlEvaluationsEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        sourceControlScanTarget:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        sshEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        statusChecksEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        token:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        username:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+      type: object
+    ApiCompositeValueDTOGitHubAppInfo:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          $ref: '#/components/schemas/GitHubAppInfo'
+        value:
+          $ref: '#/components/schemas/GitHubAppInfo'
+      type: object
+    ApiCompositeValueDTOString:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          type: string
+        value:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

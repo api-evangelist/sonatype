@@ -1,0 +1,225 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Component Search API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to search for components in application evaluation reports.
+  name: Component Search
+paths:
+  /api/v2/componentSearch/cveAffectedComponents:
+    get:
+      description: 'Retrieve paginated list of applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). Default page number is 1, default page size is 10. Results can be sorted by any column. Default sorting (when sortBy is not specified): applicationName (asc), then componentName (asc), then cveId (asc). When sortBy is explicitly specified, only single-field sorting is applied with the specified sortOrder (default: asc). <p>Permissions Required: View IQ Elements'
+      operationId: getCveAffectedComponents
+      parameters:
+      - description: CVE identifier(s). Can be specified multiple times for multiple CVEs.
+        example: CVE-2025-55182
+        in: query
+        name: cveId
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      - description: 'Page number (1-indexed, minimum: 1, default: 1)'
+        in: query
+        name: pageNumber
+        schema:
+          default: 1
+          format: int32
+          minimum: 1
+          type: integer
+      - description: 'Number of items per page (1-1000, default: 10)'
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+      - description: 'Sort field: applicationName, applicationId, componentName, evaluationDate, stage, activeWaiver, violating, cveId. When not specified, sorts by applicationName (asc), then componentName (asc), then cveId (asc)'
+        in: query
+        name: sortBy
+        schema:
+          enum:
+          - APPLICATION_NAME
+          - COMPONENT_NAME
+          - EVALUATION_DATE
+          - STAGE
+          - APPLICATION_ID
+          - ACTIVE_WAIVER
+          - VIOLATING
+          - CVE_ID
+          type: string
+      - description: 'Sort order: asc or desc, default: asc'
+        in: query
+        name: sortOrder
+        schema:
+          default: asc
+          type: string
+      responses:
+        '200':
+          description: Paginated list of affected applications and components
+      tags:
+      - Component Search
+  /api/v2/componentSearch/downloadComponentSearchReport:
+    get:
+      description: 'Export component search results as CSV (streaming). Identifies applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). If no CVE ID is specified, defaults to CVE-2025-55182 (React2Shell) for backwards compatibility. Results are streamed to avoid memory issues with large datasets. Keep-alive mechanism prevents ALB timeouts during long-running queries. <p>Permissions Required: View IQ Elements'
+      operationId: exportComponentSearchReport
+      parameters:
+      - description: CVE identifier(s). Can be specified multiple times for multiple CVEs. Defaults to CVE-2025-55182 if not specified.
+        example: CVE-2025-55182
+        in: query
+        name: cveId
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      responses:
+        '200':
+          description: CSV file containing the component search results
+      tags:
+      - Component Search
+  /api/v2/search/component:
+    get:
+      description: 'Use this method to retrieve the component details from the application evaluation reports by specifying the component search parameters, format and evaluation stage. You can specify the component search parameters in any one of the 3 ways:<ul><li>SHA1 hash of the component</li><li>Component identifier object containing the coordinates of the component and its format</li><li>packageUrl string</li></ul>Use of wildcards when searching using the GAVEC(coordinates) is supported.
+
+
+        Permissions required: View IQ Elements'
+      operationId: searchComponent
+      parameters:
+      - description: Specify the evaluation report stage.
+        in: query
+        name: stageId
+        required: true
+        schema:
+          type: string
+      - description: Enter the component hash.
+        in: query
+        name: hash
+        schema:
+          type: string
+      - description: Specify the componentIdentifier object containing the format and coordinates.
+        in: query
+        name: componentIdentifier
+        schema:
+          $ref: '#/components/schemas/ComponentIdentifier'
+      - description: Enter the packageUrl.
+        in: query
+        name: packageUrl
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSearchResultsDTOV2'
+          description: 'The response contains (a) criteria (the search criteria in the request), and (b) results (list of applications with the component specified).
+
+
+            Each result includes applicationId and application name containing the component, the relative and absoluteURLs of the report, component metadata, threat level, and dependency data indicating if the component is a direct/transitive/InnerSource dependency.'
+      tags:
+      - Component Search
+components:
+  schemas:
+    ApiDependencyDataDTO:
+      properties:
+        directDependency:
+          type: boolean
+        innerSource:
+          type: boolean
+        innerSourceData:
+          items:
+            $ref: '#/components/schemas/InnerSourceData'
+          type: array
+          uniqueItems: true
+        parentComponentPurls:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    InnerSourceData:
+      properties:
+        innerSourceComponentPurl:
+          type: string
+        ownerApplicationId:
+          type: string
+        ownerApplicationName:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiSearchResultsDTOV2:
+      properties:
+        criteria:
+          $ref: '#/components/schemas/ApiSearchCriteriaDTOV2'
+        results:
+          items:
+            $ref: '#/components/schemas/ApiSearchResultDTOV2'
+          type: array
+      type: object
+    ApiSearchResultDTOV2:
+      properties:
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        dependencyData:
+          $ref: '#/components/schemas/ApiDependencyDataDTO'
+        hash:
+          type: string
+        packageUrl:
+          type: string
+        reportHtmlUrl:
+          type: string
+        reportUrl:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    ApiSearchCriteriaDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        hash:
+          type: string
+        packageUrl:
+          type: string
+        stageId:
+          type: string
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

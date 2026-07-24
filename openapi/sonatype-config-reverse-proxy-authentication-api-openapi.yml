@@ -1,0 +1,81 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Config Reverse Proxy Authentication API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage the configuration of a reverse proxy server.
+  name: Config Reverse Proxy Authentication
+paths:
+  /api/v2/config/reverseProxyAuthentication:
+    delete:
+      description: 'Use this method to remove an existing reverse proxy server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteConfiguration_5
+      responses:
+        '204':
+          description: Reverse proxy server configuration deleted successfully.
+      tags:
+      - Config Reverse Proxy Authentication
+    get:
+      description: 'Use this method to inspect an existing reverse proxy server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getConfiguration_5
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReverseProxyAuthenticationConfigurationDTO'
+          description: The response contains:<ul><li>`enabled` indicates if the configuration is enabled.</li><li>`usernameHeader` is the name of the HTTP request header field that contains the username. The default value is `REMOTE_USER`.</li><li>`csrfProtectionDisabled` indicates if Cross-Site Request Forgery (CSRF) protection is disabled. Used for backward compatibility with old client plugins.</li><li>`logoutUrl` is the redirect URL when a user logs out. If set to `null` the user will not be redirected.</li></ul>
+        '404':
+          description: No reverse proxy server configuration exists.
+      tags:
+      - Config Reverse Proxy Authentication
+    put:
+      description: 'Use this method to configure the reverse proxy server.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: setConfiguration_5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiReverseProxyAuthenticationConfigurationDTO'
+        description: 'The request JSON could include: <ul><li>`enabled` indicates if the configuration is enabled.</li><li>`usernameHeader` is the name of the HTTP request header field that contains the username. The default value is `REMOTE_USER`.</li><li>`csrfProtectionDisabled` indicates if Cross-Site Request Forgery (CSRF) protection is disabled. Used for backward compatibility with old client plugins.</li><li>`logoutUrl` is the redirect URL when a user logs out. If set to `null` the user will not be redirected.</li></ul>'
+      responses:
+        '204':
+          description: Reverse proxy server configuration successful.
+        '400':
+          description: Missing or invalid values.
+      tags:
+      - Config Reverse Proxy Authentication
+components:
+  schemas:
+    ApiReverseProxyAuthenticationConfigurationDTO:
+      properties:
+        csrfProtectionDisabled:
+          type: boolean
+        enabled:
+          type: boolean
+        logoutUrl:
+          type: string
+        usernameHeader:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

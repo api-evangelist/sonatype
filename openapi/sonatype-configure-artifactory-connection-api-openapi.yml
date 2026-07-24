@@ -1,0 +1,403 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Configure Artifactory Connection API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage the configuration of Firewall for JFrog Artifactory.
+  name: Configure Artifactory Connection
+paths:
+  /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}:
+    get:
+      description: 'Use this method to retrieve Artifactory connection details by specifying the owner Id.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getOwnerArtifactoryConnection
+      parameters:
+      - description: Select the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Specify whether to include details from an inherited Artifactory connection.
+        in: query
+        name: inherit
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiOwnerArtifactoryConnectionDTO'
+          description: The response contains the details of the Artifactory connection.
+      tags:
+      - Configure Artifactory Connection
+    post:
+      description: 'Use this method to add a new Artifactory connection.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: addArtifactoryConnection
+      parameters:
+      - description: Select the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+        description: Enter values for the new Artifactory connection.<ul><li>`isAnonymous` indicates if the connection is anonymous.</li><li>`baseUrl` is the baseURL of the Artifactory instance.</li><li>`username` and `password` to authenticate the Artifactory connection.</li></ul>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+          description: The response contains the details of the added Artifactory connection.
+      tags:
+      - Configure Artifactory Connection
+    put:
+      description: 'Use this method to enable/disable an existing Artifactory connection for the specified owner.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: updateOwnerArtifactoryConnectionStatus
+      parameters:
+      - description: Select the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiArtifactoryConnectionStatusRequestDTO'
+        description: Set values for the connection properties `enabled` and `allowOverride`.
+        required: true
+      responses:
+        '204':
+          description: Artifactory connection status successfully updated.
+      tags:
+      - Configure Artifactory Connection
+  /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/test:
+    post:
+      description: 'Use this method to test an Artifactory connection for the specified owner.
+
+
+        Permissons required: View IQ Elements'
+      operationId: testArtifactoryConnection
+      parameters:
+      - description: Select the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+        description: Enter values for the Artifactory connection.<ul><li>`baseUrl` is the baseURL of the Artifactory instance.</li><li>`username` and `password` to authenticate the Artifactory connection.</li></ul>
+        required: true
+      responses:
+        '204':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiStatusDTO'
+          description: The response contains the `code` and `message` indicating the status of the connection.
+      tags:
+      - Configure Artifactory Connection
+  /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}:
+    delete:
+      description: 'Use this method to delete an existing Artifactory connection.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteArtifactoryConnection
+      parameters:
+      - description: Select the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the Artifactory connection ID.
+        in: path
+        name: artifactoryConnectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Artifactory connection deleted successfully.
+      tags:
+      - Configure Artifactory Connection
+    get:
+      description: 'Use this method to retrieve details for an Artifactory connection.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getArtifactoryConnection
+      parameters:
+      - description: Select the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the Artifactory connection ID.
+        in: path
+        name: artifactoryConnectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+          description: The response contains the details of the requested Artifactory connection.
+      tags:
+      - Configure Artifactory Connection
+    put:
+      description: 'Use this method to update an existing Artifactory connection.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: updateArtifactoryConnection
+      parameters:
+      - description: Specify the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the Artifactory connection ID.
+        in: path
+        name: artifactoryConnectionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+        description: Enter values for the new Artifactory connection.<ul><li>`isAnonymous` indicates if the connection is anonymous.</li><li>`baseUrl` is the baseURL of the Artifactory instance.</li><li>`username` and `password` to authenticate the Artifactory connection.</li></ul>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+          description: The response contains the updated Artifactory connection details.
+      tags:
+      - Configure Artifactory Connection
+  /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}/test:
+    post:
+      description: Use this method to test an existing Artifactory connection using the connection ID.
+      operationId: testArtifactoryConnection_1
+      parameters:
+      - description: Enter the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ID of the owner.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the Artifactory connection ID.
+        in: path
+        name: artifactoryConnectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiStatusDTO'
+          description: The response contains the `code` and `message` indicating the status of the connection.
+      tags:
+      - Configure Artifactory Connection
+components:
+  schemas:
+    ApiArtifactoryConnectionStatusRequestDTO:
+      properties:
+        allowOverride:
+          type: boolean
+        enabled:
+          type: boolean
+      type: object
+    ApiArtifactoryConnectionDTO:
+      properties:
+        artifactoryConnectionId:
+          type: string
+        baseUrl:
+          type: string
+        isAnonymous:
+          type: boolean
+        ownerId:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
+          type: string
+        password:
+          type: string
+        username:
+          type: string
+      type: object
+    ApiStatusDTO:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      type: object
+    ApiOwnerDTO:
+      properties:
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerPublicId:
+          type: string
+        ownerType:
+          type: string
+      type: object
+    ApiOwnerArtifactoryConnectionDTO:
+      properties:
+        artifactoryConnection:
+          $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+        artifactoryConnectionStatus:
+          $ref: '#/components/schemas/ApiArtifactoryConnectionStatusResponseDTO'
+        ownerDTO:
+          $ref: '#/components/schemas/ApiOwnerDTO'
+      type: object
+    ApiArtifactoryConnectionStatusResponseDTO:
+      properties:
+        allowChange:
+          type: boolean
+        allowOverride:
+          type: boolean
+        enabled:
+          type: boolean
+        inheritedFromOrgEnabled:
+          type: boolean
+        inheritedFromOrganizationId:
+          type: string
+        inheritedFromOrganizationName:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

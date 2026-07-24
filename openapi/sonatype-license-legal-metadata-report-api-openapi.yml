@@ -1,0 +1,563 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search License Legal Metadata Report API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to retrieve license legal metadata in raw or HTML format.
+  name: License Legal Metadata Report
+paths:
+  /api/v2/licenseLegalMetadata/application/{applicationId}:
+    get:
+      description: 'Use this REST API to retrieve the raw license legal data for components in an application.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalApplicationReport
+      parameters:
+      - description: Enter the application id or public id.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLicenseLegalApplicationReportDTO'
+          description: 'The response contains a list of all components in the application and the corresponding license legal metadata. For each component, the response includes component data and license legal metadata.
+
+
+            1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><li>`hash` is the truncated hash value and can be used in other REST API calls. It should not be used as a checksum.</li><li>`componentIdentifier` includes the component format and its coordinates.</li><li>`displayName` is the display name of the component.</li><li>`licenseLegalData` contains the legal data.</li><li>`stageScans` is a list and each element contains `stageName` at which the application was scanned, the `scanId` of the application scan, and the `scanDate`.</li></ul>2. The `licenseLegalMetaData` is used as a dictionary for legal data and for each license contains the license id(s), name, license text, obligations, license threat group, and whether or not it is multi license.'
+      tags:
+      - License Legal Metadata Report
+  /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}:
+    get:
+      description: 'Use this method to retrieve the raw license legal data for components in an application based on the application scan at a specific stage.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses '
+      operationId: getLicenseLegalApplicationReport_1
+      parameters:
+      - description: Enter the application id or public id.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId.
+        in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLicenseLegalApplicationReportDTO'
+          description: 'The response contains a list of all components in the application. For each component, the response includes component data and license legal metadata.
+
+
+            1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><li>`hash` is the truncated hash value and can be used in other REST API calls. It should not be used as a checksum.</li><li>`componentIdentifier` includes the component format and its coordinates.</li><li>`displayName` is the display name of the component.</li><li>`licenseLegalData` contains the legal data.</li><li>`stageScans` is a list and each element contains `stageName` at which the application was scanned, the `scanId` of the application scan, and the `scanDate`.</li></ul>2. The `licenseLegalMetaData` is used as a dictionary for legal data and for each license contains the license id(s), name, license text, obligations, license threat group, and whether or not it is multi license.'
+      tags:
+      - License Legal Metadata Report
+  /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report:
+    get:
+      description: 'Use this method to retrieve the license legal data for components in an application at a specific stage, in HTML format.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalApplicationHTMLReport
+      parameters:
+      - description: Enter the application id or public id.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId.
+        in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                type: string
+          description: The response contains license legal data in HTML format.
+      tags:
+      - License Legal Metadata Report
+    post:
+      description: 'Use this method to retrieve and customize the license legal data for components in an application at a specific stage, in HTML format.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalCustomApplicationHTMLReport
+      parameters:
+      - description: Enter the application id or public id.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId.
+        in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                type: string
+          description: The response contains the customized license legal report in HTML format.
+      tags:
+      - License Legal Metadata Report
+  /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report/templateId/{templateId}:
+    post:
+      description: 'Use this method to generate a license legal report in the specified HTML template format.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalCustomApplicationHTMLReport_1
+      parameters:
+      - description: Enter the application id or public id.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId.
+        in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      - description: Enter the templateId for the HTML report format.
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The response contains the license legal report for the specified application in HTML format.
+      tags:
+      - License Legal Metadata Report
+  /api/v2/licenseLegalMetadata/multiApplication/activeUserFilter/report/templateId/{templateId}:
+    post:
+      description: 'Use this method to generate license legal data in HTML format for applications ,on which the logged in user has permissions.
+
+
+        Permission required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalMultiApplicationReportFromActiveUserFilter
+      parameters:
+      - description: Enter the templateId for the license legal data.
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                type: string
+          description: The response contains license legal data in HTML format based on the specified template.
+      tags:
+      - License Legal Metadata Report
+  /api/v2/licenseLegalMetadata/multiApplication/report:
+    post:
+      description: 'Use this method to generate license legal data in HTML format.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalMultiApplicationHTMLReport
+      responses:
+        '200':
+          description: License legal data in HTML format is generated.
+      tags:
+      - License Legal Metadata Report
+  /api/v2/licenseLegalMetadata/multiApplication/report/templateId/{templateId}:
+    post:
+      description: 'Use this method to generate license legal data for all applications in HTML format based on the given template.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalCustomMultiApplicationHTMLReport_1
+      parameters:
+      - description: Enter the `templateId` for the HTML report.
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The response contains license legal data in HTML format.
+      tags:
+      - License Legal Metadata Report
+  /api/v2/licenseLegalMetadata/{ownerType}/{ownerId}/component:
+    get:
+      description: 'Use this method to retrieve the raw license legal data for a component by specifying the component identifier or package URL or the component hash.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalComponentReport
+      parameters:
+      - description: Enter the ownerType
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the ownerId corresponding to the ownerType.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the componentIdentifier consisting of format and coordinates.
+        in: query
+        name: componentIdentifier
+        schema:
+          $ref: '#/components/schemas/ComponentIdentifier'
+      - description: Enter the package URL.
+        in: query
+        name: packageUrl
+        schema:
+          type: string
+      - description: Enter the component hash.
+        in: query
+        name: hash
+        schema:
+          type: string
+      - description: Enter the identification source if a third party scan is used.
+        in: query
+        name: identificationSource
+        schema:
+          type: string
+      - description: Enter the scanId for the report where the component was identified (required if identified by third party scan).
+        in: query
+        name: scanId
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLicenseLegalComponentReportDTO'
+          description: 'The response contains the requested component data and the corresponding license legal metadata.
+
+
+            1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><li>`hash` is the truncated hash value and can be used in other REST API calls. It should not be used as a checksum.</li><li>`componentIdentifier` includes the component format and its coordinates.</li><li>`displayName` is the display name of the component.</li><li>`licenseLegalData` contains the legal data.</li><li>`stageScans` is a list and each element contains `stageName` at which the application was scanned, the `scanId` of the application scan, and the `scanDate`.</li></ul>2. The `licenseLegalMetaData` is used as a dictionary for legal data and for each license contains the license id(s), name, license text, obligations, license threat group, and whether or not it is multi license.'
+      tags:
+      - License Legal Metadata Report
+components:
+  schemas:
+    ApiLicenseLegalFileDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContentHash:
+          type: string
+        relPath:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
+    ApiLicenseLegalComponentDTO:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          type: string
+        licenseLegalData:
+          $ref: '#/components/schemas/ApiLicenseLegalDataDTO'
+        packageUrl:
+          type: string
+        stageScans:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalStageScanDTO'
+          type: array
+      type: object
+    LegalSourceLinkDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContent:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
+    ApiLicenseLegalComponentReportDTO:
+      properties:
+        component:
+          $ref: '#/components/schemas/ApiLicenseLegalComponentDTO'
+        licenseLegalMetadata:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalMetadataDTO'
+          type: array
+          uniqueItems: true
+      type: object
+    ApiLicenseLegalDataDTO:
+      properties:
+        attributions:
+          items:
+            $ref: '#/components/schemas/ComponentObligationAttributionDTO'
+          type: array
+        componentCopyrightId:
+          type: string
+        componentCopyrightLastUpdatedAt:
+          format: date-time
+          type: string
+        componentCopyrightLastUpdatedByUsername:
+          type: string
+        componentCopyrightScopeOwnerId:
+          type: string
+        componentLicensesId:
+          type: string
+        componentLicensesLastUpdatedAt:
+          format: date-time
+          type: string
+        componentLicensesLastUpdatedByUsername:
+          type: string
+        componentLicensesScopeOwnerId:
+          type: string
+        componentNoticesId:
+          type: string
+        componentNoticesLastUpdatedAt:
+          format: date-time
+          type: string
+        componentNoticesLastUpdatedByUsername:
+          type: string
+        componentNoticesScopeOwnerId:
+          type: string
+        copyrights:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalCopyrightDTO'
+          type: array
+        declaredLicenses:
+          items:
+            type: string
+          type: array
+        effectiveLicenseStatus:
+          type: string
+        effectiveLicenses:
+          items:
+            type: string
+          type: array
+        highestEffectiveLicenseThreatGroup:
+          $ref: '#/components/schemas/ApiLicenseThreatDTOV2'
+        licenseFiles:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalFileDTO'
+          type: array
+        noticeFiles:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalFileDTO'
+          type: array
+        obligations:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalObligationDTO'
+          type: array
+        observedLicenses:
+          items:
+            type: string
+          type: array
+        sourceLinks:
+          items:
+            $ref: '#/components/schemas/LegalSourceLinkDTO'
+          type: array
+          uniqueItems: true
+      type: object
+    ApiLicenseThreatDTOV2:
+      properties:
+        licenseThreatGroupCategory:
+          type: string
+        licenseThreatGroupLevel:
+          format: int32
+          type: integer
+        licenseThreatGroupName:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    LicenseObligationDTO:
+      properties:
+        name:
+          type: string
+        obligationTexts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    ApiLicenseLegalApplicationReportDTO:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalComponentDTO'
+          type: array
+        licenseLegalMetadata:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalMetadataDTO'
+          type: array
+          uniqueItems: true
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiLicenseLegalStageScanDTO:
+      properties:
+        scanDate:
+          format: date-time
+          type: string
+        scanId:
+          type: string
+        stageName:
+          type: string
+      type: object
+    ApiLicenseLegalCopyrightDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContentHash:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
+    ApiLicenseLegalObligationDTO:
+      properties:
+        comment:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        id:
+          type: string
+        lastUpdatedAt:
+          format: date-time
+          type: string
+        lastUpdatedByUsername:
+          type: string
+        name:
+          type: string
+        ownerId:
+          type: string
+        packageUrl:
+          type: string
+        status:
+          enum:
+          - OPEN
+          - IGNORED
+          - FLAGGED
+          - FULFILLED
+          type: string
+      type: object
+    ComponentObligationAttributionDTO:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        content:
+          type: string
+        id:
+          type: string
+        lastUpdatedAt:
+          format: date-time
+          type: string
+        lastUpdatedByUsername:
+          type: string
+        obligationName:
+          type: string
+        ownerId:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    LicenseThreatGroupDTO:
+      properties:
+        name:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    ApiLicenseLegalMetadataDTO:
+      properties:
+        isMulti:
+          type: boolean
+        licenseId:
+          type: string
+        licenseName:
+          type: string
+        licenseText:
+          type: string
+        obligations:
+          items:
+            $ref: '#/components/schemas/LicenseObligationDTO'
+          type: array
+          uniqueItems: true
+        singleLicenseIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        threatGroup:
+          $ref: '#/components/schemas/LicenseThreatGroupDTO'
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

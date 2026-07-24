@@ -1,0 +1,119 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Config Mail API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage the configuration of an SMTP server, to receive email notifications.
+  name: Config Mail
+paths:
+  /api/v2/config/mail:
+    delete:
+      description: 'Use this method to disable or remove an SMTP configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteConfiguration_3
+      responses:
+        '204':
+          description: SMTP configuration was removed successfully.
+        '404':
+          description: SMTP server configuration does not exist.
+      tags:
+      - Config Mail
+    get:
+      description: 'Use this method to review the configuration for an SMTP server.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getConfiguration_3
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiMailConfigurationDTO'
+          description: The response contains:<ul><li>`hostname` is the hostname or IP address of the SMTP server used for outgoing mail.</li><li>`port` is the port number on which the SMTP server accepts email requests.</li><li>`username` is the username to authenticate users on the SMTP server.</li><li>`password` is always null, never included for security purposes for this method.</Li><li>`passwordIsIncluded` is always FALSE for this method.</li><li>`sslEnabled` is a boolean flag indicating if the connection to the SMTP server should use SSL/TLS right from the start.</li><li>`startIsEnabled` is a boolean flag indicating if the connection to the SMTP server should attempt to upgrade to SSL/TLS using the STARTTLS command.</li><li>`systemEmail` is the email address used for the FROM header in emails sent by the IQ Server.</li></ul>
+        '404':
+          description: No SMTP server is currently configured with the IQ Server.
+      tags:
+      - Config Mail
+    put:
+      description: 'Use this method to configure or update an existing SMTP server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: setConfiguration_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiMailConfigurationDTO'
+        description: Provide one or more values for the following in the JSON payload:<ul><li>`hostname` - is the hostname or IP address of the SMTP server used for outgoing mail.</li><li>`port` - is the port number on which the SMTP server accepts email requests.</li><li>`password` - depends upon the value of `passwordIsIncluded`.</li><li>`passwordIsIncluded` - if set to true, value must be provided for `password`, null is allowed.If set to false, the previous value will remain unchanged, provided that `hostname` and `port` are not changed.<li>`sslEnabled` - is a boolean flag indicating if the connection to the SMTP server should use SSL/TLSright from the start.</li><li>`startIsEnabled`- is a boolean flag indicating if the connection to the SMTP server should attempt toupgrade to SSL/TLS using the STARTTLS command.<li>`systemEmail` - is the email address used for the FROM header in emails sent by the IQ Server.</li></ul>
+      responses:
+        '204':
+          description: SMTP server configuration was updated successfully.
+        '400':
+          description: Missing or invalid values provided.
+      tags:
+      - Config Mail
+  /api/v2/config/mail/test/{recipientEmail}:
+    post:
+      description: 'Use this method to test an SMTP configuration, without affecting the current configuration.
+
+
+        Permissions required:Edit System Configuration and Users'
+      operationId: testConfiguration
+      parameters:
+      - description: Enter the test recipient email address.
+        in: path
+        name: recipientEmail
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiMailConfigurationDTO'
+        description: Provide one or more values for the following in the JSON payload:<ul><li>`hostname` - is the hostname or IP address of the SMTP server used for outgoing mail.</li><li>`port` - is the port number on which the SMTP server accepts email requests.</li><li>`password` - depends upon the value of `passwordIsIncluded`.</li><li>`passwordIsIncluded` - if set to true, value must be provided for `password`, null is allowed.If set to false, the previous value will remain unchanged, provided that `hostname` and `port` are not changed.<li>`sslEnabled` - is a boolean flag indicating if the connection to the SMTP server should use SSL/TLSright from the start.</li><li>`startIsEnabled`- is a boolean flag indicating if the connection to the SMTP server should attempt toupgrade to SSL/TLS using the STARTTLS command.<li>`systemEmail` - is the email address used for the FROM header in emails sent by the IQ Server.</li></ul>
+      responses:
+        '204':
+          description: The test email was sent successfully.
+        '400':
+          description: Missing or invalid values provided.
+      tags:
+      - Config Mail
+components:
+  schemas:
+    ApiMailConfigurationDTO:
+      properties:
+        hostname:
+          type: string
+        password:
+          type: string
+        passwordIsIncluded:
+          type: boolean
+        port:
+          format: int32
+          type: integer
+        sslEnabled:
+          type: boolean
+        startTlsEnabled:
+          type: boolean
+        systemEmail:
+          type: string
+        username:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

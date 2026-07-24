@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search User Tokens API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage user tokens.
+  name: User Tokens
+paths:
+  /api/v2/userTokens:
+    get:
+      description: 'Use this method to retrieve user tokens created within a date range, in the supported IQ Server realms.
+
+
+        Permissions required: Edit System Configuration and Users.'
+      operationId: getUserTokensByCreatedBetweenAndRealmId
+      parameters:
+      - description: Enter the start date for the date range in `yyyy-mm-dd` format.
+        in: query
+        name: createdAfter
+        schema:
+          type: string
+      - description: Enter the end date for the date range in `yyyy-mm-dd` format.
+        in: query
+        name: createdBefore
+        schema:
+          type: string
+      - description: Enter the `realmId`. Possible values are `Internal`, `SAML` , `OAUTH2`, and `Crowd`.
+        in: query
+        name: realm
+        schema:
+          default: Internal
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiUserTokenDTO'
+                type: array
+          description: The response contains a list of user tokens, each containing a `userCode`, `username` and the name of the IQ server `realm`.
+      tags:
+      - User Tokens
+  /api/v2/userTokens/currentUser:
+    delete:
+      description: 'Use this method to delete an existing user token for the currently logged in user.
+
+
+        Permissions required: None'
+      operationId: deleteCurrentUserToken
+      responses:
+        '204':
+          description: User token deleted successfully.
+      tags:
+      - User Tokens
+    post:
+      description: 'Use this method to generate a user token for the currently logged in user.
+
+
+        Permissions required: None'
+      operationId: createUserToken
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserTokenDTO'
+          description: The response contains the generated user token consisting of `userCode`, `username` `passCode`, and the IQ Server `realm`.
+      tags:
+      - User Tokens
+  /api/v2/userTokens/currentUser/createTime:
+    get:
+      description: 'Use this method to retrieve the creation time of the user token for the currently logged in user.
+
+
+        Permissions required: None'
+      operationId: getCurrentUserTokenCreateTime
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: The response contains the token creation time in ISO format.
+        '404':
+          description: User token does not exist for the current user.
+      tags:
+      - User Tokens
+  /api/v2/userTokens/currentUser/hasToken:
+    get:
+      description: 'Use this method to check if a user token has been issued to the logged in user.
+
+
+        Permissions required: None '
+      operationId: getUserTokenExistsForCurrentUser
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserTokenExistsDTO'
+          description: The response contains a `userTokenExists` field.
+      tags:
+      - User Tokens
+  /api/v2/userTokens/purge:
+    delete:
+      description: 'Use this method to delete all existing LDAP user tokens.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: purgeUserTokens
+      responses:
+        '204':
+          description: User tokens purged successfully.
+      tags:
+      - User Tokens
+  /api/v2/userTokens/userCode/{userCode}:
+    delete:
+      description: 'Use this method to delete an existing user token by specifying the userCode.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteUserTokenByUserCode
+      parameters:
+      - description: Enter the `userCode` to be deleted.
+        in: path
+        name: userCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: User token deleted successfully.
+      tags:
+      - User Tokens
+  /api/v2/userTokens/{username}:
+    get:
+      description: 'Use this method to retrieve a user token by specifying a username and realmId.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getUserTokenByUsernameAndRealmId
+      parameters:
+      - description: Enter the username.
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: Enter the realmId. Possible values are `Internal`, `SAML` , `OAUTH2` , and `Crowd`.
+        in: query
+        name: realm
+        schema:
+          default: Internal
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserTokenDTO'
+          description: The response contains the `userCode`, `username` and the name of the IQ server `realm`.
+      tags:
+      - User Tokens
+components:
+  schemas:
+    ApiUserTokenDTO:
+      properties:
+        createTime:
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
+        lastAccessTime:
+          type: string
+        passCode:
+          type: string
+        realm:
+          type: string
+        userCode:
+          type: string
+        username:
+          type: string
+      type: object
+    ApiUserTokenExistsDTO:
+      properties:
+        userTokenExists:
+          type: boolean
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

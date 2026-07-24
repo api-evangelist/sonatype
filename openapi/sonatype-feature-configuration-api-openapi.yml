@@ -1,0 +1,62 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Feature Configuration API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to enable/disable the IQ Server features.
+  name: Feature Configuration
+paths:
+  /api/v2/config/features/{feature}:
+    delete:
+      description: 'Use this method to disable an IQ Server feature.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: disableFeature
+      parameters:
+      - description: Enter the name of the IQ Server feature to be disabled.
+        in: path
+        name: feature
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The IQ Server feature has been successfully disabled.
+        '400':
+          description: Bad request, check for invalid feature name.
+      tags:
+      - Feature Configuration
+    post:
+      description: 'Use this method to enable an IQ Server feature.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: enabledFeature
+      parameters:
+      - description: Enter the name of the feature to be enabled.
+        in: path
+        name: feature
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The specified feature has been enabled successfully.
+        '400':
+          description: Bad request, check for invalid feature name.
+      tags:
+      - Feature Configuration
+components:
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

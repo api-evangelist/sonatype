@@ -1,0 +1,108 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Config Crowd API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage the configuration of an existing Atlassian Crowd Server that is being used to authenticate users for IQ Server.
+  name: Config Crowd
+paths:
+  /api/v2/config/crowd:
+    delete:
+      description: 'Use this method to remove an existing Atlassian Crowd Configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteCrowdConfiguration
+      responses:
+        '204':
+          description: The Atlassian Crowd Server configuration has been deleted.
+      tags:
+      - Config Crowd
+    get:
+      description: 'Use this method to retrieve the configuration details for the Atlassian Crowd Server.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getCrowdConfiguration
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCrowdConfigurationDTO'
+          description: The response contains the `serverUrl` and `applicationName` provided at the time of setting up the Crowd Server.
+      tags:
+      - Config Crowd
+    put:
+      description: 'Use this method to create a new or update an existing Atlassian Crowd Server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: insertOrUpdateCrowdConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiCrowdConfigurationDTO'
+        description: 'The request JSON should include the `serverUrl`, `applicationName`, and the `applicationPassword` which will be used for authentication against the Atlassian Crowd Server.
+
+
+          If updating the `serverUrl`, the `applicationPassword` field is required.'
+      responses:
+        '204':
+          description: Update or create successful
+      tags:
+      - Config Crowd
+  /api/v2/config/crowd/test:
+    post:
+      description: Use this method to test a new or an existing Atlassian Crowd Server configuration.
+      operationId: testCrowdConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiCrowdConfigurationDTO'
+        description: 'To test an existing configuration, the request body is not required.
+
+
+          To test a new configuration, provide the `serverURl`, `applicationName`, and `applicationPassword` for the configuration.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiStatusDTO'
+          description: Test performed, results will be in the response message string.
+      tags:
+      - Config Crowd
+components:
+  schemas:
+    ApiStatusDTO:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      type: object
+    ApiCrowdConfigurationDTO:
+      properties:
+        applicationName:
+          type: string
+        applicationPassword:
+          type: string
+        serverUrl:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

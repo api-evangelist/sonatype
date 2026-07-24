@@ -1,0 +1,264 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  name: Advanced Search
+paths:
+  /api/v2/search/advanced:
+    get:
+      description: 'Use this method to perform an Advanced Search. '
+      operationId: searchIndex
+      parameters:
+      - description: Enter your search query here
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: Enter the no. of results that should be visible per page
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: Enter the page no. for the page containing results
+        in: query
+        name: page
+        schema:
+          format: int32
+          type: integer
+      - description: Set to `true` to retrieve results that include components with no violations
+        in: query
+        name: allComponents
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: mode
+        schema:
+          enum:
+          - sbomManager
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultDTO'
+          description: "Response JSON containing the search query sent in the API call, and other response fields as follows: \n1. searchQuery: search query sent in the request \n2. page: page number of search results requested \n3. pageSize: requested number of results per page \n4. totalNumberOfHits: total number of results returned \n5. isExactTotalNumberOfHits \n    * `true` indicates that the search results in the JSON is the same no. of search results that logically      match the search query. \n    * `false` indicates that the search results in the JSON are lower bound because fetching all results is     too expensive to compute. \n6. groupingByDTOS: array of search results grouped on a field name \n7. groupIdentifier: field name that the search results have been grouped by \n8. groupBy: field value that the search results have been grouped by \n9. additionalInfo: shared information between groups, e.g. info if grouped by a security vulnerability \n10. searchResultItemDTOS: array of search results with each element containing an itemType, field names and values \n11. resultIndex: indicating the relevance of the search result w.r.t. the query"
+        '409':
+          description: Search index not found. The Advanced Search index is unavailable or has not been created yet. Re-indexing is required before results can be returned.
+      tags:
+      - Advanced Search
+  /api/v2/search/advanced/export/csv:
+    get:
+      description: Use this method to generate a csv file containing your search results. The default delimiter in the generated file is comma. Use the advancedSearchCSVExportDelimiter property of the Configuration REST API to change the delimiter in the generated file.
+      operationId: getExportResults
+      parameters:
+      - description: A well-formed search query.
+        in: query
+        name: query
+        required: true
+        schema:
+          type: string
+      - description: Enter the no. of results that should be visible per page, unset gives all results
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Enter the page no. for the page containing results
+        in: query
+        name: page
+        schema:
+          format: int32
+          type: integer
+      - description: Set to `true` to retrieve results that include components with no violations.
+        in: query
+        name: allComponents
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: mode
+        schema:
+          enum:
+          - sbomManager
+          type: string
+      responses:
+        '200':
+          description: Downloadable csv file generated successfully.
+        '409':
+          description: Search index does not exist or is unreadable.
+      tags:
+      - Advanced Search
+  /api/v2/search/advanced/index:
+    post:
+      description: 'Use this method to create or rebuild the index for Advanced Search. This is a resource intensive operation. Avoid creating indexes during peak usage hours.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: createSearchIndexAsync
+      responses:
+        '204':
+          description: Index created successfully.
+      tags:
+      - Advanced Search
+components:
+  schemas:
+    SearchResultItemDTO:
+      properties:
+        applicationCategoryColor:
+          type: string
+        applicationCategoryDescription:
+          type: string
+        applicationCategoryId:
+          type: string
+        applicationCategoryName:
+          type: string
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        applicationPublicId:
+          type: string
+        applicationVersion:
+          type: string
+        componentHash:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        componentLabelColor:
+          type: string
+        componentLabelDescription:
+          type: string
+        componentLabelId:
+          type: string
+        componentLabelName:
+          type: string
+        componentName:
+          type: string
+        itemType:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        policyEvaluationStage:
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyThreatCategory:
+          type: string
+        policyThreatLevel:
+          format: int32
+          type: integer
+        reportId:
+          type: string
+        resultIndex:
+          format: int32
+          type: integer
+        sbomSpecification:
+          type: string
+        vulnerabilityDescription:
+          type: string
+        vulnerabilityId:
+          type: string
+        vulnerabilityStatus:
+          type: string
+      type: object
+    GroupingByDTO:
+      properties:
+        additionalInfo:
+          type: string
+        groupBy:
+          type: string
+        groupIdentifier:
+          enum:
+          - itemType
+          - organizationId
+          - organizationName
+          - applicationId
+          - applicationName
+          - applicationPublicId
+          - policyEvaluationStage
+          - applicationVersion
+          - reportId
+          - componentHash
+          - componentFormat
+          - componentName
+          - componentCoordinate
+          - vulnerabilityId
+          - vulnerabilitySeverity
+          - vulnerabilityStatus
+          - vulnerabilityDescription
+          - applicationCategoryId
+          - applicationCategoryName
+          - applicationCategoryColor
+          - applicationCategoryDescription
+          - componentLabelId
+          - componentLabelName
+          - componentLabelColor
+          - componentLabelDescription
+          - policyId
+          - policyName
+          - policyThreatCategory
+          - policyThreatLevel
+          - parentOrganizationName
+          - parentOrganizationId
+          - sbomSpecification
+          type: string
+        searchResultItemDTOS:
+          items:
+            $ref: '#/components/schemas/SearchResultItemDTO'
+          type: array
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    SearchResultDTO:
+      properties:
+        groupingByDTOS:
+          items:
+            $ref: '#/components/schemas/GroupingByDTO'
+          type: array
+        isExactTotalNumberOfHits:
+          type: boolean
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        searchAfter:
+          items:
+            type: string
+          type: array
+        searchQuery:
+          type: string
+        totalNumberOfHits:
+          format: int64
+          type: integer
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Config Jira API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use this REST API to manage Jira configurations to receive notifications from Lifecycle.
+
+
+    It is supported for Jira Cloud, Jira Server, and Jira Data Center.'
+  name: Config Jira
+paths:
+  /api/v2/config/jira:
+    delete:
+      description: 'Use this method to delete a Jira configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteConfiguration_2
+      responses:
+        '204':
+          description: Jira configuration deleted.
+      tags:
+      - Config Jira
+    get:
+      description: 'Use this method to retrieve an existing configuration for Jira.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getConfiguration_2
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiJiraConfigurationDTO'
+          description: The response contains:<ol><li>`url` is the Jira server address.</li><li>`username` is the username used to connect to the Jira server.</li><li>`password` is the password used to authenticate on the Jira server.</li><li>`customFields` are any project issue type required fields defined in Jira.</li></ol>
+        '404':
+          description: No saved Jira configuration exists.
+      tags:
+      - Config Jira
+    put:
+      description: 'Use this method to set a Jira configuration. If a Jira configuration already exists, the values will be updated with the ones provided here. If the server URL is being changed, then the password (if any) will be required.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: setConfiguration_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiJiraConfigurationDTO'
+        description: Enter the Jira configuration details here.
+      responses:
+        '204':
+          description: Set Jira configuration successfully.
+      tags:
+      - Config Jira
+components:
+  schemas:
+    ApiJiraConfigurationDTO:
+      properties:
+        customFields:
+          additionalProperties:
+            type: object
+          type: object
+        password:
+          type: string
+        url:
+          type: string
+        username:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,382 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Auto Policy Waivers API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to create, modify and retrieve auto policy waivers.
+  name: Auto Policy Waivers
+paths:
+  /api/v2/autoPolicyWaivers/v2/{ownerType}/{ownerId}:
+    post:
+      description: 'Use this method to create an auto policy waiver configuration. Only three configurations can  exist at a time for a given application or organization. With different combinations for reachable/pathForward
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: addAutoPolicyWaivers
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+              type: array
+        description: The request JSON can be an array that include the fields<ol><li>threatLevel</li><li>pathForward</li><li>reachable</li></ol>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+                type: array
+          description: Auto waiver has been created successfully.
+      tags:
+      - Auto Policy Waivers
+  /api/v2/autoPolicyWaivers/v2/{ownerType}/{ownerId}/applicableAutoWaivers:
+    get:
+      description: 'Use this method to retrieve all applicable auto waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getApplicableAutoWaivers
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain applicable auto policy waivers, if any, that are within the scope specified.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiAutoPolicyWaiverStatusDTO'
+                type: array
+          description: The response contains applicable auto policy waivers for the specified ownerType and the corresponding ownerId.
+      tags:
+      - Auto Policy Waivers
+  /api/v2/autoPolicyWaivers/{ownerType}/{ownerId}:
+    get:
+      description: 'Use this method to retrieve waiver details for all auto policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getAutoPolicyWaivers
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+                type: array
+          description: The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the autoPolicyWaiverId.
+      tags:
+      - Auto Policy Waivers
+    post:
+      description: 'Use this method to create an auto policy waiver configuration. Only one configuration can exist at a time for a given application or organization.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: addAutoPolicyWaiver
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+        description: The request JSON can include the fields<ol><li>threatLevel</li><li>pathForward</li><li>reachable</li></ol>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+          description: Auto waiver has been created successfully.
+      tags:
+      - Auto Policy Waivers
+  /api/v2/autoPolicyWaivers/{ownerType}/{ownerId}/status:
+    get:
+      description: 'Use this method to retrieve status details for any auto policy waiver enabled for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getAutoPolicyWaiverStatus
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain status details for the active auto policy waiver, if any, that is within the scope specified.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAutoPolicyWaiverStatusDTO'
+          description: The response contains auto policy waiver status details for the specified ownerType and the corresponding ownerId.
+      tags:
+      - Auto Policy Waivers
+  /api/v2/autoPolicyWaivers/{ownerType}/{ownerId}/{autoPolicyWaiverId}:
+    delete:
+      description: 'Use this method to delete an auto policy waiver, specified by the autoPolicyWaiverId.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: deleteAutoPolicyWaiver
+      parameters:
+      - description: Enter the ownerType to specify the scope. A waiver corresponding to the autoPolicyWaiverId provided and within the scope specified will be deleted.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the autoPolicyWaiverId to be deleted
+        in: path
+        name: autoPolicyWaiverId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Auto Policy Waiver has been deleted successfully.
+      tags:
+      - Auto Policy Waivers
+    get:
+      description: 'Use this method to retrieve auto policy waiver details for the autoPolicyWaiverId specified.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getAutoPolicyWaiver
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the autoPolicyWaiverId for which you want to retrieve the auto policy waiver details.
+        in: path
+        name: autoPolicyWaiverId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+          description: The response contains waiver details corresponding to the auto policy waiver id specified.
+      tags:
+      - Auto Policy Waivers
+    put:
+      description: 'Use this method to update an auto policy waiver, specified by the autoPolicyWaiverId.
+
+
+        Permissions required: Write IQ Elements'
+      operationId: updateAutoPolicyWaiver
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the autoPolicyWaiverId to be updated.
+        in: path
+        name: autoPolicyWaiverId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+        description: The request JSON can include the fields<ol><li>autoPolicyWaiverId</li><li>threatLevel</li><li>pathForward</li><li>reachable</li></ol>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAutoPolicyWaiverDTO'
+          description: Auto Policy Waiver has been updated successfully.
+      tags:
+      - Auto Policy Waivers
+components:
+  schemas:
+    ApiAutoPolicyWaiverStatusDTO:
+      properties:
+        autoPolicyWaiverId:
+          type: string
+        autoPolicyWaiverOwnerId:
+          type: string
+        autoPolicyWaiverOwnerName:
+          type: string
+        autoPolicyWaiverOwnerType:
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        hasNoPathForward:
+          type: boolean
+        hasNotReachable:
+          type: boolean
+        isAutoWaiverEnabled:
+          type: boolean
+        isInherited:
+          type: boolean
+        scopesOperatorAny:
+          type: boolean
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    ApiAutoPolicyWaiverDTO:
+      properties:
+        autoPolicyWaiverId:
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        creatorId:
+          type: string
+        creatorName:
+          type: string
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          type: string
+        pathForward:
+          type: boolean
+        publicId:
+          type: string
+        reachability:
+          type: boolean
+        scopesOperatorAny:
+          type: boolean
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,1299 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Firewall API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API for managing and monitoring firewall features, including metrics, repository management, quarantine operations, and namespace confusion prevention.
+  name: Firewall
+paths:
+  /api/v2/firewall/components/autoReleasedFromQuarantine:
+    get:
+      description: 'Use this method to retrieve the details of components that are auto-released from quarantine.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getUnquarantineList
+      parameters:
+      - description: Enter the page number.
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          type: integer
+      - description: Enter the number of results to be returned for a page.
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: Enter the `policyId`. When provided, the results will include the components that have a policy violation for the policyId.
+        in: query
+        name: policyId
+        schema:
+          type: string
+      - description: Enter the component name. When provided, the results will include components with display names (case-insensitive) that match the given name.
+        in: query
+        name: componentName
+        schema:
+          type: string
+      - description: Enter the sort criteria `releaseQuarantineTime` or `quarantineTime`.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Select `true` to set the sort order to ascending.
+        in: query
+        name: asc
+        schema:
+          default: true
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFirewallComponentDTOResult'
+          description: The response includes:<ul><li>`total` is the total number of records this request can return across all pages.</li><li>`page` is the page number specified in the request.</li><li>`pageSize` is the page size specified in the request.</li><li>`pageCount` is the total number of pages this request can return.</li></ul>The `results` section contains details of each component that has been auto-released. It includes:<ul><li>`displayName` is the name and version of the component.</li><li>`repository` indicates the repository name where the component is stored.</li><li>`quarantineDate` is the date and time when the component was quarantined.</li><li>`dateCleared` is the date and time when the component was auto-released from quarantine.</li><li>`quarantinePolicyViolations` will be empty for components that are auto-released.</li><li>`componentIdentifier` is the format and coordinates for the component.</li><li>`pathname` indicates the component path in the repository.</li><li>`hash` is the hash of the component.</li><li>`matchState` indicates the whether the component is an `EXACT` or `SIMILAR` match to the known  components or is `UNKNOWN`.</li><li>`repositoryId` is the ID of the repository where the component is stored.</li><li>`quarantined` indicates whether the component is quarantined.</li></ul>
+          headers:
+            Link:
+              description: Pagination links (first, last, next, prev)
+              schema:
+                type: string
+              style: simple
+      tags:
+      - Firewall
+  /api/v2/firewall/components/quarantined:
+    get:
+      description: 'Use this method to request a list of quarantined components.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getQuarantineList
+      parameters:
+      - description: Enter the starting page number for the response.
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          type: integer
+      - description: Enter the page size for the response.
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: Enter the list of policy IDs causing the quarantine.
+        in: query
+        name: policyId
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      - description: Enter the component name.
+        in: query
+        name: componentName
+        schema:
+          type: string
+      - description: Enter the repository public ID of the quarantined component.
+        in: query
+        name: repositoryPublicId
+        schema:
+          type: string
+      - description: Enter the quarantine time of the component.
+        in: query
+        name: quarantineTime
+        schema:
+          format: int32
+          type: integer
+      - description: Enter `quarantineTime` to sort the results by quarantine time.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Select the sort order.
+        in: query
+        name: asc
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFirewallQuarantinedComponentDtoResult'
+          description: The response includes:<ul><li>`total` is the total number of records this request can return across all pages.</li><li>`page` is the page number specified in the request.</li><li>`pageSize` is the page size specified in the request.</li><li>`pageCount` is the total number of pages this request can return.</li></ul>The `results` section contains details of each component that has been auto-released. It includes:<ul><li>`threatLevel` is the threat level of the policy violation.</li><li>`policyName` is the name of the violated policy.</li><li>`quarantined` indicates whether the component is quarantined.</li><li>`quarantineDate` is the date and time when the component was quarantined.</li><li>`componentIdentifier` is the format and coordinates for the component.</li><li>`pathname` indicates the component path in the repository.</li><li>`displayName` is the name and version of the component.</li><li>`repositoryId` is the ID of the repository where the component is stored.</li><li>`repositoryName` indicates the repository name where the component is stored.</li><li>`hash` is the hash of the component.</li><li>`matchState` indicates the whether the component is an `EXACT` or `SIMILAR` match to the known components or is `UNKNOWN`.</li></ul>
+          headers:
+            Link:
+              description: Pagination links (first, last, next, prev)
+              schema:
+                type: string
+              style: simple
+      tags:
+      - Firewall
+  /api/v2/firewall/components/{repositoryManagerId}/{repositoryId}/evaluate:
+    post:
+      description: 'Use this method to evaluate components (max. 100).
+
+
+        **Hash Requirements by Format Type:**
+
+
+        **Coordinate-Based Formats** (hash NOT required when using packageUrl):
+
+        - golang, conan, cargo, cocoapods, cran, conda, composer, hf-model
+
+        - These formats identify components by coordinates (name+version) rather than file hash
+
+        - When using packageUrl, hash is optional
+
+        - If hash is provided, it will be used
+
+
+        **Hash-Based Formats** (hash REQUIRED):
+
+        - maven, npm, pypi, nuget, docker, rubygems, and others
+
+        - Hash must ALWAYS be provided to identify the exact file content
+
+        - Hash is required regardless of whether pathname or packageUrl is used
+
+        - Missing hash for these formats will result in incorrect component identification
+
+
+        Permissions required: Evaluate Individual Components'
+      operationId: evaluateComponents_1
+      parameters:
+      - description: Enter the repository manager ID.
+        in: path
+        name: repositoryManagerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the repository ID.
+        in: path
+        name: repositoryId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequestList'
+        description: 'Provide the array of component identifiers to be evaluated. Each component requires **one of the following combinations**:
+
+
+          **For Coordinate-Based Formats (golang, conan, cargo, cocoapods, cran, conda, composer, hf-model):**
+
+          - **packageUrl only** - Hash is optional
+
+          - **packageUrl + hash** - Hash is optional, will be used if provided
+
+          - **pathname + hash** - Hash required (pathname approach always requires hash)
+
+
+          **For Hash-Based Formats (maven, npm, pypi, nuget, docker, rubygems, etc.):**
+
+          - **packageUrl + hash** - Hash REQUIRED to identify exact file content
+
+          - **pathname + hash** - Hash REQUIRED
+
+          - Providing packageUrl without hash for these formats will result in incorrect identification
+
+
+          A maximum of 100 components can be evaluated in one request.'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRepositoryComponentEvaluationResultList'
+          description: The response contains the evaluation results.
+      tags:
+      - Firewall
+  /api/v2/firewall/connection/verify:
+    get:
+      description: 'Use this method to verify that the authenticated user has required permissions for firewall operations and retrieve accessible applications.
+
+
+        Permissions required: Evaluate Individual Components'
+      operationId: verifyConnectionAndGetApplications
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSummaryList'
+          description: Connection verified successfully. Returns list of applications accessible to the user.
+        '401':
+          description: Authentication required. User is not authenticated.
+        '403':
+          description: User is authenticated but does not have 'Evaluate Individual Components' permission.
+      tags:
+      - Firewall
+  /api/v2/firewall/container-image/policyViolations/quarantined:
+    get:
+      description: 'Use this method to find all container images currently in quarantine.
+
+
+        Permissions required: Read'
+      operationId: getContainerImagesInQuarantine
+      parameters:
+      - in: query
+        name: page
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerImageInQuarantineDataResult'
+          description: Container images in quarantine.
+          headers:
+            Link:
+              description: Pagination links (first, last, next, prev)
+              schema:
+                type: string
+              style: simple
+      tags:
+      - Firewall
+  /api/v2/firewall/container-image/policyWaiver:
+    get:
+      description: "Use this method to get all policy waivers for container images. \n\nPermissions required: Waive Policy Violations"
+      operationId: getWaivers
+      parameters:
+      - in: query
+        name: page
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyContainerWaiverDataResult'
+          description: Policy waivers for container images.
+          headers:
+            Link:
+              description: Pagination links (first, last, next, prev)
+              schema:
+                type: string
+              style: simple
+      tags:
+      - Firewall
+  /api/v2/firewall/container-image/{containerImageId}/policyWaiver:
+    delete:
+      description: 'Use this method to delete a container waiver, specified by the containerImageId.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: deleteContainerImagePolicyWaiver
+      parameters:
+      - description: Enter the container id.
+        in: path
+        name: containerImageId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Waiver has been deleted successfully.
+      tags:
+      - Firewall
+    post:
+      description: "Use this method to create a waiver for all policy violations of a container Image. \n\nPermissions required: Waive Policy Violations"
+      operationId: addWaiver
+      parameters:
+      - description: Enter the container image id.
+        in: path
+        name: containerImageId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiContainerImageWaiverDTO'
+        description: 'The request JSON can include the fields<ol><li>expiryTime (default null): Sets the datetime when the waiver expires.</li><li>waiverReasonId (default null): Sets the specific reason chosen for the waiver.</li><li>comment (default null): Further explanation about the waiver.</li></ol>'
+      responses:
+        '204':
+          description: Waiver has been created successfully.
+      tags:
+      - Firewall
+  /api/v2/firewall/metrics/embedded:
+    get:
+      description: 'Use this method to retrieve firewall dashboard metrics.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getFirewallMetrics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: '#/components/schemas/ApiFirewallMetricsResultDTO'
+                type: object
+          description: The response contains a map of firewall metric name to value including the last updated time.
+      tags:
+      - Firewall
+  /api/v2/firewall/namespace_confusion/{format}:
+    delete:
+      description: 'Removes proprietary component namespaces for the specified format.
+
+
+        Permissions required: Evaluate Individual Components'
+      operationId: removeProprietaryComponentNames
+      parameters:
+      - description: Format for which the proprietary namespaces are being removed.
+        example: maven
+        in: path
+        name: format
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Namespaces successfully removed.
+      tags:
+      - Firewall
+    post:
+      description: 'Adds a list of proprietary component namespaces for the specified format to prevent namespace confusion attacks.
+
+
+        Permissions required: Evaluate Individual Components'
+      operationId: addProprietaryComponentNames
+      parameters:
+      - description: Format for which the proprietary namespaces are being added.
+        example: maven
+        in: path
+        name: format
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: List of namespaces to register as proprietary for this format.
+        required: true
+      responses:
+        '204':
+          description: Namespaces successfully added.
+      tags:
+      - Firewall
+  /api/v2/firewall/quarantine/summary:
+    get:
+      description: 'Use this method to request a summary of quarantined components.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getQuarantineSummary
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFirewallQuarantineSummaryDTO'
+          description: The response contains:<ul><li>`repositoryCount` is the total number of repositories.</li><li>`quarantineEnabledRepositoryCount` is the total number of repositories with quarantine  capability enabled.</li><li>`quarantinedEnabled` indicates if any repository has the quarantine capability enabled.</li><li>`totalComponentCount` is the total number of components across all repositories.</li><li>`quarantinedComponentCount` is the total number of quarantined components.</li></ul>
+      tags:
+      - Firewall
+  /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess:
+    get:
+      description: 'Use this method to determine if the quarantined component(s) details can be accessed anonymously.
+
+
+        Permissions required: None'
+      operationId: getQuarantinedComponentViewAnonymousAccess
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                type: boolean
+          description: The response returns `true` if anonymous access to quarantined components is enabled.
+      tags:
+      - Firewall
+  /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess/{enabled}:
+    put:
+      description: 'Use this method to enable/disable anonymous access to view the quarantined components.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: setQuarantinedComponentViewAnonymousAccess
+      parameters:
+      - description: Select `true` or `false` to enable or disable anonymous access.
+        in: path
+        name: enabled
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: Successfully updated anonymous access.
+      tags:
+      - Firewall
+  /api/v2/firewall/releaseQuarantine/configuration:
+    get:
+      description: 'Use this method to retrieve the configuration settings for auto-release from quarantine for repositories.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getFirewallAutoUnquarantineConfig
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiFirewallReleaseQuarantineConfigDTO'
+                type: array
+          description: The response contains a list of repositories and the corresponding configuration for auto-release from quarantine.
+      tags:
+      - Firewall
+    put:
+      description: 'Use this method to set the configurations for auto-release from quarantine for a list of repositories.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: setFirewallAutoUnquarantineConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ApiFirewallReleaseQuarantineConfigDTO'
+              type: array
+        description: Enter value for each repository and the required status for auto-release as `true` or `false`.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiFirewallReleaseQuarantineConfigDTO'
+                type: array
+          description: The response contains each updated `autoReleaseQuarantineEnabled` status for the repositories requested.
+      tags:
+      - Firewall
+  /api/v2/firewall/releaseQuarantine/summary:
+    get:
+      description: 'Use this method to track how many components have been automatically released from quarantine over different time periods.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getFirewallUnquarantineSummary
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFirewallReleaseQuarantineSummaryDTO'
+          description: The response contains:<ul><li>`autoReleaseQuarantineCountMTD` is the number of auto-released quarantine components from the start of the current month to the current date.</li><li>`autoReleaseQuarantineCountYTD` is the number of auto-released quarantine components from the start of the current year to the current date.</li></ul>
+      tags:
+      - Firewall
+  /api/v2/firewall/repositories/cascade-reevaluate/componentHash/{componentHash}:
+    post:
+      description: 'Initiate cascade re-evaluation for a component across repository hierarchies.<p>This operation asynchronously re-evaluates the specified component across all repositories where the component exists.<p>The system will automatically discover all eligible repositories based on component presence.<p>Permissions Required: Evaluate Components at Repository Managers level'
+      operationId: initiateCascadeReevaluation
+      parameters:
+      - description: The component hash to re-evaluate across all repositories
+        in: path
+        name: componentHash
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CascadeReevaluateTicketDTO'
+          description: Cascade re-evaluation initiated successfully. The response contains statusUrl with a requestId, which can be used to check the cascade re-evaluation status using the GET method.A requestId for a cascade re-evaluation only lasts 24 hours before being deleted.
+        '403':
+          description: Forbidden - insufficient permissions
+      tags:
+      - Firewall
+  /api/v2/firewall/repositories/cascade-reevaluate/status/{requestId}:
+    get:
+      description: 'Get the status of a cascade re-evaluation request.<p>Returns the current progress of a cascade re-evaluation operation including the list of components that have been evaluated and those still pending. The overall status will be ''pending'' if any components are still being processed, or ''completed'' if all components have been evaluated.<p>The response includes:<ul><li><b>status:</b> Overall status (PENDING, IN_PROGRESS, COMPLETED, NO_COMPONENTS_FOUND, FAILED)</li><li><b>referenceComponentHash:</b> The component hash that was re-evaluated</li><li><b>pending:</b> Components still being processed (PENDING status)</li><li><b>evaluated:</b> Components successfully re-evaluated (COMPLETED or NO_COMPONENTS_FOUND status)</li><li><b>failed:</b> Components that could not be re-evaluated (FAILED status)</li></ul><p>Permissions Required: Evaluate Components at Repository Managers level'
+      operationId: getCascadeStatus
+      parameters:
+      - description: The cascade request ID to check status for
+        in: path
+        name: requestId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CascadeStatusResponseDTO'
+          description: Cascade status retrieved successfully
+        '403':
+          description: Forbidden - insufficient permissions
+        '404':
+          description: Cascade request not found. It could have been deleted after 24 hours.
+      tags:
+      - Firewall
+  /api/v2/firewall/repositories/configuration/{repositoryManagerId}:
+    get:
+      description: 'Use this method to retrieve the configuration details of an existing repository manager.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getConfiguredRepositories
+      parameters:
+      - description: Enter the repository manager ID.
+        in: path
+        name: repositoryManagerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the epoch time in milliseconds when the repository was last updated.
+        in: query
+        name: sinceUtcTimestamp
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRepositoryListDTO'
+          description: The response contains the configuration details of the requested repository manager.
+      tags:
+      - Firewall
+    post:
+      description: 'Use this method to update the repositories for an existing repository manager.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: configureRepositories
+      parameters:
+      - description: Enter the repository manager ID.
+        in: path
+        name: repositoryManagerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiRepositoryListDTO'
+        description: Enter values for the repository configuration properties to be updated.
+        required: true
+      responses:
+        '204':
+          description: Repositories updated successfully.
+      tags:
+      - Firewall
+  /api/v2/firewall/repositoryContainer:
+    get:
+      description: 'Use this method to retrieve the ID and name for the repository container.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getRepositoryContainer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRepositoryContainerDTO'
+          description: The response contains the ID and name for the repository container.
+      tags:
+      - Firewall
+  /api/v2/firewall/repositoryManagers:
+    get:
+      description: 'Use this method to retrieve all configured repository managers.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getRepositoryManagers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRepositoryManagerListDTO'
+          description: The response contains details of configured repository managers.
+      tags:
+      - Firewall
+    post:
+      description: 'Use this method to add a new repository manager.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: addRepositoryManager
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiRepositoryManagerDTO'
+        description: Enter values for the new repository manager.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRepositoryManagerDTO'
+          description: The response contains the details of the new repository manager.
+      tags:
+      - Firewall
+  /api/v2/firewall/repositoryManagers/{repositoryManagerId}:
+    delete:
+      description: 'Use this method to delete an existing repository manager.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteRepositoryManager
+      parameters:
+      - description: Enter the repository manager ID.
+        in: path
+        name: repositoryManagerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The requested repository manager has been deleted.
+      tags:
+      - Firewall
+    get:
+      description: 'Use this method to retrieve details of an existing repository manager.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getRepositoryManager
+      parameters:
+      - description: Enter the repository manager ID.
+        in: path
+        name: repositoryManagerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRepositoryManagerDTO'
+          description: The response contains the details of the repository manager requested.
+      tags:
+      - Firewall
+  /api/v2/malware-defense/evaluate:
+    post:
+      description: Evaluate malware for a list of components.<p>Use this endpoint to evaluate malware for a list of components up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component that are of the same format type.
+      operationId: evaluateMalware
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiMalwareComponentEvaluationRequestList'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MalwareDefenseResponseList'
+          description: Malware evaluation results for the components
+      tags:
+      - Firewall
+  /api/v2/malware-defense/metrics:
+    get:
+      description: The response contains malware defense API metrics.<p>Use this endpoint to get the count of malicious components evaluated via malware defense API grouped by format.
+      operationId: getMalwareDefenseMetrics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  format: int64
+                  type: integer
+                type: object
+          description: Malware defense metrics grouped by format.
+      tags:
+      - Firewall
+components:
+  schemas:
+    ContainerImageInQuarantineData:
+      description: List of items for the current page
+      properties:
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        applicationPublicId:
+          type: string
+        openTime:
+          type: number
+        policyViolationCount:
+          format: int64
+          type: integer
+        repositoryId:
+          type: string
+        repositoryPublicId:
+          type: string
+        scanId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    ApiContainerImageWaiverDTO:
+      properties:
+        comment:
+          type: string
+        expiryTime:
+          format: date-time
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ApiRepositoryManagerListDTO:
+      properties:
+        repositoryManagers:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryManagerDTO'
+          type: array
+      type: object
+    ApiFirewallQuarantineSummaryDTO:
+      properties:
+        quarantineEnabled:
+          type: boolean
+        quarantineEnabledRepositoryCount:
+          format: int64
+          type: integer
+        quarantinedComponentCount:
+          format: int64
+          type: integer
+        repositoryCount:
+          format: int64
+          type: integer
+        totalComponentCount:
+          format: int64
+          type: integer
+      type: object
+    ApiFirewallReleaseQuarantineSummaryDTO:
+      properties:
+        autoReleaseQuarantineCountMTD:
+          format: int64
+          type: integer
+        autoReleaseQuarantineCountYTD:
+          format: int64
+          type: integer
+      type: object
+    ApiRepositoryComponentEvaluationRequest:
+      properties:
+        hash:
+          type: string
+        packageUrl:
+          type: string
+        pathname:
+          type: string
+      type: object
+    MalwareDefenseData:
+      properties:
+        hash:
+          type: string
+        isMalicious:
+          type: boolean
+        malwareCategories:
+          items:
+            $ref: '#/components/schemas/MalwareCategory'
+          type: array
+        matchState:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    ApiFirewallReleaseQuarantineConfigDTO:
+      properties:
+        autoReleaseQuarantineEnabled:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    CascadeComponentProgressDTO:
+      properties:
+        componentId:
+          type: string
+        quarantined:
+          type: boolean
+        repositoryId:
+          type: string
+        repositoryManagerId:
+          type: string
+      type: object
+    ApplicationSummary:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiRepositoryDTO:
+      properties:
+        auditEnabled:
+          type: boolean
+        format:
+          type: string
+        namespaceConfusionProtectionEnabled:
+          type: boolean
+        policyCompliantComponentSelectionEnabled:
+          type: boolean
+        publicId:
+          type: string
+        quarantineEnabled:
+          type: boolean
+        repositoryId:
+          type: string
+        type:
+          type: string
+      type: object
+    ApiRepositoryListDTO:
+      properties:
+        repositories:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryDTO'
+          type: array
+      type: object
+    ApiRepositoryComponentEvaluationResult:
+      properties:
+        catalogDate:
+          format: date-time
+          type: string
+        component:
+          $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+        quarantineDate:
+          format: date-time
+          type: string
+        quarantined:
+          type: boolean
+      type: object
+    ApiFirewallComponentDTO:
+      description: List of items for the current page
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ComponentIdentifier'
+        dateCleared:
+          format: date-time
+          type: string
+        displayName:
+          type: string
+        hash:
+          type: string
+        matchState:
+          type: string
+        pathname:
+          type: string
+        quarantineDate:
+          format: date-time
+          type: string
+        quarantinePolicyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+        quarantined:
+          type: boolean
+        repository:
+          type: string
+        repositoryId:
+          type: string
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    CascadeStatusResponseDTO:
+      properties:
+        evaluated:
+          items:
+            $ref: '#/components/schemas/CascadeComponentProgressDTO'
+          type: array
+        failed:
+          items:
+            $ref: '#/components/schemas/CascadeComponentProgressDTO'
+          type: array
+        pending:
+          items:
+            $ref: '#/components/schemas/CascadeComponentProgressDTO'
+          type: array
+        referenceComponentHash:
+          type: string
+        status:
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - NO_COMPONENTS_FOUND
+          - FAILED
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    MalwareCategory:
+      properties:
+        attackVector:
+          type: string
+        threatTypes:
+          items:
+            type: string
+          type: array
+      type: object
+    MalwareDefenseResponseList:
+      properties:
+        componentList:
+          items:
+            $ref: '#/components/schemas/MalwareDefenseData'
+          type: array
+      type: object
+    ApiRepositoryComponentEvaluationResultList:
+      properties:
+        repositoryId:
+          type: string
+        repositoryManagerId:
+          type: string
+        repositoryPublicId:
+          type: string
+        repositoryType:
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationResult'
+          type: array
+      type: object
+    ApiPolicyViolationDTOV2:
+      properties:
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    ApiMalwareComponentEvaluationRequest:
+      properties:
+        hash:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    ApiRepositoryContainerDTO:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        relatedOrganizationId:
+          type: string
+      type: object
+    CascadeReevaluateTicketDTO:
+      properties:
+        statusUrl:
+          type: string
+      type: object
+    ApiMalwareComponentEvaluationRequestList:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiMalwareComponentEvaluationRequest'
+          type: array
+        format:
+          type: string
+      type: object
+    ApplicationSummaryList:
+      properties:
+        applicationSummaries:
+          items:
+            $ref: '#/components/schemas/ApplicationSummary'
+          type: array
+      type: object
+    ApiRepositoryManagerDTO:
+      properties:
+        id:
+          type: string
+        instanceId:
+          type: string
+        name:
+          type: string
+        productName:
+          type: string
+        productVersion:
+          type: string
+      type: object
+    ContainerImageInQuarantineDataResult:
+      properties:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/ContainerImageInQuarantineData'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
+    ApiFirewallQuarantinedComponentDto:
+      description: List of items for the current page
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ComponentIdentifier'
+        displayName:
+          type: string
+        hash:
+          type: string
+        matchState:
+          type: string
+        pathname:
+          type: string
+        policyName:
+          type: string
+        quarantineDate:
+          type: string
+        quarantined:
+          type: boolean
+        repositoryId:
+          type: string
+        repositoryName:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    PolicyContainerWaiverDataResult:
+      properties:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/PolicyContainerWaiverData'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
+    ApiFirewallQuarantinedComponentDtoResult:
+      properties:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/ApiFirewallQuarantinedComponentDto'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
+    PolicyContainerWaiverData:
+      description: List of items for the current page
+      properties:
+        applicationScope:
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        expiryTime:
+          format: date-time
+          type: string
+        maxThreatLevel:
+          format: int32
+          type: integer
+        ownerId:
+          type: string
+        policyWaiverId:
+          type: string
+        uniqueComponentCount:
+          format: int64
+          type: integer
+        uniquePolicyCount:
+          format: int64
+          type: integer
+      type: object
+    ApiFirewallComponentDTOResult:
+      properties:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/ApiFirewallComponentDTO'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
+    ApiRepositoryComponentEvaluationRequestList:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
+          type: array
+        format:
+          type: string
+      type: object
+    ApiFirewallMetricsResultDTO:
+      properties:
+        firewallMetricsValue:
+          format: int32
+          type: integer
+        latestUpdatedTime:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

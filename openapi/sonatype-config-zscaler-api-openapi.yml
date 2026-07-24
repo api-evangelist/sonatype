@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Config Zscaler API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage the configuration of a Zscaler service.
+  name: Config Zscaler
+paths:
+  /api/v2/config/zscaler:
+    delete:
+      description: 'Use this method to disable or remove the Zscaler configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteConfiguration_7
+      responses:
+        '204':
+          description: Zscaler configuration was removed successfully.
+        '404':
+          description: Zscaler server configuration does not exist.
+      tags:
+      - Config Zscaler
+    get:
+      description: 'Use this method to review the configuration for a Zscaler server.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getConfiguration_8
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiZScalerConfigurationDTO'
+          description: The response contains:<ul><li>`username` is the username to authenticate with the Zscaler server.</li><li>`password` is always null, never included for security purposes for this method.</Li><li>`hostname` is the hostname or IP address of the Zscaler server.</li><li>`apiKey` is the apiKey used for communicating with the Zscaler service.</li></ul>
+        '404':
+          description: No Zscaler server is currently configured with the IQ Server.
+      tags:
+      - Config Zscaler
+    put:
+      description: 'Use this method to configure or update an existing Zscaler server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: setConfiguration_7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiZScalerConfigurationDTO'
+        description: Provide one or more values for the following in the JSON payload:<ul><li>`username` - is the username for the Zscaler server.</li><li>`password` - is the password for the Zscaler server.</li><li>`hostname` - is the hostname or IP address of the Zscaler server.</li><li>`apiKey` - is the apiKey for the Zscaler Server.</li><li>`eulaAgreed` - is the agreement to the Sonatype's end user license agreement.</li><li>`mavenFormatEnabled` - is the flag to enable or disable the Maven format for Zscaler.</li><li>`npmFormatEnabled` - is the flag to enable or disable the Npm format for Zscaler.</li><li>`pypiFormatEnabled` - is the flag to enable or disable the Pypi format for Zscaler.</li><li>`nugetFormatEnabled` - is the flag to enable or disable the Nuget format for Zscaler.</li></ul>
+      responses:
+        '204':
+          content:
+            text/html:
+              schema:
+                type: string
+          description: Zscaler server configuration was updated successfully.
+        '400':
+          description: Missing or invalid values provided.
+      tags:
+      - Config Zscaler
+  /api/v2/config/zscaler/testConfig:
+    post:
+      description: 'Use this method to test Zscaler server configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: testConfiguration_1
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ApiZScalerConfigurationDTO'
+        description: Provide one or more values for the following in the JSON payload:<ul><li>`username` - is the username for the Zscaler server.</li><li>`password` - is the password for the Zscaler server.</li><li>`hostname` - is the hostname or IP address of the Zscaler server.</li><li>`apiKey` - is the apiKey for the Zscaler Server.</li></ul>
+      responses:
+        '204':
+          description: Test Zscaler server configuration was successful.
+        '400':
+          description: Missing or invalid values provided.
+      tags:
+      - Config Zscaler
+  /api/v2/config/zscaler/update:
+    delete:
+      description: 'Use this endpoint to delete all configured formats from your Zscaler instance
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteAllCategories
+      responses:
+        '204':
+          description: Zscaler deleted custom urls.
+        '404':
+          description: Zscaler unable to remove custom urls
+      tags:
+      - Config Zscaler
+    post:
+      description: 'Use this endpoint to trigger an update of all configured formats to your Zscaler instance
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: triggerUpdateAll
+      responses:
+        '204':
+          description: Zscaler updated custom urls successfully.
+        '404':
+          description: Zscaler unable to update custom urls
+      tags:
+      - Config Zscaler
+  /api/v2/config/zscaler/update/{format}:
+    delete:
+      description: 'Use this endpoint to delete a specific format from your Zscaler instance
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteCategory
+      parameters:
+      - in: path
+        name: format
+        required: true
+        schema:
+          enum:
+          - MAVEN
+          - NPM
+          - PYPI
+          - NUGET
+          type: string
+      responses:
+        '204':
+          description: Zscaler updating a format was successful.
+        '404':
+          description: Zscaler updating a format was not successful
+      tags:
+      - Config Zscaler
+    post:
+      description: 'Use this endpoint to trigger an update to your Zscaler instance
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: triggerUpdate
+      parameters:
+      - in: path
+        name: format
+        required: true
+        schema:
+          enum:
+          - MAVEN
+          - NPM
+          - PYPI
+          - NUGET
+          type: string
+      responses:
+        '204':
+          description: Zscaler updated custom urls for format.
+        '404':
+          description: Zscaler unable to update custom urls for format.
+      tags:
+      - Config Zscaler
+  /api/v2/config/zscaler/zscalerLimits:
+    get:
+      description: 'Returns the current Zscaler quota.
+
+
+        Permissions required: None'
+      operationId: getQuota
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiZScalerQuotaDTO'
+          description: Successfully retrieved the Zscaler quota.
+      tags:
+      - Config Zscaler
+components:
+  schemas:
+    ApiZScalerConfigurationDTO:
+      properties:
+        apiKey:
+          type: string
+        eulaAgreed:
+          type: boolean
+        hostname:
+          type: string
+        mavenFormatEnabled:
+          type: boolean
+        npmFormatEnabled:
+          type: boolean
+        nugetFormatEnabled:
+          type: boolean
+        password:
+          type: string
+        pypiFormatEnabled:
+          type: boolean
+        username:
+          type: string
+      type: object
+    ApiZScalerQuotaDTO:
+      properties:
+        remainingUrls:
+          format: int32
+          type: integer
+        status:
+          type: string
+        totalAllowedUrls:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

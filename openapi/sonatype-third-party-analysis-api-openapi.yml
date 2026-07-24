@@ -1,0 +1,156 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Third-Party Analysis API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to scan SBOMs for your applications.
+  name: Third-Party Analysis
+paths:
+  /api/v2/scan/applications/{applicationId}/sources/{source}:
+    post:
+      description: 'Use this method to perform an analysis of an SBOM.
+
+
+        Permissions required: Evaluate Applications'
+      operationId: scanComponents
+      parameters:
+      - description: Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`
+        in: path
+        name: source
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`
+        in: query
+        name: stageId
+        schema:
+          default: build
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+        description: 'Select the request header content-type from the dropdown, depending on whether the SBOM is in XML or JSON format.
+
+
+          Embed the contents of the SBOM here or enter the file path for the SBOM. A component in the SBOM can be identified by: <ol><li>packageUrl</li><li>Component hash</li><li>Component name and version</li></ol>
+
+
+          Any SPE and SWID tags for the component will be preserved in the evaluation report.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiThirdPartyScanTicketDTO'
+          description: The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiThirdPartyScanTicketDTO'
+          description: The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.
+      tags:
+      - Third-Party Analysis
+  /api/v2/scan/applications/{applicationId}/status/{scanRequestId}:
+    get:
+      description: 'SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.
+
+
+        Permissions required: Evaluate Applications'
+      operationId: getScanStatus
+      parameters:
+      - description: Enter the application internal id for the SBOM to be evaluated.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation.
+        in: path
+        name: scanRequestId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiThirdPartyScanResultDTO'
+          description: 'The response contains summarized results of the SBOM evaluation and the URLs for detailed evaluation reports in HTML, pdf and raw formats.
+
+
+            `policyAction` indicates the policy actions determined by the `stageId` selected while submitting the evaluation using the POST method.'
+        '404':
+          description: Evaluation report is not ready.
+      tags:
+      - Third-Party Analysis
+components:
+  schemas:
+    ApiThirdPartyScanResultDTO:
+      properties:
+        componentsAffected:
+          $ref: '#/components/schemas/ApiEvaluationResultCounterDTO'
+        embeddableReportHtmlUrl:
+          type: string
+        errorMessage:
+          type: string
+        grandfatheredPolicyViolations:
+          format: int32
+          type: integer
+        isError:
+          type: boolean
+        legacyViolations:
+          format: int32
+          type: integer
+        openPolicyViolations:
+          $ref: '#/components/schemas/ApiEvaluationResultCounterDTO'
+        policyAction:
+          type: string
+        reportDataUrl:
+          type: string
+        reportHtmlUrl:
+          type: string
+        reportPdfUrl:
+          type: string
+      type: object
+    ApiEvaluationResultCounterDTO:
+      properties:
+        critical:
+          format: int32
+          type: integer
+        moderate:
+          format: int32
+          type: integer
+        severe:
+          format: int32
+          type: integer
+      type: object
+    ApiThirdPartyScanTicketDTO:
+      properties:
+        statusUrl:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

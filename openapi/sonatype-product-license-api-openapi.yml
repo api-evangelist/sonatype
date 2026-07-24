@@ -1,0 +1,56 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Product License API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage a product license.
+  name: Product License
+paths:
+  /api/v2/product/license:
+    delete:
+      description: 'Use this method to uninstall a product license.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: uninstallLicense
+      responses:
+        '204':
+          description: License uninstalled successfully
+      tags:
+      - Product License
+    post:
+      description: 'Use this method to install a product license
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: installLicense
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                file:
+                  description: Your product license file
+                  format: binary
+                  type: string
+              required:
+              - file
+              type: object
+      responses:
+        '200':
+          description: License installed successfully
+      tags:
+      - Product License
+components:
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,276 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Auto Policy Waiver Exclusions API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to create and delete auto policy waiver exclusions.
+  name: Auto Policy Waiver Exclusions
+paths:
+  /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}:
+    post:
+      description: 'Use this method to create an auto policy waiver exclusion for a specified auto policy waiver.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: addAutoPolicyWaiveExclusion
+      parameters:
+      - description: Enter the ownerType to specify which resource type owns the auto waiver you want to apply a exclusion to. Possible values are application, organization.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiAutoPolicyWaiverExclusionRequestDTO'
+        description: The request JSON can include the fields<ol><li>applicationPublicId</li><li>ownerId - ID of the application or organization which will own the auto waiver exclusion</li><li>policyViolationId - ID of the policy violation which the exclusion will apply to</li><li>autoPolicyWaiverId - ID of the auto waiver you want to apply a exclusion to</li><li>scanId - ID of the scan which the violation being waived appeared in</li><li>matchStrategy (enumeration, required) can have values EXACT_COMPONENT, ALL_VERSIONS, POLICY_VIOLATION. </li></ol>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAutoPolicyWaiverExclusionResponseDTO'
+          description: Auto policy waiver exclusion has been created successfully.
+      tags:
+      - Auto Policy Waiver Exclusions
+  /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}/{autoPolicyWaiverId}:
+    get:
+      description: 'Use this method to retrieve auto policy waiver exclusions for the given owner and policy waiver.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getAutoPolicyWaiverExclusions
+      parameters:
+      - description: Enter the owner type.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the owner id.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the id of the automatic policy waiver.
+        in: path
+        name: autoPolicyWaiverId
+        required: true
+        schema:
+          type: string
+      - description: Enter the page.
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          type: integer
+      - description: Enter the page size.
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiAutoPolicyWaiverExclusionResponseDTO'
+                type: array
+          description: Successfully retrieved the auto policy waiver exclusions.
+      tags:
+      - Auto Policy Waiver Exclusions
+  /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}/{autoPolicyWaiverId}/{autoPolicyWaiverExclusionId}:
+    delete:
+      description: 'Use this method to delete an auto policy waiver exclusion, specified by the autoPolicyWaiverExclusionId.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: deleteAutoPolicyWaiverExclusion
+      parameters:
+      - description: Enter the ownerType to specify the scope. A waiver exclusion corresponding to the autoPolicyWaiverExclusionId provided and within the scope specified will be deleted.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the relevant Auto Policy Waiver ID.
+        in: path
+        name: autoPolicyWaiverId
+        required: true
+        schema:
+          type: string
+      - description: Enter the autoPolicyWaiverId to be deleted
+        in: path
+        name: autoPolicyWaiverExclusionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Auto policy waiver exclusion has been deleted successfully.
+      tags:
+      - Auto Policy Waiver Exclusions
+components:
+  schemas:
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
+      type: object
+    ApiAutoPolicyWaiverExclusionResponseDTO:
+      properties:
+        autoPolicyWaiverExclusionId:
+          type: string
+        autoPolicyWaiverId:
+          type: string
+        componentDisplayName:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ComponentIdentifier'
+        componentMatchStrategy:
+          enum:
+          - EXACT_COMPONENT
+          - ALL_VERSIONS
+          - POLICY_VIOLATION
+          type: string
+        constraintFacts:
+          items:
+            $ref: '#/components/schemas/ConstraintFact'
+          type: array
+        createTime:
+          format: date-time
+          type: string
+        creatorId:
+          type: string
+        creatorName:
+          type: string
+        hash:
+          type: string
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerPublicId:
+          type: string
+        ownerType:
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        scanId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        vulnerabilityIdentifiers:
+          type: string
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    ApiAutoPolicyWaiverExclusionRequestDTO:
+      properties:
+        applicationPublicId:
+          type: string
+        autoPolicyWaiverId:
+          type: string
+        matchStrategy:
+          enum:
+          - EXACT_COMPONENT
+          - ALL_VERSIONS
+          - POLICY_VIOLATION
+          type: string
+        ownerId:
+          type: string
+        policyViolationId:
+          type: string
+        scanId:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,524 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Role Memberships API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use this REST API to manage authorizations for users or user groups.
+
+
+    You can view existing role assignments and grant or revoke user authorization on organizations, applications and repositories.'
+  name: Role Memberships
+paths:
+  /api/v2/roleMemberships/{ownerType}:
+    get:
+      description: 'Use this method to retrieve all users and roles globally or for all repositories.
+
+
+        Permissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context'
+      operationId: getRoleMembershipsGlobalOrRepositoryContainer
+      parameters:
+      - description: Enter the value for ownerType. Using `global` will return the users and groups who have been assigned the administrator role.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - repository_container
+          - global
+          pattern: global|repository_container
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRoleMemberMappingListDTO'
+          description: The response contains all role Ids and the corresponding users/user groups assigned to them, for the ownerType specified. It also includes members who inherit a role based on the organization hierarchy.
+      tags:
+      - Role Memberships
+  /api/v2/roleMemberships/{ownerType}/role/{roleId}/members:
+    put:
+      description: 'Use this method to set all members for a specific role in the global or repository container context. This operation atomically replaces all existing members for the role with the provided list.
+
+
+        Permissions required: Edit system configuration and users for a global context or edit access control for a non-global context'
+      operationId: setBulkRoleMembersGlobalOrRepositoryContainer
+      parameters:
+      - description: Enter the ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - repository_container
+          - global
+          pattern: global|repository_container
+          type: string
+      - description: 'Enter the roleId for the role whose members should be set.
+
+
+          Use the Roles REST API for roleIds and descriptions.'
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ApiMemberWithDetailsDTO'
+              type: array
+        description: List of members to assign to this role. Provide an empty list to remove all members.
+        required: true
+      responses:
+        '204':
+          description: The role membership has been successfully updated with the provided members.
+      tags:
+      - Role Memberships
+  /api/v2/roleMemberships/{ownerType}/role/{roleId}/{memberType}/{memberName}:
+    delete:
+      description: 'Use this method to revoke roles globally or on all repositories.
+
+
+        Permissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context'
+      operationId: revokeRoleMembershipGlobalOrRepositoryContainer
+      parameters:
+      - description: Enter the value for ownerType. Using `global` will revoke the administrator role.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - repository_container
+          - global
+          pattern: global|repository_container
+          type: string
+      - description: Enter the roleId for the role to be revoked.
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+      - description: Enter the value for memberType, to specify a user or a user group.
+        in: path
+        name: memberType
+        required: true
+        schema:
+          enum:
+          - USER
+          - GROUP
+          pattern: (?i:user|group)
+          type: string
+      - description: Enter the value for memberName. This can be a username or group name depending upon the value of memberType above.
+        in: path
+        name: memberName
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The specified role has been revoked from the user or user group.
+      tags:
+      - Role Memberships
+    put:
+      description: 'Use this method to grant a role to a user or user group globally or on all repositories.
+
+
+        Permissions required: Edit system configuration and users for a global context or edit access control for a non-global context'
+      operationId: grantRoleMembershipGlobalOrRepositoryContainer
+      parameters:
+      - description: Enter the value for the ownerType for which you want to grant the role.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - repository_container
+          - global
+          pattern: global|repository_container
+          type: string
+      - description: 'Enter the roleId for the role to be granted.
+
+
+          Use the Roles REST API for roleIds and descriptions.'
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+      - description: Enter the value for memberType, to specify a user or a user group.
+        in: path
+        name: memberType
+        required: true
+        schema:
+          enum:
+          - USER
+          - GROUP
+          pattern: (?i:user|group)
+          type: string
+      - description: Enter the value for memberName. This can be a username or group name depending upon the value of memberType above.
+        in: path
+        name: memberName
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The specified role has been granted to the users or user groups on the given context.
+      tags:
+      - Role Memberships
+  /api/v2/roleMemberships/{ownerType}/roles:
+    get:
+      description: 'Use this method to retrieve all role memberships for global or repository container context with full details including role names, descriptions, and member information.
+
+
+        Permissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context'
+      operationId: getBulkRoleMembershipsGlobalOrRepositoryContainer
+      parameters:
+      - description: Enter the value for ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - repository_container
+          - global
+          pattern: global|repository_container
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicableMembershipMappingsDTO'
+          description: The response contains all roles with their members. Also includes a flag indicating whether group search is enabled.
+      tags:
+      - Role Memberships
+  /api/v2/roleMemberships/{ownerType}/{internalOwnerId}:
+    get:
+      description: 'Use this method to retrieve the users, user groups and the corresponding role Ids.
+
+
+        Permissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context'
+      operationId: getRoleMembershipsApplicationOrOrganization
+      parameters:
+      - description: Enter the ownerType for which you want to retrieve users and their role Ids.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiRoleMemberMappingListDTO'
+          description: The response contains the assigned role Ids, users and user groups for the application or organization requested. It also includes members who inherit a role based on the organization hierarchy.
+      tags:
+      - Role Memberships
+  /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/members:
+    put:
+      description: 'Use this method to set all members for a specific role. This operation atomically replaces all existing members for the role with the provided list.
+
+
+        Permissions required: Edit access control'
+      operationId: setBulkRoleMembersNonGlobal
+      parameters:
+      - description: Enter the ownerType for which you want to set role members.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_manager
+          - repository
+          pattern: application|organization|repository_manager|repository
+          type: string
+      - description: Enter the id associated with the ownerType specified above. For applications, use the public ID. For organizations, repositories, and repository managers, use the internal ID.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: 'Enter the roleId for the role whose members should be set.
+
+
+          Use the Roles REST API for roleIds and descriptions.'
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ApiMemberWithDetailsDTO'
+              type: array
+        description: List of members to assign to this role. Provide an empty list to remove all members.
+        required: true
+      responses:
+        '204':
+          description: The role membership has been successfully updated with the provided members.
+      tags:
+      - Role Memberships
+  /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/{memberType}/{memberName}:
+    delete:
+      description: 'Use this method to revoke a role from a user or user group, on a specific application or organization.
+
+
+        Permissions required: Edit access control'
+      operationId: revokeRoleMembershipApplicationOrOrganization
+      parameters:
+      - description: Enter the value for the ownerType for which you want to revoke the role. Using `global` will revoke the administrator role.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internalId associated with the ownerType specified above.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the roleId for the role to be revoked.
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+      - description: Enter the value for memberType, to specify a user or a user group.
+        in: path
+        name: memberType
+        required: true
+        schema:
+          enum:
+          - USER
+          - GROUP
+          pattern: (?i:user|group)
+          type: string
+      - description: Enter the value for memberName. This can be a username or group name depending upon the value of memberType above.
+        in: path
+        name: memberName
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The specified role has been revoked from the user or user group
+      tags:
+      - Role Memberships
+    put:
+      description: 'Use this method to grant a role to a user or user group for the specified application or organization.
+
+
+        Permissions required: Edit access control'
+      operationId: grantRoleMembershipApplicationOrOrganization
+      parameters:
+      - description: Enter the value for the ownerType for which you want to grant the role.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the value for the internalId associated with the ownerType specified above.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: 'Enter the roleId for the role to be granted.
+
+
+          Use the Roles REST API for roleIds and descriptions.'
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+      - description: Enter the value for memberType, to specify a user or a user group.
+        in: path
+        name: memberType
+        required: true
+        schema:
+          enum:
+          - USER
+          - GROUP
+          pattern: (?i:user|group)
+          type: string
+      - description: Enter the value for memberName. This can be a username or group name depending upon the value of memberType above.
+        in: path
+        name: memberName
+        required: true
+        schema:
+          type: string
+      - description: 'If true, attempts to validate if the specified user or group exists before assigning the role.
+
+          If false or omitted, the request behaves as before (no validation check).'
+        in: query
+        name: validateMember
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '204':
+          description: The specified roleId has been has been granted to the user or user group for the requested context.
+      tags:
+      - Role Memberships
+  /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/roles:
+    get:
+      description: 'Use this method to retrieve all role memberships with full details including role names, descriptions, and member information organized by owner (for inheritance display).
+
+
+        Permissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context'
+      operationId: getBulkRoleMembershipsNonGlobal
+      parameters:
+      - description: Enter the ownerType for which you want to retrieve role memberships.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_manager
+          - repository
+          pattern: application|organization|repository_manager|repository
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above. For applications, use the public ID. For organizations, repositories, and repository managers, use the internal ID.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicableMembershipMappingsDTO'
+          description: 'The response contains all roles with their members organized by owner, including inherited members from parent organizations or repository hierarchies. Also includes a flag indicating whether group search is
+
+            enabled.'
+      tags:
+      - Role Memberships
+components:
+  schemas:
+    ApiMemberWithDetailsDTO:
+      properties:
+        displayName:
+          type: string
+        email:
+          type: string
+        internalName:
+          type: string
+        realm:
+          type: string
+        type:
+          enum:
+          - USER
+          - GROUP
+          type: string
+      type: object
+    ApiMemberDTO:
+      properties:
+        ownerId:
+          type: string
+        ownerType:
+          type: string
+        type:
+          enum:
+          - USER
+          - GROUP
+          type: string
+        userOrGroupName:
+          type: string
+      type: object
+    ApiRoleMemberMappingListDTO:
+      properties:
+        memberMappings:
+          items:
+            $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
+          type: array
+      type: object
+    ApiApplicableMembershipMappingsDTO:
+      properties:
+        groupSearchEnabled:
+          type: boolean
+        membersByRole:
+          items:
+            $ref: '#/components/schemas/ApiRoleWithMembersByOwnerDTO'
+          type: array
+      type: object
+    ApiMembersByOwnerDTO:
+      properties:
+        members:
+          items:
+            $ref: '#/components/schemas/ApiMemberWithDetailsDTO'
+          type: array
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          type: string
+      type: object
+    ApiRoleWithMembersByOwnerDTO:
+      properties:
+        membersByOwner:
+          items:
+            $ref: '#/components/schemas/ApiMembersByOwnerDTO'
+          type: array
+        roleDescription:
+          type: string
+        roleId:
+          type: string
+        roleName:
+          type: string
+      type: object
+    ApiRoleMemberMappingDTO:
+      properties:
+        members:
+          items:
+            $ref: '#/components/schemas/ApiMemberDTO'
+          type: array
+        roleId:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

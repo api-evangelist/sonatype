@@ -1,0 +1,322 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Application Categories API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use the Application Categories REST API to manage the application categories or tags assigned to the applications in an organization. '
+  name: Application Categories
+paths:
+  /api/v2/applicationCategories/application:
+    get:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories.
+      operationId: getTagsUsedByApplications
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+                type: array
+          description: A list of application categories or tags applied to applications. Each application category or tag consists of an id, name, description and color.
+      tags:
+      - Application Categories
+  /api/v2/applicationCategories/application/{applicationPublicId}:
+    get:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories available to applications in this organization.
+      operationId: getApplicationApplicableTags
+      parameters:
+      - description: 'The application public ID '
+        in: path
+        name: applicationPublicId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicableTagsDTO'
+          description: 'A list of application categories that can be applied to the specified application. Each application category or tag consists of an id, name, description and color. '
+      tags:
+      - Application Categories
+  /api/v2/applicationCategories/application/{applicationPublicId}/applicable:
+    get:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.
+      operationId: getApplicableTagsByApplicationPublicId
+      parameters:
+      - description: Provide the application public ID assigned by IQ Server.
+        in: path
+        name: applicationPublicId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+                type: array
+          description: Returns all application categories or tags that can be applied to this application,  by providing the application public ID.
+      tags:
+      - Application Categories
+  /api/v2/applicationCategories/organization/{organizationId}:
+    get:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories in use by applications in this organization.
+      operationId: getTags
+      parameters:
+      - description: The organizationId assigned by IQ Server.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+                type: array
+          description: 'A list of application categories or tags that can be used by applications in this organization. Each application category consists of an id, name, description and color. '
+      tags:
+      - Application Categories
+    post:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to add a new application category or tag.
+      operationId: addTag
+      parameters:
+      - description: The organizationId assigned by IQ Server, for which you want to create the application category.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+        description: Specify the the name, description and color for the new application category to be  created. The application category id is not required to create a new application category  and should not be included.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+          description: Successful creation of the new application category and its details.
+      tags:
+      - Application Categories
+    put:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category.
+      operationId: updateTag
+      parameters:
+      - description: The organizationId assigned by IQ Server.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+        description: Specify the id (application category id) and id of the organization that owns this  application category, to update the name, description and color.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+          description: Successful update echoing the updated application category details.
+      tags:
+      - Application Categories
+  /api/v2/applicationCategories/organization/{organizationId}/applicable:
+    get:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.
+      operationId: getApplicableTags
+      parameters:
+      - description: The organizationId assigned by IQ Server, for which you want to retrieve the applicable tags or application categories.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicableTagsDTO'
+          description: 'A list of application categories or tags that can be applied to applications in this organization. Each application category or tag consists of an id, name, description and color. '
+      tags:
+      - Application Categories
+  /api/v2/applicationCategories/organization/{organizationId}/applied:
+    get:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.
+      operationId: getAppliedTags
+      parameters:
+      - description: The organizationId assigned by IQ Server.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppliedTagsDTO'
+          description: Get all application categories or tags that can be applied to an application, belonging to the organization specified by the organization id.
+      tags:
+      - Application Categories
+  /api/v2/applicationCategories/organization/{organizationId}/policy:
+    get:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that are applied to applications in this organization.
+      operationId: getAppliedPolicyTags
+      parameters:
+      - description: The organizationId assigned by IQ Server.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PolicyTag'
+                type: array
+          description: Get all policy application categories or tags that are applied to applications  in this organization.
+      tags:
+      - Application Categories
+  /api/v2/applicationCategories/organization/{organizationId}/{tagId}:
+    delete:
+      description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category.Use this method to delete an existing application category.
+      operationId: deleteTag
+      parameters:
+      - description: The organizationId assigned by IQ Server, corresponding to the application category tag you want to delete.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - description: The application category ID assigned by IQ Server, to be deleted.
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful deletion of the application category.
+      tags:
+      - Application Categories
+components:
+  schemas:
+    TagsByOwnerDTO:
+      properties:
+        applicationCategories:
+          items:
+            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+          type: array
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
+          type: string
+      type: object
+    PolicyTag:
+      properties:
+        id:
+          type: string
+        policyId:
+          type: string
+        tagId:
+          type: string
+      type: object
+    ApplicableTagsDTO:
+      properties:
+        applicationCategoriesByOwner:
+          items:
+            $ref: '#/components/schemas/TagsByOwnerDTO'
+          type: array
+      type: object
+    AppliedTagsDTO:
+      properties:
+        applicationTagsByOwner:
+          items:
+            $ref: '#/components/schemas/ApplicationTagsByOwnerDTO'
+          type: array
+      type: object
+    ApplicationTagsByOwnerDTO:
+      properties:
+        applicationTags:
+          items:
+            $ref: '#/components/schemas/ApplicationTag'
+          type: array
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
+          type: string
+      type: object
+    ApiApplicationCategoryDTO:
+      properties:
+        color:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+      type: object
+    ApplicationTag:
+      properties:
+        applicationId:
+          type: string
+        id:
+          type: string
+        tagId:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

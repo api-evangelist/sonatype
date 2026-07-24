@@ -1,0 +1,683 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Application Report Data API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to retrieve the data from an application composition report, that is generated after an evaluation.
+  name: Application Report Data
+paths:
+  /api/v2/applications/{applicationPublicId}/reports/policyViolations/diff:
+    get:
+      description: 'By configuring Lifecycle with SCM, policy evaluations can be linked to the Git commit hash. Use this method to compare the violations between policy evaluations for 2 commits, by providing the linked commit hashes.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getPolicyViolationDiff
+      parameters:
+      - description: Enter the applicationPublicId, created at the time of creating the application
+        in: path
+        name: applicationPublicId
+        required: true
+        schema:
+          type: string
+      - description: Enter the commit hash linked to the earlier policy evaluation.
+        in: query
+        name: fromCommit
+        required: true
+        schema:
+          type: string
+      - description: Enter the commit hash linked to the other (later) policy evaluation to compare.
+        in: query
+        name: toCommit
+        required: true
+        schema:
+          type: string
+      - description: Enter the policy evaluation Id linked to the earlier policy evaluation to compare
+        in: query
+        name: fromPolicyEvaluationId
+        schema:
+          type: string
+      - description: Enter the policy evaluation Id linked to the other (later) policy evaluation to compare
+        in: query
+        name: toPolicyEvaluationId
+        schema:
+          type: string
+      - description: Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set.
+        in: query
+        name: includeViolationTimes
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPolicyViolationDiffDTO'
+          description: The response contains the violation details grouped under addedViolations, sameViolations and removedViolations for the two policy evaluations being compared.
+        '400':
+          description: Missing or invalid parameter. Check if the policy evaluations are still available, based on the Data Retention Policies.
+        '404':
+          description: Policy violation diff could not be determined for the given request.
+      tags:
+      - Application Report Data
+  /api/v2/applications/{applicationPublicId}/reports/{scanId}:
+    get:
+      description: This is an older version of the endpoint. This call will now be redirected to /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw.
+      operationId: getData
+      parameters:
+      - description: Enter the applicationPublicId for the evaluated application.
+        in: path
+        name: applicationPublicId
+        required: true
+        schema:
+          type: string
+      - description: 'Enter the scanId (reportId) of the application report created after the evaluation. '
+        in: path
+        name: scanId
+        required: true
+        schema:
+          type: string
+      responses:
+        '307':
+          description: Temporary redirect to the new endpoint.
+      tags:
+      - Application Report Data
+  /api/v2/applications/{applicationPublicId}/reports/{scanId}/dependencyTree:
+    get:
+      description: 'Use this method to retrieve the dependencies related to the component identified at the time of application evaluation. This is currently available only for Java (Maven) and NPM applications.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getDependencyTree
+      parameters:
+      - description: Enter the applicationPublicId created at the time of creating the application.
+        in: path
+        name: applicationPublicId
+        required: true
+        schema:
+          type: string
+      - description: ' Enter the reportId (scanId) created at the time of evaluating the application.'
+        in: path
+        name: scanId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDependencyTreeResponseDTO'
+          description: The response fields contain the 'Dependency Tree' data  under the 'children' section. The 'children' section may contain more tree nodes. Every direct dependency can have zero or more transitive dependencies. Each tree node contains the packageUrl, component identifier and a dependency tree node (if it exists.) The component identifier section contains the format and coordinates for the component.
+        '400':
+          description: Missing or invalid parameter.
+        '404':
+          description: The requested dependency tree was not found.
+      tags:
+      - Application Report Data
+  /api/v2/applications/{applicationPublicId}/reports/{scanId}/policy:
+    get:
+      description: 'Use this method to retrieve the policy violation data generated as a result of an application evaluation, for each component identified in the application evaluation./n/nPermissions required: View IQ Elements'
+      operationId: getPolicyViolations_1
+      parameters:
+      - description: Enter the applicationPublicId created at the time of creating the application.
+        in: path
+        name: applicationPublicId
+        required: true
+        schema:
+          type: string
+      - description: Enter the reportId (scanId) created at the time of evaluating the application.
+        in: path
+        name: scanId
+        required: true
+        schema:
+          type: string
+      - description: Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set.
+        in: query
+        name: includeViolationTimes
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportPolicyDataDTOV2'
+          description: The response fields contain the policy violation data for the reportId (scanId) specified in the method call. The fields corresponding to 'violations' include the violation details for each policy, for the component.
+      tags:
+      - Application Report Data
+  /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw:
+    get:
+      description: 'Use this method to retrieve the ''raw'' data generated as a result of an application evaluation. ''raw'' data includes: the components identified in the application, and the licenses and vulnerabilities associated with the identified components./n/nPermissions required: View IQ Elements'
+      operationId: getRawData
+      parameters:
+      - description: 'Enter the applicationPublicId (assigned at the time of creating a new application.) '
+        in: path
+        name: applicationPublicId
+        required: true
+        schema:
+          type: string
+      - description: Enter the reportId (scanId) created at the time of evaluating the application. application.
+        in: path
+        name: scanId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportRawDataDTOV2'
+          description: The response fields contain the 'raw' data for the reportId (scanId) specified in the method call. The fields corresponding to 'dependencyData' will indicate if the component is a direct dependency (true/false), an InnerSource component(true/false), the associated parentComponentPurls (package URLs of the parent component ownerApplicationName (name of the owner application), ownerApplicatonId (internal ID of the owner application, innerSourceComponentPurl (the package URL of the InnerSourceComponent.)
+      tags:
+      - Application Report Data
+components:
+  schemas:
+    ApiLicenseThreatDTOV2:
+      properties:
+        licenseThreatGroupCategory:
+          type: string
+        licenseThreatGroupLevel:
+          format: int32
+          type: integer
+        licenseThreatGroupName:
+          type: string
+      type: object
+    ApiLicenseDTO:
+      properties:
+        licenseId:
+          type: string
+        licenseName:
+          type: string
+      type: object
+    AttachmentText:
+      properties:
+        content:
+          type: string
+        contentType:
+          type: string
+        encoding:
+          type: string
+      type: object
+    ApiSecurityDataDTO:
+      properties:
+        securityIssues:
+          items:
+            $ref: '#/components/schemas/ApiSecurityIssueDTO'
+          type: array
+      type: object
+    InnerSourceData:
+      properties:
+        innerSourceComponentPurl:
+          type: string
+        ownerApplicationId:
+          type: string
+        ownerApplicationName:
+          type: string
+      type: object
+    ApiApplicationDTO:
+      properties:
+        applicationTags:
+          items:
+            $ref: '#/components/schemas/ApiApplicationTagDTO'
+          type: array
+        contactUserName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiReportConstraintConditionDTOV2:
+      properties:
+        conditionReason:
+          type: string
+        conditionSummary:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiReportConstraintViolationDTOV2:
+      properties:
+        conditions:
+          items:
+            $ref: '#/components/schemas/ApiReportConstraintConditionDTOV2'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+      type: object
+    ApiReportPolicyDataDTOV2:
+      properties:
+        application:
+          $ref: '#/components/schemas/ApiApplicationBaseDTO'
+        commitHash:
+          type: string
+        components:
+          items:
+            $ref: '#/components/schemas/ApiReportComponentPolicyViolationsDTOV2'
+          type: array
+        counts:
+          additionalProperties:
+            format: int32
+            type: integer
+          type: object
+        initiator:
+          type: string
+        reportTime:
+          type: number
+        reportTitle:
+          type: string
+      type: object
+    ApiReportComponentDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        cpe:
+          type: string
+        dependencyData:
+          $ref: '#/components/schemas/ApiDependencyDataDTO'
+        displayName:
+          type: string
+        filenames:
+          items:
+            type: string
+          type: array
+        hash:
+          type: string
+        identificationSource:
+          type: string
+        licenseData:
+          $ref: '#/components/schemas/ApiLicenseDataDTOV2'
+        matchState:
+          type: string
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        pathnames:
+          items:
+            type: string
+          type: array
+        proprietary:
+          type: boolean
+        securityData:
+          $ref: '#/components/schemas/ApiSecurityDataDTO'
+        sha256:
+          type: string
+        swid:
+          $ref: '#/components/schemas/Swid'
+        thirdParty:
+          type: boolean
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
+      type: object
+    ApiApplicationBaseDTO:
+      properties:
+        contactUserName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiReportRawDataDTOV2:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiReportComponentDTOV2'
+          type: array
+        globalInformation:
+          $ref: '#/components/schemas/ApiGlobalInformationDTOV2'
+        matchSummary:
+          $ref: '#/components/schemas/ApiMatchStateSummaryDTOV2'
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ApiDependencyDataDTO:
+      properties:
+        directDependency:
+          type: boolean
+        innerSource:
+          type: boolean
+        innerSourceData:
+          items:
+            $ref: '#/components/schemas/InnerSourceData'
+          type: array
+          uniqueItems: true
+        parentComponentPurls:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    ApiDependencyTreeNodeDTO:
+      properties:
+        children:
+          items:
+            $ref: '#/components/schemas/ApiDependencyTreeNodeDTO'
+          type: array
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        direct:
+          type: boolean
+        packageUrl:
+          type: string
+      type: object
+    ApiPolicyViolationDiffDTO:
+      properties:
+        addedViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
+          type: array
+          uniqueItems: true
+        application:
+          $ref: '#/components/schemas/ApiApplicationDTO'
+        diffTime:
+          format: date-time
+          type: string
+        fromCommit:
+          $ref: '#/components/schemas/ApiApplicationEvaluationCommitDTO'
+        removedViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
+          type: array
+          uniqueItems: true
+        sameViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
+          type: array
+          uniqueItems: true
+        toCommit:
+          $ref: '#/components/schemas/ApiApplicationEvaluationCommitDTO'
+      type: object
+    ApiDependencyTreeResponseDTO:
+      properties:
+        dependencyTree:
+          $ref: '#/components/schemas/ApiDependencyTreeNodeDTO'
+      type: object
+    ApiComponentDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          nullable: true
+          type: string
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+      type: object
+    ApiMatchStateSummaryDTOV2:
+      properties:
+        knownComponentCount:
+          format: int32
+          type: integer
+        totalComponentCount:
+          format: int32
+          type: integer
+      type: object
+    ApiSecurityIssueDTO:
+      properties:
+        analysis:
+          $ref: '#/components/schemas/ApiSecurityIssueAnalysisDTO'
+        cvssVector:
+          type: string
+        cvssVectorSource:
+          type: string
+        cwe:
+          type: string
+        reference:
+          type: string
+        severity:
+          format: float
+          type: number
+        source:
+          type: string
+        status:
+          type: string
+        threatCategory:
+          type: string
+        url:
+          type: string
+      type: object
+    ApiApplicationEvaluationCommitDTO:
+      properties:
+        commitHash:
+          type: string
+        reportUrl:
+          type: string
+        scanId:
+          type: string
+        scanTime:
+          format: date-time
+          type: string
+      type: object
+    ApiGlobalInformationDTOV2:
+      properties:
+        dataVersionDate:
+          type: string
+      type: object
+    ApiApplicationTagDTO:
+      properties:
+        applicationId:
+          type: string
+        id:
+          type: string
+        tagId:
+          type: string
+      type: object
+    ApiSecurityIssueAnalysisDTO:
+      properties:
+        detail:
+          type: string
+        justification:
+          type: string
+        response:
+          type: string
+        state:
+          type: string
+      type: object
+    ApiReportComponentPolicyViolationsDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        dependencyData:
+          $ref: '#/components/schemas/ApiDependencyDataDTO'
+        displayName:
+          type: string
+        hash:
+          type: string
+        matchState:
+          type: string
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        pathnames:
+          items:
+            type: string
+          type: array
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+        violations:
+          items:
+            $ref: '#/components/schemas/ApiReportPolicyViolationDTOV2'
+          type: array
+      type: object
+    ApiPolicyViolationForDiffDTO:
+      properties:
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    Swid:
+      properties:
+        name:
+          type: string
+        patch:
+          type: boolean
+        tagId:
+          type: string
+        tagVersion:
+          format: int32
+          type: integer
+        text:
+          $ref: '#/components/schemas/AttachmentText'
+        version:
+          type: string
+      type: object
+    ApiReportPolicyViolationDTOV2:
+      properties:
+        constraints:
+          items:
+            $ref: '#/components/schemas/ApiReportConstraintViolationDTOV2'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        grandfathered:
+          type: boolean
+        legacyViolation:
+          type: boolean
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyThreatCategory:
+          type: string
+        policyThreatLevel:
+          format: int32
+          type: integer
+        policyViolationId:
+          type: string
+        waiveTime:
+          format: date-time
+          type: string
+        waived:
+          type: boolean
+        waivedWithAutoWaiver:
+          type: boolean
+      type: object
+    ApiLicenseDataDTOV2:
+      properties:
+        declaredLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        effectiveLicenseThreats:
+          items:
+            $ref: '#/components/schemas/ApiLicenseThreatDTOV2'
+          type: array
+        effectiveLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        observedLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        overriddenLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        status:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

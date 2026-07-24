@@ -1,0 +1,527 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Components API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to retrieve a component's security vulnerability data, license data, age and popularity.
+  name: Components
+paths:
+  /api/v2/components/details:
+    post:
+      description: Use this method to retrieve data related to a component.
+      operationId: getComponentDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiComponentDetailsRequestDTOV2'
+        description: 'You can retrieve component data in any one of the 3 ways via:
+
+          1. Component identifier
+
+          2. Package URL
+
+          3. Hash'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiComponentDetailsResultDTOV2'
+          description: The response contains a detailed description of the component. The hash value returned here is truncated and not intended to be used as a checksum. It can be used as an identifier to pass to other REST API calls.
+      tags:
+      - Components
+  /api/v2/components/remediation/{ownerType}/{ownerId}:
+    post:
+      description: Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI.
+      operationId: getSuggestedRemediationForComponent
+      parameters:
+      - description: 'Possible values: application, organization, repository. '
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository
+          pattern: application|organization|repository
+          type: string
+      - description: 'Possible values: applicationId, organizationId or repositoryId.'
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId to obtain next-non-failing and next-non-failing-with-dependencies remediation types in the response. Possible values are develop, build, stage-release, release and operate.
+        in: query
+        name: stageId
+        schema:
+          type: string
+      - description: Enter the identification source if you want the remediation result based on third-party scan information (non-Sonatype). The identification source can be obtained from the Component Details Page in the UI.
+        in: query
+        name: identificationSource
+        schema:
+          type: string
+      - description: Enter the scanId (reportId) if you want the remediation result based on third-party scan information (non-Sonatype).
+        in: query
+        name: scanId
+        schema:
+          type: string
+      - description: Enter true if you want to include parent remediation for transitive dependency in the response based on your application policy scan.
+        in: query
+        name: includeParentRemediation
+        schema:
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiComponentDTOV2'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  remediation:
+                    $ref: '#/components/schemas/ApiComponentRemediationValueDTO'
+                required:
+                - remediation
+                type: object
+          description: Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI.
+      tags:
+      - Components
+  /api/v2/components/versions:
+    post:
+      description: Use this method to retrieve all known versions of a component.
+      operationId: getComponentVersions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiComponentOrPurlIdentifierDTOV2'
+        description: 'Possible values: Component identifier or packageURL (pURL) identifier in the correct format. Use a-name for JavaScript components.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Known versions of the component are returned in a string array of ascending order.
+      tags:
+      - Components
+  /api/v2/components/{componentHash}/labels/{labelName}/{ownerType}s/{internalOwnerId}:
+    delete:
+      description: Use this method to un-assign a label from a component.
+      operationId: deleteComponentLabel
+      parameters:
+      - description: 'Possible values: application or organization'
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: 'Possible values : applicationId or organizationId'
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the SHA1 hash of the component.
+        in: path
+        name: componentHash
+        required: true
+        schema:
+          type: string
+      - description: Enter the label name to un-assign from this component.
+        in: path
+        name: labelName
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Label un-assigned from component successfully.
+      tags:
+      - Components
+    post:
+      description: Use this method to assign an existing label to a component.
+      operationId: setComponentLabel
+      parameters:
+      - description: 'Possible values: application or organization'
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: 'Possible values : applicationId or organizationId'
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the SHA1 hash of the component.
+        in: path
+        name: componentHash
+        required: true
+        schema:
+          type: string
+      - description: Enter the label name to assign to this component.
+        in: path
+        name: labelName
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Component label assigned successfully.
+      tags:
+      - Components
+components:
+  schemas:
+    ApiComponentOrPurlIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    ApiComponentDetailsRequestDTOV2:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiComponentDTOV2'
+          type: array
+      type: object
+    ApiLicenseDTO:
+      properties:
+        licenseId:
+          type: string
+        licenseName:
+          type: string
+      type: object
+    ApiComponentProjectScmMetadataDTO:
+      properties:
+        forks:
+          format: int32
+          type: integer
+        stars:
+          format: int32
+          type: integer
+      type: object
+    ApiComponentChangeActionDTO:
+      properties:
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
+      type: object
+    ApiSecurityDataDTO:
+      properties:
+        securityIssues:
+          items:
+            $ref: '#/components/schemas/ApiSecurityIssueDTO'
+          type: array
+      type: object
+    ApiLicenseDataDTO:
+      properties:
+        declaredLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        effectiveLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        observedLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        overriddenLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        status:
+          type: string
+      type: object
+    ApiComponentRemediationValueDTO:
+      properties:
+        suggestedVersionChange:
+          $ref: '#/components/schemas/ApiSuggestedVersionChangeOptionDTO'
+        versionChanges:
+          items:
+            $ref: '#/components/schemas/ApiVersionChangeOptionDTO'
+          type: array
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiComponentProjectScmDTO:
+      properties:
+        scmDetails:
+          $ref: '#/components/schemas/ApiComponentProjectScmDetailsDTO'
+        scmMetadata:
+          $ref: '#/components/schemas/ApiComponentProjectScmMetadataDTO'
+        scmUrl:
+          type: string
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ApiComponentDetailsResultDTOV2:
+      properties:
+        componentDetails:
+          items:
+            $ref: '#/components/schemas/ApiComponentDetailsDTOV2'
+          type: array
+      type: object
+    ApiPolicyViolationDTOV2:
+      properties:
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    ApiComponentProjectMetadataDTO:
+      properties:
+        description:
+          type: string
+        organization:
+          type: string
+      type: object
+    ApiComponentProjectDataDTO:
+      properties:
+        firstReleaseDate:
+          format: date-time
+          type: string
+        lastReleaseDate:
+          format: date-time
+          type: string
+        projectMetadata:
+          $ref: '#/components/schemas/ApiComponentProjectMetadataDTO'
+        sourceControlManagement:
+          $ref: '#/components/schemas/ApiComponentProjectScmDTO'
+      type: object
+    ApiComponentDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          nullable: true
+          type: string
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+      type: object
+    ApiSecurityIssueDTO:
+      properties:
+        analysis:
+          $ref: '#/components/schemas/ApiSecurityIssueAnalysisDTO'
+        cvssVector:
+          type: string
+        cvssVectorSource:
+          type: string
+        cwe:
+          type: string
+        reference:
+          type: string
+        severity:
+          format: float
+          type: number
+        source:
+          type: string
+        status:
+          type: string
+        threatCategory:
+          type: string
+        url:
+          type: string
+      type: object
+    ApiVersionChangeOptionDTO:
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiComponentChangeActionDTO'
+        directDependency:
+          type: boolean
+        directDependencyData:
+          items:
+            $ref: '#/components/schemas/ApiComponentChangeActionDTO'
+          type: array
+        type:
+          enum:
+          - next-no-violations
+          - next-non-failing
+          - next-no-violations-with-dependencies
+          - next-non-failing-with-dependencies
+          - inner-source-latest-non-breaking
+          - inner-source-latest
+          - recommended-non-breaking
+          - recommended-non-breaking-with-dependencies
+          type: string
+      type: object
+    ApiComponentDetailsDTOV2:
+      properties:
+        catalogDate:
+          type: string
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
+        hygieneRating:
+          nullable: true
+          type: string
+        integrityRating:
+          nullable: true
+          type: string
+        licenseData:
+          $ref: '#/components/schemas/ApiLicenseDataDTO'
+        matchState:
+          type: string
+        policyData:
+          $ref: '#/components/schemas/ApiComponentPolicyViolationListDTOV2'
+        projectData:
+          $ref: '#/components/schemas/ApiComponentProjectDataDTO'
+        relativePopularity:
+          format: int32
+          nullable: true
+          type: integer
+        securityData:
+          $ref: '#/components/schemas/ApiSecurityDataDTO'
+      type: object
+    ApiComponentPolicyViolationListDTOV2:
+      properties:
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+      type: object
+    ApiComponentProjectScmDetailsDTO:
+      properties:
+        commitsPerMonth:
+          format: int32
+          type: integer
+        uniqueDevsPerMonth:
+          format: int32
+          type: integer
+      type: object
+    ApiSuggestedVersionChangeOptionDTO:
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiComponentChangeActionDTO'
+        directDependency:
+          type: boolean
+        directDependencyData:
+          items:
+            $ref: '#/components/schemas/ApiComponentChangeActionDTO'
+          type: array
+        isGolden:
+          type: boolean
+        type:
+          enum:
+          - next-no-violations
+          - next-non-failing
+          - next-no-violations-with-dependencies
+          - next-non-failing-with-dependencies
+          - inner-source-latest-non-breaking
+          - inner-source-latest
+          - recommended-non-breaking
+          - recommended-non-breaking-with-dependencies
+          type: string
+      type: object
+    ApiSecurityIssueAnalysisDTO:
+      properties:
+        detail:
+          type: string
+        justification:
+          type: string
+        response:
+          type: string
+        state:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

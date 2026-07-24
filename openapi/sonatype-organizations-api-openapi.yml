@@ -1,0 +1,257 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Organizations API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to create new organizations, retrieve, edit or delete existing organizations.
+  name: Organizations
+paths:
+  /api/v2/organizations:
+    get:
+      description: 'Use this method to retrieve organizations with names matching those specified or all if not specified.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getOrganizations
+      parameters:
+      - description: Enter the organization names.
+        in: query
+        name: organizationName
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiOrganizationListDTO'
+          description: The response contains a list of organizations. For each organization the response contains organization id, organization name, parent organization id, and its associated tags with additional details.
+      tags:
+      - Organizations
+    post:
+      description: 'Use this method to add a new organization.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: addOrganization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiOrganizationDTO'
+        description: The request JSON should include the name of the organization (should be unique), name of the parent organization and tags containing additional organization details. If the parent organization is not specified, this organization will be created under the root organization. Tags represent identifying characteristics of an application. They are created at the organization level and then applied to applications under the organization. The tags can be used to decide which applications will be evaluated against a selected policy.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiOrganizationDTO'
+          description: The response contains the assigned organization id and all other organization details specified.
+      tags:
+      - Organizations
+  /api/v2/organizations/byid:
+    get:
+      description: 'Use this method to retrieve organizations by their internal IDs.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getOrganizationsByIds
+      parameters:
+      - description: Enter the internal organization IDs.
+        in: query
+        name: id
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiOrganizationListDTO'
+          description: The response contains a list of organizations. For each organization the response contains organization id, organization name, and parent organization id.
+      tags:
+      - Organizations
+  /api/v2/organizations/{organizationId}:
+    delete:
+      description: 'Use this method to delete an existing organization, by providing the organization id.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteOrganization
+      parameters:
+      - description: Enter the organization id to be deleted.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The specified organization has been deleted.
+      tags:
+      - Organizations
+    get:
+      description: 'Use this method to retrieve the details of an organization by providing the organization id.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getOrganization
+      parameters:
+      - description: Enter the organization id.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiOrganizationDTO'
+          description: The response contains the details for the specified  organization including organization id, organization name, parent organization id, and its associated tags with additional details.
+      tags:
+      - Organizations
+  /api/v2/organizations/{organizationId}/move/destination/{destinationId}:
+    put:
+      description: 'Use this method to change the parent organization.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: moveOrganization
+      parameters:
+      - description: Enter the id for the organization to be moved under the new parent.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the id for the new parent organization.
+        in: path
+        name: destinationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: failEarlyOnError
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoveOrganizationResponseDTO'
+          description: The organization has been successfully moved under the parent organization id provided.
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoveOrganizationResponseDTO'
+          description: Encountered conflicts while inheriting policy elements of the new parent organization. The organization could not be moved under the new parent organization id provided.
+      tags:
+      - Organizations
+components:
+  schemas:
+    ApiOrganizationDTO:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        parentOrganizationId:
+          type: string
+        tags:
+          items:
+            $ref: '#/components/schemas/ApiTagDTO'
+          type: array
+      type: object
+    ValidationError:
+      properties:
+        message:
+          type: string
+        type:
+          enum:
+          - TAG
+          - POLICY
+          - LICENSE_THREAT_GROUP
+          - LABEL
+          - PARENT_HIERARCHY
+          type: string
+      type: object
+    ValidationWarning:
+      properties:
+        message:
+          type: string
+        type:
+          enum:
+          - LICENSE_OVERRIDE
+          - POLICY_MONITORING
+          - POLICY_WAIVER
+          type: string
+      type: object
+    MoveOrganizationResponseDTO:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+          type: array
+      type: object
+    ApiTagDTO:
+      properties:
+        color:
+          enum:
+          - white
+          - grey
+          - black
+          - green
+          - yellow
+          - orange
+          - red
+          - blue
+          - light-red
+          - light-green
+          - light-blue
+          - light-purple
+          - dark-red
+          - dark-green
+          - dark-blue
+          - dark-purple
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    ApiOrganizationListDTO:
+      properties:
+        organizations:
+          items:
+            $ref: '#/components/schemas/ApiOrganizationDTO'
+          type: array
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

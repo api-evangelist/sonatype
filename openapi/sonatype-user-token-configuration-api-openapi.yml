@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search User Token Configuration API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage user token expiration configuration.
+  name: User Token Configuration
+paths:
+  /api/v2/config/userTokens:
+    delete:
+      description: 'Use this method to reset user token configuration properties to system defaults. Returns the current configuration after reset.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: resetConfiguration
+      parameters:
+      - in: query
+        name: property
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserTokenConfigurationDTO'
+          description: Configuration reset successfully
+        '400':
+          description: No properties specified or invalid properties
+        '401':
+          description: Authentication required
+        '403':
+          description: Insufficient permissions
+      tags:
+      - User Token Configuration
+    get:
+      description: 'Use this method to retrieve user token configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getConfiguration_7
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserTokenConfigurationDTO'
+          description: Current user token configuration
+        '401':
+          description: Authentication required
+        '403':
+          description: Insufficient permissions
+      tags:
+      - User Token Configuration
+    put:
+      description: 'Use this method to update user token configuration. Null values are ignored (no change). Returns the current configuration after applying changes.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: updateConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiUserTokenConfigurationDTO'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserTokenConfigurationDTO'
+          description: Configuration updated successfully
+        '400':
+          description: Invalid configuration values
+        '401':
+          description: Authentication required
+        '403':
+          description: Insufficient permissions
+      tags:
+      - User Token Configuration
+components:
+  schemas:
+    ApiUserTokenConfigurationDTO:
+      properties:
+        userTokenDefaultExpirationDays:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

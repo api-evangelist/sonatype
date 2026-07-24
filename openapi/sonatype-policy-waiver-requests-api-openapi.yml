@@ -1,0 +1,397 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Policy Waiver Requests API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage policy waiver requests.
+  name: Policy Waiver Requests
+paths:
+  /api/v2/policyWaiverRequests/{ownerType}/{ownerId}/policyViolation/{policyViolationId}:
+    post:
+      description: 'Use this method to create a policy waiver request.
+
+
+        Permissions required: View IQ Elements'
+      operationId: addPolicyWaiverRequestByPolicyViolationId
+      parameters:
+      - description: The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: The id for the ownerType provided above. E.g. applicationId if the ownerType is application.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: The policyViolationId for the policy violation on which you want to create a policy waiver request. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId.
+        in: path
+        name: policyViolationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPolicyWaiverRequestOptionsDTO'
+        description: The request JSON can include the fields<ol><li>comment (optional, to indicate the reason of the waiver) default value is null</li><li>matcherStrategy (enumeration, required) can have values DEFAULT, EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. DEFAULT will match all components if no hash is provided.</li><li>expiryTime (default null) to set the datetime when the waiver expires.</li><li>expireWhenRemediationAvailable (default false) to expire the waiver when a remediation is available.</li><li>noteToReviewer (optional) to add a note to the reviewer</li></ol>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
+          description: The new policy waiver request.
+      tags:
+      - Policy Waiver Requests
+  /api/v2/policyWaiverRequests/{ownerType}/{ownerId}/review/{policyWaiverRequestId}:
+    post:
+      description: 'Use this method to approve or reject a policy waiver request.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: reviewPolicyWaiverRequest
+      parameters:
+      - description: The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: The id for the ownerType provided above. E.g. applicationId if the ownerType is application.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: The policyWaiverRequestId for the policy waiver request to be approved or rejected.
+        in: path
+        name: policyWaiverRequestId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPolicyWaiverRequestReviewDTO'
+        description: The request JSON can include the fields<ol><li>status. Can be APPROVED or REJECTED</li><li>rejectionReason (optional). A text explaining the reason for the rejection., <li>comment (optional, to indicate the reason of the waiver) default value is null</li><li>matcherStrategy (enumeration, required) can have values DEFAULT, EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. DEFAULT will match all components if no hash is provided.</li><li>expiryTime (default null) to set the datetime when the waiver expires.</li></ol><li>expireWhenRemediationAvailable (default false) to expire the waiver when a remediation is available.</li>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
+          description: The updated policy waiver request.
+      tags:
+      - Policy Waiver Requests
+  /api/v2/policyWaiverRequests/{ownerType}/{ownerId}/{policyWaiverRequestId}:
+    get:
+      description: 'Use this method to retrieve policy waiver request details for the policyWaiverRequestId specified.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getPolicyWaiverRequest
+      parameters:
+      - description: 'The scope of the policy waiver request. Possible values are application,
+
+          organization, repository, repository_manager, repository_container.'
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: The id for the ownerType provided above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: The policyWaiverRequestId for which you want to retrieve the details.
+        in: path
+        name: policyWaiverRequestId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
+          description: The requested policy waiver request.
+      tags:
+      - Policy Waiver Requests
+    put:
+      description: 'Use this method to update a policy waiver request.
+
+
+        Permissions required: View IQ Elements'
+      operationId: updatePolicyWaiverRequest
+      parameters:
+      - description: The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: The id for the ownerType provided above. E.g. applicationId if the ownerType is application.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: The id of the policy waiver request to be updated.
+        in: path
+        name: policyWaiverRequestId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPolicyWaiverRequestOptionsDTO'
+        description: The request JSON can include the fields<ol><li>comment (optional, to indicate the reason of the waiver) default value is null</li><li>matcherStrategy (enumeration, required) can have values DEFAULT, EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. DEFAULT will match all components if no hash is provided.</li><li>expiryTime (default null) to set the datetime when the waiver expires.</li><li>expireWhenRemediationAvailable (default false) to expire the waiver when a remediation is available.</li><li>noteToReviewer (optional) to add a note to the reviewer</li></ol>
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
+          description: The updated policy waiver request.
+      tags:
+      - Policy Waiver Requests
+components:
+  schemas:
+    ApiPolicyWaiverRequestOptionsDTO:
+      properties:
+        comment:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        noteToReviewer:
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ApiPolicyWaiverRequestDTO:
+      properties:
+        associatedPackageUrl:
+          type: string
+        comment:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        componentName:
+          type: string
+        componentUpgradeAvailable:
+          type: boolean
+        constraintFacts:
+          items:
+            $ref: '#/components/schemas/ConstraintFact'
+          type: array
+        constraintFactsJson:
+          type: string
+        displayName:
+          $ref: '#/components/schemas/ComponentDisplayName'
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        hash:
+          type: string
+        isObsolete:
+          type: boolean
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        noteToReviewer:
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        policyWaiverReasonId:
+          type: string
+        policyWaiverRequestId:
+          type: string
+        reasonText:
+          type: string
+        rejectionReason:
+          type: string
+        requestTime:
+          format: date-time
+          type: string
+        requesterId:
+          type: string
+        requesterName:
+          type: string
+        reviewerId:
+          type: string
+        reviewerName:
+          type: string
+        scopeOwnerId:
+          type: string
+        scopeOwnerName:
+          type: string
+        scopeOwnerType:
+          type: string
+        status:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        vulnerabilityId:
+          type: string
+      type: object
+    ComponentDisplayNamePart:
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
+      type: object
+    ComponentDisplayName:
+      properties:
+        name:
+          type: string
+        parts:
+          items:
+            $ref: '#/components/schemas/ComponentDisplayNamePart'
+          type: array
+      type: object
+    ApiPolicyWaiverRequestReviewDTO:
+      properties:
+        comment:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        rejectionReason:
+          type: string
+        status:
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

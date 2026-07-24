@@ -1,0 +1,472 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Policy Evaluation API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: "Use this REST API to perform an application policy evaluation. Policy evaluations are executed asynchronously.<p>This is a 2-step process that involves: \n1. Requesting a policy evaluation (POST) \n2. Checking the status and response of the evaluation request (GET)"
+  name: Policy Evaluation
+paths:
+  /api/v2/evaluation/applications/{applicationId}:
+    post:
+      description: 'Use this method to request a component evaluation. This is step 1 of the 2 step policy evaluation for components process.
+
+
+        Permissions Required: Evaluate Components'
+      operationId: evaluateComponents
+      parameters:
+      - description: Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiComponentEvaluationRequestDTOV2'
+        description: The request JSON should contain component coordinates or the hash (SHA1) for each component. You can provide the packageURL instead of component information or hash.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiComponentEvaluationTicketDTOV2'
+          description: 'The JSON response contains resultId that will be assigned to the evaluation results, timestamp when the component evaluation was requested, the applicationId of the component and the results URL. The resultId obtained from here can be used to retrieve the evaluation result using the REST API or the result URL can be used in cURL. '
+      tags:
+      - Policy Evaluation
+  /api/v2/evaluation/applications/{applicationId}/promoteScan:
+    post:
+      description: "Use this method to rescan older scans. This is done when the binaries of a previous build are now moving to a new stage in the production pipeline. Using this method, you can avoid rebuilding the application and reuse the scan metadata at the newer stage. This new evaluation will evaluate the most recent security and license data against your current policies. \n\nPermissions Required: Evaluate Applications"
+      operationId: promoteScan
+      parameters:
+      - description: Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPromoteScanRequestDTOV2'
+        description: You can provide either the scanId (reportId) of the previous scan OR the source stageId (possible values are 'build', 'stage-release', 'release' or 'operate'). When using the stageId, the latest scanId for the application will be used. Enter the targetStageId for the new stage you want your scan to be promoted to (possible values are 'build', 'stage-release', 'release' or 'operate'). Using the same value for source and target stage will resubmit the latest scan report.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicationEvaluationStatusDTOV2'
+          description: The response will contain the statusUrl to view the evaluation result using the GET method (step 2)
+      tags:
+      - Policy Evaluation
+  /api/v2/evaluation/applications/{applicationId}/results/{resultId}:
+    get:
+      description: "This is step 2 of the policy evaluation process for components. Use the resultId obtained from the POST response for the corresponding applicationId. \n\nPermissions Required: Evaluate Components "
+      operationId: getComponentEvaluation
+      parameters:
+      - description: Enter the internal applicationId (same as that sent in the POST request (step 1))
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the resultId obtained from the POST response (step 1) used for component evaluation.
+        in: path
+        name: resultId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiComponentEvaluationResultDTOV2'
+          description: The response contains details for the policy evaluation request including submitted date, evaluation date, applicationId and the results of the evaluation for the component(s).
+        '404':
+          description: 'Response not ready '
+      tags:
+      - Policy Evaluation
+  /api/v2/evaluation/applications/{applicationId}/sourceControlEvaluation:
+    post:
+      description: "Use this method to request a source control evaluation for a specific application. This is step 1 of the 2 step source control evaluation process. \n\nPermissions Required: Evaluate Applications"
+      operationId: evaluateSourceControl
+      parameters:
+      - description: Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiSourceControlEvaluationRequestDTO'
+        description: The request JSON should include the 1. branch name (name of the target branch in the source control repository, 2. stageId (recommended values are 'develop' for feature branches, and 'source' for default branches. Other stageIds that can be used are 'build', 'stage-release', 'release', 'operate' but are not recommended), 3. scanTargets (optional, specify one or more paths inside the repository. If not specified, the entire repository will be evaluated by default). Ensure that the repository paths are not relative and do not contain '../' or '..\'.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicationEvaluationStatusDTOV2'
+          description: 'The response contains statusUrl. Use this statusUrl to check the evaluation status using the GET method (step 2 of the evaluation process). '
+      tags:
+      - Policy Evaluation
+  /api/v2/evaluation/applications/{applicationId}/status/{statusId}:
+    get:
+      description: "This is step 2 of the policy evaluation process. Use the statusUrl obtained from the POST response for the corresponding applicationId. \n\nPermissions Required: Evaluate Applications"
+      operationId: getApplicationEvaluationStatus
+      parameters:
+      - description: Enter the applicationId, for the which policy evaluation was requested.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the statusId value obtained as response of the POST call in step 1.
+        in: path
+        name: statusId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicationEvaluationResultDTOV2'
+          description: 'The response will include one of the 3 possible status values: PENDING (indicates that the evaluation is still in progress), FAILED or COMPLETED. For completed evaluations, the response will contain the URLs for evaluation report to view the evaluation results.'
+      tags:
+      - Policy Evaluation
+components:
+  schemas:
+    ApiPromoteScanRequestDTOV2:
+      properties:
+        scanId:
+          type: string
+        sourceStageId:
+          type: string
+        targetStageId:
+          type: string
+      type: object
+    ApiLicenseDTO:
+      properties:
+        licenseId:
+          type: string
+        licenseName:
+          type: string
+      type: object
+    ApiComponentProjectScmMetadataDTO:
+      properties:
+        forks:
+          format: int32
+          type: integer
+        stars:
+          format: int32
+          type: integer
+      type: object
+    ApiSecurityDataDTO:
+      properties:
+        securityIssues:
+          items:
+            $ref: '#/components/schemas/ApiSecurityIssueDTO'
+          type: array
+      type: object
+    ApiLicenseDataDTO:
+      properties:
+        declaredLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        effectiveLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        observedLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        overriddenLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        status:
+          type: string
+      type: object
+    ApiComponentEvaluationTicketDTOV2:
+      properties:
+        applicationId:
+          type: string
+        resultId:
+          type: string
+        resultsUrl:
+          type: string
+        submittedDate:
+          format: date-time
+          type: string
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiComponentProjectScmDTO:
+      properties:
+        scmDetails:
+          $ref: '#/components/schemas/ApiComponentProjectScmDetailsDTO'
+        scmMetadata:
+          $ref: '#/components/schemas/ApiComponentProjectScmMetadataDTO'
+        scmUrl:
+          type: string
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
+      type: object
+    ApiSourceControlEvaluationRequestDTO:
+      properties:
+        branchName:
+          type: string
+        scanTargets:
+          items:
+            type: string
+          type: array
+        stageId:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ApiPolicyViolationDTOV2:
+      properties:
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    ApiComponentProjectMetadataDTO:
+      properties:
+        description:
+          type: string
+        organization:
+          type: string
+      type: object
+    ApiComponentProjectDataDTO:
+      properties:
+        firstReleaseDate:
+          format: date-time
+          type: string
+        lastReleaseDate:
+          format: date-time
+          type: string
+        projectMetadata:
+          $ref: '#/components/schemas/ApiComponentProjectMetadataDTO'
+        sourceControlManagement:
+          $ref: '#/components/schemas/ApiComponentProjectScmDTO'
+      type: object
+    ApiComponentDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          nullable: true
+          type: string
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+      type: object
+    ApiComponentEvaluationRequestDTOV2:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiComponentDTOV2'
+          type: array
+      type: object
+    ApiSecurityIssueDTO:
+      properties:
+        analysis:
+          $ref: '#/components/schemas/ApiSecurityIssueAnalysisDTO'
+        cvssVector:
+          type: string
+        cvssVectorSource:
+          type: string
+        cwe:
+          type: string
+        reference:
+          type: string
+        severity:
+          format: float
+          type: number
+        source:
+          type: string
+        status:
+          type: string
+        threatCategory:
+          type: string
+        url:
+          type: string
+      type: object
+    ApiApplicationEvaluationStatusDTOV2:
+      properties:
+        statusUrl:
+          type: string
+      type: object
+    ApiComponentDetailsDTOV2:
+      properties:
+        catalogDate:
+          type: string
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
+        hygieneRating:
+          nullable: true
+          type: string
+        integrityRating:
+          nullable: true
+          type: string
+        licenseData:
+          $ref: '#/components/schemas/ApiLicenseDataDTO'
+        matchState:
+          type: string
+        policyData:
+          $ref: '#/components/schemas/ApiComponentPolicyViolationListDTOV2'
+        projectData:
+          $ref: '#/components/schemas/ApiComponentProjectDataDTO'
+        relativePopularity:
+          format: int32
+          nullable: true
+          type: integer
+        securityData:
+          $ref: '#/components/schemas/ApiSecurityDataDTO'
+      type: object
+    ApiComponentPolicyViolationListDTOV2:
+      properties:
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+      type: object
+    ApiApplicationEvaluationResultDTOV2:
+      properties:
+        embeddableReportHtmlUrl:
+          type: string
+        reason:
+          type: string
+        reportDataUrl:
+          type: string
+        reportHtmlUrl:
+          type: string
+        reportPdfUrl:
+          type: string
+        status:
+          type: string
+      type: object
+    ApiComponentEvaluationResultDTOV2:
+      properties:
+        applicationId:
+          type: string
+        errorMessage:
+          nullable: true
+          type: string
+        evaluationDate:
+          format: date-time
+          type: string
+        isError:
+          type: boolean
+        results:
+          items:
+            $ref: '#/components/schemas/ApiComponentDetailsDTOV2'
+          type: array
+        submittedDate:
+          format: date-time
+          type: string
+      type: object
+    ApiComponentProjectScmDetailsDTO:
+      properties:
+        commitsPerMonth:
+          format: int32
+          type: integer
+        uniqueDevsPerMonth:
+          format: int32
+          type: integer
+      type: object
+    ApiSecurityIssueAnalysisDTO:
+      properties:
+        detail:
+          type: string
+        justification:
+          type: string
+        response:
+          type: string
+        state:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

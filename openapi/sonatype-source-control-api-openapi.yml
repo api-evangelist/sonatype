@@ -1,0 +1,365 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Source Control API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to:<ul><li>Create, update and delete source control management (SCM) configuration for the root organization, sub-organizations and applications.</li><li>Automatically assign the developer role to all contributors of the associated repository, who are registered IQ users.</li></ul>
+  name: Source Control
+paths:
+  /api/v2/sourceControl/automaticRoleAssignment/userMappings/{organizationId}:
+    delete:
+      description: 'Use this method to delete existing SCM user mappings for an organization.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteUserMappings
+      parameters:
+      - description: Enter the organizationId.
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: User mappings deleted successfully.
+      tags:
+      - Source Control
+    post:
+      description: 'Use this method to apply user mappings from SCM (GitHub) to Lifecycle. The user mappings will be inherited by all child organizations and applications in the organization hierarchy. If a user mapping for an organization already exists, it will be replaced with new mappings provided here.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: addUserMappings
+      parameters:
+      - description: Enter the organizationId. Use `ROOT_ORGANIZATION_ID` for the root organization
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SCMUserMappingsDTO'
+        description: <ul><li>Specify the `role` in lowercase, without whitespaces.</li><li>`mappings` is an array of objects consisting of `from` and `to` fields.</li><li>Allowed values for the `from` field are `SCM_USERNAME`, `SCM_EMAIL`, `SCM_FULLNAME`, `GITLOG_EMAIL`, `GITLOG_FULLNAME`.</li><li>Allowed values for `to` field are `IQ_USERNAME`, `IQ_EMAIL`, `IQ_FULLNAME`.</li><li>Any combination of `from` and `to` fields can be used.</li></ul>
+      responses:
+        '204':
+          description: User mappings applied successfully.<ul><li>When multiple user mappings are specified in the body, and the first mapping fails,  the next user mapping will be attempted.</li><li>If duplicate user mappings are specified, an error message will be displayed</li></ul>
+      tags:
+      - Source Control
+  /api/v2/sourceControl/automaticRoleAssignment/userMappings/{ownerType}/{internalOwnerId}:
+    get:
+      description: 'Use this method to retrieve SCM user mappings for an organization or application.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getUserMappingsByOwner
+      parameters:
+      - description: Enter the value for ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the value for internal ownerId.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SCMUserMappingsResponseDTO'
+          description: The response contains:<ul><li>`ownerInternalId` indicates the owner id for which the user mappings were created.</li><li>`inherited` is always `true` if the ownerType is application</li><li>`userMapping` is an object containing `role` and `mappings`.<ul><li> `role` indicates the role assigned to users during automatic role assignment.</li><li>`mappings` contain all existing user mappings from the SCM sytem to IQ.</li></ul></ul>
+      tags:
+      - Source Control
+  /api/v2/sourceControl/automaticRoleAssignment/{publicId}:
+    post:
+      description: 'Use this method to automatically grant the supplied role to all contributors of a repository on a given application.
+
+
+        Prerequisites for automatic role assignment are:<ol><li>SCM configuration for the application and authentication token should exist.</li><li>The contributors to the repository should match a user in IQ based on the supplied mappings.</li><li>Either user mapping strategies have been configured for your organization, or they are provided in the request</li></ol>
+
+
+        Permissions required: Edit access control on the application.'
+      operationId: automaticRoleAssignment
+      parameters:
+      - description: Enter the public applicationId for automatic role assignment.
+        in: path
+        name: publicId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/SCMUserMappingsDTO'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SCMUserMatchingResultDTO'
+          description: 'The ''developer'' role has automatically been assigned to all contributors of the repository, who matched IQ Server users via the provided matching strategies.
+
+
+            The response contains all usernames that were successfully granted the role provided on the given application as well as an indication of which matching strategy was the first to match a user.'
+      tags:
+      - Source Control
+  /api/v2/sourceControl/{ownerType}/{internalOwnerId}:
+    delete:
+      description: 'Use this method to delete a SCM setting for the specified ownerType/ownerId.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteSourceControl
+      parameters:
+      - description: Enter the value for ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the value for internal ownerId.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The SCM setting for the specified ownerType/ownerId has been successfully deleted.
+      tags:
+      - Source Control
+    get:
+      description: 'Use this method to retrieve the source control configuration settings for an organization or an application.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getSourceControl_1
+      parameters:
+      - description: Enter the value for ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSourceControlDTO'
+          description: 'The response contains source control configuration settings for the specified ownerId.
+
+
+            <ul><li><code>id</code> is the owner internal ID.</li><li><code>repositoryUrl</code> indicates the http(s) and ssh urls for the application specified in the ownerId.</li><li><code>username</code> is retrieved if available on the SCM system, e.g. for Bitbucket Server and Cloud.</li><li><code>provider</code> indicates the name of the SCM system.</li><li><code>baseBranch</code> indicates the name of the last selected branch.</li><li><code>enablePullRequests</code> has been deprecated in version 124.</li><li><code>remediationPullRequestsEnabled</code> indicates if the Automated Pull Requests feature is enabled.</li><li><code>enableStatusChecks</code> has been deprecated in version 124.</li><li><code>statusChecksEnabled</code> is an internal field.</li><li><code>pullRequestCommentingEnabled</code> indicates if the Pull Request Commenting feature is enabled.</li><li><code>sourceControlEvaluationsEnabled</code> indicates if the source control evaluations are enabled for the continuous risk profile feature.</li><li><code>sourceControlScanTarget</code> indicates the path inside the repository.</li><li><code>sshEnabled</code> indicates if ssh is enabled.</li><li><code>commitStatusEnabled</code> indicates if interaction with the commit statuses on the SCM system is enabled.</li></ul>'
+      tags:
+      - Source Control
+    post:
+      description: 'Use this method to create a source control configuration setting.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: addSourceControl
+      parameters:
+      - description: Enter the value for ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for root organization.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiSourceControlDTO'
+        description: Specify the SCM settings for the ownerId specified above in the request JSON.<ul><li><code>id</code> is the internal owner ID.</li><li><code>repositoryUrl</code> is the http(s) and ssh urls for the application specified in the ownerId.</li><li><code>username</code> is optional, can be provided for Bitbucket Server and Cloud.</li><li><code>token</code> is optional,if inherited. If provided, this value will override the value inherited from the root organization, organization or application level.<li><code>provider</code> is the name of of the SCM system. Allowed values are <code>azure</code>, <code>github</code>, <code>gitlab</code>, and <code>bitbucket</code>.</li><li><code>baseBranch</code> is required for the root organization. Organizations and applications inherit from the root unless overridden.</li><li><code>enablePullRequests</code> has been deprecated in version 124.</li><li><code>remediationPullRequestsEnabled</code> is optional. Set it to `true` to enable the Automated Pull Requests.</li><li><code>enableStatusChecks</code> has been deprecated in version 124.</li><li><code>statusChecksEnabled</code> is an internal field.</li><li><code>pullRequestCommentingEnabled</code> is optional. Set it to `true` to enable the  Pull Request Commenting feature.</li><li><code>sourceControlEvaluationsEnabled</code> is set to `true` to enable source control evaluations for the continuous risk profile feature.</li><li><code>sourceControlScanTarget</code> is the path inside the repository.</li><li><code>sshEnabled</code> is set to `true` to enable ssh.</li><li><code>commitStatusEnabled</code> is set to `true` if interaction with the commit statuses on the SCM is enabled.</li></ul>
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSourceControlDTO'
+          description: The Source Control Management (SCM) settings have been created successfully.
+      tags:
+      - Source Control
+    put:
+      description: 'Use this method to update an existing SCM setting.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: updateSourceControl
+      parameters:
+      - description: Enter the value for ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiSourceControlDTO'
+        description: Specify the SCM settings for the ownerId specified above in the request JSON.<ul><li><code>id</code> is the internal owner ID.</li><li><code>repositoryUrl</code> is the http(s) and ssh urls for the application specified in the ownerId.</li><li><code>username</code> is optional, can be provided for Bitbucket Server and Cloud.</li><li><code>token</code> is optional if inherited. If provided, this value will override the value inherited from the root organization, organization or application level.<li><code>provider</code> is the name of of the SCM system. Allowed values are <code>azure</code>, <code>github</code>, <code>gitlab</code>, and <code>bitbucket</code>.</li><li><code>baseBranch</code> is required for the root organization. Organizations and applications inherit from the root unless overridden.</li><li><code>enablePullRequests</code> has been deprecated in version 124.</li><li><code>remediationPullRequestsEnabled</code> is optional. Set it to `true` to enable the Automated Pull Requests.</li><li><code>enableStatusChecks</code> has been deprecated in version 124.</li><li><code>statusChecksEnabled</code> is an internal field.</li><li><code>pullRequestCommentingEnabled</code> is optional. Set it to `true` to enable the  Pull Request Commenting feature.</li><li><code>sourceControlEvaluationsEnabled</code> is set to `true` to enable source control evaluations for the continuous risk profile feature.</li><li><code>sourceControlScanTarget</code> is the path inside the repository.</li><li><code>sshEnabled</code> is set to `true` to enable ssh.</li><li><code>commitStatusEnabled</code> is set to `true` if interaction with the commit statuses on the SCM is enabled.</li></ul>
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSourceControlDTO'
+          description: The SCM settings have been updated successfully. The JSON returned shows the updated values.
+      tags:
+      - Source Control
+components:
+  schemas:
+    SCMUserMappingsDTO:
+      properties:
+        mappings:
+          items:
+            $ref: '#/components/schemas/UserMapping'
+          type: array
+        role:
+          type: string
+      type: object
+    UserMapping:
+      properties:
+        from:
+          enum:
+          - SCM_USERNAME
+          - SCM_EMAIL
+          - SCM_FULLNAME
+          - GITLOG_EMAIL
+          - GITLOG_FULLNAME
+          type: string
+        to:
+          enum:
+          - IQ_USERNAME
+          - IQ_EMAIL
+          - IQ_FULLNAME
+          type: string
+      type: object
+    SCMUserMatchingResultDTO:
+      properties:
+        matchedUsers:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        successfulMapping:
+          $ref: '#/components/schemas/UserMapping'
+      type: object
+    SCMUserMappingsResponseDTO:
+      properties:
+        inherited:
+          type: boolean
+        ownerInternalId:
+          type: string
+        userMapping:
+          $ref: '#/components/schemas/SCMUserMappingsDTO'
+      type: object
+    ApiSourceControlDTO:
+      properties:
+        authenticationType:
+          type: string
+        baseBranch:
+          type: string
+        closePrAfterDays:
+          format: int32
+          type: integer
+        closePrAfterDaysOpenEnabled:
+          type: boolean
+        closePrOnFailedChecksEnabled:
+          type: boolean
+        commitStatusEnabled:
+          type: boolean
+        enablePullRequests:
+          type: boolean
+        enableStatusChecks:
+          type: boolean
+        id:
+          type: string
+        innerSourceAutomatedUpdatesEnabled:
+          type: boolean
+        manualPullRequestsEnabled:
+          type: boolean
+        ownerId:
+          type: string
+        provider:
+          type: string
+        pullRequestCommentingEnabled:
+          type: boolean
+        remediationPullRequestsEnabled:
+          type: boolean
+        repositoryUrl:
+          type: string
+        sourceControlEvaluationsEnabled:
+          type: boolean
+        sourceControlScanTarget:
+          type: string
+        sshEnabled:
+          type: boolean
+        statusChecksEnabled:
+          type: boolean
+        token:
+          type: string
+        username:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

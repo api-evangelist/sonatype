@@ -1,0 +1,135 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search SPDX API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to generate SPDX SBOMs in XML or JSON formats.
+  name: SPDX
+paths:
+  /api/v2/spdx/{applicationId}/reports/{scanId}:
+    get:
+      description: 'Use this method to generate SBOM(s) based on a specific application scan.
+
+
+        Permissions required: View IQ Elemets'
+      operationId: getByScanId
+      parameters:
+      - description: Enter the applicationId for the application you want to generate the SBOM(s).
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the scanId of the application scan.
+        in: path
+        name: scanId
+        required: true
+        schema:
+          type: string
+      - description: Enter the format for the SBOM(s) to be generated.
+        in: query
+        name: format
+        schema:
+          default: json
+          type: string
+      - description: Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive.
+        in: query
+        name: generateCycloneDx
+        schema:
+          default: false
+          type: boolean
+      - description: Enter the desired SPDX version, possible values are 2.2|2.3
+        in: query
+        name: spdxVersion
+        schema:
+          default: '2.3'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: SBOM in JSON format
+                type: string
+            application/octet-stream:
+              schema:
+                description: SBOM archive (tar.gz)
+                format: binary
+                type: string
+            application/xml:
+              schema:
+                description: SBOM in XML format
+                type: string
+          description: The requested SBOM(s).
+      tags:
+      - SPDX
+  /api/v2/spdx/{applicationId}/stages/{stageId}:
+    get:
+      description: 'Use this method to generate SBOM(s) based on the latest application evaluation report at the specified stage.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getLatestForStage
+      parameters:
+      - description: Enter the applicationId for the application you want to generate the SBOM(s).
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Specify the stageId for the application evaluation. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`.
+        in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      - description: Enter the format for the SBOM(s) to be generated.
+        in: query
+        name: format
+        schema:
+          default: json
+          type: string
+      - description: Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive.
+        in: query
+        name: generateCycloneDx
+        schema:
+          default: false
+          type: boolean
+      - description: Enter the desired SPDX version, possible values are 2.2|2.3
+        in: query
+        name: spdxVersion
+        schema:
+          default: '2.3'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: SBOM in JSON format
+                type: string
+            application/octet-stream:
+              schema:
+                description: SBOM archive (tar.gz)
+                format: binary
+                type: string
+            application/xml:
+              schema:
+                description: SBOM in XML format
+                type: string
+          description: The requested SBOM(s).
+      tags:
+      - SPDX
+components:
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

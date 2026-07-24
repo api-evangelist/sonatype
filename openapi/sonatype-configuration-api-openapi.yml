@@ -1,0 +1,123 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Configuration API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use this REST API to configure the IQ Server system properties.
+
+
+    We strongly recommend using this REST API instead of config.yml for versions 142 and higher.'
+  name: Configuration
+paths:
+  /api/v2/config:
+    delete:
+      description: 'Use this method to disable one or more IQ Server system properties. The property names are case-sensitive.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteConfiguration_1
+      parameters:
+      - description: Enter the names of the system properties. Values provided for name are case-sensitive.
+        in: query
+        name: property
+        schema:
+          items:
+            $ref: '#/components/schemas/SystemConfigProperty'
+          type: array
+          uniqueItems: true
+      responses:
+        204:
+          content: {}
+          description: System Configuration removed
+      tags:
+      - Configuration
+    get:
+      description: 'Use this method to retrieve the configured value for an IQ Server system property.
+
+
+        Permissions required: Edit System Configuration and Users or system property dependent'
+      operationId: getConfiguration_1
+      parameters:
+      - description: Enter the names of the system properties. Values provided for name are case-sensitive.
+        in: query
+        name: property
+        schema:
+          items:
+            $ref: '#/components/schemas/SystemConfigProperty'
+          type: array
+          uniqueItems: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfig'
+          description: System Configuration retrieved
+      tags:
+      - Configuration
+    put:
+      description: 'Use this method to configure one or more IQ Server system properties. The property names are case-sensitive.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: setConfiguration_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemConfig'
+      responses:
+        204:
+          content: {}
+          description: System Configuration updated
+      tags:
+      - Configuration
+  /api/v2/config/integrationVersions/cache:
+    delete:
+      description: 'Clear the integration version cache. Use this endpoint after a new integration version is released to ensure IQ Server immediately recognizes the new version instead of waiting for cache expiration (10 minutes).
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: invalidateCache
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CacheInvalidationResponse'
+          description: Cache cleared successfully. Returns the number of entries that were invalidated.
+      tags:
+      - Configuration
+components:
+  schemas:
+    SystemConfigProperty:
+      enum:
+      - baseUrl
+      - forceBaseUrl
+      type: string
+    CacheInvalidationResponse:
+      properties:
+        entriesInvalidated:
+          format: int64
+          type: integer
+      type: object
+    SystemConfig:
+      properties:
+        baseUrl:
+          nullable: true
+          type: string
+        forceBaseUrl:
+          nullable: true
+          type: boolean
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

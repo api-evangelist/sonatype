@@ -1,0 +1,83 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search CPE Matching Configuration API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use the CPE Matching Configuration REST API to add/set/remove cpe matching configuration to organizations and applications
+  name: CPE Matching Configuration
+paths:
+  /api/v2/{ownerType}/{internalOwnerId}/configuration/publicSource/cpe:
+    get:
+      description: 'This method allows to retrieve the applicable cpe matching configuration of a given organization or application.<p>Permissions Required: View IQ Elements'
+      operationId: getCpeMatchingConfiguration
+      parameters:
+      - in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Applicable cpe matching configuration for given ownerId
+      tags:
+      - CPE Matching Configuration
+    put:
+      description: 'Use this method to apply a given cpe matching configuration to an organization or application.<p>Permissions Required: Edit IQ Elements'
+      operationId: updateCpeMatchingConfiguration
+      parameters:
+      - in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CpeMatchingConfigurationRequest'
+      responses:
+        '200':
+          content:
+            application/json: {}
+          description: An object containing the cpe configuration applied to the given ownerId
+      tags:
+      - CPE Matching Configuration
+components:
+  schemas:
+    CpeMatchingConfigurationRequest:
+      properties:
+        allowOverride:
+          type: boolean
+        enabled:
+          type: boolean
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

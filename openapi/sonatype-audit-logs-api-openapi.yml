@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Audit Logs API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to access the IQ Server audit logs.
+  name: Audit Logs
+paths:
+  /api/v2/auditLogs:
+    get:
+      description: 'Use this method to retrieve the audit events for the specified time period.
+
+
+        Permissions required: Access Audit Log'
+      operationId: getAuditLogs
+      parameters:
+      - description: Enter the start UTC date in the format (yyyy-mm-dd).
+        in: query
+        name: startUtcDate
+        schema:
+          type: string
+      - description: Enter the end UTC date in the format (yyyy-mm-dd).
+        in: query
+        name: endUtcDate
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            text/plain: {}
+          description: The response text contains lines of audit events in chronologically ascending order.
+      tags:
+      - Audit Logs
+components:
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

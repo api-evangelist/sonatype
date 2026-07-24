@@ -1,0 +1,45 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Endpoints API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: This REST API returns the OpenAPI documentation for the specified IQ Server REST API.
+  name: Endpoints
+paths:
+  /api/v2/endpoints/{apiType}:
+    get:
+      description: Use this method to retrieve the OpenAPI documentation for the specified type of IQ Server REST API.
+      operationId: getOpenAPI
+      parameters:
+      - description: Select the type of the API.<ul><li> `public` APIs are Generally Available and fully supported by Sonatype.</li><li> `experimental` APIs are not production ready, may change, and are not intended to be used in critical workloads.</li></ul>
+        in: path
+        name: apiType
+        required: true
+        schema:
+          enum:
+          - public
+          - experimental
+          pattern: public|experimental
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: The response contains the OpenAPI documentation.
+      tags:
+      - Endpoints
+components:
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

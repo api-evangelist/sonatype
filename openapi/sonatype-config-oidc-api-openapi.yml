@@ -1,0 +1,116 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Config OIDC API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage the OIDC configuration for IQ Server.
+  name: Config OIDC
+paths:
+  /api/v2/config/oidc:
+    delete:
+      description: 'Use this method to delete the OIDC configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: deleteOidcConfiguration
+      responses:
+        '404':
+          description: OIDC is not configured.
+      tags:
+      - Config OIDC
+    get:
+      description: 'Use this method to retrieve the OIDC configuration.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getOidcConfiguration
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoConfigurationDTO'
+          description: "The response contains:\n - `oidcConfiguration` field that contains all the oidc configuration data \n - `oAuth2Configuration` field that contains the OAuth2 configuration required for oidc"
+        '404':
+          description: OIDC is not configured.
+      tags:
+      - Config OIDC
+    put:
+      description: 'Use this method to enable SSO using OpenID Connect (OIDC). This request uses the content type application/json to transmit the configuration to IQ Server.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: insertOrUpdateOidcConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SsoConfigurationDTO'
+      responses:
+        '204':
+          description: Configuration successful.
+        '400':
+          description: Invalid configuration.
+      tags:
+      - Config OIDC
+components:
+  schemas:
+    OAuth2ConfigurationDTO:
+      properties:
+        emailClaim:
+          type: string
+        exactMatchClaimsJson:
+          type: string
+        firstNameClaim:
+          type: string
+        groupsClaim:
+          type: string
+        idpIssuer:
+          type: string
+        idpJwks:
+          type: string
+        idpJwksUrl:
+          type: string
+        idpJwsAlgorithm:
+          type: string
+        lastNameClaim:
+          type: string
+        usernameClaim:
+          type: string
+      type: object
+    OidcConfigurationDTO:
+      properties:
+        authorizationCustomParamsJson:
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        idpAuthorizationUrl:
+          type: string
+        idpIssuer:
+          type: string
+        idpTokenUrl:
+          type: string
+        tokenRequestCustomParamsJson:
+          type: string
+      type: object
+    SsoConfigurationDTO:
+      properties:
+        oauth2Configuration:
+          $ref: '#/components/schemas/OAuth2ConfigurationDTO'
+        oidcConfiguration:
+          $ref: '#/components/schemas/OidcConfigurationDTO'
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

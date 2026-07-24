@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search CycloneDX API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use the CycloneDX REST API to generate CycloneDX SBOMs in XML or JSON formats, containing coordinates and licenses for components found in a scan report.
+  name: CycloneDX
+paths:
+  /api/v2/cycloneDx/{cdxVersion}/{applicationId}/reports/{reportId}:
+    get:
+      description: 'Use this method to generate a CycloneDX SBOM for an application.<p>Permissions Required: View IQ Elements'
+      operationId: getByReportId
+      parameters:
+      - description: Enter the internal applicationId for the application you want to generate the SBOM. You can also retrieve the applicationId using the Application REST API.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the reportId to generate the SBOM for the application for a specific scan report.
+        in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+      - description: Possible values are 1.1|1.2|1.3|1.4|1.5|1.6.
+        in: path
+        name: cdxVersion
+        required: true
+        schema:
+          pattern: 1.1|1.2|1.3|1.4|1.5|1.6
+          type: string
+      responses:
+        '200':
+          content:
+            application/json: {}
+            application/xml: {}
+          description: A downloadable file will be generated.
+      tags:
+      - CycloneDX
+  /api/v2/cycloneDx/{cdxVersion}/{applicationId}/stages/{stageId}:
+    get:
+      description: 'Use this method to generate a CycloneDX SBOM for an application.<p>Permissions Required: View IQ Elements'
+      operationId: getLatest
+      parameters:
+      - description: Enter the internal applicationId for the application you want to generate the SBOM. You can also retrieve the applicationId using the Application REST API.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId to generate the SBOM based on the latest application policy evaluation at that stage. Allowed values for stageId are 'develop', 'source', 'build', 'stage-release', 'release', and, 'operate'.
+        in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      - description: Possible values are 1.1|1.2|1.3|1.4|1.5|1.6.
+        in: path
+        name: cdxVersion
+        required: true
+        schema:
+          pattern: 1.1|1.2|1.3|1.4|1.5|1.6
+          type: string
+      responses:
+        '200':
+          content:
+            application/json: {}
+            application/xml: {}
+          description: A downloadable file will be generated.
+      tags:
+      - CycloneDX
+components:
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

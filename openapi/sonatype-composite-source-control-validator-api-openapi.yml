@@ -1,0 +1,68 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Composite Source Control Validator API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use this REST API to validate the composite source control management (SCM) configuration.
+
+
+    Composite source control configuration is defined as the configuration that is inherited from the parent or is directly assigned.'
+  name: Composite Source Control Validator
+paths:
+  /api/v2/compositeSourceControlConfigValidator/application/{applicationId}:
+    get:
+      description: 'Use this method to validate the composite source control configuration.
+
+
+        Permissions required: View IQ Elements'
+      operationId: validateSourceControlConfig
+      parameters:
+      - description: Enter the applicationId for which you want to validate the composite source control configuration.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigurationValidationResult'
+          description: The response shows if the composite source control configuration for the application is valid.
+      tags:
+      - Composite Source Control Validator
+components:
+  schemas:
+    ValidationResult:
+      properties:
+        message:
+          type: string
+        valid:
+          type: boolean
+      type: object
+    ConfigurationValidationResult:
+      properties:
+        configurationComplete:
+          $ref: '#/components/schemas/ValidationResult'
+        repoPrivate:
+          $ref: '#/components/schemas/ValidationResult'
+        repoPublic:
+          $ref: '#/components/schemas/ValidationResult'
+        sshConfiguration:
+          $ref: '#/components/schemas/ValidationResult'
+        tokenPermissions:
+          $ref: '#/components/schemas/ValidationResult'
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

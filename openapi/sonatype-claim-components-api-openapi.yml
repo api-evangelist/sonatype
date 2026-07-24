@@ -1,0 +1,147 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Claim Components API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use this REST API to manage components that are developed in-house and are not open-source.
+
+
+    Claiming the component stores the identity information for the component hash and avoids triggering the Component-Unknown policy.
+
+
+    Components will have a match state as `Exact` and Identification Source as `Manual`,
+
+    for subsequent scans or evaluations.'
+  name: Claim Components
+paths:
+  /api/v2/claim/components:
+    get:
+      description: 'Use this method to retrieve details of all claimed components.
+
+
+        Permissions required: Claim components'
+      operationId: getAll
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiHashComponentIdentifiersDTO'
+          description: The response contains the truncated SHA1 hash of each component, the datetime when the component was published (not the time it was claimed), the format and coordinates of the claimed component (componentIdentifier) and the package URL of the claimed component.
+      tags:
+      - Claim Components
+    post:
+      description: 'Use this method to claim a component, or update the component details for a previously claimed component.
+
+
+        Permissions required: Claim components'
+      operationId: set
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiHashComponentIdentifierDTO'
+        description: Specify the hash (required), comment (optional), createTime (optional), and the component identifier/package URL (required) with non-null/non-empty format and coordinates,  for the component to be claimed.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiHashComponentIdentifierDTO'
+          description: The response shows the new/updated details for the claimed component.
+      tags:
+      - Claim Components
+  /api/v2/claim/components/{hash}:
+    delete:
+      description: 'Use this method to delete a claim on a previously claimed component by providing its hash.
+
+
+        Permissions required: Claim components'
+      operationId: delete
+      parameters:
+      - description: Enter the SHA1 hash for the component.
+        in: path
+        name: hash
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Component Claim for this hash was deleted.
+        '404':
+          description: Component Claim for this hash does not exist.
+      tags:
+      - Claim Components
+    get:
+      description: 'Use this method to retrieve details of a claimed component by specifying its hash.
+
+
+        Permissions required: Claim components'
+      operationId: get
+      parameters:
+      - description: The hash of the claimed component.
+        in: path
+        name: hash
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiHashComponentIdentifierDTO'
+          description: The response contains the truncated SHA1 hash of the component, the datetime when the component was published (not the time it was claimed), the format and coordinates of the claimed component (componentIdentifier) and the package URL of the claimed component.
+        '404':
+          description: Component Claim for this hash does not exist.
+      tags:
+      - Claim Components
+components:
+  schemas:
+    ApiHashComponentIdentifierDTO:
+      properties:
+        claimerId:
+          type: string
+        claimerName:
+          type: string
+        comment:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        createTime:
+          format: date-time
+          type: string
+        hash:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiHashComponentIdentifiersDTO:
+      properties:
+        componentClaims:
+          items:
+            $ref: '#/components/schemas/ApiHashComponentIdentifierDTO'
+          type: array
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

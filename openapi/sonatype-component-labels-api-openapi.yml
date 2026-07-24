@@ -1,0 +1,329 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Component Labels API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: 'Use this REST API to manage component labels for applications, organizations and repositories.
+
+
+    Component Labels can be used as attributes of a component at the time of creating policies. A policy violation can be triggered based on the component label.'
+  name: Component Labels
+paths:
+  /api/v2/labels/{ownerType}/{ownerId}:
+    get:
+      description: 'Use this method to retrieve the details for component labels for an application, organization or a repository.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getLabels
+      parameters:
+      - description: Select the `ownerType` for which you want to retrieve the component label information.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id of the application, organization or the repository.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Set to `true` to retrieve inherited component labels.
+        in: query
+        name: inherit
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiLabelDTO'
+                type: array
+          description: The response contains an array of component label descriptions for the application, organization or repository, as selected in the request. Each label description contains:<ul><li>`id` is the internal identifier assigned to the label.</li><li>`label` is the identifying name of the label, for e.g. 'Architecture-Deprecated'.</li><li>`description` is additional information describing the label.</li><li>`color` is the color assigned to the component label.</li><li>`ownerId` is the identifier for the ownerType selected in the request.</li><li>`ownerType` indicates if the label is for the application, organization or repository,  as selected in the request.</li></ul>If the request parameter `inherit` is set to `true` the response contains a description of component labels that are inherited from the parent. The inherited labels can be identified by the value of `ownerId` and `ownerType`.
+      tags:
+      - Component Labels
+    post:
+      description: 'Use this method to create and assign a component label to an application, organization or repository.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: addLabel
+      parameters:
+      - description: Select the ownerType to which the label will be assigned.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id for the selected ownerType.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiLabelDTO'
+        description: Specify a label name, description and color for the label. Valid values for color are `light-red` , `light-green` , `light-blue` , `light-purple`, `dark-red` , `dark-green` , `dark-blue` , `dark-purple` , `orange` , `yellow`. Do not enter value for the `id` field.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLabelDTO'
+          description: The response contains label details sent in the request and the `id` for the label created.
+      tags:
+      - Component Labels
+    put:
+      description: 'Use this method to update an existing component label for an application, organization or repository.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: updateLabel
+      parameters:
+      - description: Select the ownerType for which the label will be updated.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id for the selected ownerType.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiLabelDTO'
+        description: Specify the new values for label name, description, color and the corresponding label id for the component label to be updated. Valid values for color are `light-red` , `light-green` , `light-blue` , `light--purple`, `dark-red` , `dark-green` ,`dark-blue` , `dark-purple` ,`orange` , `yellow`.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLabelDTO'
+          description: The response contains the label details sent in the update request.
+      tags:
+      - Component Labels
+  /api/v2/labels/{ownerType}/{ownerId}/applicable:
+    get:
+      description: 'Use this method to retrieve all component labels that are applicable to the specified application, organization or repository.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getApplicableLabels
+      parameters:
+      - description: Select the ownerType to retrieve the component label information for.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id for the application, organization or repository
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicableLabels'
+          description: The response contains descriptions for all component labels that are applicable to the specified owner. These include all component labels that are assigned and inherited. The response includes:<ul><li>`ownerId` is the identifier for the owner.</li><li>`ownerName` is the name for the owner.</li><li>`ownerType` indicates if the labels are for an application, organization or repository.</li> <li>`labels` is the component labels for this owner.</li></ul>Each label includes <ul><li>`id` is the internal identifier assigned to the label.</li><li>`label` is the identifying name of the label, for e.g. 'Architecture-Deprecated'.</li><li>`description` is additional information describing the label.</li><li>`color` is the color assigned to the component label.</li><li>`ownerId` is the identifier for the ownerType selected in the request.</li><li>`ownerType` indicates if the label is for the application, organization or repository, as selected in the request.</li></ul>
+      tags:
+      - Component Labels
+  /api/v2/labels/{ownerType}/{ownerId}/applicable/context/{labelId}:
+    get:
+      description: 'Use this method to retrieve the hierarchy of owners (applications, organizations, repositories) in which the label can be applied.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: getApplicableContexts
+      parameters:
+      - description: Select the ownerType.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the ownerId
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the labelId
+        in: path
+        name: labelId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicableContext'
+          description: The response contains:<ul><li>`id` is the id of the selected owner.</li><li>`name` is the name of the selected owner.</li><li>`type` is the type of the selected owner e.g. application, organization or repository.</li><li>`children` is an array of the child owners in the hierarchy.</li>
+      tags:
+      - Component Labels
+  /api/v2/labels/{ownerType}/{ownerId}/{labelId}:
+    delete:
+      description: 'Use this method to delete an existing component label.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteLabel
+      parameters:
+      - description: Select the ownerType for which the label will be deleted.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id for the selected ownerType.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the id for the label to be deleted.
+        in: path
+        name: labelId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Component label deleted successfully.
+      tags:
+      - Component Labels
+components:
+  schemas:
+    ApplicableContext:
+      properties:
+        children:
+          items:
+            $ref: '#/components/schemas/ApplicableContext'
+          type: array
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
+          type: string
+      type: object
+    ApiLabelDTO:
+      properties:
+        color:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        label:
+          type: string
+        ownerId:
+          type: string
+        ownerType:
+          type: string
+      type: object
+    LabelsByOwner:
+      properties:
+        labels:
+          items:
+            $ref: '#/components/schemas/ApiLabelDTO'
+          type: array
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
+          type: string
+      type: object
+    ApplicableLabels:
+      properties:
+        labelsByOwner:
+          items:
+            $ref: '#/components/schemas/LabelsByOwner'
+          type: array
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,79 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Source Control Metrics API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to view the response times of a source control evaluation.
+  name: Source Control Metrics
+paths:
+  /api/v2/sourceControlMetrics/{ownerType}/{internalOwnerId}:
+    get:
+      description: 'Use this method to view the source control pull request metrics.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getSourceControl
+      parameters:
+      - description: Select the ownerType for the pull requests.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the ownerId corresponding to the ownerType.
+        in: path
+        name: internalOwnerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPullRequestResults'
+          description: 'The response contains `results` which is a list of elements, each including: <ul><li>`startTime` indicates the start time of the pull request.</li><li>`title` indicates the title of the pull request.</li><li>`exceptionThrown` indicates if the pull request caused an exception.</li><li>`successful` indicates if the pull request was successful.</li><li>`totalTime` indicates the total time taken to complete the pull request.</li><li>`reasoning` indicates the summary of the outcome of the pull request.</li></ul>'
+      tags:
+      - Source Control Metrics
+components:
+  schemas:
+    ApiPullRequestResults:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ApiPullRequestResult'
+          type: array
+      type: object
+    ApiPullRequestResult:
+      properties:
+        exceptionThrown:
+          type: boolean
+        reasoning:
+          type: string
+        startTime:
+          format: date-time
+          type: string
+        successful:
+          type: boolean
+        title:
+          type: string
+        totalTime:
+          format: int64
+          type: integer
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

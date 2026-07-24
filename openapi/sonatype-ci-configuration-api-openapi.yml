@@ -1,0 +1,247 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search CI Configuration API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage CI integration configuration. Configurations can be set at organization or application level and are merged from the organization hierarchy with lower levels taking precedence.
+  name: CI Configuration
+paths:
+  /api/v2/config/ci/{ownerType}/{ownerId}:
+    delete:
+      description: 'Use this method to delete CI integration configuration for the specified owner.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteConfiguration
+      parameters:
+      - description: The owner type (application or organization)
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: The internal ID of the owner
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: CI configuration was deleted successfully.
+        '404':
+          description: CI configuration not found for the specified owner.
+      tags:
+      - CI Configuration
+    get:
+      description: 'Use this method to retrieve CI integration configuration for the specified owner.
+
+
+        Set the `direct` query parameter to `true` to retrieve only the configuration directly associated with the specified owner. Set it to `false` (default) to retrieve the merged configuration from the organization hierarchy, where configurations from parent organizations are combined with lower levels taking precedence.
+
+
+        The response includes a `source` map that indicates which owner (organization or application) contributed each configuration field when using merged mode.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getConfiguration
+      parameters:
+      - description: The owner type (application or organization)
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: The internal ID of the owner
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Set to true to retrieve only direct configuration, false (default) to retrieve merged configuration from hierarchy
+        in: query
+        name: direct
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCiConfigurationResponseDto'
+          description: 'The response contains:
+
+            <ul>
+
+            <li>`configuration` - the CI integration configuration as a JSON object</li>
+
+            <li>`source` - a map of field names to owner IDs indicating provenance (empty for direct queries)</li>
+
+            </ul>'
+        '404':
+          description: No CI configuration found for the specified owner or its hierarchy.
+      tags:
+      - CI Configuration
+    put:
+      description: 'Use this method to create or update CI integration configuration for the specified owner.
+
+
+        The configuration is stored as a JSON object to support various CI systems (GitHub Actions, GitLab CI, etc.). String values must be non-empty.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: setConfiguration
+      parameters:
+      - description: The owner type (application or organization)
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: The internal ID of the owner
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiCiConfigurationDto'
+        description: Provide the CI integration configuration as a JSON object. The structure supports different CI systems.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCiConfigurationDto'
+          description: CI configuration was saved successfully.
+        '400':
+          description: Invalid configuration provided (e.g., empty strings).
+      tags:
+      - CI Configuration
+components:
+  schemas:
+    ReachabilityConfig:
+      properties:
+        failOnError:
+          type: boolean
+        javaAnalysis:
+          $ref: '#/components/schemas/JavaAnalysisConfig'
+        javaScriptAnalysis:
+          $ref: '#/components/schemas/JavaScriptAnalysisConfig'
+      type: object
+    DownloadConfig:
+      properties:
+        iqCliUrl:
+          type: string
+        iqCliVersion:
+          type: string
+      type: object
+    JavaAnalysisConfig:
+      properties:
+        enabled:
+          type: boolean
+        entrypointStrategy:
+          type: string
+        namespaces:
+          items:
+            type: string
+          type: array
+      type: object
+    ApiCiConfigurationDto:
+      properties:
+        advancedProperties:
+          items:
+            type: string
+          type: array
+        download:
+          $ref: '#/components/schemas/DownloadConfig'
+        enableDebugLogging:
+          type: boolean
+        failBuildOnNetworkError:
+          type: boolean
+        failBuildOnPolicyWarnings:
+          type: boolean
+        failBuildOnReachabilityErrors:
+          type: boolean
+        failBuildOnScanningErrors:
+          type: boolean
+        moduleExcludes:
+          items:
+            type: string
+          type: array
+        parameterPriority:
+          type: string
+        proxy:
+          $ref: '#/components/schemas/ProxyConfig'
+        reachability:
+          $ref: '#/components/schemas/ReachabilityConfig'
+        resultFile:
+          type: string
+        sarifFile:
+          type: string
+        scanPatterns:
+          items:
+            type: string
+          type: array
+        unstableBuildOnPolicyWarnings:
+          type: boolean
+      type: object
+    ProxyConfig:
+      properties:
+        host:
+          type: string
+      type: object
+    ApiCiConfigurationResponseDto:
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiCiConfigurationDto'
+        source:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    JavaScriptAnalysisConfig:
+      properties:
+        enabled:
+          type: boolean
+        jsExcludes:
+          items:
+            type: string
+          type: array
+        jsSources:
+          items:
+            type: string
+          type: array
+        nodeJsExecutable:
+          type: string
+        projectRoot:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,53 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Solutions API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Solutions
+paths:
+  /api/v2/solutions/licensed:
+    get:
+      description: 'Retrieves a list of licensed solutions. The base URL must be set to get results unless relative URLs are allowed.
+
+
+        Permissions required: None '
+      operationId: getLicensedSolutions
+      parameters:
+      - description: Whether or not relative URLs should be allowed.
+        in: query
+        name: allowRelativeUrls
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiLicensedSolutionDTO'
+                type: array
+          description: Successfully retrieved the list of licensed solutions.
+      tags:
+      - Solutions
+components:
+  schemas:
+    ApiLicensedSolutionDTO:
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

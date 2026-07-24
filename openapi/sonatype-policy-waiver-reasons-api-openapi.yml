@@ -1,0 +1,49 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Policy Waiver Reasons API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this rest API to fetch available policy waiver reasons
+  name: Policy Waiver Reasons
+paths:
+  /api/v2/policyWaiverReasons:
+    get:
+      description: 'Use this method to retrieve all policy waiver reasons.
+
+
+        Permissions required: None'
+      operationId: getPolicyWaiverReasons
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiPolicyWaiverReasonDTO'
+                type: array
+          description: Successfully retrieved all policy waiver reasons.
+      tags:
+      - Policy Waiver Reasons
+components:
+  schemas:
+    ApiPolicyWaiverReasonDTO:
+      properties:
+        id:
+          type: string
+        reasonText:
+          type: string
+        type:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

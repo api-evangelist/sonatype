@@ -1,0 +1,645 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Policy Waivers API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to create and retrieve policy waivers.
+  name: Policy Waivers
+paths:
+  /api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/stages/{stageId}:
+    post:
+      description: 'Use this method to add a waiver for all transitive violations for a given component, detected in the latest scan at the stage specified.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: addWaiverToTransitivePolicyViolationsByOwnerStageComponent
+      parameters:
+      - description: Indicates the scope of the waiver that will be created.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          pattern: application|organization
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above. E.g. applicationId for ownerType 'application' or organizationId for ownerType 'organization'.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the stageId corresponding to the evaluation stage at which you want to create a waiver. Possible values are 'develop', 'source', 'build', 'stage-release', 'release' and 'operate'.
+        in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      - description: Enter the component identifier and coordinates of the component for which you want to waive the transitive violations.
+        in: query
+        name: componentIdentifier
+        schema:
+          $ref: '#/components/schemas/ComponentIdentifier'
+      - description: Enter the package URL of the component for which you want to waive the transitive violations.
+        in: query
+        name: packageUrl
+        schema:
+          type: string
+      - description: 'Enter the hash for the component for which you want to waive the transitive violations '
+        in: query
+        name: hash
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiWaiverOptionsDTO'
+        description: <ol><li>comment (optional, to indicate the reason of the waiver) default value is null</li><li>applyToAllComponents (boolean, default 'false'),deprecated in favor of matcherStrategy. If matcherStrategy is not set, 'true' means this will apply the waiver to all components, 'false' means this will apply to a specific component.</li><li>matcherStrategy (enumeration, required) can have values DEFAULT, EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. DEFAULT will match all components if no hash is provided.</li><li>expiryTime (default null) to set the datetime when the waiver expires.</li></ol>
+        required: true
+      responses:
+        '204':
+          description: Waiver created successfully.
+      tags:
+      - Policy Waivers
+  /api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/{scanId}:
+    get:
+      description: 'Use this method to retrieve all waivers on policy violations due to transitive dependencies for a specific component detected in a specific scan. Any one of the input parameters, i.e. componentIdentifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getTransitivePolicyWaiversByAppScanComponent
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain the policy violations that are within the scope specified.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          pattern: application
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the scanId (reportId) of the scan for which you want to retrieve the waivers on transitive policy violations occurring due the dependencies of a component.
+        in: path
+        name: scanId
+        required: true
+        schema:
+          type: string
+      - description: Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.
+        in: query
+        name: componentIdentifier
+        schema:
+          $ref: '#/components/schemas/ComponentIdentifier'
+      - description: Enter the package URL for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.
+        in: query
+        name: packageUrl
+        schema:
+          type: string
+      - description: Enter the hash for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.
+        in: query
+        name: hash
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiComponentPolicyWaiversDTO'
+          description: The response contains a list of waivers on transitive policy violations for the dependencies of the component specified, for the given scanId.
+      tags:
+      - Policy Waivers
+    post:
+      description: 'Use this method to create a policy waiver on a transitive component detected during the specified scan. NOTE: Any one of the input parameters, i.e. component identifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: addWaiverToTransitivePolicyViolationsByAppScanComponent
+      parameters:
+      - description: Indicates the scope of the waiver that will be created.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          pattern: application
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the scanId (reportId) of the evaluation report that shows the transitive component.
+        in: path
+        name: scanId
+        required: true
+        schema:
+          type: string
+      - description: Enter the component identifier of the transitive component on which you want to create a policy waiver.
+        in: query
+        name: componentIdentifier
+        schema:
+          $ref: '#/components/schemas/ComponentIdentifier'
+      - description: Enter the package URL of the transitive component on which you want to create a policy waiver.
+        in: query
+        name: packageUrl
+        schema:
+          type: string
+      - description: Enter the hash of the transitive component on which you want to create a policy waiver.
+        in: query
+        name: hash
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiWaiverOptionsDTO'
+        description: The request JSON can include the fields<ol><li>comment (optional, to indicate the reason of the waiver) default value is null</li><li>applyToAllComponents (boolean, default 'false'),deprecated in favor of matcherStrategy. If matcherStrategy is not set, 'true' means this will apply the waiver to all components, 'false' means this will apply to a specific component.</li><li>matcherStrategy (enumeration, required) can have values DEFAULT, EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. DEFAULT will match all components if no hash is provided.</li><li>expiryTime (default null) to set the datetime when the waiver expires.</li></ol>
+      responses:
+        '204':
+          description: No content. Indicates that the waiver has been created successfully.
+      tags:
+      - Policy Waivers
+  /api/v2/policyWaivers/waiverRequests/{policyViolationId}:
+    post:
+      deprecated: true
+      description: Deprecated since IQ Server 1.192. Triggers a 'Waiver Request' webhook event. Deprecated because the webhook event is now integrated into the policy waiver request process. Please use `api/v2/policyWaiverRequests{ownerType}/policyViolation/{policyViolationId}` instead. Scheduled for removal in December 2025.
+      operationId: requestPolicyWaiver
+      parameters:
+      - description: Enter the policyViolationId for which you want to trigger the waiver request event.
+        in: path
+        name: policyViolationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiRequestPolicyWaiverDTO'
+        description: The request JSON should contain<ol><li>comment (optional, default null) to indicate the waiver request reason</li><li>policyViolationLink (link to the policy violation page in the Lifecycle UI)</li><li>addWaiverLink (link to the Add Waiver page in the Lifecycle UI)</li></ol>
+      responses:
+        '204':
+          description: Waiver request webhook triggered successfully
+      tags:
+      - Policy Waivers
+  /api/v2/policyWaivers/{ownerType}/{ownerId}:
+    get:
+      description: 'Use this method to retrieve waiver details for all policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getPolicyWaivers
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+                type: array
+          description: The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the policyWaiverId. The response field 'matcherStrategy' indicates whether the waiver applies to a specific component, or all components that exist at that level of hierarchy (root org, org application), or all versions of the component (past, present, and future). The response fields associatedPackageUrl, displayName, and componentIdentifier are null for waivers on all components and unknown components.
+      tags:
+      - Policy Waivers
+    post:
+      description: 'Use this method to create policy waivers for multiple policy violations.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: addBulkPolicyWaivers
+      parameters:
+      - description: Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiBulkWaiversDTO'
+        description: The request JSON should include:<ol><li>violationIds (required, list of policy violation IDs, maximum 1000)</li><li>apiWaiverOptionsDTO (required) containing:<ul><li>comment (optional, to indicate the reason of the waiver)</li><li>matcherStrategy (enumeration, required) can have values EXACT_COMPONENT or ALL_VERSIONS</li><li>expiryTime (optional) to set the datetime when the waiver expires</li><li>waiverReasonId (optional) waiver reason ID</li><li>expireWhenRemediationAvailable (optional boolean, default false) expire waiver when remediation is available, can only be applied to Exact Components.</li></ul></li></ol>
+        required: true
+      responses:
+        '204':
+          description: No content. Indicates that the waivers have been created successfully.
+      tags:
+      - Policy Waivers
+  /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyViolationId}:
+    post:
+      description: 'Use this method to create a policy waiver.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: addPolicyWaiverByPolicyViolationId
+      parameters:
+      - description: Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the policyViolationId for the policy on which you want to create a waiver. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId.
+        in: path
+        name: policyViolationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiWaiverOptionsDTO'
+        description: The request JSON can include the fields<ol><li>comment (optional, to indicate the reason of the waiver) default value is null</li><li>applyToAllComponents (boolean, default 'false'),deprecated in favor of matcherStrategy. If matcherStrategy is not set, 'true' means this will apply the waiver to all components, 'false' means this will apply to a specific component.</li><li>matcherStrategy (enumeration, required) can have values DEFAULT, EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. DEFAULT will match all components if no hash is provided.</li><li>expiryTime (default null) to set the datetime when the waiver expires.</li></ol>
+        required: true
+      responses:
+        '204':
+          description: No content. Indicates that the waiver has been created successfully.
+      tags:
+      - Policy Waivers
+  /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyWaiverId}:
+    delete:
+      description: 'Use this method to delete a waiver, specified by the policyWaiverId.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: deletePolicyWaiver
+      parameters:
+      - description: Enter the ownerType to specify the scope. A waiver corresponding to the policyWaiverId provided and within the scope specified will be deleted.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the policyWaiverId to be deleted.
+        in: path
+        name: policyWaiverId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Waiver has been deleted successfully.
+      tags:
+      - Policy Waivers
+    get:
+      description: 'Use this method to retrieve waiver details for the waiverId specified.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getPolicyWaiver
+      parameters:
+      - description: Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the corresponding id for the ownerType specified above.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the policyWaiverId for which you want to retrieve the waiver details.
+        in: path
+        name: policyWaiverId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          description: The response contains waiver details corresponding to the policy waiverId specified.
+      tags:
+      - Policy Waivers
+    put:
+      description: 'Use this method to update an existing policy waiver.
+
+
+        Permissions required: Waive Policy Violations'
+      operationId: updatePolicyWaiver
+      parameters:
+      - description: Indicates the scope of the policy waiver. Possible values are application, organization, repository, repository_manager, and repository_container.
+        in: path
+        name: ownerType
+        required: true
+        schema:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+      - description: Enter the id for the `ownerType` provided above. E.g. `applicationId` if the `ownerType` is application.
+        in: path
+        name: ownerId
+        required: true
+        schema:
+          type: string
+      - description: Enter the id for the policy waiver.
+        in: path
+        name: policyWaiverId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiWaiverOptionsDTO'
+        description: Enter the policy waiver details to update. Note that updating `matcherStrategy` is currently unsupported.
+        required: true
+      responses:
+        '204':
+          description: The policy waiver was updated successfully.
+      tags:
+      - Policy Waivers
+components:
+  schemas:
+    ApiWaiverOptionsDTO:
+      properties:
+        applyToAllComponents:
+          type: boolean
+        comment:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ApiComponentPolicyWaiversDTO:
+      properties:
+        componentPolicyWaivers:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          type: array
+      type: object
+    ComponentDisplayNamePart:
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+      type: object
+    ApiRequestPolicyWaiverDTO:
+      properties:
+        addWaiverLink:
+          type: string
+        comment:
+          type: string
+        policyViolationLink:
+          type: string
+        reasonId:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiBulkWaiversDTO:
+      properties:
+        apiWaiverOptionsDTO:
+          $ref: '#/components/schemas/ApiWaiverOptionsDTO'
+        violationIds:
+          items:
+            type: string
+          type: array
+      type: object
+    ApiPolicyWaiverDTO:
+      properties:
+        associatedPackageUrl:
+          type: string
+        comment:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        componentName:
+          type: string
+        componentUpgradeAvailable:
+          type: boolean
+        constraintFacts:
+          items:
+            $ref: '#/components/schemas/ConstraintFact'
+          type: array
+        constraintFactsJson:
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        creatorId:
+          type: string
+        creatorName:
+          type: string
+        displayName:
+          $ref: '#/components/schemas/ComponentDisplayName'
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        forContainerImage:
+          type: boolean
+        forContainerImageComponent:
+          type: boolean
+        hash:
+          type: string
+        isObsolete:
+          type: boolean
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        policyWaiverId:
+          type: string
+        policyWaiverReasonId:
+          type: string
+        reasonText:
+          type: string
+        scopeOwnerId:
+          type: string
+        scopeOwnerName:
+          type: string
+        scopeOwnerType:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        vulnerabilityId:
+          type: string
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
+      type: object
+    ComponentDisplayName:
+      properties:
+        name:
+          type: string
+        parts:
+          items:
+            $ref: '#/components/schemas/ComponentDisplayNamePart'
+          type: array
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

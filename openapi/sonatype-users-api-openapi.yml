@@ -1,0 +1,165 @@
+openapi: 3.0.1
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Users API
+  version: 1.201.0-02
+  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- description: Use this REST API to manage users.
+  name: Users
+paths:
+  /api/v2/users:
+    get:
+      description: 'Use this method to retrieve user details for all users.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: getAll_2
+      parameters:
+      - description: Enter the `realm`. Allowed values are `Internal`,`OAUTH2`, and `SAML`.
+        in: query
+        name: realm
+        schema:
+          default: Internal
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserListDTO'
+          description: The response contains user details. Passwords are excluded for security.
+      tags:
+      - Users
+    post:
+      description: 'Use this method to create a new user.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiUserDTO'
+        description: Specify the user details for the new user to be created. All fields except `realm` are required.
+      responses:
+        '204':
+          description: User created successfully.
+      tags:
+      - Users
+  /api/v2/users/{username}:
+    delete:
+      description: 'Use this method to delete an existing user.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: delete_1
+      parameters:
+      - description: Enter the username to be deleted.
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: Enter the `realm`. Allowed values are `Internal`,`OAUTH2`, and `SAML`.
+        in: query
+        name: realm
+        schema:
+          default: Internal
+          type: string
+      responses:
+        '204':
+          description: User deleted successfully.
+      tags:
+      - Users
+    get:
+      description: 'Use this method to retrieve user details for the specified user.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: get_1
+      parameters:
+      - description: Enter the username.
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: Enter the `realm`. Allowed values are `Internal`,`OAUTH2`, and `SAML`.
+        in: query
+        name: realm
+        schema:
+          default: Internal
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserDTO'
+          description: The response contains details for the specified user.
+      tags:
+      - Users
+    put:
+      description: 'Use this method to update user details for an existing internal user, by specifying the username.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: update
+      parameters:
+      - description: Enter the username.
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiUserDTO'
+        description: Specify the user details to be updated. Any unspecified field will remain unchanged. Username, password, and realm cannot be updated.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserDTO'
+          description: User details updated successfully.
+      tags:
+      - Users
+components:
+  schemas:
+    ApiUserDTO:
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+        realm:
+          type: string
+        username:
+          type: string
+      type: object
+    ApiUserListDTO:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/ApiUserDTO'
+          type: array
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
