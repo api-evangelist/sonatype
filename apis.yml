@@ -6,9 +6,22 @@ description: >-
   application portfolio management, policy enforcement, vulnerability reporting, component analysis, SBOM generation,
   source control integration, and software composition analysis across the SDLC.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sonatype.png
 tags:
   - Software Supply Chain
   - Security
@@ -21,41 +34,1261 @@ created: '2025-02-12'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: sonatype:sonatype-lifecycle-api
-    name: Sonatype Lifecycle API
-    description: >-
-      The Sonatype Lifecycle Public REST API (v1.201.0) provides 188 endpoints for managing applications, organizations,
-      policies, policy violations, waivers, vulnerability analysis, SBOM generation (SPDX, CycloneDX), scan management,
-      component search, reports, source control integration, users, roles, and user tokens. Used by DevSecOps teams to
-      automate software supply chain security and compliance workflows.
-    humanURL: https://help.sonatype.com/en/iq-api-reference.html
-    baseURL: https://{iq-server-host}/
-    tags:
-      - Software Supply Chain
-      - Security
-      - Policy
-      - Vulnerability Management
-      - SBOM
-      - Software Composition Analysis
-      - Applications
-      - Organizations
-    properties:
-      - type: Documentation
-        url: https://help.sonatype.com/en/iq-api-reference.html
-      - type: Reference
-        url: https://help.sonatype.com/en/rest-apis.html
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/openapi/sonatype-lifecycle-openapi.yml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
-    contact:
-      - FN: Sonatype Support
-        url: https://support.sonatype.com/
+- aid: sonatype:sonatype-advanced-search-api
+  name: Sonatype Advanced Search API
+  description: >-
+    Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Advanced Search
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-advanced-search-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-application-categories-api
+  name: Sonatype Application Categories API
+  description: >-
+    Use the Application Categories REST API to manage the application categories or tags assigned to the
+    applications in an organization.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Application Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-application-categories-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-application-report-data-api
+  name: Sonatype Application Report Data API
+  description: >-
+    Use this REST API to retrieve the data from an application composition report, that is generated after
+    an evaluation.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Application Report Data
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-application-report-data-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-applications-api
+  name: Sonatype Applications API
+  description: >-
+    Use this REST API to manage applications.
+
+
+    In addition to the primary functions of create, update and delete, you can also move applications
+    from one organization to other.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-applications-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-audit-logs-api
+  name: Sonatype Audit Logs API
+  description: Use this REST API to access the IQ Server audit logs.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-audit-logs-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-auto-policy-waiver-exclusions-api
+  name: Sonatype Auto Policy Waiver Exclusions API
+  description: Use this REST API to create and delete auto policy waiver exclusions.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Auto Policy Waiver Exclusions
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-auto-policy-waiver-exclusions-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-auto-policy-waivers-api
+  name: Sonatype Auto Policy Waivers API
+  description: Use this REST API to create, modify and retrieve auto policy waivers.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Auto Policy Waivers
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-auto-policy-waivers-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-ci-configuration-api
+  name: Sonatype CI Configuration API
+  description: >-
+    Use this REST API to manage CI integration configuration. Configurations can be set at organization
+    or application level and are merged from the organization hierarchy with lower levels taking precedence.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - CI Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-ci-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-claim-components-api
+  name: Sonatype Claim Components API
+  description: >-
+    Use this REST API to manage components that are developed in-house and are not open-source.
+
+
+    Claiming the component stores the identity information for the component hash and avoids triggering
+    the Component-Unknown policy.
+
+
+    Components will have a match state as `Exact` and Identification Source as `Manual`,
+
+    for subsequent scans or evaluations.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Claim Components
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-claim-components-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-component-labels-api
+  name: Sonatype Component Labels API
+  description: >-
+    Use this REST API to manage component labels for applications, organizations and repositories.
+
+
+    Component Labels can be used as attributes of a component at the time of creating policies. A policy
+    violation can be triggered based on the component label.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Component Labels
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-component-labels-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-component-search-api
+  name: Sonatype Component Search API
+  description: Use this REST API to search for components in application evaluation reports.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Component Search
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-component-search-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-components-api
+  name: Sonatype Components API
+  description: >-
+    Use this REST API to retrieve a component's security vulnerability data, license data, age and popularity.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Components
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-components-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-composite-source-control-api
+  name: Sonatype Composite Source Control API
+  description: >-
+    Use this REST API to access the composite source control management configuration (SCM) for an application
+    or organization.
+
+
+    Composite source control configuration is defined as the configuration that is inherited from the
+    parent organization or is directly assigned.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Composite Source Control
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-composite-source-control-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-composite-source-control-validator-api
+  name: Sonatype Composite Source Control Validator API
+  description: >-
+    Use this REST API to validate the composite source control management (SCM) configuration.
+
+
+    Composite source control configuration is defined as the configuration that is inherited from the
+    parent or is directly assigned.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Composite Source Control Validator
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-composite-source-control-validator-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-crowd-api
+  name: Sonatype Config Crowd API
+  description: >-
+    Use this REST API to manage the configuration of an existing Atlassian Crowd Server that is being
+    used to authenticate users for IQ Server.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config Crowd
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-crowd-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-jira-api
+  name: Sonatype Config Jira API
+  description: >-
+    Use this REST API to manage Jira configurations to receive notifications from Lifecycle.
+
+
+    It is supported for Jira Cloud, Jira Server, and Jira Data Center.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config Jira
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-jira-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-mail-api
+  name: Sonatype Config Mail API
+  description: >-
+    Use this REST API to manage the configuration of an SMTP server, to receive email notifications.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config Mail
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-mail-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-oidc-api
+  name: Sonatype Config OIDC API
+  description: Use this REST API to manage the OIDC configuration for IQ Server.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config OIDC
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-oidc-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-proxy-server-api
+  name: Sonatype Config Proxy Server API
+  description: >-
+    Use this REST API to manage the configuration of IQ Server with an existing HTTP proxy server.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config Proxy Server
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-proxy-server-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-reverse-proxy-authentication-api
+  name: Sonatype Config Reverse Proxy Authentication API
+  description: Use this REST API to manage the configuration of a reverse proxy server.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config Reverse Proxy Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-reverse-proxy-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-saml-api
+  name: Sonatype Config SAML API
+  description: Use this REST API to manage the SAML configuration for IQ Server.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config SAML
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-saml-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-source-control-api
+  name: Sonatype Config Source Control API
+  description: >-
+    Use this REST API to manage the configuration of IQ Server with your Source Control Management (SCM)
+    system (e.g. GitHub).
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config Source Control
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-source-control-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-config-zscaler-api
+  name: Sonatype Config Zscaler API
+  description: Use this REST API to manage the configuration of a Zscaler service.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Config Zscaler
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-config-zscaler-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-configuration-api
+  name: Sonatype Configuration API
+  description: >-
+    Use this REST API to configure the IQ Server system properties.
+
+
+    We strongly recommend using this REST API instead of config.yml for versions 142 and higher.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-configure-artifactory-connection-api
+  name: Sonatype Configure Artifactory Connection API
+  description: Use this REST API to manage the configuration of Firewall for JFrog Artifactory.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Configure Artifactory Connection
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-configure-artifactory-connection-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-cpe-matching-configuration-api
+  name: Sonatype CPE Matching Configuration API
+  description: >-
+    Use the CPE Matching Configuration REST API to add/set/remove cpe matching configuration to organizations
+    and applications
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - CPE Matching Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-cpe-matching-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-cyclonedx-api
+  name: Sonatype CycloneDX API
+  description: >-
+    Use the CycloneDX REST API to generate CycloneDX SBOMs in XML or JSON formats, containing coordinates
+    and licenses for components found in a scan report.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - CycloneDX
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-cyclonedx-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-data-retention-policies-api
+  name: Sonatype Data Retention Policies API
+  description: >-
+    Set policies for automatic purging of obsolete application and Success Metrics reports. <p>Note that
+    IQ Server has a preset limit of purging 5000 reports in one execution of its report purging job.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Data Retention Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-data-retention-policies-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-developer-priorities-api
+  name: Sonatype Developer Priorities API
+  description: >-
+    Use this REST API to export Sonatype Developer component priorities data, including security reachability
+    data.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Developer Priorities
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-developer-priorities-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-endpoints-api
+  name: Sonatype Endpoints API
+  description: This REST API returns the OpenAPI documentation for the specified IQ Server REST API.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-feature-configuration-api
+  name: Sonatype Feature Configuration API
+  description: Use this REST API to enable/disable the IQ Server features.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Feature Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-feature-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-firewall-api
+  name: Sonatype Firewall API
+  description: >-
+    Use this REST API for managing and monitoring firewall features, including metrics, repository management,
+    quarantine operations, and namespace confusion prevention.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Firewall
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-firewall-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-github-app-configuration-api
+  name: Sonatype GitHub App Configuration API
+  description: GitHub App configuration operations
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - GitHub App Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-github-app-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-license-legal-metadata-report-api
+  name: Sonatype License Legal Metadata Report API
+  description: Use this REST API to retrieve license legal metadata in raw or HTML format.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - License Legal Metadata Report
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-license-legal-metadata-report-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-license-legal-metadata-template-api
+  name: Sonatype License Legal Metadata Template API
+  description: >-
+    Use this REST API to manage and customize templates for the license legal metadata generated in HTML
+    format.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - License Legal Metadata Template
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-license-legal-metadata-template-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-license-overrides-api
+  name: Sonatype License Overrides API
+  description: >-
+    Use this REST API to manage license overrides for components in your applicationsorganizations and
+    repositories.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - License Overrides
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-license-overrides-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-organizations-api
+  name: Sonatype Organizations API
+  description: >-
+    Use this REST API to create new organizations, retrieve, edit or delete existing organizations.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-policies-api
+  name: Sonatype Policies API
+  description: >-
+    Use this REST API to retrieve details on all existing policies in your instance of Lifecycle.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-policies-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-policy-evaluation-api
+  name: Sonatype Policy Evaluation API
+  description: "Use this REST API to perform an application policy evaluation. Policy evaluations are\
+    \ executed asynchronously.<p>This is a 2-step process that involves: \n1. Requesting a policy evaluation\
+    \ (POST) \n2. Checking the status and response of the evaluation request (GET)"
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Policy Evaluation
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-policy-evaluation-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-policy-violation-details-api
+  name: Sonatype Policy Violation Details API
+  description: >-
+    Use this REST API to obtain the violation details, violation details across stages (cross stage),
+    violations occurring due to transitive dependencies and all waivers applicable to a violation.
+
+
+    Cross-stage policy violations are helpful in performance analysis like MTTR metrics.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Policy Violation Details
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-policy-violation-details-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-policy-waiver-reasons-api
+  name: Sonatype Policy Waiver Reasons API
+  description: Use this rest API to fetch available policy waiver reasons
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Policy Waiver Reasons
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-policy-waiver-reasons-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-policy-waiver-requests-api
+  name: Sonatype Policy Waiver Requests API
+  description: Use this REST API to manage policy waiver requests.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Policy Waiver Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-policy-waiver-requests-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-policy-waivers-api
+  name: Sonatype Policy Waivers API
+  description: Use this REST API to create and retrieve policy waivers.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Policy Waivers
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-policy-waivers-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-product-license-api
+  name: Sonatype Product License API
+  description: Use this REST API to manage a product license.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Product License
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-product-license-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-reports-api
+  name: Sonatype Reports API
+  description: >-
+    Use this REST API to view application scan reports, generate a list of stale waivers, view existing
+    policy waivers on components, view quarantined components and retrieve additional metrics data.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-reports-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-repositories-api
+  name: Sonatype Repositories API
+  description: Use this REST API to manage quarantined components.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Repositories
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-repositories-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-role-memberships-api
+  name: Sonatype Role Memberships API
+  description: >-
+    Use this REST API to manage authorizations for users or user groups.
+
+
+    You can view existing role assignments and grant or revoke user authorization on organizations, applications
+    and repositories.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Role Memberships
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-role-memberships-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-roles-api
+  name: Sonatype Roles API
+  description: >-
+    Roles provide sets of permissions that grant access to the functionality in the user interface, through
+    integrations, and when using REST APIs.
+
+
+    Permissions are granted by assigning users or groups to the system roles or at the various levels
+    in the organizational hierarchy: root organization, repository managers, and applications and organizations.
+
+
+    Use this REST API to manage roles.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-roles-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-security-vulnerability-overrides-api
+  name: Sonatype Security Vulnerability Overrides API
+  description: Use this REST API to retrieve security vulnerabilities that have been overridden.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Security Vulnerability Overrides
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-security-vulnerability-overrides-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-solutions-api
+  name: Sonatype Solutions API
+  description: The Solutions API from Sonatype — 1 operation(s) for solutions.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Solutions
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-solutions-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-source-control-api
+  name: Sonatype Source Control API
+  description: >-
+    Use this REST API to:<ul><li>Create, update and delete source control management (SCM) configuration
+    for the root organization, sub-organizations and applications.</li><li>Automatically assign the developer
+    role to all contributors of the associated repository, who are registered IQ users.</li></ul>
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Source Control
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-source-control-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-source-control-metrics-api
+  name: Sonatype Source Control Metrics API
+  description: Use this REST API to view the response times of a source control evaluation.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Source Control Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-source-control-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-spdx-api
+  name: Sonatype SPDX API
+  description: Use this REST API to generate SPDX SBOMs in XML or JSON formats.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - SPDX
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-spdx-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-third-party-analysis-api
+  name: Sonatype Third-Party Analysis API
+  description: Use this REST API to scan SBOMs for your applications.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Third-Party Analysis
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-third-party-analysis-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-user-token-configuration-api
+  name: Sonatype User Token Configuration API
+  description: Use this REST API to manage user token expiration configuration.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - User Token Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-user-token-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-user-tokens-api
+  name: Sonatype User Tokens API
+  description: Use this REST API to manage user tokens.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - User Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-user-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-users-api
+  name: Sonatype Users API
+  description: Use this REST API to manage users.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-users-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
+- aid: sonatype:sonatype-vulnerability-details-api
+  name: Sonatype Vulnerability Details API
+  description: Use this REST API to retrieve vulnerability details.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Vulnerability Details
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-vulnerability-details-api-openapi.yml
+  - type: Documentation
+    url: https://help.sonatype.com/en/iq-api-reference.html
+  - type: Reference
+    url: https://help.sonatype.com/en/rest-apis.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-application-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
 common:
   - type: AgenticAccess
     url: agentic-access/sonatype-agentic-access.yml
