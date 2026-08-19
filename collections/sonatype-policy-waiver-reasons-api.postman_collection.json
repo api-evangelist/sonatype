@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "bf4e0e1c-1099-4db7-a9e2-ba0a4778c023",
+      "name": "Policy Waiver Reasons",
+      "description": {
+        "content": "Use this rest API to fetch available policy waiver reasons",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3164950-3411-4329-adcc-e423a8933e91",
+          "name": "get Policy Waiver Reasons",
+          "request": {
+            "name": "get Policy Waiver Reasons",
+            "description": {
+              "content": "Use this method to retrieve all policy waiver reasons.\n\nPermissions required: None",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyWaiverReasons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db400a00-e559-4d0d-ae23-7c423cbccb59",
+              "name": "Successfully retrieved all policy waiver reasons.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyWaiverReasons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"reasonText\": \"string\",\n    \"type\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"reasonText\": \"string\",\n    \"type\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9e128c2-7093-4bb5-b793-0c934f81abf3",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Waiver Reasons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

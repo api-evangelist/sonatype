@@ -1,0 +1,581 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Firewall API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Firewall",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getUnquarantineList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/components/autoReleasedFromQuarantine",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Enter the page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Enter the number of results to be returned for a page."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the `policyId`. When provided, the results will include the components that have a policy violation for the policyId."
+              },
+              {
+                "name": "componentName",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component name. When provided, the results will include components with display names (case-insensitive) that match the given name."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Enter the sort criteria `releaseQuarantineTime` or `quarantineTime`."
+              },
+              {
+                "name": "asc",
+                "value": "",
+                "type": "query",
+                "description": "Select `true` to set the sort order to ascending."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the details of components that are auto-released from quarantine.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getQuarantineList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/components/quarantined",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Enter the starting page number for the response."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Enter the page size for the response."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the list of policy IDs causing the quarantine."
+              },
+              {
+                "name": "componentName",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component name."
+              },
+              {
+                "name": "repositoryPublicId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the repository public ID of the quarantined component."
+              },
+              {
+                "name": "quarantineTime",
+                "value": "",
+                "type": "query",
+                "description": "Enter the quarantine time of the component."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Enter `quarantineTime` to sort the results by quarantine time."
+              },
+              {
+                "name": "asc",
+                "value": "",
+                "type": "query",
+                "description": "Select the sort order."
+              }
+            ]
+          },
+          "docs": "Use this method to request a list of quarantined components.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "evaluateComponents_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/firewall/components/:repositoryManagerId/:repositoryId/evaluate",
+            "params": [
+              {
+                "name": "repositoryManagerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository manager ID."
+              },
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to evaluate components (max. 100).\n\n**Hash Requirements by Format Type:**\n\n**Coordinate-Based Formats** (hash NOT required when using packageUrl):\n- golang, conan, cargo, cocoapods, cran, conda, composer, hf-model\n- These formats identify components by coordinates (name+version) rather than file hash\n- When using packageUrl, hash is optional\n- If hash is provided, it will be used\n\n**Hash-Based Formats** (hash REQUIRED):\n- maven, npm, pypi, nuget, docker, rubygems, and others\n- Ha"
+        },
+        {
+          "info": {
+            "name": "verifyConnectionAndGetApplications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/connection/verify"
+          },
+          "docs": "Use this method to verify that the authenticated user has required permissions for firewall operations and retrieve accessible applications.\n\nPermissions required: Evaluate Individual Components"
+        },
+        {
+          "info": {
+            "name": "getContainerImagesInQuarantine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/container-image/policyViolations/quarantined",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use this method to find all container images currently in quarantine.\n\nPermissions required: Read"
+        },
+        {
+          "info": {
+            "name": "getWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/container-image/policyWaiver",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use this method to get all policy waivers for container images. \n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "addWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/firewall/container-image/:containerImageId/policyWaiver",
+            "params": [
+              {
+                "name": "containerImageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the container image id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create a waiver for all policy violations of a container Image. \n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "deleteContainerImagePolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/firewall/container-image/:containerImageId/policyWaiver",
+            "params": [
+              {
+                "name": "containerImageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the container id."
+              }
+            ]
+          },
+          "docs": "Use this method to delete a container waiver, specified by the containerImageId.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "getFirewallMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/metrics/embedded"
+          },
+          "docs": "Use this method to retrieve firewall dashboard metrics.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addProprietaryComponentNames",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/firewall/namespace_confusion/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "maven",
+                "type": "path",
+                "description": "Format for which the proprietary namespaces are being added."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a list of proprietary component namespaces for the specified format to prevent namespace confusion attacks.\n\nPermissions required: Evaluate Individual Components"
+        },
+        {
+          "info": {
+            "name": "removeProprietaryComponentNames",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/firewall/namespace_confusion/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "maven",
+                "type": "path",
+                "description": "Format for which the proprietary namespaces are being removed."
+              }
+            ]
+          },
+          "docs": "Removes proprietary component namespaces for the specified format.\n\nPermissions required: Evaluate Individual Components"
+        },
+        {
+          "info": {
+            "name": "getQuarantineSummary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/quarantine/summary"
+          },
+          "docs": "Use this method to request a summary of quarantined components.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getQuarantinedComponentViewAnonymousAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess"
+          },
+          "docs": "Use this method to determine if the quarantined component(s) details can be accessed anonymously.\n\nPermissions required: None"
+        },
+        {
+          "info": {
+            "name": "setQuarantinedComponentViewAnonymousAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess/:enabled",
+            "params": [
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "path",
+                "description": "Select `true` or `false` to enable or disable anonymous access."
+              }
+            ]
+          },
+          "docs": "Use this method to enable/disable anonymous access to view the quarantined components.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getFirewallAutoUnquarantineConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/releaseQuarantine/configuration"
+          },
+          "docs": "Use this method to retrieve the configuration settings for auto-release from quarantine for repositories.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "setFirewallAutoUnquarantineConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/firewall/releaseQuarantine/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to set the configurations for auto-release from quarantine for a list of repositories.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getFirewallUnquarantineSummary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/releaseQuarantine/summary"
+          },
+          "docs": "Use this method to track how many components have been automatically released from quarantine over different time periods.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "initiateCascadeReevaluation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/firewall/repositories/cascade-reevaluate/componentHash/:componentHash",
+            "params": [
+              {
+                "name": "componentHash",
+                "value": "",
+                "type": "path",
+                "description": "The component hash to re-evaluate across all repositories"
+              }
+            ]
+          },
+          "docs": "Initiate cascade re-evaluation for a component across repository hierarchies.<p>This operation asynchronously re-evaluates the specified component across all repositories where the component exists.<p>The system will automatically discover all eligible repositories based on component presence.<p>Permissions Required: Evaluate Components at Repository Managers level"
+        },
+        {
+          "info": {
+            "name": "getCascadeStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/repositories/cascade-reevaluate/status/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The cascade request ID to check status for"
+              }
+            ]
+          },
+          "docs": "Get the status of a cascade re-evaluation request.<p>Returns the current progress of a cascade re-evaluation operation including the list of components that have been evaluated and those still pending. The overall status will be 'pending' if any components are still being processed, or 'completed' if all components have been evaluated.<p>The response includes:<ul><li><b>status:</b> Overall status (PENDING, IN_PROGRESS, COMPLETED, NO_COMPONENTS_FOUND, FAILED)</li><li><b>referenceComponentHash:</b"
+        },
+        {
+          "info": {
+            "name": "getConfiguredRepositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/repositories/configuration/:repositoryManagerId",
+            "params": [
+              {
+                "name": "repositoryManagerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository manager ID."
+              },
+              {
+                "name": "sinceUtcTimestamp",
+                "value": "",
+                "type": "query",
+                "description": "Enter the epoch time in milliseconds when the repository was last updated."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the configuration details of an existing repository manager.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "configureRepositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/firewall/repositories/configuration/:repositoryManagerId",
+            "params": [
+              {
+                "name": "repositoryManagerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository manager ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update the repositories for an existing repository manager.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getRepositoryContainer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/repositoryContainer"
+          },
+          "docs": "Use this method to retrieve the ID and name for the repository container.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getRepositoryManagers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/repositoryManagers"
+          },
+          "docs": "Use this method to retrieve all configured repository managers.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addRepositoryManager",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/firewall/repositoryManagers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to add a new repository manager.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getRepositoryManager",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/firewall/repositoryManagers/:repositoryManagerId",
+            "params": [
+              {
+                "name": "repositoryManagerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository manager ID."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve details of an existing repository manager.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteRepositoryManager",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/firewall/repositoryManagers/:repositoryManagerId",
+            "params": [
+              {
+                "name": "repositoryManagerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository manager ID."
+              }
+            ]
+          },
+          "docs": "Use this method to delete an existing repository manager.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "evaluateMalware",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/malware-defense/evaluate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Evaluate malware for a list of components.<p>Use this endpoint to evaluate malware for a list of components up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component that are of the same format type."
+        },
+        {
+          "info": {
+            "name": "getMalwareDefenseMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/malware-defense/metrics"
+          },
+          "docs": "The response contains malware defense API metrics.<p>Use this endpoint to get the count of malicious components evaluated via malware defense API grouped by format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

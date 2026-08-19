@@ -1,0 +1,740 @@
+{
+  "item": [
+    {
+      "id": "467bab7a-a4e4-41aa-975f-7b840fa4fdac",
+      "name": "Organizations",
+      "description": {
+        "content": "Use this REST API to create new organizations, retrieve, edit or delete existing organizations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ec06e33-6872-415a-99e6-46787ef89feb",
+          "name": "get Organizations",
+          "request": {
+            "name": "get Organizations",
+            "description": {
+              "content": "Use this method to retrieve organizations with names matching those specified or all if not specified.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationName",
+                  "value": "<string>",
+                  "description": "Enter the organization names."
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationName",
+                  "value": "<string>",
+                  "description": "Enter the organization names."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59bbb41d-cb0b-481f-acb0-68309461be81",
+              "name": "The response contains a list of organizations. For each organization the response contains organization id, organization name, parent organization id, and its associated tags with additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organizations\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"parentOrganizationId\": \"string\",\n      \"tags\": [\n        {\n          \"color\": \"light-red\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"color\": \"dark-red\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"parentOrganizationId\": \"string\",\n      \"tags\": [\n        {\n          \"color\": \"dark-purple\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"color\": \"black\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdab0d65-492f-4a78-9682-d5ae370a16d2",
+          "name": "add Organization",
+          "request": {
+            "name": "add Organization",
+            "description": {
+              "content": "Use this method to add a new organization.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentOrganizationId\": \"<string>\",\n  \"tags\": [\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aba03980-af92-4b7b-ab2b-6d07cdc87454",
+              "name": "The response contains the assigned organization id and all other organization details specified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentOrganizationId\": \"<string>\",\n  \"tags\": [\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentOrganizationId\": \"<string>\",\n  \"tags\": [\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89d1fccb-8452-437f-88f7-d6e3bd18f417",
+          "name": "get Organizations By Ids",
+          "request": {
+            "name": "get Organizations By Ids",
+            "description": {
+              "content": "Use this method to retrieve organizations by their internal IDs.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations",
+                "byid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Enter the internal organization IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Enter the internal organization IDs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d7e6003-4f69-4eac-b2f3-1a92569b31ef",
+              "name": "The response contains a list of organizations. For each organization the response contains organization id, organization name, and parent organization id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations",
+                    "byid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organizations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parentOrganizationId\": \"<string>\",\n      \"tags\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parentOrganizationId\": \"<string>\",\n      \"tags\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "293376f5-3a62-4ecc-9656-18ac8b40bcc1",
+          "name": "delete Organization",
+          "request": {
+            "name": "delete Organization",
+            "description": {
+              "content": "Use this method to delete an existing organization, by providing the organization id.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Enter the organization id to be deleted."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1aea09b6-12a1-4555-ad89-eb2b026dbfbd",
+              "name": "The specified organization has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organization id to be deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af5e73d1-898c-4205-9cab-f2d0a976083c",
+          "name": "get Organization",
+          "request": {
+            "name": "get Organization",
+            "description": {
+              "content": "Use this method to retrieve the details of an organization by providing the organization id.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Enter the organization id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b5d398a-e125-45bb-875f-047e26f9347c",
+              "name": "The response contains the details for the specified  organization including organization id, organization name, parent organization id, and its associated tags with additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organization id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentOrganizationId\": \"<string>\",\n  \"tags\": [\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "117219dd-950a-460c-9823-f5180226b574",
+          "name": "move Organization",
+          "request": {
+            "name": "move Organization",
+            "description": {
+              "content": "Use this method to change the parent organization.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations",
+                ":organizationId",
+                "move",
+                "destination",
+                ":destinationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "failEarlyOnError",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Enter the id for the organization to be moved under the new parent."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "destinationId",
+                  "description": "(Required) Enter the id for the new parent organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "784d9e84-1b84-41bd-b411-c23154c92e04",
+              "name": "The organization has been successfully moved under the parent organization id provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organizationId",
+                    "move",
+                    "destination",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "failEarlyOnError",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the id for the organization to be moved under the new parent."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) Enter the id for the new parent organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"type\": \"LICENSE_THREAT_GROUP\"\n    },\n    {\n      \"message\": \"string\",\n      \"type\": \"TAG\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"message\": \"string\",\n      \"type\": \"LICENSE_OVERRIDE\"\n    },\n    {\n      \"message\": \"string\",\n      \"type\": \"LICENSE_OVERRIDE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7becfbf-1cf7-4c26-b64a-4f912c33a7c5",
+              "name": "Encountered conflicts while inheriting policy elements of the new parent organization. The organization could not be moved under the new parent organization id provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organizationId",
+                    "move",
+                    "destination",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "failEarlyOnError",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the id for the organization to be moved under the new parent."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) Enter the id for the new parent organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"type\": \"POLICY\"\n    },\n    {\n      \"message\": \"string\",\n      \"type\": \"POLICY\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"message\": \"string\",\n      \"type\": \"POLICY_WAIVER\"\n    },\n    {\n      \"message\": \"string\",\n      \"type\": \"POLICY_MONITORING\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bf86fd94-fafb-4757-bfe6-4f50b53fb09c",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Organizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

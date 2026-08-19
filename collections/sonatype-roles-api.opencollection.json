@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Roles API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/roles"
+          },
+          "docs": "Use this method to view the role IDs, role names and descriptions.\n\nPermissions required: View All Roles"
+        },
+        {
+          "info": {
+            "name": "addRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create a new custom role with specified permissions.\n\nPermissions required: Edit Roles"
+        },
+        {
+          "info": {
+            "name": "getTemplateForNewRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/roles/new"
+          },
+          "docs": "Use this method to retrieve a template for creating a new custom role, including all available permissions that can be assigned.\n\nPermissions required: Edit Roles"
+        },
+        {
+          "info": {
+            "name": "getRoleById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve details for a specific role, including its permissions.\n\nPermissions required: View All Roles"
+        },
+        {
+          "info": {
+            "name": "updateRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update an existing custom role and its permissions.\n\nPermissions required: Edit Roles"
+        },
+        {
+          "info": {
+            "name": "deleteRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use this method to delete a custom role.\n\nPermissions required: Edit Roles"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

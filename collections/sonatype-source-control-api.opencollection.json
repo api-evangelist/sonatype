@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Source Control API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Source Control",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "addUserMappings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/sourceControl/automaticRoleAssignment/userMappings/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the organizationId. Use `ROOT_ORGANIZATION_ID` for the root organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to apply user mappings from SCM (GitHub) to Lifecycle. The user mappings will be inherited by all child organizations and applications in the organization hierarchy. If a user mapping for an organization already exists, it will be replaced with new mappings provided here.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteUserMappings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/sourceControl/automaticRoleAssignment/userMappings/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the organizationId."
+              }
+            ]
+          },
+          "docs": "Use this method to delete existing SCM user mappings for an organization.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getUserMappingsByOwner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/sourceControl/automaticRoleAssignment/userMappings/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for ownerType."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for internal ownerId."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve SCM user mappings for an organization or application.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "automaticRoleAssignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/sourceControl/automaticRoleAssignment/:publicId",
+            "params": [
+              {
+                "name": "publicId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the public applicationId for automatic role assignment."
+              }
+            ]
+          },
+          "docs": "Use this method to automatically grant the supplied role to all contributors of a repository on a given application.\n\nPrerequisites for automatic role assignment are:<ol><li>SCM configuration for the application and authentication token should exist.</li><li>The contributors to the repository should match a user in IQ based on the supplied mappings.</li><li>Either user mapping strategies have been configured for your organization, or they are provided in the request</li></ol>\n\nPermissions requir"
+        },
+        {
+          "info": {
+            "name": "getSourceControl_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/sourceControl/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for ownerType."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization"
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the source control configuration settings for an organization or an application.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addSourceControl",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/sourceControl/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for ownerType."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for root organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create a source control configuration setting.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updateSourceControl",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/sourceControl/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for ownerType."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update an existing SCM setting.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteSourceControl",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/sourceControl/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for ownerType."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the value for internal ownerId."
+              }
+            ]
+          },
+          "docs": "Use this method to delete a SCM setting for the specified ownerType/ownerId.\n\nPermissions required: Edit IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

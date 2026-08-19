@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Component Search API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Component Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getCveAffectedComponents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/componentSearch/cveAffectedComponents",
+            "params": [
+              {
+                "name": "cveId",
+                "value": "CVE-2025-55182",
+                "type": "query",
+                "description": "CVE identifier(s). Can be specified multiple times for multiple CVEs."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-indexed, minimum: 1, default: 1)"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (1-1000, default: 10)"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort field: applicationName, applicationId, componentName, evaluationDate, stage, activeWaiver, violating, cveId. When not specified, sorts by applicationName (asc), then componentName (asc), then cveId (asc)"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: asc or desc, default: asc"
+              }
+            ]
+          },
+          "docs": "Retrieve paginated list of applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). Default page number is 1, default page size is 10. Results can be sorted by any column. Default sorting (when sortBy is not specified): applicationName (asc), then componentName (asc), then cveId (asc). When sortBy is explicitly specified, only single-field sorting is applied with the specif"
+        },
+        {
+          "info": {
+            "name": "exportComponentSearchReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/componentSearch/downloadComponentSearchReport",
+            "params": [
+              {
+                "name": "cveId",
+                "value": "CVE-2025-55182",
+                "type": "query",
+                "description": "CVE identifier(s). Can be specified multiple times for multiple CVEs. Defaults to CVE-2025-55182 if not specified."
+              }
+            ]
+          },
+          "docs": "Export component search results as CSV (streaming). Identifies applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). If no CVE ID is specified, defaults to CVE-2025-55182 (React2Shell) for backwards compatibility. Results are streamed to avoid memory issues with large datasets. Keep-alive mechanism prevents ALB timeouts during long-running queries. <p>Permissions Require"
+        },
+        {
+          "info": {
+            "name": "searchComponent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/search/component",
+            "params": [
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "query",
+                "description": "Specify the evaluation report stage."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component hash."
+              },
+              {
+                "name": "componentIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Specify the componentIdentifier object containing the format and coordinates."
+              },
+              {
+                "name": "packageUrl",
+                "value": "",
+                "type": "query",
+                "description": "Enter the packageUrl."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the component details from the application evaluation reports by specifying the component search parameters, format and evaluation stage. You can specify the component search parameters in any one of the 3 ways:<ul><li>SHA1 hash of the component</li><li>Component identifier object containing the coordinates of the component and its format</li><li>packageUrl string</li></ul>Use of wildcards when searching using the GAVEC(coordinates) is supported.\n\nPermissions required"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "b5edf1c5-9ed4-4213-b570-f8ad83e1dda9",
+      "name": "Config OIDC",
+      "description": {
+        "content": "Use this REST API to manage the OIDC configuration for IQ Server.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d83356f-39d1-464e-ac65-f454da84dc4d",
+          "name": "delete Oidc Configuration",
+          "request": {
+            "name": "delete Oidc Configuration",
+            "description": {
+              "content": "Use this method to delete the OIDC configuration.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "oidc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ece4bb44-04fa-4eca-ad56-3cb0c410638f",
+              "name": "OIDC is not configured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46966251-05d4-4914-a0da-d00f03412cf4",
+          "name": "get Oidc Configuration",
+          "request": {
+            "name": "get Oidc Configuration",
+            "description": {
+              "content": "Use this method to retrieve the OIDC configuration.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "oidc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f45b3061-d13c-46aa-9e57-9d0abf2f8aa7",
+              "name": "The response contains:\n - `oidcConfiguration` field that contains all the oidc configuration data \n - `oAuth2Configuration` field that contains the OAuth2 configuration required for oidc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"oauth2Configuration\": {\n    \"emailClaim\": \"string\",\n    \"exactMatchClaimsJson\": \"string\",\n    \"firstNameClaim\": \"string\",\n    \"groupsClaim\": \"string\",\n    \"idpIssuer\": \"string\",\n    \"idpJwks\": \"string\",\n    \"idpJwksUrl\": \"string\",\n    \"idpJwsAlgorithm\": \"string\",\n    \"lastNameClaim\": \"string\",\n    \"usernameClaim\": \"string\"\n  },\n  \"oidcConfiguration\": {\n    \"authorizationCustomParamsJson\": \"string\",\n    \"clientId\": \"string\",\n    \"clientSecret\": \"string\",\n    \"idpAuthorizationUrl\": \"string\",\n    \"idpIssuer\": \"string\",\n    \"idpTokenUrl\": \"string\",\n    \"tokenRequestCustomParamsJson\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73fe6bcf-4182-4504-a8d8-367d0689368a",
+              "name": "OIDC is not configured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c93d3b54-b8cc-4e56-9b47-3747e05ae8dc",
+          "name": "insert Or Update Oidc Configuration",
+          "request": {
+            "name": "insert Or Update Oidc Configuration",
+            "description": {
+              "content": "Use this method to enable SSO using OpenID Connect (OIDC). This request uses the content type application/json to transmit the configuration to IQ Server.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "oidc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oauth2Configuration\": {\n    \"emailClaim\": \"<string>\",\n    \"exactMatchClaimsJson\": \"<string>\",\n    \"firstNameClaim\": \"<string>\",\n    \"groupsClaim\": \"<string>\",\n    \"idpIssuer\": \"<string>\",\n    \"idpJwks\": \"<string>\",\n    \"idpJwksUrl\": \"<string>\",\n    \"idpJwsAlgorithm\": \"<string>\",\n    \"lastNameClaim\": \"<string>\",\n    \"usernameClaim\": \"<string>\"\n  },\n  \"oidcConfiguration\": {\n    \"authorizationCustomParamsJson\": \"<string>\",\n    \"clientId\": \"<string>\",\n    \"clientSecret\": \"<string>\",\n    \"idpAuthorizationUrl\": \"<string>\",\n    \"idpIssuer\": \"<string>\",\n    \"idpTokenUrl\": \"<string>\",\n    \"tokenRequestCustomParamsJson\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b22b673-8718-43c6-a6eb-2e1843fb1448",
+              "name": "Configuration successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oauth2Configuration\": {\n    \"emailClaim\": \"<string>\",\n    \"exactMatchClaimsJson\": \"<string>\",\n    \"firstNameClaim\": \"<string>\",\n    \"groupsClaim\": \"<string>\",\n    \"idpIssuer\": \"<string>\",\n    \"idpJwks\": \"<string>\",\n    \"idpJwksUrl\": \"<string>\",\n    \"idpJwsAlgorithm\": \"<string>\",\n    \"lastNameClaim\": \"<string>\",\n    \"usernameClaim\": \"<string>\"\n  },\n  \"oidcConfiguration\": {\n    \"authorizationCustomParamsJson\": \"<string>\",\n    \"clientId\": \"<string>\",\n    \"clientSecret\": \"<string>\",\n    \"idpAuthorizationUrl\": \"<string>\",\n    \"idpIssuer\": \"<string>\",\n    \"idpTokenUrl\": \"<string>\",\n    \"tokenRequestCustomParamsJson\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "926f512c-ef4a-47b9-bc0a-6316b1f4d385",
+              "name": "Invalid configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oauth2Configuration\": {\n    \"emailClaim\": \"<string>\",\n    \"exactMatchClaimsJson\": \"<string>\",\n    \"firstNameClaim\": \"<string>\",\n    \"groupsClaim\": \"<string>\",\n    \"idpIssuer\": \"<string>\",\n    \"idpJwks\": \"<string>\",\n    \"idpJwksUrl\": \"<string>\",\n    \"idpJwsAlgorithm\": \"<string>\",\n    \"lastNameClaim\": \"<string>\",\n    \"usernameClaim\": \"<string>\"\n  },\n  \"oidcConfiguration\": {\n    \"authorizationCustomParamsJson\": \"<string>\",\n    \"clientId\": \"<string>\",\n    \"clientSecret\": \"<string>\",\n    \"idpAuthorizationUrl\": \"<string>\",\n    \"idpIssuer\": \"<string>\",\n    \"idpTokenUrl\": \"<string>\",\n    \"tokenRequestCustomParamsJson\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a057037-3e0e-4cd8-9155-fa15c6a843c9",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Config OIDC API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

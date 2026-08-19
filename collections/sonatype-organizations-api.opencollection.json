@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Organizations API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getOrganizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/organizations",
+            "params": [
+              {
+                "name": "organizationName",
+                "value": "",
+                "type": "query",
+                "description": "Enter the organization names."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve organizations with names matching those specified or all if not specified.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addOrganization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to add a new organization.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getOrganizationsByIds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/organizations/byid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Enter the internal organization IDs."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve organizations by their internal IDs.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getOrganization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the organization id."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the details of an organization by providing the organization id.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteOrganization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the organization id to be deleted."
+              }
+            ]
+          },
+          "docs": "Use this method to delete an existing organization, by providing the organization id.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "moveOrganization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/organizations/:organizationId/move/destination/:destinationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the organization to be moved under the new parent."
+              },
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the new parent organization."
+              },
+              {
+                "name": "failEarlyOnError",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use this method to change the parent organization.\n\nPermissions required: Edit IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

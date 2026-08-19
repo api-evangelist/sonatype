@@ -1,0 +1,897 @@
+{
+  "item": [
+    {
+      "id": "a44d3efb-e49f-4ead-b5ad-e933459dab8b",
+      "name": "Reports",
+      "description": {
+        "content": "Use this REST API to view application scan reports, generate a list of stale waivers, view existing policy waivers on components, view quarantined components and retrieve additional metrics data. ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "735d9922-f15f-4af0-bae4-69b79ae3c433",
+          "name": "get All 1",
+          "request": {
+            "name": "get All 1",
+            "description": {
+              "content": "Use this method to view all application reports for applications to which  you have access. \n\nPermissions required: View IQ Elements ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9ec7555-c391-4e48-9a60-58e3256b9b3f",
+              "name": "The response JSON contains URLs to view the report data in html and pdf format, for each application to which you have access.\n\nThe response field stage indicates the stage at which the policy evaluation was executed, such as 'develop', 'build' and 'release' The response field latestReportHtmlUrl is a relative link to view the most recent report. Response fields reportPdfUrl and reportHtmlUrl are links to view the pdf version of the report.The response field reportDataUrl is a link to view the most recent report data. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"applicationId\": \"string\",\n    \"embeddableReportHtmlUrl\": \"string\",\n    \"evaluationDate\": \"1973-10-26T09:14:58.883Z\",\n    \"latestReportHtmlUrl\": \"string\",\n    \"reportDataUrl\": \"string\",\n    \"reportHtmlUrl\": \"string\",\n    \"reportPdfUrl\": \"string\",\n    \"stage\": \"string\"\n  },\n  {\n    \"applicationId\": \"string\",\n    \"embeddableReportHtmlUrl\": \"string\",\n    \"evaluationDate\": \"1969-09-18T00:36:02.764Z\",\n    \"latestReportHtmlUrl\": \"string\",\n    \"reportDataUrl\": \"string\",\n    \"reportHtmlUrl\": \"string\",\n    \"reportPdfUrl\": \"string\",\n    \"stage\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02fb0791-9fc9-4722-8a03-b01a5a9ef9cd",
+          "name": "get By Application Id",
+          "request": {
+            "name": "get By Application Id",
+            "description": {
+              "content": "Use this method to retrieve the application reports for the specified application Id. You can view application reports only for applications to which you have access. \n\nPermissions required: View IQ Elements ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f768d190-af52-4cd3-94b6-5b9245420a72",
+              "name": "The response JSON contains the URLs to access the latest scan report for the applicationId provided. \n\nThe response field `stage` indicates the stage at which the policy evaluation was executed, such as 'develop', 'build', 'release'.  The response field `latestReportHtmlUrl` is a relative link to view the most recent report. Response fields `reportPdfURL` and `reportHtmlURL` are links to view the pdf version of the report. The response field `reportDataUrl` is a link to view the most recent report data. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"applicationId\": \"string\",\n    \"embeddableReportHtmlUrl\": \"string\",\n    \"evaluationDate\": \"1973-10-26T09:14:58.883Z\",\n    \"latestReportHtmlUrl\": \"string\",\n    \"reportDataUrl\": \"string\",\n    \"reportHtmlUrl\": \"string\",\n    \"reportPdfUrl\": \"string\",\n    \"stage\": \"string\"\n  },\n  {\n    \"applicationId\": \"string\",\n    \"embeddableReportHtmlUrl\": \"string\",\n    \"evaluationDate\": \"1969-09-18T00:36:02.764Z\",\n    \"latestReportHtmlUrl\": \"string\",\n    \"reportDataUrl\": \"string\",\n    \"reportHtmlUrl\": \"string\",\n    \"reportPdfUrl\": \"string\",\n    \"stage\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83ad95a1-81bb-4b78-9825-6a5c7a30c749",
+          "name": "get Report History For Application",
+          "request": {
+            "name": "get Report History For Application",
+            "description": {
+              "content": "Use this method to retrieve previous application scan reports (100 max.) for the specified application. You can view application reports only for applications to which you have access.  \n\nPermissions required: View IQ Elements ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "applications",
+                ":applicationId",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stage",
+                  "value": "<string>",
+                  "description": "Enter the specific stage, for which you want retrieve the scan history, e.g. 'build' "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Enter the exact no. of most recent reports to retrieve."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25c97b62-eefd-40a1-9799-1e5d76b56e3a",
+              "name": "The response contains evaluation details, embeddable link and URLs to view the reports in pdf and html formats. \n\n<ul><li><code>stage</code> indicates the stage at which policy evaluation was performed, such as 'develop', 'build' and 'release'.</li><li><code>latestReportHtmlUrl</code> is a relative link to view the most recent evaluation report.</li><li><code>reportPdfUrl</code> and <code>reportHtmlUrl</code> are links to view the pdf version of the report.</li><li><code>reportDataUrl</code> is a link to view the most recent report data.</li><li><code>scanId</code> is the Id associated with the evaluation report.</li><li><code>isReevaluation</code> indicates whether this policy evaluation is a re-evaluation of an older policy evaluation.</li><li><code>isForMonitoring</code> indicates whether this policy evaluation was triggered by continuous monitoring.</li><li><code>commitHash</code> is the hash string that identifies a specific commit in the source control system.</li><li><code>scanTriggerType</code> indicates the type of scan used for this evaluation, such as WEB_UI.</li><li><code>affectedComponentCount</code> is the number of components identified in this evaluation.</li><li><code>criticalComponentCount</code>, <code>severeComponentCount</code>, <code>moderateComponentCount</code> indicate the number of components with critical, severe and moderate policy violations respectively.</li><li><code>criticalPolicyViolationCount</code>, <code>severePolicyViolationCount</code>, <code>moderatePolicyViolationCount</code> indicate the number of critical, severe and moderate policy violations respectively.</li><li><code>policyEvaluationResult</code> contains details on the policy violation such as, coordinates of the violating component and the specific policy constraints that are violated.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "applications",
+                    ":applicationId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationId\": \"string\",\n  \"reports\": [\n    {\n      \"applicationId\": \"string\",\n      \"commitHash\": \"string\",\n      \"embeddableReportHtmlUrl\": \"string\",\n      \"evaluationDate\": \"1957-06-21T14:02:04.701Z\",\n      \"isForMonitoring\": true,\n      \"isReevaluation\": true,\n      \"latestReportHtmlUrl\": \"string\",\n      \"policyEvaluationId\": \"string\",\n      \"policyEvaluationResult\": {\n        \"affectedComponentCount\": 5506,\n        \"alerts\": [\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"criticalComponentCount\": 4636,\n        \"criticalPolicyViolationCount\": 6190,\n        \"criticalSastPolicyViolationCount\": 2009,\n        \"grandfatheredPolicyViolationCount\": 5617,\n        \"legacyViolationCount\": 6880,\n        \"moderateComponentCount\": 149,\n        \"moderatePolicyViolationCount\": 9675,\n        \"moderateSastPolicyViolationCount\": 4227,\n        \"sastAlerts\": [\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"severeComponentCount\": 9023,\n        \"severePolicyViolationCount\": 6941,\n        \"severeSastPolicyViolationCount\": 4435,\n        \"totalComponentCount\": 2667,\n        \"totalSastFindingCount\": 3405\n      },\n      \"reportDataUrl\": \"string\",\n      \"reportHtmlUrl\": \"string\",\n      \"reportPdfUrl\": \"string\",\n      \"scanId\": \"string\",\n      \"scanTriggerInternal\": false,\n      \"scanTriggerType\": \"string\",\n      \"scanTriggerTypeDisplayName\": \"string\",\n      \"scannerVersion\": \"string\",\n      \"stage\": \"string\"\n    },\n    {\n      \"applicationId\": \"string\",\n      \"commitHash\": \"string\",\n      \"embeddableReportHtmlUrl\": \"string\",\n      \"evaluationDate\": \"1982-08-13T06:43:10.734Z\",\n      \"isForMonitoring\": false,\n      \"isReevaluation\": true,\n      \"latestReportHtmlUrl\": \"string\",\n      \"policyEvaluationId\": \"string\",\n      \"policyEvaluationResult\": {\n        \"affectedComponentCount\": 6245,\n        \"alerts\": [\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"criticalComponentCount\": 2800,\n        \"criticalPolicyViolationCount\": 257,\n        \"criticalSastPolicyViolationCount\": 1668,\n        \"grandfatheredPolicyViolationCount\": 8089,\n        \"legacyViolationCount\": 379,\n        \"moderateComponentCount\": 1799,\n        \"moderatePolicyViolationCount\": 2688,\n        \"moderateSastPolicyViolationCount\": 6906,\n        \"sastAlerts\": [\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"actions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"severeComponentCount\": 137,\n        \"severePolicyViolationCount\": 7024,\n        \"severeSastPolicyViolationCount\": 595,\n        \"totalComponentCount\": 1027,\n        \"totalSastFindingCount\": 3584\n      },\n      \"reportDataUrl\": \"string\",\n      \"reportHtmlUrl\": \"string\",\n      \"reportPdfUrl\": \"string\",\n      \"scanId\": \"string\",\n      \"scanTriggerInternal\": false,\n      \"scanTriggerType\": \"string\",\n      \"scanTriggerTypeDisplayName\": \"string\",\n      \"scannerVersion\": \"string\",\n      \"stage\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70e86d4d-24be-4f66-8171-b35b53a2ad87",
+              "name": "Error in request. Check for missing or invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "applications",
+                    ":applicationId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1c655f5-3ac1-4b72-823e-7f16fa27687f",
+              "name": "Scan report history could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "applications",
+                    ":applicationId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46a9d5a1-d062-4294-9d54-525a3242933c",
+          "name": "get Components In Quarantine",
+          "request": {
+            "name": "get Components In Quarantine",
+            "description": {
+              "content": "Use this method to retrieve all repository components that are quarantined. The response contains violation details and the quarantine Id of the component. Use the quarantine Id,  to release the component from quarantine, using the Release from Quarantine REST API. \n\nPermissions required: View IQ Elements and access to the specific repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "components",
+                "quarantined"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0547decb-6904-4f93-9dee-99cd5fab9faf",
+              "name": "The JSON response returns the component details and policy violation details that are triggering the quarantine. If a quarantined component does not show any policy violation, it implies that the policy violations have been waived, but the component has not been released from quarantine. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "components",
+                    "quarantined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"componentsInQuarantine\": [\n    {\n      \"components\": [\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"quarantineId\": \"string\",\n            \"quarantineReleaseTime\": \"2007-03-20T16:47:25.786Z\",\n            \"quarantineTime\": \"1999-05-05T02:18:15.848Z\",\n            \"sha256\": \"string\",\n            \"thirdParty\": true\n          },\n          \"policyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"waivedPolicyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"quarantineId\": \"string\",\n            \"quarantineReleaseTime\": \"2018-04-27T07:44:35.627Z\",\n            \"quarantineTime\": \"1946-12-17T02:59:45.703Z\",\n            \"sha256\": \"string\",\n            \"thirdParty\": true\n          },\n          \"policyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"waivedPolicyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"repository\": {\n        \"auditEnabled\": true,\n        \"format\": \"string\",\n        \"namespaceConfusionProtectionEnabled\": true,\n        \"policyCompliantComponentSelectionEnabled\": true,\n        \"publicId\": \"string\",\n        \"quarantineEnabled\": true,\n        \"repositoryId\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"components\": [\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"quarantineId\": \"string\",\n            \"quarantineReleaseTime\": \"1992-02-20T10:46:00.135Z\",\n            \"quarantineTime\": \"2000-05-31T08:35:47.593Z\",\n            \"sha256\": \"string\",\n            \"thirdParty\": false\n          },\n          \"policyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"waivedPolicyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"quarantineId\": \"string\",\n            \"quarantineReleaseTime\": \"2006-05-16T12:22:39.726Z\",\n            \"quarantineTime\": \"1950-08-31T23:42:16.949Z\",\n            \"sha256\": \"string\",\n            \"thirdParty\": false\n          },\n          \"policyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"waivedPolicyViolations\": [\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fixTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"legacyViolationTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"openTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyViolationId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"policyWaiver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"threatLevel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waiveTime\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"repository\": {\n        \"auditEnabled\": false,\n        \"format\": \"string\",\n        \"namespaceConfusionProtectionEnabled\": false,\n        \"policyCompliantComponentSelectionEnabled\": true,\n        \"publicId\": \"string\",\n        \"quarantineEnabled\": false,\n        \"repositoryId\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8742541-3a56-47c1-b99a-5eb77a775b9f",
+          "name": "get Components With Waivers",
+          "request": {
+            "name": "get Components With Waivers",
+            "description": {
+              "content": "Use this method to retrieve existing policy waivers by components. For an up-to-date response, ensure that all application and repository reports are current and contain the most recent re-evaluation data.<p>You can specify the format/ecosystem of the component for a filtered result. <p>Permissions required: View IQ Elements and access to the specific applications and repositories ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "components",
+                "waivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Enter the format/ecosystem of the component"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32d18bb0-fe10-44f7-ad2b-3cd8725a046f",
+              "name": "The JSON response contains waivers grouped by application components and repository components. Waived violations for application components are listed per stage. Waived violations for repository components are listed in the Proxy stage. <p>The component hash is null if the waiver applies to all components or all versions of a component. It is truncated and meant to be used as an identifier to other REST API calls and not for use as checksum. <p>`isObsolete` indicates if a waived violation does not have a valid waiver information. This could happen when a waiver has been removed and the report has not been re-evaluated.<p>`matcherStrategy` can have values EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. <p>The response fields `associatedPackageUrl`, `componentIdentifier` and `displayName` are returned only if the waiver is of type ALL_VERSIONS OR EXACT_COMPONENTS and the component is not an unknown component .",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "components",
+                    "waivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationWaivers\": [\n    {\n      \"application\": {\n        \"contactUserName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"organizationId\": \"string\",\n        \"publicId\": \"string\"\n      },\n      \"stages\": [\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        },\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        }\n      ]\n    },\n    {\n      \"application\": {\n        \"contactUserName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"organizationId\": \"string\",\n        \"publicId\": \"string\"\n      },\n      \"stages\": [\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        },\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"repositoryWaivers\": [\n    {\n      \"repository\": {\n        \"auditEnabled\": false,\n        \"format\": \"string\",\n        \"namespaceConfusionProtectionEnabled\": true,\n        \"policyCompliantComponentSelectionEnabled\": true,\n        \"publicId\": \"string\",\n        \"quarantineEnabled\": false,\n        \"repositoryId\": \"string\",\n        \"type\": \"string\"\n      },\n      \"stages\": [\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        },\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        }\n      ]\n    },\n    {\n      \"repository\": {\n        \"auditEnabled\": false,\n        \"format\": \"string\",\n        \"namespaceConfusionProtectionEnabled\": true,\n        \"policyCompliantComponentSelectionEnabled\": false,\n        \"publicId\": \"string\",\n        \"quarantineEnabled\": false,\n        \"repositoryId\": \"string\",\n        \"type\": \"string\"\n      },\n      \"stages\": [\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        },\n        {\n          \"componentPolicyViolations\": [\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"component\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"waivedPolicyViolations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"stageId\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dacecd11-3965-496e-b374-a8f90a6ad5cc",
+          "name": "get Metrics",
+          "request": {
+            "name": "get Metrics",
+            "description": {
+              "content": "Use this method to retrieve metrics data such as policy evaluation metrics, violation and remediation metrics aggregated monthly or weekly.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"firstTimePeriod\": \"<string>\",\n  \"lastTimePeriod\": \"<string>\",\n  \"organizationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timePeriod\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc9601b4-a9b7-49a9-b6bf-01c4d295438e",
+              "name": "Select the media type JSON or csv for the preferred output format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationIds\": [\n    \"<string>\"\n  ],\n  \"firstTimePeriod\": \"<string>\",\n  \"lastTimePeriod\": \"<string>\",\n  \"organizationIds\": [\n    \"<string>\"\n  ],\n  \"timePeriod\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"aggregations\": [\n      {\n        \"discoveredCounts\": {\n          \"key_0\": {\n            \"key_0\": 9119\n          }\n        },\n        \"evaluationCount\": 118,\n        \"fixedCounts\": {\n          \"key_0\": {\n            \"key_0\": 5967\n          },\n          \"key_1\": {\n            \"key_0\": 1696,\n            \"key_1\": 4913\n          }\n        },\n        \"mttrCriticalThreat\": 232,\n        \"mttrLowThreat\": 6010,\n        \"mttrModerateThreat\": 1858,\n        \"mttrSevereThreat\": 971,\n        \"openCountsAtTimePeriodEnd\": {\n          \"key_0\": {\n            \"key_0\": 8183,\n            \"key_1\": 6530\n          },\n          \"key_1\": {\n            \"key_0\": 690\n          }\n        },\n        \"timePeriodStart\": \"string\",\n        \"waivedCounts\": {\n          \"key_0\": {\n            \"key_0\": 8718,\n            \"key_1\": 5053,\n            \"key_2\": 7854\n          },\n          \"key_1\": {\n            \"key_0\": 357,\n            \"key_1\": 2315\n          },\n          \"key_2\": {\n            \"key_0\": 7347,\n            \"key_1\": 5307\n          }\n        }\n      },\n      {\n        \"discoveredCounts\": {\n          \"key_0\": {\n            \"key_0\": 2841\n          }\n        },\n        \"evaluationCount\": 5223,\n        \"fixedCounts\": {\n          \"key_0\": {\n            \"key_0\": 6151,\n            \"key_1\": 9798\n          },\n          \"key_1\": {\n            \"key_0\": 8153\n          },\n          \"key_2\": {\n            \"key_0\": 5935,\n            \"key_1\": 3145\n          },\n          \"key_3\": {\n            \"key_0\": 2405\n          }\n        },\n        \"mttrCriticalThreat\": 3595,\n        \"mttrLowThreat\": 9179,\n        \"mttrModerateThreat\": 646,\n        \"mttrSevereThreat\": 5621,\n        \"openCountsAtTimePeriodEnd\": {\n          \"key_0\": {\n            \"key_0\": 3859,\n            \"key_1\": 4960\n          }\n        },\n        \"timePeriodStart\": \"string\",\n        \"waivedCounts\": {\n          \"key_0\": {\n            \"key_0\": 1871\n          },\n          \"key_1\": {\n            \"key_0\": 1339\n          },\n          \"key_2\": {\n            \"key_0\": 6421\n          },\n          \"key_3\": {\n            \"key_0\": 745\n          }\n        }\n      }\n    ],\n    \"applicationId\": \"string\",\n    \"applicationName\": \"string\",\n    \"applicationPublicId\": \"string\",\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\"\n  },\n  {\n    \"aggregations\": [\n      {\n        \"discoveredCounts\": {\n          \"key_0\": {\n            \"key_0\": 79,\n            \"key_1\": 1834\n          },\n          \"key_1\": {\n            \"key_0\": 9542\n          },\n          \"key_2\": {\n            \"key_0\": 7315,\n            \"key_1\": 716\n          },\n          \"key_3\": {\n            \"key_0\": 94,\n            \"key_1\": 6405\n          }\n        },\n        \"evaluationCount\": 669,\n        \"fixedCounts\": {\n          \"key_0\": {\n            \"key_0\": 2080,\n            \"key_1\": 8569\n          }\n        },\n        \"mttrCriticalThreat\": 7929,\n        \"mttrLowThreat\": 5891,\n        \"mttrModerateThreat\": 6814,\n        \"mttrSevereThreat\": 1419,\n        \"openCountsAtTimePeriodEnd\": {\n          \"key_0\": {\n            \"key_0\": 6636\n          },\n          \"key_1\": {\n            \"key_0\": 8347,\n            \"key_1\": 8723\n          }\n        },\n        \"timePeriodStart\": \"string\",\n        \"waivedCounts\": {\n          \"key_0\": {\n            \"key_0\": 1923\n          }\n        }\n      },\n      {\n        \"discoveredCounts\": {\n          \"key_0\": {\n            \"key_0\": 2767,\n            \"key_1\": 5528\n          },\n          \"key_1\": {\n            \"key_0\": 7041,\n            \"key_1\": 1675,\n            \"key_2\": 5059\n          }\n        },\n        \"evaluationCount\": 3051,\n        \"fixedCounts\": {\n          \"key_0\": {\n            \"key_0\": 6176,\n            \"key_1\": 3817,\n            \"key_2\": 7369\n          },\n          \"key_1\": {\n            \"key_0\": 8787,\n            \"key_1\": 6870\n          },\n          \"key_2\": {\n            \"key_0\": 551,\n            \"key_1\": 7330\n          }\n        },\n        \"mttrCriticalThreat\": 2684,\n        \"mttrLowThreat\": 6593,\n        \"mttrModerateThreat\": 9985,\n        \"mttrSevereThreat\": 1803,\n        \"openCountsAtTimePeriodEnd\": {\n          \"key_0\": {\n            \"key_0\": 9489\n          },\n          \"key_1\": {\n            \"key_0\": 8110,\n            \"key_1\": 5881,\n            \"key_2\": 2413\n          }\n        },\n        \"timePeriodStart\": \"string\",\n        \"waivedCounts\": {\n          \"key_0\": {\n            \"key_0\": 2775,\n            \"key_1\": 6461,\n            \"key_2\": 6496\n          },\n          \"key_1\": {\n            \"key_0\": 1653\n          },\n          \"key_2\": {\n            \"key_0\": 1742,\n            \"key_1\": 8059\n          },\n          \"key_3\": {\n            \"key_0\": 7534,\n            \"key_1\": 1615,\n            \"key_2\": 4604,\n            \"key_3\": 9731\n          }\n        }\n      }\n    ],\n    \"applicationId\": \"string\",\n    \"applicationName\": \"string\",\n    \"applicationPublicId\": \"string\",\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81710ecc-ca55-485e-b596-e7bb2a471061",
+          "name": "get Stale Waivers",
+          "request": {
+            "name": "get Stale Waivers",
+            "description": {
+              "content": "Stale waivers pose a risk because they could be applied unintentionally. Use this method to retrieve stale waivers to eliminate this risk for future application evaluations. \n\nPermissions required: View IQ Elements. You can view stale waivers only for applications/repositories  to which you have access. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "waivers",
+                "stale"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83e4de13-0ccf-4482-b96f-5255d270b2e3",
+              "name": "The response contains waiverId of the stale waiver, policyId and policyName of the policy being waived, comment, waiver scope, time created, expiry time and the waiver creator details. The response field staleEvaluations contains a list of applications or repositories that have not been evaluated since the waiver was created. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "waivers",
+                    "stale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"staleWaivers\": [\n    {\n      \"comment\": \"string\",\n      \"constraintFacts\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"createTime\": \"2016-11-01T06:30:15.430Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"expiryTime\": \"1976-10-23T06:56:54.240Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"staleEvaluations\": {\n        \"applications\": [\n          {\n            \"application\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"application\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"repositories\": [\n          {\n            \"repository\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"repository\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"waiverId\": \"string\"\n    },\n    {\n      \"comment\": \"string\",\n      \"constraintFacts\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"createTime\": \"2018-01-04T07:41:01.107Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"expiryTime\": \"2015-10-19T04:44:40.485Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"staleEvaluations\": {\n        \"applications\": [\n          {\n            \"application\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"application\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"repositories\": [\n          {\n            \"repository\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"repository\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"waiverId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca80e85f-2036-472b-862f-04ecc27e0e25",
+              "name": "Found waivers for applications/repositories that have not been evaluated since IQ Server version 76. Re-evaluating the repository is recommended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "waivers",
+                    "stale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ca5ba523-acf0-4dfb-93e6-663771e96835",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

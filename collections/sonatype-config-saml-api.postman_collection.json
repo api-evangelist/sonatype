@@ -1,0 +1,599 @@
+{
+  "item": [
+    {
+      "id": "9f45b744-14ae-4715-ba43-f3785ad48e52",
+      "name": "Config SAML",
+      "description": {
+        "content": "Use this REST API to manage the SAML configuration for IQ Server.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a1b294f-7742-4c63-a171-e6a07e24ac17",
+          "name": "delete Saml Configuration",
+          "request": {
+            "name": "delete Saml Configuration",
+            "description": {
+              "content": "Use this method to delete the SAML configuration.\n\nPermissions required: Edit System Configuration and Users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "saml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d8fd9e1-f914-41e8-904e-2fac301c1b14",
+              "name": "Successfully deleted the SAML configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "682a3e81-54d4-4d8b-b807-b8f24f60b9dd",
+              "name": "No SAML configuration found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04792547-0871-4dbc-be2a-09edef90ecc3",
+          "name": "get Saml Configuration",
+          "request": {
+            "name": "get Saml Configuration",
+            "description": {
+              "content": "Use this method to inspect the SAML configuration.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "saml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0375c21b-77ab-44b8-b17d-84980fc3fc3b",
+              "name": "The response contains:<ul><li>`identityProviderName` the name of the Identity Provider that is displayed on the login page when SAML is configured.</li><li>`entityId` is the URI that IQ Server uses to identify itself in requests to the SSOservice.</li><li>`firstNameAttribute` is the SAML attribute that IQ Server extracts from the login response of the identity provider and uses as the user's first name.</li><li>`lastNameAttribute` is the SAML attribute that IQ Server extracts from the login response of the identity provider and uses as the user's last name.</li><li>`emailAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the user's email address.</li><li>`usernameAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the username or id.</li><li>`groupAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the groups the user belongs to.</li><li>`validateResponseSignature` indicates whether the SAML responses from the identity provider  are cryptographically signed. A `null` value indicates that this setting is derived from the SAML metadata from the identity provider performing signature validation if a signing key (`KeyDescriptor`) is included.<li>`validateAssertionSignature` indicates whether the SAML assertions from the identity provider  are cryptographically signed. A `null` value indicates that this setting is derived from  the SAML metadata from the identity provider performing signature validation if a signing key (`KeyDescriptor`) is included.</li><li>`identityProviderMetadataXml` is the metadata of the identity provider.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emailAttributeName\": \"string\",\n  \"entityId\": \"string\",\n  \"firstNameAttributeName\": \"string\",\n  \"groupsAttributeName\": \"string\",\n  \"identityProviderMetadataXml\": \"string\",\n  \"identityProviderName\": \"string\",\n  \"lastNameAttributeName\": \"string\",\n  \"usernameAttributeName\": \"string\",\n  \"validateAssertionSignature\": false,\n  \"validateResponseSignature\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dac20ba-0dfe-49ac-b0cb-3199f153d057",
+              "name": "SAML is not configured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2228e959-db42-4a72-929b-b9302242e950",
+          "name": "insert Or Update Saml Configuration",
+          "request": {
+            "name": "insert Or Update Saml Configuration",
+            "description": {
+              "content": "Use this method to enable SSO using SAML. This request uses the content type multipart/form-data to transmit the configuration to IQ Server.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "saml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "identityProviderXml",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Enter the SAML metadata XML of your IdP. Refer to the IdP documentation to obtain this metadata."
+                },
+                {
+                  "key": "samlConfiguration",
+                  "value": "{\"emailAttributeName\":\"<string>\",\"entityId\":\"<string>\",\"firstNameAttributeName\":\"<string>\",\"groupsAttributeName\":\"<string>\",\"identityProviderName\":\"<string>\",\"lastNameAttributeName\":\"<string>\",\"usernameAttributeName\":\"<string>\",\"validateAssertionSignature\":\"<boolean>\",\"validateResponseSignature\":\"<boolean>\"}",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed3704eb-5e57-4518-a3ad-02f0c5e39f8f",
+              "name": "Configuration successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Enter the SAML metadata XML of your IdP. Refer to the IdP documentation to obtain this metadata.",
+                        "type": "text/plain"
+                      },
+                      "key": "identityProviderXml",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "samlConfiguration",
+                      "value": "{\"emailAttributeName\":\"<string>\",\"entityId\":\"<string>\",\"firstNameAttributeName\":\"<string>\",\"groupsAttributeName\":\"<string>\",\"identityProviderName\":\"<string>\",\"lastNameAttributeName\":\"<string>\",\"usernameAttributeName\":\"<string>\",\"validateAssertionSignature\":\"<boolean>\",\"validateResponseSignature\":\"<boolean>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e0bb2f8-8a36-454d-902e-745da2d17fda",
+              "name": "Invalid configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Enter the SAML metadata XML of your IdP. Refer to the IdP documentation to obtain this metadata.",
+                        "type": "text/plain"
+                      },
+                      "key": "identityProviderXml",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "samlConfiguration",
+                      "value": "{\"emailAttributeName\":\"<string>\",\"entityId\":\"<string>\",\"firstNameAttributeName\":\"<string>\",\"groupsAttributeName\":\"<string>\",\"identityProviderName\":\"<string>\",\"lastNameAttributeName\":\"<string>\",\"usernameAttributeName\":\"<string>\",\"validateAssertionSignature\":\"<boolean>\",\"validateResponseSignature\":\"<boolean>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9b54c84-4f04-48b3-8dd5-708ead7aab56",
+          "name": "get Metadata",
+          "request": {
+            "name": "get Metadata",
+            "description": {
+              "content": "Use this method to retrieve IQ Server's metadata service provider descriptor.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "saml",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2334dc1-bdd2-4c8f-abef-4d25051fdb43",
+              "name": "The IQ Server's metadata service provider descriptor in XML format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "20e52748-3dd8-43b4-b2b4-77d9075b7a8f",
+              "name": "SAML is not configured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "saml",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c79ffe67-65f5-4031-9afe-b064a51f0f51",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Config SAML API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

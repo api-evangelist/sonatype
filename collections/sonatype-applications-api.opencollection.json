@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Applications API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getApplications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications",
+            "params": [
+              {
+                "name": "publicId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the applicationId."
+              },
+              {
+                "name": "includeCategories",
+                "value": "",
+                "type": "query",
+                "description": "Set this parameter to `true` to obtain the application tags (application categories) in the response."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the application details for the applicationId(s) provided.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create an application under an organization. Use the Organization REST API to obtain organizationId.\n\nPermissions required: Add Application (on parent organization)"
+        },
+        {
+          "info": {
+            "name": "getApplicationsByOrganizationId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications/organization/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the organizationId."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve application details for all applications under the organizationId provided.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationId."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the application details, by providing the applicationId.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updateApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update the application name, application tags or the contact user name for an existing application by providing the applicationId. \n\nNOTE: This method cannot be used to change the organizationId of an application.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationId to be deleted."
+              }
+            ]
+          },
+          "docs": "Use this method to permanently delete an existing application and all data associated with it. This action cannot be un-done. Before deleting, confirm that the application being deleted does not impact any integrations that could depend on it.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "moveApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationId/move/organization/:organizationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationId of the application to be moved."
+              },
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the organizationId of the destination organization."
+              }
+            ]
+          },
+          "docs": "Use this method to move an application from one organization to another.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "cloneApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/applications/:sourceApplicationId/clone",
+            "params": [
+              {
+                "name": "sourceApplicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationId for the application to be cloned."
+              },
+              {
+                "name": "clonedApplicationName",
+                "value": "",
+                "type": "query",
+                "description": "Enter the application name for the new cloned application."
+              },
+              {
+                "name": "clonedApplicationPublicId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the applicationPublicId for the cloned application."
+              }
+            ]
+          },
+          "docs": "Use this method to clone an existing application.\n\nPermissions required: Add Application (on the parent organization)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

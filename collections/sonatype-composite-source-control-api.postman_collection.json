@@ -1,0 +1,161 @@
+{
+  "item": [
+    {
+      "id": "64ecab49-8c0f-4fce-a24d-9eaa894c6d73",
+      "name": "Composite Source Control",
+      "description": {
+        "content": "Use this REST API to access the composite source control management configuration (SCM) for an application or organization.\n\nComposite source control configuration is defined as the configuration that is inherited from the parent organization or is directly assigned.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17c92391-f593-4c66-b530-b43eb51cc6a4",
+          "name": "get Composite Source Control By Owner",
+          "request": {
+            "name": "get Composite Source Control By Owner",
+            "description": {
+              "content": "Use this method to retrieve the composite source control management (SCM) configuration settings.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compositeSourceControl",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Select the ownerType of the entity (organization or application) for which you want to retrieve the composite source control configuration settings."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the id of the application or organization for which you want to retrieve the composite source control configuration settings"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "944076c5-a751-44eb-a771-260ec52c144f",
+              "name": "The response contains values for the SCM configuration. For each value, the corresponding parent value will be shown, if applicable.<ul><li><code>id</code> is the internal identifier for the SCM configuration.</li><li><code>ownerId</code> is the identifier for the ownerType specified.</li><li><code>repositoryUrl</code> indicates the URL of application/organization. Will indicate 'null' for organizations.</li><li><code>provider</code> is the name of the source code host for the parent. Values can be Azure, GitHub, GitLab and Bitbucket.</li><li><code>username</code> is returned if found for the specific provider. Currently, the values are available for Bitbucket Server and Bitbucket Cloud.</li><li><code>token</code> is obfuscated and indicates the composite configuration for the source control host.<li><code>baseBranch</code> shows the base branch name.<li><code>remediationPullRequestsEnabled</code> indicates if the Automated Pull Request feature is enabled.</li><li><code>statusChecksEnabled</code> indicates if the status checks for the source code are enabled.</li><li><code>pullRequestCommentingEnabled</code> indicates if PR commenting is enabled for this application/organization.</li><li><code>sourceControlEvaluationsEnabled</code> indicates if the evaluations triggered by the IQ Server are enabled, for the Continuous Risk Profile feature.</li><li><code>sshEnabled</code> indicates if ssh settings are enabled.</li><li><code>commitStatusEnabled</code> indicates if commit status check is enabled.</li>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compositeSourceControl",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Select the ownerType of the entity (organization or application) for which you want to retrieve the composite source control configuration settings."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the id of the application or organization for which you want to retrieve the composite source control configuration settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticationType\": {\n    \"parentName\": \"string\",\n    \"parentValue\": \"string\",\n    \"value\": \"string\"\n  },\n  \"baseBranch\": {\n    \"parentName\": \"string\",\n    \"parentValue\": \"string\",\n    \"value\": \"string\"\n  },\n  \"closePrAfterDays\": {\n    \"parentName\": \"string\",\n    \"parentValue\": 5370,\n    \"value\": 3709\n  },\n  \"closePrAfterDaysOpenEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": false,\n    \"value\": false\n  },\n  \"closePrOnFailedChecksEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": false,\n    \"value\": true\n  },\n  \"commitStatusEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": false,\n    \"value\": false\n  },\n  \"githubApp\": {\n    \"parentName\": \"string\",\n    \"parentValue\": {\n      \"accountName\": \"string\",\n      \"configurationDate\": \"string\",\n      \"id\": \"string\",\n      \"installationId\": 5337,\n      \"name\": \"string\"\n    },\n    \"value\": {\n      \"accountName\": \"string\",\n      \"configurationDate\": \"string\",\n      \"id\": \"string\",\n      \"installationId\": 3592,\n      \"name\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"innerSourceAutomatedUpdatesEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": true,\n    \"value\": false\n  },\n  \"manualPullRequestsEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": true,\n    \"value\": false\n  },\n  \"ownerId\": \"string\",\n  \"provider\": {\n    \"parentName\": \"string\",\n    \"parentValue\": \"string\",\n    \"value\": \"string\"\n  },\n  \"pullRequestCommentingEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": false,\n    \"value\": false\n  },\n  \"remediationPullRequestsEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": true,\n    \"value\": false\n  },\n  \"repositoryUrl\": \"string\",\n  \"sourceControlEvaluationsEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": true,\n    \"value\": true\n  },\n  \"sourceControlScanTarget\": {\n    \"parentName\": \"string\",\n    \"parentValue\": \"string\",\n    \"value\": \"string\"\n  },\n  \"sshEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": true,\n    \"value\": true\n  },\n  \"statusChecksEnabled\": {\n    \"parentName\": \"string\",\n    \"parentValue\": false,\n    \"value\": false\n  },\n  \"token\": {\n    \"parentName\": \"string\",\n    \"parentValue\": \"string\",\n    \"value\": \"string\"\n  },\n  \"username\": {\n    \"parentName\": \"string\",\n    \"parentValue\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f1a85981-6dfc-4ff7-ac2b-b49660ce34e7",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Composite Source Control API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

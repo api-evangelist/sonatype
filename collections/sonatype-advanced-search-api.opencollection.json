@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Advanced Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "searchIndex",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/search/advanced",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Enter your search query here"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Enter the no. of results that should be visible per page"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Enter the page no. for the page containing results"
+              },
+              {
+                "name": "allComponents",
+                "value": "",
+                "type": "query",
+                "description": "Set to `true` to retrieve results that include components with no violations"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use this method to perform an Advanced Search. "
+        },
+        {
+          "info": {
+            "name": "getExportResults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/search/advanced/export/csv",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A well-formed search query."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Enter the no. of results that should be visible per page, unset gives all results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Enter the page no. for the page containing results"
+              },
+              {
+                "name": "allComponents",
+                "value": "",
+                "type": "query",
+                "description": "Set to `true` to retrieve results that include components with no violations."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use this method to generate a csv file containing your search results. The default delimiter in the generated file is comma. Use the advancedSearchCSVExportDelimiter property of the Configuration REST API to change the delimiter in the generated file."
+        },
+        {
+          "info": {
+            "name": "createSearchIndexAsync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/search/advanced/index"
+          },
+          "docs": "Use this method to create or rebuild the index for Advanced Search. This is a resource intensive operation. Avoid creating indexes during peak usage hours.\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

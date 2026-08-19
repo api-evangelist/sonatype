@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Config OIDC API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Config OIDC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getOidcConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/oidc"
+          },
+          "docs": "Use this method to retrieve the OIDC configuration.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "insertOrUpdateOidcConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/oidc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to enable SSO using OpenID Connect (OIDC). This request uses the content type application/json to transmit the configuration to IQ Server.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteOidcConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/oidc"
+          },
+          "docs": "Use this method to delete the OIDC configuration.\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

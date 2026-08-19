@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Reports API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAll_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/reports/applications"
+          },
+          "docs": "Use this method to view all application reports for applications to which  you have access. \n\nPermissions required: View IQ Elements "
+        },
+        {
+          "info": {
+            "name": "getByApplicationId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/reports/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the application reports for the specified application Id. You can view application reports only for applications to which you have access. \n\nPermissions required: View IQ Elements "
+        },
+        {
+          "info": {
+            "name": "getReportHistoryForApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/reports/applications/:applicationId/history",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal application Id. You can use the Applications REST API to get the internal application Id. "
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "query",
+                "description": "Enter the specific stage, for which you want retrieve the scan history, e.g. 'build' "
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Enter the exact no. of most recent reports to retrieve."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve previous application scan reports (100 max.) for the specified application. You can view application reports only for applications to which you have access.  \n\nPermissions required: View IQ Elements "
+        },
+        {
+          "info": {
+            "name": "getComponentsInQuarantine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/reports/components/quarantined"
+          },
+          "docs": "Use this method to retrieve all repository components that are quarantined. The response contains violation details and the quarantine Id of the component. Use the quarantine Id,  to release the component from quarantine, using the Release from Quarantine REST API. \n\nPermissions required: View IQ Elements and access to the specific repository."
+        },
+        {
+          "info": {
+            "name": "getComponentsWithWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/reports/components/waivers",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Enter the format/ecosystem of the component"
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve existing policy waivers by components. For an up-to-date response, ensure that all application and repository reports are current and contain the most recent re-evaluation data.<p>You can specify the format/ecosystem of the component for a filtered result. <p>Permissions required: View IQ Elements and access to the specific applications and repositories "
+        },
+        {
+          "info": {
+            "name": "getMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/reports/metrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to retrieve metrics data such as policy evaluation metrics, violation and remediation metrics aggregated monthly or weekly.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getStaleWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/reports/waivers/stale"
+          },
+          "docs": "Stale waivers pose a risk because they could be applied unintentionally. Use this method to retrieve stale waivers to eliminate this risk for future application evaluations. \n\nPermissions required: View IQ Elements. You can view stale waivers only for applications/repositories  to which you have access. "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

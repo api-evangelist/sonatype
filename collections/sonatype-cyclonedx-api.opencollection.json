@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search CycloneDX API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CycloneDX",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getByReportId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/cycloneDx/:cdxVersion/:applicationId/reports/:reportId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal applicationId for the application you want to generate the SBOM. You can also retrieve the applicationId using the Application REST API."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the reportId to generate the SBOM for the application for a specific scan report."
+              },
+              {
+                "name": "cdxVersion",
+                "value": "",
+                "type": "path",
+                "description": "Possible values are 1.1|1.2|1.3|1.4|1.5|1.6."
+              }
+            ]
+          },
+          "docs": "Use this method to generate a CycloneDX SBOM for an application.<p>Permissions Required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getLatest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/cycloneDx/:cdxVersion/:applicationId/stages/:stageId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal applicationId for the application you want to generate the SBOM. You can also retrieve the applicationId using the Application REST API."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the stageId to generate the SBOM based on the latest application policy evaluation at that stage. Allowed values for stageId are 'develop', 'source', 'build', 'stage-release', 'release', and, 'operate'."
+              },
+              {
+                "name": "cdxVersion",
+                "value": "",
+                "type": "path",
+                "description": "Possible values are 1.1|1.2|1.3|1.4|1.5|1.6."
+              }
+            ]
+          },
+          "docs": "Use this method to generate a CycloneDX SBOM for an application.<p>Permissions Required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

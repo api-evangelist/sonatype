@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Waiver Reasons API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policy Waiver Reasons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getPolicyWaiverReasons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyWaiverReasons"
+          },
+          "docs": "Use this method to retrieve all policy waiver reasons.\n\nPermissions required: None"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

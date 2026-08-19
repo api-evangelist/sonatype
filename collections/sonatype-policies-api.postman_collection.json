@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "2e543c73-8ff4-4c74-87ae-19e1df00dcbc",
+      "name": "Policies",
+      "description": {
+        "content": "Use this REST API to retrieve details on all existing policies in your instance of Lifecycle.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2b42acb-9492-4ce7-98f7-3888502b7008",
+          "name": "get Policies",
+          "request": {
+            "name": "get Policies",
+            "description": {
+              "content": "Use this method to retrieve all existing policies.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e427c329-3f15-487b-ab99-50890e6aeb94",
+              "name": "The response contains a `policies` object which contains a list of:<ul><li>`id` is the policyId. It can be used in the GET method for endpoint /api/v2/policyViolations to retrieve policy violations for the policy, and other similar operations.</li><li>`name` is the name of the policy.</li><li>`ownerType` is the ownerType.</li><li>`ownerId` is the internal id associated with the ownerType.</li><li>`threatLevel` is the threat level that is set for this policy.</li><li>`policyType` indicates the type for the policy. Values can be `Security`, `License`, `Quality` or `Other`.</li>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policies\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"ownerId\": \"string\",\n      \"ownerType\": \"REPOSITORY_MANAGER\",\n      \"policyType\": \"string\",\n      \"threatLevel\": 9075\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"ownerId\": \"string\",\n      \"ownerType\": \"REPOSITORY\",\n      \"policyType\": \"string\",\n      \"threatLevel\": 358\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "743b97c9-0340-4926-bc4b-2904d853810e",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

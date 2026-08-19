@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Config Reverse Proxy Authentication API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Config Reverse Proxy Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getConfiguration_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication"
+          },
+          "docs": "Use this method to inspect an existing reverse proxy server configuration.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "setConfiguration_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to configure the reverse proxy server.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteConfiguration_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication"
+          },
+          "docs": "Use this method to remove an existing reverse proxy server configuration.\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

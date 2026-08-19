@@ -1,0 +1,389 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Waivers API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policy Waivers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "addWaiverToTransitivePolicyViolationsByOwnerStageComponent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/stages/:stageId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Indicates the scope of the waiver that will be created."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above. E.g. applicationId for ownerType 'application' or organizationId for ownerType 'organization'."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the stageId corresponding to the evaluation stage at which you want to create a waiver. Possible values are 'develop', 'source', 'build', 'stage-release', 'release' and 'operate'."
+              },
+              {
+                "name": "componentIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component identifier and coordinates of the component for which you want to waive the transitive violations."
+              },
+              {
+                "name": "packageUrl",
+                "value": "",
+                "type": "query",
+                "description": "Enter the package URL of the component for which you want to waive the transitive violations."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "Enter the hash for the component for which you want to waive the transitive violations "
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to add a waiver for all transitive violations for a given component, detected in the latest scan at the stage specified.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "getTransitivePolicyWaiversByAppScanComponent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/:scanId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain the policy violations that are within the scope specified."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the scanId (reportId) of the scan for which you want to retrieve the waivers on transitive policy violations occurring due the dependencies of a component."
+              },
+              {
+                "name": "componentIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId."
+              },
+              {
+                "name": "packageUrl",
+                "value": "",
+                "type": "query",
+                "description": "Enter the package URL for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "Enter the hash for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve all waivers on policy violations due to transitive dependencies for a specific component detected in a specific scan. Any one of the input parameters, i.e. componentIdentifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addWaiverToTransitivePolicyViolationsByAppScanComponent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/:scanId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Indicates the scope of the waiver that will be created."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the scanId (reportId) of the evaluation report that shows the transitive component."
+              },
+              {
+                "name": "componentIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component identifier of the transitive component on which you want to create a policy waiver."
+              },
+              {
+                "name": "packageUrl",
+                "value": "",
+                "type": "query",
+                "description": "Enter the package URL of the transitive component on which you want to create a policy waiver."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "Enter the hash of the transitive component on which you want to create a policy waiver."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create a policy waiver on a transitive component detected during the specified scan. NOTE: Any one of the input parameters, i.e. component identifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "requestPolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/waiverRequests/:policyViolationId",
+            "params": [
+              {
+                "name": "policyViolationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policyViolationId for which you want to trigger the waiver request event."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deprecated since IQ Server 1.192. Triggers a 'Waiver Request' webhook event. Deprecated because the webhook event is now integrated into the policy waiver request process. Please use `api/v2/policyWaiverRequests{ownerType}/policyViolation/{policyViolationId}` instead. Scheduled for removal in December 2025."
+        },
+        {
+          "info": {
+            "name": "getPolicyWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve waiver details for all policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addBulkPolicyWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create policy waivers for multiple policy violations.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "addPolicyWaiverByPolicyViolationId",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyViolationId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+              },
+              {
+                "name": "policyViolationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policyViolationId for the policy on which you want to create a waiver. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create a policy waiver.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "getPolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "policyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policyWaiverId for which you want to retrieve the waiver details."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve waiver details for the waiverId specified.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updatePolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Indicates the scope of the policy waiver. Possible values are application, organization, repository, repository_manager, and repository_container."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the `ownerType` provided above. E.g. `applicationId` if the `ownerType` is application."
+              },
+              {
+                "name": "policyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the policy waiver."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update an existing policy waiver.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "deletePolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. A waiver corresponding to the policyWaiverId provided and within the scope specified will be deleted."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "policyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policyWaiverId to be deleted."
+              }
+            ]
+          },
+          "docs": "Use this method to delete a waiver, specified by the policyWaiverId.\n\nPermissions required: Waive Policy Violations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

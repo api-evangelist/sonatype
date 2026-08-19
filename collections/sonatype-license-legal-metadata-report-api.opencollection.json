@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search License Legal Metadata Report API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "License Legal Metadata Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getLicenseLegalApplicationReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the application id or public id."
+              }
+            ]
+          },
+          "docs": "Use this REST API to retrieve the raw license legal data for components in an application.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalApplicationReport_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the application id or public id."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the stageId."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the raw license legal data for components in an application based on the application scan at a specific stage.\n\nPermissions required: Review Legal Obligations For Components Licenses "
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalApplicationHTMLReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the application id or public id."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the stageId."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the license legal data for components in an application at a specific stage, in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalCustomApplicationHTMLReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the application id or public id."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the stageId."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve and customize the license legal data for components in an application at a specific stage, in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalCustomApplicationHTMLReport_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report/templateId/:templateId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the application id or public id."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the stageId."
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the templateId for the HTML report format."
+              }
+            ]
+          },
+          "docs": "Use this method to generate a license legal report in the specified HTML template format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalMultiApplicationReportFromActiveUserFilter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/activeUserFilter/report/templateId/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the templateId for the license legal data."
+              }
+            ]
+          },
+          "docs": "Use this method to generate license legal data in HTML format for applications ,on which the logged in user has permissions.\n\nPermission required: Review Legal Obligations For Components Licenses"
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalMultiApplicationHTMLReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/report"
+          },
+          "docs": "Use this method to generate license legal data in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalCustomMultiApplicationHTMLReport_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/report/templateId/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the `templateId` for the HTML report."
+              }
+            ]
+          },
+          "docs": "Use this method to generate license legal data for all applications in HTML format based on the given template.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+        },
+        {
+          "info": {
+            "name": "getLicenseLegalComponentReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/:ownerType/:ownerId/component",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType"
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerId corresponding to the ownerType."
+              },
+              {
+                "name": "componentIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Enter the componentIdentifier consisting of format and coordinates."
+              },
+              {
+                "name": "packageUrl",
+                "value": "",
+                "type": "query",
+                "description": "Enter the package URL."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component hash."
+              },
+              {
+                "name": "identificationSource",
+                "value": "",
+                "type": "query",
+                "description": "Enter the identification source if a third party scan is used."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the scanId for the report where the component was identified (required if identified by third party scan)."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the raw license legal data for a component by specifying the component identifier or package URL or the component hash.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

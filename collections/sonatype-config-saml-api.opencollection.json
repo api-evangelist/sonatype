@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Config SAML API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Config SAML",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getSamlConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/saml"
+          },
+          "docs": "Use this method to inspect the SAML configuration.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "insertOrUpdateSamlConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/saml",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "identityProviderXml",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "samlConfiguration",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Use this method to enable SSO using SAML. This request uses the content type multipart/form-data to transmit the configuration to IQ Server.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteSamlConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/saml"
+          },
+          "docs": "Use this method to delete the SAML configuration.\n\nPermissions required: Edit System Configuration and Users."
+        },
+        {
+          "info": {
+            "name": "getMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/saml/metadata"
+          },
+          "docs": "Use this method to retrieve IQ Server's metadata service provider descriptor.\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

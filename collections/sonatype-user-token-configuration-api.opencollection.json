@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search User Token Configuration API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Token Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getConfiguration_7",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/userTokens"
+          },
+          "docs": "Use this method to retrieve user token configuration.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "updateConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/userTokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update user token configuration. Null values are ignored (no change). Returns the current configuration after applying changes.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "resetConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/userTokens",
+            "params": [
+              {
+                "name": "property",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Use this method to reset user token configuration properties to system defaults. Returns the current configuration after reset.\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

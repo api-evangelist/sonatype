@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search CI Configuration API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CI Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/ci/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "The owner type (application or organization)"
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "The internal ID of the owner"
+              },
+              {
+                "name": "direct",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to retrieve only direct configuration, false (default) to retrieve merged configuration from hierarchy"
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve CI integration configuration for the specified owner.\n\nSet the `direct` query parameter to `true` to retrieve only the configuration directly associated with the specified owner. Set it to `false` (default) to retrieve the merged configuration from the organization hierarchy, where configurations from parent organizations are combined with lower levels taking precedence.\n\nThe response includes a `source` map that indicates which owner (organization or application) con"
+        },
+        {
+          "info": {
+            "name": "setConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/ci/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "The owner type (application or organization)"
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "The internal ID of the owner"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create or update CI integration configuration for the specified owner.\n\nThe configuration is stored as a JSON object to support various CI systems (GitHub Actions, GitLab CI, etc.). String values must be non-empty.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/ci/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "The owner type (application or organization)"
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "The internal ID of the owner"
+              }
+            ]
+          },
+          "docs": "Use this method to delete CI integration configuration for the specified owner.\n\nPermissions required: Edit IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

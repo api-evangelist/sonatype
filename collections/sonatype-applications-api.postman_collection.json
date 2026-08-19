@@ -1,0 +1,1089 @@
+{
+  "item": [
+    {
+      "id": "8eeecb9a-7744-4cfb-a9c1-d83a6a16f444",
+      "name": "Applications",
+      "description": {
+        "content": "Use this REST API to manage applications.\n\nIn addition to the primary functions of create, update and delete, you can also move applications from one organization to other.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58c0e8e6-bd69-490c-b90c-f3ec63e802fc",
+          "name": "get Applications",
+          "request": {
+            "name": "get Applications",
+            "description": {
+              "content": "Use this method to retrieve the application details for the applicationId(s) provided.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "publicId",
+                  "value": "<string>",
+                  "description": "Enter the applicationId."
+                },
+                {
+                  "disabled": false,
+                  "key": "publicId",
+                  "value": "<string>",
+                  "description": "Enter the applicationId."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCategories",
+                  "value": "false",
+                  "description": "Set this parameter to `true` to obtain the application tags (application categories) in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07eb06cf-8475-4911-bf89-17b5f0c286b3",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publicId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCategories",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applications\": [\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        },\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        }\n      ],\n      \"contactUserName\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"organizationId\": \"string\",\n      \"publicId\": \"string\"\n    },\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        },\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        }\n      ],\n      \"contactUserName\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"organizationId\": \"string\",\n      \"publicId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca9284fc-a586-4074-8bda-0b2560deda90",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publicId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCategories",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applications\": [\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        },\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        }\n      ],\n      \"contactUserName\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"organizationId\": \"string\",\n      \"publicId\": \"string\"\n    },\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        },\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        }\n      ],\n      \"contactUserName\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"organizationId\": \"string\",\n      \"publicId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c5a206c-5057-4807-9b91-0a045ce800d9",
+          "name": "add Application",
+          "request": {
+            "name": "add Application",
+            "description": {
+              "content": "Use this method to create an application under an organization. Use the Organization REST API to obtain organizationId.\n\nPermissions required: Add Application (on parent organization)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e090cdbb-8d06-4ac7-b894-526816b145b8",
+              "name": "The response contains application details for the application created using this method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "980dd6d0-61c0-4f23-b434-d275ccbda08e",
+          "name": "get Applications By Organization Id",
+          "request": {
+            "name": "get Applications By Organization Id",
+            "description": {
+              "content": "Use this method to retrieve application details for all applications under the organizationId provided.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                "organization",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Enter the organizationId."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33a91080-617d-432b-9e96-b52613aa0e7e",
+              "name": "The response contains the details of all applications found under the organizationId provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    "organization",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organizationId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applications\": [\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"tagId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"tagId\": \"<string>\"\n        }\n      ],\n      \"contactUserName\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"publicId\": \"<string>\"\n    },\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"tagId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"tagId\": \"<string>\"\n        }\n      ],\n      \"contactUserName\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"publicId\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "731fd699-c54a-4818-854c-59bfebfd5973",
+          "name": "delete Application",
+          "request": {
+            "name": "delete Application",
+            "description": {
+              "content": "Use this method to permanently delete an existing application and all data associated with it. This action cannot be un-done. Before deleting, confirm that the application being deleted does not impact any integrations that could depend on it.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the applicationId to be deleted."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffbc2c46-4251-4d99-bee8-a4bb9b07f757",
+              "name": "Application deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId to be deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ea6c6d7-7a71-4835-b466-730f7183e87c",
+          "name": "get Application",
+          "request": {
+            "name": "get Application",
+            "description": {
+              "content": "Use this method to retrieve the application details, by providing the applicationId.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the applicationId."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "322a0fb8-9d50-4b6a-bd59-646b0d9ff85f",
+              "name": "The response contains the details of the application corresponding to the applicationId.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cede1b8c-3133-401d-8076-29a3ca2d07f6",
+          "name": "update Application",
+          "request": {
+            "name": "update Application",
+            "description": {
+              "content": "Use this method to update the application name, application tags or the contact user name for an existing application by providing the applicationId. \n\nNOTE: This method cannot be used to change the organizationId of an application.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e7e2aee-49c9-4781-ac14-7792bbeb2afc",
+              "name": "The response contains the updated application name, contact user name and application tags,  for the applicationId provided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a2338da-8a35-42f8-a960-c59983ff6790",
+          "name": "move Application",
+          "request": {
+            "name": "move Application",
+            "description": {
+              "content": "Use this method to move an application from one organization to another.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationId",
+                "move",
+                "organization",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the applicationId of the application to be moved."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Enter the organizationId of the destination organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a96fb9ab-e326-465d-8c68-74ba091b6cf3",
+              "name": "Application moved successfully, with/without warnings. Warnings, if any, will appear in the response body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationId",
+                    "move",
+                    "organization",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId of the application to be moved."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organizationId of the destination organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"warnings\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3deecaf-d556-472d-8120-9690d3bb108e",
+              "name": "Moving the application failed because either an application with the provided applicationId or the organizationId for the organization where it is to be moved is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationId",
+                    "move",
+                    "organization",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId of the application to be moved."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organizationId of the destination organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d857e4c4-ac7a-438a-accf-25db82886125",
+              "name": "Moving the application failed due to conflicts between the organizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationId",
+                    "move",
+                    "organization",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId of the application to be moved."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organizationId of the destination organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8502284-75d2-4145-b403-e517f5813ac6",
+          "name": "clone Application",
+          "request": {
+            "name": "clone Application",
+            "description": {
+              "content": "Use this method to clone an existing application.\n\nPermissions required: Add Application (on the parent organization)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":sourceApplicationId",
+                "clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clonedApplicationName",
+                  "value": "<string>",
+                  "description": "Enter the application name for the new cloned application."
+                },
+                {
+                  "disabled": false,
+                  "key": "clonedApplicationPublicId",
+                  "value": "<string>",
+                  "description": "Enter the applicationPublicId for the cloned application."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sourceApplicationId",
+                  "description": "(Required) Enter the applicationId for the application to be cloned."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "296a7c8b-8e68-4d21-a70c-778962ebbba1",
+              "name": "The response contains application details of the cloned application.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":sourceApplicationId",
+                    "clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clonedApplicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clonedApplicationPublicId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sourceApplicationId",
+                      "description": "(Required) Enter the applicationId for the application to be cloned."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationTags\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ],\n  \"contactUserName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"publicId\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e9aa87a1-5d29-4262-9827-a581d2e376ef",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

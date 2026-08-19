@@ -1,0 +1,221 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Application Categories API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getTagsUsedByApplications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/application"
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories."
+        },
+        {
+          "info": {
+            "name": "getApplicationApplicableTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/application/:applicationPublicId",
+            "params": [
+              {
+                "name": "applicationPublicId",
+                "value": "",
+                "type": "path",
+                "description": "The application public ID "
+              }
+            ]
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories available to applications in this organization."
+        },
+        {
+          "info": {
+            "name": "getApplicableTagsByApplicationPublicId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/application/:applicationPublicId/applicable",
+            "params": [
+              {
+                "name": "applicationPublicId",
+                "value": "",
+                "type": "path",
+                "description": "Provide the application public ID assigned by IQ Server."
+              }
+            ]
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization."
+        },
+        {
+          "info": {
+            "name": "getTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/organization/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server."
+              }
+            ]
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories in use by applications in this organization."
+        },
+        {
+          "info": {
+            "name": "addTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/organization/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server, for which you want to create the application category."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to add a new application category or tag."
+        },
+        {
+          "info": {
+            "name": "updateTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/organization/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category."
+        },
+        {
+          "info": {
+            "name": "getApplicableTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/organization/:organizationId/applicable",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server, for which you want to retrieve the applicable tags or application categories."
+              }
+            ]
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization."
+        },
+        {
+          "info": {
+            "name": "getAppliedTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/organization/:organizationId/applied",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server."
+              }
+            ]
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization."
+        },
+        {
+          "info": {
+            "name": "getAppliedPolicyTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/organization/:organizationId/policy",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server."
+              }
+            ]
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that are applied to applications in this organization."
+        },
+        {
+          "info": {
+            "name": "deleteTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/applicationCategories/organization/:organizationId/:tagId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server, corresponding to the application category tag you want to delete."
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "The application category ID assigned by IQ Server, to be deleted."
+              }
+            ]
+          },
+          "docs": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category.Use this method to delete an existing application category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

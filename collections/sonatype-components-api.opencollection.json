@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Components API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getComponentDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/components/details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to retrieve data related to a component."
+        },
+        {
+          "info": {
+            "name": "getSuggestedRemediationForComponent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/components/remediation/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Possible values: application, organization, repository. "
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Possible values: applicationId, organizationId or repositoryId."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the stageId to obtain next-non-failing and next-non-failing-with-dependencies remediation types in the response. Possible values are develop, build, stage-release, release and operate."
+              },
+              {
+                "name": "identificationSource",
+                "value": "",
+                "type": "query",
+                "description": "Enter the identification source if you want the remediation result based on third-party scan information (non-Sonatype). The identification source can be obtained from the Component Details Page in the UI."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the scanId (reportId) if you want the remediation result based on third-party scan information (non-Sonatype)."
+              },
+              {
+                "name": "includeParentRemediation",
+                "value": "",
+                "type": "query",
+                "description": "Enter true if you want to include parent remediation for transitive dependency in the response based on your application policy scan."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI."
+        },
+        {
+          "info": {
+            "name": "getComponentVersions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/components/versions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to retrieve all known versions of a component."
+        },
+        {
+          "info": {
+            "name": "setComponentLabel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/components/:componentHash/labels/:labelName/:ownerTypes/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Possible values: application or organization"
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Possible values : applicationId or organizationId"
+              },
+              {
+                "name": "componentHash",
+                "value": "",
+                "type": "path",
+                "description": "Enter the SHA1 hash of the component."
+              },
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Enter the label name to assign to this component."
+              }
+            ]
+          },
+          "docs": "Use this method to assign an existing label to a component."
+        },
+        {
+          "info": {
+            "name": "deleteComponentLabel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/components/:componentHash/labels/:labelName/:ownerTypes/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Possible values: application or organization"
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Possible values : applicationId or organizationId"
+              },
+              {
+                "name": "componentHash",
+                "value": "",
+                "type": "path",
+                "description": "Enter the SHA1 hash of the component."
+              },
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Enter the label name to un-assign from this component."
+              }
+            ]
+          },
+          "docs": "Use this method to un-assign a label from a component."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

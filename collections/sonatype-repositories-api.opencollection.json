@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Repositories API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repositories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "releaseQuarantineWithoutReEval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/repositories/quarantine/:quarantineId/release",
+            "params": [
+              {
+                "name": "quarantineId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the component `quarantineId`."
+              }
+            ]
+          },
+          "docs": "Use this method to release a component from quarantine by providing the `quarantineId`.\n\nUse the GET method of the Reports REST API to retrieve the `quarantineId` for the quarantined component.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getQuarantinedByPath",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/repositories/:repositoryManagerInstanceId/:repositoryPublicId/components/quarantined/pathnames",
+            "params": [
+              {
+                "name": "repositoryManagerInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository manager instance ID."
+              },
+              {
+                "name": "repositoryPublicId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the repository public ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to retrieve the pathnames of the repository components and the corresponding quarantine status.\n\nPermissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

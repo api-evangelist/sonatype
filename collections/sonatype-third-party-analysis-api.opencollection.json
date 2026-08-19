@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Third-Party Analysis API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Third-Party Analysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "scanComponents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/scan/applications/:applicationId/sources/:source",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "path",
+                "description": "Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to perform an analysis of an SBOM.\n\nPermissions required: Evaluate Applications"
+        },
+        {
+          "info": {
+            "name": "getScanStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/scan/applications/:applicationId/status/:scanRequestId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the application internal id for the SBOM to be evaluated."
+              },
+              {
+                "name": "scanRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
+              }
+            ]
+          },
+          "docs": "SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.\n\nPermissions required: Evaluate Applications"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

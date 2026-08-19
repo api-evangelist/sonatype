@@ -1,0 +1,303 @@
+{
+  "item": [
+    {
+      "id": "4cb79e45-31ad-469e-8df4-9e03b386d86e",
+      "name": "Repositories",
+      "description": {
+        "content": "Use this REST API to manage quarantined components.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7615a824-cf32-49f3-932a-f4256409bf77",
+          "name": "release Quarantine Without Re Eval",
+          "request": {
+            "name": "release Quarantine Without Re Eval",
+            "description": {
+              "content": "Use this method to release a component from quarantine by providing the `quarantineId`.\n\nUse the GET method of the Reports REST API to retrieve the `quarantineId` for the quarantined component.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "repositories",
+                "quarantine",
+                ":quarantineId",
+                "release"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quarantineId",
+                  "description": "(Required) Enter the component `quarantineId`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "4498e8ea-3a86-45bf-a549-cc822b20706a",
+              "name": "The response contains:<ul><li>The quarantined component details for the component being released.</li><li>The quarantine and release times.</li><li>A list of policy violations that were waived to release the component from quarantine.</li><ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "repositories",
+                    "quarantine",
+                    ":quarantineId",
+                    "release"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quarantineId",
+                      "description": "(Required) Enter the component `quarantineId`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"componentReleasedFromQuarantine\": {\n    \"component\": {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"originalPurl\": \"string\",\n      \"packageUrl\": \"string\",\n      \"quarantineId\": \"string\",\n      \"quarantineReleaseTime\": \"2023-04-09T17:11:47.405Z\",\n      \"quarantineTime\": \"1991-09-24T04:51:32.065Z\",\n      \"sha256\": \"string\",\n      \"thirdParty\": true\n    },\n    \"policyViolations\": [\n      {\n        \"constraintViolations\": [\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"fixTime\": \"2013-07-08T11:24:33.185Z\",\n        \"legacyViolationTime\": \"1982-07-19T08:30:14.333Z\",\n        \"openTime\": \"2024-02-22T17:45:41.646Z\",\n        \"policyId\": \"string\",\n        \"policyName\": \"string\",\n        \"policyViolationId\": \"string\",\n        \"threatLevel\": 7886,\n        \"waiveTime\": \"1981-05-28T18:31:55.501Z\"\n      },\n      {\n        \"constraintViolations\": [\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"fixTime\": \"2018-05-07T08:29:41.341Z\",\n        \"legacyViolationTime\": \"1951-06-23T20:58:23.868Z\",\n        \"openTime\": \"2007-03-23T20:55:35.337Z\",\n        \"policyId\": \"string\",\n        \"policyName\": \"string\",\n        \"policyViolationId\": \"string\",\n        \"threatLevel\": 2831,\n        \"waiveTime\": \"1968-07-11T00:04:09.467Z\"\n      }\n    ],\n    \"waivedPolicyViolations\": [\n      {\n        \"constraintViolations\": [\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"fixTime\": \"1955-10-13T22:06:10.070Z\",\n        \"legacyViolationTime\": \"1989-12-01T03:06:28.545Z\",\n        \"openTime\": \"1952-04-25T08:47:01.577Z\",\n        \"policyId\": \"string\",\n        \"policyName\": \"string\",\n        \"policyViolationId\": \"string\",\n        \"policyWaiver\": {\n          \"associatedPackageUrl\": \"string\",\n          \"comment\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"componentName\": \"string\",\n          \"componentUpgradeAvailable\": false,\n          \"constraintFacts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"constraintFactsJson\": \"string\",\n          \"createTime\": \"1994-11-13T02:56:36.211Z\",\n          \"creatorId\": \"string\",\n          \"creatorName\": \"string\",\n          \"displayName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"expireWhenRemediationAvailable\": true,\n          \"expiryTime\": \"1963-11-11T21:38:44.540Z\",\n          \"forContainerImage\": true,\n          \"forContainerImageComponent\": true,\n          \"hash\": \"string\",\n          \"isObsolete\": false,\n          \"matcherStrategy\": \"ALL_VERSIONS\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"policyWaiverId\": \"string\",\n          \"policyWaiverReasonId\": \"string\",\n          \"reasonText\": \"string\",\n          \"scopeOwnerId\": \"string\",\n          \"scopeOwnerName\": \"string\",\n          \"scopeOwnerType\": \"string\",\n          \"threatLevel\": 8669,\n          \"vulnerabilityId\": \"string\"\n        },\n        \"threatLevel\": 4053,\n        \"waiveTime\": \"1994-06-12T05:46:41.323Z\"\n      },\n      {\n        \"constraintViolations\": [\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"constraintId\": \"string\",\n            \"constraintName\": \"string\",\n            \"reasons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"fixTime\": \"2005-09-12T19:55:41.289Z\",\n        \"legacyViolationTime\": \"1967-12-27T21:27:27.078Z\",\n        \"openTime\": \"1976-07-31T23:45:44.528Z\",\n        \"policyId\": \"string\",\n        \"policyName\": \"string\",\n        \"policyViolationId\": \"string\",\n        \"policyWaiver\": {\n          \"associatedPackageUrl\": \"string\",\n          \"comment\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"componentName\": \"string\",\n          \"componentUpgradeAvailable\": true,\n          \"constraintFacts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"constraintFactsJson\": \"string\",\n          \"createTime\": \"1998-04-25T00:59:33.452Z\",\n          \"creatorId\": \"string\",\n          \"creatorName\": \"string\",\n          \"displayName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"expireWhenRemediationAvailable\": false,\n          \"expiryTime\": \"1991-06-15T02:32:37.298Z\",\n          \"forContainerImage\": true,\n          \"forContainerImageComponent\": false,\n          \"hash\": \"string\",\n          \"isObsolete\": true,\n          \"matcherStrategy\": \"ALL_VERSIONS\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"policyWaiverId\": \"string\",\n          \"policyWaiverReasonId\": \"string\",\n          \"reasonText\": \"string\",\n          \"scopeOwnerId\": \"string\",\n          \"scopeOwnerName\": \"string\",\n          \"scopeOwnerType\": \"string\",\n          \"threatLevel\": 6519,\n          \"vulnerabilityId\": \"string\"\n        },\n        \"threatLevel\": 1184,\n        \"waiveTime\": \"1973-01-04T03:27:42.681Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c23efc6-6f1b-41dd-a6a8-20458973c9ca",
+          "name": "get Quarantined By Path",
+          "request": {
+            "name": "get Quarantined By Path",
+            "description": {
+              "content": "Use this method to retrieve the pathnames of the repository components and the corresponding quarantine status.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "repositories",
+                ":repositoryManagerInstanceId",
+                ":repositoryPublicId",
+                "components",
+                "quarantined",
+                "pathnames"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryManagerInstanceId",
+                  "description": "(Required) Enter the repository manager instance ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryPublicId",
+                  "description": "(Required) Enter the repository public ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa88cf51-d00f-4c5a-a753-b7b68f31b570",
+              "name": "The response contains a list of repository component paths and their quarantine status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "repositories",
+                    ":repositoryManagerInstanceId",
+                    ":repositoryPublicId",
+                    "components",
+                    "quarantined",
+                    "pathnames"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryManagerInstanceId",
+                      "description": "(Required) Enter the repository manager instance ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryPublicId",
+                      "description": "(Required) Enter the repository public ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pathVersions\": [\n    {\n      \"repositoryComponentPaths\": [\n        {\n          \"pathname\": \"string\",\n          \"quarantine\": false\n        },\n        {\n          \"pathname\": \"string\",\n          \"quarantine\": false\n        }\n      ],\n      \"requestIndex\": 9958\n    },\n    {\n      \"repositoryComponentPaths\": [\n        {\n          \"pathname\": \"string\",\n          \"quarantine\": false\n        },\n        {\n          \"pathname\": \"string\",\n          \"quarantine\": false\n        }\n      ],\n      \"requestIndex\": 4064\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "743e8fc3-b7db-403c-a8a6-6b3eaf2c9b8d",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Repositories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

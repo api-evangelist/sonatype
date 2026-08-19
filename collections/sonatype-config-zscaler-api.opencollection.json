@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Config Zscaler API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Config Zscaler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getConfiguration_8",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/zscaler"
+          },
+          "docs": "Use this method to review the configuration for a Zscaler server.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "setConfiguration_7",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/zscaler",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to configure or update an existing Zscaler server configuration.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteConfiguration_7",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/zscaler"
+          },
+          "docs": "Use this method to disable or remove the Zscaler configuration.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "testConfiguration_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/config/zscaler/testConfig"
+          },
+          "docs": "Use this method to test Zscaler server configuration.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "triggerUpdateAll",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/config/zscaler/update"
+          },
+          "docs": "Use this endpoint to trigger an update of all configured formats to your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteAllCategories",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/zscaler/update"
+          },
+          "docs": "Use this endpoint to delete all configured formats from your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "triggerUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to trigger an update to your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteCategory",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to delete a specific format from your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "getQuota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/zscaler/zscalerLimits"
+          },
+          "docs": "Returns the current Zscaler quota.\n\nPermissions required: None"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

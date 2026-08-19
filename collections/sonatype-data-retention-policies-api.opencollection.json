@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Data Retention Policies API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Retention Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getDataRetentionPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server. Use the organization REST API to retrieve the organizationId."
+              }
+            ]
+          },
+          "docs": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to inspect the retention policies that are in effect for an organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring in the response JSON<p>Permissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "setDataRetentionPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId for the organization you want to set the data retention policy. Use the organization REST API to retrieve the organizationId."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to set the retention policies for an organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring.<p>Permissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getParentDataRetentionPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId/parent",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organizationId assigned by IQ Server. Use the organization REST API to retrieve the parent organizationId"
+              }
+            ]
+          },
+          "docs": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to inspect the retention policies that are in effect for the parent organization of the given organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring.<p>Permissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,345 @@
+{
+  "item": [
+    {
+      "id": "4dca0108-4a8a-441e-a133-b94dcacd4285",
+      "name": "SPDX",
+      "description": {
+        "content": "Use this REST API to generate SPDX SBOMs in XML or JSON formats.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc24b53f-fb30-43a1-8ae9-246d245b001f",
+          "name": "get By Scan Id",
+          "request": {
+            "name": "get By Scan Id",
+            "description": {
+              "content": "Use this method to generate SBOM(s) based on a specific application scan.\n\nPermissions required: View IQ Elemets",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "spdx",
+                ":applicationId",
+                "reports",
+                ":scanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Enter the format for the SBOM(s) to be generated."
+                },
+                {
+                  "disabled": false,
+                  "key": "generateCycloneDx",
+                  "value": "false",
+                  "description": "Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive."
+                },
+                {
+                  "disabled": false,
+                  "key": "spdxVersion",
+                  "value": "2.3",
+                  "description": "Enter the desired SPDX version, possible values are 2.2|2.3"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the applicationId for the application you want to generate the SBOM(s)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scanId",
+                  "description": "(Required) Enter the scanId of the application scan."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5bbf9d4-82d3-4c01-904a-6323a8214974",
+              "name": "The requested SBOM(s).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "spdx",
+                    ":applicationId",
+                    "reports",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "generateCycloneDx",
+                      "value": "false"
+                    },
+                    {
+                      "key": "spdxVersion",
+                      "value": "2.3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId for the application you want to generate the SBOM(s)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required) Enter the scanId of the application scan."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a2442c0-fb82-4244-8866-b59178cf9449",
+          "name": "get Latest For Stage",
+          "request": {
+            "name": "get Latest For Stage",
+            "description": {
+              "content": "Use this method to generate SBOM(s) based on the latest application evaluation report at the specified stage.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "spdx",
+                ":applicationId",
+                "stages",
+                ":stageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Enter the format for the SBOM(s) to be generated."
+                },
+                {
+                  "disabled": false,
+                  "key": "generateCycloneDx",
+                  "value": "false",
+                  "description": "Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive."
+                },
+                {
+                  "disabled": false,
+                  "key": "spdxVersion",
+                  "value": "2.3",
+                  "description": "Enter the desired SPDX version, possible values are 2.2|2.3"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the applicationId for the application you want to generate the SBOM(s)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stageId",
+                  "description": "(Required) Specify the stageId for the application evaluation. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2a5fb74-51e1-4d25-aa79-793fb09d7f7c",
+              "name": "The requested SBOM(s).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "spdx",
+                    ":applicationId",
+                    "stages",
+                    ":stageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "generateCycloneDx",
+                      "value": "false"
+                    },
+                    {
+                      "key": "spdxVersion",
+                      "value": "2.3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId for the application you want to generate the SBOM(s)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stageId",
+                      "description": "(Required) Specify the stageId for the application evaluation. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a79bd739-93f3-4df7-af56-46dcb876720a",
+    "name": "Sonatype Lifecycle Public REST Advanced Search SPDX API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

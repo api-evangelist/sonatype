@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Application Report Data API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Report Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getPolicyViolationDiff",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/policyViolations/diff",
+            "params": [
+              {
+                "name": "applicationPublicId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationPublicId, created at the time of creating the application"
+              },
+              {
+                "name": "fromCommit",
+                "value": "",
+                "type": "query",
+                "description": "Enter the commit hash linked to the earlier policy evaluation."
+              },
+              {
+                "name": "toCommit",
+                "value": "",
+                "type": "query",
+                "description": "Enter the commit hash linked to the other (later) policy evaluation to compare."
+              },
+              {
+                "name": "fromPolicyEvaluationId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the policy evaluation Id linked to the earlier policy evaluation to compare"
+              },
+              {
+                "name": "toPolicyEvaluationId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the policy evaluation Id linked to the other (later) policy evaluation to compare"
+              },
+              {
+                "name": "includeViolationTimes",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set."
+              }
+            ]
+          },
+          "docs": "By configuring Lifecycle with SCM, policy evaluations can be linked to the Git commit hash. Use this method to compare the violations between policy evaluations for 2 commits, by providing the linked commit hashes.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getData",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/:scanId",
+            "params": [
+              {
+                "name": "applicationPublicId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationPublicId for the evaluated application."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the scanId (reportId) of the application report created after the evaluation. "
+              }
+            ]
+          },
+          "docs": "This is an older version of the endpoint. This call will now be redirected to /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw."
+        },
+        {
+          "info": {
+            "name": "getDependencyTree",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/:scanId/dependencyTree",
+            "params": [
+              {
+                "name": "applicationPublicId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationPublicId created at the time of creating the application."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": " Enter the reportId (scanId) created at the time of evaluating the application."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the dependencies related to the component identified at the time of application evaluation. This is currently available only for Java (Maven) and NPM applications.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getPolicyViolations_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/:scanId/policy",
+            "params": [
+              {
+                "name": "applicationPublicId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationPublicId created at the time of creating the application."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the reportId (scanId) created at the time of evaluating the application."
+              },
+              {
+                "name": "includeViolationTimes",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the policy violation data generated as a result of an application evaluation, for each component identified in the application evaluation./n/nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getRawData",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/:scanId/raw",
+            "params": [
+              {
+                "name": "applicationPublicId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationPublicId (assigned at the time of creating a new application.) "
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the reportId (scanId) created at the time of evaluating the application. application."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the 'raw' data generated as a result of an application evaluation. 'raw' data includes: the components identified in the application, and the licenses and vulnerabilities associated with the identified components./n/nPermissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

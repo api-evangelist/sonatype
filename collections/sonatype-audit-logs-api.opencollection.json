@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Audit Logs API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAuditLogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/auditLogs",
+            "params": [
+              {
+                "name": "startUtcDate",
+                "value": "",
+                "type": "query",
+                "description": "Enter the start UTC date in the format (yyyy-mm-dd)."
+              },
+              {
+                "name": "endUtcDate",
+                "value": "",
+                "type": "query",
+                "description": "Enter the end UTC date in the format (yyyy-mm-dd)."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the audit events for the specified time period.\n\nPermissions required: Access Audit Log"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

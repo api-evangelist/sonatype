@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search CPE Matching Configuration API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CPE Matching Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getCpeMatchingConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/:ownerType/:internalOwnerId/configuration/publicSource/cpe",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This method allows to retrieve the applicable cpe matching configuration of a given organization or application.<p>Permissions Required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updateCpeMatchingConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/:ownerType/:internalOwnerId/configuration/publicSource/cpe",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to apply a given cpe matching configuration to an organization or application.<p>Permissions Required: Edit IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

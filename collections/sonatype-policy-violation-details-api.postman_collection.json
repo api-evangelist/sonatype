@@ -1,0 +1,1141 @@
+{
+  "item": [
+    {
+      "id": "b39ca7d5-50b1-4cbd-b8ec-5f1b40f78003",
+      "name": "Policy Violation Details",
+      "description": {
+        "content": "Use this REST API to obtain the violation details, violation details across stages (cross stage), violations occurring due to transitive dependencies and all waivers applicable to a violation.\n\nCross-stage policy violations are helpful in performance analysis like MTTR metrics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36a16bd5-9b78-4f97-ae3e-53a3728556f5",
+          "name": "get Policy Violations",
+          "request": {
+            "name": "get Policy Violations",
+            "description": {
+              "content": "Use this method to retrieve policy violation details for a policy/policies. You will need the policyId(s) to retrieve the policy violations details. policyId is available as the response field of the Policies REST API.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "p",
+                  "value": "<string>",
+                  "description": "(Required) Enter the policyIds to obtain the corresponding violation details"
+                },
+                {
+                  "disabled": false,
+                  "key": "p",
+                  "value": "<string>",
+                  "description": "(Required) Enter the policyIds to obtain the corresponding violation details"
+                },
+                {
+                  "disabled": false,
+                  "key": "openTimeAfter",
+                  "value": "<string>",
+                  "description": "Enter the date (format YYYY-MM-DD) from which you want to retrieve the violation details"
+                },
+                {
+                  "disabled": false,
+                  "key": "openTimeBefore",
+                  "value": "<string>",
+                  "description": "Enter the date (format YYYY-MM-DD) until which you want to retrieve the violation details"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "ACTIVE",
+                  "description": "Set one or more policy violation type (active, legacy, waived) to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "ACTIVE",
+                  "description": "Set one or more policy violation type (active, legacy, waived) to include"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "360f6d41-ee6e-41e3-afc7-5415d878f577",
+              "name": "The response contains the details of the application that violates the policy/policies and violation details grouped under the policyIds provided. It contains:<ul><li>`openTime` indicates the date and time when the violation was first detected.</li><li>`waiveTime` indicates the date and time when the violation was waived.</li><li>`legacyTime` indicates the date and time when the violation was assigned as a legacy violation.</li><li>`reference` is the reference data that triggered the violation.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "openTimeAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "openTimeBefore",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "ACTIVE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationViolations\": [\n    {\n      \"application\": {\n        \"contactUserName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"organizationId\": \"string\",\n        \"publicId\": \"string\"\n      },\n      \"policyViolations\": [\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"proprietary\": true,\n            \"sha256\": \"string\",\n            \"thirdParty\": true\n          },\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"2004-08-22T23:31:03.752Z\",\n          \"isLegacy\": true,\n          \"isWaived\": true,\n          \"legacyViolationTime\": \"2025-01-27T10:17:51.332Z\",\n          \"openTime\": \"2022-04-17T06:40:02.313Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"reportId\": \"string\",\n          \"reportUrl\": \"string\",\n          \"stageId\": \"string\",\n          \"threatLevel\": 9371,\n          \"waiveTime\": \"2026-01-12T15:21:48.212Z\"\n        },\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"proprietary\": true,\n            \"sha256\": \"string\",\n            \"thirdParty\": false\n          },\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"2009-03-28T10:51:18.514Z\",\n          \"isLegacy\": true,\n          \"isWaived\": false,\n          \"legacyViolationTime\": \"2008-04-25T05:22:58.698Z\",\n          \"openTime\": \"2003-10-27T19:01:41.606Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"reportId\": \"string\",\n          \"reportUrl\": \"string\",\n          \"stageId\": \"string\",\n          \"threatLevel\": 4795,\n          \"waiveTime\": \"1963-11-15T06:37:43.442Z\"\n        }\n      ]\n    },\n    {\n      \"application\": {\n        \"contactUserName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"organizationId\": \"string\",\n        \"publicId\": \"string\"\n      },\n      \"policyViolations\": [\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"proprietary\": true,\n            \"sha256\": \"string\",\n            \"thirdParty\": true\n          },\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"2015-05-15T14:01:07.021Z\",\n          \"isLegacy\": false,\n          \"isWaived\": true,\n          \"legacyViolationTime\": \"1976-10-04T10:00:47.690Z\",\n          \"openTime\": \"1949-07-21T21:54:53.196Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"reportId\": \"string\",\n          \"reportUrl\": \"string\",\n          \"stageId\": \"string\",\n          \"threatLevel\": 5738,\n          \"waiveTime\": \"1961-07-07T03:47:14.580Z\"\n        },\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": \"string\",\n            \"hash\": \"string\",\n            \"originalPurl\": \"string\",\n            \"packageUrl\": \"string\",\n            \"proprietary\": false,\n            \"sha256\": \"string\",\n            \"thirdParty\": false\n          },\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"2009-01-30T07:59:50.976Z\",\n          \"isLegacy\": true,\n          \"isWaived\": true,\n          \"legacyViolationTime\": \"1963-02-09T06:27:46.482Z\",\n          \"openTime\": \"2010-10-03T18:27:55.113Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"reportId\": \"string\",\n          \"reportUrl\": \"string\",\n          \"stageId\": \"string\",\n          \"threatLevel\": 3829,\n          \"waiveTime\": \"1951-04-22T05:36:19.388Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9cb231b-a406-4056-ba90-a94237a72d46",
+          "name": "get Cross Stage Policy Violation By Constituent Id",
+          "request": {
+            "name": "get Cross Stage Policy Violation By Constituent Id",
+            "description": {
+              "content": "A cross-stage policy violation represents an aggregate of all violations of a policy  occurring across multiple stages of an application. Cross-stage policy violations are helpful in performance analysis by determining the time taken to remediate a violation across all stages where it was detected.\nUse this method to retrieve all cross-stage violations, irrespective of the time they were detected.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                "crossStage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "constituentId",
+                  "value": "<string>",
+                  "description": "(Required) Enter the violationId. Use the GET method described for the endpoint /api/v2/policyViolations to obtain the policy violationId."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d96e252-c67d-442d-ba65-b2ba9718695b",
+              "name": "The response contains violation details for all occurrences of the same policy violation, across multiple stages. stageData indicates the name of the stages where the violation occurred, the scanId/reportId when it was reported and the policy action triggered due to the violation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    "crossStage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "constituentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"applicationPublicId\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"constraintViolations\": [\n    {\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"reasons\": [\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          }\n        },\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"reasons\": [\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          }\n        },\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          }\n        }\n      ]\n    }\n  ],\n  \"displayName\": {\n    \"name\": \"string\",\n    \"parts\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"filename\": \"string\",\n  \"fixTime\": \"2021-09-14T11:18:24.696Z\",\n  \"hash\": \"string\",\n  \"legacyViolationTime\": \"2001-10-30T17:08:54.885Z\",\n  \"openTime\": \"1985-01-20T15:56:02.124Z\",\n  \"organizationName\": \"string\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyOwner\": {\n    \"ownerId\": \"string\",\n    \"ownerName\": \"string\",\n    \"ownerPublicId\": \"string\",\n    \"ownerType\": \"string\"\n  },\n  \"policyThreatCategory\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"reachabilityStatus\": \"UNKNOWN\",\n  \"stageData\": {\n    \"key_0\": {\n      \"actionTypeId\": \"string\",\n      \"mostRecentEvaluationTime\": \"1990-12-02T11:54:30.629Z\",\n      \"mostRecentScanId\": \"string\"\n    }\n  },\n  \"threatLevel\": 2814,\n  \"waiveTime\": \"1965-12-02T14:44:00.932Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e0ae49c-2e2f-4263-809f-1008869a006a",
+          "name": "get Cross Stage Policy Violation By Id",
+          "request": {
+            "name": "get Cross Stage Policy Violation By Id",
+            "description": {
+              "content": "A cross-stage policy violation represents an aggregate of all violations of the same policy, occurring at multiple stages for an application. Cross-stage policy violations are helpful in performance analysis by determining the time taken to remediate a violation across all stages where it was detected.\nUse this method to retrieve cross-stage policy violations.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                "crossStage",
+                ":violationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) Enter the policy `violationId`. Use the GET method described for the endpoint /api/v2/policyViolations to obtain the policy violationId. "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9601940f-fbee-46ac-b820-25b6be37737a",
+              "name": "The response contains violation details for all occurrences of the same policy violation across multiple stages. `stageData` indicates the name of the stages where the violationoccurred, and `reportId` where it was reported and the policy action triggered due to the violation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    "crossStage",
+                    ":violationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) Enter the policy `violationId`. Use the GET method described for the endpoint /api/v2/policyViolations to obtain the policy violationId. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"string\",\n  \"applicationPublicId\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"constraintViolations\": [\n    {\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"reasons\": [\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          }\n        },\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"reasons\": [\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          }\n        },\n        {\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          }\n        }\n      ]\n    }\n  ],\n  \"displayName\": {\n    \"name\": \"string\",\n    \"parts\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"filename\": \"string\",\n  \"fixTime\": \"1982-10-05T18:01:13.628Z\",\n  \"hash\": \"string\",\n  \"legacyViolationTime\": \"1986-11-25T01:48:26.006Z\",\n  \"openTime\": \"1952-08-08T08:15:41.364Z\",\n  \"organizationName\": \"string\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyOwner\": {\n    \"ownerId\": \"string\",\n    \"ownerName\": \"string\",\n    \"ownerPublicId\": \"string\",\n    \"ownerType\": \"string\"\n  },\n  \"policyThreatCategory\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"reachabilityStatus\": \"UNKNOWN\",\n  \"stageData\": {\n    \"key_0\": {\n      \"actionTypeId\": \"string\",\n      \"mostRecentEvaluationTime\": \"1992-03-12T01:38:50.027Z\",\n      \"mostRecentScanId\": \"string\"\n    },\n    \"key_1\": {\n      \"actionTypeId\": \"string\",\n      \"mostRecentEvaluationTime\": \"1957-08-23T18:45:01.213Z\",\n      \"mostRecentScanId\": \"string\"\n    }\n  },\n  \"threatLevel\": 90,\n  \"waiveTime\": \"1974-09-23T20:51:45.831Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9418ee8-fc2f-43c1-b525-340deb3e75a6",
+          "name": "get Transitive Policy Violations By Owner Stage Component",
+          "request": {
+            "name": "get Transitive Policy Violations By Owner Stage Component",
+            "description": {
+              "content": "Use this method to obtain all transitive policy violations for a given component in  a specific stage. Transitive policy violations are violations caused by transitive dependencies.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                "transitive",
+                ":ownerType",
+                ":ownerId",
+                "stages",
+                ":stageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "{\"key_0\":\"<string>\",\"key_1\":\"<string>\",\"key_2\":\"<string>\"}",
+                  "description": "Enter the component identifier and the coordinates of the component for which you want to obtain the transitive violations. This is optional, not required if package URL or hash value is provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Enter the component identifier and the coordinates of the component for which you want to obtain the transitive violations. This is optional, not required if package URL or hash value is provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "packageUrl",
+                  "value": "<string>",
+                  "description": "Enter the package URL of the component. This is optional, not required if component identifier or hash value is provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "hash",
+                  "value": "<string>",
+                  "description": "Enter the hash value of the component. This is optional, not required if component identifier or package URL is provided."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Possible values are 'application' or 'organization'"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) Possible values are applicationId, organizationId"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stageId",
+                  "description": "(Required) Possible values are 'develop', 'source', 'build', 'stage-release', 'release', and, 'operate'."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "149ba930-906f-4548-b116-a51d6b388eb0",
+              "name": "The response contains all transitive violations detected for the component specified. In addition to the policy violation details like the name/id of the policy violated, threat level threat category, etc. the response also indicates if the violation is due to an 'InnerSource' component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    "transitive",
+                    ":ownerType",
+                    ":ownerId",
+                    "stages",
+                    ":stageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hash",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Possible values are 'application' or 'organization'"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) Possible values are applicationId, organizationId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stageId",
+                      "description": "(Required) Possible values are 'develop', 'source', 'build', 'stage-release', 'release', and, 'operate'."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"displayName\": \"string\",\n  \"hash\": \"string\",\n  \"isInnerSource\": true,\n  \"packageUrl\": \"string\",\n  \"transitivePolicyViolations\": [\n    {\n      \"action\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatCategory\": \"string\",\n      \"threatLevel\": 5484\n    },\n    {\n      \"action\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatCategory\": \"string\",\n      \"threatLevel\": 8021\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcad6a3c-91eb-42cc-9bbc-7b41f2a02d6a",
+          "name": "get Transitive Policy Violations By App Scan Component",
+          "request": {
+            "name": "get Transitive Policy Violations By App Scan Component",
+            "description": {
+              "content": "Use this method to retrieve transitive policy violations for a given component in a specific scan.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                "transitive",
+                ":ownerType",
+                ":ownerId",
+                ":scanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "{\"key_0\":\"<string>\",\"key_1\":\"<string>\",\"key_2\":\"<string>\"}",
+                  "description": "Enter the component identifier and the coordinates of the component for which you want to retrieve the transitive policy violations. This is optional, not required if package URL or hash value is provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Enter the component identifier and the coordinates of the component for which you want to retrieve the transitive policy violations. This is optional, not required if package URL or hash value is provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "packageUrl",
+                  "value": "<string>",
+                  "description": "Enter the package URL for the component for which you want to retrieve the transitive policy violations in the specific scan."
+                },
+                {
+                  "disabled": false,
+                  "key": "hash",
+                  "value": "<string>",
+                  "description": "Enter the hash value for the component for which you want to retrieve the transitive policy violations in the specific scan."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the scope for this violation. Possible values are 'application'"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) Enter the identifier for the scope specified above. E.g. applicationId"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scanId",
+                  "description": "(Required) Enter the scanId/reportId corresponding to the scan."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db14918e-33d0-4248-8e2c-d4df465521f4",
+              "name": "The response contains violation details for all transitive violations occurring in the scan specified. The response also indicates if the violation is due to an 'InnerSource' component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    "transitive",
+                    ":ownerType",
+                    ":ownerId",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hash",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the scope for this violation. Possible values are 'application'"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) Enter the identifier for the scope specified above. E.g. applicationId"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required) Enter the scanId/reportId corresponding to the scan."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"displayName\": \"string\",\n  \"hash\": \"string\",\n  \"isInnerSource\": false,\n  \"packageUrl\": \"string\",\n  \"transitivePolicyViolations\": [\n    {\n      \"action\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatCategory\": \"string\",\n      \"threatLevel\": 5945\n    },\n    {\n      \"action\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatCategory\": \"string\",\n      \"threatLevel\": 6252\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22976aa0-cd92-4dde-8db2-6ead56d21697",
+          "name": "get Applicable Auto Waiver",
+          "request": {
+            "name": "get Applicable Auto Waiver",
+            "description": {
+              "content": "Use this method to obtain the existing auto waiver applicable to a policy violationviolation.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                ":violationId",
+                "applicableAutoWaiver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) Enter the policy violationId for which you want to obtain the applicable auto policy waiver "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b85fa781-e369-42c7-8729-6c177ff27201",
+              "name": "The response contains details for applicable auto waiver for the `violationId` specified. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    ":violationId",
+                    "applicableAutoWaiver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) Enter the policy violationId for which you want to obtain the applicable auto policy waiver "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"autoPolicyWaiverId\": \"string\",\n  \"createTime\": \"2021-07-01T01:00:10.333Z\",\n  \"creatorId\": \"string\",\n  \"creatorName\": \"string\",\n  \"ownerId\": \"string\",\n  \"ownerName\": \"string\",\n  \"ownerType\": \"string\",\n  \"pathForward\": true,\n  \"publicId\": \"string\",\n  \"reachability\": true,\n  \"scopesOperatorAny\": true,\n  \"threatLevel\": 709\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c814f06f-384e-4a8d-8f04-5f42d422370c",
+          "name": "get Applicable Waiver Requests",
+          "request": {
+            "name": "get Applicable Waiver Requests",
+            "description": {
+              "content": "Use this method to obtain all existing waiver requests that are applicable to a policy violation. A waiver request is considered as 'applicable' if it matches the following conditions:<ul><li>The policyId for the policy violation matches the policyId associated with the waiver request</li><li>The violated policy conditions match the policy conditions of the waiver request/li><li>The waiver request scope matches the violating component</li></ul>\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                ":violationId",
+                "applicableWaiverRequests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) Enter the policy violationId for which you want to obtain the applicable waiver requests."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8001b480-3810-469b-9ee5-84ef2e3dbba6",
+              "name": "The response contains details for all applicable waiver requests for the `violationId` specified. It is grouped under 'activeWaiverRequests' and 'expiredWaiverRequests'. `scope` indicates the scope of the applicable waiver request. Possible values for the enum field `matcherStrategy` are EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS).\n\n`reference` shows the reference data that triggered the violation. `componentUpgradeAvailable` indicates if a non-violating version of the component is available to remediate the violation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    ":violationId",
+                    "applicableWaiverRequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) Enter the policy violationId for which you want to obtain the applicable waiver requests."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activeWaiverRequests\": [\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": true,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": true,\n      \"expiryTime\": \"2012-02-16T08:19:05.323Z\",\n      \"hash\": \"string\",\n      \"isObsolete\": false,\n      \"matcherStrategy\": \"ALL_VERSIONS\",\n      \"noteToReviewer\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"policyWaiverRequestId\": \"string\",\n      \"reasonText\": \"string\",\n      \"rejectionReason\": \"string\",\n      \"requestTime\": \"1968-07-19T11:45:10.357Z\",\n      \"requesterId\": \"string\",\n      \"requesterName\": \"string\",\n      \"reviewerId\": \"string\",\n      \"reviewerName\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"status\": \"string\",\n      \"threatLevel\": 3796,\n      \"vulnerabilityId\": \"string\"\n    },\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": true,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": true,\n      \"expiryTime\": \"1970-11-22T15:10:17.863Z\",\n      \"hash\": \"string\",\n      \"isObsolete\": true,\n      \"matcherStrategy\": \"ALL_VERSIONS\",\n      \"noteToReviewer\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"policyWaiverRequestId\": \"string\",\n      \"reasonText\": \"string\",\n      \"rejectionReason\": \"string\",\n      \"requestTime\": \"1987-06-02T18:43:46.419Z\",\n      \"requesterId\": \"string\",\n      \"requesterName\": \"string\",\n      \"reviewerId\": \"string\",\n      \"reviewerName\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"status\": \"string\",\n      \"threatLevel\": 4724,\n      \"vulnerabilityId\": \"string\"\n    }\n  ],\n  \"expiredWaiverRequests\": [\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": false,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": false,\n      \"expiryTime\": \"2019-02-28T15:39:40.726Z\",\n      \"hash\": \"string\",\n      \"isObsolete\": true,\n      \"matcherStrategy\": \"DEFAULT\",\n      \"noteToReviewer\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"policyWaiverRequestId\": \"string\",\n      \"reasonText\": \"string\",\n      \"rejectionReason\": \"string\",\n      \"requestTime\": \"1958-10-05T22:38:39.806Z\",\n      \"requesterId\": \"string\",\n      \"requesterName\": \"string\",\n      \"reviewerId\": \"string\",\n      \"reviewerName\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"status\": \"string\",\n      \"threatLevel\": 8698,\n      \"vulnerabilityId\": \"string\"\n    },\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": false,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": true,\n      \"expiryTime\": \"1970-09-08T18:32:18.449Z\",\n      \"hash\": \"string\",\n      \"isObsolete\": true,\n      \"matcherStrategy\": \"EXACT_COMPONENT\",\n      \"noteToReviewer\": \"string\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"policyWaiverRequestId\": \"string\",\n      \"reasonText\": \"string\",\n      \"rejectionReason\": \"string\",\n      \"requestTime\": \"2019-11-10T05:25:11.836Z\",\n      \"requesterId\": \"string\",\n      \"requesterName\": \"string\",\n      \"reviewerId\": \"string\",\n      \"reviewerName\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"status\": \"string\",\n      \"threatLevel\": 9217,\n      \"vulnerabilityId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8dec3d6-c203-4a2b-9374-526e44aa70b6",
+          "name": "get Applicable Waivers",
+          "request": {
+            "name": "get Applicable Waivers",
+            "description": {
+              "content": "Use this method to obtain all existing waivers that are applicable to a policy violation. A waiver is considered as 'applicable' if it matches the following conditions:<ul><li>The policyId for the policy violation matches the policyId associated with the waiver</li><li>The violated policy conditions match the policy conditions of the waiver/li><li>The waiver scope matches the violating component</li></ul>\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                ":violationId",
+                "applicableWaivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) Enter the policy violationId for which you want to obtain the applicable waivers."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "353ebbe2-b78b-4f2b-8fc2-273ab19c39e6",
+              "name": "The response contains details for all applicable waivers for the `violationId` specified. It is grouped under 'activeWaivers' and 'expiredWaivers'. `scope` indicates the scope of the applicable waiver. Possible values for the enum field `matcherStrategy` are EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS).\n\n`reference` shows the reference data that triggered the violation. `componentUpgradeAvailable` indicates if a non-violating version of the component is available to remediate the violation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    ":violationId",
+                    "applicableWaivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) Enter the policy violationId for which you want to obtain the applicable waivers."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activeWaivers\": [\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": false,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"createTime\": \"1955-04-04T07:55:45.688Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": false,\n      \"expiryTime\": \"1977-07-25T19:46:22.639Z\",\n      \"forContainerImage\": false,\n      \"forContainerImageComponent\": true,\n      \"hash\": \"string\",\n      \"isObsolete\": false,\n      \"matcherStrategy\": \"EXACT_COMPONENT\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"threatLevel\": 9238,\n      \"vulnerabilityId\": \"string\"\n    },\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": false,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"createTime\": \"1999-01-12T21:27:22.992Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": false,\n      \"expiryTime\": \"1972-09-14T22:43:34.437Z\",\n      \"forContainerImage\": true,\n      \"forContainerImageComponent\": false,\n      \"hash\": \"string\",\n      \"isObsolete\": false,\n      \"matcherStrategy\": \"ALL_VERSIONS\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"threatLevel\": 1570,\n      \"vulnerabilityId\": \"string\"\n    }\n  ],\n  \"expiredWaivers\": [\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": true,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"createTime\": \"2001-03-30T07:55:49.859Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": true,\n      \"expiryTime\": \"1964-08-26T14:32:34.050Z\",\n      \"forContainerImage\": false,\n      \"forContainerImageComponent\": true,\n      \"hash\": \"string\",\n      \"isObsolete\": true,\n      \"matcherStrategy\": \"EXACT_COMPONENT\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"threatLevel\": 3830,\n      \"vulnerabilityId\": \"string\"\n    },\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": false,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"createTime\": \"1955-01-12T12:08:39.971Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": true,\n      \"expiryTime\": \"1985-01-04T04:24:54.098Z\",\n      \"forContainerImage\": true,\n      \"forContainerImageComponent\": false,\n      \"hash\": \"string\",\n      \"isObsolete\": false,\n      \"matcherStrategy\": \"EXACT_COMPONENT\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"threatLevel\": 2497,\n      \"vulnerabilityId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e77bdc29-2af2-4496-abdf-ea10c41ace24",
+          "name": "get Similar Waivers",
+          "request": {
+            "name": "get Similar Waivers",
+            "description": {
+              "content": "Use this method to retrieve similar policy waivers for the given policy violation id.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyViolations",
+                ":violationId",
+                "similarWaivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) Policy violation id to find similar waivers for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5a991dd-3834-4f20-8ce0-934965000451",
+              "name": "Successfully retrieved similar policy waivers for the given policy violation id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyViolations",
+                    ":violationId",
+                    "similarWaivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) Policy violation id to find similar waivers for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"associatedPackageUrl\": \"string\",\n    \"comment\": \"string\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"componentName\": \"string\",\n    \"componentUpgradeAvailable\": true,\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 298,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 3610,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 791,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 5348,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      }\n    ],\n    \"constraintFactsJson\": \"string\",\n    \"createTime\": \"2016-01-10T08:41:15.632Z\",\n    \"creatorId\": \"string\",\n    \"creatorName\": \"string\",\n    \"displayName\": {\n      \"name\": \"string\",\n      \"parts\": [\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    \"expireWhenRemediationAvailable\": false,\n    \"expiryTime\": \"1999-03-08T13:14:29.100Z\",\n    \"forContainerImage\": true,\n    \"forContainerImageComponent\": false,\n    \"hash\": \"string\",\n    \"isObsolete\": false,\n    \"matcherStrategy\": \"DEFAULT\",\n    \"policyId\": \"string\",\n    \"policyName\": \"string\",\n    \"policyViolationId\": \"string\",\n    \"policyWaiverId\": \"string\",\n    \"policyWaiverReasonId\": \"string\",\n    \"reasonText\": \"string\",\n    \"scopeOwnerId\": \"string\",\n    \"scopeOwnerName\": \"string\",\n    \"scopeOwnerType\": \"string\",\n    \"threatLevel\": 4231,\n    \"vulnerabilityId\": \"string\"\n  },\n  {\n    \"associatedPackageUrl\": \"string\",\n    \"comment\": \"string\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"componentName\": \"string\",\n    \"componentUpgradeAvailable\": false,\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 3091,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 1482,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 3049,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 4444,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      }\n    ],\n    \"constraintFactsJson\": \"string\",\n    \"createTime\": \"1998-10-09T21:13:02.760Z\",\n    \"creatorId\": \"string\",\n    \"creatorName\": \"string\",\n    \"displayName\": {\n      \"name\": \"string\",\n      \"parts\": [\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    \"expireWhenRemediationAvailable\": true,\n    \"expiryTime\": \"1957-12-04T06:11:38.464Z\",\n    \"forContainerImage\": true,\n    \"forContainerImageComponent\": false,\n    \"hash\": \"string\",\n    \"isObsolete\": false,\n    \"matcherStrategy\": \"ALL_COMPONENTS\",\n    \"policyId\": \"string\",\n    \"policyName\": \"string\",\n    \"policyViolationId\": \"string\",\n    \"policyWaiverId\": \"string\",\n    \"policyWaiverReasonId\": \"string\",\n    \"reasonText\": \"string\",\n    \"scopeOwnerId\": \"string\",\n    \"scopeOwnerName\": \"string\",\n    \"scopeOwnerType\": \"string\",\n    \"threatLevel\": 6227,\n    \"vulnerabilityId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2660fe88-0bb0-4fb4-8d37-18fa0e08054d",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Violation Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

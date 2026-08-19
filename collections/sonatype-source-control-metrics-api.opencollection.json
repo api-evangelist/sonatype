@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Source Control Metrics API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Source Control Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getSourceControl",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/sourceControlMetrics/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the ownerType for the pull requests."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerId corresponding to the ownerType."
+              }
+            ]
+          },
+          "docs": "Use this method to view the source control pull request metrics.\n\nPermissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

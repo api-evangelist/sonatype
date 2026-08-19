@@ -1,0 +1,1367 @@
+{
+  "item": [
+    {
+      "id": "215430f1-baa3-4847-9be0-41cdc3b23efe",
+      "name": "Role Memberships",
+      "description": {
+        "content": "Use this REST API to manage authorizations for users or user groups.\n\nYou can view existing role assignments and grant or revoke user authorization on organizations, applications and repositories.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "efa8b3e4-fce3-45da-8f04-429376a12415",
+          "name": "get Role Memberships Global Or Repository Container",
+          "request": {
+            "name": "get Role Memberships Global Or Repository Container",
+            "description": {
+              "content": "Use this method to retrieve all users and roles globally or for all repositories.\n\nPermissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType. Using `global` will return the users and groups who have been assigned the administrator role."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b8ca276-6ea3-4cd7-bb62-19ccc5796f28",
+              "name": "The response contains all role Ids and the corresponding users/user groups assigned to them, for the ownerType specified. It also includes members who inherit a role based on the organization hierarchy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType. Using `global` will return the users and groups who have been assigned the administrator role."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"memberMappings\": [\n    {\n      \"members\": [\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"GROUP\",\n          \"userOrGroupName\": \"string\"\n        },\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"GROUP\",\n          \"userOrGroupName\": \"string\"\n        }\n      ],\n      \"roleId\": \"string\"\n    },\n    {\n      \"members\": [\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"GROUP\",\n          \"userOrGroupName\": \"string\"\n        },\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"GROUP\",\n          \"userOrGroupName\": \"string\"\n        }\n      ],\n      \"roleId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "897ad8e8-0bce-4134-9926-689e07a801a3",
+          "name": "set Bulk Role Members Global Or Repository Container",
+          "request": {
+            "name": "set Bulk Role Members Global Or Repository Container",
+            "description": {
+              "content": "Use this method to set all members for a specific role in the global or repository container context. This operation atomically replaces all existing members for the role with the provided list.\n\nPermissions required: Edit system configuration and users for a global context or edit access control for a non-global context",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                "role",
+                ":roleId",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the ownerType."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) Enter the roleId for the role whose members should be set.\n\nUse the Roles REST API for roleIds and descriptions."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9aac8574-7795-4c72-af2f-ee13022be998",
+              "name": "The role membership has been successfully updated with the provided members.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    "role",
+                    ":roleId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the ownerType."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) Enter the roleId for the role whose members should be set.\n\nUse the Roles REST API for roleIds and descriptions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd72f2db-3698-4bce-91de-a6d9b8854c2d",
+          "name": "revoke Role Membership Global Or Repository Container",
+          "request": {
+            "name": "revoke Role Membership Global Or Repository Container",
+            "description": {
+              "content": "Use this method to revoke roles globally or on all repositories.\n\nPermissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                "role",
+                ":roleId",
+                ":memberType",
+                ":memberName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType. Using `global` will revoke the administrator role."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) Enter the roleId for the role to be revoked."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberType",
+                  "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberName",
+                  "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f61db2a-c79c-4986-a411-b63bf191cd5a",
+              "name": "The specified role has been revoked from the user or user group.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    "role",
+                    ":roleId",
+                    ":memberType",
+                    ":memberName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType. Using `global` will revoke the administrator role."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) Enter the roleId for the role to be revoked."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberType",
+                      "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberName",
+                      "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e5d3195-4e8a-4064-b2a7-66e2d4970610",
+          "name": "grant Role Membership Global Or Repository Container",
+          "request": {
+            "name": "grant Role Membership Global Or Repository Container",
+            "description": {
+              "content": "Use this method to grant a role to a user or user group globally or on all repositories.\n\nPermissions required: Edit system configuration and users for a global context or edit access control for a non-global context",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                "role",
+                ":roleId",
+                ":memberType",
+                ":memberName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for the ownerType for which you want to grant the role."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) Enter the roleId for the role to be granted.\n\nUse the Roles REST API for roleIds and descriptions."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberType",
+                  "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberName",
+                  "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef3ce14c-5b4d-4b2e-bd97-b46e174e5581",
+              "name": "The specified role has been granted to the users or user groups on the given context.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    "role",
+                    ":roleId",
+                    ":memberType",
+                    ":memberName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for the ownerType for which you want to grant the role."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) Enter the roleId for the role to be granted.\n\nUse the Roles REST API for roleIds and descriptions."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberType",
+                      "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberName",
+                      "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2eb9341c-4b7e-450a-aaaf-1c8e8fca6d32",
+          "name": "get Bulk Role Memberships Global Or Repository Container",
+          "request": {
+            "name": "get Bulk Role Memberships Global Or Repository Container",
+            "description": {
+              "content": "Use this method to retrieve all role memberships for global or repository container context with full details including role names, descriptions, and member information.\n\nPermissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdfb5d42-e925-4233-a139-22e215298054",
+              "name": "The response contains all roles with their members. Also includes a flag indicating whether group search is enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groupSearchEnabled\": false,\n  \"membersByRole\": [\n    {\n      \"membersByOwner\": [\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        },\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        }\n      ],\n      \"roleDescription\": \"string\",\n      \"roleId\": \"string\",\n      \"roleName\": \"string\"\n    },\n    {\n      \"membersByOwner\": [\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        },\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        }\n      ],\n      \"roleDescription\": \"string\",\n      \"roleId\": \"string\",\n      \"roleName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a86f551-2d18-4a6d-aa32-94570967e2f2",
+          "name": "get Role Memberships Application Or Organization",
+          "request": {
+            "name": "get Role Memberships Application Or Organization",
+            "description": {
+              "content": "Use this method to retrieve the users, user groups and the corresponding role Ids.\n\nPermissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the ownerType for which you want to retrieve users and their role Ids."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d78f009-c6eb-4d3c-a7f4-dde1ed140aaf",
+              "name": "The response contains the assigned role Ids, users and user groups for the application or organization requested. It also includes members who inherit a role based on the organization hierarchy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the ownerType for which you want to retrieve users and their role Ids."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"memberMappings\": [\n    {\n      \"members\": [\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"GROUP\",\n          \"userOrGroupName\": \"string\"\n        },\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"USER\",\n          \"userOrGroupName\": \"string\"\n        }\n      ],\n      \"roleId\": \"string\"\n    },\n    {\n      \"members\": [\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"GROUP\",\n          \"userOrGroupName\": \"string\"\n        },\n        {\n          \"ownerId\": \"string\",\n          \"ownerType\": \"string\",\n          \"type\": \"USER\",\n          \"userOrGroupName\": \"string\"\n        }\n      ],\n      \"roleId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e56a7be-a8a8-45de-9581-4737c480b3f0",
+          "name": "set Bulk Role Members Non Global",
+          "request": {
+            "name": "set Bulk Role Members Non Global",
+            "description": {
+              "content": "Use this method to set all members for a specific role. This operation atomically replaces all existing members for the role with the provided list.\n\nPermissions required: Edit access control",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                ":internalOwnerId",
+                "role",
+                ":roleId",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the ownerType for which you want to set role members."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the id associated with the ownerType specified above. For applications, use the public ID. For organizations, repositories, and repository managers, use the internal ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) Enter the roleId for the role whose members should be set.\n\nUse the Roles REST API for roleIds and descriptions."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4bf2e49-f267-41df-ab6c-f63a53d06b9f",
+              "name": "The role membership has been successfully updated with the provided members.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    ":internalOwnerId",
+                    "role",
+                    ":roleId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the ownerType for which you want to set role members."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the id associated with the ownerType specified above. For applications, use the public ID. For organizations, repositories, and repository managers, use the internal ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) Enter the roleId for the role whose members should be set.\n\nUse the Roles REST API for roleIds and descriptions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  {\n    \"displayName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"internalName\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc5cd1e7-5f68-4724-9ea8-46b86c2ed8a5",
+          "name": "revoke Role Membership Application Or Organization",
+          "request": {
+            "name": "revoke Role Membership Application Or Organization",
+            "description": {
+              "content": "Use this method to revoke a role from a user or user group, on a specific application or organization.\n\nPermissions required: Edit access control",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                ":internalOwnerId",
+                "role",
+                ":roleId",
+                ":memberType",
+                ":memberName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for the ownerType for which you want to revoke the role. Using `global` will revoke the administrator role."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the internalId associated with the ownerType specified above."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) Enter the roleId for the role to be revoked."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberType",
+                  "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberName",
+                  "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0c56b85-8ce5-4bc5-8a72-d04c873389d0",
+              "name": "The specified role has been revoked from the user or user group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    ":internalOwnerId",
+                    "role",
+                    ":roleId",
+                    ":memberType",
+                    ":memberName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for the ownerType for which you want to revoke the role. Using `global` will revoke the administrator role."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the internalId associated with the ownerType specified above."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) Enter the roleId for the role to be revoked."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberType",
+                      "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberName",
+                      "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "649f41e4-c8d8-427b-b996-b97b9cbef07d",
+          "name": "grant Role Membership Application Or Organization",
+          "request": {
+            "name": "grant Role Membership Application Or Organization",
+            "description": {
+              "content": "Use this method to grant a role to a user or user group for the specified application or organization.\n\nPermissions required: Edit access control",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                ":internalOwnerId",
+                "role",
+                ":roleId",
+                ":memberType",
+                ":memberName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "validateMember",
+                  "value": "false",
+                  "description": "If true, attempts to validate if the specified user or group exists before assigning the role.\nIf false or omitted, the request behaves as before (no validation check)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for the ownerType for which you want to grant the role."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the value for the internalId associated with the ownerType specified above."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) Enter the roleId for the role to be granted.\n\nUse the Roles REST API for roleIds and descriptions."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberType",
+                  "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberName",
+                  "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "484b3e68-a40e-480b-bb33-a408701fcb8c",
+              "name": "The specified roleId has been has been granted to the user or user group for the requested context.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    ":internalOwnerId",
+                    "role",
+                    ":roleId",
+                    ":memberType",
+                    ":memberName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "validateMember",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for the ownerType for which you want to grant the role."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the value for the internalId associated with the ownerType specified above."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) Enter the roleId for the role to be granted.\n\nUse the Roles REST API for roleIds and descriptions."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberType",
+                      "description": "(Required) Enter the value for memberType, to specify a user or a user group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberName",
+                      "description": "(Required) Enter the value for memberName. This can be a username or group name depending upon the value of memberType above."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ae12506-9958-44fe-8aa1-545e7c445bbf",
+          "name": "get Bulk Role Memberships Non Global",
+          "request": {
+            "name": "get Bulk Role Memberships Non Global",
+            "description": {
+              "content": "Use this method to retrieve all role memberships with full details including role names, descriptions, and member information organized by owner (for inheritance display).\n\nPermissions required: Edit system configuration and users for a global context or view IQ elements for a non-global context",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roleMemberships",
+                ":ownerType",
+                ":internalOwnerId",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the ownerType for which you want to retrieve role memberships."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the corresponding id for the ownerType specified above. For applications, use the public ID. For organizations, repositories, and repository managers, use the internal ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2618c506-ad03-40b9-aab2-73817d2df0db",
+              "name": "The response contains all roles with their members organized by owner, including inherited members from parent organizations or repository hierarchies. Also includes a flag indicating whether group search is\nenabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roleMemberships",
+                    ":ownerType",
+                    ":internalOwnerId",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the ownerType for which you want to retrieve role memberships."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the corresponding id for the ownerType specified above. For applications, use the public ID. For organizations, repositories, and repository managers, use the internal ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groupSearchEnabled\": true,\n  \"membersByRole\": [\n    {\n      \"membersByOwner\": [\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        },\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        }\n      ],\n      \"roleDescription\": \"string\",\n      \"roleId\": \"string\",\n      \"roleName\": \"string\"\n    },\n    {\n      \"membersByOwner\": [\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        },\n        {\n          \"members\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"realm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ownerId\": \"string\",\n          \"ownerName\": \"string\",\n          \"ownerType\": \"string\"\n        }\n      ],\n      \"roleDescription\": \"string\",\n      \"roleId\": \"string\",\n      \"roleName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1da34211-0206-49b2-aa47-74c8f718300f",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Role Memberships API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,985 @@
+{
+  "item": [
+    {
+      "id": "9b122851-75a0-498c-b691-b8966baf3b91",
+      "name": "Source Control",
+      "description": {
+        "content": "Use this REST API to:<ul><li>Create, update and delete source control management (SCM) configuration for the root organization, sub-organizations and applications.</li><li>Automatically assign the developer role to all contributors of the associated repository, who are registered IQ users.</li></ul>",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64ddc03c-4fbd-4151-94a4-be8a7445c3e3",
+          "name": "delete User Mappings",
+          "request": {
+            "name": "delete User Mappings",
+            "description": {
+              "content": "Use this method to delete existing SCM user mappings for an organization.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                "automaticRoleAssignment",
+                "userMappings",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Enter the organizationId."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5dde222-4c6e-4077-8e3d-c2446becb611",
+              "name": "User mappings deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    "automaticRoleAssignment",
+                    "userMappings",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organizationId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58d79848-5036-4ba3-bdf1-13600a73bd67",
+          "name": "add User Mappings",
+          "request": {
+            "name": "add User Mappings",
+            "description": {
+              "content": "Use this method to apply user mappings from SCM (GitHub) to Lifecycle. The user mappings will be inherited by all child organizations and applications in the organization hierarchy. If a user mapping for an organization already exists, it will be replaced with new mappings provided here.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                "automaticRoleAssignment",
+                "userMappings",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Enter the organizationId. Use `ROOT_ORGANIZATION_ID` for the root organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mappings\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"role\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a36eae0c-e9c7-4f5e-8273-0206c5052c47",
+              "name": "User mappings applied successfully.<ul><li>When multiple user mappings are specified in the body, and the first mapping fails,  the next user mapping will be attempted.</li><li>If duplicate user mappings are specified, an error message will be displayed</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    "automaticRoleAssignment",
+                    "userMappings",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Enter the organizationId. Use `ROOT_ORGANIZATION_ID` for the root organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mappings\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba1c6e06-2bec-458f-86be-3834a707b3c3",
+          "name": "get User Mappings By Owner",
+          "request": {
+            "name": "get User Mappings By Owner",
+            "description": {
+              "content": "Use this method to retrieve SCM user mappings for an organization or application.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                "automaticRoleAssignment",
+                "userMappings",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the value for internal ownerId."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5878f823-3f51-4032-a659-5a7cff0f6233",
+              "name": "The response contains:<ul><li>`ownerInternalId` indicates the owner id for which the user mappings were created.</li><li>`inherited` is always `true` if the ownerType is application</li><li>`userMapping` is an object containing `role` and `mappings`.<ul><li> `role` indicates the role assigned to users during automatic role assignment.</li><li>`mappings` contain all existing user mappings from the SCM sytem to IQ.</li></ul></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    "automaticRoleAssignment",
+                    "userMappings",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the value for internal ownerId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inherited\": false,\n  \"ownerInternalId\": \"string\",\n  \"userMapping\": {\n    \"mappings\": [\n      {\n        \"from\": \"<string>\",\n        \"to\": \"<string>\"\n      },\n      {\n        \"from\": \"<string>\",\n        \"to\": \"<string>\"\n      }\n    ],\n    \"role\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ab773d5-2ae2-4a30-a195-f4b19e1b6ac9",
+          "name": "automatic Role Assignment",
+          "request": {
+            "name": "automatic Role Assignment",
+            "description": {
+              "content": "Use this method to automatically grant the supplied role to all contributors of a repository on a given application.\n\nPrerequisites for automatic role assignment are:<ol><li>SCM configuration for the application and authentication token should exist.</li><li>The contributors to the repository should match a user in IQ based on the supplied mappings.</li><li>Either user mapping strategies have been configured for your organization, or they are provided in the request</li></ol>\n\nPermissions required: Edit access control on the application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                "automaticRoleAssignment",
+                ":publicId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publicId",
+                  "description": "(Required) Enter the public applicationId for automatic role assignment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mappings\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"role\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "cc14db60-5310-48d2-98da-363b14f9055b",
+              "name": "The 'developer' role has automatically been assigned to all contributors of the repository, who matched IQ Server users via the provided matching strategies.\n\nThe response contains all usernames that were successfully granted the role provided on the given application as well as an indication of which matching strategy was the first to match a user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    "automaticRoleAssignment",
+                    ":publicId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicId",
+                      "description": "(Required) Enter the public applicationId for automatic role assignment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mappings\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"role\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matchedUsers\": [\n    \"string\"\n  ],\n  \"successfulMapping\": {\n    \"from\": \"<string>\",\n    \"to\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2ea27f9-66f8-47b7-9c84-84f5bff27a9e",
+          "name": "delete Source Control",
+          "request": {
+            "name": "delete Source Control",
+            "description": {
+              "content": "Use this method to delete a SCM setting for the specified ownerType/ownerId.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the value for internal ownerId."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f5aac71-4fa8-40c4-b4c1-ddf3b9d01fec",
+              "name": "The SCM setting for the specified ownerType/ownerId has been successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the value for internal ownerId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5849c5c-8688-46fd-a080-e8b69c208a28",
+          "name": "get Source Control 1",
+          "request": {
+            "name": "get Source Control 1",
+            "description": {
+              "content": "Use this method to retrieve the source control configuration settings for an organization or an application.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b28fd45-a716-43f5-923c-66d404d56de8",
+              "name": "The response contains source control configuration settings for the specified ownerId.\n\n<ul><li><code>id</code> is the owner internal ID.</li><li><code>repositoryUrl</code> indicates the http(s) and ssh urls for the application specified in the ownerId.</li><li><code>username</code> is retrieved if available on the SCM system, e.g. for Bitbucket Server and Cloud.</li><li><code>provider</code> indicates the name of the SCM system.</li><li><code>baseBranch</code> indicates the name of the last selected branch.</li><li><code>enablePullRequests</code> has been deprecated in version 124.</li><li><code>remediationPullRequestsEnabled</code> indicates if the Automated Pull Requests feature is enabled.</li><li><code>enableStatusChecks</code> has been deprecated in version 124.</li><li><code>statusChecksEnabled</code> is an internal field.</li><li><code>pullRequestCommentingEnabled</code> indicates if the Pull Request Commenting feature is enabled.</li><li><code>sourceControlEvaluationsEnabled</code> indicates if the source control evaluations are enabled for the continuous risk profile feature.</li><li><code>sourceControlScanTarget</code> indicates the path inside the repository.</li><li><code>sshEnabled</code> indicates if ssh is enabled.</li><li><code>commitStatusEnabled</code> indicates if interaction with the commit statuses on the SCM system is enabled.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticationType\": \"string\",\n  \"baseBranch\": \"string\",\n  \"closePrAfterDays\": 1081,\n  \"closePrAfterDaysOpenEnabled\": true,\n  \"closePrOnFailedChecksEnabled\": false,\n  \"commitStatusEnabled\": true,\n  \"enablePullRequests\": true,\n  \"enableStatusChecks\": false,\n  \"id\": \"string\",\n  \"innerSourceAutomatedUpdatesEnabled\": true,\n  \"manualPullRequestsEnabled\": false,\n  \"ownerId\": \"string\",\n  \"provider\": \"string\",\n  \"pullRequestCommentingEnabled\": true,\n  \"remediationPullRequestsEnabled\": true,\n  \"repositoryUrl\": \"string\",\n  \"sourceControlEvaluationsEnabled\": false,\n  \"sourceControlScanTarget\": \"string\",\n  \"sshEnabled\": true,\n  \"statusChecksEnabled\": false,\n  \"token\": \"string\",\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "814bfe8a-4cff-4499-9399-c866f3af6e36",
+          "name": "add Source Control",
+          "request": {
+            "name": "add Source Control",
+            "description": {
+              "content": "Use this method to create a source control configuration setting.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for root organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authenticationType\": \"<string>\",\n  \"baseBranch\": \"<string>\",\n  \"closePrAfterDays\": \"<integer>\",\n  \"closePrAfterDaysOpenEnabled\": \"<boolean>\",\n  \"closePrOnFailedChecksEnabled\": \"<boolean>\",\n  \"commitStatusEnabled\": \"<boolean>\",\n  \"enablePullRequests\": \"<boolean>\",\n  \"enableStatusChecks\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"innerSourceAutomatedUpdatesEnabled\": \"<boolean>\",\n  \"manualPullRequestsEnabled\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"pullRequestCommentingEnabled\": \"<boolean>\",\n  \"remediationPullRequestsEnabled\": \"<boolean>\",\n  \"repositoryUrl\": \"<string>\",\n  \"sourceControlEvaluationsEnabled\": \"<boolean>\",\n  \"sourceControlScanTarget\": \"<string>\",\n  \"sshEnabled\": \"<boolean>\",\n  \"statusChecksEnabled\": \"<boolean>\",\n  \"token\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "04ec3911-901a-49e0-8793-fac652b1a1d6",
+              "name": "The Source Control Management (SCM) settings have been created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the value for internal ownerId. Use ROOT_ORGANIZATION_ID for root organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authenticationType\": \"<string>\",\n  \"baseBranch\": \"<string>\",\n  \"closePrAfterDays\": \"<integer>\",\n  \"closePrAfterDaysOpenEnabled\": \"<boolean>\",\n  \"closePrOnFailedChecksEnabled\": \"<boolean>\",\n  \"commitStatusEnabled\": \"<boolean>\",\n  \"enablePullRequests\": \"<boolean>\",\n  \"enableStatusChecks\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"innerSourceAutomatedUpdatesEnabled\": \"<boolean>\",\n  \"manualPullRequestsEnabled\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"pullRequestCommentingEnabled\": \"<boolean>\",\n  \"remediationPullRequestsEnabled\": \"<boolean>\",\n  \"repositoryUrl\": \"<string>\",\n  \"sourceControlEvaluationsEnabled\": \"<boolean>\",\n  \"sourceControlScanTarget\": \"<string>\",\n  \"sshEnabled\": \"<boolean>\",\n  \"statusChecksEnabled\": \"<boolean>\",\n  \"token\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticationType\": \"<string>\",\n  \"baseBranch\": \"<string>\",\n  \"closePrAfterDays\": \"<integer>\",\n  \"closePrAfterDaysOpenEnabled\": \"<boolean>\",\n  \"closePrOnFailedChecksEnabled\": \"<boolean>\",\n  \"commitStatusEnabled\": \"<boolean>\",\n  \"enablePullRequests\": \"<boolean>\",\n  \"enableStatusChecks\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"innerSourceAutomatedUpdatesEnabled\": \"<boolean>\",\n  \"manualPullRequestsEnabled\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"pullRequestCommentingEnabled\": \"<boolean>\",\n  \"remediationPullRequestsEnabled\": \"<boolean>\",\n  \"repositoryUrl\": \"<string>\",\n  \"sourceControlEvaluationsEnabled\": \"<boolean>\",\n  \"sourceControlScanTarget\": \"<string>\",\n  \"sshEnabled\": \"<boolean>\",\n  \"statusChecksEnabled\": \"<boolean>\",\n  \"token\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7687f690-6ee3-40f3-8cad-52da9774f2af",
+          "name": "update Source Control",
+          "request": {
+            "name": "update Source Control",
+            "description": {
+              "content": "Use this method to update an existing SCM setting.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControl",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the value for ownerType."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authenticationType\": \"<string>\",\n  \"baseBranch\": \"<string>\",\n  \"closePrAfterDays\": \"<integer>\",\n  \"closePrAfterDaysOpenEnabled\": \"<boolean>\",\n  \"closePrOnFailedChecksEnabled\": \"<boolean>\",\n  \"commitStatusEnabled\": \"<boolean>\",\n  \"enablePullRequests\": \"<boolean>\",\n  \"enableStatusChecks\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"innerSourceAutomatedUpdatesEnabled\": \"<boolean>\",\n  \"manualPullRequestsEnabled\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"pullRequestCommentingEnabled\": \"<boolean>\",\n  \"remediationPullRequestsEnabled\": \"<boolean>\",\n  \"repositoryUrl\": \"<string>\",\n  \"sourceControlEvaluationsEnabled\": \"<boolean>\",\n  \"sourceControlScanTarget\": \"<string>\",\n  \"sshEnabled\": \"<boolean>\",\n  \"statusChecksEnabled\": \"<boolean>\",\n  \"token\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbb86707-698b-4195-9157-76c376a33fc2",
+              "name": "The SCM settings have been updated successfully. The JSON returned shows the updated values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControl",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the value for ownerType."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the internal ownerId. Use ROOT_ORGANIZATION_ID for the root organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authenticationType\": \"<string>\",\n  \"baseBranch\": \"<string>\",\n  \"closePrAfterDays\": \"<integer>\",\n  \"closePrAfterDaysOpenEnabled\": \"<boolean>\",\n  \"closePrOnFailedChecksEnabled\": \"<boolean>\",\n  \"commitStatusEnabled\": \"<boolean>\",\n  \"enablePullRequests\": \"<boolean>\",\n  \"enableStatusChecks\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"innerSourceAutomatedUpdatesEnabled\": \"<boolean>\",\n  \"manualPullRequestsEnabled\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"pullRequestCommentingEnabled\": \"<boolean>\",\n  \"remediationPullRequestsEnabled\": \"<boolean>\",\n  \"repositoryUrl\": \"<string>\",\n  \"sourceControlEvaluationsEnabled\": \"<boolean>\",\n  \"sourceControlScanTarget\": \"<string>\",\n  \"sshEnabled\": \"<boolean>\",\n  \"statusChecksEnabled\": \"<boolean>\",\n  \"token\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticationType\": \"<string>\",\n  \"baseBranch\": \"<string>\",\n  \"closePrAfterDays\": \"<integer>\",\n  \"closePrAfterDaysOpenEnabled\": \"<boolean>\",\n  \"closePrOnFailedChecksEnabled\": \"<boolean>\",\n  \"commitStatusEnabled\": \"<boolean>\",\n  \"enablePullRequests\": \"<boolean>\",\n  \"enableStatusChecks\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"innerSourceAutomatedUpdatesEnabled\": \"<boolean>\",\n  \"manualPullRequestsEnabled\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"pullRequestCommentingEnabled\": \"<boolean>\",\n  \"remediationPullRequestsEnabled\": \"<boolean>\",\n  \"repositoryUrl\": \"<string>\",\n  \"sourceControlEvaluationsEnabled\": \"<boolean>\",\n  \"sourceControlScanTarget\": \"<string>\",\n  \"sshEnabled\": \"<boolean>\",\n  \"statusChecksEnabled\": \"<boolean>\",\n  \"token\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8fad3827-52cc-425f-9982-0c6d8726e45c",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Source Control API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

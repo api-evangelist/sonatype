@@ -1,0 +1,455 @@
+{
+  "item": [
+    {
+      "id": "79161869-fbff-4995-b0e0-b5b50a12ac84",
+      "name": "Third-Party Analysis",
+      "description": {
+        "content": "Use this REST API to scan SBOMs for your applications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ad88cde-bdbb-4785-9df5-69d63c870130",
+          "name": "scan Components",
+          "request": {
+            "name": "scan Components",
+            "description": {
+              "content": "Use this method to perform an analysis of an SBOM.\n\nPermissions required: Evaluate Applications",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "scan",
+                "applications",
+                ":applicationId",
+                "sources",
+                ":source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stageId",
+                  "value": "build",
+                  "description": "Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "source",
+                  "description": "(Required) Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca25a374-55c1-4d60-b48e-ff30203d43a4",
+              "name": "The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "scan",
+                    "applications",
+                    ":applicationId",
+                    "sources",
+                    ":source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stageId",
+                      "value": "build"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a621820-0d0f-4847-a08b-d91317fba676",
+              "name": "The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "scan",
+                    "applications",
+                    ":applicationId",
+                    "sources",
+                    ":source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stageId",
+                      "value": "build"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3956f505-14ef-499f-89bc-6f19904f57b7",
+          "name": "get Scan Status",
+          "request": {
+            "name": "get Scan Status",
+            "description": {
+              "content": "SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.\n\nPermissions required: Evaluate Applications",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "scan",
+                "applications",
+                ":applicationId",
+                "status",
+                ":scanRequestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the application internal id for the SBOM to be evaluated."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scanRequestId",
+                  "description": "(Required) Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86017fd8-e880-476e-8978-ad0e7ed91df4",
+              "name": "The response contains summarized results of the SBOM evaluation and the URLs for detailed evaluation reports in HTML, pdf and raw formats.\n\n`policyAction` indicates the policy actions determined by the `stageId` selected while submitting the evaluation using the POST method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "scan",
+                    "applications",
+                    ":applicationId",
+                    "status",
+                    ":scanRequestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the application internal id for the SBOM to be evaluated."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanRequestId",
+                      "description": "(Required) Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"componentsAffected\": {\n    \"critical\": 8293,\n    \"moderate\": 4388,\n    \"severe\": 7254\n  },\n  \"embeddableReportHtmlUrl\": \"string\",\n  \"errorMessage\": \"string\",\n  \"grandfatheredPolicyViolations\": 9332,\n  \"isError\": true,\n  \"legacyViolations\": 1160,\n  \"openPolicyViolations\": {\n    \"critical\": 8895,\n    \"moderate\": 9284,\n    \"severe\": 2460\n  },\n  \"policyAction\": \"string\",\n  \"reportDataUrl\": \"string\",\n  \"reportHtmlUrl\": \"string\",\n  \"reportPdfUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5ca10b8-7ab0-4302-a856-8f1f490e68aa",
+              "name": "Evaluation report is not ready.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "scan",
+                    "applications",
+                    ":applicationId",
+                    "status",
+                    ":scanRequestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the application internal id for the SBOM to be evaluated."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanRequestId",
+                      "description": "(Required) Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d8ef3a50-d61b-4442-a161-caf7897c58b2",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Third-Party Analysis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search User Tokens API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getUserTokensByCreatedBetweenAndRealmId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/userTokens",
+            "params": [
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "Enter the start date for the date range in `yyyy-mm-dd` format."
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "Enter the end date for the date range in `yyyy-mm-dd` format."
+              },
+              {
+                "name": "realm",
+                "value": "",
+                "type": "query",
+                "description": "Enter the `realmId`. Possible values are `Internal`, `SAML` , `OAUTH2`, and `Crowd`."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve user tokens created within a date range, in the supported IQ Server realms.\n\nPermissions required: Edit System Configuration and Users."
+        },
+        {
+          "info": {
+            "name": "createUserToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/userTokens/currentUser"
+          },
+          "docs": "Use this method to generate a user token for the currently logged in user.\n\nPermissions required: None"
+        },
+        {
+          "info": {
+            "name": "deleteCurrentUserToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/userTokens/currentUser"
+          },
+          "docs": "Use this method to delete an existing user token for the currently logged in user.\n\nPermissions required: None"
+        },
+        {
+          "info": {
+            "name": "getCurrentUserTokenCreateTime",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/userTokens/currentUser/createTime"
+          },
+          "docs": "Use this method to retrieve the creation time of the user token for the currently logged in user.\n\nPermissions required: None"
+        },
+        {
+          "info": {
+            "name": "getUserTokenExistsForCurrentUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/userTokens/currentUser/hasToken"
+          },
+          "docs": "Use this method to check if a user token has been issued to the logged in user.\n\nPermissions required: None "
+        },
+        {
+          "info": {
+            "name": "purgeUserTokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/userTokens/purge"
+          },
+          "docs": "Use this method to delete all existing LDAP user tokens.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteUserTokenByUserCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/userTokens/userCode/:userCode",
+            "params": [
+              {
+                "name": "userCode",
+                "value": "",
+                "type": "path",
+                "description": "Enter the `userCode` to be deleted."
+              }
+            ]
+          },
+          "docs": "Use this method to delete an existing user token by specifying the userCode.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "getUserTokenByUsernameAndRealmId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/userTokens/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Enter the username."
+              },
+              {
+                "name": "realm",
+                "value": "",
+                "type": "query",
+                "description": "Enter the realmId. Possible values are `Internal`, `SAML` , `OAUTH2` , and `Crowd`."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve a user token by specifying a username and realmId.\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

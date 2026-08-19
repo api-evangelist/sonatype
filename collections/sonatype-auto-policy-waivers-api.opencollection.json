@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Auto Policy Waivers API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auto Policy Waivers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "addAutoPolicyWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/v2/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create an auto policy waiver configuration. Only three configurations can  exist at a time for a given application or organization. With different combinations for reachable/pathForward\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "getApplicableAutoWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/v2/:ownerType/:ownerId/applicableAutoWaivers",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain applicable auto policy waivers, if any, that are within the scope specified."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve all applicable auto waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getAutoPolicyWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve waiver details for all auto policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addAutoPolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create an auto policy waiver configuration. Only one configuration can exist at a time for a given application or organization.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "getAutoPolicyWaiverStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/status",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain status details for the active auto policy waiver, if any, that is within the scope specified."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve status details for any auto policy waiver enabled for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getAutoPolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "autoPolicyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the autoPolicyWaiverId for which you want to retrieve the auto policy waiver details."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve auto policy waiver details for the autoPolicyWaiverId specified.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updateAutoPolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "autoPolicyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the autoPolicyWaiverId to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update an auto policy waiver, specified by the autoPolicyWaiverId.\n\nPermissions required: Write IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteAutoPolicyWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. A waiver corresponding to the autoPolicyWaiverId provided and within the scope specified will be deleted."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "autoPolicyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the autoPolicyWaiverId to be deleted"
+              }
+            ]
+          },
+          "docs": "Use this method to delete an auto policy waiver, specified by the autoPolicyWaiverId.\n\nPermissions required: Waive Policy Violations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

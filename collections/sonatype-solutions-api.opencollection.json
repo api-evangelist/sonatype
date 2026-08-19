@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Solutions API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Solutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getLicensedSolutions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/solutions/licensed",
+            "params": [
+              {
+                "name": "allowRelativeUrls",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not relative URLs should be allowed."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of licensed solutions. The base URL must be set to get results unless relative URLs are allowed.\n\nPermissions required: None "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

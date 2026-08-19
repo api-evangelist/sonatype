@@ -1,0 +1,161 @@
+{
+  "item": [
+    {
+      "id": "7f73ae80-7841-48bb-b128-6aadeb920e4c",
+      "name": "Source Control Metrics",
+      "description": {
+        "content": "Use this REST API to view the response times of a source control evaluation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72562d4f-f68e-4c85-a95f-3531f3a33ffc",
+          "name": "get Source Control",
+          "request": {
+            "name": "get Source Control",
+            "description": {
+              "content": "Use this method to view the source control pull request metrics.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sourceControlMetrics",
+                ":ownerType",
+                ":internalOwnerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Select the ownerType for the pull requests."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "internalOwnerId",
+                  "description": "(Required) Enter the ownerId corresponding to the ownerType."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d1baf97-cb52-4ceb-adbb-971ef7367113",
+              "name": "The response contains `results` which is a list of elements, each including: <ul><li>`startTime` indicates the start time of the pull request.</li><li>`title` indicates the title of the pull request.</li><li>`exceptionThrown` indicates if the pull request caused an exception.</li><li>`successful` indicates if the pull request was successful.</li><li>`totalTime` indicates the total time taken to complete the pull request.</li><li>`reasoning` indicates the summary of the outcome of the pull request.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sourceControlMetrics",
+                    ":ownerType",
+                    ":internalOwnerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Select the ownerType for the pull requests."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "internalOwnerId",
+                      "description": "(Required) Enter the ownerId corresponding to the ownerType."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"exceptionThrown\": true,\n      \"reasoning\": \"string\",\n      \"startTime\": \"2007-07-16T15:19:35.582Z\",\n      \"successful\": false,\n      \"title\": \"string\",\n      \"totalTime\": 6278\n    },\n    {\n      \"exceptionThrown\": false,\n      \"reasoning\": \"string\",\n      \"startTime\": \"2021-08-22T04:29:55.804Z\",\n      \"successful\": false,\n      \"title\": \"string\",\n      \"totalTime\": 6253\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebd9fd9b-96d1-4c9d-8b28-5ab1de747e6c",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Source Control Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

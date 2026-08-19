@@ -1,0 +1,1103 @@
+{
+  "item": [
+    {
+      "id": "72449068-e6c9-4813-b7bc-a12be28cc4ec",
+      "name": "Application Categories",
+      "description": {
+        "content": "Use the Application Categories REST API to manage the application categories or tags assigned to the applications in an organization. ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b03dde1e-45ee-45f8-99cf-ee079298360b",
+          "name": "get Tags Used By Applications",
+          "request": {
+            "name": "get Tags Used By Applications",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f94d9628-393e-450f-ad1f-5d7d8809578c",
+              "name": "A list of application categories or tags applied to applications. Each application category or tag consists of an id, name, description and color.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\"\n  },\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a76e2e6e-343e-465d-a5bf-764a7d6b6553",
+          "name": "get Application Applicable Tags",
+          "request": {
+            "name": "get Application Applicable Tags",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories available to applications in this organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "application",
+                ":applicationPublicId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationPublicId",
+                  "description": "(Required) The application public ID "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3258a6b-23bd-46db-83d6-5e24b394b333",
+              "name": "A list of application categories that can be applied to the specified application. Each application category or tag consists of an id, name, description and color. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "application",
+                    ":applicationPublicId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) The application public ID "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationCategoriesByOwner\": [\n    {\n      \"applicationCategories\": [\n        {\n          \"color\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"organizationId\": \"string\"\n        },\n        {\n          \"color\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"organizationId\": \"string\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_manager\"\n    },\n    {\n      \"applicationCategories\": [\n        {\n          \"color\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"organizationId\": \"string\"\n        },\n        {\n          \"color\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"organizationId\": \"string\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_container\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c699732-fbdb-468c-90e1-7c56a24ba6f5",
+          "name": "get Applicable Tags By Application Public Id",
+          "request": {
+            "name": "get Applicable Tags By Application Public Id",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "application",
+                ":applicationPublicId",
+                "applicable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationPublicId",
+                  "description": "(Required) Provide the application public ID assigned by IQ Server."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d21dbe9-7da3-438b-8830-fc5b0b9203a6",
+              "name": "Returns all application categories or tags that can be applied to this application,  by providing the application public ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "application",
+                    ":applicationPublicId",
+                    "applicable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Provide the application public ID assigned by IQ Server."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\"\n  },\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01b68262-0870-4b2c-b181-5738e60cca49",
+          "name": "get Tags",
+          "request": {
+            "name": "get Tags",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories in use by applications in this organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "organization",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The organizationId assigned by IQ Server."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83a54845-635a-4db9-8602-69b4c7f2e24c",
+              "name": "A list of application categories or tags that can be used by applications in this organization. Each application category consists of an id, name, description and color. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "organization",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The organizationId assigned by IQ Server."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\"\n  },\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1088c01-a1ed-46eb-9692-3610f23d14b8",
+          "name": "add Tag",
+          "request": {
+            "name": "add Tag",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to add a new application category or tag.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "organization",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The organizationId assigned by IQ Server, for which you want to create the application category."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e74f77c9-567a-4bcf-93db-b8840f1e8d7f",
+              "name": "Successful creation of the new application category and its details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "organization",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The organizationId assigned by IQ Server, for which you want to create the application category."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "318f370c-855b-41a5-9e20-c17c39f08cf5",
+          "name": "update Tag",
+          "request": {
+            "name": "update Tag",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "organization",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The organizationId assigned by IQ Server."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c89342b-62ab-4aaa-ace2-8b5582f6b981",
+              "name": "Successful update echoing the updated application category details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "organization",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The organizationId assigned by IQ Server."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e6388cd-df13-417e-9322-cfcd3fe15150",
+          "name": "get Applicable Tags",
+          "request": {
+            "name": "get Applicable Tags",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "organization",
+                ":organizationId",
+                "applicable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The organizationId assigned by IQ Server, for which you want to retrieve the applicable tags or application categories."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d92ea092-62d7-4a76-86dd-582b517ebd54",
+              "name": "A list of application categories or tags that can be applied to applications in this organization. Each application category or tag consists of an id, name, description and color. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "organization",
+                    ":organizationId",
+                    "applicable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The organizationId assigned by IQ Server, for which you want to retrieve the applicable tags or application categories."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationCategoriesByOwner\": [\n    {\n      \"applicationCategories\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"organizationId\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"organizationId\": \"<string>\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"application\"\n    },\n    {\n      \"applicationCategories\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"organizationId\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"organizationId\": \"<string>\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"application\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dad3543-e550-40ef-9a2a-505131bb4f68",
+          "name": "get Applied Tags",
+          "request": {
+            "name": "get Applied Tags",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "organization",
+                ":organizationId",
+                "applied"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The organizationId assigned by IQ Server."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0508bf5e-d329-4c68-95a4-74cd287e75a2",
+              "name": "Get all application categories or tags that can be applied to an application, belonging to the organization specified by the organization id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "organization",
+                    ":organizationId",
+                    "applied"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The organizationId assigned by IQ Server."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationTagsByOwner\": [\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        },\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_manager\"\n    },\n    {\n      \"applicationTags\": [\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        },\n        {\n          \"applicationId\": \"string\",\n          \"id\": \"string\",\n          \"tagId\": \"string\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_manager\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5c7097f-992f-4190-9a5d-79361e855003",
+          "name": "get Applied Policy Tags",
+          "request": {
+            "name": "get Applied Policy Tags",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that are applied to applications in this organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "organization",
+                ":organizationId",
+                "policy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The organizationId assigned by IQ Server."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03aaf66b-6c05-4814-a144-c4462c2e37e7",
+              "name": "Get all policy application categories or tags that are applied to applications  in this organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "organization",
+                    ":organizationId",
+                    "policy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The organizationId assigned by IQ Server."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"policyId\": \"string\",\n    \"tagId\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"policyId\": \"string\",\n    \"tagId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ddc5cea-b132-4e2b-8ccb-5783317ca357",
+          "name": "delete Tag",
+          "request": {
+            "name": "delete Tag",
+            "description": {
+              "content": "Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category.Use this method to delete an existing application category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applicationCategories",
+                "organization",
+                ":organizationId",
+                ":tagId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The organizationId assigned by IQ Server, corresponding to the application category tag you want to delete."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tagId",
+                  "description": "(Required) The application category ID assigned by IQ Server, to be deleted."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e91bfe16-ad9b-4453-8b1a-93d38cb64b66",
+              "name": "Successful deletion of the application category.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applicationCategories",
+                    "organization",
+                    ":organizationId",
+                    ":tagId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The organizationId assigned by IQ Server, corresponding to the application category tag you want to delete."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tagId",
+                      "description": "(Required) The application category ID assigned by IQ Server, to be deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "98f561ff-bc74-4255-a0dd-82a1ae1b74ca",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Application Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

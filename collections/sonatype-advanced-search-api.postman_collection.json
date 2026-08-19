@@ -1,0 +1,513 @@
+{
+  "item": [
+    {
+      "id": "da551418-feb8-4a9a-92fe-d50d5f9f45b4",
+      "name": "Advanced Search",
+      "description": {
+        "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8708cff3-19e8-475c-bb08-548697721682",
+          "name": "search Index",
+          "request": {
+            "name": "search Index",
+            "description": {
+              "content": "Use this method to perform an Advanced Search. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "advanced"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Enter your search query here"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Enter the no. of results that should be visible per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Enter the page no. for the page containing results"
+                },
+                {
+                  "disabled": false,
+                  "key": "allComponents",
+                  "value": "false",
+                  "description": "Set to `true` to retrieve results that include components with no violations"
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9b71524-b811-4d37-9f8d-6cb2fdcb1b9f",
+              "name": "Response JSON containing the search query sent in the API call, and other response fields as follows: \n1. searchQuery: search query sent in the request \n2. page: page number of search results requested \n3. pageSize: requested number of results per page \n4. totalNumberOfHits: total number of results returned \n5. isExactTotalNumberOfHits \n    * `true` indicates that the search results in the JSON is the same no. of search results that logically      match the search query. \n    * `false` indicates that the search results in the JSON are lower bound because fetching all results is     too expensive to compute. \n6. groupingByDTOS: array of search results grouped on a field name \n7. groupIdentifier: field name that the search results have been grouped by \n8. groupBy: field value that the search results have been grouped by \n9. additionalInfo: shared information between groups, e.g. info if grouped by a security vulnerability \n10. searchResultItemDTOS: array of search results with each element containing an itemType, field names and values \n11. resultIndex: indicating the relevance of the search result w.r.t. the query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "advanced"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "allComponents",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groupingByDTOS\": [\n    {\n      \"additionalInfo\": \"string\",\n      \"groupBy\": \"string\",\n      \"groupIdentifier\": \"policyId\",\n      \"searchResultItemDTOS\": [\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 4404,\n          \"reportId\": \"string\",\n          \"resultIndex\": 1117,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        },\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 4098,\n          \"reportId\": \"string\",\n          \"resultIndex\": 277,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        }\n      ]\n    },\n    {\n      \"additionalInfo\": \"string\",\n      \"groupBy\": \"string\",\n      \"groupIdentifier\": \"sbomSpecification\",\n      \"searchResultItemDTOS\": [\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 3796,\n          \"reportId\": \"string\",\n          \"resultIndex\": 8920,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        },\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 4436,\n          \"reportId\": \"string\",\n          \"resultIndex\": 3392,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"isExactTotalNumberOfHits\": false,\n  \"page\": 9506,\n  \"pageSize\": 7844,\n  \"searchAfter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"searchQuery\": \"string\",\n  \"totalNumberOfHits\": 4572\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03dc6d32-ae37-4843-88a7-dbcfa48b9828",
+              "name": "Search index not found. The Advanced Search index is unavailable or has not been created yet. Re-indexing is required before results can be returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "advanced"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "allComponents",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d99c1cd-a735-401c-b684-ecf2334f1f01",
+          "name": "get Export Results",
+          "request": {
+            "name": "get Export Results",
+            "description": {
+              "content": "Use this method to generate a csv file containing your search results. The default delimiter in the generated file is comma. Use the advancedSearchCSVExportDelimiter property of the Configuration REST API to change the delimiter in the generated file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "advanced",
+                "export",
+                "csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) A well-formed search query."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Enter the no. of results that should be visible per page, unset gives all results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Enter the page no. for the page containing results"
+                },
+                {
+                  "disabled": false,
+                  "key": "allComponents",
+                  "value": "false",
+                  "description": "Set to `true` to retrieve results that include components with no violations."
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fba6d1d-da28-40fa-b31a-f2fe0c4158fd",
+              "name": "Downloadable csv file generated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "advanced",
+                    "export",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "allComponents",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44e29897-6a52-4f4e-853d-0ef2efc9ef97",
+              "name": "Search index does not exist or is unreadable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "advanced",
+                    "export",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "allComponents",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bee2d2b5-03aa-459b-9b96-9dc934ef166b",
+          "name": "create Search Index Async",
+          "request": {
+            "name": "create Search Index Async",
+            "description": {
+              "content": "Use this method to create or rebuild the index for Advanced Search. This is a resource intensive operation. Avoid creating indexes during peak usage hours.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "advanced",
+                "index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6eb2a529-3624-4f98-916e-44c1a85eadbc",
+              "name": "Index created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "advanced",
+                    "index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "50fa6769-0a6a-4816-9d73-d020dd2693fe",
+    "name": "Sonatype Lifecycle Public REST Advanced Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

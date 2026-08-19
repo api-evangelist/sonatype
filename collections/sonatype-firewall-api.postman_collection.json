@@ -1,0 +1,3231 @@
+{
+  "item": [
+    {
+      "id": "4400db86-b35f-4cb4-b3e8-39087eab1972",
+      "name": "Firewall",
+      "description": {
+        "content": "Use this REST API for managing and monitoring firewall features, including metrics, repository management, quarantine operations, and namespace confusion prevention.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4534bbfb-08a8-4d2f-92e3-64ef12e26d3d",
+          "name": "get Unquarantine List",
+          "request": {
+            "name": "get Unquarantine List",
+            "description": {
+              "content": "Use this method to retrieve the details of components that are auto-released from quarantine.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "components",
+                "autoReleasedFromQuarantine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Enter the page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Enter the number of results to be returned for a page."
+                },
+                {
+                  "disabled": false,
+                  "key": "policyId",
+                  "value": "<string>",
+                  "description": "Enter the `policyId`. When provided, the results will include the components that have a policy violation for the policyId."
+                },
+                {
+                  "disabled": false,
+                  "key": "componentName",
+                  "value": "<string>",
+                  "description": "Enter the component name. When provided, the results will include components with display names (case-insensitive) that match the given name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Enter the sort criteria `releaseQuarantineTime` or `quarantineTime`."
+                },
+                {
+                  "disabled": false,
+                  "key": "asc",
+                  "value": "true",
+                  "description": "Select `true` to set the sort order to ascending."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df84a614-bb0b-4291-aa70-09a638478816",
+              "name": "The response includes:<ul><li>`total` is the total number of records this request can return across all pages.</li><li>`page` is the page number specified in the request.</li><li>`pageSize` is the page size specified in the request.</li><li>`pageCount` is the total number of pages this request can return.</li></ul>The `results` section contains details of each component that has been auto-released. It includes:<ul><li>`displayName` is the name and version of the component.</li><li>`repository` indicates the repository name where the component is stored.</li><li>`quarantineDate` is the date and time when the component was quarantined.</li><li>`dateCleared` is the date and time when the component was auto-released from quarantine.</li><li>`quarantinePolicyViolations` will be empty for components that are auto-released.</li><li>`componentIdentifier` is the format and coordinates for the component.</li><li>`pathname` indicates the component path in the repository.</li><li>`hash` is the hash of the component.</li><li>`matchState` indicates the whether the component is an `EXACT` or `SIMILAR` match to the known  components or is `UNKNOWN`.</li><li>`repositoryId` is the ID of the repository where the component is stored.</li><li>`quarantined` indicates whether the component is quarantined.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "components",
+                    "autoReleasedFromQuarantine"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "policyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "componentName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asc",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Pagination links (first, last, next, prev)",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 8958,\n  \"pageCount\": 5858,\n  \"pageSize\": 6,\n  \"results\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"dateCleared\": \"1956-05-19T01:28:56.696Z\",\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"matchState\": \"string\",\n      \"pathname\": \"string\",\n      \"quarantineDate\": \"1987-08-25T13:40:25.630Z\",\n      \"quarantinePolicyViolations\": [\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1994-12-25T22:05:44.077Z\",\n          \"legacyViolationTime\": \"1985-01-12T06:14:01.021Z\",\n          \"openTime\": \"1970-03-27T13:46:00.974Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 3938,\n          \"waiveTime\": \"1950-10-01T18:35:45.790Z\"\n        },\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1973-02-23T07:44:10.283Z\",\n          \"legacyViolationTime\": \"1969-05-16T05:52:21.291Z\",\n          \"openTime\": \"1976-12-18T08:12:21.122Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 9096,\n          \"waiveTime\": \"2006-04-22T04:09:06.316Z\"\n        }\n      ],\n      \"quarantined\": false,\n      \"repository\": \"string\",\n      \"repositoryId\": \"string\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"dateCleared\": \"1972-12-13T12:36:32.770Z\",\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"matchState\": \"string\",\n      \"pathname\": \"string\",\n      \"quarantineDate\": \"1955-12-26T02:46:06.301Z\",\n      \"quarantinePolicyViolations\": [\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"2018-07-17T02:47:40.982Z\",\n          \"legacyViolationTime\": \"2023-12-24T06:15:49.090Z\",\n          \"openTime\": \"1975-11-01T05:02:26.241Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 8152,\n          \"waiveTime\": \"2008-08-30T14:38:06.709Z\"\n        },\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"2014-03-16T18:12:19.699Z\",\n          \"legacyViolationTime\": \"2009-09-30T19:20:42.653Z\",\n          \"openTime\": \"1975-09-25T20:47:54.540Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 664,\n          \"waiveTime\": \"1948-04-26T23:40:59.814Z\"\n        }\n      ],\n      \"quarantined\": false,\n      \"repository\": \"string\",\n      \"repositoryId\": \"string\"\n    }\n  ],\n  \"total\": 2765\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9714b99-34aa-4893-80db-39d09f0d0cdf",
+          "name": "get Quarantine List",
+          "request": {
+            "name": "get Quarantine List",
+            "description": {
+              "content": "Use this method to request a list of quarantined components.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "components",
+                "quarantined"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Enter the starting page number for the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Enter the page size for the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "policyId",
+                  "value": "<string>",
+                  "description": "Enter the list of policy IDs causing the quarantine."
+                },
+                {
+                  "disabled": false,
+                  "key": "policyId",
+                  "value": "<string>",
+                  "description": "Enter the list of policy IDs causing the quarantine."
+                },
+                {
+                  "disabled": false,
+                  "key": "componentName",
+                  "value": "<string>",
+                  "description": "Enter the component name."
+                },
+                {
+                  "disabled": false,
+                  "key": "repositoryPublicId",
+                  "value": "<string>",
+                  "description": "Enter the repository public ID of the quarantined component."
+                },
+                {
+                  "disabled": false,
+                  "key": "quarantineTime",
+                  "value": "<integer>",
+                  "description": "Enter the quarantine time of the component."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Enter `quarantineTime` to sort the results by quarantine time."
+                },
+                {
+                  "disabled": false,
+                  "key": "asc",
+                  "value": "false",
+                  "description": "Select the sort order."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bac8eeb2-ca5c-4c80-bf33-1bb02a7a31fe",
+              "name": "The response includes:<ul><li>`total` is the total number of records this request can return across all pages.</li><li>`page` is the page number specified in the request.</li><li>`pageSize` is the page size specified in the request.</li><li>`pageCount` is the total number of pages this request can return.</li></ul>The `results` section contains details of each component that has been auto-released. It includes:<ul><li>`threatLevel` is the threat level of the policy violation.</li><li>`policyName` is the name of the violated policy.</li><li>`quarantined` indicates whether the component is quarantined.</li><li>`quarantineDate` is the date and time when the component was quarantined.</li><li>`componentIdentifier` is the format and coordinates for the component.</li><li>`pathname` indicates the component path in the repository.</li><li>`displayName` is the name and version of the component.</li><li>`repositoryId` is the ID of the repository where the component is stored.</li><li>`repositoryName` indicates the repository name where the component is stored.</li><li>`hash` is the hash of the component.</li><li>`matchState` indicates the whether the component is an `EXACT` or `SIMILAR` match to the known components or is `UNKNOWN`.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "components",
+                    "quarantined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "policyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "componentName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repositoryPublicId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quarantineTime",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asc",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Pagination links (first, last, next, prev)",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 6191,\n  \"pageCount\": 5429,\n  \"pageSize\": 4485,\n  \"results\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"matchState\": \"string\",\n      \"pathname\": \"string\",\n      \"policyName\": \"string\",\n      \"quarantineDate\": \"string\",\n      \"quarantined\": false,\n      \"repositoryId\": \"string\",\n      \"repositoryName\": \"string\",\n      \"threatLevel\": 7724\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"matchState\": \"string\",\n      \"pathname\": \"string\",\n      \"policyName\": \"string\",\n      \"quarantineDate\": \"string\",\n      \"quarantined\": false,\n      \"repositoryId\": \"string\",\n      \"repositoryName\": \"string\",\n      \"threatLevel\": 3480\n    }\n  ],\n  \"total\": 9881\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6354a22-db48-47c9-ad10-cd9e16ddc758",
+          "name": "evaluate Components 1",
+          "request": {
+            "name": "evaluate Components 1",
+            "description": {
+              "content": "Use this method to evaluate components (max. 100).\n\n**Hash Requirements by Format Type:**\n\n**Coordinate-Based Formats** (hash NOT required when using packageUrl):\n- golang, conan, cargo, cocoapods, cran, conda, composer, hf-model\n- These formats identify components by coordinates (name+version) rather than file hash\n- When using packageUrl, hash is optional\n- If hash is provided, it will be used\n\n**Hash-Based Formats** (hash REQUIRED):\n- maven, npm, pypi, nuget, docker, rubygems, and others\n- Hash must ALWAYS be provided to identify the exact file content\n- Hash is required regardless of whether pathname or packageUrl is used\n- Missing hash for these formats will result in incorrect component identification\n\nPermissions required: Evaluate Individual Components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "components",
+                ":repositoryManagerId",
+                ":repositoryId",
+                "evaluate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryManagerId",
+                  "description": "(Required) Enter the repository manager ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryId",
+                  "description": "(Required) Enter the repository ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"components\": [\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"pathname\": \"<string>\"\n    },\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"pathname\": \"<string>\"\n    }\n  ],\n  \"format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9faa2ea-dbf6-4402-9861-30c8fac984cf",
+              "name": "The response contains the evaluation results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "components",
+                    ":repositoryManagerId",
+                    ":repositoryId",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryManagerId",
+                      "description": "(Required) Enter the repository manager ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryId",
+                      "description": "(Required) Enter the repository ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": [\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"pathname\": \"<string>\"\n    },\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"pathname\": \"<string>\"\n    }\n  ],\n  \"format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repositoryId\": \"string\",\n  \"repositoryManagerId\": \"string\",\n  \"repositoryPublicId\": \"string\",\n  \"repositoryType\": \"string\",\n  \"results\": [\n    {\n      \"catalogDate\": \"1964-06-13T17:36:14.021Z\",\n      \"component\": {\n        \"hash\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"pathname\": \"<string>\"\n      },\n      \"policyViolations\": [\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1989-05-02T10:26:48.189Z\",\n          \"legacyViolationTime\": \"1968-03-18T06:24:16.540Z\",\n          \"openTime\": \"1993-07-13T18:11:06.739Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 5984,\n          \"waiveTime\": \"2012-05-09T00:02:44.636Z\"\n        },\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"2013-03-07T11:33:20.674Z\",\n          \"legacyViolationTime\": \"1961-12-07T20:49:39.151Z\",\n          \"openTime\": \"1975-06-03T21:32:10.748Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 1023,\n          \"waiveTime\": \"1968-12-02T12:17:59.487Z\"\n        }\n      ],\n      \"quarantineDate\": \"1979-01-13T00:42:36.291Z\",\n      \"quarantined\": true\n    },\n    {\n      \"catalogDate\": \"1946-12-15T18:54:05.717Z\",\n      \"component\": {\n        \"hash\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"pathname\": \"<string>\"\n      },\n      \"policyViolations\": [\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1953-10-12T19:03:28.581Z\",\n          \"legacyViolationTime\": \"1984-02-10T15:30:52.447Z\",\n          \"openTime\": \"2011-10-03T02:48:16.387Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 194,\n          \"waiveTime\": \"1987-05-08T12:23:34.836Z\"\n        },\n        {\n          \"constraintViolations\": [\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reasons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1950-10-09T06:13:38.348Z\",\n          \"legacyViolationTime\": \"1990-09-06T04:33:40.829Z\",\n          \"openTime\": \"1991-07-03T23:42:34.512Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyViolationId\": \"string\",\n          \"threatLevel\": 4968,\n          \"waiveTime\": \"1981-01-07T08:47:48.016Z\"\n        }\n      ],\n      \"quarantineDate\": \"2004-01-06T01:30:34.191Z\",\n      \"quarantined\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65f6fbc1-1c8b-49bc-abe5-ac72c54e51ab",
+          "name": "verify Connection And Get Applications",
+          "request": {
+            "name": "verify Connection And Get Applications",
+            "description": {
+              "content": "Use this method to verify that the authenticated user has required permissions for firewall operations and retrieve accessible applications.\n\nPermissions required: Evaluate Individual Components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "connection",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "043650d2-e892-4379-849b-bbb48b98ed81",
+              "name": "Connection verified successfully. Returns list of applications accessible to the user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "connection",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationSummaries\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"publicId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"publicId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a9216b1-d32b-48b6-823f-6a8e0dbe7e15",
+              "name": "Authentication required. User is not authenticated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "connection",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02b8f667-3fce-45b7-b167-e37a6073065f",
+              "name": "User is authenticated but does not have 'Evaluate Individual Components' permission.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "connection",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bd95975-56e3-4387-92ad-eea3dfef7de6",
+          "name": "get Container Images In Quarantine",
+          "request": {
+            "name": "get Container Images In Quarantine",
+            "description": {
+              "content": "Use this method to find all container images currently in quarantine.\n\nPermissions required: Read",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "container-image",
+                "policyViolations",
+                "quarantined"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad025ecf-c075-4375-bed2-f697a30f3f7a",
+              "name": "Container images in quarantine.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "container-image",
+                    "policyViolations",
+                    "quarantined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Pagination links (first, last, next, prev)",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 396,\n  \"pageCount\": 3579,\n  \"pageSize\": 7007,\n  \"results\": [\n    {\n      \"applicationId\": \"string\",\n      \"applicationName\": \"string\",\n      \"applicationPublicId\": \"string\",\n      \"openTime\": 7690.578500785411,\n      \"policyViolationCount\": 1919,\n      \"repositoryId\": \"string\",\n      \"repositoryPublicId\": \"string\",\n      \"scanId\": \"string\",\n      \"threatLevel\": 3815\n    },\n    {\n      \"applicationId\": \"string\",\n      \"applicationName\": \"string\",\n      \"applicationPublicId\": \"string\",\n      \"openTime\": 9657.598141358865,\n      \"policyViolationCount\": 9429,\n      \"repositoryId\": \"string\",\n      \"repositoryPublicId\": \"string\",\n      \"scanId\": \"string\",\n      \"threatLevel\": 9069\n    }\n  ],\n  \"total\": 7148\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "155aa12c-557b-4da7-bfc8-538d3f8cbf66",
+          "name": "get Waivers",
+          "request": {
+            "name": "get Waivers",
+            "description": {
+              "content": "Use this method to get all policy waivers for container images. \n\nPermissions required: Waive Policy Violations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "container-image",
+                "policyWaiver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab4544af-f3a5-4305-b13c-2fbdb2995e2c",
+              "name": "Policy waivers for container images.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "container-image",
+                    "policyWaiver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Pagination links (first, last, next, prev)",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 346,\n  \"pageCount\": 8414,\n  \"pageSize\": 8827,\n  \"results\": [\n    {\n      \"applicationScope\": \"string\",\n      \"createTime\": \"1998-12-27T23:56:00.872Z\",\n      \"expiryTime\": \"1977-08-31T11:56:41.465Z\",\n      \"maxThreatLevel\": 8170,\n      \"ownerId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"uniqueComponentCount\": 2079,\n      \"uniquePolicyCount\": 3376\n    },\n    {\n      \"applicationScope\": \"string\",\n      \"createTime\": \"2004-11-06T23:08:40.305Z\",\n      \"expiryTime\": \"1974-03-29T22:45:56.142Z\",\n      \"maxThreatLevel\": 3475,\n      \"ownerId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"uniqueComponentCount\": 293,\n      \"uniquePolicyCount\": 2573\n    }\n  ],\n  \"total\": 6069\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8878bbb-0f17-4d02-bcdd-4cac94cb9692",
+          "name": "delete Container Image Policy Waiver",
+          "request": {
+            "name": "delete Container Image Policy Waiver",
+            "description": {
+              "content": "Use this method to delete a container waiver, specified by the containerImageId.\n\nPermissions required: Waive Policy Violations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "container-image",
+                ":containerImageId",
+                "policyWaiver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerImageId",
+                  "description": "(Required) Enter the container id."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa4f217c-8120-4d4f-8248-b7bc414b0318",
+              "name": "Waiver has been deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "container-image",
+                    ":containerImageId",
+                    "policyWaiver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerImageId",
+                      "description": "(Required) Enter the container id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "432722da-570a-45b4-80c0-db9078475f54",
+          "name": "add Waiver",
+          "request": {
+            "name": "add Waiver",
+            "description": {
+              "content": "Use this method to create a waiver for all policy violations of a container Image. \n\nPermissions required: Waive Policy Violations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "container-image",
+                ":containerImageId",
+                "policyWaiver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerImageId",
+                  "description": "(Required) Enter the container image id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48bfcadc-64b4-4aa4-8c6a-2b898acefb2b",
+              "name": "Waiver has been created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "container-image",
+                    ":containerImageId",
+                    "policyWaiver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerImageId",
+                      "description": "(Required) Enter the container image id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5d40439-136f-4eb8-b7f9-7b68b279f0c8",
+          "name": "get Firewall Metrics",
+          "request": {
+            "name": "get Firewall Metrics",
+            "description": {
+              "content": "Use this method to retrieve firewall dashboard metrics.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "metrics",
+                "embedded"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f980389d-efa8-4c66-9b7d-75b362140557",
+              "name": "The response contains a map of firewall metric name to value including the last updated time.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "metrics",
+                    "embedded"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"firewallMetricsValue\": 5908,\n    \"latestUpdatedTime\": \"1955-11-18T05:13:52.365Z\"\n  },\n  \"key_1\": {\n    \"firewallMetricsValue\": 9053,\n    \"latestUpdatedTime\": \"1988-02-09T13:44:44.183Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c29844f-abea-4cf6-a895-48afcf408b37",
+          "name": "remove Proprietary Component Names",
+          "request": {
+            "name": "remove Proprietary Component Names",
+            "description": {
+              "content": "Removes proprietary component namespaces for the specified format.\n\nPermissions required: Evaluate Individual Components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "namespace_confusion",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "format",
+                  "description": "(Required) Format for which the proprietary namespaces are being removed."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ea32ae6-a78b-4a0b-a39e-3bf40e4a324a",
+              "name": "Namespaces successfully removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "namespace_confusion",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "format",
+                      "description": "(Required) Format for which the proprietary namespaces are being removed."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11cb04e7-d935-4069-9de0-3af7a177df54",
+          "name": "add Proprietary Component Names",
+          "request": {
+            "name": "add Proprietary Component Names",
+            "description": {
+              "content": "Adds a list of proprietary component namespaces for the specified format to prevent namespace confusion attacks.\n\nPermissions required: Evaluate Individual Components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "namespace_confusion",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "format",
+                  "description": "(Required) Format for which the proprietary namespaces are being added."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "70dff738-8b88-4e97-908e-cc617cdf84b9",
+              "name": "Namespaces successfully added.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "namespace_confusion",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "format",
+                      "description": "(Required) Format for which the proprietary namespaces are being added."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "627be5cd-6770-418a-b57e-c4865c9af1da",
+          "name": "get Quarantine Summary",
+          "request": {
+            "name": "get Quarantine Summary",
+            "description": {
+              "content": "Use this method to request a summary of quarantined components.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "quarantine",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afc00a66-34c9-49df-8b0c-0b1c7ab941fa",
+              "name": "The response contains:<ul><li>`repositoryCount` is the total number of repositories.</li><li>`quarantineEnabledRepositoryCount` is the total number of repositories with quarantine  capability enabled.</li><li>`quarantinedEnabled` indicates if any repository has the quarantine capability enabled.</li><li>`totalComponentCount` is the total number of components across all repositories.</li><li>`quarantinedComponentCount` is the total number of quarantined components.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "quarantine",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quarantineEnabled\": true,\n  \"quarantineEnabledRepositoryCount\": 5782,\n  \"quarantinedComponentCount\": 7488,\n  \"repositoryCount\": 5264,\n  \"totalComponentCount\": 919\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "500825cf-eaca-475d-be32-b2c8ad9970a5",
+          "name": "get Quarantined Component View Anonymous Access",
+          "request": {
+            "name": "get Quarantined Component View Anonymous Access",
+            "description": {
+              "content": "Use this method to determine if the quarantined component(s) details can be accessed anonymously.\n\nPermissions required: None",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "quarantinedComponentView",
+                "configuration",
+                "anonymousAccess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40b3e30e-0c82-4fa1-957d-5e3bfae7bd15",
+              "name": "The response returns `true` if anonymous access to quarantined components is enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "quarantinedComponentView",
+                    "configuration",
+                    "anonymousAccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eac93542-a648-46d1-ab8b-5a448c19db8b",
+          "name": "set Quarantined Component View Anonymous Access",
+          "request": {
+            "name": "set Quarantined Component View Anonymous Access",
+            "description": {
+              "content": "Use this method to enable/disable anonymous access to view the quarantined components.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "quarantinedComponentView",
+                "configuration",
+                "anonymousAccess",
+                ":enabled"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<boolean>",
+                  "key": "enabled",
+                  "description": "(Required) Select `true` or `false` to enable or disable anonymous access."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce45f050-37fa-4999-8794-191ac12da8c9",
+              "name": "Successfully updated anonymous access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "quarantinedComponentView",
+                    "configuration",
+                    "anonymousAccess",
+                    ":enabled"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<boolean>",
+                      "key": "enabled",
+                      "description": "(Required) Select `true` or `false` to enable or disable anonymous access."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e04c08e5-bc75-4c00-a4d4-f0c12f3ea6dd",
+          "name": "get Firewall Auto Unquarantine Config",
+          "request": {
+            "name": "get Firewall Auto Unquarantine Config",
+            "description": {
+              "content": "Use this method to retrieve the configuration settings for auto-release from quarantine for repositories.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "releaseQuarantine",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1a0b1e3-2c23-4141-bcf4-640ccdd522c7",
+              "name": "The response contains a list of repositories and the corresponding configuration for auto-release from quarantine.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "releaseQuarantine",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"autoReleaseQuarantineEnabled\": false,\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  {\n    \"autoReleaseQuarantineEnabled\": false,\n    \"id\": \"string\",\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4ac428f-6f87-4f71-bdc0-5ca588dc7547",
+          "name": "set Firewall Auto Unquarantine Config",
+          "request": {
+            "name": "set Firewall Auto Unquarantine Config",
+            "description": {
+              "content": "Use this method to set the configurations for auto-release from quarantine for a list of repositories.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "releaseQuarantine",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"autoReleaseQuarantineEnabled\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  {\n    \"autoReleaseQuarantineEnabled\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9bf90818-3705-43b1-8668-6211ae83f58f",
+              "name": "The response contains each updated `autoReleaseQuarantineEnabled` status for the repositories requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "releaseQuarantine",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"autoReleaseQuarantineEnabled\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  {\n    \"autoReleaseQuarantineEnabled\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"autoReleaseQuarantineEnabled\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  {\n    \"autoReleaseQuarantineEnabled\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1c106ca-e6e8-4a40-9aaf-d256811d7513",
+          "name": "get Firewall Unquarantine Summary",
+          "request": {
+            "name": "get Firewall Unquarantine Summary",
+            "description": {
+              "content": "Use this method to track how many components have been automatically released from quarantine over different time periods.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "releaseQuarantine",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf047193-a095-4b40-8e03-474285e08535",
+              "name": "The response contains:<ul><li>`autoReleaseQuarantineCountMTD` is the number of auto-released quarantine components from the start of the current month to the current date.</li><li>`autoReleaseQuarantineCountYTD` is the number of auto-released quarantine components from the start of the current year to the current date.</li></ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "releaseQuarantine",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"autoReleaseQuarantineCountMTD\": 8888,\n  \"autoReleaseQuarantineCountYTD\": 4602\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60b3b9a7-31cf-43e4-a7bc-94a24748d1d5",
+          "name": "initiate Cascade Reevaluation",
+          "request": {
+            "name": "initiate Cascade Reevaluation",
+            "description": {
+              "content": "Initiate cascade re-evaluation for a component across repository hierarchies.<p>This operation asynchronously re-evaluates the specified component across all repositories where the component exists.<p>The system will automatically discover all eligible repositories based on component presence.<p>Permissions Required: Evaluate Components at Repository Managers level",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositories",
+                "cascade-reevaluate",
+                "componentHash",
+                ":componentHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "componentHash",
+                  "description": "(Required) The component hash to re-evaluate across all repositories"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "543bd72c-5b43-4b38-9178-74204a5d0605",
+              "name": "Cascade re-evaluation initiated successfully. The response contains statusUrl with a requestId, which can be used to check the cascade re-evaluation status using the GET method.A requestId for a cascade re-evaluation only lasts 24 hours before being deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositories",
+                    "cascade-reevaluate",
+                    "componentHash",
+                    ":componentHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentHash",
+                      "description": "(Required) The component hash to re-evaluate across all repositories"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b38de78d-b974-4662-bee4-805596e0e8e1",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositories",
+                    "cascade-reevaluate",
+                    "componentHash",
+                    ":componentHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentHash",
+                      "description": "(Required) The component hash to re-evaluate across all repositories"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c78a5737-a1c7-4246-8a8a-e39a567a196b",
+          "name": "get Cascade Status",
+          "request": {
+            "name": "get Cascade Status",
+            "description": {
+              "content": "Get the status of a cascade re-evaluation request.<p>Returns the current progress of a cascade re-evaluation operation including the list of components that have been evaluated and those still pending. The overall status will be 'pending' if any components are still being processed, or 'completed' if all components have been evaluated.<p>The response includes:<ul><li><b>status:</b> Overall status (PENDING, IN_PROGRESS, COMPLETED, NO_COMPONENTS_FOUND, FAILED)</li><li><b>referenceComponentHash:</b> The component hash that was re-evaluated</li><li><b>pending:</b> Components still being processed (PENDING status)</li><li><b>evaluated:</b> Components successfully re-evaluated (COMPLETED or NO_COMPONENTS_FOUND status)</li><li><b>failed:</b> Components that could not be re-evaluated (FAILED status)</li></ul><p>Permissions Required: Evaluate Components at Repository Managers level",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositories",
+                "cascade-reevaluate",
+                "status",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) The cascade request ID to check status for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "feef0fd2-2564-44d0-9cfc-374495451835",
+              "name": "Cascade status retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositories",
+                    "cascade-reevaluate",
+                    "status",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The cascade request ID to check status for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evaluated\": [\n    {\n      \"componentId\": \"string\",\n      \"quarantined\": false,\n      \"repositoryId\": \"string\",\n      \"repositoryManagerId\": \"string\"\n    },\n    {\n      \"componentId\": \"string\",\n      \"quarantined\": true,\n      \"repositoryId\": \"string\",\n      \"repositoryManagerId\": \"string\"\n    }\n  ],\n  \"failed\": [\n    {\n      \"componentId\": \"string\",\n      \"quarantined\": true,\n      \"repositoryId\": \"string\",\n      \"repositoryManagerId\": \"string\"\n    },\n    {\n      \"componentId\": \"string\",\n      \"quarantined\": false,\n      \"repositoryId\": \"string\",\n      \"repositoryManagerId\": \"string\"\n    }\n  ],\n  \"pending\": [\n    {\n      \"componentId\": \"string\",\n      \"quarantined\": true,\n      \"repositoryId\": \"string\",\n      \"repositoryManagerId\": \"string\"\n    },\n    {\n      \"componentId\": \"string\",\n      \"quarantined\": true,\n      \"repositoryId\": \"string\",\n      \"repositoryManagerId\": \"string\"\n    }\n  ],\n  \"referenceComponentHash\": \"string\",\n  \"status\": \"NO_COMPONENTS_FOUND\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3ab0654-fe28-499b-892e-6751b467faaf",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositories",
+                    "cascade-reevaluate",
+                    "status",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The cascade request ID to check status for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45db0e42-5c89-4af6-a1bc-83e5706fdf1c",
+              "name": "Cascade request not found. It could have been deleted after 24 hours.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositories",
+                    "cascade-reevaluate",
+                    "status",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The cascade request ID to check status for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a06e6103-1ee2-4ba3-ba7f-7b60392bd57e",
+          "name": "get Configured Repositories",
+          "request": {
+            "name": "get Configured Repositories",
+            "description": {
+              "content": "Use this method to retrieve the configuration details of an existing repository manager.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositories",
+                "configuration",
+                ":repositoryManagerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sinceUtcTimestamp",
+                  "value": "<long>",
+                  "description": "Enter the epoch time in milliseconds when the repository was last updated."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryManagerId",
+                  "description": "(Required) Enter the repository manager ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b19acfb2-446f-40ea-849a-07ef96c14c30",
+              "name": "The response contains the configuration details of the requested repository manager.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositories",
+                    "configuration",
+                    ":repositoryManagerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sinceUtcTimestamp",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryManagerId",
+                      "description": "(Required) Enter the repository manager ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repositories\": [\n    {\n      \"auditEnabled\": false,\n      \"format\": \"string\",\n      \"namespaceConfusionProtectionEnabled\": true,\n      \"policyCompliantComponentSelectionEnabled\": false,\n      \"publicId\": \"string\",\n      \"quarantineEnabled\": true,\n      \"repositoryId\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"auditEnabled\": false,\n      \"format\": \"string\",\n      \"namespaceConfusionProtectionEnabled\": false,\n      \"policyCompliantComponentSelectionEnabled\": false,\n      \"publicId\": \"string\",\n      \"quarantineEnabled\": false,\n      \"repositoryId\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d1aea0e-6006-4003-8603-e9e10c3b52ed",
+          "name": "configure Repositories",
+          "request": {
+            "name": "configure Repositories",
+            "description": {
+              "content": "Use this method to update the repositories for an existing repository manager.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositories",
+                "configuration",
+                ":repositoryManagerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryManagerId",
+                  "description": "(Required) Enter the repository manager ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repositories\": [\n    {\n      \"auditEnabled\": \"<boolean>\",\n      \"format\": \"<string>\",\n      \"namespaceConfusionProtectionEnabled\": \"<boolean>\",\n      \"policyCompliantComponentSelectionEnabled\": \"<boolean>\",\n      \"publicId\": \"<string>\",\n      \"quarantineEnabled\": \"<boolean>\",\n      \"repositoryId\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"auditEnabled\": \"<boolean>\",\n      \"format\": \"<string>\",\n      \"namespaceConfusionProtectionEnabled\": \"<boolean>\",\n      \"policyCompliantComponentSelectionEnabled\": \"<boolean>\",\n      \"publicId\": \"<string>\",\n      \"quarantineEnabled\": \"<boolean>\",\n      \"repositoryId\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64c6eb55-f09f-41f9-9d9e-cd52cb2d0e63",
+              "name": "Repositories updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositories",
+                    "configuration",
+                    ":repositoryManagerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryManagerId",
+                      "description": "(Required) Enter the repository manager ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repositories\": [\n    {\n      \"auditEnabled\": \"<boolean>\",\n      \"format\": \"<string>\",\n      \"namespaceConfusionProtectionEnabled\": \"<boolean>\",\n      \"policyCompliantComponentSelectionEnabled\": \"<boolean>\",\n      \"publicId\": \"<string>\",\n      \"quarantineEnabled\": \"<boolean>\",\n      \"repositoryId\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"auditEnabled\": \"<boolean>\",\n      \"format\": \"<string>\",\n      \"namespaceConfusionProtectionEnabled\": \"<boolean>\",\n      \"policyCompliantComponentSelectionEnabled\": \"<boolean>\",\n      \"publicId\": \"<string>\",\n      \"quarantineEnabled\": \"<boolean>\",\n      \"repositoryId\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50bf49c9-7f03-4f4f-8e2b-997660469b6d",
+          "name": "get Repository Container",
+          "request": {
+            "name": "get Repository Container",
+            "description": {
+              "content": "Use this method to retrieve the ID and name for the repository container.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositoryContainer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3220859-6a94-496b-b96d-4cf04b7ccb98",
+              "name": "The response contains the ID and name for the repository container.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositoryContainer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"relatedOrganizationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40ce3d85-922d-4b18-be5e-16734de12dc3",
+          "name": "get Repository Managers",
+          "request": {
+            "name": "get Repository Managers",
+            "description": {
+              "content": "Use this method to retrieve all configured repository managers.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositoryManagers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a19be3da-0d79-4b69-be83-fbd1ef723518",
+              "name": "The response contains details of configured repository managers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositoryManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repositoryManagers\": [\n    {\n      \"id\": \"string\",\n      \"instanceId\": \"string\",\n      \"name\": \"string\",\n      \"productName\": \"string\",\n      \"productVersion\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"instanceId\": \"string\",\n      \"name\": \"string\",\n      \"productName\": \"string\",\n      \"productVersion\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfb7eb7a-0f42-4d63-ab0b-fa7a046952a3",
+          "name": "add Repository Manager",
+          "request": {
+            "name": "add Repository Manager",
+            "description": {
+              "content": "Use this method to add a new repository manager.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositoryManagers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"instanceId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"productVersion\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "705678fe-83b1-4056-a4bc-cd363883372a",
+              "name": "The response contains the details of the new repository manager.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositoryManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"instanceId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"productVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"instanceId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"productVersion\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64e61ef3-d677-4467-bdfd-33712fcefda6",
+          "name": "delete Repository Manager",
+          "request": {
+            "name": "delete Repository Manager",
+            "description": {
+              "content": "Use this method to delete an existing repository manager.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositoryManagers",
+                ":repositoryManagerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryManagerId",
+                  "description": "(Required) Enter the repository manager ID."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "096d3f8d-1426-4809-811a-213397409ec3",
+              "name": "The requested repository manager has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositoryManagers",
+                    ":repositoryManagerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryManagerId",
+                      "description": "(Required) Enter the repository manager ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e77a2f62-849c-4838-b55b-930ed54bff92",
+          "name": "get Repository Manager",
+          "request": {
+            "name": "get Repository Manager",
+            "description": {
+              "content": "Use this method to retrieve details of an existing repository manager.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "firewall",
+                "repositoryManagers",
+                ":repositoryManagerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repositoryManagerId",
+                  "description": "(Required) Enter the repository manager ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5335771-9595-43ed-8575-1493995d604c",
+              "name": "The response contains the details of the repository manager requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "firewall",
+                    "repositoryManagers",
+                    ":repositoryManagerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repositoryManagerId",
+                      "description": "(Required) Enter the repository manager ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"instanceId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"productVersion\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4601b6f-4f8a-4cdf-8aa8-81745f4544d1",
+          "name": "evaluate Malware",
+          "request": {
+            "name": "evaluate Malware",
+            "description": {
+              "content": "Evaluate malware for a list of components.<p>Use this endpoint to evaluate malware for a list of components up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component that are of the same format type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "malware-defense",
+                "evaluate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"components\": [\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\"\n    },\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\"\n    }\n  ],\n  \"format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aea3f53d-71c9-43da-9132-308109a69011",
+              "name": "Malware evaluation results for the components",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "malware-defense",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": [\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\"\n    },\n    {\n      \"hash\": \"<string>\",\n      \"packageUrl\": \"<string>\"\n    }\n  ],\n  \"format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"componentList\": [\n    {\n      \"hash\": \"string\",\n      \"isMalicious\": true,\n      \"malwareCategories\": [\n        {\n          \"attackVector\": \"string\",\n          \"threatTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"attackVector\": \"string\",\n          \"threatTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"matchState\": \"string\",\n      \"packageUrl\": \"string\"\n    },\n    {\n      \"hash\": \"string\",\n      \"isMalicious\": true,\n      \"malwareCategories\": [\n        {\n          \"attackVector\": \"string\",\n          \"threatTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"attackVector\": \"string\",\n          \"threatTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"matchState\": \"string\",\n      \"packageUrl\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44853095-ccdf-489c-99dc-7ea2d5f574d2",
+          "name": "get Malware Defense Metrics",
+          "request": {
+            "name": "get Malware Defense Metrics",
+            "description": {
+              "content": "The response contains malware defense API metrics.<p>Use this endpoint to get the count of malicious components evaluated via malware defense API grouped by format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "malware-defense",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4ee9762-e858-415b-9453-729e60ba2cbb",
+              "name": "Malware defense metrics grouped by format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "malware-defense",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4290\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b38dc232-8c2f-4ebb-ab90-2cc7626f3ba6",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Firewall API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

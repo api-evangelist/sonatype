@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search License Legal Metadata Template API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "License Legal Metadata Template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAllAttributionReportTemplates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template"
+          },
+          "docs": "Use this method to retrieve templates for all reports.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization"
+        },
+        {
+          "info": {
+            "name": "saveAttributionReportTemplate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create or update a template.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization"
+        },
+        {
+          "info": {
+            "name": "getAttributionReportTemplateById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Enter the templateId for the report."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve a template for license legal metadata.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization."
+        },
+        {
+          "info": {
+            "name": "deleteAttributionReportTemplate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Enter the template id for the template to be deleted."
+              }
+            ]
+          },
+          "docs": "Use this method to delete an existing template.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

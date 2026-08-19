@@ -1,0 +1,147 @@
+{
+  "item": [
+    {
+      "id": "be522c3c-bb56-4257-b5ce-1bf9cf2b9378",
+      "name": "Composite Source Control Validator",
+      "description": {
+        "content": "Use this REST API to validate the composite source control management (SCM) configuration.\n\nComposite source control configuration is defined as the configuration that is inherited from the parent or is directly assigned.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35ab12c0-8086-45dd-9445-ffeaa8899ce3",
+          "name": "validate Source Control Config",
+          "request": {
+            "name": "validate Source Control Config",
+            "description": {
+              "content": "Use this method to validate the composite source control configuration.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compositeSourceControlConfigValidator",
+                "application",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Enter the applicationId for which you want to validate the composite source control configuration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70cbd40b-fa78-4937-a623-2b5865fd4f1b",
+              "name": "The response shows if the composite source control configuration for the application is valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compositeSourceControlConfigValidator",
+                    "application",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Enter the applicationId for which you want to validate the composite source control configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configurationComplete\": {\n    \"message\": \"string\",\n    \"valid\": true\n  },\n  \"repoPrivate\": {\n    \"message\": \"string\",\n    \"valid\": true\n  },\n  \"repoPublic\": {\n    \"message\": \"string\",\n    \"valid\": false\n  },\n  \"sshConfiguration\": {\n    \"message\": \"string\",\n    \"valid\": false\n  },\n  \"tokenPermissions\": {\n    \"message\": \"string\",\n    \"valid\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8b8ab190-3259-43c9-88ed-8c8bff6b474a",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Composite Source Control Validator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

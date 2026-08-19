@@ -1,0 +1,640 @@
+{
+  "item": [
+    {
+      "id": "1f5365f8-5df6-45b4-9e9b-49b3dc838014",
+      "name": "Policy Waiver Requests",
+      "description": {
+        "content": "Use this REST API to manage policy waiver requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c29e4405-7194-4917-b1bd-774b36d6ef8d",
+          "name": "add Policy Waiver Request By Policy Violation Id",
+          "request": {
+            "name": "add Policy Waiver Request By Policy Violation Id",
+            "description": {
+              "content": "Use this method to create a policy waiver request.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyWaiverRequests",
+                ":ownerType",
+                ":ownerId",
+                "policyViolation",
+                ":policyViolationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyViolationId",
+                  "description": "(Required) The policyViolationId for the policy violation on which you want to create a policy waiver request. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"noteToReviewer\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c88d282-956b-4a93-82b1-d44b837ba874",
+              "name": "The new policy waiver request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyWaiverRequests",
+                    ":ownerType",
+                    ":ownerId",
+                    "policyViolation",
+                    ":policyViolationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyViolationId",
+                      "description": "(Required) The policyViolationId for the policy violation on which you want to create a policy waiver request. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"noteToReviewer\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associatedPackageUrl\": \"string\",\n  \"comment\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"componentName\": \"string\",\n  \"componentUpgradeAvailable\": true,\n  \"constraintFacts\": [\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 6294,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 4622,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    },\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 1774,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 1502,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    }\n  ],\n  \"constraintFactsJson\": \"string\",\n  \"displayName\": {\n    \"name\": \"string\",\n    \"parts\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"expireWhenRemediationAvailable\": false,\n  \"expiryTime\": \"2019-10-30T14:22:31.297Z\",\n  \"hash\": \"string\",\n  \"isObsolete\": true,\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"noteToReviewer\": \"string\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"policyWaiverReasonId\": \"string\",\n  \"policyWaiverRequestId\": \"string\",\n  \"reasonText\": \"string\",\n  \"rejectionReason\": \"string\",\n  \"requestTime\": \"2009-08-14T19:29:17.448Z\",\n  \"requesterId\": \"string\",\n  \"requesterName\": \"string\",\n  \"reviewerId\": \"string\",\n  \"reviewerName\": \"string\",\n  \"scopeOwnerId\": \"string\",\n  \"scopeOwnerName\": \"string\",\n  \"scopeOwnerType\": \"string\",\n  \"status\": \"string\",\n  \"threatLevel\": 9313,\n  \"vulnerabilityId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f72f6ae-9802-4d98-bbff-c6cfafe5424b",
+          "name": "review Policy Waiver Request",
+          "request": {
+            "name": "review Policy Waiver Request",
+            "description": {
+              "content": "Use this method to approve or reject a policy waiver request.\n\nPermissions required: Waive Policy Violations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyWaiverRequests",
+                ":ownerType",
+                ":ownerId",
+                "review",
+                ":policyWaiverRequestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyWaiverRequestId",
+                  "description": "(Required) The policyWaiverRequestId for the policy waiver request to be approved or rejected."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"rejectionReason\": \"<string>\",\n  \"status\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76a17f9e-d98c-4885-a25c-1e96d24cba5e",
+              "name": "The updated policy waiver request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyWaiverRequests",
+                    ":ownerType",
+                    ":ownerId",
+                    "review",
+                    ":policyWaiverRequestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyWaiverRequestId",
+                      "description": "(Required) The policyWaiverRequestId for the policy waiver request to be approved or rejected."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"rejectionReason\": \"<string>\",\n  \"status\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associatedPackageUrl\": \"string\",\n  \"comment\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"componentName\": \"string\",\n  \"componentUpgradeAvailable\": true,\n  \"constraintFacts\": [\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 8687,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 9667,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    },\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 8728,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 665,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    }\n  ],\n  \"constraintFactsJson\": \"string\",\n  \"displayName\": {\n    \"name\": \"string\",\n    \"parts\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"expireWhenRemediationAvailable\": true,\n  \"expiryTime\": \"1978-04-23T15:58:41.154Z\",\n  \"hash\": \"string\",\n  \"isObsolete\": false,\n  \"matcherStrategy\": \"EXACT_COMPONENT\",\n  \"noteToReviewer\": \"string\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"policyWaiverReasonId\": \"string\",\n  \"policyWaiverRequestId\": \"string\",\n  \"reasonText\": \"string\",\n  \"rejectionReason\": \"string\",\n  \"requestTime\": \"1950-04-29T04:32:55.140Z\",\n  \"requesterId\": \"string\",\n  \"requesterName\": \"string\",\n  \"reviewerId\": \"string\",\n  \"reviewerName\": \"string\",\n  \"scopeOwnerId\": \"string\",\n  \"scopeOwnerName\": \"string\",\n  \"scopeOwnerType\": \"string\",\n  \"status\": \"string\",\n  \"threatLevel\": 1527,\n  \"vulnerabilityId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "980ac881-ff10-442e-8d56-a8ea22d63590",
+          "name": "get Policy Waiver Request",
+          "request": {
+            "name": "get Policy Waiver Request",
+            "description": {
+              "content": "Use this method to retrieve policy waiver request details for the policyWaiverRequestId specified.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyWaiverRequests",
+                ":ownerType",
+                ":ownerId",
+                ":policyWaiverRequestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) The scope of the policy waiver request. Possible values are application,\norganization, repository, repository_manager, repository_container."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) The id for the ownerType provided above."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyWaiverRequestId",
+                  "description": "(Required) The policyWaiverRequestId for which you want to retrieve the details."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a4ac49f-2b51-47ad-a8e8-8d6af9c8f66f",
+              "name": "The requested policy waiver request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyWaiverRequests",
+                    ":ownerType",
+                    ":ownerId",
+                    ":policyWaiverRequestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The scope of the policy waiver request. Possible values are application,\norganization, repository, repository_manager, repository_container."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The id for the ownerType provided above."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyWaiverRequestId",
+                      "description": "(Required) The policyWaiverRequestId for which you want to retrieve the details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associatedPackageUrl\": \"string\",\n  \"comment\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"componentName\": \"string\",\n  \"componentUpgradeAvailable\": true,\n  \"constraintFacts\": [\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 8687,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 9667,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    },\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 8728,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 665,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    }\n  ],\n  \"constraintFactsJson\": \"string\",\n  \"displayName\": {\n    \"name\": \"string\",\n    \"parts\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"expireWhenRemediationAvailable\": true,\n  \"expiryTime\": \"1978-04-23T15:58:41.154Z\",\n  \"hash\": \"string\",\n  \"isObsolete\": false,\n  \"matcherStrategy\": \"EXACT_COMPONENT\",\n  \"noteToReviewer\": \"string\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"policyWaiverReasonId\": \"string\",\n  \"policyWaiverRequestId\": \"string\",\n  \"reasonText\": \"string\",\n  \"rejectionReason\": \"string\",\n  \"requestTime\": \"1950-04-29T04:32:55.140Z\",\n  \"requesterId\": \"string\",\n  \"requesterName\": \"string\",\n  \"reviewerId\": \"string\",\n  \"reviewerName\": \"string\",\n  \"scopeOwnerId\": \"string\",\n  \"scopeOwnerName\": \"string\",\n  \"scopeOwnerType\": \"string\",\n  \"status\": \"string\",\n  \"threatLevel\": 1527,\n  \"vulnerabilityId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40cf80b9-55c4-495f-9cf6-248f71b7c793",
+          "name": "update Policy Waiver Request",
+          "request": {
+            "name": "update Policy Waiver Request",
+            "description": {
+              "content": "Use this method to update a policy waiver request.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "policyWaiverRequests",
+                ":ownerType",
+                ":ownerId",
+                ":policyWaiverRequestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyWaiverRequestId",
+                  "description": "(Required) The id of the policy waiver request to be updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"noteToReviewer\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f33dd798-24ab-4711-9c7f-edfaf74e305b",
+              "name": "The updated policy waiver request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "policyWaiverRequests",
+                    ":ownerType",
+                    ":ownerId",
+                    ":policyWaiverRequestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyWaiverRequestId",
+                      "description": "(Required) The id of the policy waiver request to be updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"noteToReviewer\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associatedPackageUrl\": \"string\",\n  \"comment\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"componentName\": \"string\",\n  \"componentUpgradeAvailable\": true,\n  \"constraintFacts\": [\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 8687,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 9667,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    },\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 8728,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 665,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    }\n  ],\n  \"constraintFactsJson\": \"string\",\n  \"displayName\": {\n    \"name\": \"string\",\n    \"parts\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"expireWhenRemediationAvailable\": true,\n  \"expiryTime\": \"1978-04-23T15:58:41.154Z\",\n  \"hash\": \"string\",\n  \"isObsolete\": false,\n  \"matcherStrategy\": \"EXACT_COMPONENT\",\n  \"noteToReviewer\": \"string\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"policyWaiverReasonId\": \"string\",\n  \"policyWaiverRequestId\": \"string\",\n  \"reasonText\": \"string\",\n  \"rejectionReason\": \"string\",\n  \"requestTime\": \"1950-04-29T04:32:55.140Z\",\n  \"requesterId\": \"string\",\n  \"requesterName\": \"string\",\n  \"reviewerId\": \"string\",\n  \"reviewerName\": \"string\",\n  \"scopeOwnerId\": \"string\",\n  \"scopeOwnerName\": \"string\",\n  \"scopeOwnerType\": \"string\",\n  \"status\": \"string\",\n  \"threatLevel\": 1527,\n  \"vulnerabilityId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "006e5a6a-7bce-4a3b-b7b5-dcf09918dfca",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Waiver Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

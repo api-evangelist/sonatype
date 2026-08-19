@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Configuration API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getConfiguration_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config",
+            "params": [
+              {
+                "name": "property",
+                "value": "",
+                "type": "query",
+                "description": "Enter the names of the system properties. Values provided for name are case-sensitive."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the configured value for an IQ Server system property.\n\nPermissions required: Edit System Configuration and Users or system property dependent"
+        },
+        {
+          "info": {
+            "name": "setConfiguration_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to configure one or more IQ Server system properties. The property names are case-sensitive.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "deleteConfiguration_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config",
+            "params": [
+              {
+                "name": "property",
+                "value": "",
+                "type": "query",
+                "description": "Enter the names of the system properties. Values provided for name are case-sensitive."
+              }
+            ]
+          },
+          "docs": "Use this method to disable one or more IQ Server system properties. The property names are case-sensitive.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "invalidateCache",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/integrationVersions/cache"
+          },
+          "docs": "Clear the integration version cache. Use this endpoint after a new integration version is released to ensure IQ Server immediately recognizes the new version instead of waiting for cache expiration (10 minutes).\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

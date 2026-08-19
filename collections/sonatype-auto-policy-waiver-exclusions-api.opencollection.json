@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Auto Policy Waiver Exclusions API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auto Policy Waiver Exclusions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "addAutoPolicyWaiveExclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaiverExclusions/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify which resource type owns the auto waiver you want to apply a exclusion to. Possible values are application, organization."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create an auto policy waiver exclusion for a specified auto policy waiver.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "getAutoPolicyWaiverExclusions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaiverExclusions/:ownerType/:ownerId/:autoPolicyWaiverId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the owner type."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the owner id."
+              },
+              {
+                "name": "autoPolicyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id of the automatic policy waiver."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Enter the page."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Enter the page size."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve auto policy waiver exclusions for the given owner and policy waiver.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteAutoPolicyWaiverExclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/autoPolicyWaiverExclusions/:ownerType/:ownerId/:autoPolicyWaiverId/:autoPolicyWaiverExclusionId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerType to specify the scope. A waiver exclusion corresponding to the autoPolicyWaiverExclusionId provided and within the scope specified will be deleted."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the corresponding id for the ownerType specified above."
+              },
+              {
+                "name": "autoPolicyWaiverId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the relevant Auto Policy Waiver ID."
+              },
+              {
+                "name": "autoPolicyWaiverExclusionId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the autoPolicyWaiverId to be deleted"
+              }
+            ]
+          },
+          "docs": "Use this method to delete an auto policy waiver exclusion, specified by the autoPolicyWaiverExclusionId.\n\nPermissions required: Waive Policy Violations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

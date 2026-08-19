@@ -1,0 +1,951 @@
+{
+  "item": [
+    {
+      "id": "ac54981b-bd7f-4391-9797-e7f1fc636cc4",
+      "name": "Application Report Data",
+      "description": {
+        "content": "Use this REST API to retrieve the data from an application composition report, that is generated after an evaluation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a00d4a44-dac8-4539-903a-715fd21e3bb3",
+          "name": "get Policy Violation Diff",
+          "request": {
+            "name": "get Policy Violation Diff",
+            "description": {
+              "content": "By configuring Lifecycle with SCM, policy evaluations can be linked to the Git commit hash. Use this method to compare the violations between policy evaluations for 2 commits, by providing the linked commit hashes.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationPublicId",
+                "reports",
+                "policyViolations",
+                "diff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fromCommit",
+                  "value": "<string>",
+                  "description": "(Required) Enter the commit hash linked to the earlier policy evaluation."
+                },
+                {
+                  "disabled": false,
+                  "key": "toCommit",
+                  "value": "<string>",
+                  "description": "(Required) Enter the commit hash linked to the other (later) policy evaluation to compare."
+                },
+                {
+                  "disabled": false,
+                  "key": "fromPolicyEvaluationId",
+                  "value": "<string>",
+                  "description": "Enter the policy evaluation Id linked to the earlier policy evaluation to compare"
+                },
+                {
+                  "disabled": false,
+                  "key": "toPolicyEvaluationId",
+                  "value": "<string>",
+                  "description": "Enter the policy evaluation Id linked to the other (later) policy evaluation to compare"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeViolationTimes",
+                  "value": "false",
+                  "description": "Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationPublicId",
+                  "description": "(Required) Enter the applicationPublicId, created at the time of creating the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ce38c64-2178-4647-82d7-17f1e9bb70f6",
+              "name": "The response contains the violation details grouped under addedViolations, sameViolations and removedViolations for the two policy evaluations being compared.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    "policyViolations",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromCommit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toCommit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromPolicyEvaluationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toPolicyEvaluationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeViolationTimes",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId, created at the time of creating the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addedViolations\": [\n    {\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"hash\": \"string\",\n        \"originalPurl\": \"string\",\n        \"packageUrl\": \"string\",\n        \"proprietary\": false,\n        \"sha256\": \"string\",\n        \"thirdParty\": true\n      },\n      \"constraintViolations\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"fixTime\": \"2018-10-03T06:50:31.220Z\",\n      \"legacyViolationTime\": \"1981-02-06T03:23:49.806Z\",\n      \"openTime\": \"1976-06-24T20:16:48.935Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatLevel\": 996,\n      \"waiveTime\": \"1979-11-16T21:17:10.811Z\"\n    },\n    {\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"hash\": \"string\",\n        \"originalPurl\": \"string\",\n        \"packageUrl\": \"string\",\n        \"proprietary\": true,\n        \"sha256\": \"string\",\n        \"thirdParty\": false\n      },\n      \"constraintViolations\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"fixTime\": \"2012-06-27T22:02:15.448Z\",\n      \"legacyViolationTime\": \"1946-10-21T19:21:15.428Z\",\n      \"openTime\": \"2000-03-23T16:00:21.855Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatLevel\": 4070,\n      \"waiveTime\": \"1975-07-26T01:05:01.240Z\"\n    }\n  ],\n  \"application\": {\n    \"applicationTags\": [\n      {\n        \"applicationId\": \"string\",\n        \"id\": \"string\",\n        \"tagId\": \"string\"\n      },\n      {\n        \"applicationId\": \"string\",\n        \"id\": \"string\",\n        \"tagId\": \"string\"\n      }\n    ],\n    \"contactUserName\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"publicId\": \"string\"\n  },\n  \"diffTime\": \"1986-04-08T12:58:57.547Z\",\n  \"fromCommit\": {\n    \"commitHash\": \"string\",\n    \"reportUrl\": \"string\",\n    \"scanId\": \"string\",\n    \"scanTime\": \"1984-05-06T04:30:05.113Z\"\n  },\n  \"removedViolations\": [\n    {\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"hash\": \"string\",\n        \"originalPurl\": \"string\",\n        \"packageUrl\": \"string\",\n        \"proprietary\": true,\n        \"sha256\": \"string\",\n        \"thirdParty\": true\n      },\n      \"constraintViolations\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"fixTime\": \"1955-11-02T11:07:09.797Z\",\n      \"legacyViolationTime\": \"1970-11-27T04:20:13.327Z\",\n      \"openTime\": \"1991-09-11T16:37:47.089Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatLevel\": 3341,\n      \"waiveTime\": \"1979-09-18T02:23:10.936Z\"\n    },\n    {\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"hash\": \"string\",\n        \"originalPurl\": \"string\",\n        \"packageUrl\": \"string\",\n        \"proprietary\": true,\n        \"sha256\": \"string\",\n        \"thirdParty\": false\n      },\n      \"constraintViolations\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"fixTime\": \"2020-12-22T11:03:56.133Z\",\n      \"legacyViolationTime\": \"1994-09-04T05:52:16.981Z\",\n      \"openTime\": \"1962-12-29T14:50:40.016Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatLevel\": 3380,\n      \"waiveTime\": \"1993-06-02T06:26:47.445Z\"\n    }\n  ],\n  \"sameViolations\": [\n    {\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"hash\": \"string\",\n        \"originalPurl\": \"string\",\n        \"packageUrl\": \"string\",\n        \"proprietary\": true,\n        \"sha256\": \"string\",\n        \"thirdParty\": false\n      },\n      \"constraintViolations\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"fixTime\": \"2007-07-22T03:45:12.793Z\",\n      \"legacyViolationTime\": \"1991-01-03T08:44:36.190Z\",\n      \"openTime\": \"1950-04-25T17:01:51.852Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatLevel\": 4999,\n      \"waiveTime\": \"1955-03-27T00:14:26.289Z\"\n    },\n    {\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"displayName\": \"string\",\n        \"hash\": \"string\",\n        \"originalPurl\": \"string\",\n        \"packageUrl\": \"string\",\n        \"proprietary\": true,\n        \"sha256\": \"string\",\n        \"thirdParty\": false\n      },\n      \"constraintViolations\": [\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"reasons\": [\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"fixTime\": \"1971-08-29T06:34:28.907Z\",\n      \"legacyViolationTime\": \"1960-05-18T22:57:55.562Z\",\n      \"openTime\": \"1980-01-17T11:54:32.182Z\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"threatLevel\": 3698,\n      \"waiveTime\": \"1951-11-05T10:52:45.483Z\"\n    }\n  ],\n  \"toCommit\": {\n    \"commitHash\": \"string\",\n    \"reportUrl\": \"string\",\n    \"scanId\": \"string\",\n    \"scanTime\": \"1947-03-28T14:34:45.871Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9f2aeca-1be3-4e9e-aa6a-413a2271f0c1",
+              "name": "Missing or invalid parameter. Check if the policy evaluations are still available, based on the Data Retention Policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    "policyViolations",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromCommit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toCommit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromPolicyEvaluationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toPolicyEvaluationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeViolationTimes",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId, created at the time of creating the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0396083-09c4-4b2e-b5c1-0d1e56ae93c2",
+              "name": "Policy violation diff could not be determined for the given request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    "policyViolations",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromCommit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toCommit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromPolicyEvaluationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toPolicyEvaluationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeViolationTimes",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId, created at the time of creating the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9eb2807-5d02-49e0-a282-487c2d30b3e7",
+          "name": "get Data",
+          "request": {
+            "name": "get Data",
+            "description": {
+              "content": "This is an older version of the endpoint. This call will now be redirected to /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationPublicId",
+                "reports",
+                ":scanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationPublicId",
+                  "description": "(Required) Enter the applicationPublicId for the evaluated application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scanId",
+                  "description": "(Required) Enter the scanId (reportId) of the application report created after the evaluation. "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "818f67ed-ae25-4bf3-a81c-6598d3f19349",
+              "name": "Temporary redirect to the new endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId for the evaluated application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required) Enter the scanId (reportId) of the application report created after the evaluation. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Temporary Redirect (since HTTP/1.1)",
+              "code": 307,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85eff1eb-9fa9-4c02-adc1-7ad4ccd2714a",
+          "name": "get Dependency Tree",
+          "request": {
+            "name": "get Dependency Tree",
+            "description": {
+              "content": "Use this method to retrieve the dependencies related to the component identified at the time of application evaluation. This is currently available only for Java (Maven) and NPM applications.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationPublicId",
+                "reports",
+                ":scanId",
+                "dependencyTree"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationPublicId",
+                  "description": "(Required) Enter the applicationPublicId created at the time of creating the application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scanId",
+                  "description": "(Required)  Enter the reportId (scanId) created at the time of evaluating the application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6df1ab10-e296-4910-80f0-4d82343fabfa",
+              "name": "The response fields contain the 'Dependency Tree' data  under the 'children' section. The 'children' section may contain more tree nodes. Every direct dependency can have zero or more transitive dependencies. Each tree node contains the packageUrl, component identifier and a dependency tree node (if it exists.) The component identifier section contains the format and coordinates for the component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    ":scanId",
+                    "dependencyTree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId created at the time of creating the application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required)  Enter the reportId (scanId) created at the time of evaluating the application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dependencyTree\": {\n    \"children\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ApiDependencyTreeNodeDTO detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ApiDependencyTreeNodeDTO detected>\"\n      }\n    ],\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"direct\": true,\n    \"packageUrl\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95d327af-b185-4af3-b2f0-41c21c510283",
+              "name": "Missing or invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    ":scanId",
+                    "dependencyTree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId created at the time of creating the application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required)  Enter the reportId (scanId) created at the time of evaluating the application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f3883ba4-359b-47a2-bd85-c1d7a1577fef",
+              "name": "The requested dependency tree was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    ":scanId",
+                    "dependencyTree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId created at the time of creating the application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required)  Enter the reportId (scanId) created at the time of evaluating the application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b978913b-da55-4c84-8540-3223923df0e7",
+          "name": "get Policy Violations 1",
+          "request": {
+            "name": "get Policy Violations 1",
+            "description": {
+              "content": "Use this method to retrieve the policy violation data generated as a result of an application evaluation, for each component identified in the application evaluation./n/nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationPublicId",
+                "reports",
+                ":scanId",
+                "policy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeViolationTimes",
+                  "value": "false",
+                  "description": "Set to true to include policy violation times (open, legacy, waived, fixed) in the response if set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationPublicId",
+                  "description": "(Required) Enter the applicationPublicId created at the time of creating the application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scanId",
+                  "description": "(Required) Enter the reportId (scanId) created at the time of evaluating the application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ed0e0eb-2f0d-42c6-8f03-6faa56bb6b79",
+              "name": "The response fields contain the policy violation data for the reportId (scanId) specified in the method call. The fields corresponding to 'violations' include the violation details for each policy, for the component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    ":scanId",
+                    "policy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeViolationTimes",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId created at the time of creating the application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required) Enter the reportId (scanId) created at the time of evaluating the application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application\": {\n    \"contactUserName\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"publicId\": \"string\"\n  },\n  \"commitHash\": \"string\",\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"dependencyData\": {\n        \"directDependency\": false,\n        \"innerSource\": true,\n        \"innerSourceData\": [\n          {\n            \"innerSourceComponentPurl\": \"string\",\n            \"ownerApplicationId\": \"string\",\n            \"ownerApplicationName\": \"string\"\n          }\n        ],\n        \"parentComponentPurls\": [\n          \"string\"\n        ]\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"matchState\": \"string\",\n      \"originalPurl\": \"string\",\n      \"packageUrl\": \"string\",\n      \"pathnames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"proprietary\": true,\n      \"sha256\": \"string\",\n      \"thirdParty\": true,\n      \"violations\": [\n        {\n          \"constraints\": [\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1997-03-05T20:43:57.301Z\",\n          \"grandfathered\": false,\n          \"legacyViolation\": false,\n          \"legacyViolationTime\": \"1960-07-25T05:03:52.147Z\",\n          \"openTime\": \"1992-06-19T03:29:09.528Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 2106,\n          \"policyViolationId\": \"string\",\n          \"waiveTime\": \"1971-07-03T04:15:54.087Z\",\n          \"waived\": false,\n          \"waivedWithAutoWaiver\": true\n        },\n        {\n          \"constraints\": [\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1980-01-15T06:21:44.323Z\",\n          \"grandfathered\": false,\n          \"legacyViolation\": false,\n          \"legacyViolationTime\": \"1997-11-08T23:46:58.016Z\",\n          \"openTime\": \"1983-03-31T23:28:29.181Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 5426,\n          \"policyViolationId\": \"string\",\n          \"waiveTime\": \"2021-12-19T18:01:15.590Z\",\n          \"waived\": true,\n          \"waivedWithAutoWaiver\": true\n        }\n      ]\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"dependencyData\": {\n        \"directDependency\": false,\n        \"innerSource\": false,\n        \"innerSourceData\": [\n          {\n            \"innerSourceComponentPurl\": \"string\",\n            \"ownerApplicationId\": \"string\",\n            \"ownerApplicationName\": \"string\"\n          }\n        ],\n        \"parentComponentPurls\": [\n          \"string\"\n        ]\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"matchState\": \"string\",\n      \"originalPurl\": \"string\",\n      \"packageUrl\": \"string\",\n      \"pathnames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"proprietary\": true,\n      \"sha256\": \"string\",\n      \"thirdParty\": false,\n      \"violations\": [\n        {\n          \"constraints\": [\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1983-01-03T23:07:00.930Z\",\n          \"grandfathered\": false,\n          \"legacyViolation\": true,\n          \"legacyViolationTime\": \"1975-09-19T08:31:01.383Z\",\n          \"openTime\": \"1986-10-24T16:54:19.441Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 6748,\n          \"policyViolationId\": \"string\",\n          \"waiveTime\": \"1989-11-10T10:33:31.604Z\",\n          \"waived\": true,\n          \"waivedWithAutoWaiver\": true\n        },\n        {\n          \"constraints\": [\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"constraintName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"fixTime\": \"1983-12-31T09:42:26.833Z\",\n          \"grandfathered\": false,\n          \"legacyViolation\": false,\n          \"legacyViolationTime\": \"1967-11-05T09:13:13.651Z\",\n          \"openTime\": \"1999-12-16T21:27:56.119Z\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 9557,\n          \"policyViolationId\": \"string\",\n          \"waiveTime\": \"1989-03-07T08:17:24.413Z\",\n          \"waived\": true,\n          \"waivedWithAutoWaiver\": false\n        }\n      ]\n    }\n  ],\n  \"counts\": {\n    \"key_0\": 8209,\n    \"key_1\": 8729\n  },\n  \"initiator\": \"string\",\n  \"reportTime\": 8265.94098246078,\n  \"reportTitle\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43ae5b20-a630-490b-af44-90a2d98e6b81",
+          "name": "get Raw Data",
+          "request": {
+            "name": "get Raw Data",
+            "description": {
+              "content": "Use this method to retrieve the 'raw' data generated as a result of an application evaluation. 'raw' data includes: the components identified in the application, and the licenses and vulnerabilities associated with the identified components./n/nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "applications",
+                ":applicationPublicId",
+                "reports",
+                ":scanId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationPublicId",
+                  "description": "(Required) Enter the applicationPublicId (assigned at the time of creating a new application.) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scanId",
+                  "description": "(Required) Enter the reportId (scanId) created at the time of evaluating the application. application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dff2067e-dd89-461b-8a1e-eb96d832ac95",
+              "name": "The response fields contain the 'raw' data for the reportId (scanId) specified in the method call. The fields corresponding to 'dependencyData' will indicate if the component is a direct dependency (true/false), an InnerSource component(true/false), the associated parentComponentPurls (package URLs of the parent component ownerApplicationName (name of the owner application), ownerApplicatonId (internal ID of the owner application, innerSourceComponentPurl (the package URL of the InnerSourceComponent.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "applications",
+                    ":applicationPublicId",
+                    "reports",
+                    ":scanId",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationPublicId",
+                      "description": "(Required) Enter the applicationPublicId (assigned at the time of creating a new application.) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scanId",
+                      "description": "(Required) Enter the reportId (scanId) created at the time of evaluating the application. application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"cpe\": \"string\",\n      \"dependencyData\": {\n        \"directDependency\": false,\n        \"innerSource\": true,\n        \"innerSourceData\": [\n          {\n            \"innerSourceComponentPurl\": \"string\",\n            \"ownerApplicationId\": \"string\",\n            \"ownerApplicationName\": \"string\"\n          }\n        ],\n        \"parentComponentPurls\": [\n          \"string\"\n        ]\n      },\n      \"displayName\": \"string\",\n      \"filenames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hash\": \"string\",\n      \"identificationSource\": \"string\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"effectiveLicenseThreats\": [\n          {\n            \"licenseThreatGroupCategory\": \"string\",\n            \"licenseThreatGroupLevel\": 3736,\n            \"licenseThreatGroupName\": \"string\"\n          },\n          {\n            \"licenseThreatGroupCategory\": \"string\",\n            \"licenseThreatGroupLevel\": 1370,\n            \"licenseThreatGroupName\": \"string\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"status\": \"string\"\n      },\n      \"matchState\": \"string\",\n      \"originalPurl\": \"string\",\n      \"packageUrl\": \"string\",\n      \"pathnames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"proprietary\": true,\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 8763.952024420098,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 8244.797212484866,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      },\n      \"sha256\": \"string\",\n      \"swid\": {\n        \"name\": \"string\",\n        \"patch\": true,\n        \"tagId\": \"string\",\n        \"tagVersion\": 3893,\n        \"text\": {\n          \"content\": \"string\",\n          \"contentType\": \"string\",\n          \"encoding\": \"string\"\n        },\n        \"version\": \"string\"\n      },\n      \"thirdParty\": false\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"cpe\": \"string\",\n      \"dependencyData\": {\n        \"directDependency\": true,\n        \"innerSource\": false,\n        \"innerSourceData\": [\n          {\n            \"innerSourceComponentPurl\": \"string\",\n            \"ownerApplicationId\": \"string\",\n            \"ownerApplicationName\": \"string\"\n          }\n        ],\n        \"parentComponentPurls\": [\n          \"string\"\n        ]\n      },\n      \"displayName\": \"string\",\n      \"filenames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hash\": \"string\",\n      \"identificationSource\": \"string\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"effectiveLicenseThreats\": [\n          {\n            \"licenseThreatGroupCategory\": \"string\",\n            \"licenseThreatGroupLevel\": 426,\n            \"licenseThreatGroupName\": \"string\"\n          },\n          {\n            \"licenseThreatGroupCategory\": \"string\",\n            \"licenseThreatGroupLevel\": 8323,\n            \"licenseThreatGroupName\": \"string\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"status\": \"string\"\n      },\n      \"matchState\": \"string\",\n      \"originalPurl\": \"string\",\n      \"packageUrl\": \"string\",\n      \"pathnames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"proprietary\": false,\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 5199.123331205765,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 9980.145891048975,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      },\n      \"sha256\": \"string\",\n      \"swid\": {\n        \"name\": \"string\",\n        \"patch\": false,\n        \"tagId\": \"string\",\n        \"tagVersion\": 3291,\n        \"text\": {\n          \"content\": \"string\",\n          \"contentType\": \"string\",\n          \"encoding\": \"string\"\n        },\n        \"version\": \"string\"\n      },\n      \"thirdParty\": true\n    }\n  ],\n  \"globalInformation\": {\n    \"dataVersionDate\": \"string\"\n  },\n  \"matchSummary\": {\n    \"knownComponentCount\": 387,\n    \"totalComponentCount\": 1485\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "19e6f662-71da-48da-88e2-19a29a72c20e",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Application Report Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

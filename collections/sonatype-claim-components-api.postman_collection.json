@@ -1,0 +1,530 @@
+{
+  "item": [
+    {
+      "id": "46787e35-bb46-47f0-b38a-bde76f611ef7",
+      "name": "Claim Components",
+      "description": {
+        "content": "Use this REST API to manage components that are developed in-house and are not open-source.\n\nClaiming the component stores the identity information for the component hash and avoids triggering the Component-Unknown policy.\n\nComponents will have a match state as `Exact` and Identification Source as `Manual`,\nfor subsequent scans or evaluations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b19a1f91-5205-4ecd-86a3-2d7026ee6957",
+          "name": "get All",
+          "request": {
+            "name": "get All",
+            "description": {
+              "content": "Use this method to retrieve details of all claimed components.\n\nPermissions required: Claim components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "claim",
+                "components"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f11104d0-484c-46e0-b719-b987650e518a",
+              "name": "The response contains the truncated SHA1 hash of each component, the datetime when the component was published (not the time it was claimed), the format and coordinates of the claimed component (componentIdentifier) and the package URL of the claimed component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "claim",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"componentClaims\": [\n    {\n      \"claimerId\": \"string\",\n      \"claimerName\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"createTime\": \"1956-02-16T23:12:27.784Z\",\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\"\n    },\n    {\n      \"claimerId\": \"string\",\n      \"claimerName\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"createTime\": \"2002-05-28T11:59:55.293Z\",\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d1d21ba-cc17-464d-974a-f8e83717c501",
+          "name": "set",
+          "request": {
+            "name": "set",
+            "description": {
+              "content": "Use this method to claim a component, or update the component details for a previously claimed component.\n\nPermissions required: Claim components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "claim",
+                "components"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"claimerId\": \"<string>\",\n  \"claimerName\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"createTime\": \"<dateTime>\",\n  \"hash\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d428790-e061-4c24-acb7-a578d308f843",
+              "name": "The response shows the new/updated details for the claimed component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "claim",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"claimerId\": \"<string>\",\n  \"claimerName\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"createTime\": \"<dateTime>\",\n  \"hash\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"claimerId\": \"<string>\",\n  \"claimerName\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"createTime\": \"<dateTime>\",\n  \"hash\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a344e24-47d0-4ccc-a9c6-4c9d8e103da5",
+          "name": "delete",
+          "request": {
+            "name": "delete",
+            "description": {
+              "content": "Use this method to delete a claim on a previously claimed component by providing its hash.\n\nPermissions required: Claim components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "claim",
+                "components",
+                ":hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash",
+                  "description": "(Required) Enter the SHA1 hash for the component."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4891d017-9c7a-4bcb-ab2e-0a40e934450b",
+              "name": "Component Claim for this hash was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "claim",
+                    "components",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) Enter the SHA1 hash for the component."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e57e0bc-4461-4a12-9050-17d51a228d82",
+              "name": "Component Claim for this hash does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "claim",
+                    "components",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) Enter the SHA1 hash for the component."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e4bbe2c-a26b-43c5-808c-aec37d1906b5",
+          "name": "get",
+          "request": {
+            "name": "get",
+            "description": {
+              "content": "Use this method to retrieve details of a claimed component by specifying its hash.\n\nPermissions required: Claim components",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "claim",
+                "components",
+                ":hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash",
+                  "description": "(Required) The hash of the claimed component."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9fdd9f7-5768-4d0d-9881-f6fbebb23c37",
+              "name": "The response contains the truncated SHA1 hash of the component, the datetime when the component was published (not the time it was claimed), the format and coordinates of the claimed component (componentIdentifier) and the package URL of the claimed component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "claim",
+                    "components",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) The hash of the claimed component."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"claimerId\": \"<string>\",\n  \"claimerName\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"createTime\": \"<dateTime>\",\n  \"hash\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f98d635-a052-4e2d-8456-a1a53cafba85",
+              "name": "Component Claim for this hash does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "claim",
+                    "components",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) The hash of the claimed component."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ab58fa14-b905-4f74-a112-b2238b454e22",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Claim Components API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

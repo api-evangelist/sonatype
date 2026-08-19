@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Composite Source Control Validator API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Composite Source Control Validator",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "validateSourceControlConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/compositeSourceControlConfigValidator/application/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationId for which you want to validate the composite source control configuration."
+              }
+            ]
+          },
+          "docs": "Use this method to validate the composite source control configuration.\n\nPermissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

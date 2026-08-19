@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Component Labels API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Component Labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getLabels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the `ownerType` for which you want to retrieve the component label information."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id of the application, organization or the repository."
+              },
+              {
+                "name": "inherit",
+                "value": "",
+                "type": "query",
+                "description": "Set to `true` to retrieve inherited component labels."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the details for component labels for an application, organization or a repository.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addLabel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the ownerType to which the label will be assigned."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the selected ownerType."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create and assign a component label to an application, organization or repository.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updateLabel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the ownerType for which the label will be updated."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the selected ownerType."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update an existing component label for an application, organization or repository.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getApplicableLabels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/applicable",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the ownerType to retrieve the component label information for."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the application, organization or repository"
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve all component labels that are applicable to the specified application, organization or repository.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getApplicableContexts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/applicable/context/:labelId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the ownerType."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the ownerId"
+              },
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the labelId"
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve the hierarchy of owners (applications, organizations, repositories) in which the label can be applied.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteLabel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/:labelId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the ownerType for which the label will be deleted."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the selected ownerType."
+              },
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the id for the label to be deleted."
+              }
+            ]
+          },
+          "docs": "Use this method to delete an existing component label.\n\nPermissions required: Edit IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

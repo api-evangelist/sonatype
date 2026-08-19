@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Feature Configuration API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feature Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "enabledFeature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/config/features/:feature",
+            "params": [
+              {
+                "name": "feature",
+                "value": "",
+                "type": "path",
+                "description": "Enter the name of the feature to be enabled."
+              }
+            ]
+          },
+          "docs": "Use this method to enable an IQ Server feature.\n\nPermissions required: Edit System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "disableFeature",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/features/:feature",
+            "params": [
+              {
+                "name": "feature",
+                "value": "",
+                "type": "path",
+                "description": "Enter the name of the IQ Server feature to be disabled."
+              }
+            ]
+          },
+          "docs": "Use this method to disable an IQ Server feature.\n\nPermissions required: Edit System Configuration and Users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

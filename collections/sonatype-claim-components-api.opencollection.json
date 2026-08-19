@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Claim Components API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Claim Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAll",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/claim/components"
+          },
+          "docs": "Use this method to retrieve details of all claimed components.\n\nPermissions required: Claim components"
+        },
+        {
+          "info": {
+            "name": "set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/claim/components",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to claim a component, or update the component details for a previously claimed component.\n\nPermissions required: Claim components"
+        },
+        {
+          "info": {
+            "name": "get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/claim/components/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "The hash of the claimed component."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve details of a claimed component by specifying its hash.\n\nPermissions required: Claim components"
+        },
+        {
+          "info": {
+            "name": "delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/claim/components/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "Enter the SHA1 hash for the component."
+              }
+            ]
+          },
+          "docs": "Use this method to delete a claim on a previously claimed component by providing its hash.\n\nPermissions required: Claim components"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

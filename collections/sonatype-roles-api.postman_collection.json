@@ -1,0 +1,625 @@
+{
+  "item": [
+    {
+      "id": "0a3b140e-0156-4703-b79d-823ebf1a8fd2",
+      "name": "Roles",
+      "description": {
+        "content": "Roles provide sets of permissions that grant access to the functionality in the user interface, through integrations, and when using REST APIs.\n\nPermissions are granted by assigning users or groups to the system roles or at the various levels in the organizational hierarchy: root organization, repository managers, and applications and organizations.\n\nUse this REST API to manage roles.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a26979f-3cd1-4221-bd1f-b05dc64b8c03",
+          "name": "get Roles",
+          "request": {
+            "name": "get Roles",
+            "description": {
+              "content": "Use this method to view the role IDs, role names and descriptions.\n\nPermissions required: View All Roles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d4003c9-e839-4a79-b47e-5d0da0787849",
+              "name": "The response contains the role IDs, role names and descriptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roles\": [\n    {\n      \"builtIn\": true,\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"permissionCategories\": [\n        {\n          \"displayName\": \"string\",\n          \"permissions\": [\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"displayName\": \"string\",\n          \"permissions\": [\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"builtIn\": false,\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"permissionCategories\": [\n        {\n          \"displayName\": \"string\",\n          \"permissions\": [\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"displayName\": \"string\",\n          \"permissions\": [\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"allowed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79e77317-881a-46d1-a363-b5730852013c",
+          "name": "add Role",
+          "request": {
+            "name": "add Role",
+            "description": {
+              "content": "Use this method to create a new custom role with specified permissions.\n\nPermissions required: Edit Roles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a44a611-8055-4c65-ba4d-fd89a68ad181",
+              "name": "The role was created successfully. The response contains the created role details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30fccf1d-405c-406f-89ce-112d6375b1f6",
+          "name": "get Template For New Role",
+          "request": {
+            "name": "get Template For New Role",
+            "description": {
+              "content": "Use this method to retrieve a template for creating a new custom role, including all available permissions that can be assigned.\n\nPermissions required: Edit Roles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roles",
+                "new"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a06759f-e282-42b5-b664-6df22a3b3615",
+              "name": "The response contains a role template with available permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roles",
+                    "new"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6406d78c-0184-453e-8f61-12552eff0bfa",
+          "name": "delete Role",
+          "request": {
+            "name": "delete Role",
+            "description": {
+              "content": "Use this method to delete a custom role.\n\nPermissions required: Edit Roles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roles",
+                ":roleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a2e5338-dd0a-4fab-bbee-3e1b74de0fa0",
+              "name": "The role was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74275fc7-14db-4096-a547-999391457fe0",
+          "name": "get Role By Id",
+          "request": {
+            "name": "get Role By Id",
+            "description": {
+              "content": "Use this method to retrieve details for a specific role, including its permissions.\n\nPermissions required: View All Roles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roles",
+                ":roleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f4e0cf6-1e26-471a-8db2-84d3425fc2a7",
+              "name": "The response contains the role details including permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97243866-be84-4584-b0e2-1d8b12e56142",
+          "name": "update Role",
+          "request": {
+            "name": "update Role",
+            "description": {
+              "content": "Use this method to update an existing custom role and its permissions.\n\nPermissions required: Edit Roles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "roles",
+                ":roleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8a485fe-fb9b-4f45-b3b9-d3da3a9ed4a0",
+              "name": "The role was updated successfully. The response contains the updated role details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"builtIn\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"permissionCategories\": [\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"permissions\": [\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"allowed\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ed1e49a-37d5-4e3f-9358-c13d5f50fadd",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

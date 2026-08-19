@@ -1,0 +1,474 @@
+{
+  "item": [
+    {
+      "id": "a67440be-d9e0-4ca5-8c1f-348439393b97",
+      "name": "Auto Policy Waiver Exclusions",
+      "description": {
+        "content": "Use this REST API to create and delete auto policy waiver exclusions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66d12258-eb1d-43d7-9d2e-5a7b33930d0d",
+          "name": "add Auto Policy Waive Exclusion",
+          "request": {
+            "name": "add Auto Policy Waive Exclusion",
+            "description": {
+              "content": "Use this method to create an auto policy waiver exclusion for a specified auto policy waiver.\n\nPermissions required: Waive Policy Violations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "autoPolicyWaiverExclusions",
+                ":ownerType",
+                ":ownerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the ownerType to specify which resource type owns the auto waiver you want to apply a exclusion to. Possible values are application, organization."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationPublicId\": \"<string>\",\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"matchStrategy\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"policyViolationId\": \"<string>\",\n  \"scanId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49d0b2ff-e8d4-4aa1-a76b-b54d19629d0a",
+              "name": "Auto policy waiver exclusion has been created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "autoPolicyWaiverExclusions",
+                    ":ownerType",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the ownerType to specify which resource type owns the auto waiver you want to apply a exclusion to. Possible values are application, organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationPublicId\": \"<string>\",\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"matchStrategy\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"policyViolationId\": \"<string>\",\n  \"scanId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"autoPolicyWaiverExclusionId\": \"string\",\n  \"autoPolicyWaiverId\": \"string\",\n  \"componentDisplayName\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"componentMatchStrategy\": \"ALL_VERSIONS\",\n  \"constraintFacts\": [\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 1003,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 6259,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    },\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 3810,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 6523,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    }\n  ],\n  \"createTime\": \"1991-04-26T16:42:30.977Z\",\n  \"creatorId\": \"string\",\n  \"creatorName\": \"string\",\n  \"hash\": \"string\",\n  \"ownerId\": \"string\",\n  \"ownerName\": \"string\",\n  \"ownerPublicId\": \"string\",\n  \"ownerType\": \"string\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"scanId\": \"string\",\n  \"threatLevel\": 7832,\n  \"vulnerabilityIdentifiers\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73aef011-5dd7-47e4-b482-e84781cac329",
+          "name": "get Auto Policy Waiver Exclusions",
+          "request": {
+            "name": "get Auto Policy Waiver Exclusions",
+            "description": {
+              "content": "Use this method to retrieve auto policy waiver exclusions for the given owner and policy waiver.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "autoPolicyWaiverExclusions",
+                ":ownerType",
+                ":ownerId",
+                ":autoPolicyWaiverId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Enter the page."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Enter the page size."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the owner type."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) Enter the owner id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autoPolicyWaiverId",
+                  "description": "(Required) Enter the id of the automatic policy waiver."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d6f0965-a1fe-4bf2-a5ac-0da2d2d873a5",
+              "name": "Successfully retrieved the auto policy waiver exclusions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "autoPolicyWaiverExclusions",
+                    ":ownerType",
+                    ":ownerId",
+                    ":autoPolicyWaiverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the owner type."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) Enter the owner id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autoPolicyWaiverId",
+                      "description": "(Required) Enter the id of the automatic policy waiver."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"autoPolicyWaiverExclusionId\": \"string\",\n    \"autoPolicyWaiverId\": \"string\",\n    \"componentDisplayName\": \"string\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"componentMatchStrategy\": \"EXACT_COMPONENT\",\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 1058,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 4620,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 4419,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 1329,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      }\n    ],\n    \"createTime\": \"2008-06-26T19:46:37.015Z\",\n    \"creatorId\": \"string\",\n    \"creatorName\": \"string\",\n    \"hash\": \"string\",\n    \"ownerId\": \"string\",\n    \"ownerName\": \"string\",\n    \"ownerPublicId\": \"string\",\n    \"ownerType\": \"string\",\n    \"policyId\": \"string\",\n    \"policyName\": \"string\",\n    \"policyViolationId\": \"string\",\n    \"scanId\": \"string\",\n    \"threatLevel\": 3049,\n    \"vulnerabilityIdentifiers\": \"string\"\n  },\n  {\n    \"autoPolicyWaiverExclusionId\": \"string\",\n    \"autoPolicyWaiverId\": \"string\",\n    \"componentDisplayName\": \"string\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"componentMatchStrategy\": \"ALL_VERSIONS\",\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 9116,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 6997,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 8002,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 8967,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      }\n    ],\n    \"createTime\": \"2019-12-15T20:59:19.716Z\",\n    \"creatorId\": \"string\",\n    \"creatorName\": \"string\",\n    \"hash\": \"string\",\n    \"ownerId\": \"string\",\n    \"ownerName\": \"string\",\n    \"ownerPublicId\": \"string\",\n    \"ownerType\": \"string\",\n    \"policyId\": \"string\",\n    \"policyName\": \"string\",\n    \"policyViolationId\": \"string\",\n    \"scanId\": \"string\",\n    \"threatLevel\": 8133,\n    \"vulnerabilityIdentifiers\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e6831da-2bc2-46d7-ad24-fc380aba21bb",
+          "name": "delete Auto Policy Waiver Exclusion",
+          "request": {
+            "name": "delete Auto Policy Waiver Exclusion",
+            "description": {
+              "content": "Use this method to delete an auto policy waiver exclusion, specified by the autoPolicyWaiverExclusionId.\n\nPermissions required: Waive Policy Violations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "autoPolicyWaiverExclusions",
+                ":ownerType",
+                ":ownerId",
+                ":autoPolicyWaiverId",
+                ":autoPolicyWaiverExclusionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) Enter the ownerType to specify the scope. A waiver exclusion corresponding to the autoPolicyWaiverExclusionId provided and within the scope specified will be deleted."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autoPolicyWaiverId",
+                  "description": "(Required) Enter the relevant Auto Policy Waiver ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autoPolicyWaiverExclusionId",
+                  "description": "(Required) Enter the autoPolicyWaiverId to be deleted"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9fbcb2a-7ebc-4352-a265-8b7578878600",
+              "name": "Auto policy waiver exclusion has been deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "autoPolicyWaiverExclusions",
+                    ":ownerType",
+                    ":ownerId",
+                    ":autoPolicyWaiverId",
+                    ":autoPolicyWaiverExclusionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) Enter the ownerType to specify the scope. A waiver exclusion corresponding to the autoPolicyWaiverExclusionId provided and within the scope specified will be deleted."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autoPolicyWaiverId",
+                      "description": "(Required) Enter the relevant Auto Policy Waiver ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autoPolicyWaiverExclusionId",
+                      "description": "(Required) Enter the autoPolicyWaiverId to be deleted"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8106317f-cdb8-47d1-9b97-5960a4d3de48",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Auto Policy Waiver Exclusions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

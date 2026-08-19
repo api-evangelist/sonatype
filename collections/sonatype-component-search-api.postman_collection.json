@@ -1,0 +1,405 @@
+{
+  "item": [
+    {
+      "id": "7a45acfc-fa5d-4a79-809f-f5a631a5add4",
+      "name": "Component Search",
+      "description": {
+        "content": "Use this REST API to search for components in application evaluation reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8b836b8-46df-4b0f-baea-cf6f21a4b104",
+          "name": "get Cve Affected Components",
+          "request": {
+            "name": "get Cve Affected Components",
+            "description": {
+              "content": "Retrieve paginated list of applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). Default page number is 1, default page size is 10. Results can be sorted by any column. Default sorting (when sortBy is not specified): applicationName (asc), then componentName (asc), then cveId (asc). When sortBy is explicitly specified, only single-field sorting is applied with the specified sortOrder (default: asc). <p>Permissions Required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "componentSearch",
+                "cveAffectedComponents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cveId",
+                  "value": "<string>",
+                  "description": "(Required) CVE identifier(s). Can be specified multiple times for multiple CVEs."
+                },
+                {
+                  "disabled": false,
+                  "key": "cveId",
+                  "value": "<string>",
+                  "description": "(Required) CVE identifier(s). Can be specified multiple times for multiple CVEs."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1",
+                  "description": "Page number (1-indexed, minimum: 1, default: 1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Number of items per page (1-1000, default: 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Sort field: applicationName, applicationId, componentName, evaluationDate, stage, activeWaiver, violating, cveId. When not specified, sorts by applicationName (asc), then componentName (asc), then cveId (asc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "asc",
+                  "description": "Sort order: asc or desc, default: asc"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4dafbb2-40ce-48e4-aa0b-6ed731848226",
+              "name": "Paginated list of affected applications and components",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "componentSearch",
+                    "cveAffectedComponents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cveId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4626a442-27ef-4841-b628-1ca60b4cce51",
+          "name": "export Component Search Report",
+          "request": {
+            "name": "export Component Search Report",
+            "description": {
+              "content": "Export component search results as CSV (streaming). Identifies applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). If no CVE ID is specified, defaults to CVE-2025-55182 (React2Shell) for backwards compatibility. Results are streamed to avoid memory issues with large datasets. Keep-alive mechanism prevents ALB timeouts during long-running queries. <p>Permissions Required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "componentSearch",
+                "downloadComponentSearchReport"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cveId",
+                  "value": "<string>",
+                  "description": "CVE identifier(s). Can be specified multiple times for multiple CVEs. Defaults to CVE-2025-55182 if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "cveId",
+                  "value": "<string>",
+                  "description": "CVE identifier(s). Can be specified multiple times for multiple CVEs. Defaults to CVE-2025-55182 if not specified."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e180fcc-a7c2-422d-b690-cd013fb23ac5",
+              "name": "CSV file containing the component search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "componentSearch",
+                    "downloadComponentSearchReport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cveId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a89cda62-272e-491f-a6e9-d3fcb99fce5d",
+          "name": "search Component",
+          "request": {
+            "name": "search Component",
+            "description": {
+              "content": "Use this method to retrieve the component details from the application evaluation reports by specifying the component search parameters, format and evaluation stage. You can specify the component search parameters in any one of the 3 ways:<ul><li>SHA1 hash of the component</li><li>Component identifier object containing the coordinates of the component and its format</li><li>packageUrl string</li></ul>Use of wildcards when searching using the GAVEC(coordinates) is supported.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "component"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stageId",
+                  "value": "<string>",
+                  "description": "(Required) Specify the evaluation report stage."
+                },
+                {
+                  "disabled": false,
+                  "key": "hash",
+                  "value": "<string>",
+                  "description": "Enter the component hash."
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "{\"key_0\":\"<string>\"}",
+                  "description": "Specify the componentIdentifier object containing the format and coordinates."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Specify the componentIdentifier object containing the format and coordinates."
+                },
+                {
+                  "disabled": false,
+                  "key": "packageUrl",
+                  "value": "<string>",
+                  "description": "Enter the packageUrl."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c2070f6-af90-43d2-ab67-54aa10794584",
+              "name": "The response contains (a) criteria (the search criteria in the request), and (b) results (list of applications with the component specified).\n\nEach result includes applicationId and application name containing the component, the relative and absoluteURLs of the report, component metadata, threat level, and dependency data indicating if the component is a direct/transitive/InnerSource dependency.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "component"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageUrl",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"criteria\": {\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"hash\": \"string\",\n    \"packageUrl\": \"string\",\n    \"stageId\": \"string\"\n  },\n  \"results\": [\n    {\n      \"applicationId\": \"string\",\n      \"applicationName\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"dependencyData\": {\n        \"directDependency\": true,\n        \"innerSource\": false,\n        \"innerSourceData\": [\n          {\n            \"innerSourceComponentPurl\": \"string\",\n            \"ownerApplicationId\": \"string\",\n            \"ownerApplicationName\": \"string\"\n          }\n        ],\n        \"parentComponentPurls\": [\n          \"string\"\n        ]\n      },\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\",\n      \"reportHtmlUrl\": \"string\",\n      \"reportUrl\": \"string\",\n      \"threatLevel\": 2478\n    },\n    {\n      \"applicationId\": \"string\",\n      \"applicationName\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"dependencyData\": {\n        \"directDependency\": false,\n        \"innerSource\": true,\n        \"innerSourceData\": [\n          {\n            \"innerSourceComponentPurl\": \"string\",\n            \"ownerApplicationId\": \"string\",\n            \"ownerApplicationName\": \"string\"\n          }\n        ],\n        \"parentComponentPurls\": [\n          \"string\"\n        ]\n      },\n      \"hash\": \"string\",\n      \"packageUrl\": \"string\",\n      \"reportHtmlUrl\": \"string\",\n      \"reportUrl\": \"string\",\n      \"threatLevel\": 853\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "31d8b605-d718-43c4-8623-94ac1a9350cb",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Component Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

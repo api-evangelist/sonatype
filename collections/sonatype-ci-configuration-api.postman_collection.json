@@ -1,0 +1,612 @@
+{
+  "item": [
+    {
+      "id": "2fc89711-fc85-4000-9ed5-dabe2dbac37f",
+      "name": "CI Configuration",
+      "description": {
+        "content": "Use this REST API to manage CI integration configuration. Configurations can be set at organization or application level and are merged from the organization hierarchy with lower levels taking precedence.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9668a1e-dbce-44af-8902-bd52139c84a7",
+          "name": "delete Configuration",
+          "request": {
+            "name": "delete Configuration",
+            "description": {
+              "content": "Use this method to delete CI integration configuration for the specified owner.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "ci",
+                ":ownerType",
+                ":ownerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) The owner type (application or organization)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) The internal ID of the owner"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd482017-ed6b-4264-bc0e-e733a2ff261b",
+              "name": "CI configuration was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "ci",
+                    ":ownerType",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The owner type (application or organization)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The internal ID of the owner"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84ec1ac1-ef5f-46b3-b03b-e897dc9f846d",
+              "name": "CI configuration not found for the specified owner.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "ci",
+                    ":ownerType",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The owner type (application or organization)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The internal ID of the owner"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef7f6896-13a8-4188-a8f0-07817a4f3700",
+          "name": "get Configuration",
+          "request": {
+            "name": "get Configuration",
+            "description": {
+              "content": "Use this method to retrieve CI integration configuration for the specified owner.\n\nSet the `direct` query parameter to `true` to retrieve only the configuration directly associated with the specified owner. Set it to `false` (default) to retrieve the merged configuration from the organization hierarchy, where configurations from parent organizations are combined with lower levels taking precedence.\n\nThe response includes a `source` map that indicates which owner (organization or application) contributed each configuration field when using merged mode.\n\nPermissions required: View IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "ci",
+                ":ownerType",
+                ":ownerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "direct",
+                  "value": "false",
+                  "description": "Set to true to retrieve only direct configuration, false (default) to retrieve merged configuration from hierarchy"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) The owner type (application or organization)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) The internal ID of the owner"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e72cdb1-713c-45a0-b40f-7238b70b5391",
+              "name": "The response contains:\n<ul>\n<li>`configuration` - the CI integration configuration as a JSON object</li>\n<li>`source` - a map of field names to owner IDs indicating provenance (empty for direct queries)</li>\n</ul>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "ci",
+                    ":ownerType",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direct",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The owner type (application or organization)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The internal ID of the owner"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"advancedProperties\": [\n      \"string\",\n      \"string\"\n    ],\n    \"download\": {\n      \"iqCliUrl\": \"string\",\n      \"iqCliVersion\": \"string\"\n    },\n    \"enableDebugLogging\": true,\n    \"failBuildOnNetworkError\": true,\n    \"failBuildOnPolicyWarnings\": false,\n    \"failBuildOnReachabilityErrors\": false,\n    \"failBuildOnScanningErrors\": false,\n    \"moduleExcludes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parameterPriority\": \"string\",\n    \"proxy\": {\n      \"host\": \"string\"\n    },\n    \"reachability\": {\n      \"failOnError\": true,\n      \"javaAnalysis\": {\n        \"enabled\": true,\n        \"entrypointStrategy\": \"string\",\n        \"namespaces\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"javaScriptAnalysis\": {\n        \"enabled\": true,\n        \"jsExcludes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"jsSources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"nodeJsExecutable\": \"string\",\n        \"projectRoot\": \"string\"\n      }\n    },\n    \"resultFile\": \"string\",\n    \"sarifFile\": \"string\",\n    \"scanPatterns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"unstableBuildOnPolicyWarnings\": true\n  },\n  \"source\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "028bdfb4-d0c0-469e-8a59-60df40178481",
+              "name": "No CI configuration found for the specified owner or its hierarchy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "ci",
+                    ":ownerType",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direct",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The owner type (application or organization)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The internal ID of the owner"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "790f8551-8fcd-4ae2-8283-2b2d7307ab11",
+          "name": "set Configuration",
+          "request": {
+            "name": "set Configuration",
+            "description": {
+              "content": "Use this method to create or update CI integration configuration for the specified owner.\n\nThe configuration is stored as a JSON object to support various CI systems (GitHub Actions, GitLab CI, etc.). String values must be non-empty.\n\nPermissions required: Edit IQ Elements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "ci",
+                ":ownerType",
+                ":ownerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerType",
+                  "description": "(Required) The owner type (application or organization)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) The internal ID of the owner"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"advancedProperties\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"download\": {\n    \"iqCliUrl\": \"<string>\",\n    \"iqCliVersion\": \"<string>\"\n  },\n  \"enableDebugLogging\": \"<boolean>\",\n  \"failBuildOnNetworkError\": \"<boolean>\",\n  \"failBuildOnPolicyWarnings\": \"<boolean>\",\n  \"failBuildOnReachabilityErrors\": \"<boolean>\",\n  \"failBuildOnScanningErrors\": \"<boolean>\",\n  \"moduleExcludes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parameterPriority\": \"<string>\",\n  \"proxy\": {\n    \"host\": \"<string>\"\n  },\n  \"reachability\": {\n    \"failOnError\": \"<boolean>\",\n    \"javaAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"entrypointStrategy\": \"<string>\",\n      \"namespaces\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"javaScriptAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"jsExcludes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"jsSources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nodeJsExecutable\": \"<string>\",\n      \"projectRoot\": \"<string>\"\n    }\n  },\n  \"resultFile\": \"<string>\",\n  \"sarifFile\": \"<string>\",\n  \"scanPatterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unstableBuildOnPolicyWarnings\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8fe76ae-903a-4aca-9c14-f51e4ab6749b",
+              "name": "CI configuration was saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "ci",
+                    ":ownerType",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The owner type (application or organization)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The internal ID of the owner"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"advancedProperties\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"download\": {\n    \"iqCliUrl\": \"<string>\",\n    \"iqCliVersion\": \"<string>\"\n  },\n  \"enableDebugLogging\": \"<boolean>\",\n  \"failBuildOnNetworkError\": \"<boolean>\",\n  \"failBuildOnPolicyWarnings\": \"<boolean>\",\n  \"failBuildOnReachabilityErrors\": \"<boolean>\",\n  \"failBuildOnScanningErrors\": \"<boolean>\",\n  \"moduleExcludes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parameterPriority\": \"<string>\",\n  \"proxy\": {\n    \"host\": \"<string>\"\n  },\n  \"reachability\": {\n    \"failOnError\": \"<boolean>\",\n    \"javaAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"entrypointStrategy\": \"<string>\",\n      \"namespaces\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"javaScriptAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"jsExcludes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"jsSources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nodeJsExecutable\": \"<string>\",\n      \"projectRoot\": \"<string>\"\n    }\n  },\n  \"resultFile\": \"<string>\",\n  \"sarifFile\": \"<string>\",\n  \"scanPatterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unstableBuildOnPolicyWarnings\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"advancedProperties\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"download\": {\n    \"iqCliUrl\": \"<string>\",\n    \"iqCliVersion\": \"<string>\"\n  },\n  \"enableDebugLogging\": \"<boolean>\",\n  \"failBuildOnNetworkError\": \"<boolean>\",\n  \"failBuildOnPolicyWarnings\": \"<boolean>\",\n  \"failBuildOnReachabilityErrors\": \"<boolean>\",\n  \"failBuildOnScanningErrors\": \"<boolean>\",\n  \"moduleExcludes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parameterPriority\": \"<string>\",\n  \"proxy\": {\n    \"host\": \"<string>\"\n  },\n  \"reachability\": {\n    \"failOnError\": \"<boolean>\",\n    \"javaAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"entrypointStrategy\": \"<string>\",\n      \"namespaces\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"javaScriptAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"jsExcludes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"jsSources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nodeJsExecutable\": \"<string>\",\n      \"projectRoot\": \"<string>\"\n    }\n  },\n  \"resultFile\": \"<string>\",\n  \"sarifFile\": \"<string>\",\n  \"scanPatterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unstableBuildOnPolicyWarnings\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7bc5df1-73e6-44ef-9d38-3f590260e087",
+              "name": "Invalid configuration provided (e.g., empty strings).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "ci",
+                    ":ownerType",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerType",
+                      "description": "(Required) The owner type (application or organization)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) The internal ID of the owner"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"advancedProperties\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"download\": {\n    \"iqCliUrl\": \"<string>\",\n    \"iqCliVersion\": \"<string>\"\n  },\n  \"enableDebugLogging\": \"<boolean>\",\n  \"failBuildOnNetworkError\": \"<boolean>\",\n  \"failBuildOnPolicyWarnings\": \"<boolean>\",\n  \"failBuildOnReachabilityErrors\": \"<boolean>\",\n  \"failBuildOnScanningErrors\": \"<boolean>\",\n  \"moduleExcludes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parameterPriority\": \"<string>\",\n  \"proxy\": {\n    \"host\": \"<string>\"\n  },\n  \"reachability\": {\n    \"failOnError\": \"<boolean>\",\n    \"javaAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"entrypointStrategy\": \"<string>\",\n      \"namespaces\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"javaScriptAnalysis\": {\n      \"enabled\": \"<boolean>\",\n      \"jsExcludes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"jsSources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nodeJsExecutable\": \"<string>\",\n      \"projectRoot\": \"<string>\"\n    }\n  },\n  \"resultFile\": \"<string>\",\n  \"sarifFile\": \"<string>\",\n  \"scanPatterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unstableBuildOnPolicyWarnings\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "014d9749-0af4-4222-ac2b-2630f90c3035",
+    "name": "Sonatype Lifecycle Public REST Advanced Search CI Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

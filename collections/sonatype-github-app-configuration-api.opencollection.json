@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search GitHub App Configuration API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GitHub App Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate GitHub App manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/githubApp/manifest",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "query",
+                "description": "Owner (organization/application) ID"
+              },
+              {
+                "name": "organizationName",
+                "value": "",
+                "type": "query",
+                "description": "GitHub organization name"
+              }
+            ]
+          },
+          "docs": "Generate a GitHub App manifest for registration. Returns manifest JSON with a state token for CSRF protection. The state token is cryptographically secure, single-use, and expires after 10 minutes. Submit the manifest to GitHub's app creation flow, which will redirect back to IQ Server with the state token for validation. \n\n**Permissions Required:** Configure System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "GitHub App registration redirect callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/githubApp/redirect",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "Temporary manifest conversion code from GitHub"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "OAuth state token for CSRF protection"
+              }
+            ]
+          },
+          "docs": "Handles redirect from GitHub after manifest submission. Exchanges temporary code for permanent app credentials. The user's browser is automatically redirected here by GitHub - not intended for direct use. **Permissions Required:** Configure System Configuration and Users"
+        },
+        {
+          "info": {
+            "name": "Handle GitHub App installation setup callback with OAuth + PKCE",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/githubApp/setupInstallation",
+            "params": [
+              {
+                "name": "installation_id",
+                "value": "",
+                "type": "query",
+                "description": "GitHub App installation ID"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "State token for CSRF protection"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "OAuth authorization code"
+              }
+            ]
+          },
+          "docs": "Process the redirect from GitHub after OAuth authorization, validate state token, exchange OAuth code with PKCE verification, verify user ownership, configure the installation for the specified organization/application, and redirect to the configuration page"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

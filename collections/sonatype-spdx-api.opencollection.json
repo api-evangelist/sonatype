@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search SPDX API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SPDX",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getByScanId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/spdx/:applicationId/reports/:scanId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationId for the application you want to generate the SBOM(s)."
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the scanId of the application scan."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Enter the format for the SBOM(s) to be generated."
+              },
+              {
+                "name": "generateCycloneDx",
+                "value": "",
+                "type": "query",
+                "description": "Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive."
+              },
+              {
+                "name": "spdxVersion",
+                "value": "",
+                "type": "query",
+                "description": "Enter the desired SPDX version, possible values are 2.2|2.3"
+              }
+            ]
+          },
+          "docs": "Use this method to generate SBOM(s) based on a specific application scan.\n\nPermissions required: View IQ Elemets"
+        },
+        {
+          "info": {
+            "name": "getLatestForStage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/spdx/:applicationId/stages/:stageId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the applicationId for the application you want to generate the SBOM(s)."
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Specify the stageId for the application evaluation. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Enter the format for the SBOM(s) to be generated."
+              },
+              {
+                "name": "generateCycloneDx",
+                "value": "",
+                "type": "query",
+                "description": "Set to `true` to generate an equivalent CycloneDx SBOM. Both SBOMs will be combined as a tar.gz archive."
+              },
+              {
+                "name": "spdxVersion",
+                "value": "",
+                "type": "query",
+                "description": "Enter the desired SPDX version, possible values are 2.2|2.3"
+              }
+            ]
+          },
+          "docs": "Use this method to generate SBOM(s) based on the latest application evaluation report at the specified stage.\n\nPermissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

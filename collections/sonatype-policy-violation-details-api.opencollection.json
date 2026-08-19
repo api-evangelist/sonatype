@@ -1,0 +1,274 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Violation Details API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policy Violation Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getPolicyViolations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations",
+            "params": [
+              {
+                "name": "p",
+                "value": "",
+                "type": "query",
+                "description": "Enter the policyIds to obtain the corresponding violation details"
+              },
+              {
+                "name": "openTimeAfter",
+                "value": "",
+                "type": "query",
+                "description": "Enter the date (format YYYY-MM-DD) from which you want to retrieve the violation details"
+              },
+              {
+                "name": "openTimeBefore",
+                "value": "",
+                "type": "query",
+                "description": "Enter the date (format YYYY-MM-DD) until which you want to retrieve the violation details"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Set one or more policy violation type (active, legacy, waived) to include"
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve policy violation details for a policy/policies. You will need the policyId(s) to retrieve the policy violations details. policyId is available as the response field of the Policies REST API.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getCrossStagePolicyViolationByConstituentId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/crossStage",
+            "params": [
+              {
+                "name": "constituentId",
+                "value": "",
+                "type": "query",
+                "description": "Enter the violationId. Use the GET method described for the endpoint /api/v2/policyViolations to obtain the policy violationId."
+              }
+            ]
+          },
+          "docs": "A cross-stage policy violation represents an aggregate of all violations of a policy  occurring across multiple stages of an application. Cross-stage policy violations are helpful in performance analysis by determining the time taken to remediate a violation across all stages where it was detected.\nUse this method to retrieve all cross-stage violations, irrespective of the time they were detected.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getCrossStagePolicyViolationById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/crossStage/:violationId",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policy `violationId`. Use the GET method described for the endpoint /api/v2/policyViolations to obtain the policy violationId. "
+              }
+            ]
+          },
+          "docs": "A cross-stage policy violation represents an aggregate of all violations of the same policy, occurring at multiple stages for an application. Cross-stage policy violations are helpful in performance analysis by determining the time taken to remediate a violation across all stages where it was detected.\nUse this method to retrieve cross-stage policy violations.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getTransitivePolicyViolationsByOwnerStageComponent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/transitive/:ownerType/:ownerId/stages/:stageId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Possible values are 'application' or 'organization'"
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Possible values are applicationId, organizationId"
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path",
+                "description": "Possible values are 'develop', 'source', 'build', 'stage-release', 'release', and, 'operate'."
+              },
+              {
+                "name": "componentIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component identifier and the coordinates of the component for which you want to obtain the transitive violations. This is optional, not required if package URL or hash value is provided."
+              },
+              {
+                "name": "packageUrl",
+                "value": "",
+                "type": "query",
+                "description": "Enter the package URL of the component. This is optional, not required if component identifier or hash value is provided."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "Enter the hash value of the component. This is optional, not required if component identifier or package URL is provided."
+              }
+            ]
+          },
+          "docs": "Use this method to obtain all transitive policy violations for a given component in  a specific stage. Transitive policy violations are violations caused by transitive dependencies.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getTransitivePolicyViolationsByAppScanComponent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/transitive/:ownerType/:ownerId/:scanId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the scope for this violation. Possible values are 'application'"
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the identifier for the scope specified above. E.g. applicationId"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the scanId/reportId corresponding to the scan."
+              },
+              {
+                "name": "componentIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Enter the component identifier and the coordinates of the component for which you want to retrieve the transitive policy violations. This is optional, not required if package URL or hash value is provided."
+              },
+              {
+                "name": "packageUrl",
+                "value": "",
+                "type": "query",
+                "description": "Enter the package URL for the component for which you want to retrieve the transitive policy violations in the specific scan."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "Enter the hash value for the component for which you want to retrieve the transitive policy violations in the specific scan."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve transitive policy violations for a given component in a specific scan.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getApplicableAutoWaiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/:violationId/applicableAutoWaiver",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policy violationId for which you want to obtain the applicable auto policy waiver "
+              }
+            ]
+          },
+          "docs": "Use this method to obtain the existing auto waiver applicable to a policy violationviolation.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getApplicableWaiverRequests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/:violationId/applicableWaiverRequests",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policy violationId for which you want to obtain the applicable waiver requests."
+              }
+            ]
+          },
+          "docs": "Use this method to obtain all existing waiver requests that are applicable to a policy violation. A waiver request is considered as 'applicable' if it matches the following conditions:<ul><li>The policyId for the policy violation matches the policyId associated with the waiver request</li><li>The violated policy conditions match the policy conditions of the waiver request/li><li>The waiver request scope matches the violating component</li></ul>\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getApplicableWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/:violationId/applicableWaivers",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the policy violationId for which you want to obtain the applicable waivers."
+              }
+            ]
+          },
+          "docs": "Use this method to obtain all existing waivers that are applicable to a policy violation. A waiver is considered as 'applicable' if it matches the following conditions:<ul><li>The policyId for the policy violation matches the policyId associated with the waiver</li><li>The violated policy conditions match the policy conditions of the waiver/li><li>The waiver scope matches the violating component</li></ul>\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getSimilarWaivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyViolations/:violationId/similarWaivers",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "Policy violation id to find similar waivers for."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve similar policy waivers for the given policy violation id.\n\nPermissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

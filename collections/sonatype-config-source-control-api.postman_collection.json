@@ -1,0 +1,342 @@
+{
+  "item": [
+    {
+      "id": "e708c614-6c86-46f0-a072-0b64d5fd8bd9",
+      "name": "Config Source Control",
+      "description": {
+        "content": "Use this REST API to manage the configuration of IQ Server with your Source Control Management (SCM) system (e.g. GitHub).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1dd40d3e-d6a5-4db2-a266-ae08b773f303",
+          "name": "delete Configuration 6",
+          "request": {
+            "name": "delete Configuration 6",
+            "description": {
+              "content": "Use this method to delete an existing SCM configuration.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "sourceControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f979be50-aceb-400c-92e0-439c8f001f4d",
+              "name": "SCM configuration deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "sourceControl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb38578a-0fc0-4f4b-b4ad-32e4d3942a45",
+          "name": "get Configuration 6",
+          "request": {
+            "name": "get Configuration 6",
+            "description": {
+              "content": "Use this method to retrieve an existing SCM configuration.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "sourceControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "267c4479-ab37-42c1-b3f0-f425937e3133",
+              "name": "The response contains: <ul><li>`cloneDirectory` is the location of the cloned repository that will be used by the IQ server. If a relative path is provided, then that path will be created inside the  `sonatype-work` directory and your repository will be created within this. A return value `source-control` indicates that this setting is not configured.</li><li>`gitImplementation` will have the value `java` for JGit or `native` for a native git client.</li><li>`prCommentPurgeWindow` is the number of days until the comments of a Pull Request (PR) are allowed to be purged.</li><li>`prEventPurgeWindow` is the number of days until PR events are allowed to be purged.</li><li>`gitExecutable` is the absolute path to a native client. No value indicates the native git client is on the system path.</li>`gitTimeoutSeconds` is the number of seconds a git command can execute before timing out.</li>`commitUsername` is the username that will be used for the SCM features. The value `NexusIQ` indicates the default value.</li>`commitEmail` is the commit email that will be used for the SCM features.`useUsernameInRepositoryCloneUrl` indicates if the username will be added to the URL for the cloned repository. This can be used in conjunction with `commitEmail` to support the  'Verified Committer' feature of Bitbucket.</li>`defaultBranchMonitoringStartTime` has a default value between 00:00 and 00:10. It is the time at which the default branch monitoring will start for the first time.</li>`defaultBranchMonitoringIntervalHours` is the number of hours elapsed between the executions of default branch monitoring by the IQ Server. The default value is 24 hours.</li><li>`pullRequestMonitoringIntervalSeconds` is the time in seconds between consecutive execution of PR monitoring. The default value is 60 seconds.</li></ul> ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "sourceControl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cloneDirectory\": \"string\",\n  \"commitEmail\": \"string\",\n  \"commitUsername\": \"string\",\n  \"defaultBranchMonitoringIntervalHours\": 1307,\n  \"defaultBranchMonitoringStartTime\": \"string\",\n  \"gitExecutable\": \"string\",\n  \"gitImplementation\": \"native\",\n  \"gitTimeoutSeconds\": 9255,\n  \"gpgPassphrase\": \"string\",\n  \"gpgSigningKey\": \"string\",\n  \"prCommentPurgeWindow\": 8266,\n  \"prEventPurgeWindow\": 2277,\n  \"pullRequestMonitoringIntervalSeconds\": 5867,\n  \"useUsernameInRepositoryCloneUrl\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9c15264-32a0-4bf6-b484-dcd3409b399f",
+              "name": "No SCM configuration found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "sourceControl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc5448b4-5c7b-4cb1-b671-97e4cc4223e8",
+          "name": "set Configuration 6",
+          "request": {
+            "name": "set Configuration 6",
+            "description": {
+              "content": "Use this method to set an SCM Configuration with the IQ Server.\n\nPermissions required: Edit System Configuration and Users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "config",
+                "sourceControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cloneDirectory\": \"<string>\",\n  \"commitEmail\": \"<string>\",\n  \"commitUsername\": \"<string>\",\n  \"defaultBranchMonitoringIntervalHours\": \"<integer>\",\n  \"defaultBranchMonitoringStartTime\": \"<string>\",\n  \"gitExecutable\": \"<string>\",\n  \"gitImplementation\": \"<string>\",\n  \"gitTimeoutSeconds\": \"<integer>\",\n  \"gpgPassphrase\": \"<string>\",\n  \"gpgSigningKey\": \"<string>\",\n  \"prCommentPurgeWindow\": \"<integer>\",\n  \"prEventPurgeWindow\": \"<integer>\",\n  \"pullRequestMonitoringIntervalSeconds\": \"<integer>\",\n  \"useUsernameInRepositoryCloneUrl\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4507f5a1-f924-4ab8-9aea-0cedd00090f2",
+              "name": "SCM configuration successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "config",
+                    "sourceControl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloneDirectory\": \"<string>\",\n  \"commitEmail\": \"<string>\",\n  \"commitUsername\": \"<string>\",\n  \"defaultBranchMonitoringIntervalHours\": \"<integer>\",\n  \"defaultBranchMonitoringStartTime\": \"<string>\",\n  \"gitExecutable\": \"<string>\",\n  \"gitImplementation\": \"<string>\",\n  \"gitTimeoutSeconds\": \"<integer>\",\n  \"gpgPassphrase\": \"<string>\",\n  \"gpgSigningKey\": \"<string>\",\n  \"prCommentPurgeWindow\": \"<integer>\",\n  \"prEventPurgeWindow\": \"<integer>\",\n  \"pullRequestMonitoringIntervalSeconds\": \"<integer>\",\n  \"useUsernameInRepositoryCloneUrl\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b50856e-a0f0-4945-8504-79b1baa509f5",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Config Source Control API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
+      "type": "text/plain"
+    }
+  }
+}

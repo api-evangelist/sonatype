@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Waiver Requests API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policy Waiver Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "addPolicyWaiverRequestByPolicyViolationId",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/policyWaiverRequests/:ownerType/:ownerId/policyViolation/:policyViolationId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+              },
+              {
+                "name": "policyViolationId",
+                "value": "",
+                "type": "path",
+                "description": "The policyViolationId for the policy violation on which you want to create a policy waiver request. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to create a policy waiver request.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "reviewPolicyWaiverRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/policyWaiverRequests/:ownerType/:ownerId/review/:policyWaiverRequestId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+              },
+              {
+                "name": "policyWaiverRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The policyWaiverRequestId for the policy waiver request to be approved or rejected."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to approve or reject a policy waiver request.\n\nPermissions required: Waive Policy Violations"
+        },
+        {
+          "info": {
+            "name": "getPolicyWaiverRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/policyWaiverRequests/:ownerType/:ownerId/:policyWaiverRequestId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "The scope of the policy waiver request. Possible values are application,\norganization, repository, repository_manager, repository_container."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "The id for the ownerType provided above."
+              },
+              {
+                "name": "policyWaiverRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The policyWaiverRequestId for which you want to retrieve the details."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve policy waiver request details for the policyWaiverRequestId specified.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updatePolicyWaiverRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/policyWaiverRequests/:ownerType/:ownerId/:policyWaiverRequestId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container."
+              },
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "The id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+              },
+              {
+                "name": "policyWaiverRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the policy waiver request to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update a policy waiver request.\n\nPermissions required: View IQ Elements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

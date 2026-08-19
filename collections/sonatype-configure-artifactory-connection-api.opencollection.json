@@ -1,0 +1,267 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sonatype Lifecycle Public REST Advanced Search Configure Artifactory Connection API",
+    "version": "1.201.0-02"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configure Artifactory Connection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getOwnerArtifactoryConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              },
+              {
+                "name": "inherit",
+                "value": "",
+                "type": "query",
+                "description": "Specify whether to include details from an inherited Artifactory connection."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve Artifactory connection details by specifying the owner Id.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "addArtifactoryConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to add a new Artifactory connection.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updateOwnerArtifactoryConnectionStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to enable/disable an existing Artifactory connection for the specified owner.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "testArtifactoryConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/test",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              }
+            ]
+          },
+          "docs": "Use this method to test an Artifactory connection for the specified owner.\n\nPermissons required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "getArtifactoryConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              },
+              {
+                "name": "artifactoryConnectionId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the Artifactory connection ID."
+              }
+            ]
+          },
+          "docs": "Use this method to retrieve details for an Artifactory connection.\n\nPermissions required: View IQ Elements"
+        },
+        {
+          "info": {
+            "name": "updateArtifactoryConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Specify the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              },
+              {
+                "name": "artifactoryConnectionId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the Artifactory connection ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method to update an existing Artifactory connection.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "deleteArtifactoryConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Select the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              },
+              {
+                "name": "artifactoryConnectionId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the Artifactory connection ID."
+              }
+            ]
+          },
+          "docs": "Use this method to delete an existing Artifactory connection.\n\nPermissions required: Edit IQ Elements"
+        },
+        {
+          "info": {
+            "name": "testArtifactoryConnection_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId/test",
+            "params": [
+              {
+                "name": "ownerType",
+                "value": "",
+                "type": "path",
+                "description": "Enter the owner type."
+              },
+              {
+                "name": "internalOwnerId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the internal ID of the owner."
+              },
+              {
+                "name": "artifactoryConnectionId",
+                "value": "",
+                "type": "path",
+                "description": "Enter the Artifactory connection ID."
+              }
+            ]
+          },
+          "docs": "Use this method to test an existing Artifactory connection using the connection ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
