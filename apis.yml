@@ -110,6 +110,8 @@ apis:
   humanURL: https://help.sonatype.com/en/iq-api-reference.html
   baseURL: https://{iq-server-host}/
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -680,7 +682,8 @@ apis:
   description: This REST API returns the OpenAPI documentation for the specified IQ Server REST API.
   humanURL: https://help.sonatype.com/en/iq-api-reference.html
   baseURL: https://{iq-server-host}/
-  tags:
+  tags: []
+  tags_raw:
   - Endpoints
   properties:
   - type: OpenAPI
@@ -828,6 +831,8 @@ apis:
   humanURL: https://help.sonatype.com/en/iq-api-reference.html
   baseURL: https://{iq-server-host}/
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -1255,6 +1260,8 @@ apis:
   humanURL: https://help.sonatype.com/en/iq-api-reference.html
   baseURL: https://{iq-server-host}/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
