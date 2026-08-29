@@ -6,6 +6,18 @@ description: >-
   application portfolio management, policy enforcement, vulnerability reporting, component analysis, SBOM generation,
   source control integration, and software composition analysis across the SDLC.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -1297,6 +1309,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
 common:
+  - type: CapabilityMap
+    url: capabilities/sonatype-capability-edges.yml
+    name: Sonatype Business Capability Map
   - type: AgenticAccess
     url: agentic-access/sonatype-agentic-access.yml
   - type: DomainSecurity
