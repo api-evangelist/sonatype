@@ -1,93 +1,39 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: Sonatype
-providerId: sonatype
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Software Supply Chain
-  - Security
-  - Vulnerability Management
-  - SBOM
-  - Software Composition Analysis
-  - DevSecOps
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Sonatype API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://help.sonatype.com/en/authentication-attempt-rate-limiting.html
+sources:
+- https://help.sonatype.com/en/authentication-attempt-rate-limiting.html
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: true
+note: Self-hosted Nexus Repository authentication attempt rate limiting; values are configurable properties
+  with defaults (3 consecutive failed attempts, exponential delay from 30s up to 900s). Per-node in-memory
+  state; applies to HTTP Basic and token-based authentication, not SAML/SSO.
+limit_count: 4
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Sonatype Lifecycle API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Sonatype Lifecycle API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Sonatype Lifecycle API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Sonatype Lifecycle API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Sonatype Lifecycle API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Max failed authentication attempts before rate limiting
+  limit_text: nexus.auth.ratelimit.max-attempts=3
+  limit: 3
+  scope: user
+  endpoint: authentication
+- name: Base delay seconds
+  limit_text: nexus.auth.ratelimit.base-delay-seconds=30
+  limit: 30
+  scope: user
+  endpoint: authentication
+- name: Max delay seconds
+  limit_text: nexus.auth.ratelimit.max-delay-seconds=900
+  limit: 900
+  scope: user
+  endpoint: authentication
+- name: Max tracked keys
+  limit_text: nexus.auth.ratelimit.max-tracked-keys=10000
+  limit: 10000
+  scope: unclear
+  endpoint: authentication
+headers:
+- Retry-After
+exceeded_status: 429
