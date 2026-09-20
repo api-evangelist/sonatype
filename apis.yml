@@ -1310,6 +1310,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
 common:
+  - type: Plans
+    url: plans/sonatype-plans-pricing.yml
   - type: CapabilityMap
     url: capabilities/sonatype-capability-edges.yml
     name: Sonatype Business Capability Map

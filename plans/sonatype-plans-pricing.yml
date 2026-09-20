@@ -1,152 +1,66 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Sonatype
-providerId: sonatype
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Software Supply Chain
-  - Security
-  - Vulnerability Management
-  - SBOM
-  - Software Composition Analysis
-  - DevSecOps
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.sonatype.com/products/pricing
+sources:
+- https://www.sonatype.com/products/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Annual tiers per product plus consumption pricing per GB for Nexus Repository Cloud; some tiers
+  contact sales.
+plan_count: 8
+currency: USD
 plans:
-  - id: sonatype-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Sonatype API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://{iq-server-host}/
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://{iq-server-host}/
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Sonatype Lifecycle API
-  - id: sonatype-pro
-    name: Professional
-    type: paid
-    description: Production tier for Sonatype. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://{iq-server-host}/
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://{iq-server-host}/
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://{iq-server-host}/
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Sonatype Lifecycle API
-  - id: sonatype-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Sonatype. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://{iq-server-host}/
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://{iq-server-host}/
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Sonatype Lifecycle API
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Nexus Repository Cloud Pro Edition
+  price_text: Starting at $1,950 / year + consumption
+  price: 1950
+  currency: USD
+  period: year
+  included_quota: Includes 25GB of Consumption
+  overage: 'Consumption Tiers: Tier 1 0 to 1,000 $1.10; Tier 2 1,001 to 2,500 $.90; Tier 3 2,501+ Contact
+    Us'
+- name: Nexus Repository Self-Hosted Community Edition
+  price_text: Starting at $0
+  price: 0
+  currency: USD
+  period: year
+  included_quota: Full Ecosystem Support, CI/CD Integration, External PostgreSQL Database Option
+- name: Nexus Repository Self-Hosted Pro Edition
+  price_text: Starting at $7,500 / year
+  price: 7500
+  currency: USD
+  period: year
+  included_quota: Includes 50K Components and 15M Monthly Requests
+- name: Guide Free
+  price_text: Starting at $0
+  price: 0
+  currency: USD
+  period: year
+  included_quota: Up to 500 credits
+- name: Guide Pro
+  price_text: Starting at $1,200 / year
+  price: 1200
+  currency: USD
+  period: year
+  included_quota: Up to 5,000 credits
+- name: Guide Enterprise
+  price_text: Custom Pricing
+  period: none
+  included_quota: Custom Credit Amount
+- name: Firewall Cloud Pro
+  price_text: Starting at $4,800 / year
+  price: 4800
+  currency: USD
+  period: year
+  included_quota: Malicious Package Blocking for npm, Maven, PyPI, or Nuget
+- name: Repository Firewall (Self-Hosted)
+  price_text: Custom Pricing
+  period: none
+  included_quota: Malicious Package Blocking for 15+ Support Formats
+rate_limit_statements:
+- Includes 50K Components and 15M Monthly Requests
