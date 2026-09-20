@@ -1,0 +1,140 @@
+slug: sonatype
+provider: Sonatype
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 12
+edges:
+- tag: Role Memberships
+  spec_file: sonatype-role-memberships-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: PUT /api/v2/roleMemberships/{ownerType}/role/{roleId}/{memberType}/{memberName} grantRoleMembershipGlobalOrRepositoryContainer;
+    DELETE ... revokeRoleMembership...
+  reason: Granting and revoking role memberships for users/groups is access administration — Identity
+    & Access Management.
+- tag: Roles
+  spec_file: sonatype-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/v2/roles addRole; schemas ApiRoleDTO, ApiPermissionCategoryDTO, ApiPermissionDTO
+  reason: CRUD over roles and their permission sets is role-based access control administration — Identity
+    & Access Management.
+- tag: Vulnerability Details
+  spec_file: sonatype-vulnerability-details-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: POST /api/v2/vulnerabilities getSecurityVulnerabilityDetails; schemas SecurityVulnerabilityDataDTO,
+    SecurityVulnerabilitySeverity, CweIdDTO, KevData, EpssData
+  reason: Retrieval of security vulnerability detail records with CWE identifiers, severity, KEV and EPSS
+    scoring for software components — this is software composition analysis feeding vulnerability identification
+    and remediation, matching Vulnerability Management.
+- tag: CycloneDX
+  spec_file: sonatype-cyclonedx-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.78
+  evidence: 'GET /api/v2/cycloneDx/{cdxVersion}/{applicationId}/reports/{reportId} getByReportId; vendor:
+    "SBOM generation, component analysis, software composition analy..."'
+  reason: Retrieves CycloneDX SBOMs for scanned applications — the supply-chain artefact for open-source
+    components embedded in the product, matching Open Source Stewardship. Slight uncertainty as SBOM retrieval
+    also serves vulnerability/compliance reporting.
+- tag: License Legal Metadata Report
+  spec_file: sonatype-license-legal-metadata-report-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.75
+  evidence: getLicenseLegalApplicationReport; ApiLicenseLegalObligationDTO, ComponentObligationAttributionDTO,
+    LicenseThreatGroupDTO
+  reason: Produces open-source licence/attribution and obligation reports for scanned application components
+    — a supply-chain artefact of inbound open-source use, mapping to Open Source Stewardship rather than
+    corporate IP licensing.
+- tag: Components
+  spec_file: sonatype-components-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.7
+  evidence: POST /api/v2/components/details  getComponentDetails; POST /api/v2/components/remediation/{ownerType}/{ownerId}  getSuggestedRemediationForComponent;
+    schemas ApiLicenseDTO, ApiSecurityIssueDTO, ApiPolicyViolationDTOV2
+  reason: Returns licence, security-issue, policy-violation and version-remediation data for open-source
+    components embedded in applications — the core of inbound open-source use and supply-chain governance.
+    Some overlap with Vulnerability Management, so not higher than 0.7.
+- tag: Config OIDC
+  spec_file: sonatype-config-oidc-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET/PUT/DELETE /api/v2/config/oidc  insertOrUpdateOidcConfiguration; schemas SsoConfigurationDTO,
+    OAuth2ConfigurationDTO, OidcConfigurationDTO
+  reason: Manages OpenID Connect / OAuth2 single-sign-on configuration, i.e. identity federation for platform
+    access, which is explicitly within Identity & Access Management. Still only authentication configuration
+    for one product, so 0.7 rather than higher.
+- tag: Firewall
+  spec_file: sonatype-firewall-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.7
+  evidence: GET /api/v2/firewall/components/quarantined getQuarantineList; ApiFirewallQuarantineSummaryDTO;
+    ApiMalwareComponentEvaluationRequest
+  reason: Operations quarantine/release open-source components entering repositories based on policy and
+    malware evaluation — inbound open-source supply-chain governance, i.e. Open Source Stewardship. Not
+    network firewall despite the tag name; the paths act on components and policy violations.
+- tag: Policy Evaluation
+  spec_file: sonatype-policy-evaluation-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.7
+  evidence: POST /api/v2/evaluation/applications/{applicationId} evaluateComponents; ApiSecurityIssueAnalysisDTO,
+    ApiLicenseDTO, ApiPolicyViolationDTOV2
+  reason: Runs software composition analysis of an application's components, returning security issues,
+    licences and policy violations — evaluation of inbound open-source dependencies. Could alternatively
+    be read as vulnerability management, hence moderate confidence.
+- tag: Reports
+  spec_file: sonatype-reports-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.7
+  evidence: GET /api/v2/reports/components/quarantined getComponentsInQuarantine; GET /api/v2/reports/components/waivers
+    getComponentsWithWaivers; schemas ApiComponentPolicyViolationDTO, ApiWaivedPolicyViolationDTO
+  reason: Reports expose open-source component policy violations, quarantines and waivers from software
+    composition analysis scans — inbound open-source use governance and supply-chain artefacts, i.e. Open
+    Source Stewardship.
+- tag: SPDX
+  spec_file: sonatype-spdx-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.7
+  evidence: GET /api/v2/spdx/{applicationId}/reports/{scanId} getByScanId
+  reason: SPDX endpoints retrieve SBOM documents for an application scan; SBOM production is an open-source
+    supply-chain artefact, matching Open Source Stewardship.
+- tag: Third-Party Analysis
+  spec_file: sonatype-third-party-analysis-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.7
+  evidence: POST /api/v2/scan/applications/{applicationId}/sources/{source} scanComponents; ApiThirdPartyScanResultDTO
+  reason: Submits third-party component scans for an application and retrieves results — software composition
+    analysis of embedded open-source/third-party components, i.e. Open Source Stewardship.
