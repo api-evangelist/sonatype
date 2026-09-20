@@ -9,15 +9,16 @@ note: ESTIMATES, not quotes. Computed by API Evangelist from the prices this pro
 audience_of_source_pricing: business-product
 pricing_basis: tiered-subscription
 delivery: open-core
-delivery_method: keyword
+delivery_method: page
+delivery_evidence: Community Edition Starting at $0 Download for Free
 free_self_hosted_tiers:
-- 'Nexus Repository Self-Hosted Community Edition: Starting at $0'
+- Community Edition
 managed_premium:
   grade: A
   usd_per_month: 162.5
   plan: Nexus Repository Cloud Pro Edition
   price_text: Starting at $1,950 / year + consumption
-  same_product: verified-by-name
+  same_product: verified-by-page
   meaning: the cheapest priced tier beside the free edition on the same page. When same_product is verified-by-name
     it is the provider's own price for operating what it gives away; when unverified it may be a different
     product. Self-hosting cost itself is unmeasured.
