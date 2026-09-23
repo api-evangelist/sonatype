@@ -1,18 +1,21 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Reports API
+  title: Sonatype Lifecycle Public REST Reports API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to view application scan reports, generate a list of stale waivers, view existing policy waivers on components, view quarantined components and retrieve additional metrics data.
 security:
 - BasicAuth: []
   BearerAuth: []
 tags:
-- description: 'Use this REST API to view application scan reports, generate a list of stale waivers, view existing policy waivers on components, view quarantined components and retrieve additional metrics data. '
+- description: Use this REST API to view application scan reports, generate a list of stale waivers, view existing policy waivers on components, view quarantined components and retrieve additional metrics data.
   name: Reports
 paths:
   /api/v2/reports/applications:
     get:
-      description: "Use this method to view all application reports for applications to which  you have access. \n\nPermissions required: View IQ Elements "
+      description: 'Use this method to view all application reports for applications to which you have access.
+
+
+        Permissions required: View IQ Elements'
       operationId: getAll_1
       responses:
         '200':
@@ -28,9 +31,14 @@ paths:
             The response field stage indicates the stage at which the policy evaluation was executed, such as ''develop'', ''build'' and ''release'' The response field latestReportHtmlUrl is a relative link to view the most recent report. Response fields reportPdfUrl and reportHtmlUrl are links to view the pdf version of the report.The response field reportDataUrl is a link to view the most recent report data. '
       tags:
       - Reports
+      summary: Get all 1
+      x-summary-source: derived
   /api/v2/reports/applications/{applicationId}:
     get:
-      description: "Use this method to retrieve the application reports for the specified application Id. You can view application reports only for applications to which you have access. \n\nPermissions required: View IQ Elements "
+      description: 'Use this method to retrieve the application reports for the specified application Id. You can view application reports only for applications to which you have access.
+
+
+        Permissions required: View IQ Elements'
       operationId: getByApplicationId
       parameters:
       - description: 'Enter the internal application Id. You can use the Applications REST API to get the internal application Id. '
@@ -50,9 +58,14 @@ paths:
           description: "The response JSON contains the URLs to access the latest scan report for the applicationId provided. \n\nThe response field `stage` indicates the stage at which the policy evaluation was executed, such as 'develop', 'build', 'release'.  The response field `latestReportHtmlUrl` is a relative link to view the most recent report. Response fields `reportPdfURL` and `reportHtmlURL` are links to view the pdf version of the report. The response field `reportDataUrl` is a link to view the most recent report data. "
       tags:
       - Reports
+      summary: Get by application id
+      x-summary-source: derived
   /api/v2/reports/applications/{applicationId}/history:
     get:
-      description: "Use this method to retrieve previous application scan reports (100 max.) for the specified application. You can view application reports only for applications to which you have access.  \n\nPermissions required: View IQ Elements "
+      description: 'Use this method to retrieve previous application scan reports (100 max.) for the specified application. You can view application reports only for applications to which you have access.
+
+
+        Permissions required: View IQ Elements'
       operationId: getReportHistoryForApplication
       parameters:
       - description: 'Enter the internal application Id. You can use the Applications REST API to get the internal application Id. '
@@ -85,9 +98,14 @@ paths:
           description: Scan report history could not be found.
       tags:
       - Reports
+      summary: Get report history for application
+      x-summary-source: derived
   /api/v2/reports/components/quarantined:
     get:
-      description: "Use this method to retrieve all repository components that are quarantined. The response contains violation details and the quarantine Id of the component. Use the quarantine Id,  to release the component from quarantine, using the Release from Quarantine REST API. \n\nPermissions required: View IQ Elements and access to the specific repository."
+      description: 'Use this method to retrieve all repository components that are quarantined. The response contains violation details and the quarantine Id of the component. Use the quarantine Id, to release the component from quarantine, using the Release from Quarantine REST API.
+
+
+        Permissions required: View IQ Elements and access to the specific repository.'
       operationId: getComponentsInQuarantine
       responses:
         '200':
@@ -98,9 +116,15 @@ paths:
           description: 'The JSON response returns the component details and policy violation details that are triggering the quarantine. If a quarantined component does not show any policy violation, it implies that the policy violations have been waived, but the component has not been released from quarantine. '
       tags:
       - Reports
+      summary: Get components in quarantine
+      x-summary-source: derived
   /api/v2/reports/components/waivers:
     get:
-      description: 'Use this method to retrieve existing policy waivers by components. For an up-to-date response, ensure that all application and repository reports are current and contain the most recent re-evaluation data.<p>You can specify the format/ecosystem of the component for a filtered result. <p>Permissions required: View IQ Elements and access to the specific applications and repositories '
+      description: 'Use this method to retrieve existing policy waivers by components. For an up-to-date response, ensure that all application and repository reports are current and contain the most recent re-evaluation data.
+
+        You can specify the format/ecosystem of the component for a filtered result.
+
+        Permissions required: View IQ Elements and access to the specific applications and repositories'
       operationId: getComponentsWithWaivers
       parameters:
       - description: Enter the format/ecosystem of the component
@@ -117,6 +141,8 @@ paths:
           description: The JSON response contains waivers grouped by application components and repository components. Waived violations for application components are listed per stage. Waived violations for repository components are listed in the Proxy stage. <p>The component hash is null if the waiver applies to all components or all versions of a component. It is truncated and meant to be used as an identifier to other REST API calls and not for use as checksum. <p>`isObsolete` indicates if a waived violation does not have a valid waiver information. This could happen when a waiver has been removed and the report has not been re-evaluated.<p>`matcherStrategy` can have values EXACT_COMPONENT, ALL_COMPONENTS, ALL_VERSIONS. <p>The response fields `associatedPackageUrl`, `componentIdentifier` and `displayName` are returned only if the waiver is of type ALL_VERSIONS OR EXACT_COMPONENTS and the component is not an unknown component .
       tags:
       - Reports
+      summary: Get components with waivers
+      x-summary-source: derived
   /api/v2/reports/metrics:
     post:
       description: 'Use this method to retrieve metrics data such as policy evaluation metrics, violation and remediation metrics aggregated monthly or weekly.
@@ -141,9 +167,14 @@ paths:
           description: Select the media type JSON or csv for the preferred output format.
       tags:
       - Reports
+      summary: Get metrics
+      x-summary-source: derived
   /api/v2/reports/waivers/stale:
     get:
-      description: "Stale waivers pose a risk because they could be applied unintentionally. Use this method to retrieve stale waivers to eliminate this risk for future application evaluations. \n\nPermissions required: View IQ Elements. You can view stale waivers only for applications/repositories  to which you have access. "
+      description: 'Stale waivers pose a risk because they could be applied unintentionally. Use this method to retrieve stale waivers to eliminate this risk for future application evaluations.
+
+
+        Permissions required: View IQ Elements. You can view stale waivers only for applications/repositories to which you have access.'
       operationId: getStaleWaivers
       responses:
         '200':
@@ -156,8 +187,226 @@ paths:
           description: Found waivers for applications/repositories that have not been evaluated since IQ Server version 76. Re-evaluating the repository is recommended.
       tags:
       - Reports
+      summary: Get stale waivers
+      x-summary-source: derived
 components:
   schemas:
+    ApiApplicationWaiverDTO:
+      properties:
+        application:
+          $ref: '#/components/schemas/ApiApplicationBaseDTO'
+        stages:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationStageDTO'
+          type: array
+      type: object
+    ApiReportResultsDTO:
+      properties:
+        applicationId:
+          type: string
+        commitHash:
+          type: string
+        embeddableReportHtmlUrl:
+          type: string
+        evaluationDate:
+          format: date-time
+          type: string
+        isForMonitoring:
+          type: boolean
+        isReevaluation:
+          type: boolean
+        latestReportHtmlUrl:
+          type: string
+        policyEvaluationId:
+          type: string
+        policyEvaluationResult:
+          $ref: '#/components/schemas/PolicyEvaluationResult'
+        reportDataUrl:
+          type: string
+        reportHtmlUrl:
+          type: string
+        reportPdfUrl:
+          type: string
+        scanId:
+          type: string
+        scanTriggerInternal:
+          type: boolean
+        scanTriggerType:
+          type: string
+        scanTriggerTypeDisplayName:
+          type: string
+        scannerVersion:
+          type: string
+        stage:
+          type: string
+      type: object
+    ApiStaleEvaluationsDTO:
+      properties:
+        applications:
+          items:
+            $ref: '#/components/schemas/ApiStaleApplicationEvaluationDTO'
+          type: array
+        repositories:
+          items:
+            $ref: '#/components/schemas/ApiStaleRepositoryEvaluationDTO'
+          type: array
+      type: object
+    ApiComponentDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          type:
+          - string
+          - 'null'
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+      type: object
+    ApiReportHistoryDTO:
+      properties:
+        applicationId:
+          type: string
+        reports:
+          items:
+            $ref: '#/components/schemas/ApiReportResultsDTO'
+          type: array
+      type: object
+    ApiMetricsReportingQueryDTOV2:
+      properties:
+        applicationIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        firstTimePeriod:
+          type: string
+        lastTimePeriod:
+          type: string
+        organizationIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        timePeriod:
+          enum:
+          - WEEK
+          - MONTH
+          type: string
+      type: object
+    ApiMetricsReportingAggregationDTOV2:
+      properties:
+        discoveredCounts:
+          additionalProperties:
+            additionalProperties:
+              format: int32
+              type: integer
+            type: object
+          type: object
+        evaluationCount:
+          format: int32
+          type: integer
+        fixedCounts:
+          additionalProperties:
+            additionalProperties:
+              format: int32
+              type: integer
+            type: object
+          type: object
+        mttrCriticalThreat:
+          format: int64
+          type: integer
+        mttrLowThreat:
+          format: int64
+          type: integer
+        mttrModerateThreat:
+          format: int64
+          type: integer
+        mttrSevereThreat:
+          format: int64
+          type: integer
+        openCountsAtTimePeriodEnd:
+          additionalProperties:
+            additionalProperties:
+              format: int32
+              type: integer
+            type: object
+          type: object
+        timePeriodStart:
+          type: string
+        waivedCounts:
+          additionalProperties:
+            additionalProperties:
+              format: int32
+              type: integer
+            type: object
+          type: object
+      type: object
+    ApiRepositoryDTO:
+      properties:
+        auditEnabled:
+          type: boolean
+        format:
+          type: string
+        namespaceConfusionProtectionEnabled:
+          type: boolean
+        policyCompliantComponentSelectionEnabled:
+          type: boolean
+        publicId:
+          type: string
+        quarantineEnabled:
+          type: boolean
+        repositoryId:
+          type: string
+        type:
+          type: string
+      type: object
+    ApiPolicyViolationDTOV2:
+      properties:
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    ComponentDisplayName:
+      properties:
+        name:
+          type: string
+        parts:
+          items:
+            $ref: '#/components/schemas/ComponentDisplayNamePart'
+          type: array
+      type: object
     ApiWaivedPolicyViolationDTO:
       properties:
         constraintViolations:
@@ -188,30 +437,310 @@ components:
           format: date-time
           type: string
       type: object
-    ApiApplicationWaiverDTO:
+    ApiComponentPolicyViolationDTO:
       properties:
-        application:
-          $ref: '#/components/schemas/ApiApplicationBaseDTO'
-        stages:
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
+        waivedPolicyViolations:
           items:
-            $ref: '#/components/schemas/ApiPolicyViolationStageDTO'
+            $ref: '#/components/schemas/ApiWaivedPolicyViolationDTO'
           type: array
       type: object
-    ApiStaleApplicationEvaluationDTO:
+    Action:
       properties:
-        application:
-          $ref: '#/components/schemas/ApiApplicationBaseDTO'
+        actionTypeId:
+          type: string
+        target:
+          type: string
+        targetType:
+          type: string
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
+      type: object
+    ApiStaleEvaluationStageDTO:
+      properties:
+        lastEvaluationDate:
+          format: date-time
+          type: string
+        stageId:
+          type: string
+      type: object
+    ApiComponentWaiversDTO:
+      properties:
+        applicationWaivers:
+          items:
+            $ref: '#/components/schemas/ApiApplicationWaiverDTO'
+          type: array
+        repositoryWaivers:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryWaiverDTO'
+          type: array
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiConstraintFactDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConditionFactReasonDTO'
+          type: array
+      type: object
+    ApiRepositoryComponentPolicyViolationDTO:
+      properties:
+        component:
+          $ref: '#/components/schemas/ApiRepositoryComponentDTO'
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+        waivedPolicyViolations:
+          items:
+            $ref: '#/components/schemas/ApiWaivedPolicyViolationDTO'
+          type: array
+      type: object
+    ApiPolicyViolationStageDTO:
+      properties:
+        componentPolicyViolations:
+          items:
+            $ref: '#/components/schemas/ApiComponentPolicyViolationDTO'
+          type: array
+        stageId:
+          type: string
+      type: object
+    ComponentDisplayNamePart:
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+      type: object
+    ApiConditionFactReasonDTO:
+      properties:
+        reason:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ApiStaleRepositoryEvaluationDTO:
+      properties:
+        repository:
+          $ref: '#/components/schemas/ApiRepositoryDTO'
         stages:
           items:
             $ref: '#/components/schemas/ApiStaleEvaluationStageDTO'
           type: array
       type: object
-    ApiStaleWaiversResponseDTO:
+    ApiComponentIdentifierDTOV2:
       properties:
-        staleWaivers:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiMetricsReportingDTOV2:
+      properties:
+        aggregations:
           items:
-            $ref: '#/components/schemas/ApiStaleWaiverDTO'
+            $ref: '#/components/schemas/ApiMetricsReportingAggregationDTOV2'
           type: array
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        applicationPublicId:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+      type: object
+    ApiApplicationReportDTOV2:
+      properties:
+        applicationId:
+          type: string
+        embeddableReportHtmlUrl:
+          type: string
+        evaluationDate:
+          format: date-time
+          type: string
+        latestReportHtmlUrl:
+          type: string
+        reportDataUrl:
+          type: string
+        reportHtmlUrl:
+          type: string
+        reportPdfUrl:
+          type: string
+        stage:
+          type: string
+      type: object
+    PolicyAlert:
+      properties:
+        actions:
+          items:
+            $ref: '#/components/schemas/Action'
+          type: array
+        trigger:
+          $ref: '#/components/schemas/PolicyFact'
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
+      type: object
+    ApiStaleWaiverDTO:
+      properties:
+        comment:
+          type: string
+        constraintFacts:
+          items:
+            $ref: '#/components/schemas/ApiConstraintFactDTO'
+          type: array
+        createTime:
+          format: date-time
+          type: string
+        creatorId:
+          type: string
+        creatorName:
+          type: string
+        expiryTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyWaiverReasonId:
+          type: string
+        reasonText:
+          type: string
+        scopeOwnerId:
+          type: string
+        scopeOwnerName:
+          type: string
+        scopeOwnerType:
+          type: string
+        staleEvaluations:
+          $ref: '#/components/schemas/ApiStaleEvaluationsDTO'
+        waiverId:
+          type: string
+      type: object
+    ApiComponentsInQuarantineDTO:
+      properties:
+        componentsInQuarantine:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryComponentsInQuarantineDTO'
+          type: array
+      type: object
+    ComponentFact:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ComponentIdentifier'
+        constraintFacts:
+          items:
+            $ref: '#/components/schemas/ConstraintFact'
+          type: array
+        displayName:
+          $ref: '#/components/schemas/ComponentDisplayName'
+        hash:
+          type: string
+        pathnames:
+          items:
+            type: string
+          type: array
+      type: object
+    ApiRepositoryComponentDTO:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          type: string
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        quarantineId:
+          type: string
+        quarantineReleaseTime:
+          format: date-time
+          type: string
+        quarantineTime:
+          format: date-time
+          type: string
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+      type: object
+    PolicyFact:
+      properties:
+        componentFacts:
+          items:
+            $ref: '#/components/schemas/ComponentFact'
+          type: array
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
       type: object
     ApiPolicyWaiverDTO:
       properties:
@@ -284,316 +813,14 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ApiReportResultsDTO:
+    ApiRepositoryComponentsInQuarantineDTO:
       properties:
-        applicationId:
-          type: string
-        commitHash:
-          type: string
-        embeddableReportHtmlUrl:
-          type: string
-        evaluationDate:
-          format: date-time
-          type: string
-        isForMonitoring:
-          type: boolean
-        isReevaluation:
-          type: boolean
-        latestReportHtmlUrl:
-          type: string
-        policyEvaluationId:
-          type: string
-        policyEvaluationResult:
-          $ref: '#/components/schemas/PolicyEvaluationResult'
-        reportDataUrl:
-          type: string
-        reportHtmlUrl:
-          type: string
-        reportPdfUrl:
-          type: string
-        scanId:
-          type: string
-        scanTriggerInternal:
-          type: boolean
-        scanTriggerType:
-          type: string
-        scanTriggerTypeDisplayName:
-          type: string
-        scannerVersion:
-          type: string
-        stage:
-          type: string
-      type: object
-    ApiRepositoryComponentDTO:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
-          type: string
-        hash:
-          type: string
-        originalPurl:
-          type: string
-        packageUrl:
-          type: string
-        quarantineId:
-          type: string
-        quarantineReleaseTime:
-          format: date-time
-          type: string
-        quarantineTime:
-          format: date-time
-          type: string
-        sha256:
-          type: string
-        thirdParty:
-          type: boolean
-      type: object
-    ComponentFact:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ComponentIdentifier'
-        constraintFacts:
+        components:
           items:
-            $ref: '#/components/schemas/ConstraintFact'
+            $ref: '#/components/schemas/ApiRepositoryComponentPolicyViolationDTO'
           type: array
-        displayName:
-          $ref: '#/components/schemas/ComponentDisplayName'
-        hash:
-          type: string
-        pathnames:
-          items:
-            type: string
-          type: array
-      type: object
-    PolicyFact:
-      properties:
-        componentFacts:
-          items:
-            $ref: '#/components/schemas/ComponentFact'
-          type: array
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
-          type: string
-      type: object
-    ApiApplicationReportDTOV2:
-      properties:
-        applicationId:
-          type: string
-        embeddableReportHtmlUrl:
-          type: string
-        evaluationDate:
-          format: date-time
-          type: string
-        latestReportHtmlUrl:
-          type: string
-        reportDataUrl:
-          type: string
-        reportHtmlUrl:
-          type: string
-        reportPdfUrl:
-          type: string
-        stage:
-          type: string
-      type: object
-    PolicyAlert:
-      properties:
-        actions:
-          items:
-            $ref: '#/components/schemas/Action'
-          type: array
-        trigger:
-          $ref: '#/components/schemas/PolicyFact'
-      type: object
-    ApiConstraintViolationReasonDTO:
-      properties:
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-      type: object
-    ApiStaleRepositoryEvaluationDTO:
-      properties:
         repository:
           $ref: '#/components/schemas/ApiRepositoryDTO'
-        stages:
-          items:
-            $ref: '#/components/schemas/ApiStaleEvaluationStageDTO'
-          type: array
-      type: object
-    ApiRepositoryDTO:
-      properties:
-        auditEnabled:
-          type: boolean
-        format:
-          type: string
-        namespaceConfusionProtectionEnabled:
-          type: boolean
-        policyCompliantComponentSelectionEnabled:
-          type: boolean
-        publicId:
-          type: string
-        quarantineEnabled:
-          type: boolean
-        repositoryId:
-          type: string
-        type:
-          type: string
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ApiPolicyViolationStageDTO:
-      properties:
-        componentPolicyViolations:
-          items:
-            $ref: '#/components/schemas/ApiComponentPolicyViolationDTO'
-          type: array
-        stageId:
-          type: string
-      type: object
-    ApiMetricsReportingDTOV2:
-      properties:
-        aggregations:
-          items:
-            $ref: '#/components/schemas/ApiMetricsReportingAggregationDTOV2'
-          type: array
-        applicationId:
-          type: string
-        applicationName:
-          type: string
-        applicationPublicId:
-          type: string
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-      type: object
-    ApiApplicationBaseDTO:
-      properties:
-        contactUserName:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        organizationId:
-          type: string
-        publicId:
-          type: string
-      type: object
-    ApiComponentsInQuarantineDTO:
-      properties:
-        componentsInQuarantine:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryComponentsInQuarantineDTO'
-          type: array
-      type: object
-    ApiConstraintViolationDTO:
-      properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
-          type: array
-      type: object
-    ApiStaleEvaluationsDTO:
-      properties:
-        applications:
-          items:
-            $ref: '#/components/schemas/ApiStaleApplicationEvaluationDTO'
-          type: array
-        repositories:
-          items:
-            $ref: '#/components/schemas/ApiStaleRepositoryEvaluationDTO'
-          type: array
-      type: object
-    ApiComponentPolicyViolationDTO:
-      properties:
-        component:
-          $ref: '#/components/schemas/ApiComponentDTOV2'
-        waivedPolicyViolations:
-          items:
-            $ref: '#/components/schemas/ApiWaivedPolicyViolationDTO'
-          type: array
-      type: object
-    ApiMetricsReportingQueryDTOV2:
-      properties:
-        applicationIds:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        firstTimePeriod:
-          type: string
-        lastTimePeriod:
-          type: string
-        organizationIds:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        timePeriod:
-          enum:
-          - WEEK
-          - MONTH
-          type: string
-      type: object
-    ComponentIdentifier:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
-          type: string
-      type: object
-    ApiReportHistoryDTO:
-      properties:
-        applicationId:
-          type: string
-        reports:
-          items:
-            $ref: '#/components/schemas/ApiReportResultsDTO'
-          type: array
       type: object
     PolicyEvaluationResult:
       properties:
@@ -648,237 +875,6 @@ components:
           format: int32
           type: integer
       type: object
-    ApiPolicyViolationDTOV2:
-      properties:
-        constraintViolations:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
-          type: array
-        fixTime:
-          format: date-time
-          type: string
-        legacyViolationTime:
-          format: date-time
-          type: string
-        openTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-        waiveTime:
-          format: date-time
-          type: string
-      type: object
-    ApiMetricsReportingAggregationDTOV2:
-      properties:
-        discoveredCounts:
-          additionalProperties:
-            additionalProperties:
-              format: int32
-              type: integer
-            type: object
-          type: object
-        evaluationCount:
-          format: int32
-          type: integer
-        fixedCounts:
-          additionalProperties:
-            additionalProperties:
-              format: int32
-              type: integer
-            type: object
-          type: object
-        mttrCriticalThreat:
-          format: int64
-          type: integer
-        mttrLowThreat:
-          format: int64
-          type: integer
-        mttrModerateThreat:
-          format: int64
-          type: integer
-        mttrSevereThreat:
-          format: int64
-          type: integer
-        openCountsAtTimePeriodEnd:
-          additionalProperties:
-            additionalProperties:
-              format: int32
-              type: integer
-            type: object
-          type: object
-        timePeriodStart:
-          type: string
-        waivedCounts:
-          additionalProperties:
-            additionalProperties:
-              format: int32
-              type: integer
-            type: object
-          type: object
-      type: object
-    ComponentDisplayName:
-      properties:
-        name:
-          type: string
-        parts:
-          items:
-            $ref: '#/components/schemas/ComponentDisplayNamePart'
-          type: array
-      type: object
-    Action:
-      properties:
-        actionTypeId:
-          type: string
-        target:
-          type: string
-        targetType:
-          type: string
-      type: object
-    ApiComponentDTOV2:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
-          type: string
-        hash:
-          nullable: true
-          type: string
-        originalPurl:
-          type: string
-        packageUrl:
-          type: string
-        proprietary:
-          type: boolean
-        sha256:
-          type: string
-        thirdParty:
-          type: boolean
-      type: object
-    ApiComponentWaiversDTO:
-      properties:
-        applicationWaivers:
-          items:
-            $ref: '#/components/schemas/ApiApplicationWaiverDTO'
-          type: array
-        repositoryWaivers:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryWaiverDTO'
-          type: array
-      type: object
-    ApiRepositoryComponentsInQuarantineDTO:
-      properties:
-        components:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryComponentPolicyViolationDTO'
-          type: array
-        repository:
-          $ref: '#/components/schemas/ApiRepositoryDTO'
-      type: object
-    ApiRepositoryComponentPolicyViolationDTO:
-      properties:
-        component:
-          $ref: '#/components/schemas/ApiRepositoryComponentDTO'
-        policyViolations:
-          items:
-            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
-          type: array
-        waivedPolicyViolations:
-          items:
-            $ref: '#/components/schemas/ApiWaivedPolicyViolationDTO'
-          type: array
-      type: object
-    ComponentDisplayNamePart:
-      properties:
-        field:
-          type: string
-        value:
-          type: string
-      type: object
-    ApiStaleWaiverDTO:
-      properties:
-        comment:
-          type: string
-        constraintFacts:
-          items:
-            $ref: '#/components/schemas/ApiConstraintFactDTO'
-          type: array
-        createTime:
-          format: date-time
-          type: string
-        creatorId:
-          type: string
-        creatorName:
-          type: string
-        expiryTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyWaiverReasonId:
-          type: string
-        reasonText:
-          type: string
-        scopeOwnerId:
-          type: string
-        scopeOwnerName:
-          type: string
-        scopeOwnerType:
-          type: string
-        staleEvaluations:
-          $ref: '#/components/schemas/ApiStaleEvaluationsDTO'
-        waiverId:
-          type: string
-      type: object
-    ApiConstraintFactDTO:
-      properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
-          items:
-            $ref: '#/components/schemas/ApiConditionFactReasonDTO'
-          type: array
-      type: object
-    ApiConditionFactReasonDTO:
-      properties:
-        reason:
-          type: string
-      type: object
-    ConditionFact:
-      properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
-          type: string
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
-          type: string
-        triggerJson:
-          type: string
-      type: object
-    ApiStaleEvaluationStageDTO:
-      properties:
-        lastEvaluationDate:
-          format: date-time
-          type: string
-        stageId:
-          type: string
-      type: object
     ApiRepositoryWaiverDTO:
       properties:
         repository:
@@ -886,6 +882,44 @@ components:
         stages:
           items:
             $ref: '#/components/schemas/ApiPolicyViolationStageDTO'
+          type: array
+      type: object
+    ApiApplicationBaseDTO:
+      properties:
+        contactUserName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiStaleApplicationEvaluationDTO:
+      properties:
+        application:
+          $ref: '#/components/schemas/ApiApplicationBaseDTO'
+        stages:
+          items:
+            $ref: '#/components/schemas/ApiStaleEvaluationStageDTO'
+          type: array
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiStaleWaiversResponseDTO:
+      properties:
+        staleWaivers:
+          items:
+            $ref: '#/components/schemas/ApiStaleWaiverDTO'
           type: array
       type: object
   securitySchemes:

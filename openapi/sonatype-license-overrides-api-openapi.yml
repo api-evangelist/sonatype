@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search License Overrides API
+  title: Sonatype Lifecycle Public REST License Overrides API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage license overrides for components in your applicationsorganizations and repositories.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -52,6 +52,8 @@ paths:
           description: The response contains the license overrides for the component.
       tags:
       - License Overrides
+      summary: Get applied license overrides
+      x-summary-source: derived
     post:
       description: 'Use this method to add or update a license override to a component for a given owner scope.
 
@@ -98,6 +100,8 @@ paths:
           description: The response contains the same license override information that was added.
       tags:
       - License Overrides
+      summary: Add license override
+      x-summary-source: derived
   /api/v2/licenseOverrides/{ownerType}/{ownerId}/legalReviewer:
     get:
       description: 'Use this method to retrieve the applied license overrides for a given component and owner.
@@ -140,6 +144,8 @@ paths:
           description: Successfully retrieved the applied license overrides.
       tags:
       - License Overrides
+      summary: Get applied license overrides for legal reviewer
+      x-summary-source: derived
   /api/v2/licenseOverrides/{ownerType}/{ownerId}/{licenseOverrideId}:
     delete:
       description: 'Use this method to delete a license override for a component.
@@ -182,8 +188,41 @@ paths:
           description: The license override was deleted successfully.
       tags:
       - License Overrides
+      summary: Delete license override
+      x-summary-source: derived
 components:
   schemas:
+    ApiAppliedLicenseOverridesDTO:
+      properties:
+        licenseOverridesByOwner:
+          items:
+            $ref: '#/components/schemas/LicenseOverrideByOwner'
+          type: array
+      type: object
+    ApiLicenseOverrideDTO:
+      properties:
+        comment:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        id:
+          type: string
+        licenseIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        ownerId:
+          type: string
+        status:
+          enum:
+          - OPEN
+          - ACKNOWLEDGED
+          - OVERRIDDEN
+          - SELECTED
+          - CONFIRMED
+          type: string
+      type: object
     LicenseOverrideByOwner:
       properties:
         licenseOverride:
@@ -235,13 +274,6 @@ components:
         format:
           type: string
       type: object
-    ApiAppliedLicenseOverridesDTO:
-      properties:
-        licenseOverridesByOwner:
-          items:
-            $ref: '#/components/schemas/LicenseOverrideByOwner'
-          type: array
-      type: object
     ComponentIdentifier:
       properties:
         coordinates:
@@ -249,30 +281,6 @@ components:
             type: string
           type: object
         format:
-          type: string
-      type: object
-    ApiLicenseOverrideDTO:
-      properties:
-        comment:
-          type: string
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        id:
-          type: string
-        licenseIds:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        ownerId:
-          type: string
-        status:
-          enum:
-          - OPEN
-          - ACKNOWLEDGED
-          - OVERRIDDEN
-          - SELECTED
-          - CONFIRMED
           type: string
       type: object
   securitySchemes:

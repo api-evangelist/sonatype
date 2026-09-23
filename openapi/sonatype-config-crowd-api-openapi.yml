@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Config Crowd API
+  title: Sonatype Lifecycle Public REST Config Crowd API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage the configuration of an existing Atlassian Crowd Server that is being used to authenticate users for IQ Server.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -22,6 +22,8 @@ paths:
           description: The Atlassian Crowd Server configuration has been deleted.
       tags:
       - Config Crowd
+      summary: Delete crowd configuration
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve the configuration details for the Atlassian Crowd Server.
 
@@ -37,6 +39,8 @@ paths:
           description: The response contains the `serverUrl` and `applicationName` provided at the time of setting up the Crowd Server.
       tags:
       - Config Crowd
+      summary: Get crowd configuration
+      x-summary-source: derived
     put:
       description: 'Use this method to create a new or update an existing Atlassian Crowd Server configuration.
 
@@ -57,6 +61,8 @@ paths:
           description: Update or create successful
       tags:
       - Config Crowd
+      summary: Insert or update crowd configuration
+      x-summary-source: derived
   /api/v2/config/crowd/test:
     post:
       description: Use this method to test a new or an existing Atlassian Crowd Server configuration.
@@ -79,16 +85,10 @@ paths:
           description: Test performed, results will be in the response message string.
       tags:
       - Config Crowd
+      summary: Test crowd configuration
+      x-summary-source: derived
 components:
   schemas:
-    ApiStatusDTO:
-      properties:
-        code:
-          format: int32
-          type: integer
-        message:
-          type: string
-      type: object
     ApiCrowdConfigurationDTO:
       properties:
         applicationName:
@@ -96,6 +96,14 @@ components:
         applicationPassword:
           type: string
         serverUrl:
+          type: string
+      type: object
+    ApiStatusDTO:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
           type: string
       type: object
   securitySchemes:

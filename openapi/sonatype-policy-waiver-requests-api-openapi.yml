@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Policy Waiver Requests API
+  title: Sonatype Lifecycle Public REST Policy Waiver Requests API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage policy waiver requests.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -59,6 +59,8 @@ paths:
           description: The new policy waiver request.
       tags:
       - Policy Waiver Requests
+      summary: Add policy waiver request by policy violation id
+      x-summary-source: derived
   /api/v2/policyWaiverRequests/{ownerType}/{ownerId}/review/{policyWaiverRequestId}:
     post:
       description: 'Use this method to approve or reject a policy waiver request.
@@ -108,6 +110,8 @@ paths:
           description: The updated policy waiver request.
       tags:
       - Policy Waiver Requests
+      summary: Review policy waiver request
+      x-summary-source: derived
   /api/v2/policyWaiverRequests/{ownerType}/{ownerId}/{policyWaiverRequestId}:
     get:
       description: 'Use this method to retrieve policy waiver request details for the policyWaiverRequestId specified.
@@ -152,6 +156,8 @@ paths:
           description: The requested policy waiver request.
       tags:
       - Policy Waiver Requests
+      summary: Get policy waiver request
+      x-summary-source: derived
     put:
       description: 'Use this method to update a policy waiver request.
 
@@ -200,8 +206,49 @@ paths:
           description: The updated policy waiver request.
       tags:
       - Policy Waiver Requests
+      summary: Update policy waiver request
+      x-summary-source: derived
 components:
   schemas:
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
+      type: object
     ApiPolicyWaiverRequestOptionsDTO:
       properties:
         comment:
@@ -219,6 +266,29 @@ components:
           - ALL_VERSIONS
           type: string
         noteToReviewer:
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ApiPolicyWaiverRequestReviewDTO:
+      properties:
+        comment:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        rejectionReason:
+          type: string
+        status:
           type: string
         waiverReasonId:
           type: string
@@ -300,13 +370,6 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ComponentDisplayNamePart:
-      properties:
-        field:
-          type: string
-        value:
-          type: string
-      type: object
     ApiComponentIdentifierDTOV2:
       properties:
         coordinates:
@@ -314,22 +377,6 @@ components:
             type: string
           type: object
         format:
-          type: string
-      type: object
-    ConditionFact:
-      properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
-          type: string
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
-          type: string
-        triggerJson:
           type: string
       type: object
     ComponentDisplayName:
@@ -341,48 +388,9 @@ components:
             $ref: '#/components/schemas/ComponentDisplayNamePart'
           type: array
       type: object
-    ApiPolicyWaiverRequestReviewDTO:
+    ComponentDisplayNamePart:
       properties:
-        comment:
-          type: string
-        expireWhenRemediationAvailable:
-          type: boolean
-        expiryTime:
-          format: date-time
-          type: string
-        matcherStrategy:
-          enum:
-          - DEFAULT
-          - EXACT_COMPONENT
-          - ALL_COMPONENTS
-          - ALL_VERSIONS
-          type: string
-        rejectionReason:
-          type: string
-        status:
-          type: string
-        waiverReasonId:
-          type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
+        field:
           type: string
         value:
           type: string

@@ -1,13 +1,13 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Application Categories API
+  title: Sonatype Lifecycle Public REST Application Categories API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use the Application Categories REST API to manage the application categories or tags assigned to the applications in an organization.
 security:
 - BasicAuth: []
   BearerAuth: []
 tags:
-- description: 'Use the Application Categories REST API to manage the application categories or tags assigned to the applications in an organization. '
+- description: Use the Application Categories REST API to manage the application categories or tags assigned to the applications in an organization.
   name: Application Categories
 paths:
   /api/v2/applicationCategories/application:
@@ -25,6 +25,8 @@ paths:
           description: A list of application categories or tags applied to applications. Each application category or tag consists of an id, name, description and color.
       tags:
       - Application Categories
+      summary: Get tags used by applications
+      x-summary-source: derived
   /api/v2/applicationCategories/application/{applicationPublicId}:
     get:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories available to applications in this organization.
@@ -45,6 +47,8 @@ paths:
           description: 'A list of application categories that can be applied to the specified application. Each application category or tag consists of an id, name, description and color. '
       tags:
       - Application Categories
+      summary: Get application applicable tags
+      x-summary-source: derived
   /api/v2/applicationCategories/application/{applicationPublicId}/applicable:
     get:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.
@@ -67,6 +71,8 @@ paths:
           description: Returns all application categories or tags that can be applied to this application,  by providing the application public ID.
       tags:
       - Application Categories
+      summary: Get applicable tags by application public id
+      x-summary-source: derived
   /api/v2/applicationCategories/organization/{organizationId}:
     get:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories in use by applications in this organization.
@@ -89,6 +95,8 @@ paths:
           description: 'A list of application categories or tags that can be used by applications in this organization. Each application category consists of an id, name, description and color. '
       tags:
       - Application Categories
+      summary: Get tags
+      x-summary-source: derived
     post:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to add a new application category or tag.
       operationId: addTag
@@ -115,6 +123,8 @@ paths:
           description: Successful creation of the new application category and its details.
       tags:
       - Application Categories
+      summary: Add tag
+      x-summary-source: derived
     put:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category.
       operationId: updateTag
@@ -141,6 +151,8 @@ paths:
           description: Successful update echoing the updated application category details.
       tags:
       - Application Categories
+      summary: Update tag
+      x-summary-source: derived
   /api/v2/applicationCategories/organization/{organizationId}/applicable:
     get:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.
@@ -161,6 +173,8 @@ paths:
           description: 'A list of application categories or tags that can be applied to applications in this organization. Each application category or tag consists of an id, name, description and color. '
       tags:
       - Application Categories
+      summary: Get applicable tags
+      x-summary-source: derived
   /api/v2/applicationCategories/organization/{organizationId}/applied:
     get:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that can be applied to applications in this organization.
@@ -181,6 +195,8 @@ paths:
           description: Get all application categories or tags that can be applied to an application, belonging to the organization specified by the organization id.
       tags:
       - Application Categories
+      summary: Get applied tags
+      x-summary-source: derived
   /api/v2/applicationCategories/organization/{organizationId}/policy:
     get:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to retrieve a list of application categories that are applied to applications in this organization.
@@ -203,6 +219,8 @@ paths:
           description: Get all policy application categories or tags that are applied to applications  in this organization.
       tags:
       - Application Categories
+      summary: Get applied policy tags
+      x-summary-source: derived
   /api/v2/applicationCategories/organization/{organizationId}/{tagId}:
     delete:
       description: Grouping applications with similar characteristics into categories makes policy management easier. You can then create a policy that applies to a specific category. Use this method to update an existing application category.Use this method to delete an existing application category.
@@ -225,51 +243,10 @@ paths:
           description: Successful deletion of the application category.
       tags:
       - Application Categories
+      summary: Delete tag
+      x-summary-source: derived
 components:
   schemas:
-    TagsByOwnerDTO:
-      properties:
-        applicationCategories:
-          items:
-            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
-          type: array
-        ownerId:
-          type: string
-        ownerName:
-          type: string
-        ownerType:
-          enum:
-          - application
-          - organization
-          - repository_container
-          - repository_manager
-          - repository
-          - global
-          type: string
-      type: object
-    PolicyTag:
-      properties:
-        id:
-          type: string
-        policyId:
-          type: string
-        tagId:
-          type: string
-      type: object
-    ApplicableTagsDTO:
-      properties:
-        applicationCategoriesByOwner:
-          items:
-            $ref: '#/components/schemas/TagsByOwnerDTO'
-          type: array
-      type: object
-    AppliedTagsDTO:
-      properties:
-        applicationTagsByOwner:
-          items:
-            $ref: '#/components/schemas/ApplicationTagsByOwnerDTO'
-          type: array
-      type: object
     ApplicationTagsByOwnerDTO:
       properties:
         applicationTags:
@@ -290,6 +267,38 @@ components:
           - global
           type: string
       type: object
+    ApplicableTagsDTO:
+      properties:
+        applicationCategoriesByOwner:
+          items:
+            $ref: '#/components/schemas/TagsByOwnerDTO'
+          type: array
+      type: object
+    ApplicationTag:
+      properties:
+        applicationId:
+          type: string
+        id:
+          type: string
+        tagId:
+          type: string
+      type: object
+    PolicyTag:
+      properties:
+        id:
+          type: string
+        policyId:
+          type: string
+        tagId:
+          type: string
+      type: object
+    AppliedTagsDTO:
+      properties:
+        applicationTagsByOwner:
+          items:
+            $ref: '#/components/schemas/ApplicationTagsByOwnerDTO'
+          type: array
+      type: object
     ApiApplicationCategoryDTO:
       properties:
         color:
@@ -303,13 +312,24 @@ components:
         organizationId:
           type: string
       type: object
-    ApplicationTag:
+    TagsByOwnerDTO:
       properties:
-        applicationId:
+        applicationCategories:
+          items:
+            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+          type: array
+        ownerId:
           type: string
-        id:
+        ownerName:
           type: string
-        tagId:
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
           type: string
       type: object
   securitySchemes:

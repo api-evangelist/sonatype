@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search User Token Configuration API
+  title: Sonatype Lifecycle Public REST User Token Configuration API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage user token expiration configuration.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -40,6 +40,8 @@ paths:
           description: Insufficient permissions
       tags:
       - User Token Configuration
+      summary: Reset configuration
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve user token configuration.
 
@@ -59,6 +61,8 @@ paths:
           description: Insufficient permissions
       tags:
       - User Token Configuration
+      summary: Get configuration 7
+      x-summary-source: derived
     put:
       description: 'Use this method to update user token configuration. Null values are ignored (no change). Returns the current configuration after applying changes.
 
@@ -85,6 +89,8 @@ paths:
           description: Insufficient permissions
       tags:
       - User Token Configuration
+      summary: Update configuration
+      x-summary-source: derived
 components:
   schemas:
     ApiUserTokenConfigurationDTO:

@@ -1,8 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Role Memberships API
+  title: Sonatype Lifecycle Public REST Role Memberships API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to manage authorizations for users or user groups.
+
+
+    You can view existing role assignments and grant or revoke user authorization on organizations, applications and repositories.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -40,6 +43,8 @@ paths:
           description: The response contains all role Ids and the corresponding users/user groups assigned to them, for the ownerType specified. It also includes members who inherit a role based on the organization hierarchy.
       tags:
       - Role Memberships
+      summary: Get role memberships global or repository container
+      x-summary-source: derived
   /api/v2/roleMemberships/{ownerType}/role/{roleId}/members:
     put:
       description: 'Use this method to set all members for a specific role in the global or repository container context. This operation atomically replaces all existing members for the role with the provided list.
@@ -81,6 +86,8 @@ paths:
           description: The role membership has been successfully updated with the provided members.
       tags:
       - Role Memberships
+      summary: Set bulk role members global or repository container
+      x-summary-source: derived
   /api/v2/roleMemberships/{ownerType}/role/{roleId}/{memberType}/{memberName}:
     delete:
       description: 'Use this method to revoke roles globally or on all repositories.
@@ -126,6 +133,8 @@ paths:
           description: The specified role has been revoked from the user or user group.
       tags:
       - Role Memberships
+      summary: Revoke role membership global or repository container
+      x-summary-source: derived
     put:
       description: 'Use this method to grant a role to a user or user group globally or on all repositories.
 
@@ -173,6 +182,8 @@ paths:
           description: The specified role has been granted to the users or user groups on the given context.
       tags:
       - Role Memberships
+      summary: Grant role membership global or repository container
+      x-summary-source: derived
   /api/v2/roleMemberships/{ownerType}/roles:
     get:
       description: 'Use this method to retrieve all role memberships for global or repository container context with full details including role names, descriptions, and member information.
@@ -200,6 +211,8 @@ paths:
           description: The response contains all roles with their members. Also includes a flag indicating whether group search is enabled.
       tags:
       - Role Memberships
+      summary: Get bulk role memberships global or repository container
+      x-summary-source: derived
   /api/v2/roleMemberships/{ownerType}/{internalOwnerId}:
     get:
       description: 'Use this method to retrieve the users, user groups and the corresponding role Ids.
@@ -233,6 +246,8 @@ paths:
           description: The response contains the assigned role Ids, users and user groups for the application or organization requested. It also includes members who inherit a role based on the organization hierarchy.
       tags:
       - Role Memberships
+      summary: Get role memberships application or organization
+      x-summary-source: derived
   /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/members:
     put:
       description: 'Use this method to set all members for a specific role. This operation atomically replaces all existing members for the role with the provided list.
@@ -282,6 +297,8 @@ paths:
           description: The role membership has been successfully updated with the provided members.
       tags:
       - Role Memberships
+      summary: Set bulk role members non global
+      x-summary-source: derived
   /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/{memberType}/{memberName}:
     delete:
       description: 'Use this method to revoke a role from a user or user group, on a specific application or organization.
@@ -333,6 +350,8 @@ paths:
           description: The specified role has been revoked from the user or user group
       tags:
       - Role Memberships
+      summary: Revoke role membership application or organization
+      x-summary-source: derived
     put:
       description: 'Use this method to grant a role to a user or user group for the specified application or organization.
 
@@ -394,6 +413,8 @@ paths:
           description: The specified roleId has been has been granted to the user or user group for the requested context.
       tags:
       - Role Memberships
+      summary: Grant role membership application or organization
+      x-summary-source: derived
   /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/roles:
     get:
       description: 'Use this method to retrieve all role memberships with full details including role names, descriptions, and member information organized by owner (for inheritance display).
@@ -431,8 +452,24 @@ paths:
             enabled.'
       tags:
       - Role Memberships
+      summary: Get bulk role memberships non global
+      x-summary-source: derived
 components:
   schemas:
+    ApiMemberDTO:
+      properties:
+        ownerId:
+          type: string
+        ownerType:
+          type: string
+        type:
+          enum:
+          - USER
+          - GROUP
+          type: string
+        userOrGroupName:
+          type: string
+      type: object
     ApiMemberWithDetailsDTO:
       properties:
         displayName:
@@ -448,36 +485,6 @@ components:
           - USER
           - GROUP
           type: string
-      type: object
-    ApiMemberDTO:
-      properties:
-        ownerId:
-          type: string
-        ownerType:
-          type: string
-        type:
-          enum:
-          - USER
-          - GROUP
-          type: string
-        userOrGroupName:
-          type: string
-      type: object
-    ApiRoleMemberMappingListDTO:
-      properties:
-        memberMappings:
-          items:
-            $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
-          type: array
-      type: object
-    ApiApplicableMembershipMappingsDTO:
-      properties:
-        groupSearchEnabled:
-          type: boolean
-        membersByRole:
-          items:
-            $ref: '#/components/schemas/ApiRoleWithMembersByOwnerDTO'
-          type: array
       type: object
     ApiMembersByOwnerDTO:
       properties:
@@ -504,6 +511,22 @@ components:
           type: string
         roleName:
           type: string
+      type: object
+    ApiApplicableMembershipMappingsDTO:
+      properties:
+        groupSearchEnabled:
+          type: boolean
+        membersByRole:
+          items:
+            $ref: '#/components/schemas/ApiRoleWithMembersByOwnerDTO'
+          type: array
+      type: object
+    ApiRoleMemberMappingListDTO:
+      properties:
+        memberMappings:
+          items:
+            $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
+          type: array
       type: object
     ApiRoleMemberMappingDTO:
       properties:

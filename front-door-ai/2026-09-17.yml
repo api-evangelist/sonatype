@@ -1,0 +1,34 @@
+# Front Door AI Index — sonatype — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: sonatype
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.sonatype.com
+  final_host: www.sonatype.com
+  ownership: own
+  owner: sonatype
+  shares_host_with:
+  - nexus
+  - sonatype-nexus
+  inherited_from: null
+  verdict: scored
+  score: 25
+  host_score: 25
+  density: 24.95
+  words: 1002
+  tiers:
+    agentic: 5
+    core: 20
+    model: 0
+  ambiguous: 14
+  top_terms:
+    AI: 18
+    intelligence: 9
+    agent: 4
+    AI agent: 2
+    LLMs: 2
+    MCP: 2
+    agentic: 1
+    automation: 1

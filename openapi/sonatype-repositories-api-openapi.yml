@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Repositories API
+  title: Sonatype Lifecycle Public REST Repositories API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage quarantined components.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -43,6 +43,8 @@ paths:
           description: The response contains:<ul><li>The quarantined component details for the component being released.</li><li>The quarantine and release times.</li><li>A list of policy violations that were waived to release the component from quarantine.</li><ul>
       tags:
       - Repositories
+      summary: Release quarantine without re eval
+      x-summary-source: derived
   /api/v2/repositories/{repositoryManagerInstanceId}/{repositoryPublicId}/components/quarantined/pathnames:
     post:
       description: 'Use this method to retrieve the pathnames of the repository components and the corresponding quarantine status.
@@ -81,70 +83,38 @@ paths:
           description: The response contains a list of repository component paths and their quarantine status.
       tags:
       - Repositories
+      summary: Get quarantined by path
+      x-summary-source: derived
 components:
   schemas:
-    ApiRepositoryComponentPolicyViolationDTO:
+    TriggerReference:
       properties:
-        component:
-          $ref: '#/components/schemas/ApiRepositoryComponentDTO'
-        policyViolations:
-          items:
-            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
-          type: array
-        waivedPolicyViolations:
-          items:
-            $ref: '#/components/schemas/ApiWaivedPolicyViolationDTO'
-          type: array
-      type: object
-    ApiWaivedPolicyViolationDTO:
-      properties:
-        constraintViolations:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
-          type: array
-        fixTime:
-          format: date-time
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
           type: string
-        legacyViolationTime:
-          format: date-time
+        value:
           type: string
-        openTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        policyWaiver:
-          $ref: '#/components/schemas/ApiPolicyWaiverDTO'
-        threatLevel:
-          format: int32
-          type: integer
-        waiveTime:
-          format: date-time
-          type: string
-      type: object
-    ApiRepositoryComponentPath:
-      properties:
-        pathname:
-          type: string
-        quarantine:
-          type: boolean
-      type: object
-    ApiConstraintViolationReasonDTO:
-      properties:
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
       type: object
     ComponentDisplayNamePart:
       properties:
         field:
           type: string
         value:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
           type: string
       type: object
     ApiRepositoryPathVersions:
@@ -157,42 +127,64 @@ components:
           format: int32
           type: integer
       type: object
-    ApiPolicyViolationDTOV2:
+    ApiConstraintViolationDTO:
       properties:
-        constraintViolations:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
           items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
           type: array
-        fixTime:
-          format: date-time
+      type: object
+    ApiRepositoryComponentPath:
+      properties:
+        pathname:
           type: string
-        legacyViolationTime:
-          format: date-time
-          type: string
-        openTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        threatLevel:
+        quarantine:
+          type: boolean
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
           format: int32
           type: integer
-        waiveTime:
-          format: date-time
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
           type: string
       type: object
-    ApiComponentIdentifierDTOV2:
+    ApiRepositoryComponentDTO:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
           type: string
+        hash:
+          type: string
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        quarantineId:
+          type: string
+        quarantineReleaseTime:
+          format: date-time
+          type: string
+        quarantineTime:
+          format: date-time
+          type: string
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
       type: object
     ApiPolicyWaiverDTO:
       properties:
@@ -265,62 +257,74 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ApiConstraintViolationDTO:
+    ApiConstraintViolationReasonDTO:
       properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
-          type: array
-      type: object
-    ConditionFact:
-      properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
-          type: string
         reason:
           type: string
         reference:
           $ref: '#/components/schemas/TriggerReference'
-        summary:
-          type: string
-        triggerJson:
-          type: string
       type: object
     ApiComponentReleasedFromQuarantineDTO:
       properties:
         componentReleasedFromQuarantine:
           $ref: '#/components/schemas/ApiRepositoryComponentPolicyViolationDTO'
       type: object
-    ApiRepositoryComponentDTO:
+    ApiRepositoryComponentPolicyViolationDTO:
       properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
+        component:
+          $ref: '#/components/schemas/ApiRepositoryComponentDTO'
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+        waivedPolicyViolations:
+          items:
+            $ref: '#/components/schemas/ApiWaivedPolicyViolationDTO'
+          type: array
+      type: object
+    ApiRepositoryPathResponseDTO:
+      properties:
+        pathVersions:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryPathVersions'
+          type: array
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
           type: string
-        hash:
-          type: string
-        originalPurl:
-          type: string
-        packageUrl:
-          type: string
-        quarantineId:
-          type: string
-        quarantineReleaseTime:
+      type: object
+    ApiPolicyViolationDTOV2:
+      properties:
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
           format: date-time
           type: string
-        quarantineTime:
+        legacyViolationTime:
           format: date-time
           type: string
-        sha256:
+        openTime:
+          format: date-time
           type: string
-        thirdParty:
-          type: boolean
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
       type: object
     ComponentDisplayName:
       properties:
@@ -331,34 +335,34 @@ components:
             $ref: '#/components/schemas/ComponentDisplayNamePart'
           type: array
       type: object
-    ApiRepositoryPathResponseDTO:
+    ApiWaivedPolicyViolationDTO:
       properties:
-        pathVersions:
+        constraintViolations:
           items:
-            $ref: '#/components/schemas/ApiRepositoryPathVersions'
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
           type: array
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
+        fixTime:
+          format: date-time
           type: string
-        constraintName:
+        legacyViolationTime:
+          format: date-time
           type: string
-        operatorName:
+        openTime:
+          format: date-time
           type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
+        policyId:
           type: string
-        value:
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        policyWaiver:
+          $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
           type: string
       type: object
   securitySchemes:

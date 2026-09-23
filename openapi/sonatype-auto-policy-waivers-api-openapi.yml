@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Auto Policy Waivers API
+  title: Sonatype Lifecycle Public REST Auto Policy Waivers API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to create, modify and retrieve auto policy waivers.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -12,7 +12,7 @@ tags:
 paths:
   /api/v2/autoPolicyWaivers/v2/{ownerType}/{ownerId}:
     post:
-      description: 'Use this method to create an auto policy waiver configuration. Only three configurations can  exist at a time for a given application or organization. With different combinations for reachable/pathForward
+      description: 'Use this method to create an auto policy waiver configuration. Only three configurations can exist at a time for a given application or organization. With different combinations for reachable/pathForward
 
 
         Permissions required: Waive Policy Violations'
@@ -54,6 +54,8 @@ paths:
           description: Auto waiver has been created successfully.
       tags:
       - Auto Policy Waivers
+      summary: Add auto policy waivers
+      x-summary-source: derived
   /api/v2/autoPolicyWaivers/v2/{ownerType}/{ownerId}/applicableAutoWaivers:
     get:
       description: 'Use this method to retrieve all applicable auto waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
@@ -89,6 +91,8 @@ paths:
           description: The response contains applicable auto policy waivers for the specified ownerType and the corresponding ownerId.
       tags:
       - Auto Policy Waivers
+      summary: Get applicable auto waivers
+      x-summary-source: derived
   /api/v2/autoPolicyWaivers/{ownerType}/{ownerId}:
     get:
       description: 'Use this method to retrieve waiver details for all auto policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
@@ -124,6 +128,8 @@ paths:
           description: The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the autoPolicyWaiverId.
       tags:
       - Auto Policy Waivers
+      summary: Get auto policy waivers
+      x-summary-source: derived
     post:
       description: 'Use this method to create an auto policy waiver configuration. Only one configuration can exist at a time for a given application or organization.
 
@@ -163,6 +169,8 @@ paths:
           description: Auto waiver has been created successfully.
       tags:
       - Auto Policy Waivers
+      summary: Add auto policy waiver
+      x-summary-source: derived
   /api/v2/autoPolicyWaivers/{ownerType}/{ownerId}/status:
     get:
       description: 'Use this method to retrieve status details for any auto policy waiver enabled for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
@@ -196,6 +204,8 @@ paths:
           description: The response contains auto policy waiver status details for the specified ownerType and the corresponding ownerId.
       tags:
       - Auto Policy Waivers
+      summary: Get auto policy waiver status
+      x-summary-source: derived
   /api/v2/autoPolicyWaivers/{ownerType}/{ownerId}/{autoPolicyWaiverId}:
     delete:
       description: 'Use this method to delete an auto policy waiver, specified by the autoPolicyWaiverId.
@@ -231,6 +241,8 @@ paths:
           description: Auto Policy Waiver has been deleted successfully.
       tags:
       - Auto Policy Waivers
+      summary: Delete auto policy waiver
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve auto policy waiver details for the autoPolicyWaiverId specified.
 
@@ -269,6 +281,8 @@ paths:
           description: The response contains waiver details corresponding to the auto policy waiver id specified.
       tags:
       - Auto Policy Waivers
+      summary: Get auto policy waiver
+      x-summary-source: derived
     put:
       description: 'Use this method to update an auto policy waiver, specified by the autoPolicyWaiverId.
 
@@ -314,6 +328,8 @@ paths:
           description: Auto Policy Waiver has been updated successfully.
       tags:
       - Auto Policy Waivers
+      summary: Update auto policy waiver
+      x-summary-source: derived
 components:
   schemas:
     ApiAutoPolicyWaiverStatusDTO:

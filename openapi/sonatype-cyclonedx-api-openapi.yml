@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search CycloneDX API
+  title: Sonatype Lifecycle Public REST Cyclone DX API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use the CycloneDX REST API to generate CycloneDX SBOMs in XML or JSON formats, containing coordinates and licenses for components found in a scan report.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -12,7 +12,9 @@ tags:
 paths:
   /api/v2/cycloneDx/{cdxVersion}/{applicationId}/reports/{reportId}:
     get:
-      description: 'Use this method to generate a CycloneDX SBOM for an application.<p>Permissions Required: View IQ Elements'
+      description: 'Use this method to generate a CycloneDX SBOM for an application.
+
+        Permissions Required: View IQ Elements'
       operationId: getByReportId
       parameters:
       - description: Enter the internal applicationId for the application you want to generate the SBOM. You can also retrieve the applicationId using the Application REST API.
@@ -42,9 +44,13 @@ paths:
           description: A downloadable file will be generated.
       tags:
       - CycloneDX
+      summary: Get by report id
+      x-summary-source: derived
   /api/v2/cycloneDx/{cdxVersion}/{applicationId}/stages/{stageId}:
     get:
-      description: 'Use this method to generate a CycloneDX SBOM for an application.<p>Permissions Required: View IQ Elements'
+      description: 'Use this method to generate a CycloneDX SBOM for an application.
+
+        Permissions Required: View IQ Elements'
       operationId: getLatest
       parameters:
       - description: Enter the internal applicationId for the application you want to generate the SBOM. You can also retrieve the applicationId using the Application REST API.
@@ -74,6 +80,8 @@ paths:
           description: A downloadable file will be generated.
       tags:
       - CycloneDX
+      summary: Get latest
+      x-summary-source: derived
 components:
   securitySchemes:
     BasicAuth:

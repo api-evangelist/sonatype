@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Config Proxy Server API
+  title: Sonatype Lifecycle Public REST Config Proxy Server API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage the configuration of IQ Server with an existing HTTP proxy server.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -24,6 +24,8 @@ paths:
           description: No HTTP server configuration was found.
       tags:
       - Config Proxy Server
+      summary: Delete configuration 4
+      x-summary-source: derived
     get:
       description: 'Use this method to inspect an existing HTTP proxy server configuration.
 
@@ -41,6 +43,8 @@ paths:
           description: No HTTP proxy server configuration exists.
       tags:
       - Config Proxy Server
+      summary: Get configuration 4
+      x-summary-source: derived
     put:
       description: 'Use this method to create or update an existing HTTP proxy server configuration.
 
@@ -60,6 +64,8 @@ paths:
           description: Missing or invalid values.
       tags:
       - Config Proxy Server
+      summary: Set configuration 4
+      x-summary-source: derived
 components:
   schemas:
     ApiProxyServerConfigurationDTO:

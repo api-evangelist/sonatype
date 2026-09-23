@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Components API
+  title: Sonatype Lifecycle Public REST Components API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to retrieve a component's security vulnerability data, license data, age and popularity.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -36,6 +36,8 @@ paths:
           description: The response contains a detailed description of the component. The hash value returned here is truncated and not intended to be used as a checksum. It can be used as an identifier to pass to other REST API calls.
       tags:
       - Components
+      summary: Get component details
+      x-summary-source: derived
   /api/v2/components/remediation/{ownerType}/{ownerId}:
     post:
       description: Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI.
@@ -98,6 +100,8 @@ paths:
           description: Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI.
       tags:
       - Components
+      summary: Get suggested remediation for component
+      x-summary-source: derived
   /api/v2/components/versions:
     post:
       description: Use this method to retrieve all known versions of a component.
@@ -119,6 +123,8 @@ paths:
           description: Known versions of the component are returned in a string array of ascending order.
       tags:
       - Components
+      summary: Get component versions
+      x-summary-source: derived
   /api/v2/components/{componentHash}/labels/{labelName}/{ownerType}s/{internalOwnerId}:
     delete:
       description: Use this method to un-assign a label from a component.
@@ -157,6 +163,8 @@ paths:
           description: Label un-assigned from component successfully.
       tags:
       - Components
+      summary: Delete component label
+      x-summary-source: derived
     post:
       description: Use this method to assign an existing label to a component.
       operationId: setComponentLabel
@@ -194,135 +202,36 @@ paths:
           description: Component label assigned successfully.
       tags:
       - Components
+      summary: Set component label
+      x-summary-source: derived
 components:
   schemas:
-    ApiComponentOrPurlIdentifierDTOV2:
+    ApiComponentDTOV2:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          type:
+          - string
+          - 'null'
+        originalPurl:
           type: string
         packageUrl:
           type: string
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
       type: object
     ApiComponentDetailsRequestDTOV2:
       properties:
         components:
           items:
             $ref: '#/components/schemas/ApiComponentDTOV2'
-          type: array
-      type: object
-    ApiLicenseDTO:
-      properties:
-        licenseId:
-          type: string
-        licenseName:
-          type: string
-      type: object
-    ApiComponentProjectScmMetadataDTO:
-      properties:
-        forks:
-          format: int32
-          type: integer
-        stars:
-          format: int32
-          type: integer
-      type: object
-    ApiComponentChangeActionDTO:
-      properties:
-        component:
-          $ref: '#/components/schemas/ApiComponentDTOV2'
-      type: object
-    ApiSecurityDataDTO:
-      properties:
-        securityIssues:
-          items:
-            $ref: '#/components/schemas/ApiSecurityIssueDTO'
-          type: array
-      type: object
-    ApiLicenseDataDTO:
-      properties:
-        declaredLicenses:
-          items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
-          type: array
-        effectiveLicenses:
-          items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
-          type: array
-        observedLicenses:
-          items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
-          type: array
-        overriddenLicenses:
-          items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
-          type: array
-        status:
-          type: string
-      type: object
-    ApiComponentRemediationValueDTO:
-      properties:
-        suggestedVersionChange:
-          $ref: '#/components/schemas/ApiSuggestedVersionChangeOptionDTO'
-        versionChanges:
-          items:
-            $ref: '#/components/schemas/ApiVersionChangeOptionDTO'
-          type: array
-      type: object
-    ApiConstraintViolationReasonDTO:
-      properties:
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ApiComponentProjectScmDTO:
-      properties:
-        scmDetails:
-          $ref: '#/components/schemas/ApiComponentProjectScmDetailsDTO'
-        scmMetadata:
-          $ref: '#/components/schemas/ApiComponentProjectScmMetadataDTO'
-        scmUrl:
-          type: string
-      type: object
-    ApiConstraintViolationDTO:
-      properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
-          type: array
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
-          type: string
-      type: object
-    ApiComponentDetailsResultDTOV2:
-      properties:
-        componentDetails:
-          items:
-            $ref: '#/components/schemas/ApiComponentDetailsDTOV2'
           type: array
       type: object
     ApiPolicyViolationDTOV2:
@@ -353,45 +262,86 @@ components:
           format: date-time
           type: string
       type: object
+    ApiComponentProjectScmDetailsDTO:
+      properties:
+        commitsPerMonth:
+          format: int32
+          type: integer
+        uniqueDevsPerMonth:
+          format: int32
+          type: integer
+      type: object
+    ApiComponentProjectScmDTO:
+      properties:
+        scmDetails:
+          $ref: '#/components/schemas/ApiComponentProjectScmDetailsDTO'
+        scmMetadata:
+          $ref: '#/components/schemas/ApiComponentProjectScmMetadataDTO'
+        scmUrl:
+          type: string
+      type: object
+    ApiLicenseDataDTO:
+      properties:
+        declaredLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        effectiveLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        observedLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        overriddenLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        status:
+          type: string
+      type: object
+    ApiSecurityIssueAnalysisDTO:
+      properties:
+        detail:
+          type: string
+        justification:
+          type: string
+        response:
+          type: string
+        state:
+          type: string
+      type: object
+    ApiComponentDetailsResultDTOV2:
+      properties:
+        componentDetails:
+          items:
+            $ref: '#/components/schemas/ApiComponentDetailsDTOV2'
+          type: array
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
     ApiComponentProjectMetadataDTO:
       properties:
         description:
           type: string
         organization:
           type: string
-      type: object
-    ApiComponentProjectDataDTO:
-      properties:
-        firstReleaseDate:
-          format: date-time
-          type: string
-        lastReleaseDate:
-          format: date-time
-          type: string
-        projectMetadata:
-          $ref: '#/components/schemas/ApiComponentProjectMetadataDTO'
-        sourceControlManagement:
-          $ref: '#/components/schemas/ApiComponentProjectScmDTO'
-      type: object
-    ApiComponentDTOV2:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
-          type: string
-        hash:
-          nullable: true
-          type: string
-        originalPurl:
-          type: string
-        packageUrl:
-          type: string
-        proprietary:
-          type: boolean
-        sha256:
-          type: string
-        thirdParty:
-          type: boolean
       type: object
     ApiSecurityIssueDTO:
       properties:
@@ -417,6 +367,22 @@ components:
         url:
           type: string
       type: object
+    ApiComponentRemediationValueDTO:
+      properties:
+        suggestedVersionChange:
+          $ref: '#/components/schemas/ApiSuggestedVersionChangeOptionDTO'
+        versionChanges:
+          items:
+            $ref: '#/components/schemas/ApiVersionChangeOptionDTO'
+          type: array
+      type: object
+    ApiSecurityDataDTO:
+      properties:
+        securityIssues:
+          items:
+            $ref: '#/components/schemas/ApiSecurityIssueDTO'
+          type: array
+      type: object
     ApiVersionChangeOptionDTO:
       properties:
         data:
@@ -439,6 +405,35 @@ components:
           - recommended-non-breaking-with-dependencies
           type: string
       type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiComponentProjectScmMetadataDTO:
+      properties:
+        forks:
+          format: int32
+          type: integer
+        stars:
+          format: int32
+          type: integer
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
+      type: object
     ApiComponentDetailsDTOV2:
       properties:
         catalogDate:
@@ -446,11 +441,13 @@ components:
         component:
           $ref: '#/components/schemas/ApiComponentDTOV2'
         hygieneRating:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         integrityRating:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         licenseData:
           $ref: '#/components/schemas/ApiLicenseDataDTO'
         matchState:
@@ -461,26 +458,27 @@ components:
           $ref: '#/components/schemas/ApiComponentProjectDataDTO'
         relativePopularity:
           format: int32
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         securityData:
           $ref: '#/components/schemas/ApiSecurityDataDTO'
       type: object
-    ApiComponentPolicyViolationListDTOV2:
+    ApiComponentChangeActionDTO:
       properties:
-        policyViolations:
-          items:
-            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
-          type: array
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
       type: object
-    ApiComponentProjectScmDetailsDTO:
+    ApiComponentOrPurlIdentifierDTOV2:
       properties:
-        commitsPerMonth:
-          format: int32
-          type: integer
-        uniqueDevsPerMonth:
-          format: int32
-          type: integer
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+        packageUrl:
+          type: string
       type: object
     ApiSuggestedVersionChangeOptionDTO:
       properties:
@@ -506,15 +504,31 @@ components:
           - recommended-non-breaking-with-dependencies
           type: string
       type: object
-    ApiSecurityIssueAnalysisDTO:
+    ApiComponentPolicyViolationListDTOV2:
       properties:
-        detail:
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+      type: object
+    ApiComponentProjectDataDTO:
+      properties:
+        firstReleaseDate:
+          format: date-time
           type: string
-        justification:
+        lastReleaseDate:
+          format: date-time
           type: string
-        response:
+        projectMetadata:
+          $ref: '#/components/schemas/ApiComponentProjectMetadataDTO'
+        sourceControlManagement:
+          $ref: '#/components/schemas/ApiComponentProjectScmDTO'
+      type: object
+    ApiLicenseDTO:
+      properties:
+        licenseId:
           type: string
-        state:
+        licenseName:
           type: string
       type: object
   securitySchemes:

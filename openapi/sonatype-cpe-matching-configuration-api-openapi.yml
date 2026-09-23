@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search CPE Matching Configuration API
+  title: Sonatype Lifecycle Public REST CPE Matching Configuration…
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use the CPE Matching Configuration REST API to add/set/remove cpe matching configuration to organizations and applications
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -12,7 +12,9 @@ tags:
 paths:
   /api/v2/{ownerType}/{internalOwnerId}/configuration/publicSource/cpe:
     get:
-      description: 'This method allows to retrieve the applicable cpe matching configuration of a given organization or application.<p>Permissions Required: View IQ Elements'
+      description: 'This method allows to retrieve the applicable cpe matching configuration of a given organization or application.
+
+        Permissions Required: View IQ Elements'
       operationId: getCpeMatchingConfiguration
       parameters:
       - in: path
@@ -34,8 +36,12 @@ paths:
           description: Applicable cpe matching configuration for given ownerId
       tags:
       - CPE Matching Configuration
+      summary: Get cpe matching configuration
+      x-summary-source: derived
     put:
-      description: 'Use this method to apply a given cpe matching configuration to an organization or application.<p>Permissions Required: Edit IQ Elements'
+      description: 'Use this method to apply a given cpe matching configuration to an organization or application.
+
+        Permissions Required: Edit IQ Elements'
       operationId: updateCpeMatchingConfiguration
       parameters:
       - in: path
@@ -64,6 +70,8 @@ paths:
           description: An object containing the cpe configuration applied to the given ownerId
       tags:
       - CPE Matching Configuration
+      summary: Update cpe matching configuration
+      x-summary-source: derived
 components:
   schemas:
     CpeMatchingConfigurationRequest:

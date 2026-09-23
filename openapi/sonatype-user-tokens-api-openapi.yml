@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search User Tokens API
+  title: Sonatype Lifecycle Public REST User Tokens API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage user tokens.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -45,6 +45,8 @@ paths:
           description: The response contains a list of user tokens, each containing a `userCode`, `username` and the name of the IQ server `realm`.
       tags:
       - User Tokens
+      summary: Get user tokens by created between and realm id
+      x-summary-source: derived
   /api/v2/userTokens/currentUser:
     delete:
       description: 'Use this method to delete an existing user token for the currently logged in user.
@@ -57,6 +59,8 @@ paths:
           description: User token deleted successfully.
       tags:
       - User Tokens
+      summary: Delete current user token
+      x-summary-source: derived
     post:
       description: 'Use this method to generate a user token for the currently logged in user.
 
@@ -72,6 +76,8 @@ paths:
           description: The response contains the generated user token consisting of `userCode`, `username` `passCode`, and the IQ Server `realm`.
       tags:
       - User Tokens
+      summary: Create user token
+      x-summary-source: derived
   /api/v2/userTokens/currentUser/createTime:
     get:
       description: 'Use this method to retrieve the creation time of the user token for the currently logged in user.
@@ -90,12 +96,14 @@ paths:
           description: User token does not exist for the current user.
       tags:
       - User Tokens
+      summary: Get current user token create time
+      x-summary-source: derived
   /api/v2/userTokens/currentUser/hasToken:
     get:
       description: 'Use this method to check if a user token has been issued to the logged in user.
 
 
-        Permissions required: None '
+        Permissions required: None'
       operationId: getUserTokenExistsForCurrentUser
       responses:
         '200':
@@ -106,6 +114,8 @@ paths:
           description: The response contains a `userTokenExists` field.
       tags:
       - User Tokens
+      summary: Get user token exists for current user
+      x-summary-source: derived
   /api/v2/userTokens/purge:
     delete:
       description: 'Use this method to delete all existing LDAP user tokens.
@@ -118,6 +128,8 @@ paths:
           description: User tokens purged successfully.
       tags:
       - User Tokens
+      summary: Purge user tokens
+      x-summary-source: derived
   /api/v2/userTokens/userCode/{userCode}:
     delete:
       description: 'Use this method to delete an existing user token by specifying the userCode.
@@ -137,6 +149,8 @@ paths:
           description: User token deleted successfully.
       tags:
       - User Tokens
+      summary: Delete user token by user code
+      x-summary-source: derived
   /api/v2/userTokens/{username}:
     get:
       description: 'Use this method to retrieve a user token by specifying a username and realmId.
@@ -166,8 +180,15 @@ paths:
           description: The response contains the `userCode`, `username` and the name of the IQ server `realm`.
       tags:
       - User Tokens
+      summary: Get user token by username and realm id
+      x-summary-source: derived
 components:
   schemas:
+    ApiUserTokenExistsDTO:
+      properties:
+        userTokenExists:
+          type: boolean
+      type: object
     ApiUserTokenDTO:
       properties:
         createTime:
@@ -185,11 +206,6 @@ components:
           type: string
         username:
           type: string
-      type: object
-    ApiUserTokenExistsDTO:
-      properties:
-        userTokenExists:
-          type: boolean
       type: object
   securitySchemes:
     BasicAuth:

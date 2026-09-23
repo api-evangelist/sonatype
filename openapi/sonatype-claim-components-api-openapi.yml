@@ -1,8 +1,16 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Claim Components API
+  title: Sonatype Lifecycle Public REST Claim Components API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to manage components that are developed in-house and are not open-source.
+
+
+    Claiming the component stores the identity information for the component hash and avoids triggering the Component-Unknown policy.
+
+
+    Components will have a match state as `Exact` and Identification Source as `Manual`,
+
+    for subsequent scans or evaluations.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -34,6 +42,8 @@ paths:
           description: The response contains the truncated SHA1 hash of each component, the datetime when the component was published (not the time it was claimed), the format and coordinates of the claimed component (componentIdentifier) and the package URL of the claimed component.
       tags:
       - Claim Components
+      summary: Get all
+      x-summary-source: derived
     post:
       description: 'Use this method to claim a component, or update the component details for a previously claimed component.
 
@@ -56,6 +66,8 @@ paths:
           description: The response shows the new/updated details for the claimed component.
       tags:
       - Claim Components
+      summary: Set
+      x-summary-source: derived
   /api/v2/claim/components/{hash}:
     delete:
       description: 'Use this method to delete a claim on a previously claimed component by providing its hash.
@@ -77,6 +89,8 @@ paths:
           description: Component Claim for this hash does not exist.
       tags:
       - Claim Components
+      summary: Delete
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve details of a claimed component by specifying its hash.
 
@@ -101,8 +115,17 @@ paths:
           description: Component Claim for this hash does not exist.
       tags:
       - Claim Components
+      summary: Get
+      x-summary-source: derived
 components:
   schemas:
+    ApiHashComponentIdentifiersDTO:
+      properties:
+        componentClaims:
+          items:
+            $ref: '#/components/schemas/ApiHashComponentIdentifierDTO'
+          type: array
+      type: object
     ApiHashComponentIdentifierDTO:
       properties:
         claimerId:
@@ -129,13 +152,6 @@ components:
           type: object
         format:
           type: string
-      type: object
-    ApiHashComponentIdentifiersDTO:
-      properties:
-        componentClaims:
-          items:
-            $ref: '#/components/schemas/ApiHashComponentIdentifierDTO'
-          type: array
       type: object
   securitySchemes:
     BasicAuth:

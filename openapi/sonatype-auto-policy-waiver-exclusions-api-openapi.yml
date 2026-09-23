@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Auto Policy Waiver Exclusions API
+  title: Sonatype Lifecycle Public REST Auto Policy Waiver…
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to create and delete auto policy waiver exclusions.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -50,6 +50,8 @@ paths:
           description: Auto policy waiver exclusion has been created successfully.
       tags:
       - Auto Policy Waiver Exclusions
+      summary: Add auto policy waive exclusion
+      x-summary-source: derived
   /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}/{autoPolicyWaiverId}:
     get:
       description: 'Use this method to retrieve auto policy waiver exclusions for the given owner and policy waiver.
@@ -105,6 +107,8 @@ paths:
           description: Successfully retrieved the auto policy waiver exclusions.
       tags:
       - Auto Policy Waiver Exclusions
+      summary: Get auto policy waiver exclusions
+      x-summary-source: derived
   /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}/{autoPolicyWaiverId}/{autoPolicyWaiverExclusionId}:
     delete:
       description: 'Use this method to delete an auto policy waiver exclusion, specified by the autoPolicyWaiverExclusionId.
@@ -146,8 +150,52 @@ paths:
           description: Auto policy waiver exclusion has been deleted successfully.
       tags:
       - Auto Policy Waiver Exclusions
+      summary: Delete auto policy waiver exclusion
+      x-summary-source: derived
 components:
   schemas:
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    ApiAutoPolicyWaiverExclusionRequestDTO:
+      properties:
+        applicationPublicId:
+          type: string
+        autoPolicyWaiverId:
+          type: string
+        matchStrategy:
+          enum:
+          - EXACT_COMPONENT
+          - ALL_VERSIONS
+          - POLICY_VIOLATION
+          type: string
+        ownerId:
+          type: string
+        policyViolationId:
+          type: string
+        scanId:
+          type: string
+      type: object
     ConditionFact:
       properties:
         conditionIndex:
@@ -222,48 +270,6 @@ components:
             type: string
           type: object
         format:
-          type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
-          type: string
-      type: object
-    ApiAutoPolicyWaiverExclusionRequestDTO:
-      properties:
-        applicationPublicId:
-          type: string
-        autoPolicyWaiverId:
-          type: string
-        matchStrategy:
-          enum:
-          - EXACT_COMPONENT
-          - ALL_VERSIONS
-          - POLICY_VIOLATION
-          type: string
-        ownerId:
-          type: string
-        policyViolationId:
-          type: string
-        scanId:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
           type: string
       type: object
   securitySchemes:

@@ -1,8 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Composite Source Control API
+  title: Sonatype Lifecycle Public REST Composite Source Control API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to access the composite source control management configuration (SCM) for an application or organization.
+
+
+    Composite source control configuration is defined as the configuration that is inherited from the parent organization or is directly assigned.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -46,8 +49,19 @@ paths:
           description: The response contains values for the SCM configuration. For each value, the corresponding parent value will be shown, if applicable.<ul><li><code>id</code> is the internal identifier for the SCM configuration.</li><li><code>ownerId</code> is the identifier for the ownerType specified.</li><li><code>repositoryUrl</code> indicates the URL of application/organization. Will indicate 'null' for organizations.</li><li><code>provider</code> is the name of the source code host for the parent. Values can be Azure, GitHub, GitLab and Bitbucket.</li><li><code>username</code> is returned if found for the specific provider. Currently, the values are available for Bitbucket Server and Bitbucket Cloud.</li><li><code>token</code> is obfuscated and indicates the composite configuration for the source control host.<li><code>baseBranch</code> shows the base branch name.<li><code>remediationPullRequestsEnabled</code> indicates if the Automated Pull Request feature is enabled.</li><li><code>statusChecksEnabled</code> indicates if the status checks for the source code are enabled.</li><li><code>pullRequestCommentingEnabled</code> indicates if PR commenting is enabled for this application/organization.</li><li><code>sourceControlEvaluationsEnabled</code> indicates if the evaluations triggered by the IQ Server are enabled, for the Continuous Risk Profile feature.</li><li><code>sshEnabled</code> indicates if ssh settings are enabled.</li><li><code>commitStatusEnabled</code> indicates if commit status check is enabled.</li>
       tags:
       - Composite Source Control
+      summary: Get composite source control by owner
+      x-summary-source: derived
 components:
   schemas:
+    ApiCompositeValueDTOGitHubAppInfo:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          $ref: '#/components/schemas/GitHubAppInfo'
+        value:
+          $ref: '#/components/schemas/GitHubAppInfo'
+      type: object
     ApiCompositeValueDTOInteger:
       properties:
         parentName:
@@ -81,6 +95,15 @@ components:
           type: boolean
         value:
           type: boolean
+      type: object
+    ApiCompositeValueDTOString:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          type: string
+        value:
+          type: string
       type: object
     ApiCompositeSourceControlDTO:
       properties:
@@ -126,24 +149,6 @@ components:
           $ref: '#/components/schemas/ApiCompositeValueDTOString'
         username:
           $ref: '#/components/schemas/ApiCompositeValueDTOString'
-      type: object
-    ApiCompositeValueDTOGitHubAppInfo:
-      properties:
-        parentName:
-          type: string
-        parentValue:
-          $ref: '#/components/schemas/GitHubAppInfo'
-        value:
-          $ref: '#/components/schemas/GitHubAppInfo'
-      type: object
-    ApiCompositeValueDTOString:
-      properties:
-        parentName:
-          type: string
-        parentValue:
-          type: string
-        value:
-          type: string
       type: object
   securitySchemes:
     BasicAuth:

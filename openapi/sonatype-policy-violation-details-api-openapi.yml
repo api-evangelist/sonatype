@@ -1,8 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Policy Violation Details API
+  title: Sonatype Lifecycle Public REST Policy Violation Details API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to obtain the violation details, violation details across stages (cross stage), violations occurring due to transitive dependencies and all waivers applicable to a violation.
+
+
+    Cross-stage policy violations are helpful in performance analysis like MTTR metrics.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -62,9 +65,11 @@ paths:
           description: The response contains the details of the application that violates the policy/policies and violation details grouped under the policyIds provided. It contains:<ul><li>`openTime` indicates the date and time when the violation was first detected.</li><li>`waiveTime` indicates the date and time when the violation was waived.</li><li>`legacyTime` indicates the date and time when the violation was assigned as a legacy violation.</li><li>`reference` is the reference data that triggered the violation.</li></ul>
       tags:
       - Policy Violation Details
+      summary: Get policy violations
+      x-summary-source: derived
   /api/v2/policyViolations/crossStage:
     get:
-      description: 'A cross-stage policy violation represents an aggregate of all violations of a policy  occurring across multiple stages of an application. Cross-stage policy violations are helpful in performance analysis by determining the time taken to remediate a violation across all stages where it was detected.
+      description: 'A cross-stage policy violation represents an aggregate of all violations of a policy occurring across multiple stages of an application. Cross-stage policy violations are helpful in performance analysis by determining the time taken to remediate a violation across all stages where it was detected.
 
         Use this method to retrieve all cross-stage violations, irrespective of the time they were detected.
 
@@ -87,6 +92,8 @@ paths:
           description: The response contains violation details for all occurrences of the same policy violation, across multiple stages. stageData indicates the name of the stages where the violation occurred, the scanId/reportId when it was reported and the policy action triggered due to the violation.
       tags:
       - Policy Violation Details
+      summary: Get cross stage policy violation by constituent id
+      x-summary-source: derived
   /api/v2/policyViolations/crossStage/{violationId}:
     get:
       description: 'A cross-stage policy violation represents an aggregate of all violations of the same policy, occurring at multiple stages for an application. Cross-stage policy violations are helpful in performance analysis by determining the time taken to remediate a violation across all stages where it was detected.
@@ -112,9 +119,11 @@ paths:
           description: The response contains violation details for all occurrences of the same policy violation across multiple stages. `stageData` indicates the name of the stages where the violationoccurred, and `reportId` where it was reported and the policy action triggered due to the violation.
       tags:
       - Policy Violation Details
+      summary: Get cross stage policy violation by id
+      x-summary-source: derived
   /api/v2/policyViolations/transitive/{ownerType}/{ownerId}/stages/{stageId}:
     get:
-      description: 'Use this method to obtain all transitive policy violations for a given component in  a specific stage. Transitive policy violations are violations caused by transitive dependencies.
+      description: 'Use this method to obtain all transitive policy violations for a given component in a specific stage. Transitive policy violations are violations caused by transitive dependencies.
 
 
         Permissions required: View IQ Elements'
@@ -166,6 +175,8 @@ paths:
           description: The response contains all transitive violations detected for the component specified. In addition to the policy violation details like the name/id of the policy violated, threat level threat category, etc. the response also indicates if the violation is due to an 'InnerSource' component.
       tags:
       - Policy Violation Details
+      summary: Get transitive policy violations by owner stage component
+      x-summary-source: derived
   /api/v2/policyViolations/transitive/{ownerType}/{ownerId}/{scanId}:
     get:
       description: 'Use this method to retrieve transitive policy violations for a given component in a specific scan.
@@ -219,6 +230,8 @@ paths:
           description: The response contains violation details for all transitive violations occurring in the scan specified. The response also indicates if the violation is due to an 'InnerSource' component.
       tags:
       - Policy Violation Details
+      summary: Get transitive policy violations by app scan component
+      x-summary-source: derived
   /api/v2/policyViolations/{violationId}/applicableAutoWaiver:
     get:
       description: 'Use this method to obtain the existing auto waiver applicable to a policy violationviolation.
@@ -242,9 +255,19 @@ paths:
           description: 'The response contains details for applicable auto waiver for the `violationId` specified. '
       tags:
       - Policy Violation Details
+      summary: Get applicable auto waiver
+      x-summary-source: derived
   /api/v2/policyViolations/{violationId}/applicableWaiverRequests:
     get:
-      description: 'Use this method to obtain all existing waiver requests that are applicable to a policy violation. A waiver request is considered as ''applicable'' if it matches the following conditions:<ul><li>The policyId for the policy violation matches the policyId associated with the waiver request</li><li>The violated policy conditions match the policy conditions of the waiver request/li><li>The waiver request scope matches the violating component</li></ul>
+      description: 'Use this method to obtain all existing waiver requests that are applicable to a policy violation. A waiver request is considered as ''applicable'' if it matches the following conditions:
+
+
+        The policyId for the policy violation matches the policyId associated with the waiver request
+
+
+        The violated policy conditions match the policy conditions of the waiver request/li>
+
+        The waiver request scope matches the violating component
 
 
         Permissions required: View IQ Elements'
@@ -268,9 +291,19 @@ paths:
             `reference` shows the reference data that triggered the violation. `componentUpgradeAvailable` indicates if a non-violating version of the component is available to remediate the violation.'
       tags:
       - Policy Violation Details
+      summary: Get applicable waiver requests
+      x-summary-source: derived
   /api/v2/policyViolations/{violationId}/applicableWaivers:
     get:
-      description: 'Use this method to obtain all existing waivers that are applicable to a policy violation. A waiver is considered as ''applicable'' if it matches the following conditions:<ul><li>The policyId for the policy violation matches the policyId associated with the waiver</li><li>The violated policy conditions match the policy conditions of the waiver/li><li>The waiver scope matches the violating component</li></ul>
+      description: 'Use this method to obtain all existing waivers that are applicable to a policy violation. A waiver is considered as ''applicable'' if it matches the following conditions:
+
+
+        The policyId for the policy violation matches the policyId associated with the waiver
+
+
+        The violated policy conditions match the policy conditions of the waiver/li>
+
+        The waiver scope matches the violating component
 
 
         Permissions required: View IQ Elements'
@@ -294,6 +327,8 @@ paths:
             `reference` shows the reference data that triggered the violation. `componentUpgradeAvailable` indicates if a non-violating version of the component is available to remediate the violation.'
       tags:
       - Policy Violation Details
+      summary: Get applicable waivers
+      x-summary-source: derived
   /api/v2/policyViolations/{violationId}/similarWaivers:
     get:
       description: 'Use this method to retrieve similar policy waivers for the given policy violation id.
@@ -319,8 +354,21 @@ paths:
           description: Successfully retrieved similar policy waivers for the given policy violation id.
       tags:
       - Policy Violation Details
+      summary: Get similar waivers
+      x-summary-source: derived
 components:
   schemas:
+    ApiPolicyWaiversApplicableToViolationDTO:
+      properties:
+        activeWaivers:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          type: array
+        expiredWaivers:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          type: array
+      type: object
     ApiComponentTransitivePolicyViolationsDTO:
       properties:
         componentIdentifier:
@@ -338,89 +386,26 @@ components:
             $ref: '#/components/schemas/ApiStagePolicyViolationComponentDTO'
           type: array
       type: object
-    ApiPolicyWaiverDTO:
+    ApiComponentDTOV2:
       properties:
-        associatedPackageUrl:
-          type: string
-        comment:
-          type: string
         componentIdentifier:
           $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        componentName:
-          type: string
-        componentUpgradeAvailable:
-          type: boolean
-        constraintFacts:
-          items:
-            $ref: '#/components/schemas/ConstraintFact'
-          type: array
-        constraintFactsJson:
-          type: string
-        createTime:
-          format: date-time
-          type: string
-        creatorId:
-          type: string
-        creatorName:
-          type: string
         displayName:
-          $ref: '#/components/schemas/ComponentDisplayName'
-        expireWhenRemediationAvailable:
-          type: boolean
-        expiryTime:
-          format: date-time
           type: string
-        forContainerImage:
-          type: boolean
-        forContainerImageComponent:
-          type: boolean
         hash:
+          type:
+          - string
+          - 'null'
+        originalPurl:
           type: string
-        isObsolete:
+        packageUrl:
+          type: string
+        proprietary:
           type: boolean
-        matcherStrategy:
-          enum:
-          - DEFAULT
-          - EXACT_COMPONENT
-          - ALL_COMPONENTS
-          - ALL_VERSIONS
+        sha256:
           type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        policyWaiverId:
-          type: string
-        policyWaiverReasonId:
-          type: string
-        reasonText:
-          type: string
-        scopeOwnerId:
-          type: string
-        scopeOwnerName:
-          type: string
-        scopeOwnerType:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-        vulnerabilityId:
-          type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
-          type: string
+        thirdParty:
+          type: boolean
       type: object
     PolicyOwner:
       properties:
@@ -433,74 +418,29 @@ components:
         ownerType:
           type: string
       type: object
-    ApiConstraintViolationReasonDTO:
+    ComponentDisplayName:
       properties:
+        name:
+          type: string
+        parts:
+          items:
+            $ref: '#/components/schemas/ComponentDisplayNamePart'
+          type: array
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
         reason:
           type: string
         reference:
           $ref: '#/components/schemas/TriggerReference'
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        summary:
           type: string
-      type: object
-    ApiApplicationBaseDTO:
-      properties:
-        contactUserName:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        organizationId:
-          type: string
-        publicId:
-          type: string
-      type: object
-    ApiConstraintViolationDTO:
-      properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
-          type: array
-      type: object
-    ApiPolicyWaiverRequestsApplicableToViolationDTO:
-      properties:
-        activeWaiverRequests:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
-          type: array
-        expiredWaiverRequests:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
-          type: array
-      type: object
-    ComponentIdentifier:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
+        triggerJson:
           type: string
       type: object
     ApiEnhancedPolicyViolationDTOV2:
@@ -542,6 +482,13 @@ components:
         waiveTime:
           format: date-time
           type: string
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
       type: object
     ApiPolicyWaiverRequestDTO:
       properties:
@@ -620,16 +567,6 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    StageData:
-      properties:
-        actionTypeId:
-          type: string
-        mostRecentEvaluationTime:
-          format: date-time
-          type: string
-        mostRecentScanId:
-          type: string
-      type: object
     ApiCrossStageViolationDTOV2:
       properties:
         applicationName:
@@ -686,84 +623,29 @@ components:
           format: date-time
           type: string
       type: object
-    ComponentDisplayName:
+    ApiStagePolicyViolationComponentDTO:
       properties:
-        name:
+        action:
           type: string
-        parts:
-          items:
-            $ref: '#/components/schemas/ComponentDisplayNamePart'
-          type: array
-      type: object
-    ApiComponentDTOV2:
-      properties:
         componentIdentifier:
           $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
         displayName:
           type: string
         hash:
-          nullable: true
-          type: string
-        originalPurl:
           type: string
         packageUrl:
           type: string
-        proprietary:
-          type: boolean
-        sha256:
+        policyId:
           type: string
-        thirdParty:
-          type: boolean
-      type: object
-    ApiPolicyWaiversApplicableToViolationDTO:
-      properties:
-        activeWaivers:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
-          type: array
-        expiredWaivers:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
-          type: array
-      type: object
-    ApiApplicationViolationListDTOV2:
-      properties:
-        applicationViolations:
-          items:
-            $ref: '#/components/schemas/ApiApplicationViolationDTOV2'
-          type: array
-      type: object
-    ComponentDisplayNamePart:
-      properties:
-        field:
+        policyName:
           type: string
-        value:
+        policyViolationId:
           type: string
-      type: object
-    ApiApplicationViolationDTOV2:
-      properties:
-        application:
-          $ref: '#/components/schemas/ApiApplicationBaseDTO'
-        policyViolations:
-          items:
-            $ref: '#/components/schemas/ApiEnhancedPolicyViolationDTOV2'
-          type: array
-      type: object
-    ConditionFact:
-      properties:
-        conditionIndex:
+        threatCategory:
+          type: string
+        threatLevel:
           format: int32
           type: integer
-        conditionTypeId:
-          type: string
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
-          type: string
-        triggerJson:
-          type: string
       type: object
     ApiAutoPolicyWaiverDTO:
       properties:
@@ -794,17 +676,139 @@ components:
           format: int32
           type: integer
       type: object
-    ApiStagePolicyViolationComponentDTO:
+    ApiApplicationViolationDTOV2:
       properties:
-        action:
+        application:
+          $ref: '#/components/schemas/ApiApplicationBaseDTO'
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiEnhancedPolicyViolationDTOV2'
+          type: array
+      type: object
+    ComponentDisplayNamePart:
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    ApiApplicationViolationListDTOV2:
+      properties:
+        applicationViolations:
+          items:
+            $ref: '#/components/schemas/ApiApplicationViolationDTOV2'
+          type: array
+      type: object
+    StageData:
+      properties:
+        actionTypeId:
+          type: string
+        mostRecentEvaluationTime:
+          format: date-time
+          type: string
+        mostRecentScanId:
+          type: string
+      type: object
+    ApiPolicyWaiverRequestsApplicableToViolationDTO:
+      properties:
+        activeWaiverRequests:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
+          type: array
+        expiredWaiverRequests:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
+          type: array
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
+      type: object
+    ApiPolicyWaiverDTO:
+      properties:
+        associatedPackageUrl:
+          type: string
+        comment:
           type: string
         componentIdentifier:
           $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
+        componentName:
           type: string
+        componentUpgradeAvailable:
+          type: boolean
+        constraintFacts:
+          items:
+            $ref: '#/components/schemas/ConstraintFact'
+          type: array
+        constraintFactsJson:
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        creatorId:
+          type: string
+        creatorName:
+          type: string
+        displayName:
+          $ref: '#/components/schemas/ComponentDisplayName'
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        forContainerImage:
+          type: boolean
+        forContainerImageComponent:
+          type: boolean
         hash:
           type: string
-        packageUrl:
+        isObsolete:
+          type: boolean
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
           type: string
         policyId:
           type: string
@@ -812,11 +816,45 @@ components:
           type: string
         policyViolationId:
           type: string
-        threatCategory:
+        policyWaiverId:
+          type: string
+        policyWaiverReasonId:
+          type: string
+        reasonText:
+          type: string
+        scopeOwnerId:
+          type: string
+        scopeOwnerName:
+          type: string
+        scopeOwnerType:
           type: string
         threatLevel:
           format: int32
           type: integer
+        vulnerabilityId:
+          type: string
+      type: object
+    ApiApplicationBaseDTO:
+      properties:
+        contactUserName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
       type: object
   securitySchemes:
     BasicAuth:

@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search GitHub App Configuration API
+  title: Sonatype Lifecycle Public REST GitHub App Configuration API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: GitHub App configuration operations
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -12,7 +12,10 @@ tags:
 paths:
   /api/v2/githubApp/manifest:
     post:
-      description: "Generate a GitHub App manifest for registration. Returns manifest JSON with a state token for CSRF protection. The state token is cryptographically secure, single-use, and expires after 10 minutes. Submit the manifest to GitHub's app creation flow, which will redirect back to IQ Server with the state token for validation. \n\n**Permissions Required:** Configure System Configuration and Users"
+      description: 'Generate a GitHub App manifest for registration. Returns manifest JSON with a state token for CSRF protection. The state token is cryptographically secure, single-use, and expires after 10 minutes. Submit the manifest to GitHub''s app creation flow, which will redirect back to IQ Server with the state token for validation.
+
+
+        **Permissions Required:** Configure System Configuration and Users'
       operationId: generateManifest
       parameters:
       - description: Owner (organization/application) ID

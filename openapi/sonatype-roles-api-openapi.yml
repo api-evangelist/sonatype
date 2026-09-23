@@ -1,8 +1,14 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Roles API
+  title: Sonatype Lifecycle Public REST Roles API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Roles provide sets of permissions that grant access to the functionality in the user interface, through integrations, and when using REST APIs.
+
+
+    Permissions are granted by assigning users or groups to the system roles or at the various levels in the organizational hierarchy: root organization, repository managers, and applications and organizations.
+
+
+    Use this REST API to manage roles.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -32,6 +38,8 @@ paths:
           description: The response contains the role IDs, role names and descriptions.
       tags:
       - Roles
+      summary: Get roles
+      x-summary-source: derived
     post:
       description: 'Use this method to create a new custom role with specified permissions.
 
@@ -52,6 +60,8 @@ paths:
           description: The role was created successfully. The response contains the created role details.
       tags:
       - Roles
+      summary: Add role
+      x-summary-source: derived
   /api/v2/roles/new:
     get:
       description: 'Use this method to retrieve a template for creating a new custom role, including all available permissions that can be assigned.
@@ -68,6 +78,8 @@ paths:
           description: The response contains a role template with available permissions.
       tags:
       - Roles
+      summary: Get template for new role
+      x-summary-source: derived
   /api/v2/roles/{roleId}:
     delete:
       description: 'Use this method to delete a custom role.
@@ -86,6 +98,8 @@ paths:
           description: The role was deleted successfully.
       tags:
       - Roles
+      summary: Delete role
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve details for a specific role, including its permissions.
 
@@ -107,6 +121,8 @@ paths:
           description: The response contains the role details including permissions.
       tags:
       - Roles
+      summary: Get role by id
+      x-summary-source: derived
     put:
       description: 'Use this method to update an existing custom role and its permissions.
 
@@ -133,8 +149,26 @@ paths:
           description: The role was updated successfully. The response contains the updated role details.
       tags:
       - Roles
+      summary: Update role
+      x-summary-source: derived
 components:
   schemas:
+    ApiPermissionCategoryDTO:
+      properties:
+        displayName:
+          type: string
+        permissions:
+          items:
+            $ref: '#/components/schemas/ApiPermissionDTO'
+          type: array
+      type: object
+    ApiRoleListDTO:
+      properties:
+        roles:
+          items:
+            $ref: '#/components/schemas/ApiRoleDTO'
+          type: array
+      type: object
     ApiRoleDTO:
       properties:
         builtIn:
@@ -180,22 +214,6 @@ components:
           - LEGAL_REVIEWER
           - CREATE_PULL_REQUESTS
           type: string
-      type: object
-    ApiPermissionCategoryDTO:
-      properties:
-        displayName:
-          type: string
-        permissions:
-          items:
-            $ref: '#/components/schemas/ApiPermissionDTO'
-          type: array
-      type: object
-    ApiRoleListDTO:
-      properties:
-        roles:
-          items:
-            $ref: '#/components/schemas/ApiRoleDTO'
-          type: array
       type: object
   securitySchemes:
     BasicAuth:

@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Config Zscaler API
+  title: Sonatype Lifecycle Public REST Config Zscaler API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage the configuration of a Zscaler service.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -24,6 +24,8 @@ paths:
           description: Zscaler server configuration does not exist.
       tags:
       - Config Zscaler
+      summary: Delete configuration 7
+      x-summary-source: derived
     get:
       description: 'Use this method to review the configuration for a Zscaler server.
 
@@ -41,6 +43,8 @@ paths:
           description: No Zscaler server is currently configured with the IQ Server.
       tags:
       - Config Zscaler
+      summary: Get configuration 8
+      x-summary-source: derived
     put:
       description: 'Use this method to configure or update an existing Zscaler server configuration.
 
@@ -64,6 +68,8 @@ paths:
           description: Missing or invalid values provided.
       tags:
       - Config Zscaler
+      summary: Set configuration 7
+      x-summary-source: derived
   /api/v2/config/zscaler/testConfig:
     post:
       description: 'Use this method to test Zscaler server configuration.
@@ -84,6 +90,8 @@ paths:
           description: Missing or invalid values provided.
       tags:
       - Config Zscaler
+      summary: Test configuration 1
+      x-summary-source: derived
   /api/v2/config/zscaler/update:
     delete:
       description: 'Use this endpoint to delete all configured formats from your Zscaler instance
@@ -98,6 +106,8 @@ paths:
           description: Zscaler unable to remove custom urls
       tags:
       - Config Zscaler
+      summary: Delete all categories
+      x-summary-source: derived
     post:
       description: 'Use this endpoint to trigger an update of all configured formats to your Zscaler instance
 
@@ -111,6 +121,8 @@ paths:
           description: Zscaler unable to update custom urls
       tags:
       - Config Zscaler
+      summary: Trigger update all
+      x-summary-source: derived
   /api/v2/config/zscaler/update/{format}:
     delete:
       description: 'Use this endpoint to delete a specific format from your Zscaler instance
@@ -136,6 +148,8 @@ paths:
           description: Zscaler updating a format was not successful
       tags:
       - Config Zscaler
+      summary: Delete category
+      x-summary-source: derived
     post:
       description: 'Use this endpoint to trigger an update to your Zscaler instance
 
@@ -160,6 +174,8 @@ paths:
           description: Zscaler unable to update custom urls for format.
       tags:
       - Config Zscaler
+      summary: Trigger update
+      x-summary-source: derived
   /api/v2/config/zscaler/zscalerLimits:
     get:
       description: 'Returns the current Zscaler quota.
@@ -176,8 +192,21 @@ paths:
           description: Successfully retrieved the Zscaler quota.
       tags:
       - Config Zscaler
+      summary: Get quota
+      x-summary-source: derived
 components:
   schemas:
+    ApiZScalerQuotaDTO:
+      properties:
+        remainingUrls:
+          format: int32
+          type: integer
+        status:
+          type: string
+        totalAllowedUrls:
+          format: int32
+          type: integer
+      type: object
     ApiZScalerConfigurationDTO:
       properties:
         apiKey:
@@ -198,17 +227,6 @@ components:
           type: boolean
         username:
           type: string
-      type: object
-    ApiZScalerQuotaDTO:
-      properties:
-        remainingUrls:
-          format: int32
-          type: integer
-        status:
-          type: string
-        totalAllowedUrls:
-          format: int32
-          type: integer
       type: object
   securitySchemes:
     BasicAuth:

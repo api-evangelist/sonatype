@@ -1,8 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Applications API
+  title: Sonatype Lifecycle Public REST Applications API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to manage applications.
+
+
+    In addition to the primary functions of create, update and delete, you can also move applications from one organization to other.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -36,15 +39,22 @@ paths:
           default: false
           type: boolean
       responses:
-        '200': &id001
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiApplicationListDTO'
           description: default response
-        default: *id001
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplicationListDTO'
+          description: default response
       tags:
       - Applications
+      summary: Get applications
+      x-summary-source: derived
     post:
       description: 'Use this method to create an application under an organization. Use the Organization REST API to obtain organizationId.
 
@@ -66,6 +76,8 @@ paths:
           description: The response contains application details for the application created using this method.
       tags:
       - Applications
+      summary: Add application
+      x-summary-source: derived
   /api/v2/applications/organization/{organizationId}:
     get:
       description: 'Use this method to retrieve application details for all applications under the organizationId provided.
@@ -89,6 +101,8 @@ paths:
           description: The response contains the details of all applications found under the organizationId provided.
       tags:
       - Applications
+      summary: Get applications by organization id
+      x-summary-source: derived
   /api/v2/applications/{applicationId}:
     delete:
       description: 'Use this method to permanently delete an existing application and all data associated with it. This action cannot be un-done. Before deleting, confirm that the application being deleted does not impact any integrations that could depend on it.
@@ -108,6 +122,8 @@ paths:
           description: Application deleted successfully
       tags:
       - Applications
+      summary: Delete application
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve the application details, by providing the applicationId.
 
@@ -130,8 +146,16 @@ paths:
           description: The response contains the details of the application corresponding to the applicationId.
       tags:
       - Applications
+      summary: Get application
+      x-summary-source: derived
     put:
-      description: "Use this method to update the application name, application tags or the contact user name for an existing application by providing the applicationId. \n\nNOTE: This method cannot be used to change the organizationId of an application.\n\nPermissions required: Edit IQ Elements"
+      description: 'Use this method to update the application name, application tags or the contact user name for an existing application by providing the applicationId.
+
+
+        NOTE: This method cannot be used to change the organizationId of an application.
+
+
+        Permissions required: Edit IQ Elements'
       operationId: updateApplication
       parameters:
       - in: path
@@ -154,6 +178,8 @@ paths:
           description: The response contains the updated application name, contact user name and application tags,  for the applicationId provided
       tags:
       - Applications
+      summary: Update application
+      x-summary-source: derived
   /api/v2/applications/{applicationId}/move/organization/{organizationId}:
     post:
       description: 'Use this method to move an application from one organization to another.
@@ -187,6 +213,8 @@ paths:
           description: Moving the application failed due to conflicts between the organizations.
       tags:
       - Applications
+      summary: Move application
+      x-summary-source: derived
   /api/v2/applications/{sourceApplicationId}/clone:
     post:
       description: 'Use this method to clone an existing application.
@@ -220,19 +248,10 @@ paths:
           description: The response contains application details of the cloned application.
       tags:
       - Applications
+      summary: Clone application
+      x-summary-source: derived
 components:
   schemas:
-    ApiMoveApplicationResponseDTOV2:
-      properties:
-        errors:
-          items:
-            type: string
-          type: array
-        warnings:
-          items:
-            type: string
-          type: array
-      type: object
     ApiApplicationDTO:
       properties:
         applicationTags:
@@ -258,6 +277,17 @@ components:
           type: string
         tagId:
           type: string
+      type: object
+    ApiMoveApplicationResponseDTOV2:
+      properties:
+        errors:
+          items:
+            type: string
+          type: array
+        warnings:
+          items:
+            type: string
+          type: array
       type: object
     ApiApplicationListDTO:
       properties:

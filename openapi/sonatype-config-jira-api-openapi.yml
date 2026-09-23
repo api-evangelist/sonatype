@@ -1,8 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Config Jira API
+  title: Sonatype Lifecycle Public REST Config Jira API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to manage Jira configurations to receive notifications from Lifecycle.
+
+
+    It is supported for Jira Cloud, Jira Server, and Jira Data Center.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -25,6 +28,8 @@ paths:
           description: Jira configuration deleted.
       tags:
       - Config Jira
+      summary: Delete configuration 2
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve an existing configuration for Jira.
 
@@ -42,6 +47,8 @@ paths:
           description: No saved Jira configuration exists.
       tags:
       - Config Jira
+      summary: Get configuration 2
+      x-summary-source: derived
     put:
       description: 'Use this method to set a Jira configuration. If a Jira configuration already exists, the values will be updated with the ones provided here. If the server URL is being changed, then the password (if any) will be required.
 
@@ -59,6 +66,8 @@ paths:
           description: Set Jira configuration successfully.
       tags:
       - Config Jira
+      summary: Set configuration 2
+      x-summary-source: derived
 components:
   schemas:
     ApiJiraConfigurationDTO:

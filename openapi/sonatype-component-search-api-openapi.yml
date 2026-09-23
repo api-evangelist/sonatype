@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Component Search API
+  title: Sonatype Lifecycle Public REST Component Search API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to search for components in application evaluation reports.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -12,7 +12,9 @@ tags:
 paths:
   /api/v2/componentSearch/cveAffectedComponents:
     get:
-      description: 'Retrieve paginated list of applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). Default page number is 1, default page size is 10. Results can be sorted by any column. Default sorting (when sortBy is not specified): applicationName (asc), then componentName (asc), then cveId (asc). When sortBy is explicitly specified, only single-field sorting is applied with the specified sortOrder (default: asc). <p>Permissions Required: View IQ Elements'
+      description: 'Retrieve paginated list of applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). Default page number is 1, default page size is 10. Results can be sorted by any column. Default sorting (when sortBy is not specified): applicationName (asc), then componentName (asc), then cveId (asc). When sortBy is explicitly specified, only single-field sorting is applied with the specified sortOrder (default: asc).
+
+        Permissions Required: View IQ Elements'
       operationId: getCveAffectedComponents
       parameters:
       - description: CVE identifier(s). Can be specified multiple times for multiple CVEs.
@@ -67,9 +69,13 @@ paths:
           description: Paginated list of affected applications and components
       tags:
       - Component Search
+      summary: Get cve affected components
+      x-summary-source: derived
   /api/v2/componentSearch/downloadComponentSearchReport:
     get:
-      description: 'Export component search results as CSV (streaming). Identifies applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). If no CVE ID is specified, defaults to CVE-2025-55182 (React2Shell) for backwards compatibility. Results are streamed to avoid memory issues with large datasets. Keep-alive mechanism prevents ALB timeouts during long-running queries. <p>Permissions Required: View IQ Elements'
+      description: 'Export component search results as CSV (streaming). Identifies applications containing components affected by one or more CVEs. Multiple CVE IDs can be specified using multiple cveId query parameters (e.g., ?cveId=CVE-2025-1&cveId=CVE-2025-2). If no CVE ID is specified, defaults to CVE-2025-55182 (React2Shell) for backwards compatibility. Results are streamed to avoid memory issues with large datasets. Keep-alive mechanism prevents ALB timeouts during long-running queries.
+
+        Permissions Required: View IQ Elements'
       operationId: exportComponentSearchReport
       parameters:
       - description: CVE identifier(s). Can be specified multiple times for multiple CVEs. Defaults to CVE-2025-55182 if not specified.
@@ -86,9 +92,23 @@ paths:
           description: CSV file containing the component search results
       tags:
       - Component Search
+      summary: Export component search report
+      x-summary-source: derived
   /api/v2/search/component:
     get:
-      description: 'Use this method to retrieve the component details from the application evaluation reports by specifying the component search parameters, format and evaluation stage. You can specify the component search parameters in any one of the 3 ways:<ul><li>SHA1 hash of the component</li><li>Component identifier object containing the coordinates of the component and its format</li><li>packageUrl string</li></ul>Use of wildcards when searching using the GAVEC(coordinates) is supported.
+      description: 'Use this method to retrieve the component details from the application evaluation reports by specifying the component search parameters, format and evaluation stage. You can specify the component search parameters in any one of the 3 ways:
+
+
+        SHA1 hash of the component
+
+
+        Component identifier object containing the coordinates of the component and its format
+
+
+        packageUrl string
+
+
+        Use of wildcards when searching using the GAVEC(coordinates) is supported.
 
 
         Permissions required: View IQ Elements'
@@ -127,6 +147,8 @@ paths:
             Each result includes applicationId and application name containing the component, the relative and absoluteURLs of the report, component metadata, threat level, and dependency data indicating if the component is a direct/transitive/InnerSource dependency.'
       tags:
       - Component Search
+      summary: Search component
+      x-summary-source: derived
 components:
   schemas:
     ApiDependencyDataDTO:
@@ -145,6 +167,39 @@ components:
             type: string
           type: array
           uniqueItems: true
+      type: object
+    ApiSearchCriteriaDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        hash:
+          type: string
+        packageUrl:
+          type: string
+        stageId:
+          type: string
+      type: object
+    ApiSearchResultDTOV2:
+      properties:
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        dependencyData:
+          $ref: '#/components/schemas/ApiDependencyDataDTO'
+        hash:
+          type: string
+        packageUrl:
+          type: string
+        reportHtmlUrl:
+          type: string
+        reportUrl:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
       type: object
     InnerSourceData:
       properties:
@@ -172,39 +227,6 @@ components:
           items:
             $ref: '#/components/schemas/ApiSearchResultDTOV2'
           type: array
-      type: object
-    ApiSearchResultDTOV2:
-      properties:
-        applicationId:
-          type: string
-        applicationName:
-          type: string
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        dependencyData:
-          $ref: '#/components/schemas/ApiDependencyDataDTO'
-        hash:
-          type: string
-        packageUrl:
-          type: string
-        reportHtmlUrl:
-          type: string
-        reportUrl:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-      type: object
-    ApiSearchCriteriaDTOV2:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        hash:
-          type: string
-        packageUrl:
-          type: string
-        stageId:
-          type: string
       type: object
     ComponentIdentifier:
       properties:

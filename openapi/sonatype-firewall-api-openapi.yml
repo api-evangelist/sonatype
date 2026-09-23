@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Firewall API
+  title: Sonatype Lifecycle Public REST Firewall API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API for managing and monitoring firewall features, including metrics, repository management, quarantine operations, and namespace confusion prevention.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -68,6 +68,8 @@ paths:
               style: simple
       tags:
       - Firewall
+      summary: Get unquarantine list
+      x-summary-source: derived
   /api/v2/firewall/components/quarantined:
     get:
       description: 'Use this method to request a list of quarantined components.
@@ -140,6 +142,8 @@ paths:
               style: simple
       tags:
       - Firewall
+      summary: Get quarantine list
+      x-summary-source: derived
   /api/v2/firewall/components/{repositoryManagerId}/{repositoryId}/evaluate:
     post:
       description: 'Use this method to evaluate components (max. 100).
@@ -222,6 +226,8 @@ paths:
           description: The response contains the evaluation results.
       tags:
       - Firewall
+      summary: Evaluate components 1
+      x-summary-source: derived
   /api/v2/firewall/connection/verify:
     get:
       description: 'Use this method to verify that the authenticated user has required permissions for firewall operations and retrieve accessible applications.
@@ -242,6 +248,8 @@ paths:
           description: User is authenticated but does not have 'Evaluate Individual Components' permission.
       tags:
       - Firewall
+      summary: Verify connection and get applications
+      x-summary-source: derived
   /api/v2/firewall/container-image/policyViolations/quarantined:
     get:
       description: 'Use this method to find all container images currently in quarantine.
@@ -278,9 +286,14 @@ paths:
               style: simple
       tags:
       - Firewall
+      summary: Get container images in quarantine
+      x-summary-source: derived
   /api/v2/firewall/container-image/policyWaiver:
     get:
-      description: "Use this method to get all policy waivers for container images. \n\nPermissions required: Waive Policy Violations"
+      description: 'Use this method to get all policy waivers for container images.
+
+
+        Permissions required: Waive Policy Violations'
       operationId: getWaivers
       parameters:
       - in: query
@@ -311,6 +324,8 @@ paths:
               style: simple
       tags:
       - Firewall
+      summary: Get waivers
+      x-summary-source: derived
   /api/v2/firewall/container-image/{containerImageId}/policyWaiver:
     delete:
       description: 'Use this method to delete a container waiver, specified by the containerImageId.
@@ -330,8 +345,13 @@ paths:
           description: Waiver has been deleted successfully.
       tags:
       - Firewall
+      summary: Delete container image policy waiver
+      x-summary-source: derived
     post:
-      description: "Use this method to create a waiver for all policy violations of a container Image. \n\nPermissions required: Waive Policy Violations"
+      description: 'Use this method to create a waiver for all policy violations of a container Image.
+
+
+        Permissions required: Waive Policy Violations'
       operationId: addWaiver
       parameters:
       - description: Enter the container image id.
@@ -351,6 +371,8 @@ paths:
           description: Waiver has been created successfully.
       tags:
       - Firewall
+      summary: Add waiver
+      x-summary-source: derived
   /api/v2/firewall/metrics/embedded:
     get:
       description: 'Use this method to retrieve firewall dashboard metrics.
@@ -369,6 +391,8 @@ paths:
           description: The response contains a map of firewall metric name to value including the last updated time.
       tags:
       - Firewall
+      summary: Get firewall metrics
+      x-summary-source: derived
   /api/v2/firewall/namespace_confusion/{format}:
     delete:
       description: 'Removes proprietary component namespaces for the specified format.
@@ -389,6 +413,8 @@ paths:
           description: Namespaces successfully removed.
       tags:
       - Firewall
+      summary: Remove proprietary component names
+      x-summary-source: derived
     post:
       description: 'Adds a list of proprietary component namespaces for the specified format to prevent namespace confusion attacks.
 
@@ -417,6 +443,8 @@ paths:
           description: Namespaces successfully added.
       tags:
       - Firewall
+      summary: Add proprietary component names
+      x-summary-source: derived
   /api/v2/firewall/quarantine/summary:
     get:
       description: 'Use this method to request a summary of quarantined components.
@@ -433,6 +461,8 @@ paths:
           description: The response contains:<ul><li>`repositoryCount` is the total number of repositories.</li><li>`quarantineEnabledRepositoryCount` is the total number of repositories with quarantine  capability enabled.</li><li>`quarantinedEnabled` indicates if any repository has the quarantine capability enabled.</li><li>`totalComponentCount` is the total number of components across all repositories.</li><li>`quarantinedComponentCount` is the total number of quarantined components.</li></ul>
       tags:
       - Firewall
+      summary: Get quarantine summary
+      x-summary-source: derived
   /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess:
     get:
       description: 'Use this method to determine if the quarantined component(s) details can be accessed anonymously.
@@ -449,6 +479,8 @@ paths:
           description: The response returns `true` if anonymous access to quarantined components is enabled.
       tags:
       - Firewall
+      summary: Get quarantined component view anonymous access
+      x-summary-source: derived
   /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess/{enabled}:
     put:
       description: 'Use this method to enable/disable anonymous access to view the quarantined components.
@@ -468,6 +500,8 @@ paths:
           description: Successfully updated anonymous access.
       tags:
       - Firewall
+      summary: Set quarantined component view anonymous access
+      x-summary-source: derived
   /api/v2/firewall/releaseQuarantine/configuration:
     get:
       description: 'Use this method to retrieve the configuration settings for auto-release from quarantine for repositories.
@@ -486,6 +520,8 @@ paths:
           description: The response contains a list of repositories and the corresponding configuration for auto-release from quarantine.
       tags:
       - Firewall
+      summary: Get firewall auto unquarantine config
+      x-summary-source: derived
     put:
       description: 'Use this method to set the configurations for auto-release from quarantine for a list of repositories.
 
@@ -512,6 +548,8 @@ paths:
           description: The response contains each updated `autoReleaseQuarantineEnabled` status for the repositories requested.
       tags:
       - Firewall
+      summary: Set firewall auto unquarantine config
+      x-summary-source: derived
   /api/v2/firewall/releaseQuarantine/summary:
     get:
       description: 'Use this method to track how many components have been automatically released from quarantine over different time periods.
@@ -528,9 +566,17 @@ paths:
           description: The response contains:<ul><li>`autoReleaseQuarantineCountMTD` is the number of auto-released quarantine components from the start of the current month to the current date.</li><li>`autoReleaseQuarantineCountYTD` is the number of auto-released quarantine components from the start of the current year to the current date.</li></ul>
       tags:
       - Firewall
+      summary: Get firewall unquarantine summary
+      x-summary-source: derived
   /api/v2/firewall/repositories/cascade-reevaluate/componentHash/{componentHash}:
     post:
-      description: 'Initiate cascade re-evaluation for a component across repository hierarchies.<p>This operation asynchronously re-evaluates the specified component across all repositories where the component exists.<p>The system will automatically discover all eligible repositories based on component presence.<p>Permissions Required: Evaluate Components at Repository Managers level'
+      description: 'Initiate cascade re-evaluation for a component across repository hierarchies.
+
+        This operation asynchronously re-evaluates the specified component across all repositories where the component exists.
+
+        The system will automatically discover all eligible repositories based on component presence.
+
+        Permissions Required: Evaluate Components at Repository Managers level'
       operationId: initiateCascadeReevaluation
       parameters:
       - description: The component hash to re-evaluate across all repositories
@@ -550,9 +596,33 @@ paths:
           description: Forbidden - insufficient permissions
       tags:
       - Firewall
+      summary: Initiate cascade reevaluation
+      x-summary-source: derived
   /api/v2/firewall/repositories/cascade-reevaluate/status/{requestId}:
     get:
-      description: 'Get the status of a cascade re-evaluation request.<p>Returns the current progress of a cascade re-evaluation operation including the list of components that have been evaluated and those still pending. The overall status will be ''pending'' if any components are still being processed, or ''completed'' if all components have been evaluated.<p>The response includes:<ul><li><b>status:</b> Overall status (PENDING, IN_PROGRESS, COMPLETED, NO_COMPONENTS_FOUND, FAILED)</li><li><b>referenceComponentHash:</b> The component hash that was re-evaluated</li><li><b>pending:</b> Components still being processed (PENDING status)</li><li><b>evaluated:</b> Components successfully re-evaluated (COMPLETED or NO_COMPONENTS_FOUND status)</li><li><b>failed:</b> Components that could not be re-evaluated (FAILED status)</li></ul><p>Permissions Required: Evaluate Components at Repository Managers level'
+      description: 'Get the status of a cascade re-evaluation request.
+
+        Returns the current progress of a cascade re-evaluation operation including the list of components that have been evaluated and those still pending. The overall status will be ''pending'' if any components are still being processed, or ''completed'' if all components have been evaluated.
+
+        The response includes:
+
+
+        status: Overall status (PENDING, IN_PROGRESS, COMPLETED, NO_COMPONENTS_FOUND, FAILED)
+
+
+        referenceComponentHash: The component hash that was re-evaluated
+
+
+        pending: Components still being processed (PENDING status)
+
+
+        evaluated: Components successfully re-evaluated (COMPLETED or NO_COMPONENTS_FOUND status)
+
+
+        failed: Components that could not be re-evaluated (FAILED status)
+
+
+        Permissions Required: Evaluate Components at Repository Managers level'
       operationId: getCascadeStatus
       parameters:
       - description: The cascade request ID to check status for
@@ -574,6 +644,8 @@ paths:
           description: Cascade request not found. It could have been deleted after 24 hours.
       tags:
       - Firewall
+      summary: Get cascade status
+      x-summary-source: derived
   /api/v2/firewall/repositories/configuration/{repositoryManagerId}:
     get:
       description: 'Use this method to retrieve the configuration details of an existing repository manager.
@@ -603,6 +675,8 @@ paths:
           description: The response contains the configuration details of the requested repository manager.
       tags:
       - Firewall
+      summary: Get configured repositories
+      x-summary-source: derived
     post:
       description: 'Use this method to update the repositories for an existing repository manager.
 
@@ -628,6 +702,8 @@ paths:
           description: Repositories updated successfully.
       tags:
       - Firewall
+      summary: Configure repositories
+      x-summary-source: derived
   /api/v2/firewall/repositoryContainer:
     get:
       description: 'Use this method to retrieve the ID and name for the repository container.
@@ -644,6 +720,8 @@ paths:
           description: The response contains the ID and name for the repository container.
       tags:
       - Firewall
+      summary: Get repository container
+      x-summary-source: derived
   /api/v2/firewall/repositoryManagers:
     get:
       description: 'Use this method to retrieve all configured repository managers.
@@ -660,6 +738,8 @@ paths:
           description: The response contains details of configured repository managers.
       tags:
       - Firewall
+      summary: Get repository managers
+      x-summary-source: derived
     post:
       description: 'Use this method to add a new repository manager.
 
@@ -682,6 +762,8 @@ paths:
           description: The response contains the details of the new repository manager.
       tags:
       - Firewall
+      summary: Add repository manager
+      x-summary-source: derived
   /api/v2/firewall/repositoryManagers/{repositoryManagerId}:
     delete:
       description: 'Use this method to delete an existing repository manager.
@@ -701,6 +783,8 @@ paths:
           description: The requested repository manager has been deleted.
       tags:
       - Firewall
+      summary: Delete repository manager
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve details of an existing repository manager.
 
@@ -723,9 +807,13 @@ paths:
           description: The response contains the details of the repository manager requested.
       tags:
       - Firewall
+      summary: Get repository manager
+      x-summary-source: derived
   /api/v2/malware-defense/evaluate:
     post:
-      description: Evaluate malware for a list of components.<p>Use this endpoint to evaluate malware for a list of components up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component that are of the same format type.
+      description: 'Evaluate malware for a list of components.
+
+        Use this endpoint to evaluate malware for a list of components up to a maximum of 100 components in a single request.A hash or packageUrl (or both) can be supplied for each component that are of the same format type.'
       operationId: evaluateMalware
       requestBody:
         content:
@@ -741,9 +829,13 @@ paths:
           description: Malware evaluation results for the components
       tags:
       - Firewall
+      summary: Evaluate malware
+      x-summary-source: derived
   /api/v2/malware-defense/metrics:
     get:
-      description: The response contains malware defense API metrics.<p>Use this endpoint to get the count of malicious components evaluated via malware defense API grouped by format.
+      description: 'The response contains malware defense API metrics.
+
+        Use this endpoint to get the count of malicious components evaluated via malware defense API grouped by format.'
       operationId: getMalwareDefenseMetrics
       responses:
         '200':
@@ -757,41 +849,52 @@ paths:
           description: Malware defense metrics grouped by format.
       tags:
       - Firewall
+      summary: Get malware defense metrics
+      x-summary-source: derived
 components:
   schemas:
-    ContainerImageInQuarantineData:
+    ApiMalwareComponentEvaluationRequest:
+      properties:
+        hash:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    ApiRepositoryContainerDTO:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        relatedOrganizationId:
+          type: string
+      type: object
+    ApiFirewallQuarantinedComponentDto:
       description: List of items for the current page
       properties:
-        applicationId:
+        componentIdentifier:
+          $ref: '#/components/schemas/ComponentIdentifier'
+        displayName:
           type: string
-        applicationName:
+        hash:
           type: string
-        applicationPublicId:
+        matchState:
           type: string
-        openTime:
-          type: number
-        policyViolationCount:
-          format: int64
-          type: integer
+        pathname:
+          type: string
+        policyName:
+          type: string
+        quarantineDate:
+          type: string
+        quarantined:
+          type: boolean
         repositoryId:
           type: string
-        repositoryPublicId:
-          type: string
-        scanId:
+        repositoryName:
           type: string
         threatLevel:
           format: int32
           type: integer
-      type: object
-    ApiContainerImageWaiverDTO:
-      properties:
-        comment:
-          type: string
-        expiryTime:
-          format: date-time
-          type: string
-        waiverReasonId:
-          type: string
       type: object
     ApiRepositoryManagerListDTO:
       properties:
@@ -799,92 +902,6 @@ components:
           items:
             $ref: '#/components/schemas/ApiRepositoryManagerDTO'
           type: array
-      type: object
-    ApiFirewallQuarantineSummaryDTO:
-      properties:
-        quarantineEnabled:
-          type: boolean
-        quarantineEnabledRepositoryCount:
-          format: int64
-          type: integer
-        quarantinedComponentCount:
-          format: int64
-          type: integer
-        repositoryCount:
-          format: int64
-          type: integer
-        totalComponentCount:
-          format: int64
-          type: integer
-      type: object
-    ApiFirewallReleaseQuarantineSummaryDTO:
-      properties:
-        autoReleaseQuarantineCountMTD:
-          format: int64
-          type: integer
-        autoReleaseQuarantineCountYTD:
-          format: int64
-          type: integer
-      type: object
-    ApiRepositoryComponentEvaluationRequest:
-      properties:
-        hash:
-          type: string
-        packageUrl:
-          type: string
-        pathname:
-          type: string
-      type: object
-    MalwareDefenseData:
-      properties:
-        hash:
-          type: string
-        isMalicious:
-          type: boolean
-        malwareCategories:
-          items:
-            $ref: '#/components/schemas/MalwareCategory'
-          type: array
-        matchState:
-          type: string
-        packageUrl:
-          type: string
-      type: object
-    ApiFirewallReleaseQuarantineConfigDTO:
-      properties:
-        autoReleaseQuarantineEnabled:
-          type: boolean
-        id:
-          type: string
-        name:
-          type: string
-      type: object
-    CascadeComponentProgressDTO:
-      properties:
-        componentId:
-          type: string
-        quarantined:
-          type: boolean
-        repositoryId:
-          type: string
-        repositoryManagerId:
-          type: string
-      type: object
-    ApplicationSummary:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        publicId:
-          type: string
-      type: object
-    ApiConstraintViolationReasonDTO:
-      properties:
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
       type: object
     ApiRepositoryDTO:
       properties:
@@ -905,29 +922,66 @@ components:
         type:
           type: string
       type: object
-    ApiRepositoryListDTO:
+    ApiFirewallQuarantinedComponentDtoResult:
       properties:
-        repositories:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
           items:
-            $ref: '#/components/schemas/ApiRepositoryDTO'
+            $ref: '#/components/schemas/ApiFirewallQuarantinedComponentDto'
           type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
       type: object
-    ApiRepositoryComponentEvaluationResult:
+    ApiPolicyViolationDTOV2:
       properties:
-        catalogDate:
-          format: date-time
-          type: string
-        component:
-          $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
-        policyViolations:
+        constraintViolations:
           items:
-            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
           type: array
-        quarantineDate:
+        fixTime:
           format: date-time
           type: string
-        quarantined:
-          type: boolean
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    MalwareCategory:
+      properties:
+        attackVector:
+          type: string
+        threatTypes:
+          items:
+            type: string
+          type: array
       type: object
     ApiFirewallComponentDTO:
       description: List of items for the current page
@@ -959,25 +1013,182 @@ components:
         repositoryId:
           type: string
       type: object
-    ApiConstraintViolationDTO:
+    ApiRepositoryComponentEvaluationRequestList:
       properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
+        components:
           items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
           type: array
-      type: object
-    ComponentIdentifier:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
         format:
           type: string
+      type: object
+    ApiFirewallQuarantineSummaryDTO:
+      properties:
+        quarantineEnabled:
+          type: boolean
+        quarantineEnabledRepositoryCount:
+          format: int64
+          type: integer
+        quarantinedComponentCount:
+          format: int64
+          type: integer
+        repositoryCount:
+          format: int64
+          type: integer
+        totalComponentCount:
+          format: int64
+          type: integer
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiFirewallReleaseQuarantineConfigDTO:
+      properties:
+        autoReleaseQuarantineEnabled:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    ApiRepositoryManagerDTO:
+      properties:
+        id:
+          type: string
+        instanceId:
+          type: string
+        name:
+          type: string
+        productName:
+          type: string
+        productVersion:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ApiMalwareComponentEvaluationRequestList:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiMalwareComponentEvaluationRequest'
+          type: array
+        format:
+          type: string
+      type: object
+    ContainerImageInQuarantineData:
+      description: List of items for the current page
+      properties:
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        applicationPublicId:
+          type: string
+        openTime:
+          type: number
+        policyViolationCount:
+          format: int64
+          type: integer
+        repositoryId:
+          type: string
+        repositoryPublicId:
+          type: string
+        scanId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    CascadeReevaluateTicketDTO:
+      properties:
+        statusUrl:
+          type: string
+      type: object
+    ApiRepositoryComponentEvaluationRequest:
+      properties:
+        hash:
+          type: string
+        packageUrl:
+          type: string
+        pathname:
+          type: string
+      type: object
+    ApiRepositoryListDTO:
+      properties:
+        repositories:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryDTO'
+          type: array
+      type: object
+    ApiContainerImageWaiverDTO:
+      properties:
+        comment:
+          type: string
+        expiryTime:
+          format: date-time
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ApplicationSummary:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiRepositoryComponentEvaluationResultList:
+      properties:
+        repositoryId:
+          type: string
+        repositoryManagerId:
+          type: string
+        repositoryPublicId:
+          type: string
+        repositoryType:
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationResult'
+          type: array
+      type: object
+    ApiFirewallComponentDTOResult:
+      properties:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/ApiFirewallComponentDTO'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
       type: object
     CascadeStatusResponseDTO:
       properties:
@@ -1004,25 +1215,6 @@ components:
           - FAILED
           type: string
       type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
-          type: string
-      type: object
-    MalwareCategory:
-      properties:
-        attackVector:
-          type: string
-        threatTypes:
-          items:
-            type: string
-          type: array
-      type: object
     MalwareDefenseResponseList:
       properties:
         componentList:
@@ -1030,97 +1222,13 @@ components:
             $ref: '#/components/schemas/MalwareDefenseData'
           type: array
       type: object
-    ApiRepositoryComponentEvaluationResultList:
+    ApiFirewallMetricsResultDTO:
       properties:
-        repositoryId:
-          type: string
-        repositoryManagerId:
-          type: string
-        repositoryPublicId:
-          type: string
-        repositoryType:
-          type: string
-        results:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationResult'
-          type: array
-      type: object
-    ApiPolicyViolationDTOV2:
-      properties:
-        constraintViolations:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
-          type: array
-        fixTime:
-          format: date-time
-          type: string
-        legacyViolationTime:
-          format: date-time
-          type: string
-        openTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        threatLevel:
+        firewallMetricsValue:
           format: int32
           type: integer
-        waiveTime:
+        latestUpdatedTime:
           format: date-time
-          type: string
-      type: object
-    ApiMalwareComponentEvaluationRequest:
-      properties:
-        hash:
-          type: string
-        packageUrl:
-          type: string
-      type: object
-    ApiRepositoryContainerDTO:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        relatedOrganizationId:
-          type: string
-      type: object
-    CascadeReevaluateTicketDTO:
-      properties:
-        statusUrl:
-          type: string
-      type: object
-    ApiMalwareComponentEvaluationRequestList:
-      properties:
-        components:
-          items:
-            $ref: '#/components/schemas/ApiMalwareComponentEvaluationRequest'
-          type: array
-        format:
-          type: string
-      type: object
-    ApplicationSummaryList:
-      properties:
-        applicationSummaries:
-          items:
-            $ref: '#/components/schemas/ApplicationSummary'
-          type: array
-      type: object
-    ApiRepositoryManagerDTO:
-      properties:
-        id:
-          type: string
-        instanceId:
-          type: string
-        name:
-          type: string
-        productName:
-          type: string
-        productVersion:
           type: string
       type: object
     ContainerImageInQuarantineDataResult:
@@ -1147,32 +1255,16 @@ components:
           format: int64
           type: integer
       type: object
-    ApiFirewallQuarantinedComponentDto:
-      description: List of items for the current page
+    ApiConstraintViolationDTO:
       properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ComponentIdentifier'
-        displayName:
+        constraintId:
           type: string
-        hash:
+        constraintName:
           type: string
-        matchState:
-          type: string
-        pathname:
-          type: string
-        policyName:
-          type: string
-        quarantineDate:
-          type: string
-        quarantined:
-          type: boolean
-        repositoryId:
-          type: string
-        repositoryName:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
       type: object
     PolicyContainerWaiverDataResult:
       properties:
@@ -1198,29 +1290,73 @@ components:
           format: int64
           type: integer
       type: object
-    ApiFirewallQuarantinedComponentDtoResult:
+    MalwareDefenseData:
       properties:
-        page:
-          description: Current page number
-          format: int32
-          type: integer
-        pageCount:
-          description: Total number of pages
-          format: int64
-          type: integer
-        pageSize:
-          description: Number of items per page
-          format: int32
-          type: integer
-        results:
-          description: List of items for the current page
+        hash:
+          type: string
+        isMalicious:
+          type: boolean
+        malwareCategories:
           items:
-            $ref: '#/components/schemas/ApiFirewallQuarantinedComponentDto'
+            $ref: '#/components/schemas/MalwareCategory'
           type: array
-        total:
-          description: Total number of items
+        matchState:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    ApiRepositoryComponentEvaluationResult:
+      properties:
+        catalogDate:
+          format: date-time
+          type: string
+        component:
+          $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+        quarantineDate:
+          format: date-time
+          type: string
+        quarantined:
+          type: boolean
+      type: object
+    CascadeComponentProgressDTO:
+      properties:
+        componentId:
+          type: string
+        quarantined:
+          type: boolean
+        repositoryId:
+          type: string
+        repositoryManagerId:
+          type: string
+      type: object
+    ApiFirewallReleaseQuarantineSummaryDTO:
+      properties:
+        autoReleaseQuarantineCountMTD:
           format: int64
           type: integer
+        autoReleaseQuarantineCountYTD:
+          format: int64
+          type: integer
+      type: object
+    ApplicationSummaryList:
+      properties:
+        applicationSummaries:
+          items:
+            $ref: '#/components/schemas/ApplicationSummary'
+          type: array
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
       type: object
     PolicyContainerWaiverData:
       description: List of items for the current page
@@ -1246,48 +1382,6 @@ components:
         uniquePolicyCount:
           format: int64
           type: integer
-      type: object
-    ApiFirewallComponentDTOResult:
-      properties:
-        page:
-          description: Current page number
-          format: int32
-          type: integer
-        pageCount:
-          description: Total number of pages
-          format: int64
-          type: integer
-        pageSize:
-          description: Number of items per page
-          format: int32
-          type: integer
-        results:
-          description: List of items for the current page
-          items:
-            $ref: '#/components/schemas/ApiFirewallComponentDTO'
-          type: array
-        total:
-          description: Total number of items
-          format: int64
-          type: integer
-      type: object
-    ApiRepositoryComponentEvaluationRequestList:
-      properties:
-        components:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
-          type: array
-        format:
-          type: string
-      type: object
-    ApiFirewallMetricsResultDTO:
-      properties:
-        firewallMetricsValue:
-          format: int32
-          type: integer
-        latestUpdatedTime:
-          format: date-time
-          type: string
       type: object
   securitySchemes:
     BasicAuth:

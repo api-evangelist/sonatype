@@ -1,8 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Configuration API
+  title: Sonatype Lifecycle Public REST Configuration API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to configure the IQ Server system properties.
+
+
+    We strongly recommend using this REST API instead of config.yml for versions 142 and higher.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -35,6 +38,8 @@ paths:
           description: System Configuration removed
       tags:
       - Configuration
+      summary: Delete configuration 1
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve the configured value for an IQ Server system property.
 
@@ -59,6 +64,8 @@ paths:
           description: System Configuration retrieved
       tags:
       - Configuration
+      summary: Get configuration 1
+      x-summary-source: derived
     put:
       description: 'Use this method to configure one or more IQ Server system properties. The property names are case-sensitive.
 
@@ -76,6 +83,8 @@ paths:
           description: System Configuration updated
       tags:
       - Configuration
+      summary: Set configuration 1
+      x-summary-source: derived
   /api/v2/config/integrationVersions/cache:
     delete:
       description: 'Clear the integration version cache. Use this endpoint after a new integration version is released to ensure IQ Server immediately recognizes the new version instead of waiting for cache expiration (10 minutes).
@@ -92,27 +101,31 @@ paths:
           description: Cache cleared successfully. Returns the number of entries that were invalidated.
       tags:
       - Configuration
+      summary: Invalidate cache
+      x-summary-source: derived
 components:
   schemas:
-    SystemConfigProperty:
-      enum:
-      - baseUrl
-      - forceBaseUrl
-      type: string
+    SystemConfig:
+      properties:
+        baseUrl:
+          type:
+          - string
+          - 'null'
+        forceBaseUrl:
+          type:
+          - boolean
+          - 'null'
     CacheInvalidationResponse:
       properties:
         entriesInvalidated:
           format: int64
           type: integer
       type: object
-    SystemConfig:
-      properties:
-        baseUrl:
-          nullable: true
-          type: string
-        forceBaseUrl:
-          nullable: true
-          type: boolean
+    SystemConfigProperty:
+      enum:
+      - baseUrl
+      - forceBaseUrl
+      type: string
   securitySchemes:
     BasicAuth:
       scheme: basic

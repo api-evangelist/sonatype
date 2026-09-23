@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Config Mail API
+  title: Sonatype Lifecycle Public REST Config Mail API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage the configuration of an SMTP server, to receive email notifications.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -24,6 +24,8 @@ paths:
           description: SMTP server configuration does not exist.
       tags:
       - Config Mail
+      summary: Delete configuration 3
+      x-summary-source: derived
     get:
       description: 'Use this method to review the configuration for an SMTP server.
 
@@ -41,6 +43,8 @@ paths:
           description: No SMTP server is currently configured with the IQ Server.
       tags:
       - Config Mail
+      summary: Get configuration 3
+      x-summary-source: derived
     put:
       description: 'Use this method to configure or update an existing SMTP server configuration.
 
@@ -60,6 +64,8 @@ paths:
           description: Missing or invalid values provided.
       tags:
       - Config Mail
+      summary: Set configuration 3
+      x-summary-source: derived
   /api/v2/config/mail/test/{recipientEmail}:
     post:
       description: 'Use this method to test an SMTP configuration, without affecting the current configuration.
@@ -87,6 +93,8 @@ paths:
           description: Missing or invalid values provided.
       tags:
       - Config Mail
+      summary: Test configuration
+      x-summary-source: derived
 components:
   schemas:
     ApiMailConfigurationDTO:

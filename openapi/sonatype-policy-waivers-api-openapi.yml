@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Policy Waivers API
+  title: Sonatype Lifecycle Public REST Policy Waivers API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to create and retrieve policy waivers.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -67,6 +67,8 @@ paths:
           description: Waiver created successfully.
       tags:
       - Policy Waivers
+      summary: Add waiver to transitive policy violations by owner stage component
+      x-summary-source: derived
   /api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/{scanId}:
     get:
       description: 'Use this method to retrieve all waivers on policy violations due to transitive dependencies for a specific component detected in a specific scan. Any one of the input parameters, i.e. componentIdentifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.
@@ -120,6 +122,8 @@ paths:
           description: The response contains a list of waivers on transitive policy violations for the dependencies of the component specified, for the given scanId.
       tags:
       - Policy Waivers
+      summary: Get transitive policy waivers by app scan component
+      x-summary-source: derived
     post:
       description: 'Use this method to create a policy waiver on a transitive component detected during the specified scan. NOTE: Any one of the input parameters, i.e. component identifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.
 
@@ -174,6 +178,8 @@ paths:
           description: No content. Indicates that the waiver has been created successfully.
       tags:
       - Policy Waivers
+      summary: Add waiver to transitive policy violations by app scan component
+      x-summary-source: derived
   /api/v2/policyWaivers/waiverRequests/{policyViolationId}:
     post:
       deprecated: true
@@ -197,6 +203,8 @@ paths:
           description: Waiver request webhook triggered successfully
       tags:
       - Policy Waivers
+      summary: Request policy waiver
+      x-summary-source: derived
   /api/v2/policyWaivers/{ownerType}/{ownerId}:
     get:
       description: 'Use this method to retrieve waiver details for all policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.
@@ -235,6 +243,8 @@ paths:
           description: The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the policyWaiverId. The response field 'matcherStrategy' indicates whether the waiver applies to a specific component, or all components that exist at that level of hierarchy (root org, org application), or all versions of the component (past, present, and future). The response fields associatedPackageUrl, displayName, and componentIdentifier are null for waivers on all components and unknown components.
       tags:
       - Policy Waivers
+      summary: Get policy waivers
+      x-summary-source: derived
     post:
       description: 'Use this method to create policy waivers for multiple policy violations.
 
@@ -273,6 +283,8 @@ paths:
           description: No content. Indicates that the waivers have been created successfully.
       tags:
       - Policy Waivers
+      summary: Add bulk policy waivers
+      x-summary-source: derived
   /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyViolationId}:
     post:
       description: 'Use this method to create a policy waiver.
@@ -318,6 +330,8 @@ paths:
           description: No content. Indicates that the waiver has been created successfully.
       tags:
       - Policy Waivers
+      summary: Add policy waiver by policy violation id
+      x-summary-source: derived
   /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyWaiverId}:
     delete:
       description: 'Use this method to delete a waiver, specified by the policyWaiverId.
@@ -356,6 +370,8 @@ paths:
           description: Waiver has been deleted successfully.
       tags:
       - Policy Waivers
+      summary: Delete policy waiver
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve waiver details for the waiverId specified.
 
@@ -397,6 +413,8 @@ paths:
           description: The response contains waiver details corresponding to the policy waiverId specified.
       tags:
       - Policy Waivers
+      summary: Get policy waiver
+      x-summary-source: derived
     put:
       description: 'Use this method to update an existing policy waiver.
 
@@ -441,71 +459,48 @@ paths:
           description: The policy waiver was updated successfully.
       tags:
       - Policy Waivers
+      summary: Update policy waiver
+      x-summary-source: derived
 components:
   schemas:
-    ApiWaiverOptionsDTO:
+    TriggerReference:
       properties:
-        applyToAllComponents:
-          type: boolean
-        comment:
-          type: string
-        expireWhenRemediationAvailable:
-          type: boolean
-        expiryTime:
-          format: date-time
-          type: string
-        matcherStrategy:
+        type:
           enum:
-          - DEFAULT
-          - EXACT_COMPONENT
-          - ALL_COMPONENTS
-          - ALL_VERSIONS
-          type: string
-        waiverReasonId:
-          type: string
-      type: object
-    ApiComponentPolicyWaiversDTO:
-      properties:
-        componentPolicyWaivers:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
-          type: array
-      type: object
-    ComponentDisplayNamePart:
-      properties:
-        field:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
           type: string
         value:
           type: string
       type: object
-    ApiRequestPolicyWaiverDTO:
+    ConstraintFact:
       properties:
-        addWaiverLink:
-          type: string
-        comment:
-          type: string
-        policyViolationLink:
-          type: string
-        reasonId:
-          type: string
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ApiBulkWaiversDTO:
-      properties:
-        apiWaiverOptionsDTO:
-          $ref: '#/components/schemas/ApiWaiverOptionsDTO'
-        violationIds:
+        conditionFacts:
           items:
-            type: string
+            $ref: '#/components/schemas/ConditionFact'
           type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
       type: object
     ApiPolicyWaiverDTO:
       properties:
@@ -578,20 +573,70 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ConditionFact:
+    ApiComponentPolicyWaiversDTO:
       properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
+        componentPolicyWaivers:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          type: array
+      type: object
+    ApiRequestPolicyWaiverDTO:
+      properties:
+        addWaiverLink:
           type: string
-        reason:
+        comment:
           type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
+        policyViolationLink:
           type: string
-        triggerJson:
+        reasonId:
+          type: string
+      type: object
+    ApiBulkWaiversDTO:
+      properties:
+        apiWaiverOptionsDTO:
+          $ref: '#/components/schemas/ApiWaiverOptionsDTO'
+        violationIds:
+          items:
+            type: string
+          type: array
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiWaiverOptionsDTO:
+      properties:
+        applyToAllComponents:
+          type: boolean
+        comment:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        waiverReasonId:
           type: string
       type: object
     ComponentDisplayName:
@@ -603,34 +648,9 @@ components:
             $ref: '#/components/schemas/ComponentDisplayNamePart'
           type: array
       type: object
-    ComponentIdentifier:
+    ComponentDisplayNamePart:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
+        field:
           type: string
         value:
           type: string

@@ -1,13 +1,25 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Source Control API
+  title: Sonatype Lifecycle Public REST Source Control API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to:
+
+
+    Create, update and delete source control management (SCM) configuration for the root organization, sub-organizations and applications.
+
+
+    Automatically assign the developer role to all contributors of the associated repository, who are registered IQ users.'
 security:
 - BasicAuth: []
   BearerAuth: []
 tags:
-- description: Use this REST API to:<ul><li>Create, update and delete source control management (SCM) configuration for the root organization, sub-organizations and applications.</li><li>Automatically assign the developer role to all contributors of the associated repository, who are registered IQ users.</li></ul>
+- description: 'Use this REST API to:
+
+
+    Create, update and delete source control management (SCM) configuration for the root organization, sub-organizations and applications.
+
+
+    Automatically assign the developer role to all contributors of the associated repository, who are registered IQ users.'
   name: Source Control
 paths:
   /api/v2/sourceControl/automaticRoleAssignment/userMappings/{organizationId}:
@@ -29,6 +41,8 @@ paths:
           description: User mappings deleted successfully.
       tags:
       - Source Control
+      summary: Delete user mappings
+      x-summary-source: derived
     post:
       description: 'Use this method to apply user mappings from SCM (GitHub) to Lifecycle. The user mappings will be inherited by all child organizations and applications in the organization hierarchy. If a user mapping for an organization already exists, it will be replaced with new mappings provided here.
 
@@ -53,6 +67,8 @@ paths:
           description: User mappings applied successfully.<ul><li>When multiple user mappings are specified in the body, and the first mapping fails,  the next user mapping will be attempted.</li><li>If duplicate user mappings are specified, an error message will be displayed</li></ul>
       tags:
       - Source Control
+      summary: Add user mappings
+      x-summary-source: derived
   /api/v2/sourceControl/automaticRoleAssignment/userMappings/{ownerType}/{internalOwnerId}:
     get:
       description: 'Use this method to retrieve SCM user mappings for an organization or application.
@@ -86,12 +102,23 @@ paths:
           description: The response contains:<ul><li>`ownerInternalId` indicates the owner id for which the user mappings were created.</li><li>`inherited` is always `true` if the ownerType is application</li><li>`userMapping` is an object containing `role` and `mappings`.<ul><li> `role` indicates the role assigned to users during automatic role assignment.</li><li>`mappings` contain all existing user mappings from the SCM sytem to IQ.</li></ul></ul>
       tags:
       - Source Control
+      summary: Get user mappings by owner
+      x-summary-source: derived
   /api/v2/sourceControl/automaticRoleAssignment/{publicId}:
     post:
       description: 'Use this method to automatically grant the supplied role to all contributors of a repository on a given application.
 
 
-        Prerequisites for automatic role assignment are:<ol><li>SCM configuration for the application and authentication token should exist.</li><li>The contributors to the repository should match a user in IQ based on the supplied mappings.</li><li>Either user mapping strategies have been configured for your organization, or they are provided in the request</li></ol>
+        Prerequisites for automatic role assignment are:
+
+
+        SCM configuration for the application and authentication token should exist.
+
+
+        The contributors to the repository should match a user in IQ based on the supplied mappings.
+
+
+        Either user mapping strategies have been configured for your organization, or they are provided in the request
 
 
         Permissions required: Edit access control on the application.'
@@ -120,6 +147,8 @@ paths:
             The response contains all usernames that were successfully granted the role provided on the given application as well as an indication of which matching strategy was the first to match a user.'
       tags:
       - Source Control
+      summary: Automatic role assignment
+      x-summary-source: derived
   /api/v2/sourceControl/{ownerType}/{internalOwnerId}:
     delete:
       description: 'Use this method to delete a SCM setting for the specified ownerType/ownerId.
@@ -149,6 +178,8 @@ paths:
           description: The SCM setting for the specified ownerType/ownerId has been successfully deleted.
       tags:
       - Source Control
+      summary: Delete source control
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve the source control configuration settings for an organization or an application.
 
@@ -184,6 +215,8 @@ paths:
             <ul><li><code>id</code> is the owner internal ID.</li><li><code>repositoryUrl</code> indicates the http(s) and ssh urls for the application specified in the ownerId.</li><li><code>username</code> is retrieved if available on the SCM system, e.g. for Bitbucket Server and Cloud.</li><li><code>provider</code> indicates the name of the SCM system.</li><li><code>baseBranch</code> indicates the name of the last selected branch.</li><li><code>enablePullRequests</code> has been deprecated in version 124.</li><li><code>remediationPullRequestsEnabled</code> indicates if the Automated Pull Requests feature is enabled.</li><li><code>enableStatusChecks</code> has been deprecated in version 124.</li><li><code>statusChecksEnabled</code> is an internal field.</li><li><code>pullRequestCommentingEnabled</code> indicates if the Pull Request Commenting feature is enabled.</li><li><code>sourceControlEvaluationsEnabled</code> indicates if the source control evaluations are enabled for the continuous risk profile feature.</li><li><code>sourceControlScanTarget</code> indicates the path inside the repository.</li><li><code>sshEnabled</code> indicates if ssh is enabled.</li><li><code>commitStatusEnabled</code> indicates if interaction with the commit statuses on the SCM system is enabled.</li></ul>'
       tags:
       - Source Control
+      summary: Get source control 1
+      x-summary-source: derived
     post:
       description: 'Use this method to create a source control configuration setting.
 
@@ -222,6 +255,8 @@ paths:
           description: The Source Control Management (SCM) settings have been created successfully.
       tags:
       - Source Control
+      summary: Add source control
+      x-summary-source: derived
     put:
       description: 'Use this method to update an existing SCM setting.
 
@@ -260,6 +295,8 @@ paths:
           description: The SCM settings have been updated successfully. The JSON returned shows the updated values.
       tags:
       - Source Control
+      summary: Update source control
+      x-summary-source: derived
 components:
   schemas:
     SCMUserMappingsDTO:
@@ -270,42 +307,6 @@ components:
           type: array
         role:
           type: string
-      type: object
-    UserMapping:
-      properties:
-        from:
-          enum:
-          - SCM_USERNAME
-          - SCM_EMAIL
-          - SCM_FULLNAME
-          - GITLOG_EMAIL
-          - GITLOG_FULLNAME
-          type: string
-        to:
-          enum:
-          - IQ_USERNAME
-          - IQ_EMAIL
-          - IQ_FULLNAME
-          type: string
-      type: object
-    SCMUserMatchingResultDTO:
-      properties:
-        matchedUsers:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        successfulMapping:
-          $ref: '#/components/schemas/UserMapping'
-      type: object
-    SCMUserMappingsResponseDTO:
-      properties:
-        inherited:
-          type: boolean
-        ownerInternalId:
-          type: string
-        userMapping:
-          $ref: '#/components/schemas/SCMUserMappingsDTO'
       type: object
     ApiSourceControlDTO:
       properties:
@@ -353,6 +354,42 @@ components:
         token:
           type: string
         username:
+          type: string
+      type: object
+    SCMUserMatchingResultDTO:
+      properties:
+        matchedUsers:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        successfulMapping:
+          $ref: '#/components/schemas/UserMapping'
+      type: object
+    SCMUserMappingsResponseDTO:
+      properties:
+        inherited:
+          type: boolean
+        ownerInternalId:
+          type: string
+        userMapping:
+          $ref: '#/components/schemas/SCMUserMappingsDTO'
+      type: object
+    UserMapping:
+      properties:
+        from:
+          enum:
+          - SCM_USERNAME
+          - SCM_EMAIL
+          - SCM_FULLNAME
+          - GITLOG_EMAIL
+          - GITLOG_FULLNAME
+          type: string
+        to:
+          enum:
+          - IQ_USERNAME
+          - IQ_EMAIL
+          - IQ_FULLNAME
           type: string
       type: object
   securitySchemes:

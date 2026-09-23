@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Sonatype Lifecycle Public REST Advanced Search API
   version: 1.201.0-02
@@ -12,7 +12,7 @@ tags:
 paths:
   /api/v2/search/advanced:
     get:
-      description: 'Use this method to perform an Advanced Search. '
+      description: Use this method to perform an Advanced Search.
       operationId: searchIndex
       parameters:
       - description: Enter your search query here
@@ -56,6 +56,8 @@ paths:
           description: Search index not found. The Advanced Search index is unavailable or has not been created yet. Re-indexing is required before results can be returned.
       tags:
       - Advanced Search
+      summary: Search index
+      x-summary-source: derived
   /api/v2/search/advanced/export/csv:
     get:
       description: Use this method to generate a csv file containing your search results. The default delimiter in the generated file is comma. Use the advancedSearchCSVExportDelimiter property of the Configuration REST API to change the delimiter in the generated file.
@@ -98,6 +100,8 @@ paths:
           description: Search index does not exist or is unreadable.
       tags:
       - Advanced Search
+      summary: Get export results
+      x-summary-source: derived
   /api/v2/search/advanced/index:
     post:
       description: 'Use this method to create or rebuild the index for Advanced Search. This is a resource intensive operation. Avoid creating indexes during peak usage hours.
@@ -110,6 +114,8 @@ paths:
           description: Index created successfully.
       tags:
       - Advanced Search
+      summary: Create search index async
+      x-summary-source: derived
 components:
   schemas:
     SearchResultItemDTO:
@@ -175,6 +181,30 @@ components:
         vulnerabilityStatus:
           type: string
       type: object
+    SearchResultDTO:
+      properties:
+        groupingByDTOS:
+          items:
+            $ref: '#/components/schemas/GroupingByDTO'
+          type: array
+        isExactTotalNumberOfHits:
+          type: boolean
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        searchAfter:
+          items:
+            type: string
+          type: array
+        searchQuery:
+          type: string
+        totalNumberOfHits:
+          format: int64
+          type: integer
+      type: object
     GroupingByDTO:
       properties:
         additionalInfo:
@@ -229,30 +259,6 @@ components:
           type: object
         format:
           type: string
-      type: object
-    SearchResultDTO:
-      properties:
-        groupingByDTOS:
-          items:
-            $ref: '#/components/schemas/GroupingByDTO'
-          type: array
-        isExactTotalNumberOfHits:
-          type: boolean
-        page:
-          format: int32
-          type: integer
-        pageSize:
-          format: int32
-          type: integer
-        searchAfter:
-          items:
-            type: string
-          type: array
-        searchQuery:
-          type: string
-        totalNumberOfHits:
-          format: int64
-          type: integer
       type: object
   securitySchemes:
     BasicAuth:

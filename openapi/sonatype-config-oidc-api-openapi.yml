@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Config OIDC API
+  title: Sonatype Lifecycle Public REST Config OIDC API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage the OIDC configuration for IQ Server.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -22,6 +22,8 @@ paths:
           description: OIDC is not configured.
       tags:
       - Config OIDC
+      summary: Delete oidc configuration
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve the OIDC configuration.
 
@@ -39,6 +41,8 @@ paths:
           description: OIDC is not configured.
       tags:
       - Config OIDC
+      summary: Get oidc configuration
+      x-summary-source: derived
     put:
       description: 'Use this method to enable SSO using OpenID Connect (OIDC). This request uses the content type application/json to transmit the configuration to IQ Server.
 
@@ -57,8 +61,34 @@ paths:
           description: Invalid configuration.
       tags:
       - Config OIDC
+      summary: Insert or update oidc configuration
+      x-summary-source: derived
 components:
   schemas:
+    SsoConfigurationDTO:
+      properties:
+        oauth2Configuration:
+          $ref: '#/components/schemas/OAuth2ConfigurationDTO'
+        oidcConfiguration:
+          $ref: '#/components/schemas/OidcConfigurationDTO'
+      type: object
+    OidcConfigurationDTO:
+      properties:
+        authorizationCustomParamsJson:
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        idpAuthorizationUrl:
+          type: string
+        idpIssuer:
+          type: string
+        idpTokenUrl:
+          type: string
+        tokenRequestCustomParamsJson:
+          type: string
+      type: object
     OAuth2ConfigurationDTO:
       properties:
         emailClaim:
@@ -81,30 +111,6 @@ components:
           type: string
         usernameClaim:
           type: string
-      type: object
-    OidcConfigurationDTO:
-      properties:
-        authorizationCustomParamsJson:
-          type: string
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        idpAuthorizationUrl:
-          type: string
-        idpIssuer:
-          type: string
-        idpTokenUrl:
-          type: string
-        tokenRequestCustomParamsJson:
-          type: string
-      type: object
-    SsoConfigurationDTO:
-      properties:
-        oauth2Configuration:
-          $ref: '#/components/schemas/OAuth2ConfigurationDTO'
-        oidcConfiguration:
-          $ref: '#/components/schemas/OidcConfigurationDTO'
       type: object
   securitySchemes:
     BasicAuth:

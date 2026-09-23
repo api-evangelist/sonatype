@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Organizations API
+  title: Sonatype Lifecycle Public REST Organizations API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to create new organizations, retrieve, edit or delete existing organizations.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -35,6 +35,8 @@ paths:
           description: The response contains a list of organizations. For each organization the response contains organization id, organization name, parent organization id, and its associated tags with additional details.
       tags:
       - Organizations
+      summary: Get organizations
+      x-summary-source: derived
     post:
       description: 'Use this method to add a new organization.
 
@@ -56,6 +58,8 @@ paths:
           description: The response contains the assigned organization id and all other organization details specified.
       tags:
       - Organizations
+      summary: Add organization
+      x-summary-source: derived
   /api/v2/organizations/byid:
     get:
       description: 'Use this method to retrieve organizations by their internal IDs.
@@ -81,6 +85,8 @@ paths:
           description: The response contains a list of organizations. For each organization the response contains organization id, organization name, and parent organization id.
       tags:
       - Organizations
+      summary: Get organizations by ids
+      x-summary-source: derived
   /api/v2/organizations/{organizationId}:
     delete:
       description: 'Use this method to delete an existing organization, by providing the organization id.
@@ -100,6 +106,8 @@ paths:
           description: The specified organization has been deleted.
       tags:
       - Organizations
+      summary: Delete organization
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve the details of an organization by providing the organization id.
 
@@ -122,6 +130,8 @@ paths:
           description: The response contains the details for the specified  organization including organization id, organization name, parent organization id, and its associated tags with additional details.
       tags:
       - Organizations
+      summary: Get organization
+      x-summary-source: derived
   /api/v2/organizations/{organizationId}/move/destination/{destinationId}:
     put:
       description: 'Use this method to change the parent organization.
@@ -162,8 +172,23 @@ paths:
           description: Encountered conflicts while inheriting policy elements of the new parent organization. The organization could not be moved under the new parent organization id provided.
       tags:
       - Organizations
+      summary: Move organization
+      x-summary-source: derived
 components:
   schemas:
+    ValidationError:
+      properties:
+        message:
+          type: string
+        type:
+          enum:
+          - TAG
+          - POLICY
+          - LICENSE_THREAT_GROUP
+          - LABEL
+          - PARENT_HIERARCHY
+          type: string
+      type: object
     ApiOrganizationDTO:
       properties:
         id:
@@ -177,18 +202,12 @@ components:
             $ref: '#/components/schemas/ApiTagDTO'
           type: array
       type: object
-    ValidationError:
+    ApiOrganizationListDTO:
       properties:
-        message:
-          type: string
-        type:
-          enum:
-          - TAG
-          - POLICY
-          - LICENSE_THREAT_GROUP
-          - LABEL
-          - PARENT_HIERARCHY
-          type: string
+        organizations:
+          items:
+            $ref: '#/components/schemas/ApiOrganizationDTO'
+          type: array
       type: object
     ValidationWarning:
       properties:
@@ -239,13 +258,6 @@ components:
           type: string
         name:
           type: string
-      type: object
-    ApiOrganizationListDTO:
-      properties:
-        organizations:
-          items:
-            $ref: '#/components/schemas/ApiOrganizationDTO'
-          type: array
       type: object
   securitySchemes:
     BasicAuth:

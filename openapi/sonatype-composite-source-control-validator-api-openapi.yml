@@ -1,8 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Composite Source Control Validator API
+  title: Sonatype Lifecycle Public REST Composite Source Control…
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: 'Use this REST API to validate the composite source control management (SCM) configuration.
+
+
+    Composite source control configuration is defined as the configuration that is inherited from the parent or is directly assigned.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -36,15 +39,10 @@ paths:
           description: The response shows if the composite source control configuration for the application is valid.
       tags:
       - Composite Source Control Validator
+      summary: Validate source control config
+      x-summary-source: derived
 components:
   schemas:
-    ValidationResult:
-      properties:
-        message:
-          type: string
-        valid:
-          type: boolean
-      type: object
     ConfigurationValidationResult:
       properties:
         configurationComplete:
@@ -57,6 +55,13 @@ components:
           $ref: '#/components/schemas/ValidationResult'
         tokenPermissions:
           $ref: '#/components/schemas/ValidationResult'
+      type: object
+    ValidationResult:
+      properties:
+        message:
+          type: string
+        valid:
+          type: boolean
       type: object
   securitySchemes:
     BasicAuth:

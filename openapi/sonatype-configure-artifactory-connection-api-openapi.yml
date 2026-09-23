@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Configure Artifactory Connection API
+  title: Sonatype Lifecycle Public REST Configure Artifactory…
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage the configuration of Firewall for JFrog Artifactory.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -49,6 +49,8 @@ paths:
           description: The response contains the details of the Artifactory connection.
       tags:
       - Configure Artifactory Connection
+      summary: Get owner artifactory connection
+      x-summary-source: derived
     post:
       description: 'Use this method to add a new Artifactory connection.
 
@@ -88,6 +90,8 @@ paths:
           description: The response contains the details of the added Artifactory connection.
       tags:
       - Configure Artifactory Connection
+      summary: Add artifactory connection
+      x-summary-source: derived
     put:
       description: 'Use this method to enable/disable an existing Artifactory connection for the specified owner.
 
@@ -123,6 +127,8 @@ paths:
           description: Artifactory connection status successfully updated.
       tags:
       - Configure Artifactory Connection
+      summary: Update owner artifactory connection status
+      x-summary-source: derived
   /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/test:
     post:
       description: 'Use this method to test an Artifactory connection for the specified owner.
@@ -163,6 +169,8 @@ paths:
           description: The response contains the `code` and `message` indicating the status of the connection.
       tags:
       - Configure Artifactory Connection
+      summary: Test artifactory connection
+      x-summary-source: derived
   /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}:
     delete:
       description: 'Use this method to delete an existing Artifactory connection.
@@ -198,6 +206,8 @@ paths:
           description: Artifactory connection deleted successfully.
       tags:
       - Configure Artifactory Connection
+      summary: Delete artifactory connection
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve details for an Artifactory connection.
 
@@ -236,6 +246,8 @@ paths:
           description: The response contains the details of the requested Artifactory connection.
       tags:
       - Configure Artifactory Connection
+      summary: Get artifactory connection
+      x-summary-source: derived
     put:
       description: 'Use this method to update an existing Artifactory connection.
 
@@ -281,6 +293,8 @@ paths:
           description: The response contains the updated Artifactory connection details.
       tags:
       - Configure Artifactory Connection
+      summary: Update artifactory connection
+      x-summary-source: derived
   /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}/test:
     post:
       description: Use this method to test an existing Artifactory connection using the connection ID.
@@ -317,47 +331,10 @@ paths:
           description: The response contains the `code` and `message` indicating the status of the connection.
       tags:
       - Configure Artifactory Connection
+      summary: Test artifactory connection 1
+      x-summary-source: derived
 components:
   schemas:
-    ApiArtifactoryConnectionStatusRequestDTO:
-      properties:
-        allowOverride:
-          type: boolean
-        enabled:
-          type: boolean
-      type: object
-    ApiArtifactoryConnectionDTO:
-      properties:
-        artifactoryConnectionId:
-          type: string
-        baseUrl:
-          type: string
-        isAnonymous:
-          type: boolean
-        ownerId:
-          type: string
-        ownerType:
-          enum:
-          - application
-          - organization
-          - repository_container
-          - repository_manager
-          - repository
-          - global
-          type: string
-        password:
-          type: string
-        username:
-          type: string
-      type: object
-    ApiStatusDTO:
-      properties:
-        code:
-          format: int32
-          type: integer
-        message:
-          type: string
-      type: object
     ApiOwnerDTO:
       properties:
         ownerId:
@@ -368,6 +345,21 @@ components:
           type: string
         ownerType:
           type: string
+      type: object
+    ApiStatusDTO:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      type: object
+    ApiArtifactoryConnectionStatusRequestDTO:
+      properties:
+        allowOverride:
+          type: boolean
+        enabled:
+          type: boolean
       type: object
     ApiOwnerArtifactoryConnectionDTO:
       properties:
@@ -391,6 +383,30 @@ components:
         inheritedFromOrganizationId:
           type: string
         inheritedFromOrganizationName:
+          type: string
+      type: object
+    ApiArtifactoryConnectionDTO:
+      properties:
+        artifactoryConnectionId:
+          type: string
+        baseUrl:
+          type: string
+        isAnonymous:
+          type: boolean
+        ownerId:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
+          type: string
+        password:
+          type: string
+        username:
           type: string
       type: object
   securitySchemes:

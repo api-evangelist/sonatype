@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Developer Priorities API
+  title: Sonatype Lifecycle Public REST Developer Priorities API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to export Sonatype Developer component priorities data, including security reachability data.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -80,6 +80,8 @@ paths:
             include remediation information.'
       tags:
       - Developer Priorities
+      summary: Get priorities
+      x-summary-source: derived
   /api/v2/developer/priorities/{applicationId}/{scanId}/export:
     get:
       description: 'Use this method to retrieve the priorities, by providing the applicationId and scanId.
@@ -109,41 +111,18 @@ paths:
             information, policy information, and the priority assigned to it.'
       tags:
       - Developer Priorities
+      summary: Get priorities export
+      x-summary-source: derived
 components:
   schemas:
-    DevelopmentPrioritizationResults:
+    ComponentIdentifier:
       properties:
-        hasAutoWaiversConfigured:
-          type: boolean
-        priorities:
-          $ref: '#/components/schemas/ApiPageResultPrioritizedComponent'
-        scanIdFromLatestBuildStageEvaluation:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
           type: string
-      type: object
-    ApiPageResultPrioritizedComponent:
-      description: Paginated response wrapper
-      properties:
-        page:
-          description: Current page number
-          format: int32
-          type: integer
-        pageCount:
-          description: Total number of pages
-          format: int64
-          type: integer
-        pageSize:
-          description: Number of items per page
-          format: int32
-          type: integer
-        results:
-          description: List of items for the current page
-          items:
-            $ref: '#/components/schemas/PrioritizedComponent'
-          type: array
-        total:
-          description: Total number of items
-          format: int64
-          type: integer
       type: object
     PrioritizedComponent:
       description: List of items for the current page
@@ -204,13 +183,38 @@ components:
         waiverExpirationDetails:
           type: string
       type: object
-    ComponentIdentifier:
+    ApiPageResultPrioritizedComponent:
+      description: Paginated response wrapper
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/PrioritizedComponent'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
+    DevelopmentPrioritizationResults:
+      properties:
+        hasAutoWaiversConfigured:
+          type: boolean
+        priorities:
+          $ref: '#/components/schemas/ApiPageResultPrioritizedComponent'
+        scanIdFromLatestBuildStageEvaluation:
           type: string
       type: object
   securitySchemes:

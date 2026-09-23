@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search Users API
+  title: Sonatype Lifecycle Public REST Users API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to manage users.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -33,6 +33,8 @@ paths:
           description: The response contains user details. Passwords are excluded for security.
       tags:
       - Users
+      summary: Get all 2
+      x-summary-source: derived
     post:
       description: 'Use this method to create a new user.
 
@@ -50,6 +52,8 @@ paths:
           description: User created successfully.
       tags:
       - Users
+      summary: Add
+      x-summary-source: derived
   /api/v2/users/{username}:
     delete:
       description: 'Use this method to delete an existing user.
@@ -75,6 +79,8 @@ paths:
           description: User deleted successfully.
       tags:
       - Users
+      summary: Delete 1
+      x-summary-source: derived
     get:
       description: 'Use this method to retrieve user details for the specified user.
 
@@ -103,6 +109,8 @@ paths:
           description: The response contains details for the specified user.
       tags:
       - Users
+      summary: Get 1
+      x-summary-source: derived
     put:
       description: 'Use this method to update user details for an existing internal user, by specifying the username.
 
@@ -131,6 +139,8 @@ paths:
           description: User details updated successfully.
       tags:
       - Users
+      summary: Update
+      x-summary-source: derived
 components:
   schemas:
     ApiUserDTO:

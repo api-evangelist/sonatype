@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search SPDX API
+  title: Sonatype Lifecycle Public REST SPDX API
   version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  description: Use this REST API to generate SPDX SBOMs in XML or JSON formats.
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -67,6 +67,8 @@ paths:
           description: The requested SBOM(s).
       tags:
       - SPDX
+      summary: Get by scan id
+      x-summary-source: derived
   /api/v2/spdx/{applicationId}/stages/{stageId}:
     get:
       description: 'Use this method to generate SBOM(s) based on the latest application evaluation report at the specified stage.
@@ -124,6 +126,8 @@ paths:
           description: The requested SBOM(s).
       tags:
       - SPDX
+      summary: Get latest for stage
+      x-summary-source: derived
 components:
   securitySchemes:
     BasicAuth:
