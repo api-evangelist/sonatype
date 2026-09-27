@@ -358,54 +358,61 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiPolicyWaiversApplicableToViolationDTO:
+    StageData:
       properties:
-        activeWaivers:
+        actionTypeId:
+          type: string
+        mostRecentEvaluationTime:
+          format: date-time
+          type: string
+        mostRecentScanId:
+          type: string
+      type: object
+    ComponentDisplayName:
+      properties:
+        name:
+          type: string
+        parts:
           items:
-            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
-          type: array
-        expiredWaivers:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+            $ref: '#/components/schemas/ComponentDisplayNamePart'
           type: array
       type: object
-    ApiComponentTransitivePolicyViolationsDTO:
+    ConstraintFact:
       properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    ApiStagePolicyViolationComponentDTO:
+      properties:
+        action:
+          type: string
         componentIdentifier:
           $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
         displayName:
           type: string
         hash:
           type: string
-        isInnerSource:
-          type: boolean
         packageUrl:
           type: string
-        transitivePolicyViolations:
-          items:
-            $ref: '#/components/schemas/ApiStagePolicyViolationComponentDTO'
-          type: array
-      type: object
-    ApiComponentDTOV2:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
+        policyId:
           type: string
-        hash:
-          type:
-          - string
-          - 'null'
-        originalPurl:
+        policyName:
           type: string
-        packageUrl:
+        policyViolationId:
           type: string
-        proprietary:
-          type: boolean
-        sha256:
+        threatCategory:
           type: string
-        thirdParty:
-          type: boolean
+        threatLevel:
+          format: int32
+          type: integer
       type: object
     PolicyOwner:
       properties:
@@ -418,77 +425,15 @@ components:
         ownerType:
           type: string
       type: object
-    ComponentDisplayName:
+    TriggerReference:
       properties:
-        name:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
           type: string
-        parts:
-          items:
-            $ref: '#/components/schemas/ComponentDisplayNamePart'
-          type: array
-      type: object
-    ConditionFact:
-      properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
+        value:
           type: string
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
-          type: string
-        triggerJson:
-          type: string
-      type: object
-    ApiEnhancedPolicyViolationDTOV2:
-      properties:
-        component:
-          $ref: '#/components/schemas/ApiComponentDTOV2'
-        constraintViolations:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
-          type: array
-        fixTime:
-          format: date-time
-          type: string
-        isLegacy:
-          type: boolean
-        isWaived:
-          type: boolean
-        legacyViolationTime:
-          format: date-time
-          type: string
-        openTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        reportId:
-          type: string
-        reportUrl:
-          type: string
-        stageId:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-        waiveTime:
-          format: date-time
-          type: string
-      type: object
-    ApiConstraintViolationReasonDTO:
-      properties:
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
       type: object
     ApiPolicyWaiverRequestDTO:
       properties:
@@ -567,85 +512,12 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ApiCrossStageViolationDTOV2:
+    ComponentDisplayNamePart:
       properties:
-        applicationName:
+        field:
           type: string
-        applicationPublicId:
+        value:
           type: string
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        constraintViolations:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
-          type: array
-        displayName:
-          $ref: '#/components/schemas/ComponentDisplayName'
-        filename:
-          type: string
-        fixTime:
-          format: date-time
-          type: string
-        hash:
-          type: string
-        legacyViolationTime:
-          format: date-time
-          type: string
-        openTime:
-          format: date-time
-          type: string
-        organizationName:
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyOwner:
-          $ref: '#/components/schemas/PolicyOwner'
-        policyThreatCategory:
-          type: string
-        policyViolationId:
-          type: string
-        reachabilityStatus:
-          enum:
-          - REACHABLE
-          - NON_REACHABLE
-          - UNKNOWN
-          type: string
-        stageData:
-          additionalProperties:
-            $ref: '#/components/schemas/StageData'
-          type: object
-        threatLevel:
-          format: int32
-          type: integer
-        waiveTime:
-          format: date-time
-          type: string
-      type: object
-    ApiStagePolicyViolationComponentDTO:
-      properties:
-        action:
-          type: string
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
-          type: string
-        hash:
-          type: string
-        packageUrl:
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        threatCategory:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
       type: object
     ApiAutoPolicyWaiverDTO:
       properties:
@@ -676,61 +548,12 @@ components:
           format: int32
           type: integer
       type: object
-    ApiApplicationViolationDTOV2:
-      properties:
-        application:
-          $ref: '#/components/schemas/ApiApplicationBaseDTO'
-        policyViolations:
-          items:
-            $ref: '#/components/schemas/ApiEnhancedPolicyViolationDTOV2'
-          type: array
-      type: object
-    ComponentDisplayNamePart:
-      properties:
-        field:
-          type: string
-        value:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
-          type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
-          type: string
-      type: object
     ApiApplicationViolationListDTOV2:
       properties:
         applicationViolations:
           items:
             $ref: '#/components/schemas/ApiApplicationViolationDTOV2'
           type: array
-      type: object
-    StageData:
-      properties:
-        actionTypeId:
-          type: string
-        mostRecentEvaluationTime:
-          format: date-time
-          type: string
-        mostRecentScanId:
-          type: string
       type: object
     ApiPolicyWaiverRequestsApplicableToViolationDTO:
       properties:
@@ -743,25 +566,32 @@ components:
             $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO'
           type: array
       type: object
-    ApiComponentIdentifierDTOV2:
+    ApiPolicyWaiversApplicableToViolationDTO:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ApiConstraintViolationDTO:
-      properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
+        activeWaivers:
           items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
           type: array
+        expiredWaivers:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          type: array
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
       type: object
     ApiPolicyWaiverDTO:
       properties:
@@ -834,6 +664,69 @@ components:
         vulnerabilityId:
           type: string
       type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiComponentDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          type:
+          - string
+          - 'null'
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+      type: object
+    ApiComponentTransitivePolicyViolationsDTO:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          type: string
+        isInnerSource:
+          type: boolean
+        packageUrl:
+          type: string
+        transitivePolicyViolations:
+          items:
+            $ref: '#/components/schemas/ApiStagePolicyViolationComponentDTO'
+          type: array
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiApplicationViolationDTOV2:
+      properties:
+        application:
+          $ref: '#/components/schemas/ApiApplicationBaseDTO'
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiEnhancedPolicyViolationDTOV2'
+          type: array
+      type: object
     ApiApplicationBaseDTO:
       properties:
         contactUserName:
@@ -847,7 +740,47 @@ components:
         publicId:
           type: string
       type: object
-    ComponentIdentifier:
+    ApiEnhancedPolicyViolationDTOV2:
+      properties:
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        isLegacy:
+          type: boolean
+        isWaived:
+          type: boolean
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        reportId:
+          type: string
+        reportUrl:
+          type: string
+        stageId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
       properties:
         coordinates:
           additionalProperties:
@@ -855,6 +788,73 @@ components:
           type: object
         format:
           type: string
+      type: object
+    ApiCrossStageViolationDTOV2:
+      properties:
+        applicationName:
+          type: string
+        applicationPublicId:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        displayName:
+          $ref: '#/components/schemas/ComponentDisplayName'
+        filename:
+          type: string
+        fixTime:
+          format: date-time
+          type: string
+        hash:
+          type: string
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        organizationName:
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyOwner:
+          $ref: '#/components/schemas/PolicyOwner'
+        policyThreatCategory:
+          type: string
+        policyViolationId:
+          type: string
+        reachabilityStatus:
+          enum:
+          - REACHABLE
+          - NON_REACHABLE
+          - UNKNOWN
+          type: string
+        stageData:
+          additionalProperties:
+            $ref: '#/components/schemas/StageData'
+          type: object
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
       type: object
   securitySchemes:
     BasicAuth:

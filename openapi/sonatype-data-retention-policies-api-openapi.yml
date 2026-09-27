@@ -90,6 +90,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiReportRetentionPoliciesDTO:
+      properties:
+        stages:
+          additionalProperties:
+            $ref: '#/components/schemas/ApiReportRetentionPolicyDTO'
+          type: object
+      type: object
     ApiSuccessMetricsRetentionPolicyDTO:
       properties:
         enablePurging:
@@ -99,12 +106,12 @@ components:
         maxAge:
           type: string
       type: object
-    ApiReportRetentionPoliciesDTO:
+    ApiDataRetentionPoliciesDTO:
       properties:
-        stages:
-          additionalProperties:
-            $ref: '#/components/schemas/ApiReportRetentionPolicyDTO'
-          type: object
+        applicationReports:
+          $ref: '#/components/schemas/ApiReportRetentionPoliciesDTO'
+        successMetrics:
+          $ref: '#/components/schemas/ApiSuccessMetricsRetentionPolicyDTO'
       type: object
     ApiReportRetentionPolicyDTO:
       properties:
@@ -117,13 +124,6 @@ components:
         maxCount:
           format: int32
           type: integer
-      type: object
-    ApiDataRetentionPoliciesDTO:
-      properties:
-        applicationReports:
-          $ref: '#/components/schemas/ApiReportRetentionPoliciesDTO'
-        successMetrics:
-          $ref: '#/components/schemas/ApiSuccessMetricsRetentionPolicyDTO'
       type: object
   securitySchemes:
     BasicAuth:

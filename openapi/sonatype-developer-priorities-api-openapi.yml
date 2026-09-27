@@ -115,15 +115,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ComponentIdentifier:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
     PrioritizedComponent:
       description: List of items for the current page
       properties:
@@ -215,6 +206,15 @@ components:
         priorities:
           $ref: '#/components/schemas/ApiPageResultPrioritizedComponent'
         scanIdFromLatestBuildStageEvaluation:
+          type: string
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
           type: string
       type: object
   securitySchemes:

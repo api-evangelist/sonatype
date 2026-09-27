@@ -53,14 +53,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiCompositeValueDTOGitHubAppInfo:
+    ApiCompositeValueDTOString:
       properties:
         parentName:
           type: string
         parentValue:
-          $ref: '#/components/schemas/GitHubAppInfo'
+          type: string
         value:
-          $ref: '#/components/schemas/GitHubAppInfo'
+          type: string
       type: object
     ApiCompositeValueDTOInteger:
       properties:
@@ -73,37 +73,14 @@ components:
           format: int32
           type: integer
       type: object
-    GitHubAppInfo:
-      properties:
-        accountName:
-          type: string
-        configurationDate:
-          type: string
-        id:
-          type: string
-        installationId:
-          format: int64
-          type: integer
-        name:
-          type: string
-      type: object
-    ApiCompositeValueDTOBoolean:
+    ApiCompositeValueDTOGitHubAppInfo:
       properties:
         parentName:
           type: string
         parentValue:
-          type: boolean
+          $ref: '#/components/schemas/GitHubAppInfo'
         value:
-          type: boolean
-      type: object
-    ApiCompositeValueDTOString:
-      properties:
-        parentName:
-          type: string
-        parentValue:
-          type: string
-        value:
-          type: string
+          $ref: '#/components/schemas/GitHubAppInfo'
       type: object
     ApiCompositeSourceControlDTO:
       properties:
@@ -149,6 +126,29 @@ components:
           $ref: '#/components/schemas/ApiCompositeValueDTOString'
         username:
           $ref: '#/components/schemas/ApiCompositeValueDTOString'
+      type: object
+    ApiCompositeValueDTOBoolean:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          type: boolean
+        value:
+          type: boolean
+      type: object
+    GitHubAppInfo:
+      properties:
+        accountName:
+          type: string
+        configurationDate:
+          type: string
+        id:
+          type: string
+        installationId:
+          format: int64
+          type: integer
+        name:
+          type: string
       type: object
   securitySchemes:
     BasicAuth:

@@ -463,27 +463,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TriggerReference:
+    ComponentDisplayNamePart:
       properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
+        field:
           type: string
         value:
-          type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
           type: string
       type: object
     ConditionFact:
@@ -573,22 +557,14 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ApiComponentPolicyWaiversDTO:
+    TriggerReference:
       properties:
-        componentPolicyWaivers:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
-          type: array
-      type: object
-    ApiRequestPolicyWaiverDTO:
-      properties:
-        addWaiverLink:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
           type: string
-        comment:
-          type: string
-        policyViolationLink:
-          type: string
-        reasonId:
+        value:
           type: string
       type: object
     ApiBulkWaiversDTO:
@@ -599,15 +575,6 @@ components:
           items:
             type: string
           type: array
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
       type: object
     ComponentIdentifier:
       properties:
@@ -648,11 +615,44 @@ components:
             $ref: '#/components/schemas/ComponentDisplayNamePart'
           type: array
       type: object
-    ComponentDisplayNamePart:
+    ApiRequestPolicyWaiverDTO:
       properties:
-        field:
+        addWaiverLink:
           type: string
-        value:
+        comment:
+          type: string
+        policyViolationLink:
+          type: string
+        reasonId:
+          type: string
+      type: object
+    ApiComponentPolicyWaiversDTO:
+      properties:
+        componentPolicyWaivers:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          type: array
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
           type: string
       type: object
   securitySchemes:

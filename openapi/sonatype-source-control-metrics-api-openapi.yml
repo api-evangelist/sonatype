@@ -47,6 +47,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiPullRequestResults:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ApiPullRequestResult'
+          type: array
+      type: object
     ApiPullRequestResult:
       properties:
         exceptionThrown:
@@ -63,13 +70,6 @@ components:
         totalTime:
           format: int64
           type: integer
-      type: object
-    ApiPullRequestResults:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ApiPullRequestResult'
-          type: array
       type: object
   securitySchemes:
     BasicAuth:

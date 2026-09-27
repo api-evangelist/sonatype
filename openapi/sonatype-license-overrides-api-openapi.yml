@@ -192,53 +192,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiAppliedLicenseOverridesDTO:
+    ComponentIdentifier:
       properties:
-        licenseOverridesByOwner:
-          items:
-            $ref: '#/components/schemas/LicenseOverrideByOwner'
-          type: array
-      type: object
-    ApiLicenseOverrideDTO:
-      properties:
-        comment:
-          type: string
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        id:
-          type: string
-        licenseIds:
-          items:
+        coordinates:
+          additionalProperties:
             type: string
-          type: array
-          uniqueItems: true
-        ownerId:
-          type: string
-        status:
-          enum:
-          - OPEN
-          - ACKNOWLEDGED
-          - OVERRIDDEN
-          - SELECTED
-          - CONFIRMED
-          type: string
-      type: object
-    LicenseOverrideByOwner:
-      properties:
-        licenseOverride:
-          $ref: '#/components/schemas/LicenseOverride'
-        ownerId:
-          type: string
-        ownerName:
-          type: string
-        ownerType:
-          enum:
-          - application
-          - organization
-          - repository_container
-          - repository_manager
-          - repository
-          - global
+          type: object
+        format:
           type: string
       type: object
     LicenseOverride:
@@ -265,6 +225,37 @@ components:
           - CONFIRMED
           type: string
       type: object
+    ApiLicenseOverrideDTO:
+      properties:
+        comment:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        id:
+          type: string
+        licenseIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        ownerId:
+          type: string
+        status:
+          enum:
+          - OPEN
+          - ACKNOWLEDGED
+          - OVERRIDDEN
+          - SELECTED
+          - CONFIRMED
+          type: string
+      type: object
+    ApiAppliedLicenseOverridesDTO:
+      properties:
+        licenseOverridesByOwner:
+          items:
+            $ref: '#/components/schemas/LicenseOverrideByOwner'
+          type: array
+      type: object
     ApiComponentIdentifierDTOV2:
       properties:
         coordinates:
@@ -274,13 +265,22 @@ components:
         format:
           type: string
       type: object
-    ComponentIdentifier:
+    LicenseOverrideByOwner:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        licenseOverride:
+          $ref: '#/components/schemas/LicenseOverride'
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
           type: string
       type: object
   securitySchemes:

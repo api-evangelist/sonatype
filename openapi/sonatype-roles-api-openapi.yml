@@ -153,22 +153,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiPermissionCategoryDTO:
-      properties:
-        displayName:
-          type: string
-        permissions:
-          items:
-            $ref: '#/components/schemas/ApiPermissionDTO'
-          type: array
-      type: object
-    ApiRoleListDTO:
-      properties:
-        roles:
-          items:
-            $ref: '#/components/schemas/ApiRoleDTO'
-          type: array
-      type: object
     ApiRoleDTO:
       properties:
         builtIn:
@@ -214,6 +198,22 @@ components:
           - LEGAL_REVIEWER
           - CREATE_PULL_REQUESTS
           type: string
+      type: object
+    ApiRoleListDTO:
+      properties:
+        roles:
+          items:
+            $ref: '#/components/schemas/ApiRoleDTO'
+          type: array
+      type: object
+    ApiPermissionCategoryDTO:
+      properties:
+        displayName:
+          type: string
+        permissions:
+          items:
+            $ref: '#/components/schemas/ApiPermissionDTO'
+          type: array
       type: object
   securitySchemes:
     BasicAuth:

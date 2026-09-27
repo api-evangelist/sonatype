@@ -335,32 +335,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiOwnerDTO:
-      properties:
-        ownerId:
-          type: string
-        ownerName:
-          type: string
-        ownerPublicId:
-          type: string
-        ownerType:
-          type: string
-      type: object
-    ApiStatusDTO:
-      properties:
-        code:
-          format: int32
-          type: integer
-        message:
-          type: string
-      type: object
-    ApiArtifactoryConnectionStatusRequestDTO:
-      properties:
-        allowOverride:
-          type: boolean
-        enabled:
-          type: boolean
-      type: object
     ApiOwnerArtifactoryConnectionDTO:
       properties:
         artifactoryConnection:
@@ -370,20 +344,12 @@ components:
         ownerDTO:
           $ref: '#/components/schemas/ApiOwnerDTO'
       type: object
-    ApiArtifactoryConnectionStatusResponseDTO:
+    ApiArtifactoryConnectionStatusRequestDTO:
       properties:
-        allowChange:
-          type: boolean
         allowOverride:
           type: boolean
         enabled:
           type: boolean
-        inheritedFromOrgEnabled:
-          type: boolean
-        inheritedFromOrganizationId:
-          type: string
-        inheritedFromOrganizationName:
-          type: string
       type: object
     ApiArtifactoryConnectionDTO:
       properties:
@@ -407,6 +373,40 @@ components:
         password:
           type: string
         username:
+          type: string
+      type: object
+    ApiOwnerDTO:
+      properties:
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerPublicId:
+          type: string
+        ownerType:
+          type: string
+      type: object
+    ApiStatusDTO:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      type: object
+    ApiArtifactoryConnectionStatusResponseDTO:
+      properties:
+        allowChange:
+          type: boolean
+        allowOverride:
+          type: boolean
+        enabled:
+          type: boolean
+        inheritedFromOrgEnabled:
+          type: boolean
+        inheritedFromOrganizationId:
+          type: string
+        inheritedFromOrganizationName:
           type: string
       type: object
   securitySchemes:

@@ -853,21 +853,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiMalwareComponentEvaluationRequest:
+    ApiFirewallQuarantinedComponentDtoResult:
       properties:
-        hash:
-          type: string
-        packageUrl:
-          type: string
-      type: object
-    ApiRepositoryContainerDTO:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        relatedOrganizationId:
-          type: string
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/ApiFirewallQuarantinedComponentDto'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
       type: object
     ApiFirewallQuarantinedComponentDto:
       description: List of items for the current page
@@ -896,92 +904,23 @@ components:
           format: int32
           type: integer
       type: object
-    ApiRepositoryManagerListDTO:
+    ApiRepositoryComponentEvaluationRequest:
       properties:
-        repositoryManagers:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryManagerDTO'
-          type: array
-      type: object
-    ApiRepositoryDTO:
-      properties:
-        auditEnabled:
-          type: boolean
-        format:
+        hash:
           type: string
-        namespaceConfusionProtectionEnabled:
-          type: boolean
-        policyCompliantComponentSelectionEnabled:
-          type: boolean
-        publicId:
+        packageUrl:
           type: string
-        quarantineEnabled:
-          type: boolean
-        repositoryId:
-          type: string
-        type:
+        pathname:
           type: string
       type: object
-    ApiFirewallQuarantinedComponentDtoResult:
+    ApiFirewallReleaseQuarantineConfigDTO:
       properties:
-        page:
-          description: Current page number
-          format: int32
-          type: integer
-        pageCount:
-          description: Total number of pages
-          format: int64
-          type: integer
-        pageSize:
-          description: Number of items per page
-          format: int32
-          type: integer
-        results:
-          description: List of items for the current page
-          items:
-            $ref: '#/components/schemas/ApiFirewallQuarantinedComponentDto'
-          type: array
-        total:
-          description: Total number of items
-          format: int64
-          type: integer
-      type: object
-    ApiPolicyViolationDTOV2:
-      properties:
-        constraintViolations:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
-          type: array
-        fixTime:
-          format: date-time
+        autoReleaseQuarantineEnabled:
+          type: boolean
+        id:
           type: string
-        legacyViolationTime:
-          format: date-time
+        name:
           type: string
-        openTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-        waiveTime:
-          format: date-time
-          type: string
-      type: object
-    MalwareCategory:
-      properties:
-        attackVector:
-          type: string
-        threatTypes:
-          items:
-            type: string
-          type: array
       type: object
     ApiFirewallComponentDTO:
       description: List of items for the current page
@@ -1013,157 +952,35 @@ components:
         repositoryId:
           type: string
       type: object
-    ApiRepositoryComponentEvaluationRequestList:
+    ContainerImageInQuarantineDataResult:
       properties:
-        components:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
-          type: array
-        format:
-          type: string
-      type: object
-    ApiFirewallQuarantineSummaryDTO:
-      properties:
-        quarantineEnabled:
-          type: boolean
-        quarantineEnabledRepositoryCount:
-          format: int64
-          type: integer
-        quarantinedComponentCount:
-          format: int64
-          type: integer
-        repositoryCount:
-          format: int64
-          type: integer
-        totalComponentCount:
-          format: int64
-          type: integer
-      type: object
-    ApiConstraintViolationReasonDTO:
-      properties:
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-      type: object
-    ApiFirewallReleaseQuarantineConfigDTO:
-      properties:
-        autoReleaseQuarantineEnabled:
-          type: boolean
-        id:
-          type: string
-        name:
-          type: string
-      type: object
-    ApiRepositoryManagerDTO:
-      properties:
-        id:
-          type: string
-        instanceId:
-          type: string
-        name:
-          type: string
-        productName:
-          type: string
-        productVersion:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
-          type: string
-      type: object
-    ApiMalwareComponentEvaluationRequestList:
-      properties:
-        components:
-          items:
-            $ref: '#/components/schemas/ApiMalwareComponentEvaluationRequest'
-          type: array
-        format:
-          type: string
-      type: object
-    ContainerImageInQuarantineData:
-      description: List of items for the current page
-      properties:
-        applicationId:
-          type: string
-        applicationName:
-          type: string
-        applicationPublicId:
-          type: string
-        openTime:
-          type: number
-        policyViolationCount:
-          format: int64
-          type: integer
-        repositoryId:
-          type: string
-        repositoryPublicId:
-          type: string
-        scanId:
-          type: string
-        threatLevel:
+        page:
+          description: Current page number
           format: int32
           type: integer
-      type: object
-    CascadeReevaluateTicketDTO:
-      properties:
-        statusUrl:
-          type: string
-      type: object
-    ApiRepositoryComponentEvaluationRequest:
-      properties:
-        hash:
-          type: string
-        packageUrl:
-          type: string
-        pathname:
-          type: string
-      type: object
-    ApiRepositoryListDTO:
-      properties:
-        repositories:
-          items:
-            $ref: '#/components/schemas/ApiRepositoryDTO'
-          type: array
-      type: object
-    ApiContainerImageWaiverDTO:
-      properties:
-        comment:
-          type: string
-        expiryTime:
-          format: date-time
-          type: string
-        waiverReasonId:
-          type: string
-      type: object
-    ApplicationSummary:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        publicId:
-          type: string
-      type: object
-    ApiRepositoryComponentEvaluationResultList:
-      properties:
-        repositoryId:
-          type: string
-        repositoryManagerId:
-          type: string
-        repositoryPublicId:
-          type: string
-        repositoryType:
-          type: string
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
         results:
+          description: List of items for the current page
           items:
-            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationResult'
+            $ref: '#/components/schemas/ContainerImageInQuarantineData'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
+    MalwareDefenseResponseList:
+      properties:
+        componentList:
+          items:
+            $ref: '#/components/schemas/MalwareDefenseData'
           type: array
       type: object
     ApiFirewallComponentDTOResult:
@@ -1190,158 +1007,6 @@ components:
           format: int64
           type: integer
       type: object
-    CascadeStatusResponseDTO:
-      properties:
-        evaluated:
-          items:
-            $ref: '#/components/schemas/CascadeComponentProgressDTO'
-          type: array
-        failed:
-          items:
-            $ref: '#/components/schemas/CascadeComponentProgressDTO'
-          type: array
-        pending:
-          items:
-            $ref: '#/components/schemas/CascadeComponentProgressDTO'
-          type: array
-        referenceComponentHash:
-          type: string
-        status:
-          enum:
-          - PENDING
-          - IN_PROGRESS
-          - COMPLETED
-          - NO_COMPONENTS_FOUND
-          - FAILED
-          type: string
-      type: object
-    MalwareDefenseResponseList:
-      properties:
-        componentList:
-          items:
-            $ref: '#/components/schemas/MalwareDefenseData'
-          type: array
-      type: object
-    ApiFirewallMetricsResultDTO:
-      properties:
-        firewallMetricsValue:
-          format: int32
-          type: integer
-        latestUpdatedTime:
-          format: date-time
-          type: string
-      type: object
-    ContainerImageInQuarantineDataResult:
-      properties:
-        page:
-          description: Current page number
-          format: int32
-          type: integer
-        pageCount:
-          description: Total number of pages
-          format: int64
-          type: integer
-        pageSize:
-          description: Number of items per page
-          format: int32
-          type: integer
-        results:
-          description: List of items for the current page
-          items:
-            $ref: '#/components/schemas/ContainerImageInQuarantineData'
-          type: array
-        total:
-          description: Total number of items
-          format: int64
-          type: integer
-      type: object
-    ApiConstraintViolationDTO:
-      properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
-          type: array
-      type: object
-    PolicyContainerWaiverDataResult:
-      properties:
-        page:
-          description: Current page number
-          format: int32
-          type: integer
-        pageCount:
-          description: Total number of pages
-          format: int64
-          type: integer
-        pageSize:
-          description: Number of items per page
-          format: int32
-          type: integer
-        results:
-          description: List of items for the current page
-          items:
-            $ref: '#/components/schemas/PolicyContainerWaiverData'
-          type: array
-        total:
-          description: Total number of items
-          format: int64
-          type: integer
-      type: object
-    MalwareDefenseData:
-      properties:
-        hash:
-          type: string
-        isMalicious:
-          type: boolean
-        malwareCategories:
-          items:
-            $ref: '#/components/schemas/MalwareCategory'
-          type: array
-        matchState:
-          type: string
-        packageUrl:
-          type: string
-      type: object
-    ApiRepositoryComponentEvaluationResult:
-      properties:
-        catalogDate:
-          format: date-time
-          type: string
-        component:
-          $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
-        policyViolations:
-          items:
-            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
-          type: array
-        quarantineDate:
-          format: date-time
-          type: string
-        quarantined:
-          type: boolean
-      type: object
-    CascadeComponentProgressDTO:
-      properties:
-        componentId:
-          type: string
-        quarantined:
-          type: boolean
-        repositoryId:
-          type: string
-        repositoryManagerId:
-          type: string
-      type: object
-    ApiFirewallReleaseQuarantineSummaryDTO:
-      properties:
-        autoReleaseQuarantineCountMTD:
-          format: int64
-          type: integer
-        autoReleaseQuarantineCountYTD:
-          format: int64
-          type: integer
-      type: object
     ApplicationSummaryList:
       properties:
         applicationSummaries:
@@ -1349,13 +1014,21 @@ components:
             $ref: '#/components/schemas/ApplicationSummary'
           type: array
       type: object
-    ComponentIdentifier:
+    ApiMalwareComponentEvaluationRequest:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        hash:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
           type: string
       type: object
     PolicyContainerWaiverData:
@@ -1382,6 +1055,333 @@ components:
         uniquePolicyCount:
           format: int64
           type: integer
+      type: object
+    ApiMalwareComponentEvaluationRequestList:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiMalwareComponentEvaluationRequest'
+          type: array
+        format:
+          type: string
+      type: object
+    ApiFirewallQuarantineSummaryDTO:
+      properties:
+        quarantineEnabled:
+          type: boolean
+        quarantineEnabledRepositoryCount:
+          format: int64
+          type: integer
+        quarantinedComponentCount:
+          format: int64
+          type: integer
+        repositoryCount:
+          format: int64
+          type: integer
+        totalComponentCount:
+          format: int64
+          type: integer
+      type: object
+    MalwareCategory:
+      properties:
+        attackVector:
+          type: string
+        threatTypes:
+          items:
+            type: string
+          type: array
+      type: object
+    ApiRepositoryComponentEvaluationResult:
+      properties:
+        catalogDate:
+          format: date-time
+          type: string
+        component:
+          $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
+        policyViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+          type: array
+        quarantineDate:
+          format: date-time
+          type: string
+        quarantined:
+          type: boolean
+      type: object
+    ApiRepositoryComponentEvaluationRequestList:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationRequest'
+          type: array
+        format:
+          type: string
+      type: object
+    ApiRepositoryComponentEvaluationResultList:
+      properties:
+        repositoryId:
+          type: string
+        repositoryManagerId:
+          type: string
+        repositoryPublicId:
+          type: string
+        repositoryType:
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryComponentEvaluationResult'
+          type: array
+      type: object
+    PolicyContainerWaiverDataResult:
+      properties:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/PolicyContainerWaiverData'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
+    ApiRepositoryManagerListDTO:
+      properties:
+        repositoryManagers:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryManagerDTO'
+          type: array
+      type: object
+    ApiRepositoryManagerDTO:
+      properties:
+        id:
+          type: string
+        instanceId:
+          type: string
+        name:
+          type: string
+        productName:
+          type: string
+        productVersion:
+          type: string
+      type: object
+    ApiContainerImageWaiverDTO:
+      properties:
+        comment:
+          type: string
+        expiryTime:
+          format: date-time
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ApiRepositoryContainerDTO:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        relatedOrganizationId:
+          type: string
+      type: object
+    ApplicationSummary:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiRepositoryDTO:
+      properties:
+        auditEnabled:
+          type: boolean
+        format:
+          type: string
+        namespaceConfusionProtectionEnabled:
+          type: boolean
+        policyCompliantComponentSelectionEnabled:
+          type: boolean
+        publicId:
+          type: string
+        quarantineEnabled:
+          type: boolean
+        repositoryId:
+          type: string
+        type:
+          type: string
+      type: object
+    CascadeReevaluateTicketDTO:
+      properties:
+        statusUrl:
+          type: string
+      type: object
+    CascadeStatusResponseDTO:
+      properties:
+        evaluated:
+          items:
+            $ref: '#/components/schemas/CascadeComponentProgressDTO'
+          type: array
+        failed:
+          items:
+            $ref: '#/components/schemas/CascadeComponentProgressDTO'
+          type: array
+        pending:
+          items:
+            $ref: '#/components/schemas/CascadeComponentProgressDTO'
+          type: array
+        referenceComponentHash:
+          type: string
+        status:
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - NO_COMPONENTS_FOUND
+          - FAILED
+          type: string
+      type: object
+    ContainerImageInQuarantineData:
+      description: List of items for the current page
+      properties:
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        applicationPublicId:
+          type: string
+        openTime:
+          type: number
+        policyViolationCount:
+          format: int64
+          type: integer
+        repositoryId:
+          type: string
+        repositoryPublicId:
+          type: string
+        scanId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    ApiConstraintViolationReasonDTO:
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+      type: object
+    ApiFirewallReleaseQuarantineSummaryDTO:
+      properties:
+        autoReleaseQuarantineCountMTD:
+          format: int64
+          type: integer
+        autoReleaseQuarantineCountYTD:
+          format: int64
+          type: integer
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    CascadeComponentProgressDTO:
+      properties:
+        componentId:
+          type: string
+        quarantined:
+          type: boolean
+        repositoryId:
+          type: string
+        repositoryManagerId:
+          type: string
+      type: object
+    ApiPolicyViolationDTOV2:
+      properties:
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
+          type: string
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
+          format: date-time
+          type: string
+      type: object
+    MalwareDefenseData:
+      properties:
+        hash:
+          type: string
+        isMalicious:
+          type: boolean
+        malwareCategories:
+          items:
+            $ref: '#/components/schemas/MalwareCategory'
+          type: array
+        matchState:
+          type: string
+        packageUrl:
+          type: string
+      type: object
+    ApiRepositoryListDTO:
+      properties:
+        repositories:
+          items:
+            $ref: '#/components/schemas/ApiRepositoryDTO'
+          type: array
+      type: object
+    ApiFirewallMetricsResultDTO:
+      properties:
+        firewallMetricsValue:
+          format: int32
+          type: integer
+        latestUpdatedTime:
+          format: date-time
+          type: string
+      type: object
+    ApiConstraintViolationDTO:
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+          type: array
       type: object
   securitySchemes:
     BasicAuth:

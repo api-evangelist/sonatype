@@ -65,6 +65,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    OAuth2ConfigurationDTO:
+      properties:
+        emailClaim:
+          type: string
+        exactMatchClaimsJson:
+          type: string
+        firstNameClaim:
+          type: string
+        groupsClaim:
+          type: string
+        idpIssuer:
+          type: string
+        idpJwks:
+          type: string
+        idpJwksUrl:
+          type: string
+        idpJwsAlgorithm:
+          type: string
+        lastNameClaim:
+          type: string
+        usernameClaim:
+          type: string
+      type: object
     SsoConfigurationDTO:
       properties:
         oauth2Configuration:
@@ -87,29 +110,6 @@ components:
         idpTokenUrl:
           type: string
         tokenRequestCustomParamsJson:
-          type: string
-      type: object
-    OAuth2ConfigurationDTO:
-      properties:
-        emailClaim:
-          type: string
-        exactMatchClaimsJson:
-          type: string
-        firstNameClaim:
-          type: string
-        groupsClaim:
-          type: string
-        idpIssuer:
-          type: string
-        idpJwks:
-          type: string
-        idpJwksUrl:
-          type: string
-        idpJwsAlgorithm:
-          type: string
-        lastNameClaim:
-          type: string
-        usernameClaim:
           type: string
       type: object
   securitySchemes:

@@ -272,27 +272,32 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApplicableContext:
+      properties:
+        children:
+          items:
+            $ref: '#/components/schemas/ApplicableContext'
+          type: array
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
+          type: string
+      type: object
     ApplicableLabels:
       properties:
         labelsByOwner:
           items:
             $ref: '#/components/schemas/LabelsByOwner'
           type: array
-      type: object
-    ApiLabelDTO:
-      properties:
-        color:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        label:
-          type: string
-        ownerId:
-          type: string
-        ownerType:
-          type: string
       type: object
     LabelsByOwner:
       properties:
@@ -314,24 +319,19 @@ components:
           - global
           type: string
       type: object
-    ApplicableContext:
+    ApiLabelDTO:
       properties:
-        children:
-          items:
-            $ref: '#/components/schemas/ApplicableContext'
-          type: array
+        color:
+          type: string
+        description:
+          type: string
         id:
           type: string
-        name:
+        label:
           type: string
-        type:
-          enum:
-          - application
-          - organization
-          - repository_container
-          - repository_manager
-          - repository
-          - global
+        ownerId:
+          type: string
+        ownerType:
           type: string
       type: object
   securitySchemes:

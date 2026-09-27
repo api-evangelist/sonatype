@@ -456,20 +456,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiMemberDTO:
-      properties:
-        ownerId:
-          type: string
-        ownerType:
-          type: string
-        type:
-          enum:
-          - USER
-          - GROUP
-          type: string
-        userOrGroupName:
-          type: string
-      type: object
     ApiMemberWithDetailsDTO:
       properties:
         displayName:
@@ -484,6 +470,15 @@ components:
           enum:
           - USER
           - GROUP
+          type: string
+      type: object
+    ApiRoleMemberMappingDTO:
+      properties:
+        members:
+          items:
+            $ref: '#/components/schemas/ApiMemberDTO'
+          type: array
+        roleId:
           type: string
       type: object
     ApiMembersByOwnerDTO:
@@ -521,21 +516,26 @@ components:
             $ref: '#/components/schemas/ApiRoleWithMembersByOwnerDTO'
           type: array
       type: object
+    ApiMemberDTO:
+      properties:
+        ownerId:
+          type: string
+        ownerType:
+          type: string
+        type:
+          enum:
+          - USER
+          - GROUP
+          type: string
+        userOrGroupName:
+          type: string
+      type: object
     ApiRoleMemberMappingListDTO:
       properties:
         memberMappings:
           items:
             $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
           type: array
-      type: object
-    ApiRoleMemberMappingDTO:
-      properties:
-        members:
-          items:
-            $ref: '#/components/schemas/ApiMemberDTO'
-          type: array
-        roleId:
-          type: string
       type: object
   securitySchemes:
     BasicAuth:

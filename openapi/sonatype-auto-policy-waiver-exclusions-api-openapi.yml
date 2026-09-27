@@ -154,27 +154,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TriggerReference:
+    ConditionFact:
       properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
           type: string
-        value:
+        reason:
           type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
           type: string
-        constraintName:
-          type: string
-        operatorName:
+        triggerJson:
           type: string
       type: object
     ApiAutoPolicyWaiverExclusionRequestDTO:
@@ -196,20 +189,36 @@ components:
         scanId:
           type: string
       type: object
-    ConditionFact:
+    TriggerReference:
       properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
           type: string
-        reason:
+        value:
           type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
           type: string
-        triggerJson:
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        operatorName:
           type: string
       type: object
     ApiAutoPolicyWaiverExclusionResponseDTO:
@@ -261,15 +270,6 @@ components:
           format: int32
           type: integer
         vulnerabilityIdentifiers:
-          type: string
-      type: object
-    ComponentIdentifier:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
           type: string
       type: object
   securitySchemes:

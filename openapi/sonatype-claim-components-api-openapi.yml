@@ -119,6 +119,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
     ApiHashComponentIdentifiersDTO:
       properties:
         componentClaims:
@@ -142,15 +151,6 @@ components:
         hash:
           type: string
         packageUrl:
-          type: string
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
           type: string
       type: object
   securitySchemes:

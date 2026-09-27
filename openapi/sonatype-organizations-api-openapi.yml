@@ -176,18 +176,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidationError:
+    ApiOrganizationListDTO:
       properties:
-        message:
-          type: string
-        type:
-          enum:
-          - TAG
-          - POLICY
-          - LICENSE_THREAT_GROUP
-          - LABEL
-          - PARENT_HIERARCHY
-          type: string
+        organizations:
+          items:
+            $ref: '#/components/schemas/ApiOrganizationDTO'
+          type: array
       type: object
     ApiOrganizationDTO:
       properties:
@@ -200,35 +194,6 @@ components:
         tags:
           items:
             $ref: '#/components/schemas/ApiTagDTO'
-          type: array
-      type: object
-    ApiOrganizationListDTO:
-      properties:
-        organizations:
-          items:
-            $ref: '#/components/schemas/ApiOrganizationDTO'
-          type: array
-      type: object
-    ValidationWarning:
-      properties:
-        message:
-          type: string
-        type:
-          enum:
-          - LICENSE_OVERRIDE
-          - POLICY_MONITORING
-          - POLICY_WAIVER
-          type: string
-      type: object
-    MoveOrganizationResponseDTO:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-        warnings:
-          items:
-            $ref: '#/components/schemas/ValidationWarning'
           type: array
       type: object
     ApiTagDTO:
@@ -258,6 +223,41 @@ components:
           type: string
         name:
           type: string
+      type: object
+    ValidationError:
+      properties:
+        message:
+          type: string
+        type:
+          enum:
+          - TAG
+          - POLICY
+          - LICENSE_THREAT_GROUP
+          - LABEL
+          - PARENT_HIERARCHY
+          type: string
+      type: object
+    ValidationWarning:
+      properties:
+        message:
+          type: string
+        type:
+          enum:
+          - LICENSE_OVERRIDE
+          - POLICY_MONITORING
+          - POLICY_WAIVER
+          type: string
+      type: object
+    MoveOrganizationResponseDTO:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+          type: array
       type: object
   securitySchemes:
     BasicAuth:

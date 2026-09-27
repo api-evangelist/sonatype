@@ -247,11 +247,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApplicationTagsByOwnerDTO:
+    TagsByOwnerDTO:
       properties:
-        applicationTags:
+        applicationCategories:
           items:
-            $ref: '#/components/schemas/ApplicationTag'
+            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
           type: array
         ownerId:
           type: string
@@ -267,22 +267,6 @@ components:
           - global
           type: string
       type: object
-    ApplicableTagsDTO:
-      properties:
-        applicationCategoriesByOwner:
-          items:
-            $ref: '#/components/schemas/TagsByOwnerDTO'
-          type: array
-      type: object
-    ApplicationTag:
-      properties:
-        applicationId:
-          type: string
-        id:
-          type: string
-        tagId:
-          type: string
-      type: object
     PolicyTag:
       properties:
         id:
@@ -291,6 +275,13 @@ components:
           type: string
         tagId:
           type: string
+      type: object
+    ApplicableTagsDTO:
+      properties:
+        applicationCategoriesByOwner:
+          items:
+            $ref: '#/components/schemas/TagsByOwnerDTO'
+          type: array
       type: object
     AppliedTagsDTO:
       properties:
@@ -312,11 +303,11 @@ components:
         organizationId:
           type: string
       type: object
-    TagsByOwnerDTO:
+    ApplicationTagsByOwnerDTO:
       properties:
-        applicationCategories:
+        applicationTags:
           items:
-            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+            $ref: '#/components/schemas/ApplicationTag'
           type: array
         ownerId:
           type: string
@@ -330,6 +321,15 @@ components:
           - repository_manager
           - repository
           - global
+          type: string
+      type: object
+    ApplicationTag:
+      properties:
+        applicationId:
+          type: string
+        id:
+          type: string
+        tagId:
           type: string
       type: object
   securitySchemes:

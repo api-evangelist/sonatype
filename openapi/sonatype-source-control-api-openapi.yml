@@ -299,15 +299,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SCMUserMappingsDTO:
-      properties:
-        mappings:
-          items:
-            $ref: '#/components/schemas/UserMapping'
-          type: array
-        role:
-          type: string
-      type: object
     ApiSourceControlDTO:
       properties:
         authenticationType:
@@ -356,6 +347,23 @@ components:
         username:
           type: string
       type: object
+    UserMapping:
+      properties:
+        from:
+          enum:
+          - SCM_USERNAME
+          - SCM_EMAIL
+          - SCM_FULLNAME
+          - GITLOG_EMAIL
+          - GITLOG_FULLNAME
+          type: string
+        to:
+          enum:
+          - IQ_USERNAME
+          - IQ_EMAIL
+          - IQ_FULLNAME
+          type: string
+      type: object
     SCMUserMatchingResultDTO:
       properties:
         matchedUsers:
@@ -375,21 +383,13 @@ components:
         userMapping:
           $ref: '#/components/schemas/SCMUserMappingsDTO'
       type: object
-    UserMapping:
+    SCMUserMappingsDTO:
       properties:
-        from:
-          enum:
-          - SCM_USERNAME
-          - SCM_EMAIL
-          - SCM_FULLNAME
-          - GITLOG_EMAIL
-          - GITLOG_FULLNAME
-          type: string
-        to:
-          enum:
-          - IQ_USERNAME
-          - IQ_EMAIL
-          - IQ_FULLNAME
+        mappings:
+          items:
+            $ref: '#/components/schemas/UserMapping'
+          type: array
+        role:
           type: string
       type: object
   securitySchemes:

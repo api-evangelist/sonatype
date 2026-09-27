@@ -155,6 +155,27 @@ components:
         javaScriptAnalysis:
           $ref: '#/components/schemas/JavaScriptAnalysisConfig'
       type: object
+    ProxyConfig:
+      properties:
+        host:
+          type: string
+      type: object
+    DownloadConfig:
+      properties:
+        iqCliUrl:
+          type: string
+        iqCliVersion:
+          type: string
+      type: object
+    ApiCiConfigurationResponseDto:
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiCiConfigurationDto'
+        source:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
     ApiCiConfigurationDto:
       properties:
         advancedProperties:
@@ -193,27 +214,6 @@ components:
           type: array
         unstableBuildOnPolicyWarnings:
           type: boolean
-      type: object
-    ApiCiConfigurationResponseDto:
-      properties:
-        data:
-          $ref: '#/components/schemas/ApiCiConfigurationDto'
-        source:
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-    ProxyConfig:
-      properties:
-        host:
-          type: string
-      type: object
-    DownloadConfig:
-      properties:
-        iqCliUrl:
-          type: string
-        iqCliVersion:
-          type: string
       type: object
     JavaAnalysisConfig:
       properties:
