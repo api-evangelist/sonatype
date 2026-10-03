@@ -143,13 +143,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiUserListDTO:
-      properties:
-        users:
-          items:
-            $ref: '#/components/schemas/ApiUserDTO'
-          type: array
-      type: object
     ApiUserDTO:
       properties:
         email:
@@ -164,6 +157,13 @@ components:
           type: string
         username:
           type: string
+      type: object
+    ApiUserListDTO:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/ApiUserDTO'
+          type: array
       type: object
   securitySchemes:
     BasicAuth:

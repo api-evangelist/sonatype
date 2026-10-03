@@ -332,6 +332,33 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiAutoPolicyWaiverStatusDTO:
+      properties:
+        autoPolicyWaiverId:
+          type: string
+        autoPolicyWaiverOwnerId:
+          type: string
+        autoPolicyWaiverOwnerName:
+          type: string
+        autoPolicyWaiverOwnerType:
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        hasNoPathForward:
+          type: boolean
+        hasNotReachable:
+          type: boolean
+        isAutoWaiverEnabled:
+          type: boolean
+        isInherited:
+          type: boolean
+        scopesOperatorAny:
+          type: boolean
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
     ApiAutoPolicyWaiverDTO:
       properties:
         autoPolicyWaiverId:
@@ -354,33 +381,6 @@ components:
         publicId:
           type: string
         reachability:
-          type: boolean
-        scopesOperatorAny:
-          type: boolean
-        threatLevel:
-          format: int32
-          type: integer
-      type: object
-    ApiAutoPolicyWaiverStatusDTO:
-      properties:
-        autoPolicyWaiverId:
-          type: string
-        autoPolicyWaiverOwnerId:
-          type: string
-        autoPolicyWaiverOwnerName:
-          type: string
-        autoPolicyWaiverOwnerType:
-          type: string
-        createTime:
-          format: date-time
-          type: string
-        hasNoPathForward:
-          type: boolean
-        hasNotReachable:
-          type: boolean
-        isAutoWaiverEnabled:
-          type: boolean
-        isInherited:
           type: boolean
         scopesOperatorAny:
           type: boolean

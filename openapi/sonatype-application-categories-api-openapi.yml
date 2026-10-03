@@ -247,26 +247,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TagsByOwnerDTO:
-      properties:
-        applicationCategories:
-          items:
-            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
-          type: array
-        ownerId:
-          type: string
-        ownerName:
-          type: string
-        ownerType:
-          enum:
-          - application
-          - organization
-          - repository_container
-          - repository_manager
-          - repository
-          - global
-          type: string
-      type: object
     PolicyTag:
       properties:
         id:
@@ -283,24 +263,13 @@ components:
             $ref: '#/components/schemas/TagsByOwnerDTO'
           type: array
       type: object
-    AppliedTagsDTO:
+    ApplicationTag:
       properties:
-        applicationTagsByOwner:
-          items:
-            $ref: '#/components/schemas/ApplicationTagsByOwnerDTO'
-          type: array
-      type: object
-    ApiApplicationCategoryDTO:
-      properties:
-        color:
-          type: string
-        description:
+        applicationId:
           type: string
         id:
           type: string
-        name:
-          type: string
-        organizationId:
+        tagId:
           type: string
       type: object
     ApplicationTagsByOwnerDTO:
@@ -323,13 +292,44 @@ components:
           - global
           type: string
       type: object
-    ApplicationTag:
+    ApiApplicationCategoryDTO:
       properties:
-        applicationId:
+        color:
+          type: string
+        description:
           type: string
         id:
           type: string
-        tagId:
+        name:
+          type: string
+        organizationId:
+          type: string
+      type: object
+    AppliedTagsDTO:
+      properties:
+        applicationTagsByOwner:
+          items:
+            $ref: '#/components/schemas/ApplicationTagsByOwnerDTO'
+          type: array
+      type: object
+    TagsByOwnerDTO:
+      properties:
+        applicationCategories:
+          items:
+            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
+          type: array
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
           type: string
       type: object
   securitySchemes:

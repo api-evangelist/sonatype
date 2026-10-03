@@ -153,19 +153,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiRoleDTO:
+    ApiRoleListDTO:
       properties:
-        builtIn:
-          type: boolean
-        description:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        permissionCategories:
+        roles:
           items:
-            $ref: '#/components/schemas/ApiPermissionCategoryDTO'
+            $ref: '#/components/schemas/ApiRoleDTO'
           type: array
       type: object
     ApiPermissionDTO:
@@ -199,11 +191,19 @@ components:
           - CREATE_PULL_REQUESTS
           type: string
       type: object
-    ApiRoleListDTO:
+    ApiRoleDTO:
       properties:
-        roles:
+        builtIn:
+          type: boolean
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        permissionCategories:
           items:
-            $ref: '#/components/schemas/ApiRoleDTO'
+            $ref: '#/components/schemas/ApiPermissionCategoryDTO'
           type: array
       type: object
     ApiPermissionCategoryDTO:

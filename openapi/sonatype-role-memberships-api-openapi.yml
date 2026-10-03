@@ -456,6 +456,42 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiRoleWithMembersByOwnerDTO:
+      properties:
+        membersByOwner:
+          items:
+            $ref: '#/components/schemas/ApiMembersByOwnerDTO'
+          type: array
+        roleDescription:
+          type: string
+        roleId:
+          type: string
+        roleName:
+          type: string
+      type: object
+    ApiRoleMemberMappingDTO:
+      properties:
+        members:
+          items:
+            $ref: '#/components/schemas/ApiMemberDTO'
+          type: array
+        roleId:
+          type: string
+      type: object
+    ApiMemberDTO:
+      properties:
+        ownerId:
+          type: string
+        ownerType:
+          type: string
+        type:
+          enum:
+          - USER
+          - GROUP
+          type: string
+        userOrGroupName:
+          type: string
+      type: object
     ApiMemberWithDetailsDTO:
       properties:
         displayName:
@@ -472,14 +508,12 @@ components:
           - GROUP
           type: string
       type: object
-    ApiRoleMemberMappingDTO:
+    ApiRoleMemberMappingListDTO:
       properties:
-        members:
+        memberMappings:
           items:
-            $ref: '#/components/schemas/ApiMemberDTO'
+            $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
           type: array
-        roleId:
-          type: string
       type: object
     ApiMembersByOwnerDTO:
       properties:
@@ -494,19 +528,6 @@ components:
         ownerType:
           type: string
       type: object
-    ApiRoleWithMembersByOwnerDTO:
-      properties:
-        membersByOwner:
-          items:
-            $ref: '#/components/schemas/ApiMembersByOwnerDTO'
-          type: array
-        roleDescription:
-          type: string
-        roleId:
-          type: string
-        roleName:
-          type: string
-      type: object
     ApiApplicableMembershipMappingsDTO:
       properties:
         groupSearchEnabled:
@@ -514,27 +535,6 @@ components:
         membersByRole:
           items:
             $ref: '#/components/schemas/ApiRoleWithMembersByOwnerDTO'
-          type: array
-      type: object
-    ApiMemberDTO:
-      properties:
-        ownerId:
-          type: string
-        ownerType:
-          type: string
-        type:
-          enum:
-          - USER
-          - GROUP
-          type: string
-        userOrGroupName:
-          type: string
-      type: object
-    ApiRoleMemberMappingListDTO:
-      properties:
-        memberMappings:
-          items:
-            $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
           type: array
       type: object
   securitySchemes:

@@ -291,100 +291,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    LegalSourceLinkDTO:
-      properties:
-        content:
-          type: string
-        id:
-          type: string
-        originalContent:
-          type: string
-        status:
-          enum:
-          - enabled
-          - disabled
-          type: string
-      type: object
-    ComponentObligationAttributionDTO:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        content:
-          type: string
-        id:
-          type: string
-        lastUpdatedAt:
-          format: date-time
-          type: string
-        lastUpdatedByUsername:
-          type: string
-        obligationName:
-          type: string
-        ownerId:
-          type: string
-        packageUrl:
-          type: string
-      type: object
-    ApiLicenseLegalObligationDTO:
-      properties:
-        comment:
-          type: string
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        id:
-          type: string
-        lastUpdatedAt:
-          format: date-time
-          type: string
-        lastUpdatedByUsername:
-          type: string
-        name:
-          type: string
-        ownerId:
-          type: string
-        packageUrl:
-          type: string
-        status:
-          enum:
-          - OPEN
-          - IGNORED
-          - FLAGGED
-          - FULFILLED
-          type: string
-      type: object
-    ApiLicenseLegalMetadataDTO:
-      properties:
-        isMulti:
-          type: boolean
-        licenseId:
-          type: string
-        licenseName:
-          type: string
-        licenseText:
-          type: string
-        obligations:
-          items:
-            $ref: '#/components/schemas/LicenseObligationDTO'
-          type: array
-          uniqueItems: true
-        singleLicenseIds:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        threatGroup:
-          $ref: '#/components/schemas/LicenseThreatGroupDTO'
-      type: object
-    LicenseObligationDTO:
-      properties:
-        name:
-          type: string
-        obligationTexts:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
     ApiLicenseLegalDataDTO:
       properties:
         attributions:
@@ -456,40 +362,22 @@ components:
           type: array
           uniqueItems: true
       type: object
-    ComponentIdentifier:
+    ApiLicenseLegalComponentDTO:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
           type: string
-      type: object
-    ApiLicenseLegalStageScanDTO:
-      properties:
-        scanDate:
-          format: date-time
+        hash:
           type: string
-        scanId:
+        licenseLegalData:
+          $ref: '#/components/schemas/ApiLicenseLegalDataDTO'
+        packageUrl:
           type: string
-        stageName:
-          type: string
-      type: object
-    ApiLicenseLegalFileDTO:
-      properties:
-        content:
-          type: string
-        id:
-          type: string
-        originalContentHash:
-          type: string
-        relPath:
-          type: string
-        status:
-          enum:
-          - enabled
-          - disabled
-          type: string
+        stageScans:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalStageScanDTO'
+          type: array
       type: object
     ApiLicenseLegalComponentReportDTO:
       properties:
@@ -501,13 +389,15 @@ components:
           type: array
           uniqueItems: true
       type: object
-    LicenseThreatGroupDTO:
+    ApiLicenseThreatDTOV2:
       properties:
-        name:
+        licenseThreatGroupCategory:
           type: string
-        threatLevel:
+        licenseThreatGroupLevel:
           format: int32
           type: integer
+        licenseThreatGroupName:
+          type: string
       type: object
     ApiLicenseLegalCopyrightDTO:
       properties:
@@ -535,15 +425,67 @@ components:
           type: array
           uniqueItems: true
       type: object
-    ApiLicenseThreatDTOV2:
+    ApiLicenseLegalObligationDTO:
       properties:
-        licenseThreatGroupCategory:
+        comment:
           type: string
-        licenseThreatGroupLevel:
-          format: int32
-          type: integer
-        licenseThreatGroupName:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        id:
           type: string
+        lastUpdatedAt:
+          format: date-time
+          type: string
+        lastUpdatedByUsername:
+          type: string
+        name:
+          type: string
+        ownerId:
+          type: string
+        packageUrl:
+          type: string
+        status:
+          enum:
+          - OPEN
+          - IGNORED
+          - FLAGGED
+          - FULFILLED
+          type: string
+      type: object
+    ApiLicenseLegalFileDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContentHash:
+          type: string
+        relPath:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    LicenseObligationDTO:
+      properties:
+        name:
+          type: string
+        obligationTexts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
       type: object
     ApiComponentIdentifierDTOV2:
       properties:
@@ -554,22 +496,80 @@ components:
         format:
           type: string
       type: object
-    ApiLicenseLegalComponentDTO:
+    LegalSourceLinkDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContent:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
+    LicenseThreatGroupDTO:
+      properties:
+        name:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
+    ComponentObligationAttributionDTO:
       properties:
         componentIdentifier:
           $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
+        content:
           type: string
-        hash:
+        id:
           type: string
-        licenseLegalData:
-          $ref: '#/components/schemas/ApiLicenseLegalDataDTO'
+        lastUpdatedAt:
+          format: date-time
+          type: string
+        lastUpdatedByUsername:
+          type: string
+        obligationName:
+          type: string
+        ownerId:
+          type: string
         packageUrl:
           type: string
-        stageScans:
+      type: object
+    ApiLicenseLegalMetadataDTO:
+      properties:
+        isMulti:
+          type: boolean
+        licenseId:
+          type: string
+        licenseName:
+          type: string
+        licenseText:
+          type: string
+        obligations:
           items:
-            $ref: '#/components/schemas/ApiLicenseLegalStageScanDTO'
+            $ref: '#/components/schemas/LicenseObligationDTO'
           type: array
+          uniqueItems: true
+        singleLicenseIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        threatGroup:
+          $ref: '#/components/schemas/LicenseThreatGroupDTO'
+      type: object
+    ApiLicenseLegalStageScanDTO:
+      properties:
+        scanDate:
+          format: date-time
+          type: string
+        scanId:
+          type: string
+        stageName:
+          type: string
       type: object
   securitySchemes:
     BasicAuth:

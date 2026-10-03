@@ -192,14 +192,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ComponentIdentifier:
+    ApiAppliedLicenseOverridesDTO:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
+        licenseOverridesByOwner:
+          items:
+            $ref: '#/components/schemas/LicenseOverrideByOwner'
+          type: array
       type: object
     LicenseOverride:
       properties:
@@ -223,6 +221,24 @@ components:
           - OVERRIDDEN
           - SELECTED
           - CONFIRMED
+          type: string
+      type: object
+    LicenseOverrideByOwner:
+      properties:
+        licenseOverride:
+          $ref: '#/components/schemas/LicenseOverride'
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - global
           type: string
       type: object
     ApiLicenseOverrideDTO:
@@ -249,13 +265,6 @@ components:
           - CONFIRMED
           type: string
       type: object
-    ApiAppliedLicenseOverridesDTO:
-      properties:
-        licenseOverridesByOwner:
-          items:
-            $ref: '#/components/schemas/LicenseOverrideByOwner'
-          type: array
-      type: object
     ApiComponentIdentifierDTOV2:
       properties:
         coordinates:
@@ -265,22 +274,13 @@ components:
         format:
           type: string
       type: object
-    LicenseOverrideByOwner:
+    ComponentIdentifier:
       properties:
-        licenseOverride:
-          $ref: '#/components/schemas/LicenseOverride'
-        ownerId:
-          type: string
-        ownerName:
-          type: string
-        ownerType:
-          enum:
-          - application
-          - organization
-          - repository_container
-          - repository_manager
-          - repository
-          - global
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
           type: string
       type: object
   securitySchemes:

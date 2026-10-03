@@ -335,21 +335,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiOwnerArtifactoryConnectionDTO:
+    ApiStatusDTO:
       properties:
-        artifactoryConnection:
-          $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
-        artifactoryConnectionStatus:
-          $ref: '#/components/schemas/ApiArtifactoryConnectionStatusResponseDTO'
-        ownerDTO:
-          $ref: '#/components/schemas/ApiOwnerDTO'
-      type: object
-    ApiArtifactoryConnectionStatusRequestDTO:
-      properties:
-        allowOverride:
-          type: boolean
-        enabled:
-          type: boolean
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
       type: object
     ApiArtifactoryConnectionDTO:
       properties:
@@ -386,13 +378,21 @@ components:
         ownerType:
           type: string
       type: object
-    ApiStatusDTO:
+    ApiArtifactoryConnectionStatusRequestDTO:
       properties:
-        code:
-          format: int32
-          type: integer
-        message:
-          type: string
+        allowOverride:
+          type: boolean
+        enabled:
+          type: boolean
+      type: object
+    ApiOwnerArtifactoryConnectionDTO:
+      properties:
+        artifactoryConnection:
+          $ref: '#/components/schemas/ApiArtifactoryConnectionDTO'
+        artifactoryConnectionStatus:
+          $ref: '#/components/schemas/ApiArtifactoryConnectionStatusResponseDTO'
+        ownerDTO:
+          $ref: '#/components/schemas/ApiOwnerDTO'
       type: object
     ApiArtifactoryConnectionStatusResponseDTO:
       properties:

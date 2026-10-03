@@ -53,6 +53,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    GitHubAppInfo:
+      properties:
+        accountName:
+          type: string
+        configurationDate:
+          type: string
+        id:
+          type: string
+        installationId:
+          format: int64
+          type: integer
+        name:
+          type: string
+      type: object
+    ApiCompositeValueDTOBoolean:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          type: boolean
+        value:
+          type: boolean
+      type: object
     ApiCompositeValueDTOString:
       properties:
         parentName:
@@ -72,15 +95,6 @@ components:
         value:
           format: int32
           type: integer
-      type: object
-    ApiCompositeValueDTOGitHubAppInfo:
-      properties:
-        parentName:
-          type: string
-        parentValue:
-          $ref: '#/components/schemas/GitHubAppInfo'
-        value:
-          $ref: '#/components/schemas/GitHubAppInfo'
       type: object
     ApiCompositeSourceControlDTO:
       properties:
@@ -127,28 +141,14 @@ components:
         username:
           $ref: '#/components/schemas/ApiCompositeValueDTOString'
       type: object
-    ApiCompositeValueDTOBoolean:
+    ApiCompositeValueDTOGitHubAppInfo:
       properties:
         parentName:
           type: string
         parentValue:
-          type: boolean
+          $ref: '#/components/schemas/GitHubAppInfo'
         value:
-          type: boolean
-      type: object
-    GitHubAppInfo:
-      properties:
-        accountName:
-          type: string
-        configurationDate:
-          type: string
-        id:
-          type: string
-        installationId:
-          format: int64
-          type: integer
-        name:
-          type: string
+          $ref: '#/components/schemas/GitHubAppInfo'
       type: object
   securitySchemes:
     BasicAuth:

@@ -252,15 +252,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiApplicationTagDTO:
-      properties:
-        applicationId:
-          type: string
-        id:
-          type: string
-        tagId:
-          type: string
-      type: object
     ApiMoveApplicationResponseDTOV2:
       properties:
         errors:
@@ -270,6 +261,22 @@ components:
         warnings:
           items:
             type: string
+          type: array
+      type: object
+    ApiApplicationTagDTO:
+      properties:
+        applicationId:
+          type: string
+        id:
+          type: string
+        tagId:
+          type: string
+      type: object
+    ApiApplicationListDTO:
+      properties:
+        applications:
+          items:
+            $ref: '#/components/schemas/ApiApplicationDTO'
           type: array
       type: object
     ApiApplicationDTO:
@@ -288,13 +295,6 @@ components:
           type: string
         publicId:
           type: string
-      type: object
-    ApiApplicationListDTO:
-      properties:
-        applications:
-          items:
-            $ref: '#/components/schemas/ApiApplicationDTO'
-          type: array
       type: object
   securitySchemes:
     BasicAuth:

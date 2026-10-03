@@ -105,11 +105,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SystemConfigProperty:
-      enum:
-      - baseUrl
-      - forceBaseUrl
-      type: string
     CacheInvalidationResponse:
       properties:
         entriesInvalidated:
@@ -126,6 +121,11 @@ components:
           type:
           - boolean
           - 'null'
+    SystemConfigProperty:
+      enum:
+      - baseUrl
+      - forceBaseUrl
+      type: string
   securitySchemes:
     BasicAuth:
       scheme: basic

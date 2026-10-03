@@ -151,61 +151,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ComponentIdentifier:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ApiSearchCriteriaDTOV2:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        hash:
-          type: string
-        packageUrl:
-          type: string
-        stageId:
-          type: string
-      type: object
-    ApiSearchResultsDTOV2:
-      properties:
-        criteria:
-          $ref: '#/components/schemas/ApiSearchCriteriaDTOV2'
-        results:
-          items:
-            $ref: '#/components/schemas/ApiSearchResultDTOV2'
-          type: array
-      type: object
-    ApiDependencyDataDTO:
-      properties:
-        directDependency:
-          type: boolean
-        innerSource:
-          type: boolean
-        innerSourceData:
-          items:
-            $ref: '#/components/schemas/InnerSourceData'
-          type: array
-          uniqueItems: true
-        parentComponentPurls:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
     ApiSearchResultDTOV2:
       properties:
         applicationId:
@@ -228,6 +173,52 @@ components:
           format: int32
           type: integer
       type: object
+    ApiDependencyDataDTO:
+      properties:
+        directDependency:
+          type: boolean
+        innerSource:
+          type: boolean
+        innerSourceData:
+          items:
+            $ref: '#/components/schemas/InnerSourceData'
+          type: array
+          uniqueItems: true
+        parentComponentPurls:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    ApiSearchCriteriaDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        hash:
+          type: string
+        packageUrl:
+          type: string
+        stageId:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
     InnerSourceData:
       properties:
         innerSourceComponentPurl:
@@ -236,6 +227,15 @@ components:
           type: string
         ownerApplicationName:
           type: string
+      type: object
+    ApiSearchResultsDTOV2:
+      properties:
+        criteria:
+          $ref: '#/components/schemas/ApiSearchCriteriaDTOV2'
+        results:
+          items:
+            $ref: '#/components/schemas/ApiSearchResultDTOV2'
+          type: array
       type: object
   securitySchemes:
     BasicAuth:

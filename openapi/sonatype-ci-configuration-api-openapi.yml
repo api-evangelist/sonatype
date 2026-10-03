@@ -146,6 +146,50 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiCiConfigurationResponseDto:
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiCiConfigurationDto'
+        source:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    JavaScriptAnalysisConfig:
+      properties:
+        enabled:
+          type: boolean
+        jsExcludes:
+          items:
+            type: string
+          type: array
+        jsSources:
+          items:
+            type: string
+          type: array
+        nodeJsExecutable:
+          type: string
+        projectRoot:
+          type: string
+      type: object
+    DownloadConfig:
+      properties:
+        iqCliUrl:
+          type: string
+        iqCliVersion:
+          type: string
+      type: object
+    JavaAnalysisConfig:
+      properties:
+        enabled:
+          type: boolean
+        entrypointStrategy:
+          type: string
+        namespaces:
+          items:
+            type: string
+          type: array
+      type: object
     ReachabilityConfig:
       properties:
         failOnError:
@@ -159,22 +203,6 @@ components:
       properties:
         host:
           type: string
-      type: object
-    DownloadConfig:
-      properties:
-        iqCliUrl:
-          type: string
-        iqCliVersion:
-          type: string
-      type: object
-    ApiCiConfigurationResponseDto:
-      properties:
-        data:
-          $ref: '#/components/schemas/ApiCiConfigurationDto'
-        source:
-          additionalProperties:
-            type: string
-          type: object
       type: object
     ApiCiConfigurationDto:
       properties:
@@ -214,34 +242,6 @@ components:
           type: array
         unstableBuildOnPolicyWarnings:
           type: boolean
-      type: object
-    JavaAnalysisConfig:
-      properties:
-        enabled:
-          type: boolean
-        entrypointStrategy:
-          type: string
-        namespaces:
-          items:
-            type: string
-          type: array
-      type: object
-    JavaScriptAnalysisConfig:
-      properties:
-        enabled:
-          type: boolean
-        jsExcludes:
-          items:
-            type: string
-          type: array
-        jsSources:
-          items:
-            type: string
-          type: array
-        nodeJsExecutable:
-          type: string
-        projectRoot:
-          type: string
       type: object
   securitySchemes:
     BasicAuth:

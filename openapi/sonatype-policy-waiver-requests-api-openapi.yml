@@ -210,13 +210,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ComponentDisplayNamePart:
-      properties:
-        field:
-          type: string
-        value:
-          type: string
-      type: object
     ConditionFact:
       properties:
         conditionIndex:
@@ -233,7 +226,7 @@ components:
         triggerJson:
           type: string
       type: object
-    ApiPolicyWaiverRequestReviewDTO:
+    ApiPolicyWaiverRequestOptionsDTO:
       properties:
         comment:
           type: string
@@ -249,21 +242,9 @@ components:
           - ALL_COMPONENTS
           - ALL_VERSIONS
           type: string
-        rejectionReason:
-          type: string
-        status:
+        noteToReviewer:
           type: string
         waiverReasonId:
-          type: string
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
           type: string
       type: object
     ApiPolicyWaiverRequestDTO:
@@ -352,6 +333,32 @@ components:
             $ref: '#/components/schemas/ComponentDisplayNamePart'
           type: array
       type: object
+    TriggerReference:
+      properties:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+          type: string
+        value:
+          type: string
+      type: object
+    ComponentDisplayNamePart:
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
     ConstraintFact:
       properties:
         conditionFacts:
@@ -365,16 +372,7 @@ components:
         operatorName:
           type: string
       type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ApiPolicyWaiverRequestOptionsDTO:
+    ApiPolicyWaiverRequestReviewDTO:
       properties:
         comment:
           type: string
@@ -390,7 +388,9 @@ components:
           - ALL_COMPONENTS
           - ALL_VERSIONS
           type: string
-        noteToReviewer:
+        rejectionReason:
+          type: string
+        status:
           type: string
         waiverReasonId:
           type: string

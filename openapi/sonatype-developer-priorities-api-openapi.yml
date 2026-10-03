@@ -199,15 +199,6 @@ components:
           format: int64
           type: integer
       type: object
-    DevelopmentPrioritizationResults:
-      properties:
-        hasAutoWaiversConfigured:
-          type: boolean
-        priorities:
-          $ref: '#/components/schemas/ApiPageResultPrioritizedComponent'
-        scanIdFromLatestBuildStageEvaluation:
-          type: string
-      type: object
     ComponentIdentifier:
       properties:
         coordinates:
@@ -215,6 +206,15 @@ components:
             type: string
           type: object
         format:
+          type: string
+      type: object
+    DevelopmentPrioritizationResults:
+      properties:
+        hasAutoWaiversConfigured:
+          type: boolean
+        priorities:
+          $ref: '#/components/schemas/ApiPageResultPrioritizedComponent'
+        scanIdFromLatestBuildStageEvaluation:
           type: string
       type: object
   securitySchemes:

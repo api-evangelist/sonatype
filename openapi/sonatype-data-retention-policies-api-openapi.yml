@@ -90,28 +90,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiReportRetentionPoliciesDTO:
-      properties:
-        stages:
-          additionalProperties:
-            $ref: '#/components/schemas/ApiReportRetentionPolicyDTO'
-          type: object
-      type: object
-    ApiSuccessMetricsRetentionPolicyDTO:
-      properties:
-        enablePurging:
-          type: boolean
-        inheritPolicy:
-          type: boolean
-        maxAge:
-          type: string
-      type: object
     ApiDataRetentionPoliciesDTO:
       properties:
         applicationReports:
           $ref: '#/components/schemas/ApiReportRetentionPoliciesDTO'
         successMetrics:
           $ref: '#/components/schemas/ApiSuccessMetricsRetentionPolicyDTO'
+      type: object
+    ApiReportRetentionPoliciesDTO:
+      properties:
+        stages:
+          additionalProperties:
+            $ref: '#/components/schemas/ApiReportRetentionPolicyDTO'
+          type: object
       type: object
     ApiReportRetentionPolicyDTO:
       properties:
@@ -124,6 +115,15 @@ components:
         maxCount:
           format: int32
           type: integer
+      type: object
+    ApiSuccessMetricsRetentionPolicyDTO:
+      properties:
+        enablePurging:
+          type: boolean
+        inheritPolicy:
+          type: boolean
+        maxAge:
+          type: string
       type: object
   securitySchemes:
     BasicAuth:

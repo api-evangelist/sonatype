@@ -190,21 +190,152 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiMatchStateSummaryDTOV2:
+    ApiPolicyViolationDiffDTO:
       properties:
-        knownComponentCount:
-          format: int32
-          type: integer
-        totalComponentCount:
-          format: int32
-          type: integer
+        addedViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
+          type: array
+          uniqueItems: true
+        application:
+          $ref: '#/components/schemas/ApiApplicationDTO'
+        diffTime:
+          format: date-time
+          type: string
+        fromCommit:
+          $ref: '#/components/schemas/ApiApplicationEvaluationCommitDTO'
+        removedViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
+          type: array
+          uniqueItems: true
+        sameViolations:
+          items:
+            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
+          type: array
+          uniqueItems: true
+        toCommit:
+          $ref: '#/components/schemas/ApiApplicationEvaluationCommitDTO'
       type: object
-    ApiLicenseDTO:
+    ApiReportRawDataDTOV2:
       properties:
-        licenseId:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiReportComponentDTOV2'
+          type: array
+        globalInformation:
+          $ref: '#/components/schemas/ApiGlobalInformationDTOV2'
+        matchSummary:
+          $ref: '#/components/schemas/ApiMatchStateSummaryDTOV2'
+      type: object
+    AttachmentText:
+      properties:
+        content:
           type: string
-        licenseName:
+        contentType:
           type: string
+        encoding:
+          type: string
+      type: object
+    ApiApplicationBaseDTO:
+      properties:
+        contactUserName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiReportConstraintViolationDTOV2:
+      properties:
+        conditions:
+          items:
+            $ref: '#/components/schemas/ApiReportConstraintConditionDTOV2'
+          type: array
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiReportPolicyDataDTOV2:
+      properties:
+        application:
+          $ref: '#/components/schemas/ApiApplicationBaseDTO'
+        commitHash:
+          type: string
+        components:
+          items:
+            $ref: '#/components/schemas/ApiReportComponentPolicyViolationsDTOV2'
+          type: array
+        counts:
+          additionalProperties:
+            format: int32
+            type: integer
+          type: object
+        initiator:
+          type: string
+        reportTime:
+          type: number
+        reportTitle:
+          type: string
+      type: object
+    ApiComponentDTOV2:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        displayName:
+          type: string
+        hash:
+          type:
+          - string
+          - 'null'
+        originalPurl:
+          type: string
+        packageUrl:
+          type: string
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+      type: object
+    ApiDependencyDataDTO:
+      properties:
+        directDependency:
+          type: boolean
+        innerSource:
+          type: boolean
+        innerSourceData:
+          items:
+            $ref: '#/components/schemas/InnerSourceData'
+          type: array
+          uniqueItems: true
+        parentComponentPurls:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    ApiSecurityDataDTO:
+      properties:
+        securityIssues:
+          items:
+            $ref: '#/components/schemas/ApiSecurityIssueDTO'
+          type: array
       type: object
     Swid:
       properties:
@@ -222,61 +353,41 @@ components:
         version:
           type: string
       type: object
-    ApiLicenseDataDTOV2:
+    ApiConstraintViolationDTO:
       properties:
-        declaredLicenses:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
           items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
           type: array
-        effectiveLicenseThreats:
-          items:
-            $ref: '#/components/schemas/ApiLicenseThreatDTOV2'
-          type: array
-        effectiveLicenses:
-          items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
-          type: array
-        observedLicenses:
-          items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
-          type: array
-        overriddenLicenses:
-          items:
-            $ref: '#/components/schemas/ApiLicenseDTO'
-          type: array
-        status:
+      type: object
+    ApiReportConstraintConditionDTOV2:
+      properties:
+        conditionReason:
+          type: string
+        conditionSummary:
           type: string
       type: object
-    ApiReportComponentPolicyViolationsDTOV2:
+    InnerSourceData:
       properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        dependencyData:
-          $ref: '#/components/schemas/ApiDependencyDataDTO'
-        displayName:
+        innerSourceComponentPurl:
           type: string
-        hash:
+        ownerApplicationId:
           type: string
-        matchState:
+        ownerApplicationName:
           type: string
-        originalPurl:
-          type: string
-        packageUrl:
-          type: string
-        pathnames:
-          items:
-            type: string
-          type: array
-        proprietary:
-          type: boolean
-        sha256:
-          type: string
-        thirdParty:
-          type: boolean
-        violations:
-          items:
-            $ref: '#/components/schemas/ApiReportPolicyViolationDTOV2'
-          type: array
+      type: object
+    ApiMatchStateSummaryDTOV2:
+      properties:
+        knownComponentCount:
+          format: int32
+          type: integer
+        totalComponentCount:
+          format: int32
+          type: integer
       type: object
     ApiDependencyTreeNodeDTO:
       properties:
@@ -291,20 +402,69 @@ components:
         packageUrl:
           type: string
       type: object
-    ApiReportConstraintViolationDTOV2:
-      properties:
-        conditions:
-          items:
-            $ref: '#/components/schemas/ApiReportConstraintConditionDTOV2'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-      type: object
     ApiGlobalInformationDTOV2:
       properties:
         dataVersionDate:
+          type: string
+      type: object
+    ApiApplicationDTO:
+      properties:
+        applicationTags:
+          items:
+            $ref: '#/components/schemas/ApiApplicationTagDTO'
+          type: array
+        contactUserName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        publicId:
+          type: string
+      type: object
+    ApiLicenseDTO:
+      properties:
+        licenseId:
+          type: string
+        licenseName:
+          type: string
+      type: object
+    ApiSecurityIssueDTO:
+      properties:
+        analysis:
+          $ref: '#/components/schemas/ApiSecurityIssueAnalysisDTO'
+        cvssVector:
+          type: string
+        cvssVectorSource:
+          type: string
+        cwe:
+          type: string
+        reference:
+          type: string
+        severity:
+          format: float
+          type: number
+        source:
+          type: string
+        status:
+          type: string
+        threatCategory:
+          type: string
+        url:
+          type: string
+      type: object
+    ApiApplicationEvaluationCommitDTO:
+      properties:
+        commitHash:
+          type: string
+        reportUrl:
+          type: string
+        scanId:
+          type: string
+        scanTime:
+          format: date-time
           type: string
       type: object
     TriggerReference:
@@ -317,40 +477,23 @@ components:
         value:
           type: string
       type: object
-    ApiApplicationTagDTO:
+    ApiSecurityIssueAnalysisDTO:
       properties:
-        applicationId:
+        detail:
           type: string
-        id:
+        justification:
           type: string
-        tagId:
+        response:
+          type: string
+        state:
           type: string
       type: object
-    ApiDependencyTreeResponseDTO:
+    ApiConstraintViolationReasonDTO:
       properties:
-        dependencyTree:
-          $ref: '#/components/schemas/ApiDependencyTreeNodeDTO'
-      type: object
-    ApiLicenseThreatDTOV2:
-      properties:
-        licenseThreatGroupCategory:
+        reason:
           type: string
-        licenseThreatGroupLevel:
-          format: int32
-          type: integer
-        licenseThreatGroupName:
-          type: string
-      type: object
-    ApiReportRawDataDTOV2:
-      properties:
-        components:
-          items:
-            $ref: '#/components/schemas/ApiReportComponentDTOV2'
-          type: array
-        globalInformation:
-          $ref: '#/components/schemas/ApiGlobalInformationDTOV2'
-        matchSummary:
-          $ref: '#/components/schemas/ApiMatchStateSummaryDTOV2'
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
       type: object
     ApiReportComponentDTOV2:
       properties:
@@ -393,188 +536,6 @@ components:
         thirdParty:
           type: boolean
       type: object
-    ApiReportConstraintConditionDTOV2:
-      properties:
-        conditionReason:
-          type: string
-        conditionSummary:
-          type: string
-      type: object
-    ApiPolicyViolationDiffDTO:
-      properties:
-        addedViolations:
-          items:
-            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
-          type: array
-          uniqueItems: true
-        application:
-          $ref: '#/components/schemas/ApiApplicationDTO'
-        diffTime:
-          format: date-time
-          type: string
-        fromCommit:
-          $ref: '#/components/schemas/ApiApplicationEvaluationCommitDTO'
-        removedViolations:
-          items:
-            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
-          type: array
-          uniqueItems: true
-        sameViolations:
-          items:
-            $ref: '#/components/schemas/ApiPolicyViolationForDiffDTO'
-          type: array
-          uniqueItems: true
-        toCommit:
-          $ref: '#/components/schemas/ApiApplicationEvaluationCommitDTO'
-      type: object
-    AttachmentText:
-      properties:
-        content:
-          type: string
-        contentType:
-          type: string
-        encoding:
-          type: string
-      type: object
-    ApiApplicationDTO:
-      properties:
-        applicationTags:
-          items:
-            $ref: '#/components/schemas/ApiApplicationTagDTO'
-          type: array
-        contactUserName:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        organizationId:
-          type: string
-        publicId:
-          type: string
-      type: object
-    ApiSecurityIssueAnalysisDTO:
-      properties:
-        detail:
-          type: string
-        justification:
-          type: string
-        response:
-          type: string
-        state:
-          type: string
-      type: object
-    ApiPolicyViolationForDiffDTO:
-      properties:
-        component:
-          $ref: '#/components/schemas/ApiComponentDTOV2'
-        constraintViolations:
-          items:
-            $ref: '#/components/schemas/ApiConstraintViolationDTO'
-          type: array
-        fixTime:
-          format: date-time
-          type: string
-        legacyViolationTime:
-          format: date-time
-          type: string
-        openTime:
-          format: date-time
-          type: string
-        policyId:
-          type: string
-        policyName:
-          type: string
-        policyViolationId:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-        waiveTime:
-          format: date-time
-          type: string
-      type: object
-    ApiSecurityIssueDTO:
-      properties:
-        analysis:
-          $ref: '#/components/schemas/ApiSecurityIssueAnalysisDTO'
-        cvssVector:
-          type: string
-        cvssVectorSource:
-          type: string
-        cwe:
-          type: string
-        reference:
-          type: string
-        severity:
-          format: float
-          type: number
-        source:
-          type: string
-        status:
-          type: string
-        threatCategory:
-          type: string
-        url:
-          type: string
-      type: object
-    ApiConstraintViolationReasonDTO:
-      properties:
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-      type: object
-    ApiComponentDTOV2:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        displayName:
-          type: string
-        hash:
-          type:
-          - string
-          - 'null'
-        originalPurl:
-          type: string
-        packageUrl:
-          type: string
-        proprietary:
-          type: boolean
-        sha256:
-          type: string
-        thirdParty:
-          type: boolean
-      type: object
-    ApiReportPolicyDataDTOV2:
-      properties:
-        application:
-          $ref: '#/components/schemas/ApiApplicationBaseDTO'
-        commitHash:
-          type: string
-        components:
-          items:
-            $ref: '#/components/schemas/ApiReportComponentPolicyViolationsDTOV2'
-          type: array
-        counts:
-          additionalProperties:
-            format: int32
-            type: integer
-          type: object
-        initiator:
-          type: string
-        reportTime:
-          type: number
-        reportTitle:
-          type: string
-      type: object
-    ApiSecurityDataDTO:
-      properties:
-        securityIssues:
-          items:
-            $ref: '#/components/schemas/ApiSecurityIssueDTO'
-          type: array
-      type: object
     ApiReportPolicyViolationDTOV2:
       properties:
         constraints:
@@ -613,75 +574,114 @@ components:
         waivedWithAutoWaiver:
           type: boolean
       type: object
-    ApiApplicationBaseDTO:
+    ApiReportComponentPolicyViolationsDTOV2:
       properties:
-        contactUserName:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        dependencyData:
+          $ref: '#/components/schemas/ApiDependencyDataDTO'
+        displayName:
           type: string
-        id:
+        hash:
           type: string
-        name:
+        matchState:
           type: string
-        organizationId:
+        originalPurl:
           type: string
-        publicId:
+        packageUrl:
           type: string
-      type: object
-    ApiDependencyDataDTO:
-      properties:
-        directDependency:
-          type: boolean
-        innerSource:
-          type: boolean
-        innerSourceData:
-          items:
-            $ref: '#/components/schemas/InnerSourceData'
-          type: array
-          uniqueItems: true
-        parentComponentPurls:
+        pathnames:
           items:
             type: string
           type: array
-          uniqueItems: true
+        proprietary:
+          type: boolean
+        sha256:
+          type: string
+        thirdParty:
+          type: boolean
+        violations:
+          items:
+            $ref: '#/components/schemas/ApiReportPolicyViolationDTOV2'
+          type: array
       type: object
-    ApiApplicationEvaluationCommitDTO:
+    ApiLicenseThreatDTOV2:
       properties:
-        commitHash:
+        licenseThreatGroupCategory:
           type: string
-        reportUrl:
+        licenseThreatGroupLevel:
+          format: int32
+          type: integer
+        licenseThreatGroupName:
           type: string
-        scanId:
+      type: object
+    ApiPolicyViolationForDiffDTO:
+      properties:
+        component:
+          $ref: '#/components/schemas/ApiComponentDTOV2'
+        constraintViolations:
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+          type: array
+        fixTime:
+          format: date-time
           type: string
-        scanTime:
+        legacyViolationTime:
+          format: date-time
+          type: string
+        openTime:
+          format: date-time
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+        waiveTime:
           format: date-time
           type: string
       type: object
-    ApiComponentIdentifierDTOV2:
+    ApiDependencyTreeResponseDTO:
       properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        dependencyTree:
+          $ref: '#/components/schemas/ApiDependencyTreeNodeDTO'
+      type: object
+    ApiApplicationTagDTO:
+      properties:
+        applicationId:
+          type: string
+        id:
+          type: string
+        tagId:
           type: string
       type: object
-    ApiConstraintViolationDTO:
+    ApiLicenseDataDTOV2:
       properties:
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        reasons:
+        declaredLicenses:
           items:
-            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+            $ref: '#/components/schemas/ApiLicenseDTO'
           type: array
-      type: object
-    InnerSourceData:
-      properties:
-        innerSourceComponentPurl:
-          type: string
-        ownerApplicationId:
-          type: string
-        ownerApplicationName:
+        effectiveLicenseThreats:
+          items:
+            $ref: '#/components/schemas/ApiLicenseThreatDTOV2'
+          type: array
+        effectiveLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        observedLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        overriddenLicenses:
+          items:
+            $ref: '#/components/schemas/ApiLicenseDTO'
+          type: array
+        status:
           type: string
       type: object
   securitySchemes:

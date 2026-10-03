@@ -65,6 +65,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    OidcConfigurationDTO:
+      properties:
+        authorizationCustomParamsJson:
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        idpAuthorizationUrl:
+          type: string
+        idpIssuer:
+          type: string
+        idpTokenUrl:
+          type: string
+        tokenRequestCustomParamsJson:
+          type: string
+      type: object
     OAuth2ConfigurationDTO:
       properties:
         emailClaim:
@@ -94,23 +111,6 @@ components:
           $ref: '#/components/schemas/OAuth2ConfigurationDTO'
         oidcConfiguration:
           $ref: '#/components/schemas/OidcConfigurationDTO'
-      type: object
-    OidcConfigurationDTO:
-      properties:
-        authorizationCustomParamsJson:
-          type: string
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        idpAuthorizationUrl:
-          type: string
-        idpIssuer:
-          type: string
-        idpTokenUrl:
-          type: string
-        tokenRequestCustomParamsJson:
-          type: string
       type: object
   securitySchemes:
     BasicAuth:

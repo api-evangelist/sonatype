@@ -347,6 +347,25 @@ components:
         username:
           type: string
       type: object
+    SCMUserMappingsDTO:
+      properties:
+        mappings:
+          items:
+            $ref: '#/components/schemas/UserMapping'
+          type: array
+        role:
+          type: string
+      type: object
+    SCMUserMatchingResultDTO:
+      properties:
+        matchedUsers:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        successfulMapping:
+          $ref: '#/components/schemas/UserMapping'
+      type: object
     UserMapping:
       properties:
         from:
@@ -364,16 +383,6 @@ components:
           - IQ_FULLNAME
           type: string
       type: object
-    SCMUserMatchingResultDTO:
-      properties:
-        matchedUsers:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        successfulMapping:
-          $ref: '#/components/schemas/UserMapping'
-      type: object
     SCMUserMappingsResponseDTO:
       properties:
         inherited:
@@ -382,15 +391,6 @@ components:
           type: string
         userMapping:
           $ref: '#/components/schemas/SCMUserMappingsDTO'
-      type: object
-    SCMUserMappingsDTO:
-      properties:
-        mappings:
-          items:
-            $ref: '#/components/schemas/UserMapping'
-          type: array
-        role:
-          type: string
       type: object
   securitySchemes:
     BasicAuth:

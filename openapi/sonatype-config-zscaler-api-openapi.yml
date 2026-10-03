@@ -196,17 +196,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiZScalerQuotaDTO:
-      properties:
-        remainingUrls:
-          format: int32
-          type: integer
-        status:
-          type: string
-        totalAllowedUrls:
-          format: int32
-          type: integer
-      type: object
     ApiZScalerConfigurationDTO:
       properties:
         apiKey:
@@ -227,6 +216,17 @@ components:
           type: boolean
         username:
           type: string
+      type: object
+    ApiZScalerQuotaDTO:
+      properties:
+        remainingUrls:
+          format: int32
+          type: integer
+        status:
+          type: string
+        totalAllowedUrls:
+          format: int32
+          type: integer
       type: object
   securitySchemes:
     BasicAuth:
