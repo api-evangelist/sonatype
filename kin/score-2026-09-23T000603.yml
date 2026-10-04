@@ -1,22 +1,20 @@
-# Kin Score artifact — sonatype — 2026-08-25T154045
+# Kin Score artifact — sonatype — 2026-09-23T000603
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: sonatype
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 37.1
-  band: thin
+  schema_version: 0.22.0
+  scored_at: '2026-09-23'
+  run_ts: 2026-09-23T000603
+  composite: 47.5
+  band: developing
   facets:
-    discoverability: 68.5
-    contract_quality: 55.9
-    governance: 13.6
-    operational_transparency: 13.2
-    developer_ergonomics: 38.1
-    commercial_clarity: 26.3
+    discoverability: 63.0
+    contract_quality: 61.3
     contract_governance: 13.6
-    access_clarity: 26.3
+    operational_transparency: 36.8
+    developer_ergonomics: 45.2
+    access_clarity: 50.0
   agent_readiness:
     score: 24.0
     band: agent-aware
