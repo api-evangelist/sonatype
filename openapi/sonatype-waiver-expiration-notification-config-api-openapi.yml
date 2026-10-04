@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Waiver Expiration…
+  version: 1.207.1-04
+  description: Configure when and to whom notifications are sent before waivers expire.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Waiver Expiration Notification Config
+  description: Configure when and to whom notifications are sent before waivers expire.
+paths:
+  /api/v2/waiverExpirationNotificationConfig/{ownerType}/{ownerId}:
+    get:
+      tags:
+      - Waiver Expiration Notification Config
+      description: 'Returns the effective waiver expiration notification configuration for the given owner. If the owner has no custom configuration, the inherited configuration from the parent is returned with inheritConfig=true.
+
+        Permissions required: View IQ Elements'
+      operationId: getConfig_1
+      parameters:
+      - name: ownerType
+        in: path
+        description: The owner type (organization, repository_manager, or repository_container).
+        required: true
+        schema:
+          pattern: organization|repository_manager|repository_container
+          type: string
+      - name: ownerId
+        in: path
+        description: The internal owner ID assigned by IQ Server.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The effective notification configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiWaiverExpirationNotificationConfigDTO'
+      summary: Get config 1
+      x-summary-source: derived
+    put:
+      tags:
+      - Waiver Expiration Notification Config
+      description: 'Sets the waiver expiration notification configuration for the given owner. Set inheritConfig=true to inherit the configuration from the parent.
+
+        Permissions required: Edit IQ Elements'
+      operationId: saveConfig
+      parameters:
+      - name: ownerType
+        in: path
+        description: The owner type (organization, repository_manager, or repository_container).
+        required: true
+        schema:
+          pattern: organization|repository_manager|repository_container
+          type: string
+      - name: ownerId
+        in: path
+        description: The internal owner ID assigned by IQ Server.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The notification configuration to save.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiWaiverExpirationNotificationConfigDTO'
+        required: true
+      responses:
+        '204':
+          description: Configuration saved successfully.
+      summary: Save config
+      x-summary-source: derived
+components:
+  schemas:
+    ApiWaiverExpirationNotificationConfigDTO:
+      type: object
+      properties:
+        inheritConfig:
+          type: boolean
+        notificationDays:
+          type: array
+          items:
+            type: integer
+            format: int32
+        recipientType:
+          type: string
+        directEmails:
+          type: array
+          items:
+            type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

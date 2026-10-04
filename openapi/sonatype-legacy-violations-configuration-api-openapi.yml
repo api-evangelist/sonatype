@@ -1,0 +1,112 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Legacy Violations…
+  version: 1.207.1-04
+  description: Use this REST API to view and update legacy-violation configuration for an application or organization.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Legacy Violations Configuration
+  description: Use this REST API to view and update legacy-violation configuration for an application or organization.
+paths:
+  /api/v2/config/legacyViolations/{ownerType}/{ownerId}:
+    get:
+      tags:
+      - Legacy Violations Configuration
+      description: 'Use this method to retrieve the legacy-violation configuration for an owner.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getConfig
+      parameters:
+      - name: ownerType
+        in: path
+        description: 'Owner type. Allowed values: `application`, `organization`.'
+        required: true
+        schema:
+          pattern: application|organization
+          type: string
+      - name: ownerId
+        in: path
+        description: Public id of the application, or id of the organization.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved legacy-violation configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLegacyViolationStatusDTO'
+      summary: Get config
+      x-summary-source: derived
+    put:
+      tags:
+      - Legacy Violations Configuration
+      description: 'Use this method to update the legacy-violation configuration for an owner.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: setConfig
+      parameters:
+      - name: ownerType
+        in: path
+        description: 'Owner type. Allowed values: `application`, `organization`.'
+        required: true
+        schema:
+          pattern: application|organization
+          type: string
+      - name: ownerId
+        in: path
+        description: Public id of the application, or id of the organization.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiLegacyViolationStatusDTO'
+      responses:
+        '200':
+          description: Successfully updated legacy-violation configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLegacyViolationStatusDTO'
+      summary: Set config
+      x-summary-source: derived
+components:
+  schemas:
+    ApiLegacyViolationStatusDTO:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether legacy violations are enabled. null means inherit from the parent organization.
+        enabledInParent:
+          type: boolean
+          description: Whether legacy violations are enabled in the parent organization. null when no parent set this value.
+          readOnly: true
+        inheritedFromOrganizationName:
+          type: string
+          description: The name of the organization the legacy status is inherited from, or null if not inherited.
+          readOnly: true
+        allowOverride:
+          type: boolean
+          description: 'Whether children (orgs and apps) are allowed to override the legacy status. Organization-only. Primitive boolean: an absent or null value in the request body is treated as false.'
+        allowChange:
+          type: boolean
+          description: Whether the legacy status can be changed for this owner.
+          readOnly: true
+      description: Legacy-violation status for an application or organization.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

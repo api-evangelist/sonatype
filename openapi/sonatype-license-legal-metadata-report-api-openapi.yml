@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST License Legal Metadata…
-  version: 1.201.0-02
-  description: Use this REST API to retrieve license legal metadata in raw or HTML format.
+  title: Sonatype License Legal Metadata Report API
+  version: '1.0'
+  description: 'Operations tagged License Legal Metadata Report across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -289,8 +289,83 @@ paths:
       - License Legal Metadata Report
       summary: Get license legal component report
       x-summary-source: derived
+  /api/v2/licenseLegalMetadata/customMultiApplication/report:
+    post:
+      tags:
+      - License Legal Metadata Report
+      description: 'Use this method to generate license legal data in HTML format for all applications.
+
+
+        Permissions required: Review Legal Obligations For Components Licenses'
+      operationId: getLicenseLegalCustomMultiApplicationHTMLReport
+      responses:
+        '200':
+          description: The response contains license legal data in HTML format.
+          content:
+            text/html:
+              schema:
+                type: string
+      summary: Get license legal custom multi application HTML report
+      x-summary-source: derived
 components:
   schemas:
+    ApiLicenseLegalApplicationReportDTO:
+      properties:
+        components:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalComponentDTO'
+          type: array
+        licenseLegalMetadata:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalMetadataDTO'
+          type: array
+          uniqueItems: true
+      type: object
+    ApiLicenseThreatDTOV2:
+      properties:
+        licenseThreatGroupCategory:
+          type: string
+        licenseThreatGroupLevel:
+          format: int32
+          type: integer
+        licenseThreatGroupName:
+          type: string
+      type: object
+    ApiLicenseLegalComponentReportDTO:
+      properties:
+        component:
+          $ref: '#/components/schemas/ApiLicenseLegalComponentDTO'
+        licenseLegalMetadata:
+          items:
+            $ref: '#/components/schemas/ApiLicenseLegalMetadataDTO'
+          type: array
+          uniqueItems: true
+      type: object
+    ComponentIdentifier:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ApiLicenseLegalFileDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContentHash:
+          type: string
+        relPath:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
     ApiLicenseLegalDataDTO:
       properties:
         attributions:
@@ -362,6 +437,40 @@ components:
           type: array
           uniqueItems: true
       type: object
+    LegalSourceLinkDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContent:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
+    ComponentObligationAttributionDTO:
+      properties:
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        content:
+          type: string
+        id:
+          type: string
+        lastUpdatedAt:
+          format: date-time
+          type: string
+        lastUpdatedByUsername:
+          type: string
+        obligationName:
+          type: string
+        ownerId:
+          type: string
+        packageUrl:
+          type: string
+      type: object
     ApiLicenseLegalComponentDTO:
       properties:
         componentIdentifier:
@@ -378,52 +487,6 @@ components:
           items:
             $ref: '#/components/schemas/ApiLicenseLegalStageScanDTO'
           type: array
-      type: object
-    ApiLicenseLegalComponentReportDTO:
-      properties:
-        component:
-          $ref: '#/components/schemas/ApiLicenseLegalComponentDTO'
-        licenseLegalMetadata:
-          items:
-            $ref: '#/components/schemas/ApiLicenseLegalMetadataDTO'
-          type: array
-          uniqueItems: true
-      type: object
-    ApiLicenseThreatDTOV2:
-      properties:
-        licenseThreatGroupCategory:
-          type: string
-        licenseThreatGroupLevel:
-          format: int32
-          type: integer
-        licenseThreatGroupName:
-          type: string
-      type: object
-    ApiLicenseLegalCopyrightDTO:
-      properties:
-        content:
-          type: string
-        id:
-          type: string
-        originalContentHash:
-          type: string
-        status:
-          enum:
-          - enabled
-          - disabled
-          type: string
-      type: object
-    ApiLicenseLegalApplicationReportDTO:
-      properties:
-        components:
-          items:
-            $ref: '#/components/schemas/ApiLicenseLegalComponentDTO'
-          type: array
-        licenseLegalMetadata:
-          items:
-            $ref: '#/components/schemas/ApiLicenseLegalMetadataDTO'
-          type: array
-          uniqueItems: true
       type: object
     ApiLicenseLegalObligationDTO:
       properties:
@@ -452,41 +515,6 @@ components:
           - FULFILLED
           type: string
       type: object
-    ApiLicenseLegalFileDTO:
-      properties:
-        content:
-          type: string
-        id:
-          type: string
-        originalContentHash:
-          type: string
-        relPath:
-          type: string
-        status:
-          enum:
-          - enabled
-          - disabled
-          type: string
-      type: object
-    ComponentIdentifier:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    LicenseObligationDTO:
-      properties:
-        name:
-          type: string
-        obligationTexts:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
     ApiComponentIdentifierDTOV2:
       properties:
         coordinates:
@@ -494,48 +522,6 @@ components:
             type: string
           type: object
         format:
-          type: string
-      type: object
-    LegalSourceLinkDTO:
-      properties:
-        content:
-          type: string
-        id:
-          type: string
-        originalContent:
-          type: string
-        status:
-          enum:
-          - enabled
-          - disabled
-          type: string
-      type: object
-    LicenseThreatGroupDTO:
-      properties:
-        name:
-          type: string
-        threatLevel:
-          format: int32
-          type: integer
-      type: object
-    ComponentObligationAttributionDTO:
-      properties:
-        componentIdentifier:
-          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
-        content:
-          type: string
-        id:
-          type: string
-        lastUpdatedAt:
-          format: date-time
-          type: string
-        lastUpdatedByUsername:
-          type: string
-        obligationName:
-          type: string
-        ownerId:
-          type: string
-        packageUrl:
           type: string
       type: object
     ApiLicenseLegalMetadataDTO:
@@ -561,6 +547,14 @@ components:
         threatGroup:
           $ref: '#/components/schemas/LicenseThreatGroupDTO'
       type: object
+    LicenseThreatGroupDTO:
+      properties:
+        name:
+          type: string
+        threatLevel:
+          format: int32
+          type: integer
+      type: object
     ApiLicenseLegalStageScanDTO:
       properties:
         scanDate:
@@ -571,6 +565,30 @@ components:
         stageName:
           type: string
       type: object
+    LicenseObligationDTO:
+      properties:
+        name:
+          type: string
+        obligationTexts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    ApiLicenseLegalCopyrightDTO:
+      properties:
+        content:
+          type: string
+        id:
+          type: string
+        originalContentHash:
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+      type: object
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -579,3 +597,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

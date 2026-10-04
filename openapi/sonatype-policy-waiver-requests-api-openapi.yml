@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Policy Waiver Requests API
-  version: 1.201.0-02
-  description: Use this REST API to manage policy waiver requests.
+  title: Sonatype Policy Waiver Requests API
+  version: '1.0'
+  description: 'Operations tagged Policy Waiver Requests across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -208,22 +208,120 @@ paths:
       - Policy Waiver Requests
       summary: Update policy waiver request
       x-summary-source: derived
+    delete:
+      tags:
+      - Policy Waiver Requests
+      description: 'Use this method to withdraw a pending policy waiver request that you originally submitted.
+
+
+        The request row is removed; this is intended for cleaning up requests created by mistake (wrong scope, wrong rationale, etc.). The action is recorded in the audit log so the withdrawal remains traceable. Only the original requester may withdraw, and only while the request is in the REQUESTED state. Once a request has been APPROVED or REJECTED, withdraw is rejected — those terminal states must be handled by a reviewer through the review endpoint.
+
+
+        Permissions required: View IQ Elements (the caller must also be the requester of the waiver request; other callers receive 404).'
+      operationId: withdrawPolicyWaiverRequest
+      parameters:
+      - name: ownerType
+        in: path
+        description: The scope of the policy waiver request. Possible values are application, organization, repository, repository_manager, repository_container.
+        required: true
+        schema:
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+      - name: ownerId
+        in: path
+        description: The id for the ownerType provided above. E.g. applicationId if the ownerType is application.
+        required: true
+        schema:
+          type: string
+      - name: policyWaiverRequestId
+        in: path
+        description: The id of the policy waiver request to be withdrawn.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The policy waiver request was withdrawn.
+        '400':
+          description: The policy waiver request is not in the REQUESTED state.
+        '404':
+          description: The policy waiver request does not exist or the caller is not its requester.
+      summary: Withdraw policy waiver request
+      x-summary-source: derived
+  /api/v2/policyWaiverRequests/{ownerType}/{ownerId}:
+    get:
+      tags:
+      - Policy Waiver Requests
+      description: 'Use this method to list all policy waiver requests for the given owner.
+
+
+        Permissions required: View IQ Elements'
+      operationId: getPolicyWaiverRequests
+      parameters:
+      - name: ownerType
+        in: path
+        description: The owner type. Possible values are application, organization, repository, repository_manager, repository_container.
+        required: true
+        schema:
+          pattern: application|organization|repository|repository_manager|repository_container
+          type: string
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+      - name: ownerId
+        in: path
+        description: The id for the ownerType.
+        required: true
+        schema:
+          type: string
+      - name: repositoryFormat
+        in: query
+        description: Optional filter for repository format. Use 'docker' to return only container repository waiver requests, or 'component' to return only non-container repository waiver requests. Omit to return all.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The list of policy waiver requests.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiPolicyWaiverRequestDTO_2'
+      summary: Get policy waiver requests
+      x-summary-source: derived
 components:
   schemas:
-    ConditionFact:
+    TriggerReference:
       properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
+        type:
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
           type: string
-        reason:
+        value:
           type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
+      type: object
+    ConstraintFact:
+      properties:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
           type: string
-        triggerJson:
+        constraintName:
+          type: string
+        operatorName:
           type: string
       type: object
     ApiPolicyWaiverRequestOptionsDTO:
@@ -324,54 +422,6 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ComponentDisplayName:
-      properties:
-        name:
-          type: string
-        parts:
-          items:
-            $ref: '#/components/schemas/ComponentDisplayNamePart'
-          type: array
-      type: object
-    TriggerReference:
-      properties:
-        type:
-          enum:
-          - SECURITY_VULNERABILITY_REFID
-          - SAST_FINDING_ID
-          type: string
-        value:
-          type: string
-      type: object
-    ComponentDisplayNamePart:
-      properties:
-        field:
-          type: string
-        value:
-          type: string
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
-      type: object
-    ConstraintFact:
-      properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
-          type: string
-        constraintName:
-          type: string
-        operatorName:
-          type: string
-      type: object
     ApiPolicyWaiverRequestReviewDTO:
       properties:
         comment:
@@ -395,6 +445,126 @@ components:
         waiverReasonId:
           type: string
       type: object
+    ComponentDisplayNamePart:
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
+      type: object
+    ComponentDisplayName:
+      properties:
+        name:
+          type: string
+        parts:
+          items:
+            $ref: '#/components/schemas/ComponentDisplayNamePart'
+          type: array
+      type: object
+    ApiPolicyWaiverRequestDTO_2:
+      type: object
+      properties:
+        policyWaiverRequestId:
+          type: string
+        policyViolationId:
+          type: string
+        comment:
+          type: string
+        noteToReviewer:
+          type: string
+        requestTime:
+          type: string
+          format: date-time
+        expiryTime:
+          type: string
+          format: date-time
+        isObsolete:
+          type: boolean
+        scopeOwnerType:
+          type: string
+        scopeOwnerId:
+          type: string
+        scopeOwnerName:
+          type: string
+        hash:
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        vulnerabilityId:
+          type: string
+        constraintFacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConstraintFact'
+        constraintFactsJson:
+          type: string
+        componentName:
+          type: string
+        requesterId:
+          type: string
+        requesterName:
+          type: string
+        reviewerName:
+          type: string
+        reviewerId:
+          type: string
+        matcherStrategy:
+          type: string
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+        associatedPackageUrl:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        threatLevel:
+          type: integer
+          format: int32
+        rejectionReason:
+          type: string
+        componentUpgradeAvailable:
+          type: boolean
+        reasonText:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        policyWaiverReasonId:
+          type: string
+        status:
+          type: string
+        canReview:
+          type: boolean
+        displayName:
+          $ref: '#/components/schemas/ComponentDisplayName'
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -403,3 +573,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

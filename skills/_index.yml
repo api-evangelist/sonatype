@@ -1,0 +1,25 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/sonatype-iq-openapi.yml
+skills:
+- file: skills/sonatype-create-application.md
+  name: sonatype-create-application
+  api: openapi/sonatype-applications-api-openapi.yml
+  operations:
+  - addApplication
+  - getApplication
+- file: skills/sonatype-user-management.md
+  name: sonatype-user-management
+  api: openapi/sonatype-iq-openapi.yml
+  operations:
+  - add
+  - get_1
+  - update
+  - delete_1
+- file: skills/sonatype-create-and-retrieve-organization.md
+  name: sonatype-create-and-retrieve-organization
+  api: openapi/sonatype-iq-openapi.yml
+  operations:
+  - addOrganization
+  - getOrganization

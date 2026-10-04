@@ -1,11 +1,15 @@
 aid: sonatype
+
 name: Sonatype
+
 description: >-
   Sonatype provides software supply chain management solutions including Sonatype Lifecycle (IQ Server), Sonatype
   Repository Firewall, SBOM Manager, and Nexus Repository. The Lifecycle Public REST API provides 188 endpoints for
   application portfolio management, policy enforcement, vulnerability reporting, component analysis, SBOM generation,
   source control integration, and software composition analysis across the SDLC.
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -18,6 +22,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -32,9 +37,13 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 position: Consuming
+
 access: 3rd-Party
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sonatype.png
+
 tags:
   - Software Supply Chain
   - Security
@@ -42,10 +51,120 @@ tags:
   - SBOM
   - Software Composition Analysis
   - DevSecOps
+
 url: https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/apis.yml
+
 created: '2025-02-12'
+
 modified: '2026-05-19'
+
 specificationVersion: '0.23'
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+  - type: DeveloperPortal
+    url: https://www.sonatype.com/solutions/software-developers
+  - type: Newsroom
+    url: https://www.sonatype.com/newsroom
+  - type: PrivacyPolicy
+    url: https://www.sonatype.com/privacy-policy
+  - type: Security
+    url: https://www.sonatype.com/products/integrations?type=25056582729
+  - type: SignUp
+    url: https://guide.sonatype.com/register
+  - type: StatusPage
+    url: https://status.sonatype.com/
+  - type: TermsOfService
+    url: https://www.sonatype.com/terms-of-service
+  - type: TrustCenter
+    url: https://trust.sonatype.com/
+
+common:
+  - type: FinOps
+    url: finops/sonatype-finops.yml
+  - type: Spectral
+    url: rules/sonatype-rules.yml
+  - type: Spectral
+    url: rules/sonatype-jsonschema-spectral-rules.yml
+  - type: JSONLD
+    url: json-ld/sonatype-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/sonatype-vocabulary.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: DataModel
+    url: data-model/sonatype-data-model.yml
+  - type: ErrorCatalog
+    url: errors/sonatype-problem-types.yml
+  - type: Conformance
+    url: conformance/sonatype-conformance.yml
+  - type: LLMsTxt
+    url: llms/sonatype-llms.txt
+  - type: SecurityTxt
+    url: well-known/sonatype-status-security.txt
+  - type: SecurityTxt
+    url: well-known/sonatype-learn-security.txt
+  - type: WellKnown
+    url: well-known/sonatype-well-known.yml
+  - type: Hosts
+    url: hosts/sonatype-hosts.yml
+  - type: Vendors
+    url: vendors/sonatype-vendors.yml
+  - type: SDKs
+    url: packages/sonatype-packages.yml
+  - type: Packages
+    url: packages/sonatype-packages.yml
+  - type: RateLimits
+    url: rate-limits/sonatype-rate-limits.yml
+  - type: Plans
+    url: plans/sonatype-plans-pricing.yml
+  - type: CapabilityMap
+    url: capabilities/sonatype-capability-edges.yml
+    name: Sonatype Business Capability Map
+  - type: AgenticAccess
+    url: agentic-access/sonatype-agentic-access.yml
+  - type: DomainSecurity
+    url: security/sonatype-domain-security.yml
+  - type: Authentication
+    url: authentication/sonatype-authentication.yml
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/sonatype
+  - type: Portal
+    url: https://www.sonatype.com/
+  - type: Documentation
+    url: https://help.sonatype.com/
+  - type: Website
+    url: https://www.sonatype.com/
+  - type: GitHub
+    url: https://github.com/sonatype-nexus-community
+  - type: Blog
+    url: https://www.sonatype.com/blog
+  - type: ChangeLog
+    url: https://help.sonatype.com/en/sonatype-iq-server-2025-release-notes.html
+  - type: Support
+    url: https://support.sonatype.com/
+  - type: Pricing
+    url: https://www.sonatype.com/products/pricing
+  - type: DeveloperPortal
+    url: https://www.sonatype.com/solutions/software-developers
+  - type: Newsroom
+    url: https://www.sonatype.com/newsroom
+  - type: PrivacyPolicy
+    url: https://www.sonatype.com/privacy-policy
+  - type: Security
+    url: https://www.sonatype.com/products/integrations?type=25056582729
+  - type: SignUp
+    url: https://guide.sonatype.com/register
+  - type: StatusPage
+    url: https://status.sonatype.com/
+  - type: TermsOfService
+    url: https://www.sonatype.com/terms-of-service
+  - type: TrustCenter
+    url: https://trust.sonatype.com/
+  - type: Integrations
+    url: https://www.sonatype.com/products/integrations
+
 apis:
 - aid: sonatype:sonatype-advanced-search-api
   name: Sonatype Advanced Search API
@@ -1309,43 +1428,111 @@ apis:
   - type: JSONSchema
     url: >-
       https://raw.githubusercontent.com/api-evangelist/sonatype/refs/heads/main/json-schema/sonatype-policy-violation-schema.json
-common:
-  - type: RateLimits
-    url: rate-limits/sonatype-rate-limits.yml
-  - type: Plans
-    url: plans/sonatype-plans-pricing.yml
-  - type: CapabilityMap
-    url: capabilities/sonatype-capability-edges.yml
-    name: Sonatype Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/sonatype-agentic-access.yml
-  - type: DomainSecurity
-    url: security/sonatype-domain-security.yml
-  - type: Authentication
-    url: authentication/sonatype-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/sonatype
-  - type: Portal
-    url: https://www.sonatype.com/
-  - type: Documentation
-    url: https://help.sonatype.com/
-  - type: Website
-    url: https://www.sonatype.com/
-  - type: GitHub
-    url: https://github.com/sonatype-nexus-community
-  - type: Blog
-    url: https://www.sonatype.com/blog
-  - type: ChangeLog
-    url: https://help.sonatype.com/en/sonatype-iq-server-2025-release-notes.html
-  - type: Support
-    url: https://support.sonatype.com/
-  - type: Pricing
-    url: https://www.sonatype.com/products/pricing
-  - type: Integrations
-    url: https://www.sonatype.com/products/integrations
+- aid: sonatype:sonatype-advanced-search-index-health-api
+  name: Sonatype Advanced Search Index Health API
+  description: Index Analyze status and rebuild/cleanup job control.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Advanced Search Index Health
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-advanced-search-index-health-api-openapi.yml
+- aid: sonatype:sonatype-ai-developer-api
+  name: Sonatype Ai - Developer API
+  description: The Ai - Developer API from Sonatype — 1 operation(s) for ai - developer.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Ai - Developer
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-ai-developer-api-openapi.yml
+- aid: sonatype:sonatype-github-app-api
+  name: Sonatype GitHub App API
+  description: The GitHub App API from Sonatype — 4 operation(s) for github app.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - GitHub App
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-github-app-api-openapi.yml
+- aid: sonatype:sonatype-legacy-violations-api
+  name: Sonatype Legacy Violations API
+  description: >-
+    Use this REST API to list, grant, and revoke legacy status for policy violations of an application.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Legacy Violations
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-legacy-violations-api-openapi.yml
+- aid: sonatype:sonatype-legacy-violations-configuration-api
+  name: Sonatype Legacy Violations Configuration API
+  description: >-
+    Use this REST API to view and update legacy-violation configuration for an application or organization.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Legacy Violations Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-legacy-violations-configuration-api-openapi.yml
+- aid: sonatype:sonatype-policy-export-api
+  name: Sonatype Policy Export API
+  description: Export policy configurations for organizations, applications, and repositories
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Policy Export
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-policy-export-api-openapi.yml
+- aid: sonatype:sonatype-reachability-evidence-api
+  name: Sonatype Reachability Evidence API
+  description: >-
+    Use this REST API to retrieve reachability evidence showing call paths to vulnerable methods for a
+    hosted repository component.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Reachability Evidence
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-reachability-evidence-api-openapi.yml
+- aid: sonatype:sonatype-scan-health-configuration-api
+  name: Sonatype Scan Health Configuration API
+  description: >-
+    Use this REST API to manage Scan Health configuration. This includes settings for
+
+    failing scans with zero components detected. Configurations can be set at organization
+
+    or application level and are inherited from the organization hierarchy.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Scan Health Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-scan-health-configuration-api-openapi.yml
+- aid: sonatype:sonatype-waiver-expiration-notification-config-api
+  name: Sonatype Waiver Expiration Notification Config API
+  description: Configure when and to whom notifications are sent before waivers expire.
+  humanURL: https://help.sonatype.com/en/iq-api-reference.html
+  baseURL: https://{iq-server-host}/
+  tags:
+  - Waiver Expiration Notification Config
+  properties:
+  - type: OpenAPI
+    url: openapi/sonatype-waiver-expiration-notification-config-api-openapi.yml
 integrations:
   - name: Buy with AWS
   - name: Microsoft Azure
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 20
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

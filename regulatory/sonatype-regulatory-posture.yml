@@ -1,0 +1,37 @@
+generated: '2026-10-04'
+method: probed
+source:
+  - https://www.sonatype.com/privacy-policy
+signals:
+  data_subject_request:
+    - evidence:
+        - source: https://www.sonatype.com/privacy-policy
+          http_status: 200
+          fetched: true
+          quote: "Enables you to request us to transmit personal data that you have provided to us, to a third party without hindrance, or to give you a copy of it so that you can transmit it to a third party, where technically feasible"
+      section: "Lawful Requests"
+      note: Allows data subject to request data portability.
+  incident_notification:
+    - evidence:
+        - source: https://www.sonatype.com/privacy-policy
+          http_status: 200
+          fetched: true
+          quote: "We may share data when we believe in good faith that we are lawfully authorized or required to do so to respond to lawful subpoenas, warrants, court orders, or other regulatory or law enforcement requests, including requests made by public authorities to meet national security or law enforcement requirements."
+      section: "Lawful Requests"
+      note: Describes conditions for sharing data with authorities.
+  data_retention:
+    - evidence:
+        - source: https://www.sonatype.com/privacy-policy
+          http_status: 200
+          fetched: true
+          quote: "If you want to learn more about our specific retention periods for your Personal Data, you may contact us at privacy@sonatype.com. Upon expiry of the applicable retention period, we securely destroy your Personal Data or hold it in a form that no longer identifies you in accordance with applicable laws and regulations."
+      section: "Data Retention"
+      note: Provides retention policy and contact for details.
+  accessibility_conformance:
+    - evidence:
+        - source: https://www.sonatype.com/privacy-policy
+          http_status: 200
+          fetched: true
+          quote: "Persons with disabilities may obtain this notice in alternative format upon request by contacting us at privacy@sonatype.com or calling toll-free: 1-888-890-1530"
+      section: "Accessibility"
+      note: Offers alternative format for accessibility.

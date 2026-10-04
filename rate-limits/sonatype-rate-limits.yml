@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://help.sonatype.com/en/authentication-attempt-rate-limiting.html
+name: Sonatype API Rate Limits
 sources:
 - https://help.sonatype.com/en/authentication-attempt-rate-limiting.html
 provenance:

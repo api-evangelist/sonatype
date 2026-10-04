@@ -1,14 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Source Control API
-  version: 1.201.0-02
-  description: 'Use this REST API to:
-
-
-    Create, update and delete source control management (SCM) configuration for the root organization, sub-organizations and applications.
-
-
-    Automatically assign the developer role to all contributors of the associated repository, who are registered IQ users.'
+  title: Sonatype Source Control API
+  version: '1.0'
+  description: 'Operations tagged Source Control across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -297,8 +291,172 @@ paths:
       - Source Control
       summary: Update source control
       x-summary-source: derived
+  /api/v2/sourceControl/relay/deregister:
+    post:
+      tags:
+      - Source Control
+      description: 'Deregister this IQ Server from the SCM webhook relay. Drops the local relay_configuration row and asks the relay to delete the customer record (SQS queue + DynamoDB row). Required before switching auth modes (PAT ↔ GitHub App) since the relay rejects cross-mode switching of an existing customer.
+
+
+        Permissions required: System Configuration.'
+      operationId: deregisterFromRelay
+      responses:
+        '200':
+          description: Deregistration succeeded (or the local row was already absent).
+        '412':
+          description: The relay integration feature flag is disabled.
+      summary: Deregister from relay
+      x-summary-source: derived
+  /api/v2/sourceControl/githubAppWebhookUrl:
+    get:
+      tags:
+      - Source Control
+      description: 'Returns the App-level webhook URL the customer must paste into the GitHub App configuration. Same value for every customer; available before any registration exists because the URL is needed when creating the App.
+
+
+        Permissions required: Manage Automatic SCM Configuration.'
+      operationId: getGitHubAppWebhookUrl
+      responses:
+        '200':
+          description: The webhook URL.
+        '404':
+          description: The relay base URL is not configured.
+        '412':
+          description: The relay integration feature flag is disabled.
+      summary: Get git hub app webhook url
+      x-summary-source: derived
+  /api/v2/sourceControl/relayWebhookSecret:
+    get:
+      tags:
+      - Source Control
+      description: 'Returns the per-customer HMAC signing secret used to verify webhook deliveries from the SCM provider, when a PAT-mode relay registration exists. GitHub App registrations have no per-customer secret and return 404.
+
+
+        Permissions required: Manage Automatic SCM Configuration.'
+      operationId: getRelayWebhookSecret
+      responses:
+        '200':
+          description: The webhook signing secret.
+        '404':
+          description: No PAT-mode relay registration exists.
+        '412':
+          description: The relay integration feature flag is disabled.
+      summary: Get relay webhook secret
+      x-summary-source: derived
+  /api/v2/sourceControl/relayWebhookUrl:
+    get:
+      tags:
+      - Source Control
+      description: 'Returns the SCM webhook URL the IQ Server is registered against, when the relay integration is enabled and registered.
+
+
+        Permissions required: Manage Automatic SCM Configuration.'
+      operationId: getRelayWebhookUrl
+      responses:
+        '200':
+          description: The webhook URL.
+        '404':
+          description: No relay registration exists.
+        '412':
+          description: The relay integration feature flag is disabled.
+      summary: Get relay webhook url
+      x-summary-source: derived
+  /api/v2/sourceControl/relay/register:
+    post:
+      tags:
+      - Source Control
+      description: 'Re-register this IQ Server with the SCM webhook relay. An optional JSON body with installationId and webhookSecret routes the call to the GitHub App registration path; an empty/missing body uses the PAT path.
+
+
+        Permissions required: System Configuration.'
+      operationId: registerWithRelay
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelayRegisterAdminRequest'
+      responses:
+        '200':
+          description: Registration succeeded.
+        '412':
+          description: The relay integration feature flag is disabled or relayUrl is not configured.
+        '503':
+          description: The relay is unavailable.
+      summary: Register with relay
+      x-summary-source: derived
+  /api/v2/sourceControl/relay/rotate-key:
+    post:
+      tags:
+      - Source Control
+      description: 'Rotate the IQ→relay API key. The relay generates a fresh key and keeps the previous key valid for a 5-minute grace window so in-flight polls do not fail. The new plaintext is returned exactly once.
+
+
+        Permissions required: System Configuration.'
+      operationId: rotateRelayApiKey
+      responses:
+        '200':
+          description: Rotation succeeded; response body contains the new api key and the ISO-8601 instant at which the previous key stops being accepted.
+        '412':
+          description: The relay integration feature flag is disabled.
+        '503':
+          description: The relay is unavailable.
+      summary: Rotate relay api key
+      x-summary-source: derived
+  /api/v2/sourceControl/relay/rotate-webhook-secret:
+    post:
+      tags:
+      - Source Control
+      description: 'Rotate the per-customer PAT webhook signing secret. The relay accepts both old and new signatures during a 5-minute grace window so the SCM provider''s webhook configuration can be updated without dropping deliveries. The new plaintext is returned exactly once — paste it into the SCM provider''s webhook secret field.
+
+
+        Permissions required: System Configuration.'
+      operationId: rotateRelayWebhookSecret
+      responses:
+        '200':
+          description: Rotation succeeded; response body contains the new webhook secret and the ISO-8601 instant at which the previous secret stops being accepted.
+        '412':
+          description: The relay integration feature flag is disabled.
+        '503':
+          description: The relay is unavailable.
+      summary: Rotate relay webhook secret
+      x-summary-source: derived
 components:
   schemas:
+    UserMapping:
+      properties:
+        from:
+          enum:
+          - SCM_USERNAME
+          - SCM_EMAIL
+          - SCM_FULLNAME
+          - GITLOG_EMAIL
+          - GITLOG_FULLNAME
+          type: string
+        to:
+          enum:
+          - IQ_USERNAME
+          - IQ_EMAIL
+          - IQ_FULLNAME
+          type: string
+      type: object
+    SCMUserMappingsDTO:
+      properties:
+        mappings:
+          items:
+            $ref: '#/components/schemas/UserMapping'
+          type: array
+        role:
+          type: string
+      type: object
+    SCMUserMappingsResponseDTO:
+      properties:
+        inherited:
+          type: boolean
+        ownerInternalId:
+          type: string
+        userMapping:
+          $ref: '#/components/schemas/SCMUserMappingsDTO'
+      type: object
     ApiSourceControlDTO:
       properties:
         authenticationType:
@@ -347,15 +505,6 @@ components:
         username:
           type: string
       type: object
-    SCMUserMappingsDTO:
-      properties:
-        mappings:
-          items:
-            $ref: '#/components/schemas/UserMapping'
-          type: array
-        role:
-          type: string
-      type: object
     SCMUserMatchingResultDTO:
       properties:
         matchedUsers:
@@ -366,32 +515,63 @@ components:
         successfulMapping:
           $ref: '#/components/schemas/UserMapping'
       type: object
-    UserMapping:
-      properties:
-        from:
-          enum:
-          - SCM_USERNAME
-          - SCM_EMAIL
-          - SCM_FULLNAME
-          - GITLOG_EMAIL
-          - GITLOG_FULLNAME
-          type: string
-        to:
-          enum:
-          - IQ_USERNAME
-          - IQ_EMAIL
-          - IQ_FULLNAME
-          type: string
+    RelayRegisterAdminRequest:
       type: object
-    SCMUserMappingsResponseDTO:
       properties:
-        inherited:
+        installationId:
+          type: string
+        webhookSecret:
+          type: string
+    ApiSourceControlDTO_2:
+      type: object
+      properties:
+        id:
+          type: string
+        ownerId:
+          type: string
+        repositoryUrl:
+          type: string
+        username:
+          type: string
+        token:
+          type: string
+        provider:
+          type: string
+        authenticationType:
+          type: string
+        baseBranch:
+          type: string
+        closePrOnFailedChecksEnabled:
           type: boolean
-        ownerInternalId:
+        closePrAfterDaysOpenEnabled:
+          type: boolean
+        closePrAfterDays:
+          type: integer
+          format: int32
+        enablePullRequests:
+          type: boolean
+        remediationPullRequestsEnabled:
+          type: boolean
+        enableStatusChecks:
+          type: boolean
+        statusChecksEnabled:
+          type: boolean
+        pullRequestCommentingEnabled:
+          type: boolean
+        sourceControlEvaluationsEnabled:
+          type: boolean
+        sourceControlScanTarget:
           type: string
-        userMapping:
-          $ref: '#/components/schemas/SCMUserMappingsDTO'
-      type: object
+        sshEnabled:
+          type: boolean
+        commitStatusEnabled:
+          type: boolean
+        manualPullRequestsEnabled:
+          type: boolean
+        innerSourceAutomatedUpdatesEnabled:
+          type: boolean
+        nonGoldenPullRequestsEnabled:
+          type: boolean
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -400,3 +580,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

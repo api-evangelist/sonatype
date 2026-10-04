@@ -1,0 +1,6 @@
+generated: '2026-10-04'
+method: probed
+generator: harvest-llms.py
+source: https://www.sonatype.com/hubfs/1-2025_Website-Assets/llms.txt
+bytes: 9930
+note: saved verbatim; the provider's own document

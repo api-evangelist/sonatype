@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Config Mail API
-  version: 1.201.0-02
-  description: Use this REST API to manage the configuration of an SMTP server, to receive email notifications.
+  title: Sonatype Config Mail API
+  version: '1.0'
+  description: 'Operations tagged Config Mail across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -125,3 +125,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

@@ -1,0 +1,162 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Scan Health Configuration API
+  version: 1.207.1-04
+  description: 'Use this REST API to manage Scan Health configuration. This includes settings for
+
+    failing scans with zero components detected. Configurations can be set at organization
+
+    or application level and are inherited from the organization hierarchy.'
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Scan Health Configuration
+  description: 'Use this REST API to manage Scan Health configuration. This includes settings for
+
+    failing scans with zero components detected. Configurations can be set at organization
+
+    or application level and are inherited from the organization hierarchy.'
+paths:
+  /api/v2/config/scanHealth/{ownerType}/{ownerId}:
+    get:
+      tags:
+      - Scan Health Configuration
+      description: 'Use this method to retrieve Scan Health configuration for the specified owner.
+
+
+        The response includes the `failOnZeroComponents` setting. A null value indicates
+
+        the setting is inherited from the parent organization (or default disabled if no
+
+        parent configuration exists).
+
+
+        Permissions required: View IQ Elements'
+      operationId: getConfiguration_6
+      parameters:
+      - name: ownerType
+        in: path
+        description: The owner type (application or organization)
+        required: true
+        schema:
+          pattern: application|organization
+          type: string
+          enum:
+          - application
+          - organization
+      - name: ownerId
+        in: path
+        description: The internal ID of the owner
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The Scan Health configuration for the specified owner.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanHealthConfigDTO'
+      summary: Get configuration 6
+      x-summary-source: derived
+    put:
+      tags:
+      - Scan Health Configuration
+      description: 'Use this method to create or update Scan Health configuration for the specified owner.
+
+
+        Set `failOnZeroComponents` to `true` to fail scans that detect zero components.
+
+        Set to `false` to explicitly disable this check. Set to `null` to inherit from
+
+        the parent organization.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: saveConfiguration
+      parameters:
+      - name: ownerType
+        in: path
+        description: The owner type (application or organization)
+        required: true
+        schema:
+          pattern: application|organization
+          type: string
+          enum:
+          - application
+          - organization
+      - name: ownerId
+        in: path
+        description: The internal ID of the owner
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The Scan Health configuration to save.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScanHealthConfigDTO'
+      responses:
+        '200':
+          description: Scan Health configuration was saved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanHealthConfigDTO'
+        '404':
+          description: Owner not found.
+      summary: Save configuration
+      x-summary-source: derived
+    delete:
+      tags:
+      - Scan Health Configuration
+      description: 'Use this method to delete Scan Health configuration for the specified owner.
+
+        After deletion, the configuration will be inherited from the parent organization
+
+        or default to disabled.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: deleteConfiguration_6
+      parameters:
+      - name: ownerType
+        in: path
+        description: The owner type (application or organization)
+        required: true
+        schema:
+          pattern: application|organization
+          type: string
+          enum:
+          - application
+          - organization
+      - name: ownerId
+        in: path
+        description: The internal ID of the owner
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Scan Health configuration was deleted successfully.
+        '404':
+          description: Scan Health configuration not found for the specified owner.
+      summary: Delete configuration 6
+      x-summary-source: derived
+components:
+  schemas:
+    ScanHealthConfigDTO:
+      type: object
+      properties:
+        failOnZeroComponents:
+          type: boolean
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

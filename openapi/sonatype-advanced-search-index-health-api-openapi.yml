@@ -1,0 +1,267 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Advanced Search Index Health…
+  version: 1.207.1-04
+  description: Index Analyze status and rebuild/cleanup job control.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Advanced Search Index Health
+  description: Index Analyze status and rebuild/cleanup job control.
+paths:
+  /api/v2/search/advanced/index/analyze:
+    get:
+      tags:
+      - Advanced Search Index Health
+      description: Return current index health (green/yellow/red), recommendation, and estate snapshot. Works on precomputed CURRENT rows in a constant number of round trips, refreshing the stored derived status as it goes.
+      operationId: analyze
+      responses:
+        '200':
+          description: Analyze status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSearchIndexAnalyzeDTO'
+      summary: Analyze
+      x-summary-source: derived
+  /api/v2/search/advanced/index/jobs/cancel:
+    post:
+      tags:
+      - Advanced Search Index Health
+      description: Cancel the active job; Lucene keeps serving the blue index.
+      operationId: cancelActiveJob
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIndexJob'
+      summary: Cancel active job
+      x-summary-source: derived
+  /api/v2/search/advanced/index/jobs/active:
+    get:
+      tags:
+      - Advanced Search Index Health
+      description: Return the active index job, if any.
+      operationId: getActiveJob
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIndexJob'
+      summary: Get active job
+      x-summary-source: derived
+  /api/v2/search/advanced/index/jobs/{jobId}:
+    get:
+      tags:
+      - Advanced Search Index Health
+      description: Return a job by id.
+      operationId: getJob
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIndexJob'
+      summary: Get job
+      x-summary-source: derived
+  /api/v2/search/advanced/index/jobs/{jobId}/events:
+    get:
+      tags:
+      - Advanced Search Index Health
+      description: Return structured job events (activity log).
+      operationId: getJobEvents
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchIndexJobEvent'
+      summary: Get job events
+      x-summary-source: derived
+  /api/v2/search/advanced/index/jobs:
+    post:
+      tags:
+      - Advanced Search Index Health
+      description: Start an index job (FULL_REBUILD or FIRST_TIME_INDEX).
+      operationId: startJob
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiSearchIndexJobRequestDTO'
+      responses:
+        '200':
+          description: Created job
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIndexJob'
+      summary: Start job
+      x-summary-source: derived
+components:
+  schemas:
+    SearchIndexJobEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        searchIndexJobId:
+          type: string
+        seq:
+          type: integer
+          format: int64
+        severity:
+          type: string
+        eventCode:
+          type: string
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    ApiSearchIndexAnalyzeDTO:
+      type: object
+      properties:
+        healthStatus:
+          type: string
+        recommendedOp:
+          type: string
+        queueLagSeconds:
+          type: integer
+          format: int64
+        pendingChangeCount:
+          type: integer
+          format: int64
+        failedChangeCount:
+          type: integer
+          format: int64
+        nouxUnlockState:
+          type: string
+        activeJobId:
+          type: string
+        servingGenerationId:
+          type: string
+        buildingGenerationId:
+          type: string
+        lastSuccessfulCutoverAt:
+          type: string
+          format: date-time
+        lastCleanupAt:
+          type: string
+          format: date-time
+        applicationCount:
+          type: integer
+          format: int64
+        violationCount:
+          type: integer
+          format: int64
+        componentCount:
+          type: integer
+          format: int64
+        etaLowMinutes:
+          type: integer
+          format: int32
+        etaHighMinutes:
+          type: integer
+          format: int32
+        advancedSearchEnabled:
+          type: boolean
+        estateCapturedAt:
+          type: string
+          format: date-time
+    SearchIndexJob:
+      type: object
+      properties:
+        id:
+          type: string
+        jobType:
+          type: string
+        trigger:
+          type: string
+        status:
+          type: string
+        activeSlot:
+          type: string
+        progressPercent:
+          type: integer
+          format: int32
+        phase:
+          type: string
+        etaFinishAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        cancelRequestedAt:
+          type: string
+          format: date-time
+        buildingGenerationId:
+          type: string
+        servingGenerationIdAtStart:
+          type: string
+        recommendedOp:
+          type: string
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        createdByUserId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        active:
+          type: boolean
+    ApiSearchIndexJobRequestDTO:
+      type: object
+      properties:
+        jobType:
+          type: string
+          description: 'Job to run: FULL_REBUILD or FIRST_TIME_INDEX.'
+          example: FULL_REBUILD
+        trigger:
+          type: string
+          description: 'What asked for the job: UNLOCK_WIZARD, HEALTH_UI, SUPPORT or SYSTEM. Defaults to HEALTH_UI.'
+          example: HEALTH_UI
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

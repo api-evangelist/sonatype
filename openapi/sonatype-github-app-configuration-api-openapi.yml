@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST GitHub App Configuration API
-  version: 1.201.0-02
-  description: GitHub App configuration operations
+  title: Sonatype GitHub App Configuration API
+  version: '1.0'
+  description: 'Operations tagged GitHub App Configuration across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -106,6 +106,56 @@ paths:
       summary: Handle GitHub App installation setup callback with OAuth + PKCE
       tags:
       - GitHub App Configuration
+  /api/v2/githubApp/{githubAppId}:
+    delete:
+      tags:
+      - GitHub App Configuration
+      summary: Delete a GitHub App
+      description: 'Deletes a specific GitHub App by its ID. Validates ownership before deletion. Best-effort cleanup of the GitHub installation via API.
+
+
+        **Permissions Required:** Configure System Configuration and Users'
+      operationId: deleteGitHubApp
+      parameters:
+      - name: githubAppId
+        in: path
+        description: GitHub App ID
+        required: true
+        schema:
+          type: string
+      - name: ownerId
+        in: query
+        description: Owner (organization/application) ID
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      responses:
+        '204':
+          description: GitHub App deleted successfully
+        '404':
+          description: GitHub App not found for specified owner
+  /api/v2/githubApp:
+    get:
+      tags:
+      - GitHub App Configuration
+      summary: List GitHub Apps for an owner
+      description: 'Returns all GitHub Apps directly registered at this owner level. Does not include inherited apps from parent organizations.
+
+
+        **Permissions Required:** View IQ Elements'
+      operationId: listGitHubApps
+      parameters:
+      - name: ownerId
+        in: query
+        description: Owner (organization/application) ID
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      responses:
+        '200':
+          description: List of GitHub Apps
 components:
   securitySchemes:
     BasicAuth:
@@ -115,3 +165,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

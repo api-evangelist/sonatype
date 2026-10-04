@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Config SAML API
-  version: 1.201.0-02
-  description: Use this REST API to manage the SAML configuration for IQ Server.
+  title: Sonatype Config SAML API
+  version: '1.0'
+  description: 'Operations tagged Config SAML across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -93,28 +93,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiSamlConfigurationDTO:
-      description: Enter the SAML configuration<ul><li>`identityProviderName` the name of the Identity Provider that is displayed on the login page when SAML is configured.</li><li>`entityId` is the URI that IQ Server uses to identify itself in requests to the SSOservice.</li><li>`firstNameAttribute` is the SAML attribute that IQ Server extracts from the login response of the identity provider and uses as the user's first name.</li><li>`lastNameAttribute` is the SAML attribute that IQ Server extracts from the login response of the identity provider and uses as the user's last name.</li><li>`emailAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the user's email address.</li><li>`usernameAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the username or id.</li><li>`groupAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the groups the user belongs to.</li><li>`validateResponseSignature` indicates whether the SAML responses from the identity provider  are cryptographically signed. A `null` value indicates that this setting is derived from the SAML metadata from the identity provider performing signature validation if a signing key (`KeyDescriptor`) is included.<li>`validateAssertionSignature` indicates whether the SAML assertions from the identity provider  are cryptographically signed. A `null` value indicates that this setting is derived from  the SAML metadata from the identity provider performing signature validation if a signing key (`KeyDescriptor`) is included.</li><li>`identityProviderMetadataXml` is the metadata of the identity provider.</li></ul>
-      properties:
-        emailAttributeName:
-          type: string
-        entityId:
-          type: string
-        firstNameAttributeName:
-          type: string
-        groupsAttributeName:
-          type: string
-        identityProviderName:
-          type: string
-        lastNameAttributeName:
-          type: string
-        usernameAttributeName:
-          type: string
-        validateAssertionSignature:
-          type: boolean
-        validateResponseSignature:
-          type: boolean
-      type: object
     ApiSamlConfigurationResponseDTO:
       properties:
         emailAttributeName:
@@ -138,6 +116,28 @@ components:
         validateResponseSignature:
           type: boolean
       type: object
+    ApiSamlConfigurationDTO:
+      description: Enter the SAML configuration<ul><li>`identityProviderName` the name of the Identity Provider that is displayed on the login page when SAML is configured.</li><li>`entityId` is the URI that IQ Server uses to identify itself in requests to the SSOservice.</li><li>`firstNameAttribute` is the SAML attribute that IQ Server extracts from the login response of the identity provider and uses as the user's first name.</li><li>`lastNameAttribute` is the SAML attribute that IQ Server extracts from the login response of the identity provider and uses as the user's last name.</li><li>`emailAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the user's email address.</li><li>`usernameAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the username or id.</li><li>`groupAttributeName` is the SAML attribute that IQ Server extracts from the login response of the identity provider to determine the groups the user belongs to.</li><li>`validateResponseSignature` indicates whether the SAML responses from the identity provider  are cryptographically signed. A `null` value indicates that this setting is derived from the SAML metadata from the identity provider performing signature validation if a signing key (`KeyDescriptor`) is included.<li>`validateAssertionSignature` indicates whether the SAML assertions from the identity provider  are cryptographically signed. A `null` value indicates that this setting is derived from  the SAML metadata from the identity provider performing signature validation if a signing key (`KeyDescriptor`) is included.</li><li>`identityProviderMetadataXml` is the metadata of the identity provider.</li></ul>
+      properties:
+        emailAttributeName:
+          type: string
+        entityId:
+          type: string
+        firstNameAttributeName:
+          type: string
+        groupsAttributeName:
+          type: string
+        identityProviderName:
+          type: string
+        lastNameAttributeName:
+          type: string
+        usernameAttributeName:
+          type: string
+        validateAssertionSignature:
+          type: boolean
+        validateResponseSignature:
+          type: boolean
+      type: object
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -146,3 +146,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

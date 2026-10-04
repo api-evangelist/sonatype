@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST CI Configuration API
-  version: 1.201.0-02
-  description: Use this REST API to manage CI integration configuration. Configurations can be set at organization or application level and are merged from the organization hierarchy with lower levels taking precedence.
+  title: Sonatype CI Configuration API
+  version: '1.0'
+  description: 'Operations tagged CI Configuration across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -146,64 +146,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiCiConfigurationResponseDto:
-      properties:
-        data:
-          $ref: '#/components/schemas/ApiCiConfigurationDto'
-        source:
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-    JavaScriptAnalysisConfig:
-      properties:
-        enabled:
-          type: boolean
-        jsExcludes:
-          items:
-            type: string
-          type: array
-        jsSources:
-          items:
-            type: string
-          type: array
-        nodeJsExecutable:
-          type: string
-        projectRoot:
-          type: string
-      type: object
-    DownloadConfig:
-      properties:
-        iqCliUrl:
-          type: string
-        iqCliVersion:
-          type: string
-      type: object
-    JavaAnalysisConfig:
-      properties:
-        enabled:
-          type: boolean
-        entrypointStrategy:
-          type: string
-        namespaces:
-          items:
-            type: string
-          type: array
-      type: object
-    ReachabilityConfig:
-      properties:
-        failOnError:
-          type: boolean
-        javaAnalysis:
-          $ref: '#/components/schemas/JavaAnalysisConfig'
-        javaScriptAnalysis:
-          $ref: '#/components/schemas/JavaScriptAnalysisConfig'
-      type: object
-    ProxyConfig:
-      properties:
-        host:
-          type: string
-      type: object
     ApiCiConfigurationDto:
       properties:
         advancedProperties:
@@ -243,6 +185,88 @@ components:
         unstableBuildOnPolicyWarnings:
           type: boolean
       type: object
+    DownloadConfig:
+      properties:
+        iqCliUrl:
+          type: string
+        iqCliVersion:
+          type: string
+      type: object
+    JavaScriptAnalysisConfig:
+      properties:
+        enabled:
+          type: boolean
+        jsExcludes:
+          items:
+            type: string
+          type: array
+        jsSources:
+          items:
+            type: string
+          type: array
+        nodeJsExecutable:
+          type: string
+        projectRoot:
+          type: string
+      type: object
+    JavaAnalysisConfig:
+      properties:
+        enabled:
+          type: boolean
+        entrypointStrategy:
+          type: string
+        namespaces:
+          items:
+            type: string
+          type: array
+      type: object
+    ApiCiConfigurationResponseDto:
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiCiConfigurationDto'
+        source:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    ReachabilityConfig:
+      properties:
+        failOnError:
+          type: boolean
+        javaAnalysis:
+          $ref: '#/components/schemas/JavaAnalysisConfig'
+        javaScriptAnalysis:
+          $ref: '#/components/schemas/JavaScriptAnalysisConfig'
+      type: object
+    ProxyConfig:
+      properties:
+        host:
+          type: string
+      type: object
+    DotNetAnalysisConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        namespaces:
+          type: array
+          items:
+            type: string
+        entrypointStrategy:
+          type: string
+        dotnetPath:
+          type: string
+    ReachabilityConfig_2:
+      type: object
+      properties:
+        javaAnalysis:
+          $ref: '#/components/schemas/JavaAnalysisConfig'
+        javaScriptAnalysis:
+          $ref: '#/components/schemas/JavaScriptAnalysisConfig'
+        dotNetAnalysis:
+          $ref: '#/components/schemas/DotNetAnalysisConfig'
+        failOnError:
+          type: boolean
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -251,3 +275,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

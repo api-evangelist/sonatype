@@ -1,11 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Composite Source Control API
-  version: 1.201.0-02
-  description: 'Use this REST API to access the composite source control management configuration (SCM) for an application or organization.
-
-
-    Composite source control configuration is defined as the configuration that is inherited from the parent organization or is directly assigned.'
+  title: Sonatype Composite Source Control API
+  version: '1.0'
+  description: 'Operations tagged Composite Source Control across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -53,48 +50,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GitHubAppInfo:
-      properties:
-        accountName:
-          type: string
-        configurationDate:
-          type: string
-        id:
-          type: string
-        installationId:
-          format: int64
-          type: integer
-        name:
-          type: string
-      type: object
-    ApiCompositeValueDTOBoolean:
+    ApiCompositeValueDTOGitHubAppInfo:
       properties:
         parentName:
           type: string
         parentValue:
-          type: boolean
+          $ref: '#/components/schemas/GitHubAppInfo'
         value:
-          type: boolean
-      type: object
-    ApiCompositeValueDTOString:
-      properties:
-        parentName:
-          type: string
-        parentValue:
-          type: string
-        value:
-          type: string
-      type: object
-    ApiCompositeValueDTOInteger:
-      properties:
-        parentName:
-          type: string
-        parentValue:
-          format: int32
-          type: integer
-        value:
-          format: int32
-          type: integer
+          $ref: '#/components/schemas/GitHubAppInfo'
       type: object
     ApiCompositeSourceControlDTO:
       properties:
@@ -141,15 +104,114 @@ components:
         username:
           $ref: '#/components/schemas/ApiCompositeValueDTOString'
       type: object
-    ApiCompositeValueDTOGitHubAppInfo:
+    GitHubAppInfo:
+      properties:
+        accountName:
+          type: string
+        configurationDate:
+          type: string
+        id:
+          type: string
+        installationId:
+          format: int64
+          type: integer
+        name:
+          type: string
+      type: object
+    ApiCompositeValueDTOString:
       properties:
         parentName:
           type: string
         parentValue:
-          $ref: '#/components/schemas/GitHubAppInfo'
+          type: string
         value:
-          $ref: '#/components/schemas/GitHubAppInfo'
+          type: string
       type: object
+    ApiCompositeValueDTOInteger:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          format: int32
+          type: integer
+        value:
+          format: int32
+          type: integer
+      type: object
+    ApiCompositeValueDTOBoolean:
+      properties:
+        parentName:
+          type: string
+        parentValue:
+          type: boolean
+        value:
+          type: boolean
+      type: object
+    ApiCompositeSourceControlDTO_2:
+      type: object
+      properties:
+        id:
+          type: string
+        ownerId:
+          type: string
+        repositoryUrl:
+          type: string
+        provider:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        username:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        token:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        baseBranch:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        remediationPullRequestsEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        statusChecksEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        pullRequestCommentingEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        sourceControlEvaluationsEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        sourceControlScanTarget:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        sshEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        commitStatusEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        manualPullRequestsEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        innerSourceAutomatedUpdatesEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        nonGoldenPullRequestsEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        closePrOnFailedChecksEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        closePrAfterDaysOpenEnabled:
+          $ref: '#/components/schemas/ApiCompositeValueDTOBoolean'
+        closePrAfterDays:
+          $ref: '#/components/schemas/ApiCompositeValueDTOInteger'
+        authenticationType:
+          $ref: '#/components/schemas/ApiCompositeValueDTOString'
+        githubApps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiCompositeValueDTOGitHubAppInfo'
+    GitHubAppInfo_2:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        accountName:
+          type: string
+        installationId:
+          type: integer
+          format: int64
+        configurationDate:
+          type: string
+        isActive:
+          type: boolean
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -158,3 +220,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

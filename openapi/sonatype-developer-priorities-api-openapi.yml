@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Developer Priorities API
-  version: 1.201.0-02
-  description: Use this REST API to export Sonatype Developer component priorities data, including security reachability data.
+  title: Sonatype Developer Priorities API
+  version: '1.0'
+  description: 'Operations tagged Developer Priorities across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -115,6 +115,40 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    DevelopmentPrioritizationResults:
+      properties:
+        hasAutoWaiversConfigured:
+          type: boolean
+        priorities:
+          $ref: '#/components/schemas/ApiPageResultPrioritizedComponent'
+        scanIdFromLatestBuildStageEvaluation:
+          type: string
+      type: object
+    ApiPageResultPrioritizedComponent:
+      description: Paginated response wrapper
+      properties:
+        page:
+          description: Current page number
+          format: int32
+          type: integer
+        pageCount:
+          description: Total number of pages
+          format: int64
+          type: integer
+        pageSize:
+          description: Number of items per page
+          format: int32
+          type: integer
+        results:
+          description: List of items for the current page
+          items:
+            $ref: '#/components/schemas/PrioritizedComponent'
+          type: array
+        total:
+          description: Total number of items
+          format: int64
+          type: integer
+      type: object
     PrioritizedComponent:
       description: List of items for the current page
       properties:
@@ -174,31 +208,6 @@ components:
         waiverExpirationDetails:
           type: string
       type: object
-    ApiPageResultPrioritizedComponent:
-      description: Paginated response wrapper
-      properties:
-        page:
-          description: Current page number
-          format: int32
-          type: integer
-        pageCount:
-          description: Total number of pages
-          format: int64
-          type: integer
-        pageSize:
-          description: Number of items per page
-          format: int32
-          type: integer
-        results:
-          description: List of items for the current page
-          items:
-            $ref: '#/components/schemas/PrioritizedComponent'
-          type: array
-        total:
-          description: Total number of items
-          format: int64
-          type: integer
-      type: object
     ComponentIdentifier:
       properties:
         coordinates:
@@ -206,15 +215,6 @@ components:
             type: string
           type: object
         format:
-          type: string
-      type: object
-    DevelopmentPrioritizationResults:
-      properties:
-        hasAutoWaiversConfigured:
-          type: boolean
-        priorities:
-          $ref: '#/components/schemas/ApiPageResultPrioritizedComponent'
-        scanIdFromLatestBuildStageEvaluation:
           type: string
       type: object
   securitySchemes:
@@ -225,3 +225,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

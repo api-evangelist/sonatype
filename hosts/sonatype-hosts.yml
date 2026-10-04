@@ -1,0 +1,213 @@
+generated: '2026-10-04'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 15
+  own: 13
+  other_domain: 0
+  platform: 2
+  roles:
+  - api
+  - community
+  - docs
+  - identity
+  - other
+  - status
+  - support
+  - website
+hosts:
+- host: api.sonatype.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: sonatype.com
+  role: api
+  relation: own
+- host: central.sonatype.com
+  found_by:
+  - docs-index
+  types: []
+  serves:
+  - docs
+  registrable_domain: sonatype.com
+  role: other
+  relation: own
+- host: community.sonatype.com
+  found_by:
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - well-known
+  types: []
+  serves:
+  - docs
+  registrable_domain: sonatype.com
+  role: community
+  relation: own
+- host: dev.sonatype.com
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  types: []
+  serves: []
+  title: Software Supply Chain Resources, Guides &amp; Tools | Sonatype
+  status: 200
+  registrable_domain: sonatype.com
+  role: other
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHub
+  serves: []
+  registrable_domain: github.com
+  role: other
+  relation: platform
+- host: guide.sonatype.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - docs-index
+  - well-known
+  types:
+  - SignUp
+  serves:
+  - docs
+  registrable_domain: sonatype.com
+  role: identity
+  relation: own
+- host: help.sonatype.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Documentation
+  - ChangeLog
+  serves:
+  - docs
+  - cdn
+  vendor: cloudflare
+  registrable_domain: sonatype.com
+  role: docs
+  relation: own
+- host: ideas.sonatype.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: sonatype.com
+  role: other
+  relation: own
+- host: learn.sonatype.com
+  found_by:
+  - probed
+  - site-links
+  - docs-index
+  - well-known
+  types: []
+  serves:
+  - docs
+  registrable_domain: sonatype.com
+  role: other
+  relation: own
+- host: my.sonatype.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: sonatype.com
+  role: other
+  relation: own
+- host: status.sonatype.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - docs-index
+  types:
+  - StatusPage
+  serves:
+  - docs
+  registrable_domain: sonatype.com
+  role: status
+  relation: own
+- host: support.sonatype.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Support
+  serves:
+  - docs
+  - support
+  vendor: zendesk
+  registrable_domain: sonatype.com
+  role: support
+  relation: own
+- host: trust.sonatype.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  types:
+  - TrustCenter
+  serves: []
+  registrable_domain: sonatype.com
+  role: other
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.sonatype.com
+  found_by:
+  - pointer
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Portal
+  - Website
+  - Blog
+  - Pricing
+  - DeveloperPortal
+  - Newsroom
+  - PrivacyPolicy
+  - Security
+  - TermsOfService
+  - Integrations
+  serves:
+  - docs
+  - hosting
+  vendor: hubspot
+  registrable_domain: sonatype.com
+  role: website
+  relation: own

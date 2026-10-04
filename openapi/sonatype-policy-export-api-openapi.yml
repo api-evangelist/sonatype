@@ -1,0 +1,345 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Policy Export API
+  version: 1.207.1-04
+  description: Export policy configurations for organizations, applications, and repositories
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Policy Export
+  description: Export policy configurations for organizations, applications, and repositories
+paths:
+  /api/v2/policy/{ownerType}/{ownerId}/export:
+    get:
+      tags:
+      - Policy Export
+      summary: Export policy configuration
+      description: 'Exports policy configurations including policy rules, conditions, labels, license threat groups,
+
+        and tags for the specified owner (organization, application, or repository).
+
+        Use the `includeInherited` parameter to include policies from parent levels in the hierarchy.
+
+
+        **Permissions required**: View IQ Elements (READ permission on the specified owner)
+
+
+        **Export scope**:
+
+        - Policy rules and conditions
+
+        - Policy assignments (via ownerId on each policy)
+
+        - Component labels
+
+        - License threat groups
+
+        - Application categories (tags) for organizations
+
+
+        **Note**: Waivers are not included in the export.'
+      operationId: exportPolicies
+      parameters:
+      - name: ownerType
+        in: path
+        description: Type of owner (organization, application, or repository)
+        required: true
+        schema:
+          pattern: application|organization|repository
+          type: string
+          enum:
+          - application
+          - organization
+          - repository
+      - name: ownerId
+        in: path
+        description: Internal ID of the owner
+        required: true
+        schema:
+          type: string
+      - name: includeInherited
+        in: query
+        description: 'If true, include policies from parent levels in the hierarchy. For repositories, includes policies from the repository, RepositoryManager, RepositoryContainer, and parent organization. For applications, includes policies from the application and parent organization(s). For organizations, includes policies from the organization and any parent organizations. Default: false (direct policies only)'
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Policy configuration exported successfully. The response includes policies, labels, license threat groups, and (for organizations) tags. When includeInherited=true, policies from parent levels are included with their original ownerId preserved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyExportResult'
+        '403':
+          description: User does not have READ permission on the specified owner
+        '404':
+          description: Organization, application, or repository not found
+components:
+  schemas:
+    PolicyExportResult:
+      type: object
+      properties:
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+        licenseThreatGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseThreatGroup'
+        licenseThreatGroupLicenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseThreatGroupLicense'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        policyTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyTag'
+    WebhookNotification:
+      type: object
+      properties:
+        stageIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        webhookId:
+          type: string
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        nameLowercaseNoWhitespace:
+          type: string
+        id:
+          type: string
+        organizationId:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+          enum:
+          - white
+          - grey
+          - black
+          - green
+          - yellow
+          - orange
+          - red
+          - blue
+          - light-red
+          - light-green
+          - light-blue
+          - light-purple
+          - dark-red
+          - dark-green
+          - dark-blue
+          - dark-purple
+    Notifications:
+      type: object
+      properties:
+        userNotifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserNotification'
+        roleNotifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleNotification'
+        jiraNotifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/JiraNotification'
+        webhookNotifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookNotification'
+    UserNotification:
+      type: object
+      properties:
+        stageIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        emailAddress:
+          type: string
+    LicenseThreatGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        nameLowercaseNoWhitespace:
+          type: string
+        id:
+          type: string
+        ownerId:
+          type: string
+        threatLevel:
+          type: integer
+          format: int32
+    PolicyTag:
+      type: object
+      properties:
+        id:
+          type: string
+        policyId:
+          type: string
+        tagId:
+          type: string
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        ownerId:
+          type: string
+        threatLevel:
+          type: integer
+          format: int32
+        legacyViolationAllowed:
+          type: boolean
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constraint'
+        actions:
+          type: object
+          additionalProperties:
+            type: string
+        notifications:
+          $ref: '#/components/schemas/Notifications'
+        policyActionsOverrideAllowed:
+          type: boolean
+        policyActionsOverrides:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+        policyNotificationsOverrideAllowed:
+          type: boolean
+        policyNotificationsOverrides:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Notifications'
+        policyViolationGrandfatheringAllowed:
+          type: boolean
+          writeOnly: true
+    JiraNotification:
+      type: object
+      properties:
+        stageIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        projectKey:
+          type: string
+        issueTypeId:
+          type: integer
+          format: int64
+    LicenseThreatGroupLicense:
+      type: object
+      properties:
+        id:
+          type: string
+        ownerId:
+          type: string
+        licenseThreatGroupId:
+          type: string
+        licenseId:
+          type: string
+    Condition:
+      type: object
+      properties:
+        conditionTypeId:
+          type: string
+        operator:
+          type: string
+        value:
+          type: string
+        conditionIndex:
+          type: integer
+          format: int32
+    RoleNotification:
+      type: object
+      properties:
+        stageIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        roleId:
+          type: string
+        roleName:
+          type: string
+    Label:
+      type: object
+      properties:
+        id:
+          type: string
+        ownerId:
+          type: string
+        label:
+          type: string
+        labelLowercase:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+          enum:
+          - white
+          - grey
+          - black
+          - green
+          - yellow
+          - orange
+          - red
+          - blue
+          - light-red
+          - light-green
+          - light-blue
+          - light-purple
+          - dark-red
+          - dark-green
+          - dark-blue
+          - dark-purple
+    Constraint:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        operator:
+          type: string
+          enum:
+          - AND
+          - OR
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

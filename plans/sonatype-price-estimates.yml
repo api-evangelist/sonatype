@@ -1,51 +1,47 @@
 # ESTIMATES computed by API Evangelist — not published by the provider. See `note` and `replace_by`.
 generated: '2026-09-20'
 method: estimated
+name: Sonatype API Plans
 estimator: 'planning/api-economics/estimate_prices.py — design: ESTIMATION.md'
-note: ESTIMATES, not quotes. Computed by API Evangelist from the prices this provider publishes on https://www.sonatype.com/products/pricing
-  (transcribed in plans/sonatype-plans-pricing.yml). Nothing here overrides a published price. Each estimate
-  names the figure it came from, the formula, any assumption, and the field the provider can publish to
-  replace it — publish that and the estimate is retired.
+note: ESTIMATES, not quotes. Computed by API Evangelist from the prices this provider publishes on https://www.sonatype.com/products/pricing (transcribed in plans/sonatype-plans-pricing.yml). Nothing here overrides a published price. Each estimate names the figure it came from, the formula, any assumption, and the field the provider can publish to replace it — publish that and the estimate is retired.
 audience_of_source_pricing: business-product
 pricing_basis: tiered-subscription
 delivery: open-core
 delivery_method: page
 delivery_evidence: Community Edition Starting at $0 Download for Free
 free_self_hosted_tiers:
-- Community Edition
+  - Community Edition
 managed_premium:
   grade: A
   usd_per_month: 162.5
   plan: Nexus Repository Cloud Pro Edition
   price_text: Starting at $1,950 / year + consumption
   same_product: verified-by-page
-  meaning: the cheapest priced tier beside the free edition on the same page. When same_product is verified-by-name
-    it is the provider's own price for operating what it gives away; when unverified it may be a different
-    product. Self-hosting cost itself is unmeasured.
+  meaning: the cheapest priced tier beside the free edition on the same page. When same_product is verified-by-name it is the provider's own price for operating what it gives away; when unverified it may be a different product. Self-hosting cost itself is unmeasured.
 estimate_count: 2
 estimates:
-- kind: entry_cost
-  grade: A
-  grade_meaning: quoted — the page states this figure
-  usd_per_month: 100.0
-  meaning: the cheapest published paid tier — a floor on the cost of getting in, NOT the price of the
-    API alone
-  inputs:
-  - file: plans/sonatype-plans-pricing.yml
-    plan: Guide Pro
-    price_text: Starting at $1,200 / year
-  replace_by: 'API Commons Plans — plans[].entries[] with type: fee, a numeric `price`, `timeFrame: month`
-    and the tier that includes API access stated in `elements`'
-- kind: marginal_cost
-  grade: B
-  grade_meaning: arithmetic on quoted figures — no assumption
-  usd: 4.1666667e-05
-  per: request
-  formula: 'monthly price / included quota — an UPPER bound: assumes the quota is fully used'
-  inputs:
-  - file: plans/sonatype-plans-pricing.yml
-    plan: Nexus Repository Self-Hosted Pro Edition
-    price_text: Starting at $7,500 / year
-    included_text: Includes 50K Components and 15M Monthly Requests
-  replace_by: 'API Commons Plans — plans[].entries[] with type: metered, `metric` (request | token | transaction
-    | message), `unit` and a numeric `price`; and FinOps `primaryUnit` + `meters[]`'
+  - kind: entry_cost
+    grade: A
+    grade_meaning: quoted — the page states this figure
+    usd_per_month: 100.0
+    meaning: the cheapest published paid tier — a floor on the cost of getting in, NOT the price of the API alone
+    inputs:
+      - file: plans/sonatype-plans-pricing.yml
+        plan: Guide Pro
+        price_text: Starting at $1,200 / year
+    replace_by: "API Commons Plans — plans[].entries[] with type: fee, a numeric `price`, `timeFrame: month` and the tier that includes API access stated in `elements`"
+  - kind: marginal_cost
+    grade: B
+    grade_meaning: arithmetic on quoted figures — no assumption
+    usd: 4.1666667e-05
+    per: request
+    formula: 'monthly price / included quota — an UPPER bound: assumes the quota is fully used'
+    inputs:
+      - file: plans/sonotype-plans-pricing.yml
+        plan: Nexus Repository Self-Hosted Pro Edition
+        price_text: Starting at $7,500 / year
+        included_text: Includes 50K Components and 15M Monthly Requests
+    replace_by: "API Commons Plans — plans[].entries[] with type: metered, `metric` (request | token | transaction | message), `unit` and a numeric `price`; and FinOps `primaryUnit` + `meters[]`"
+plans:
+  - name: Sonatype API Plans
+    entries: []

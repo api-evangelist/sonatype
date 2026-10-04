@@ -1,0 +1,96 @@
+# Sonatype
+
+> Sonatype is the company that accelerates agentic software development with confidence. Trusted by thousands of enterprises and millions of developers, Sonatype helps organizations build with confidence by governing the open source, AI-generated, and third-party components that power modern software. As the steward of Maven Central and the company behind Nexus Repository, Sonatype provides unmatched visibility into how software is built, consumed, and secured — helping teams move faster, reduce risk, and ship software with confidence at AI scale. 
+
+## Documentation
+
+- [Sonatype Help](https://help.sonatype.com/): Complete product documentation, API references, and getting started guides.
+- [Sonatype Learn](https://learn.sonatype.com/): Free self-paced training courses for all Sonatype products.
+- [Sonatype Support](https://support.sonatype.com/): Knowledge base with troubleshooting and support documentation.
+- [System Status](https://status.sonatype.com/): Live service status for Sonatype cloud products.
+
+## Key Company Information
+
+- [Homepage](https://www.sonatype.com/): The main entry point to the Sonatype website.
+- [About Sonatype](https://www.sonatype.com/company): Company mission, history, and leadership.
+- [Careers](https://www.sonatype.com/company/careers): Job opportunities at Sonatype.
+- [Contact Us](https://www.sonatype.com/contact-us): Get in touch with the Sonatype team.
+- [Pricing](https://www.sonatype.com/products/pricing): Pricing for all Sonatype products.
+
+## Products
+
+- [Sonatype Nexus One Platform](https://www.sonatype.com/products/nexus-one-platform): Unified software supply chain management platform combining open source security and developer productivity through AI-driven automation.
+- [Sonatype Nexus Repository](https://www.sonatype.com/products/sonatype-nexus-repository): Enterprise artifact repository manager for software components, containers, and AI/ML models.
+- [Sonatype Guide](https://www.sonatype.com/products/sonatype-guide): Dependency management for AI-powered development — guides AI coding assistants to select safe, high-quality OSS components.
+- [Sonatype Firewall](https://www.sonatype.com/products/sonatype-repository-firewall): Blocks malicious open source packages before they enter your repositories, builds, and pipelines.
+- [Sonatype Lifecycle](https://www.sonatype.com/products/sonatype-lifecycle): Automated software composition analysis (SCA) to find and fix open source vulnerabilities and manage dependency risk across the SDLC.
+- [Sonatype SBOM Manager](https://www.sonatype.com/products/sonatype-sbom-manager): Generate, monitor, and manage audit-ready SBOMs to automate software compliance at scale.
+
+## Open Source Infrastructure & Data
+
+- [Maven Central](https://central.sonatype.com/): The world's largest repository of open source Java components — maintained and stewarded by Sonatype for over two decades.
+- [Maven Central + Sonatype](https://www.sonatype.com/products/maven-central-repository): How Sonatype maintains and secures the foundation of the Java ecosystem.
+- [Sonatype Intelligence](https://www.sonatype.com/products/intelligence): Vulnerability and component intelligence powering precise detection and remediation of open source risk.
+
+## Developer Resources 
+- [Nexus Repository Community Edition](https://www.sonatype.com/products/nexus-community-edition-download): Free download of Sonatype Nexus Repository Community Edition.
+- [Sonatype Guide](https://guide.sonatype.com/): Free catalog of OSS components and vulnerability data for developers.
+- [Integrations](https://www.sonatype.com/products/integrations): 50+ integrations across IDEs, CI/CD pipelines, source repositories, and DevSecOps tools.
+- [APIs](https://www.sonatype.com/resources/community/apis): Explore available REST APIs, scripting, webhooks, and plug-ins across Sonatype solutions.
+
+## AI & Agentic Capabilities
+
+- [Sonatype MCP Server](https://www.sonatype.com/products/sonatype-guide/agentic-dependency-management): Model Context Protocol server that brings Sonatype's dependency intelligence into AI coding assistants and agents.
+- [Sonatype Guide — Free Tier](https://guide.sonatype.com/): Try Sonatype's dependency intelligence for AI-assisted development for free.
+- [Open Source AI](https://www.sonatype.com/solutions/open-source-ai): Govern and secure AI/ML models and AI-generated code across the software supply chain.
+
+## Security Research & Resources
+
+- [Sonatype Research Labs] (https://www.sonatype.com/sonatype-research-labs): Security research on malicious packages, vulnerabilities, and common CVEs.
+- [Sonatype Blog](https://www.sonatype.com/blog): Product updates, security research, and open source ecosystem analysis.
+- [State of the Software Supply Chain Report](https://www.sonatype.com/state-of-the-software-supply-chain/introduction): Sonatype's flagship annual research on open source consumption, malware, and software supply chain risk.
+- [Resource Center](https://www.sonatype.com/resources): Whitepapers, analyst reports, webinars, podcasts, and product tours.
+- [Open Source Malware Protection](https://www.sonatype.com/solutions/open-source-malware-protection): How Sonatype detects and blocks malicious open source packages.
+
+## Product Comparisons
+
+- [Compare Sonatype](https://www.sonatype.com/compare): How Sonatype products compare to alternatives.
+- [Sonatype Nexus Repository vs. JFrog Artifactory](https://www.sonatype.com/compare/sonatype-nexus-versus-jfrog-artifactory): Side-by-side comparison of JFrog vs. Sonatype's artifact repository managers.
+- [Snyk vs. Sonatype](https://www.sonatype.com/compare/snyk-versus-sonatype-nexus): Side-by-side comparison of Snaky vs. Sonatype's software composition analysis solutions.
+- [Black Duck vs. Sonatype](https://www.sonatype.com/compare/synopsys-vs-sonatype-nexus): Side-by-side comparison of Black Duck vs. Sonatype's dependency management and SCA solutions.
+- [SCA Tool Comparison](https://www.sonatype.com/compare/best-sca-tools): Side-by-side comparison of SCA tools from Sonatype, Snyk, Black Duck, JFrog, and Mend.
+- [Malware Defense Comparison](https://www.sonatype.com/compare/best-malware-prevention): Side-by-side comparison of malware defense and prevention tools from Sonatype, JFrog, and Checkmark.
+- [Artifact Repository Manager Comparison](https://www.sonatype.com/compare/best-artifact-repository-solutions): Side-by-side comparison of artifact repository managers from Sonatype, JFrog, Cloudsmith, GitHub, and GitLab.
+- [SBOM Tools Comparison](https://www.sonatype.com/compare/best-sbom-tools): Side-by-side comparison of SBOM tools from Sonatype, Manifest, and Vigilant Ops.
+
+## Community & Events
+
+- [Sonatype Community](https://community.sonatype.com/): Forums and community resources for Sonatype users.
+- [Webinars](https://www.sonatype.com/webinars): Upcoming and on-demand Sonatype webinars.
+- [Upcoming Events](https://www.sonatype.com/resources/upcoming-events): Conferences and events where you can meet Sonatype.
+
+## Customer Success Stories
+
+- [Equifax](https://www.sonatype.com/customer-stories/equifax-success-in-security-transformation): Equifax's success in security transformation with Sonatype.
+- [ABN AMRO](https://www.sonatype.com/customer-stories/abn-amro-and-sonatype-lifecycle): How ABN AMRO secures development with Sonatype Lifecycle.
+- [Nomura](https://www.sonatype.com/customer-stories/nomura): How Nomura manages open source risk with Sonatype.
+- [USPTO](https://www.sonatype.com/customer-stories/uspto): How the United States Patent and Trademark Office uses Sonatype.
+- [Software AG](https://www.sonatype.com/customer-stories/software-ag): How Software AG builds securely with Sonatype.
+- [BNP Personal Finance](https://www.sonatype.com/customer-stories/bnp-personal-finance-open-source-revolution): BNP Personal Finance's open source transformation with Sonatype.
+- [Alef Education](https://www.sonatype.com/customer-stories/alef-education): Alef Education saves 300 developer hours monthly with Sonatype.
+- [DCAI](https://www.sonatype.com/customer-stories/dcai): DCAI secures national AI supercomputer in weeks.
+- [Krungsri](https://www.sonatype.com/customer-stories/krungsri): Krungsri accelerates modernization and open source governance.
+- [Mühlbauer](https://www.sonatype.com/customer-stories/muhlbauer-id-services): Mühlbauer slashes tech bebt and hits 87% fix rate with automation
+- [Progress](https://www.sonatype.com/customer-stories/progress-software-and-sonatype-lifecycle): How Progress simplified OSS compliance with Sonatype.
+- [Trilliant](https://www.sonatype.com/customer-stories/trilliant-and-sonatype-lifecycle): How Trilliant eliminated manual effort in risk management.
+- [Discovery](https://www.sonatype.com/customer-stories/discovery-health-and-sonatype-nexus-lifecycle): How Discovery Health automated open source security across applications.
+
+## Recent News & Press
+
+- [Newsroom](https://www.sonatype.com/newsroom): Sonatype press releases and media coverage.
+- [Sonatype Moves Control Upstream and Automates Fixes in AI Development](https://www.sonatype.com/press-releases/automating-fixes-in-ai-driven-development)
+- [Sonatype Research Labs Marks 15 Years](https://www.sonatype.com/press-releases/sonatype-research-labs-marks-15-years-of-intelligence)
+- [Sonatype Named a Leader in the 2026 Gartner Magic Quadrant](https://www.sonatype.com/press-releases/sonatype-named-a-leader-in-the-2026-gartner-magic-quadrant)
+- [Introducing Sonatype Guide for Secure Agentic Development](https://www.sonatype.com/press-releases/introducing-guide-for-secure-agentic-development)
+- [Sonatype Q1 2026 Open Source Malware Index](https://www.sonatype.com/press-releases/sonatype-q1-2026-open-source-malware-index)
+- [Sonatype Launches Nexus Repository Cloud for the Gen AI Era](https://www.sonatype.com/press-releases/sonatype-launches-nexus-repository-cloud-for-the-gen-ai-era)

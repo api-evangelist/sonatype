@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Organizations API
-  version: 1.201.0-02
-  description: Use this REST API to create new organizations, retrieve, edit or delete existing organizations.
+  title: Sonatype Organizations API
+  version: '1.0'
+  description: 'Operations tagged Organizations across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -176,33 +176,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ValidationWarning:
+    ApiOrganizationDTO:
       properties:
-        message:
+        id:
           type: string
-        type:
-          enum:
-          - LICENSE_OVERRIDE
-          - POLICY_MONITORING
-          - POLICY_WAIVER
+        name:
           type: string
-      type: object
-    MoveOrganizationResponseDTO:
-      properties:
-        errors:
+        parentOrganizationId:
+          type: string
+        tags:
           items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-        warnings:
-          items:
-            $ref: '#/components/schemas/ValidationWarning'
-          type: array
-      type: object
-    ApiOrganizationListDTO:
-      properties:
-        organizations:
-          items:
-            $ref: '#/components/schemas/ApiOrganizationDTO'
+            $ref: '#/components/schemas/ApiTagDTO'
           type: array
       type: object
     ApiTagDTO:
@@ -233,17 +217,33 @@ components:
         name:
           type: string
       type: object
-    ApiOrganizationDTO:
+    ValidationWarning:
       properties:
-        id:
+        message:
           type: string
-        name:
+        type:
+          enum:
+          - LICENSE_OVERRIDE
+          - POLICY_MONITORING
+          - POLICY_WAIVER
           type: string
-        parentOrganizationId:
-          type: string
-        tags:
+      type: object
+    ApiOrganizationListDTO:
+      properties:
+        organizations:
           items:
-            $ref: '#/components/schemas/ApiTagDTO'
+            $ref: '#/components/schemas/ApiOrganizationDTO'
+          type: array
+      type: object
+    MoveOrganizationResponseDTO:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+        warnings:
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
           type: array
       type: object
     ValidationError:
@@ -267,3 +267,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

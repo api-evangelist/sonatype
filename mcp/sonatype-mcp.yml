@@ -1,0 +1,253 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/sonatype-advanced-search-api-openapi.yml
+- openapi/sonatype-application-categories-api-openapi.yml
+- openapi/sonatype-application-report-data-api-openapi.yml
+- openapi/sonatype-applications-api-openapi.yml
+- openapi/sonatype-audit-logs-api-openapi.yml
+- openapi/sonatype-auto-policy-waiver-exclusions-api-openapi.yml
+- openapi/sonatype-auto-policy-waivers-api-openapi.yml
+- openapi/sonatype-ci-configuration-api-openapi.yml
+- openapi/sonatype-claim-components-api-openapi.yml
+- openapi/sonatype-component-labels-api-openapi.yml
+- openapi/sonatype-component-search-api-openapi.yml
+- openapi/sonatype-components-api-openapi.yml
+- openapi/sonatype-composite-source-control-api-openapi.yml
+- openapi/sonatype-composite-source-control-validator-api-openapi.yml
+- openapi/sonatype-config-crowd-api-openapi.yml
+- openapi/sonatype-config-jira-api-openapi.yml
+- openapi/sonatype-config-mail-api-openapi.yml
+- openapi/sonatype-config-oidc-api-openapi.yml
+- openapi/sonatype-config-proxy-server-api-openapi.yml
+- openapi/sonatype-config-reverse-proxy-authentication-api-openapi.yml
+- openapi/sonatype-config-saml-api-openapi.yml
+- openapi/sonatype-config-source-control-api-openapi.yml
+- openapi/sonatype-config-zscaler-api-openapi.yml
+- openapi/sonatype-configuration-api-openapi.yml
+- openapi/sonatype-configure-artifactory-connection-api-openapi.yml
+- openapi/sonatype-cpe-matching-configuration-api-openapi.yml
+- openapi/sonatype-cyclonedx-api-openapi.yml
+- openapi/sonatype-data-retention-policies-api-openapi.yml
+- openapi/sonatype-developer-priorities-api-openapi.yml
+- openapi/sonatype-endpoints-api-openapi.yml
+- openapi/sonatype-feature-configuration-api-openapi.yml
+- openapi/sonatype-firewall-api-openapi.yml
+- openapi/sonatype-github-app-configuration-api-openapi.yml
+- openapi/sonatype-iq-openapi.yml
+- openapi/sonatype-policy-violation-details-api-openapi.yml
+- openapi/sonatype-policy-waivers-api-openapi.yml
+- openapi/sonatype-reports-api-openapi.yml
+- openapi/sonatype-repositories-api-openapi.yml
+- openapi/sonatype-spdx-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: 'No MCP server was found. The pre-flight posted tools/list to /mcp on api.sonatype.com, help.sonatype.com, www.sonatype.com, support.sonatype.com;
+  verdict opaque (https://www.sonatype.com/mcp answered 403: the edge authenticates before it routes, which proves nothing either way). Candidate
+  tools below are derived from the 306 operation(s) in the provider''s own OpenAPI (40 listed); they describe what a server WOULD expose, not
+  one that exists.'
+tools:
+- name: search_index
+  operationId: searchIndex
+  method: GET
+  path: /api/v2/search/advanced
+  description: Search index
+- name: get_tags_used_by_applications
+  operationId: getTagsUsedByApplications
+  method: GET
+  path: /api/v2/applicationCategories/application
+  description: Get tags used by applications
+- name: get_policy_violation_diff
+  operationId: getPolicyViolationDiff
+  method: GET
+  path: /api/v2/applications/{applicationPublicId}/reports/policyViolations/diff
+  description: Get policy violation diff
+- name: get_applications
+  operationId: getApplications
+  method: GET
+  path: /api/v2/applications
+  description: Get applications
+- name: get_audit_logs
+  operationId: getAuditLogs
+  method: GET
+  path: /api/v2/auditLogs
+  description: Get audit logs
+- name: add_auto_policy_waive_exclusion
+  operationId: addAutoPolicyWaiveExclusion
+  method: POST
+  path: /api/v2/autoPolicyWaiverExclusions/{ownerType}/{ownerId}
+  description: Add auto policy waive exclusion
+- name: add_auto_policy_waivers
+  operationId: addAutoPolicyWaivers
+  method: POST
+  path: /api/v2/autoPolicyWaivers/v2/{ownerType}/{ownerId}
+  description: Add auto policy waivers
+- name: delete_configuration
+  operationId: deleteConfiguration
+  method: DELETE
+  path: /api/v2/config/ci/{ownerType}/{ownerId}
+  description: Delete configuration
+- name: get_all
+  operationId: getAll
+  method: GET
+  path: /api/v2/claim/components
+  description: Get all
+- name: get_labels
+  operationId: getLabels
+  method: GET
+  path: /api/v2/labels/{ownerType}/{ownerId}
+  description: Get labels
+- name: get_cve_affected_components
+  operationId: getCveAffectedComponents
+  method: GET
+  path: /api/v2/componentSearch/cveAffectedComponents
+  description: Get cve affected components
+- name: get_component_details
+  operationId: getComponentDetails
+  method: POST
+  path: /api/v2/components/details
+  description: Get component details
+- name: get_composite_source_control_by_owner
+  operationId: getCompositeSourceControlByOwner
+  method: GET
+  path: /api/v2/compositeSourceControl/{ownerType}/{internalOwnerId}
+  description: Get composite source control by owner
+- name: validate_source_control_config
+  operationId: validateSourceControlConfig
+  method: GET
+  path: /api/v2/compositeSourceControlConfigValidator/application/{applicationId}
+  description: Validate source control config
+- name: delete_crowd_configuration
+  operationId: deleteCrowdConfiguration
+  method: DELETE
+  path: /api/v2/config/crowd
+  description: Delete crowd configuration
+- name: delete_configuration_2
+  operationId: deleteConfiguration_2
+  method: DELETE
+  path: /api/v2/config/jira
+  description: Delete configuration 2
+- name: delete_configuration_3
+  operationId: deleteConfiguration_3
+  method: DELETE
+  path: /api/v2/config/mail
+  description: Delete configuration 3
+- name: delete_oidc_configuration
+  operationId: deleteOidcConfiguration
+  method: DELETE
+  path: /api/v2/config/oidc
+  description: Delete oidc configuration
+- name: delete_configuration_4
+  operationId: deleteConfiguration_4
+  method: DELETE
+  path: /api/v2/config/httpProxyServer
+  description: Delete configuration 4
+- name: delete_configuration_5
+  operationId: deleteConfiguration_5
+  method: DELETE
+  path: /api/v2/config/reverseProxyAuthentication
+  description: Delete configuration 5
+- name: delete_saml_configuration
+  operationId: deleteSamlConfiguration
+  method: DELETE
+  path: /api/v2/config/saml
+  description: Delete saml configuration
+- name: delete_configuration_6
+  operationId: deleteConfiguration_6
+  method: DELETE
+  path: /api/v2/config/sourceControl
+  description: Delete configuration 6
+- name: delete_configuration_7
+  operationId: deleteConfiguration_7
+  method: DELETE
+  path: /api/v2/config/zscaler
+  description: Delete configuration 7
+- name: delete_configuration_1
+  operationId: deleteConfiguration_1
+  method: DELETE
+  path: /api/v2/config
+  description: Delete configuration 1
+- name: get_owner_artifactory_connection
+  operationId: getOwnerArtifactoryConnection
+  method: GET
+  path: /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}
+  description: Get owner artifactory connection
+- name: get_cpe_matching_configuration
+  operationId: getCpeMatchingConfiguration
+  method: GET
+  path: /api/v2/{ownerType}/{internalOwnerId}/configuration/publicSource/cpe
+  description: Get cpe matching configuration
+- name: get_by_report_id
+  operationId: getByReportId
+  method: GET
+  path: /api/v2/cycloneDx/{cdxVersion}/{applicationId}/reports/{reportId}
+  description: Get by report id
+- name: get_data_retention_policies
+  operationId: getDataRetentionPolicies
+  method: GET
+  path: /api/v2/dataRetentionPolicies/organizations/{organizationId}
+  description: Get data retention policies
+- name: get_priorities
+  operationId: getPriorities
+  method: GET
+  path: /api/v2/developer/priorities/{applicationId}/{scanId}
+  description: Get priorities
+- name: get_open_api
+  operationId: getOpenAPI
+  method: GET
+  path: /api/v2/endpoints/{apiType}
+  description: Get open API
+- name: disable_feature
+  operationId: disableFeature
+  method: DELETE
+  path: /api/v2/config/features/{feature}
+  description: Disable feature
+- name: get_unquarantine_list
+  operationId: getUnquarantineList
+  method: GET
+  path: /api/v2/firewall/components/autoReleasedFromQuarantine
+  description: Get unquarantine list
+- name: generate_manifest
+  operationId: generateManifest
+  method: POST
+  path: /api/v2/githubApp/manifest
+  description: Generate GitHub App manifest
+- name: get_opt_in
+  operationId: getOptIn
+  method: GET
+  path: /api/v2/ai-developer/opt-in
+  description: GET /api/v2/ai-developer/opt-in
+- name: get_policy_violations
+  operationId: getPolicyViolations
+  method: GET
+  path: /api/v2/policyViolations
+  description: Get policy violations
+- name: get_policy_waiver
+  operationId: getPolicyWaiver
+  method: GET
+  path: /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyWaiverId}
+  description: Get policy waiver
+- name: get_components_in_quarantine
+  operationId: getComponentsInQuarantine
+  method: GET
+  path: /api/v2/reports/components/quarantined
+  description: Get components in quarantine
+- name: release_quarantine_without_re_eval
+  operationId: releaseQuarantineWithoutReEval
+  method: POST
+  path: /api/v2/repositories/quarantine/{quarantineId}/release
+  description: Release quarantine without re eval
+- name: get_by_scan_id
+  operationId: getByScanId
+  method: GET
+  path: /api/v2/spdx/{applicationId}/reports/{scanId}
+  description: Get by scan id
+- name: get_export_results
+  operationId: getExportResults
+  method: GET
+  path: /api/v2/search/advanced/export/csv
+  description: Get export results

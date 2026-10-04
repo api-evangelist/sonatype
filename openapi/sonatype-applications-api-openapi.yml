@@ -1,11 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Applications API
-  version: 1.201.0-02
-  description: 'Use this REST API to manage applications.
-
-
-    In addition to the primary functions of create, update and delete, you can also move applications from one organization to other.'
+  title: Sonatype Applications API
+  version: '1.0'
+  description: 'Operations tagged Applications across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -252,33 +249,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiMoveApplicationResponseDTOV2:
-      properties:
-        errors:
-          items:
-            type: string
-          type: array
-        warnings:
-          items:
-            type: string
-          type: array
-      type: object
-    ApiApplicationTagDTO:
-      properties:
-        applicationId:
-          type: string
-        id:
-          type: string
-        tagId:
-          type: string
-      type: object
-    ApiApplicationListDTO:
-      properties:
-        applications:
-          items:
-            $ref: '#/components/schemas/ApiApplicationDTO'
-          type: array
-      type: object
     ApiApplicationDTO:
       properties:
         applicationTags:
@@ -296,6 +266,70 @@ components:
         publicId:
           type: string
       type: object
+    ApiApplicationTagDTO:
+      properties:
+        applicationId:
+          type: string
+        id:
+          type: string
+        tagId:
+          type: string
+      type: object
+    ApiApplicationListDTO:
+      properties:
+        applications:
+          items:
+            $ref: '#/components/schemas/ApiApplicationDTO'
+          type: array
+      type: object
+    ApiMoveApplicationResponseDTOV2:
+      properties:
+        errors:
+          items:
+            type: string
+          type: array
+        warnings:
+          items:
+            type: string
+          type: array
+      type: object
+    ApiApplicationCategoryDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        organizationId:
+          type: string
+        color:
+          type: string
+    ApiApplicationCategoriesListDTO:
+      type: object
+      properties:
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiApplicationCategoriesDTO'
+    ApiApplicationCategoriesDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        publicId:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        contactUserName:
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -304,3 +338,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

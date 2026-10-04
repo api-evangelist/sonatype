@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Application Categories API
-  version: 1.201.0-02
-  description: Use the Application Categories REST API to manage the application categories or tags assigned to the applications in an organization.
+  title: Sonatype Application Categories API
+  version: '1.0'
+  description: 'Operations tagged Application Categories across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -247,29 +247,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PolicyTag:
+    ApiApplicationCategoryDTO:
       properties:
-        id:
+        color:
           type: string
-        policyId:
-          type: string
-        tagId:
-          type: string
-      type: object
-    ApplicableTagsDTO:
-      properties:
-        applicationCategoriesByOwner:
-          items:
-            $ref: '#/components/schemas/TagsByOwnerDTO'
-          type: array
-      type: object
-    ApplicationTag:
-      properties:
-        applicationId:
+        description:
           type: string
         id:
           type: string
-        tagId:
+        name:
+          type: string
+        organizationId:
           type: string
       type: object
     ApplicationTagsByOwnerDTO:
@@ -292,18 +280,30 @@ components:
           - global
           type: string
       type: object
-    ApiApplicationCategoryDTO:
+    PolicyTag:
       properties:
-        color:
+        id:
           type: string
-        description:
+        policyId:
+          type: string
+        tagId:
+          type: string
+      type: object
+    ApplicationTag:
+      properties:
+        applicationId:
           type: string
         id:
           type: string
-        name:
+        tagId:
           type: string
-        organizationId:
-          type: string
+      type: object
+    ApplicableTagsDTO:
+      properties:
+        applicationCategoriesByOwner:
+          items:
+            $ref: '#/components/schemas/TagsByOwnerDTO'
+          type: array
       type: object
     AppliedTagsDTO:
       properties:
@@ -332,6 +332,48 @@ components:
           - global
           type: string
       type: object
+    ApplicationTagsByOwnerDTO_2:
+      type: object
+      properties:
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          type: string
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - hosted_repository_component
+          - global
+        applicationTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationTag'
+    TagsByOwnerDTO_2:
+      type: object
+      properties:
+        ownerId:
+          type: string
+        ownerName:
+          type: string
+        ownerType:
+          type: string
+          enum:
+          - application
+          - organization
+          - repository_container
+          - repository_manager
+          - repository
+          - hosted_repository_component
+          - global
+        applicationCategories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiApplicationCategoryDTO'
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -340,3 +382,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

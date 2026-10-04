@@ -1,0 +1,85 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Reachability Evidence API
+  version: 1.207.1-04
+  description: Use this REST API to retrieve reachability evidence showing call paths to vulnerable methods for a hosted repository component.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Reachability Evidence
+  description: Use this REST API to retrieve reachability evidence showing call paths to vulnerable methods for a hosted repository component.
+paths:
+  /api/v2/applications/{applicationPublicId}/reports/{reportId}/vulnerabilities/{vulnerabilityId}/reachability-evidence:
+    get:
+      tags:
+      - Reachability Evidence
+      description: 'Get reachability evidence for a specific vulnerability showing call paths from entry points to the vulnerable method.\n\nPermissions required: View IQ Elements'
+      operationId: getReachabilityEvidence_1
+      parameters:
+      - name: applicationPublicId
+        in: path
+        description: The public ID of the application
+        required: true
+        schema:
+          type: string
+      - name: reportId
+        in: path
+        description: The report/scan ID
+        required: true
+        schema:
+          type: string
+      - name: vulnerabilityId
+        in: path
+        description: The vulnerability ID (e.g., CVE-2023-35116)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns reachability evidence with call paths for the specified vulnerability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReachabilityEvidenceResponse'
+        '404':
+          description: Application, report, or vulnerability evidence not found.
+      summary: Get reachability evidence 1
+      x-summary-source: derived
+components:
+  schemas:
+    PathSegment:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+      discriminator:
+        propertyName: type
+    EvidencePath:
+      type: object
+      properties:
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathSegment'
+    ApiReachabilityEvidenceResponse:
+      type: object
+      properties:
+        vulnerabilityId:
+          type: string
+        paths:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidencePath'
+        truncated:
+          type: boolean
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

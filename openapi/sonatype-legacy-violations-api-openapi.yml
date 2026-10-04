@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Legacy Violations API
+  version: 1.207.1-04
+  description: Use this REST API to list, grant, and revoke legacy status for policy violations of an application.
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Legacy Violations
+  description: Use this REST API to list, grant, and revoke legacy status for policy violations of an application.
+paths:
+  /api/v2/legacyViolations/application/{applicationPublicId}/grant:
+    post:
+      tags:
+      - Legacy Violations
+      description: 'Use this method to grant legacy status to all eligible policy violations of an application.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: grant
+      parameters:
+      - name: applicationPublicId
+        in: path
+        description: The public id of the application.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully granted legacy status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLegacyViolationChangeResponseDTO'
+      summary: Grant
+      x-summary-source: derived
+  /api/v2/legacyViolations/application/{applicationPublicId}:
+    get:
+      tags:
+      - Legacy Violations
+      description: 'Use this method to retrieve all legacy policy violations for an application.
+
+
+        Permissions required: View IQ Elements'
+      operationId: listLegacyViolations
+      parameters:
+      - name: applicationPublicId
+        in: path
+        description: The public id of the application.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: query
+        description: Optional policy id filter.
+        schema:
+          type: string
+      - name: componentIdentifier
+        in: query
+        description: Optional component identifier filter, expressed as a package URL (purl).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved legacy violations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiPolicyViolationDTOV2'
+      summary: List legacy violations
+      x-summary-source: derived
+  /api/v2/legacyViolations/application/{applicationPublicId}/revoke:
+    post:
+      tags:
+      - Legacy Violations
+      description: 'Use this method to revoke legacy status from all legacy policy violations of an application.
+
+
+        Permissions required: Edit IQ Elements'
+      operationId: revoke
+      parameters:
+      - name: applicationPublicId
+        in: path
+        description: The public id of the application.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully revoked legacy status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiLegacyViolationChangeResponseDTO'
+      summary: Revoke
+      x-summary-source: derived
+components:
+  schemas:
+    ApiConstraintViolationReasonDTO:
+      type: object
+      properties:
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+    ApiConstraintViolationDTO:
+      type: object
+      properties:
+        constraintId:
+          type: string
+        constraintName:
+          type: string
+        reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationReasonDTO'
+    TriggerReference:
+      type: object
+      properties:
+        value:
+          type: string
+        type:
+          type: string
+          enum:
+          - SECURITY_VULNERABILITY_REFID
+          - SAST_FINDING_ID
+    ApiPolicyViolationDTOV2:
+      type: object
+      properties:
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyViolationId:
+          type: string
+        openTime:
+          type: string
+          format: date-time
+        waiveTime:
+          type: string
+          format: date-time
+        fixTime:
+          type: string
+          format: date-time
+        legacyViolationTime:
+          type: string
+          format: date-time
+        threatLevel:
+          type: integer
+          format: int32
+        constraintViolations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiConstraintViolationDTO'
+    ApiLegacyViolationChangeResponseDTO:
+      type: object
+      properties:
+        changedPolicyViolationCount:
+          type: integer
+          description: Number of policy violations whose legacy status changed in this call.
+          format: int32
+      description: Response from a bulk legacy-violation mutation.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

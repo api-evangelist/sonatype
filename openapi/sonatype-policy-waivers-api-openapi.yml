@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Policy Waivers API
-  version: 1.201.0-02
-  description: Use this REST API to create and retrieve policy waivers.
+  title: Sonatype Policy Waivers API
+  version: '1.0'
+  description: 'Operations tagged Policy Waivers across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -463,79 +463,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiWaiverOptionsDTO:
-      properties:
-        applyToAllComponents:
-          type: boolean
-        comment:
-          type: string
-        expireWhenRemediationAvailable:
-          type: boolean
-        expiryTime:
-          format: date-time
-          type: string
-        matcherStrategy:
-          enum:
-          - DEFAULT
-          - EXACT_COMPONENT
-          - ALL_COMPONENTS
-          - ALL_VERSIONS
-          type: string
-        waiverReasonId:
-          type: string
-      type: object
-    ConditionFact:
-      properties:
-        conditionIndex:
-          format: int32
-          type: integer
-        conditionTypeId:
-          type: string
-        reason:
-          type: string
-        reference:
-          $ref: '#/components/schemas/TriggerReference'
-        summary:
-          type: string
-        triggerJson:
-          type: string
-      type: object
-    ApiBulkWaiversDTO:
-      properties:
-        apiWaiverOptionsDTO:
-          $ref: '#/components/schemas/ApiWaiverOptionsDTO'
-        violationIds:
-          items:
-            type: string
-          type: array
-      type: object
-    ApiComponentPolicyWaiversDTO:
-      properties:
-        componentPolicyWaivers:
-          items:
-            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
-          type: array
-      type: object
-    ApiRequestPolicyWaiverDTO:
-      properties:
-        addWaiverLink:
-          type: string
-        comment:
-          type: string
-        policyViolationLink:
-          type: string
-        reasonId:
-          type: string
-      type: object
-    ComponentDisplayName:
-      properties:
-        name:
-          type: string
-        parts:
-          items:
-            $ref: '#/components/schemas/ComponentDisplayNamePart'
-          type: array
-      type: object
     TriggerReference:
       properties:
         type:
@@ -546,20 +473,17 @@ components:
         value:
           type: string
       type: object
-    ComponentDisplayNamePart:
+    ConstraintFact:
       properties:
-        field:
+        conditionFacts:
+          items:
+            $ref: '#/components/schemas/ConditionFact'
+          type: array
+        constraintId:
           type: string
-        value:
+        constraintName:
           type: string
-      type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
+        operatorName:
           type: string
       type: object
     ComponentIdentifier:
@@ -642,19 +566,233 @@ components:
         vulnerabilityId:
           type: string
       type: object
-    ConstraintFact:
+    ComponentDisplayNamePart:
       properties:
-        conditionFacts:
-          items:
-            $ref: '#/components/schemas/ConditionFact'
-          type: array
-        constraintId:
+        field:
           type: string
-        constraintName:
-          type: string
-        operatorName:
+        value:
           type: string
       type: object
+    ApiComponentPolicyWaiversDTO:
+      properties:
+        componentPolicyWaivers:
+          items:
+            $ref: '#/components/schemas/ApiPolicyWaiverDTO'
+          type: array
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    ConditionFact:
+      properties:
+        conditionIndex:
+          format: int32
+          type: integer
+        conditionTypeId:
+          type: string
+        reason:
+          type: string
+        reference:
+          $ref: '#/components/schemas/TriggerReference'
+        summary:
+          type: string
+        triggerJson:
+          type: string
+      type: object
+    ApiBulkWaiversDTO:
+      properties:
+        apiWaiverOptionsDTO:
+          $ref: '#/components/schemas/ApiWaiverOptionsDTO'
+        violationIds:
+          items:
+            type: string
+          type: array
+      type: object
+    ComponentDisplayName:
+      properties:
+        name:
+          type: string
+        parts:
+          items:
+            $ref: '#/components/schemas/ComponentDisplayNamePart'
+          type: array
+      type: object
+    ApiWaiverOptionsDTO:
+      properties:
+        applyToAllComponents:
+          type: boolean
+        comment:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        expiryTime:
+          format: date-time
+          type: string
+        matcherStrategy:
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          type: string
+        waiverReasonId:
+          type: string
+      type: object
+    ApiRequestPolicyWaiverDTO:
+      properties:
+        addWaiverLink:
+          type: string
+        comment:
+          type: string
+        policyViolationLink:
+          type: string
+        reasonId:
+          type: string
+      type: object
+    ApiPolicyWaiverDTO_2:
+      type: object
+      properties:
+        policyWaiverId:
+          type: string
+        policyViolationId:
+          type: string
+        comment:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        expiryTime:
+          type: string
+          format: date-time
+        isObsolete:
+          type: boolean
+        scopeOwnerType:
+          type: string
+        scopeOwnerId:
+          type: string
+        scopeOwnerName:
+          type: string
+        hash:
+          type: string
+        policyId:
+          type: string
+        vulnerabilityId:
+          type: string
+        policyName:
+          type: string
+        constraintFacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConstraintFact'
+        constraintFactsJson:
+          type: string
+        componentName:
+          type: string
+        creatorId:
+          type: string
+        creatorName:
+          type: string
+        matcherStrategy:
+          type: string
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+        associatedPackageUrl:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        threatLevel:
+          type: integer
+          format: int32
+        componentUpgradeAvailable:
+          type: boolean
+        reasonText:
+          type: string
+        expireWhenRemediationAvailable:
+          type: boolean
+        policyWaiverReasonId:
+          type: string
+        forContainerImage:
+          type: boolean
+        forContainerImageComponent:
+          type: boolean
+        lastRenewedAt:
+          type: string
+          format: date-time
+        lastRenewedBy:
+          type: string
+        lastRenewalComment:
+          type: string
+        lastRenewalReasonText:
+          type: string
+        displayName:
+          $ref: '#/components/schemas/ComponentDisplayName'
+    ApiBulkWaiversDTO_2:
+      required:
+      - apiWaiverOptionsDTO
+      - violationIds
+      type: object
+      properties:
+        violationIds:
+          maxLength: 1000
+          minLength: 1
+          type: array
+          description: List of repository policy violation IDs to waive. Maximum 1000 violations per request. Duplicate IDs are automatically deduplicated. Supports both quarantine (FAIL) and non-quarantine (WARN) violations. Already-waived violations are skipped without error.
+          example:
+          - violation-id-1
+          - violation-id-2
+          - violation-id-3
+          items:
+            maxLength: 1000
+            minLength: 1
+            type: string
+            description: List of repository policy violation IDs to waive. Maximum 1000 violations per request. Duplicate IDs are automatically deduplicated. Supports both quarantine (FAIL) and non-quarantine (WARN) violations. Already-waived violations are skipped without error.
+            example: '["violation-id-1","violation-id-2","violation-id-3"]'
+        apiWaiverOptionsDTO:
+          $ref: '#/components/schemas/ApiWaiverOptionsDTO_2'
+      description: Request to create bulk policy waivers for repository policy violations
+    ApiWaiverOptionsDTO_2:
+      required:
+      - comment
+      - matcherStrategy
+      type: object
+      properties:
+        comment:
+          type: string
+          description: Reason for waiving the violation(s). Must be non-blank.
+          example: False positive - internal tool approved by security team
+        matcherStrategy:
+          type: string
+          description: Component matching strategy. For Firewall bulk waivers, only EXACT_COMPONENT and ALL_VERSIONS are supported.
+          example: EXACT_COMPONENT
+          enum:
+          - DEFAULT
+          - EXACT_COMPONENT
+          - ALL_COMPONENTS
+          - ALL_VERSIONS
+          - EXACT_COMPONENT
+          - ALL_VERSIONS
+        expiryTime:
+          type: string
+          description: Optional expiration date/time for the waiver in ISO 8601 format. Must be in the future if provided.
+          format: date-time
+        waiverReasonId:
+          type: string
+          description: Optional reference to a pre-defined waiver reason ID
+          example: waiver-reason-id-123
+        expireWhenRemediationAvailable:
+          type: boolean
+          description: If true, the waiver will automatically expire when a remediation becomes available. Can only be set to true when matcherStrategy is EXACT_COMPONENT.
+          example: false
+      description: Options for creating policy waivers
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -663,3 +801,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

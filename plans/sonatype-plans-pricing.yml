@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://www.sonatype.com/products/pricing
+name: Sonatype API Plans
 sources:
 - https://www.sonatype.com/products/pricing
 provenance:

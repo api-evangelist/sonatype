@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Advanced Search API
-  version: 1.201.0-02
-  description: Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.
+  title: Sonatype Advanced Search API
+  version: '1.0'
+  description: 'Operations tagged Advanced Search across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -116,8 +116,101 @@ paths:
       - Advanced Search
       summary: Create search index async
       x-summary-source: derived
+  /api/v2/search/advanced/index/cancel:
+    post:
+      tags:
+      - Advanced Search
+      description: 'Request cancellation of an in-flight Advanced Search index rebuild. On a Lucene-backed deployment the previous complete index continues to serve search results. Cancellation is not supported on OpenSearch-backed deployments, where the rebuild runs to completion. Use the status method to confirm whether a rebuild is still in progress.
+
+
+        Permissions required: Edit System Configuration and Users'
+      operationId: cancelSearchIndexRebuild
+      responses:
+        '204':
+          description: Cancel requested.
+      summary: Cancel search index rebuild
+      x-summary-source: derived
 components:
   schemas:
+    GroupingByDTO:
+      properties:
+        additionalInfo:
+          type: string
+        groupBy:
+          type: string
+        groupIdentifier:
+          enum:
+          - itemType
+          - organizationId
+          - organizationName
+          - applicationId
+          - applicationName
+          - applicationPublicId
+          - policyEvaluationStage
+          - applicationVersion
+          - reportId
+          - componentHash
+          - componentFormat
+          - componentName
+          - componentCoordinate
+          - vulnerabilityId
+          - vulnerabilitySeverity
+          - vulnerabilityStatus
+          - vulnerabilityDescription
+          - applicationCategoryId
+          - applicationCategoryName
+          - applicationCategoryColor
+          - applicationCategoryDescription
+          - componentLabelId
+          - componentLabelName
+          - componentLabelColor
+          - componentLabelDescription
+          - policyId
+          - policyName
+          - policyThreatCategory
+          - policyThreatLevel
+          - parentOrganizationName
+          - parentOrganizationId
+          - sbomSpecification
+          type: string
+        searchResultItemDTOS:
+          items:
+            $ref: '#/components/schemas/SearchResultItemDTO'
+          type: array
+      type: object
+    ApiComponentIdentifierDTOV2:
+      properties:
+        coordinates:
+          additionalProperties:
+            type: string
+          type: object
+        format:
+          type: string
+      type: object
+    SearchResultDTO:
+      properties:
+        groupingByDTOS:
+          items:
+            $ref: '#/components/schemas/GroupingByDTO'
+          type: array
+        isExactTotalNumberOfHits:
+          type: boolean
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        searchAfter:
+          items:
+            type: string
+          type: array
+        searchQuery:
+          type: string
+        totalNumberOfHits:
+          format: int64
+          type: integer
+      type: object
     SearchResultItemDTO:
       properties:
         applicationCategoryColor:
@@ -181,22 +274,11 @@ components:
         vulnerabilityStatus:
           type: string
       type: object
-    ApiComponentIdentifierDTOV2:
-      properties:
-        coordinates:
-          additionalProperties:
-            type: string
-          type: object
-        format:
-          type: string
+    GroupingByDTO_2:
       type: object
-    GroupingByDTO:
       properties:
-        additionalInfo:
-          type: string
-        groupBy:
-          type: string
         groupIdentifier:
+          type: string
           enum:
           - itemType
           - organizationId
@@ -211,6 +293,16 @@ components:
           - componentFormat
           - componentName
           - componentCoordinate
+          - componentCoordinateArtifactId
+          - componentCoordinateGroupId
+          - componentCoordinateName
+          - componentCoordinateExtension
+          - componentCoordinateArchitecture
+          - componentCoordinatePlatform
+          - componentCoordinateVersion
+          - componentCoordinateClassifier
+          - componentCoordinateQualifier
+          - componentCoordinatePackageId
           - vulnerabilityId
           - vulnerabilitySeverity
           - vulnerabilityStatus
@@ -230,36 +322,231 @@ components:
           - parentOrganizationName
           - parentOrganizationId
           - sbomSpecification
+          - policyViolationId
+          - policyViolationThreatCategory
+          - policyViolationThreatLevel
+          - policyViolationPolicyName
+          - policyViolationPolicyId
+          - policyViolationWaiverStatus
+          - policyViolationConstraintName
+          - componentEffectiveLicenseId
+          - componentEffectiveLicenseName
+          - componentLicenseThreatGroupName
+          - componentLicenseThreatLevel
+          - allowedContextIds
+          - documentKey
+          - policyWaiverId
+          - policyWaiverPolicyName
+          - policyWaiverPolicyId
+          - policyWaiverReason
+          - policyWaiverComment
+          - policyWaiverCreatedAt
+          - policyWaiverCreatedAtEpochMs
+          - policyWaiverExpiresAt
+          - policyWaiverExpiresAtEpochMs
+          - policyWaiverScopeOwnerId
+          - policyWaiverScopeOwnerType
+          - policyWaiverThreatLevel
+          - policyWaiverWaivedBy
+          - policyWaiverAuto
+          - policyWaiverIsAuto
+          - policyWaiverExpiryStatus
+          - policyWaiverPolicyType
+          - policyWaiverScope
+          - policyWaiverRequestStatus
+          - requesterName
+          - reviewerName
+          - reviewTime
+          - rejectionReason
+          - noteToReviewer
+          - applicationLastEvaluationTimeEpochMs
+          - applicationStageSeverityCount
+          - componentViolationPolicyType
+          - componentViolationState
+          - componentMaxPolicyThreatLevel
+          - vulnerabilityFirstSeenEpochMs
+          - applicationMaxPolicyThreatLevel
+          - applicationViolationStage
+          - applicationViolationPolicyType
+          - applicationViolationState
+          - applicationViolationStateSortOrdinal
+        groupBy:
+          type: string
+        additionalInfo:
           type: string
         searchResultItemDTOS:
-          items:
-            $ref: '#/components/schemas/SearchResultItemDTO'
           type: array
+          items:
+            $ref: '#/components/schemas/SearchResultItemDTO_2'
+    SearchResultItemDTO_2:
       type: object
-    SearchResultDTO:
       properties:
-        groupingByDTOS:
-          items:
-            $ref: '#/components/schemas/GroupingByDTO'
+        itemType:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        applicationId:
+          type: string
+        applicationPublicId:
+          type: string
+        applicationName:
+          type: string
+        applicationVersion:
+          type: string
+        sbomSpecification:
+          type: string
+        policyEvaluationStage:
+          type: string
+        reportId:
+          type: string
+        componentHash:
+          type: string
+        componentIdentifier:
+          $ref: '#/components/schemas/ApiComponentIdentifierDTOV2'
+        componentName:
+          type: string
+        vulnerabilityId:
+          type: string
+        vulnerabilityDescription:
+          type: string
+        vulnerabilitySeverity:
+          type: number
+          format: float
+        vulnerabilityStatus:
+          type: string
+        vulnerabilityFirstSeenEpochMs:
+          type: integer
+          format: int64
+        applicationCategoryId:
+          type: string
+        applicationCategoryName:
+          type: string
+        applicationCategoryNames:
           type: array
-        isExactTotalNumberOfHits:
-          type: boolean
-        page:
-          format: int32
-          type: integer
-        pageSize:
-          format: int32
-          type: integer
-        searchAfter:
           items:
             type: string
+        applicationViolationStages:
           type: array
-        searchQuery:
-          type: string
-        totalNumberOfHits:
-          format: int64
+          items:
+            type: string
+        applicationViolationPolicyTypes:
+          type: array
+          items:
+            type: string
+        applicationViolationStates:
+          type: array
+          items:
+            type: string
+        componentViolationPolicyTypes:
+          type: array
+          items:
+            type: string
+        componentViolationStates:
+          type: array
+          items:
+            type: string
+        applicationLastEvaluationTimeEpochMs:
           type: integer
-      type: object
+          format: int64
+        applicationStageSeverityCounts:
+          type: array
+          items:
+            type: string
+        applicationCategoryColor:
+          type: string
+        applicationCategoryDescription:
+          type: string
+        componentLabelId:
+          type: string
+        componentLabelName:
+          type: string
+        componentLabelColor:
+          type: string
+        componentLabelDescription:
+          type: string
+        policyId:
+          type: string
+        policyName:
+          type: string
+        policyThreatCategory:
+          type: string
+        policyThreatLevel:
+          type: integer
+          format: int32
+        policyViolationId:
+          type: string
+        policyViolationThreatCategory:
+          type: string
+        policyViolationThreatLevel:
+          type: integer
+          format: int32
+        policyViolationPolicyName:
+          type: string
+        policyViolationPolicyId:
+          type: string
+        policyViolationWaiverStatus:
+          type: string
+        policyViolationConstraintName:
+          type: string
+        componentEffectiveLicenseId:
+          type: string
+        componentEffectiveLicenseName:
+          type: string
+        componentLicenseThreatGroupName:
+          type: string
+        componentLicenseThreatLevel:
+          type: integer
+          format: int32
+        policyWaiverId:
+          type: string
+        policyWaiverPolicyName:
+          type: string
+        policyWaiverPolicyId:
+          type: string
+        policyWaiverReason:
+          type: string
+        policyWaiverComment:
+          type: string
+        policyWaiverCreatedAt:
+          type: string
+        policyWaiverExpiresAt:
+          type: string
+        policyWaiverScopeOwnerId:
+          type: string
+        policyWaiverScopeOwnerType:
+          type: string
+        policyWaiverThreatLevel:
+          type: integer
+          format: int32
+        policyWaiverWaivedBy:
+          type: string
+        policyWaiverAuto:
+          type: boolean
+        policyWaiverIsAuto:
+          type: boolean
+        policyWaiverExpiryStatus:
+          type: string
+        policyWaiverPolicyType:
+          type: string
+        policyWaiverScope:
+          type: string
+        policyWaiverRequestStatus:
+          type: string
+        requesterName:
+          type: string
+        reviewerName:
+          type: string
+        reviewTime:
+          type: string
+        rejectionReason:
+          type: string
+        noteToReviewer:
+          type: string
+        resultIndex:
+          type: integer
+          format: int32
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -268,3 +555,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

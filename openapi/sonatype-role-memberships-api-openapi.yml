@@ -1,11 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Role Memberships API
-  version: 1.201.0-02
-  description: 'Use this REST API to manage authorizations for users or user groups.
-
-
-    You can view existing role assignments and grant or revoke user authorization on organizations, applications and repositories.'
+  title: Sonatype Role Memberships API
+  version: '1.0'
+  description: 'Operations tagged Role Memberships across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -456,6 +453,24 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiRoleMemberMappingDTO:
+      properties:
+        members:
+          items:
+            $ref: '#/components/schemas/ApiMemberDTO'
+          type: array
+        roleId:
+          type: string
+      type: object
+    ApiApplicableMembershipMappingsDTO:
+      properties:
+        groupSearchEnabled:
+          type: boolean
+        membersByRole:
+          items:
+            $ref: '#/components/schemas/ApiRoleWithMembersByOwnerDTO'
+          type: array
+      type: object
     ApiRoleWithMembersByOwnerDTO:
       properties:
         membersByOwner:
@@ -467,15 +482,6 @@ components:
         roleId:
           type: string
         roleName:
-          type: string
-      type: object
-    ApiRoleMemberMappingDTO:
-      properties:
-        members:
-          items:
-            $ref: '#/components/schemas/ApiMemberDTO'
-          type: array
-        roleId:
           type: string
       type: object
     ApiMemberDTO:
@@ -508,13 +514,6 @@ components:
           - GROUP
           type: string
       type: object
-    ApiRoleMemberMappingListDTO:
-      properties:
-        memberMappings:
-          items:
-            $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
-          type: array
-      type: object
     ApiMembersByOwnerDTO:
       properties:
         members:
@@ -528,13 +527,11 @@ components:
         ownerType:
           type: string
       type: object
-    ApiApplicableMembershipMappingsDTO:
+    ApiRoleMemberMappingListDTO:
       properties:
-        groupSearchEnabled:
-          type: boolean
-        membersByRole:
+        memberMappings:
           items:
-            $ref: '#/components/schemas/ApiRoleWithMembersByOwnerDTO'
+            $ref: '#/components/schemas/ApiRoleMemberMappingDTO'
           type: array
       type: object
   securitySchemes:
@@ -545,3 +542,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

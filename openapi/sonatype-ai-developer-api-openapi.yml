@@ -1,0 +1,60 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST Ai - Developer API
+  version: 1.207.1-04
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: Ai - Developer
+paths:
+  /api/v2/ai-developer/opt-in:
+    get:
+      tags:
+      - Ai - Developer
+      operationId: getOptIn
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiDeveloperOptInStatus'
+      summary: Get opt in
+      x-summary-source: derived
+    post:
+      tags:
+      - Ai - Developer
+      operationId: optIn
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiDeveloperOptInStatus'
+      summary: Opt in
+      x-summary-source: derived
+components:
+  schemas:
+    AiDeveloperOptInStatus:
+      type: object
+      properties:
+        optedIn:
+          type: boolean
+        optedInBy:
+          type: string
+        optedInAt:
+          type: string
+        externalDatabaseRequired:
+          type: boolean
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

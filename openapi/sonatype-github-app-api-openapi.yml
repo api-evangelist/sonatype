@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  title: Sonatype Lifecycle Public REST GitHub App API
+  version: 1.207.1-04
+security:
+- BasicAuth: []
+  BearerAuth: []
+tags:
+- name: GitHub App
+paths:
+  /api/v2/githubApp/{githubAppId}:
+    delete:
+      tags:
+      - GitHub App
+      summary: Delete a GitHub App
+      description: 'Deletes a specific GitHub App by its ID. Validates ownership before deletion. Best-effort cleanup of the GitHub installation via API.
+
+
+        **Permissions Required:** Configure System Configuration and Users'
+      operationId: deleteGitHubApp
+      parameters:
+      - name: githubAppId
+        in: path
+        description: GitHub App ID
+        required: true
+        schema:
+          type: string
+      - name: ownerId
+        in: query
+        description: Owner (organization/application) ID
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      responses:
+        '204':
+          description: GitHub App deleted successfully
+        '404':
+          description: GitHub App not found for specified owner
+  /api/v2/githubApp/manifest:
+    post:
+      tags:
+      - GitHub App
+      summary: Generate GitHub App manifest
+      description: 'Generate a GitHub App manifest for registration. Returns manifest JSON with a state token for CSRF protection. The state token is cryptographically secure, single-use, and expires after 10 minutes. Submit the manifest to GitHub''s app creation flow, which will redirect back to IQ Server with the state token for validation.
+
+
+        **Permissions Required:** Configure System Configuration and Users'
+      operationId: generateManifest
+      parameters:
+      - name: ownerId
+        in: query
+        description: Owner (organization/application) ID
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      - name: organizationName
+        in: query
+        description: GitHub organization name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Manifest generated successfully
+        '400':
+          description: Missing owner id or organization name
+        '500':
+          description: Base URL not configured or invalid request
+  /api/v2/githubApp/redirect:
+    get:
+      tags:
+      - GitHub App
+      summary: GitHub App registration redirect callback
+      description: Handles redirect from GitHub after manifest submission. Exchanges temporary code for permanent app credentials. The user's browser is automatically redirected here by GitHub - not intended for direct use. **Permissions Required:** Configure System Configuration and Users
+      operationId: handleRedirect
+      parameters:
+      - name: code
+        in: query
+        description: Temporary manifest conversion code from GitHub
+        required: true
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: OAuth state token for CSRF protection
+        schema:
+          type: string
+      responses:
+        '303':
+          description: Successfully registered GitHub App, redirecting to settings page
+        '400':
+          description: Invalid or expired code
+        '401':
+          description: Authentication required
+        '403':
+          description: Insufficient permissions
+  /api/v2/githubApp:
+    get:
+      tags:
+      - GitHub App
+      summary: List GitHub Apps for an owner
+      description: 'Returns all GitHub Apps directly registered at this owner level. Does not include inherited apps from parent organizations.
+
+
+        **Permissions Required:** View IQ Elements'
+      operationId: listGitHubApps
+      parameters:
+      - name: ownerId
+        in: query
+        description: Owner (organization/application) ID
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      responses:
+        '200':
+          description: List of GitHub Apps
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

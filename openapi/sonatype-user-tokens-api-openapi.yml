@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST User Tokens API
-  version: 1.201.0-02
-  description: Use this REST API to manage user tokens.
+  title: Sonatype User Tokens API
+  version: '1.0'
+  description: 'Operations tagged User Tokens across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -184,11 +184,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiUserTokenExistsDTO:
-      properties:
-        userTokenExists:
-          type: boolean
-      type: object
     ApiUserTokenDTO:
       properties:
         createTime:
@@ -207,6 +202,31 @@ components:
         username:
           type: string
       type: object
+    ApiUserTokenExistsDTO:
+      properties:
+        userTokenExists:
+          type: boolean
+      type: object
+    ApiUserTokenDTO_2:
+      type: object
+      properties:
+        userCode:
+          type: string
+        passCode:
+          type: string
+        username:
+          type: string
+        realm:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        lastAccessTime:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -215,3 +235,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

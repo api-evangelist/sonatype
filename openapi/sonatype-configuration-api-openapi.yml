@@ -1,11 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Configuration API
-  version: 1.201.0-02
-  description: 'Use this REST API to configure the IQ Server system properties.
-
-
-    We strongly recommend using this REST API instead of config.yml for versions 142 and higher.'
+  title: Sonatype Configuration API
+  version: '1.0'
+  description: 'Operations tagged Configuration across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -105,12 +102,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CacheInvalidationResponse:
-      properties:
-        entriesInvalidated:
-          format: int64
-          type: integer
-      type: object
     SystemConfig:
       properties:
         baseUrl:
@@ -126,6 +117,12 @@ components:
       - baseUrl
       - forceBaseUrl
       type: string
+    CacheInvalidationResponse:
+      properties:
+        entriesInvalidated:
+          format: int64
+          type: integer
+      type: object
   securitySchemes:
     BasicAuth:
       scheme: basic
@@ -134,3 +131,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml

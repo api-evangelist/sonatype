@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Sonatype Lifecycle Public REST Config OIDC API
-  version: 1.201.0-02
-  description: Use this REST API to manage the OIDC configuration for IQ Server.
+  title: Sonatype Config OIDC API
+  version: '1.0'
+  description: 'Operations tagged Config OIDC across 2 of this provider''s published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.'
 security:
 - BasicAuth: []
   BearerAuth: []
@@ -65,23 +65,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OidcConfigurationDTO:
-      properties:
-        authorizationCustomParamsJson:
-          type: string
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        idpAuthorizationUrl:
-          type: string
-        idpIssuer:
-          type: string
-        idpTokenUrl:
-          type: string
-        tokenRequestCustomParamsJson:
-          type: string
-      type: object
     OAuth2ConfigurationDTO:
       properties:
         emailClaim:
@@ -105,6 +88,23 @@ components:
         usernameClaim:
           type: string
       type: object
+    OidcConfigurationDTO:
+      properties:
+        authorizationCustomParamsJson:
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        idpAuthorizationUrl:
+          type: string
+        idpIssuer:
+          type: string
+        idpTokenUrl:
+          type: string
+        tokenRequestCustomParamsJson:
+          type: string
+      type: object
     SsoConfigurationDTO:
       properties:
         oauth2Configuration:
@@ -120,3 +120,6 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+x-refined-from:
+- sonatype-lifecycle-openapi.yml
+- sonatype-iq-openapi.yml
