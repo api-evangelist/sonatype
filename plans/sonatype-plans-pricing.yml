@@ -72,3 +72,68 @@ plans:
   included_quota: Malicious Package Blocking for 15+ Support Formats
 rate_limit_statements:
 - Includes 50K Components and 15M Monthly Requests
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - hybrid
+  - subscription
+  units: []
+  plans:
+  - name: Nexus Repository Cloud Pro Edition
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Nexus Repository Self-Hosted Community Edition
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Nexus Repository Self-Hosted Pro Edition
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Guide Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Guide Pro
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Guide Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Firewall Cloud Pro
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Repository Firewall (Self-Hosted)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
