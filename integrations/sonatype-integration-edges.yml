@@ -1,0 +1,63 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- https://github.com/marketplace?type=actions
+- https://marketplace.atlassian.com/
+- https://plugins.jetbrains.com/
+marketplace_apps: []
+edges:
+- partner_name: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/actions/sonatype-github-actions
+  listing_count: 1
+  apps:
+  - Sonatype GitHub Actions
+  publisher_name: Sonatype
+  badges:
+  - Verified creator
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/1213691/sonatype
+  listing_count: 3
+  apps:
+  - Sonatype for Jira Data Center
+  - Sonatype for Jira Cloud
+  - Sonatype for Bamboo Data Center
+  publisher_name: Sonatype
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: JetBrains Marketplace
+  partner: jetbrains
+  partner_match: aggregator
+  type: marketplace
+  marketplace: jetbrains
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://plugins.jetbrains.com/vendor/00204479-c057-4138-bc70-252ea2f9574d
+  listing_count: 1
+  apps:
+  - Sonatype Nexus IQ
+  publisher_name: Sonatype Inc
+  badges:
+  - Verified vendor
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+source:
+- https://github.com/marketplace?type=actions
+- https://marketplace.atlassian.com/
+- https://plugins.jetbrains.com/
