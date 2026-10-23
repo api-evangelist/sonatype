@@ -25,6 +25,7 @@ checked:
 - https://catalog.redhat.com/api/containers/v1/vendors/label/
 - https://catalog.redhat.com/software/partners
 - artifact-hub/integrations/artifact-hub-integration-edges.yml
+- chef-software/integrations/chef-software-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (actions)
@@ -390,6 +391,25 @@ edges:
   badges:
   - 'Verified publisher (Artifact Hub official: publisher owns the software)'
   - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
+- partner_name: Chef Software (chef-supermarket)
+  partner: chef-software
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: chef-supermarket
+  evidence: https://supermarket.chef.io/cookbooks/nexus_repository_manager
+  mirror_of: chef-software/integrations/chef-software-integration-edges.yml
+  apps:
+  - nexus_repository_manager
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: configuration-management content listing (Chef cookbook)
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
 source:
 - https://github.com/marketplace?type=actions
 - https://marketplace.atlassian.com/
