@@ -81,6 +81,8 @@ maintainers:
     url: https://trust.sonatype.com/
 
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/sonatype/overview
   - type: FinOps
     url: finops/sonatype-finops.yml
   - type: Spectral
