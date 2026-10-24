@@ -1,370 +1,374 @@
 {
+  "info": {
+    "_postman_id": "7f93377c-27f4-42b7-aeeb-d6d0602f681f",
+    "name": "Sonatype Config Reverse Proxy Authentication API",
+    "description": "Operations tagged Config Reverse Proxy Authentication across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:14:28.000Z",
+    "updatedAt": "2026-10-22T03:14:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7f93377c-27f4-42b7-aeeb-d6d0602f681f"
+  },
   "item": [
     {
-      "id": "f4a6b9d9-652e-4e24-9186-62267a820471",
-      "name": "Config Reverse Proxy Authentication",
-      "description": {
-        "content": "Use this REST API to manage the configuration of a reverse proxy server.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "c117c2b5-899c-4c14-8fd1-277ab0e44c9c",
-          "name": "delete Configuration 5",
-          "request": {
-            "name": "delete Configuration 5",
-            "description": {
-              "content": "Use this method to remove an existing reverse proxy server configuration.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "reverseProxyAuthentication"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "020e7b2a-581a-4d12-a98d-943464df0c77",
-              "name": "Reverse proxy server configuration deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "reverseProxyAuthentication"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
+              "name": "config",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "788a88df-b557-41c2-8715-46f4fa668186",
-          "name": "get Configuration 5",
-          "request": {
-            "name": "get Configuration 5",
-            "description": {
-              "content": "Use this method to inspect an existing reverse proxy server configuration.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "reverseProxyAuthentication"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0364995c-595c-4ec4-9866-9a1e78c14c39",
-              "name": "The response contains:<ul><li>`enabled` indicates if the configuration is enabled.</li><li>`usernameHeader` is the name of the HTTP request header field that contains the username. The default value is `REMOTE_USER`.</li><li>`csrfProtectionDisabled` indicates if Cross-Site Request Forgery (CSRF) protection is disabled. Used for backward compatibility with old client plugins.</li><li>`logoutUrl` is the redirect URL when a user logs out. If set to `null` the user will not be redirected.</li></ul>",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "reverseProxyAuthentication"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
+                  "name": "reverseProxyAuthentication",
+                  "item": [
+                    {
+                      "name": "Delete configuration 5",
+                      "id": "12eeffe8-12d8-4e68-b4d3-828e5aff8418",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "reverseProxyAuthentication"
+                          ]
+                        },
+                        "description": "Use this method to remove an existing reverse proxy server configuration.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "38480e3c-31b8-4e6e-8898-ab6a9e04aedf",
+                          "name": "Reverse proxy server configuration deleted successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "reverseProxyAuthentication"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:29.000Z",
+                          "updatedAt": "2026-10-22T03:14:29.000Z",
+                          "uid": "35240-38480e3c-31b8-4e6e-8898-ab6a9e04aedf"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:14:29.000Z",
+                      "updatedAt": "2026-10-22T03:14:29.000Z",
+                      "uid": "35240-12eeffe8-12d8-4e68-b4d3-828e5aff8418"
                     },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"csrfProtectionDisabled\": true,\n  \"enabled\": true,\n  \"logoutUrl\": \"string\",\n  \"usernameHeader\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "67beb073-5c93-4958-ad89-679f4ed671b1",
-              "name": "No reverse proxy server configuration exists.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "reverseProxyAuthentication"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
+                    {
+                      "name": "Get configuration 5",
+                      "id": "6d8a8697-cf0e-4e3b-ba82-05b9ecc7e29b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "reverseProxyAuthentication"
+                          ]
+                        },
+                        "description": "Use this method to inspect an existing reverse proxy server configuration.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "dc23096e-0266-4898-9c5c-05cb94d9b03e",
+                          "name": "The response contains:<ul><li>`enabled` indicates if the configuration is enabled.</li><li>`usernameHeader` is the name of the HTTP request header field that contains the username. The default value is `REMOTE_USER`.</li><li>`csrfProtectionDisabled` indic",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "reverseProxyAuthentication"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"csrfProtectionDisabled\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"logoutUrl\": \"<string>\",\n  \"usernameHeader\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T03:14:29.000Z",
+                          "updatedAt": "2026-10-22T03:14:29.000Z",
+                          "uid": "35240-dc23096e-0266-4898-9c5c-05cb94d9b03e"
+                        },
+                        {
+                          "id": "6ccaee7b-8ca8-4d6e-88c2-664303dd0f89",
+                          "name": "No reverse proxy server configuration exists.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "reverseProxyAuthentication"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:29.000Z",
+                          "updatedAt": "2026-10-22T03:14:29.000Z",
+                          "uid": "35240-6ccaee7b-8ca8-4d6e-88c2-664303dd0f89"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:14:29.000Z",
+                      "updatedAt": "2026-10-22T03:14:29.000Z",
+                      "uid": "35240-6d8a8697-cf0e-4e3b-ba82-05b9ecc7e29b"
                     },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "32a3d2ee-a260-491e-b871-ffeac8bc05b1",
-          "name": "set Configuration 5",
-          "request": {
-            "name": "set Configuration 5",
-            "description": {
-              "content": "Use this method to configure the reverse proxy server.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "reverseProxyAuthentication"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"csrfProtectionDisabled\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"logoutUrl\": \"<string>\",\n  \"usernameHeader\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "2a22a86c-6e17-4f09-9d07-315d4fac6d05",
-              "name": "Reverse proxy server configuration successful.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "reverseProxyAuthentication"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"csrfProtectionDisabled\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"logoutUrl\": \"<string>\",\n  \"usernameHeader\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "name": "Set configuration 5",
+                      "id": "751c47ef-c07f-453d-8ef9-0905cf57f28c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"csrfProtectionDisabled\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"logoutUrl\": \"<string>\",\n  \"usernameHeader\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "reverseProxyAuthentication"
+                          ]
+                        },
+                        "description": "Use this method to configure the reverse proxy server.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "9beadb55-1bdd-4bd9-a5c8-602212b48560",
+                          "name": "Reverse proxy server configuration successful.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"csrfProtectionDisabled\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"logoutUrl\": \"<string>\",\n  \"usernameHeader\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "reverseProxyAuthentication"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:29.000Z",
+                          "updatedAt": "2026-10-22T03:14:29.000Z",
+                          "uid": "35240-9beadb55-1bdd-4bd9-a5c8-602212b48560"
+                        },
+                        {
+                          "id": "479d8fd4-311b-4c84-90d9-f6f036a55acd",
+                          "name": "Missing or invalid values.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"csrfProtectionDisabled\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"logoutUrl\": \"<string>\",\n  \"usernameHeader\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/reverseProxyAuthentication",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "reverseProxyAuthentication"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:29.000Z",
+                          "updatedAt": "2026-10-22T03:14:29.000Z",
+                          "uid": "35240-479d8fd4-311b-4c84-90d9-f6f036a55acd"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:14:29.000Z",
+                      "updatedAt": "2026-10-22T03:14:29.000Z",
+                      "uid": "35240-751c47ef-c07f-453d-8ef9-0905cf57f28c"
                     }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "e5a5c183-4dee-451d-a9d7-9f6132b20cb9",
+                  "createdAt": "2026-10-22T03:14:29.000Z",
+                  "updatedAt": "2026-10-22T03:14:29.000Z",
+                  "uid": "35240-e5a5c183-4dee-451d-a9d7-9f6132b20cb9"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "fbffc676-5640-49fa-99ee-b61aeaa0339b",
-              "name": "Missing or invalid values.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "reverseProxyAuthentication"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"csrfProtectionDisabled\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"logoutUrl\": \"<string>\",\n  \"usernameHeader\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "b39b1c7b-4ce2-42e8-996e-d180f9c811c1",
+              "createdAt": "2026-10-22T03:14:29.000Z",
+              "updatedAt": "2026-10-22T03:14:29.000Z",
+              "uid": "35240-b39b1c7b-4ce2-42e8-996e-d180f9c811c1"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f28eebd4-8db0-47e1-99da-e90ced66804c",
+          "createdAt": "2026-10-22T03:14:29.000Z",
+          "updatedAt": "2026-10-22T03:14:29.000Z",
+          "uid": "35240-f28eebd4-8db0-47e1-99da-e90ced66804c"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "7d223381-e874-4a9e-aa1c-ed3b9ce13db4",
+      "createdAt": "2026-10-22T03:14:29.000Z",
+      "updatedAt": "2026-10-22T03:14:29.000Z",
+      "uid": "35240-7d223381-e874-4a9e-aa1c-ed3b9ce13db4"
     }
   ],
   "auth": {
@@ -372,21 +376,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6afc6a8e-1cd4-4f6f-9e33-f425dd3b5657",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Config Reverse Proxy Authentication API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

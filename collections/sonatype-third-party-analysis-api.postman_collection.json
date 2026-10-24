@@ -1,433 +1,475 @@
 {
+  "info": {
+    "_postman_id": "a0856743-1f0d-4c2b-9582-89aaf753aea3",
+    "name": "Sonatype Third-Party Analysis API",
+    "description": "Operations tagged Third-Party Analysis across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:17:53.000Z",
+    "updatedAt": "2026-10-22T03:17:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a0856743-1f0d-4c2b-9582-89aaf753aea3"
+  },
   "item": [
     {
-      "id": "79161869-fbff-4995-b0e0-b5b50a12ac84",
-      "name": "Third-Party Analysis",
-      "description": {
-        "content": "Use this REST API to scan SBOMs for your applications.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "1ad88cde-bdbb-4785-9df5-69d63c870130",
-          "name": "scan Components",
-          "request": {
-            "name": "scan Components",
-            "description": {
-              "content": "Use this method to perform an analysis of an SBOM.\n\nPermissions required: Evaluate Applications",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "scan",
-                "applications",
-                ":applicationId",
-                "sources",
-                ":source"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "stageId",
-                  "value": "build",
-                  "description": "Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "source",
-                  "description": "(Required) Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<string>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "ca25a374-55c1-4d60-b48e-ff30203d43a4",
-              "name": "The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "scan",
-                    "applications",
-                    ":applicationId",
-                    "sources",
-                    ":source"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "stageId",
-                      "value": "build"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "source",
-                      "description": "(Required) Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<string>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "scan",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "applications",
+                  "item": [
+                    {
+                      "name": "{applicationId}",
+                      "item": [
+                        {
+                          "name": "sources",
+                          "item": [
+                            {
+                              "name": "{source}",
+                              "item": [
+                                {
+                                  "name": "Scan components",
+                                  "id": "a977574b-337b-4acf-8692-f3c857a0e1dc",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "<string>",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/scan/applications/:applicationId/sources/:source?stageId=build",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "scan",
+                                        "applications",
+                                        ":applicationId",
+                                        "sources",
+                                        ":source"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`",
+                                          "key": "stageId",
+                                          "value": "build"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "63358d9e-bbae-42de-b90c-48583db88f14",
+                                          "key": "applicationId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
+                                        },
+                                        {
+                                          "id": "42cc74c4-bd50-401a-9396-7e170e949c04",
+                                          "key": "source",
+                                          "value": "<string>",
+                                          "description": "(Required) Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to perform an analysis of an SBOM.\n\nPermissions required: Evaluate Applications"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "eb907e9f-e716-45da-abbe-e7a9f9056d88",
+                                      "name": "The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "<string>",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/scan/applications/:applicationId/sources/:source?stageId=build",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "scan",
+                                            "applications",
+                                            ":applicationId",
+                                            "sources",
+                                            ":source"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`",
+                                              "key": "stageId",
+                                              "value": "build"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "source"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"statusUrl\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T03:17:54.000Z",
+                                      "updatedAt": "2026-10-22T03:17:54.000Z",
+                                      "uid": "35240-eb907e9f-e716-45da-abbe-e7a9f9056d88"
+                                    },
+                                    {
+                                      "id": "e98b3130-69e9-4c1c-8138-d60add353d98",
+                                      "name": "The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "<string>",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/scan/applications/:applicationId/sources/:source?stageId=build",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "scan",
+                                            "applications",
+                                            ":applicationId",
+                                            "sources",
+                                            ":source"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Enter the stageId to run the evaluation for. The policy actions will be determined by the stage selected. Allowed values are `develop`, `build`, `stage-release`, `release` and `operate`",
+                                              "key": "stageId",
+                                              "value": "build"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "source"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Accepted",
+                                      "code": 202,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"statusUrl\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T03:17:54.000Z",
+                                      "updatedAt": "2026-10-22T03:17:54.000Z",
+                                      "uid": "35240-e98b3130-69e9-4c1c-8138-d60add353d98"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:17:54.000Z",
+                                  "updatedAt": "2026-10-22T03:17:54.000Z",
+                                  "uid": "35240-a977574b-337b-4acf-8692-f3c857a0e1dc"
+                                }
+                              ],
+                              "id": "3a657fc6-c191-484c-878c-96f89807f764",
+                              "createdAt": "2026-10-22T03:17:54.000Z",
+                              "updatedAt": "2026-10-22T03:17:54.000Z",
+                              "uid": "35240-3a657fc6-c191-484c-878c-96f89807f764"
+                            }
+                          ],
+                          "id": "9a31a6a7-4b8f-4d99-afd2-3bf9040ce0f4",
+                          "createdAt": "2026-10-22T03:17:54.000Z",
+                          "updatedAt": "2026-10-22T03:17:54.000Z",
+                          "uid": "35240-9a31a6a7-4b8f-4d99-afd2-3bf9040ce0f4"
+                        },
+                        {
+                          "name": "status",
+                          "item": [
+                            {
+                              "name": "{scanRequestId}",
+                              "item": [
+                                {
+                                  "name": "Get scan status",
+                                  "id": "c07867c1-efce-41b6-9672-2d0ee571e49b",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/scan/applications/:applicationId/status/:scanRequestId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "scan",
+                                        "applications",
+                                        ":applicationId",
+                                        "status",
+                                        ":scanRequestId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "4a41b6f0-a2e3-4ead-9a23-248afe9719d1",
+                                          "key": "applicationId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the application internal id for the SBOM to be evaluated."
+                                        },
+                                        {
+                                          "id": "5d650ab3-1c39-4b92-a0cb-460e1b42f9cc",
+                                          "key": "scanRequestId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
+                                        }
+                                      ]
+                                    },
+                                    "description": "SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.\n\nPermissions required: Evaluate Applications"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "99c9d535-68d4-4525-9e3d-88c1ea959a46",
+                                      "name": "The response contains summarized results of the SBOM evaluation and the URLs for detailed evaluation reports in HTML, pdf and raw formats.\n\n`policyAction` indicates the policy actions determined by the `stageId` selected while submitting the evaluation us",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/scan/applications/:applicationId/status/:scanRequestId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "scan",
+                                            "applications",
+                                            ":applicationId",
+                                            "status",
+                                            ":scanRequestId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "scanRequestId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"componentsAffected\": {\n    \"critical\": \"<integer>\",\n    \"moderate\": \"<integer>\",\n    \"severe\": \"<integer>\"\n  },\n  \"embeddableReportHtmlUrl\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"grandfatheredPolicyViolations\": \"<integer>\",\n  \"isError\": \"<boolean>\",\n  \"legacyViolations\": \"<integer>\",\n  \"openPolicyViolations\": {\n    \"critical\": \"<integer>\",\n    \"moderate\": \"<integer>\",\n    \"severe\": \"<integer>\"\n  },\n  \"policyAction\": \"<string>\",\n  \"reportDataUrl\": \"<string>\",\n  \"reportHtmlUrl\": \"<string>\",\n  \"reportPdfUrl\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T03:17:54.000Z",
+                                      "updatedAt": "2026-10-22T03:17:54.000Z",
+                                      "uid": "35240-99c9d535-68d4-4525-9e3d-88c1ea959a46"
+                                    },
+                                    {
+                                      "id": "d6a56e11-0b95-4edd-88b3-ee1fe097baba",
+                                      "name": "Evaluation report is not ready.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/scan/applications/:applicationId/status/:scanRequestId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "scan",
+                                            "applications",
+                                            ":applicationId",
+                                            "status",
+                                            ":scanRequestId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "scanRequestId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T03:17:54.000Z",
+                                      "updatedAt": "2026-10-22T03:17:54.000Z",
+                                      "uid": "35240-d6a56e11-0b95-4edd-88b3-ee1fe097baba"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:17:54.000Z",
+                                  "updatedAt": "2026-10-22T03:17:54.000Z",
+                                  "uid": "35240-c07867c1-efce-41b6-9672-2d0ee571e49b"
+                                }
+                              ],
+                              "id": "8b69cea4-b8c8-4909-9bd0-08f88436bfdc",
+                              "createdAt": "2026-10-22T03:17:54.000Z",
+                              "updatedAt": "2026-10-22T03:17:54.000Z",
+                              "uid": "35240-8b69cea4-b8c8-4909-9bd0-08f88436bfdc"
+                            }
+                          ],
+                          "id": "48d790d7-1617-421f-89db-b719a1452cf4",
+                          "createdAt": "2026-10-22T03:17:54.000Z",
+                          "updatedAt": "2026-10-22T03:17:54.000Z",
+                          "uid": "35240-48d790d7-1617-421f-89db-b719a1452cf4"
+                        }
+                      ],
+                      "id": "70a62c93-bd4b-42c7-97d0-78f77f16ae31",
+                      "createdAt": "2026-10-22T03:17:54.000Z",
+                      "updatedAt": "2026-10-22T03:17:54.000Z",
+                      "uid": "35240-70a62c93-bd4b-42c7-97d0-78f77f16ae31"
+                    }
+                  ],
+                  "id": "658b5447-c38f-4ed2-947a-fa9688a79d0a",
+                  "createdAt": "2026-10-22T03:17:54.000Z",
+                  "updatedAt": "2026-10-22T03:17:54.000Z",
+                  "uid": "35240-658b5447-c38f-4ed2-947a-fa9688a79d0a"
                 }
               ],
-              "body": "{\n  \"statusUrl\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9a621820-0d0f-4847-a08b-d91317fba676",
-              "name": "The response contains a `statusUrl` containing the applicationId and statusId that can be used to check the progress of the SBOM evaluation.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "scan",
-                    "applications",
-                    ":applicationId",
-                    "sources",
-                    ":source"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "stageId",
-                      "value": "build"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application internal id. Use the Applications REST API to retrieve theapplication internal id."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "source",
-                      "description": "(Required) Specify the specification name of the SBOM to be evaluated. Allowed values are `cyclonedx` and `spdx`"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<string>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Accepted",
-              "code": 202,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusUrl\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fcd97bfe-ea7e-4315-bd21-ad657cbf5545",
+              "createdAt": "2026-10-22T03:17:54.000Z",
+              "updatedAt": "2026-10-22T03:17:54.000Z",
+              "uid": "35240-fcd97bfe-ea7e-4315-bd21-ad657cbf5545"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3956f505-14ef-499f-89bc-6f19904f57b7",
-          "name": "get Scan Status",
-          "request": {
-            "name": "get Scan Status",
-            "description": {
-              "content": "SBOM evaluation is an asynchronous operation. Use this method to check on the status of the SBOM evaluation.\n\nPermissions required: Evaluate Applications",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "scan",
-                "applications",
-                ":applicationId",
-                "status",
-                ":scanRequestId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the application internal id for the SBOM to be evaluated."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scanRequestId",
-                  "description": "(Required) Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "86017fd8-e880-476e-8978-ad0e7ed91df4",
-              "name": "The response contains summarized results of the SBOM evaluation and the URLs for detailed evaluation reports in HTML, pdf and raw formats.\n\n`policyAction` indicates the policy actions determined by the `stageId` selected while submitting the evaluation using the POST method.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "scan",
-                    "applications",
-                    ":applicationId",
-                    "status",
-                    ":scanRequestId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application internal id for the SBOM to be evaluated."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scanRequestId",
-                      "description": "(Required) Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"componentsAffected\": {\n    \"critical\": 8293,\n    \"moderate\": 4388,\n    \"severe\": 7254\n  },\n  \"embeddableReportHtmlUrl\": \"string\",\n  \"errorMessage\": \"string\",\n  \"grandfatheredPolicyViolations\": 9332,\n  \"isError\": true,\n  \"legacyViolations\": 1160,\n  \"openPolicyViolations\": {\n    \"critical\": 8895,\n    \"moderate\": 9284,\n    \"severe\": 2460\n  },\n  \"policyAction\": \"string\",\n  \"reportDataUrl\": \"string\",\n  \"reportHtmlUrl\": \"string\",\n  \"reportPdfUrl\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a5ca10b8-7ab0-4302-a856-8f1f490e68aa",
-              "name": "Evaluation report is not ready.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "scan",
-                    "applications",
-                    ":applicationId",
-                    "status",
-                    ":scanRequestId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application internal id for the SBOM to be evaluated."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scanRequestId",
-                      "description": "(Required) Enter the statusId from the statusUrl generated as a response to the POST request to perform the evaluation."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b8426cc4-d3ef-4a1f-9a2c-9314143e2317",
+          "createdAt": "2026-10-22T03:17:54.000Z",
+          "updatedAt": "2026-10-22T03:17:54.000Z",
+          "uid": "35240-b8426cc4-d3ef-4a1f-9a2c-9314143e2317"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "5c7b4296-7c0b-4697-968c-6c53b2348819",
+      "createdAt": "2026-10-22T03:17:54.000Z",
+      "updatedAt": "2026-10-22T03:17:54.000Z",
+      "uid": "35240-5c7b4296-7c0b-4697-968c-6c53b2348819"
     }
   ],
   "auth": {
@@ -435,21 +477,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "d8ef3a50-d61b-4442-a161-caf7897c58b2",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Third-Party Analysis API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

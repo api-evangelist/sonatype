@@ -1,123 +1,142 @@
 {
+  "info": {
+    "_postman_id": "5ae24868-eaf6-417b-9f5a-3aa1d50af364",
+    "name": "Sonatype Endpoints API",
+    "description": "Operations tagged Endpoints across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:15:33.000Z",
+    "updatedAt": "2026-10-22T03:15:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ae24868-eaf6-417b-9f5a-3aa1d50af364"
+  },
   "item": [
     {
-      "id": "9c184b92-7622-4bb0-aa8d-eb13391bdbb1",
-      "name": "Endpoints",
-      "description": {
-        "content": "This REST API returns the OpenAPI documentation for the specified IQ Server REST API.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "70aec73d-fadf-4446-bc5f-ed1c67c7cf68",
-          "name": "get Open API",
-          "request": {
-            "name": "get Open API",
-            "description": {
-              "content": "Use this method to retrieve the OpenAPI documentation for the specified type of IQ Server REST API.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "endpoints",
-                ":apiType"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiType",
-                  "description": "(Required) Select the type of the API.<ul><li> `public` APIs are Generally Available and fully supported by Sonatype.</li><li> `experimental` APIs are not production ready, may change, and are not intended to be used in critical workloads.</li></ul>"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "da4344c5-60ac-4f2d-ba1e-6ce9597accca",
-              "name": "The response contains the OpenAPI documentation.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "endpoints",
-                    ":apiType"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiType",
-                      "description": "(Required) Select the type of the API.<ul><li> `public` APIs are Generally Available and fully supported by Sonatype.</li><li> `experimental` APIs are not production ready, may change, and are not intended to be used in critical workloads.</li></ul>"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "endpoints",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{apiType}",
+                  "item": [
+                    {
+                      "name": "Get open API",
+                      "id": "442160b5-a1aa-4dee-9925-e77518af9cb0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/endpoints/:apiType",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "endpoints",
+                            ":apiType"
+                          ],
+                          "variable": [
+                            {
+                              "id": "37aa418d-6c41-455a-96eb-0a55ec436e56",
+                              "key": "apiType",
+                              "value": "public",
+                              "description": "(Required) Select the type of the API.<ul><li> `public` APIs are Generally Available and fully supported by Sonatype.</li><li> `experimental` APIs are not production ready, may change, and are not intended to be used in critical workloads.</li></ul>"
+                            }
+                          ]
+                        },
+                        "description": "Use this method to retrieve the OpenAPI documentation for the specified type of IQ Server REST API."
+                      },
+                      "response": [
+                        {
+                          "id": "5af8a062-cde2-413e-b66b-72c7ddd6e7b4",
+                          "name": "The response contains the OpenAPI documentation.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/endpoints/:apiType",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "endpoints",
+                                ":apiType"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiType"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T03:15:34.000Z",
+                          "updatedAt": "2026-10-22T03:15:34.000Z",
+                          "uid": "35240-5af8a062-cde2-413e-b66b-72c7ddd6e7b4"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:15:34.000Z",
+                      "updatedAt": "2026-10-22T03:15:34.000Z",
+                      "uid": "35240-442160b5-a1aa-4dee-9925-e77518af9cb0"
+                    }
+                  ],
+                  "id": "1c58f417-26e1-4d7e-8d90-dad7f6ce8782",
+                  "createdAt": "2026-10-22T03:15:33.000Z",
+                  "updatedAt": "2026-10-22T03:15:33.000Z",
+                  "uid": "35240-1c58f417-26e1-4d7e-8d90-dad7f6ce8782"
                 }
               ],
-              "body": "\"string\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "24b0d2a5-d098-49cc-a090-8ce70cc7d368",
+              "createdAt": "2026-10-22T03:15:33.000Z",
+              "updatedAt": "2026-10-22T03:15:33.000Z",
+              "uid": "35240-24b0d2a5-d098-49cc-a090-8ce70cc7d368"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8a223198-9afc-4473-8ef7-6fd791839e6c",
+          "createdAt": "2026-10-22T03:15:33.000Z",
+          "updatedAt": "2026-10-22T03:15:33.000Z",
+          "uid": "35240-8a223198-9afc-4473-8ef7-6fd791839e6c"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "1dc0091e-37da-466d-83a2-7d4df1957540",
+      "createdAt": "2026-10-22T03:15:33.000Z",
+      "updatedAt": "2026-10-22T03:15:33.000Z",
+      "uid": "35240-1dc0091e-37da-466d-83a2-7d4df1957540"
     }
   ],
   "auth": {
@@ -125,21 +144,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "0e0502e1-38c2-48b8-a9a1-deaccdf3bf49",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Endpoints API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

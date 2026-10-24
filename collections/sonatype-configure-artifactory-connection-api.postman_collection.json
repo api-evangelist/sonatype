@@ -1,1103 +1,1070 @@
 {
+  "info": {
+    "_postman_id": "a22f4f3b-262f-474b-a6a3-c4109e8c9c0c",
+    "name": "Sonatype Configure Artifactory Connection API",
+    "description": "Operations tagged Configure Artifactory Connection across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:15:03.000Z",
+    "updatedAt": "2026-10-22T03:15:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a22f4f3b-262f-474b-a6a3-c4109e8c9c0c"
+  },
   "item": [
     {
-      "id": "8ec09572-f081-4a7a-9e5e-9ebdded7e90b",
-      "name": "Configure Artifactory Connection",
-      "description": {
-        "content": "Use this REST API to manage the configuration of Firewall for JFrog Artifactory.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "bc79ec83-6841-40d1-bf2c-2da4dfb2db88",
-          "name": "get Owner Artifactory Connection",
-          "request": {
-            "name": "get Owner Artifactory Connection",
-            "description": {
-              "content": "Use this method to retrieve Artifactory connection details by specifying the owner Id.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "inherit",
-                  "value": "false",
-                  "description": "Specify whether to include details from an inherited Artifactory connection."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "6c272596-bc47-4715-b7b5-bea0da7d8282",
-              "name": "The response contains the details of the Artifactory connection.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "inherit",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "config",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "artifactoryConnection",
+                  "item": [
+                    {
+                      "name": "{ownerType}",
+                      "item": [
+                        {
+                          "name": "{internalOwnerId}",
+                          "item": [
+                            {
+                              "name": "test",
+                              "item": [
+                                {
+                                  "name": "Test artifactory connection",
+                                  "id": "839bf49b-735b-4bb6-b21f-3b2b4493fb7d",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "*/*"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}"
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/test",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "artifactoryConnection",
+                                        ":ownerType",
+                                        ":internalOwnerId",
+                                        "test"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "70d1d811-afab-4281-9e58-ac39dbb26d4d",
+                                          "key": "ownerType",
+                                          "value": "organization",
+                                          "description": "(Required) Select the owner type."
+                                        },
+                                        {
+                                          "id": "df77f977-7f01-460d-a8b9-d84236afd358",
+                                          "key": "internalOwnerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the internal ID of the owner."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to test an Artifactory connection for the specified owner.\n\nPermissons required: View IQ Elements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4a7adf09-30f6-4b5e-a5df-b207212f8fe5",
+                                      "name": "The response contains the `code` and `message` indicating the status of the connection.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "*/*"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}"
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/test",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "config",
+                                            "artifactoryConnection",
+                                            ":ownerType",
+                                            ":internalOwnerId",
+                                            "test"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "internalOwnerId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T03:15:04.000Z",
+                                      "updatedAt": "2026-10-22T03:15:04.000Z",
+                                      "uid": "35240-4a7adf09-30f6-4b5e-a5df-b207212f8fe5"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-839bf49b-735b-4bb6-b21f-3b2b4493fb7d"
+                                }
+                              ],
+                              "id": "b7c1980f-006e-4985-afba-f1d2bad9dbf7",
+                              "createdAt": "2026-10-22T03:15:04.000Z",
+                              "updatedAt": "2026-10-22T03:15:04.000Z",
+                              "uid": "35240-b7c1980f-006e-4985-afba-f1d2bad9dbf7"
+                            },
+                            {
+                              "name": "{artifactoryConnectionId}",
+                              "item": [
+                                {
+                                  "name": "test",
+                                  "item": [
+                                    {
+                                      "name": "Test artifactory connection 1",
+                                      "id": "4ad162b8-e951-46a4-8c78-3a7ed5ebc680",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId/test",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "config",
+                                            "artifactoryConnection",
+                                            ":ownerType",
+                                            ":internalOwnerId",
+                                            ":artifactoryConnectionId",
+                                            "test"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "ae2bf433-3725-4456-bcb3-29668002bfa8",
+                                              "key": "ownerType",
+                                              "value": "organization",
+                                              "description": "(Required) Enter the owner type."
+                                            },
+                                            {
+                                              "id": "29c1cb5e-6d31-4770-a626-5028a5cd8b92",
+                                              "key": "internalOwnerId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the internal ID of the owner."
+                                            },
+                                            {
+                                              "id": "44904d03-e75f-4e45-af61-77f56c49c8de",
+                                              "key": "artifactoryConnectionId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the Artifactory connection ID."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to test an existing Artifactory connection using the connection ID."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "0144c0ef-0b73-4707-b821-74b1d5f14ffd",
+                                          "name": "The response contains the `code` and `message` indicating the status of the connection.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId/test",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "config",
+                                                "artifactoryConnection",
+                                                ":ownerType",
+                                                ":internalOwnerId",
+                                                ":artifactoryConnectionId",
+                                                "test"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "ownerType"
+                                                },
+                                                {
+                                                  "key": "internalOwnerId"
+                                                },
+                                                {
+                                                  "key": "artifactoryConnectionId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-10-22T03:15:04.000Z",
+                                          "updatedAt": "2026-10-22T03:15:04.000Z",
+                                          "uid": "35240-0144c0ef-0b73-4707-b821-74b1d5f14ffd"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:15:04.000Z",
+                                      "updatedAt": "2026-10-22T03:15:04.000Z",
+                                      "uid": "35240-4ad162b8-e951-46a4-8c78-3a7ed5ebc680"
+                                    }
+                                  ],
+                                  "id": "43c8365f-5e51-4525-a0ef-db570b75eaff",
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-43c8365f-5e51-4525-a0ef-db570b75eaff"
+                                },
+                                {
+                                  "name": "Delete artifactory connection",
+                                  "id": "c72bbdc5-c51f-4588-a0b7-ec35cde6895f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "artifactoryConnection",
+                                        ":ownerType",
+                                        ":internalOwnerId",
+                                        ":artifactoryConnectionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e4094c64-5a82-41b5-987f-b47142ee64ea",
+                                          "key": "ownerType",
+                                          "value": "organization",
+                                          "description": "(Required) Select the owner type."
+                                        },
+                                        {
+                                          "id": "155b05a8-5eb6-42a2-be14-510324792161",
+                                          "key": "internalOwnerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the internal ID of the owner."
+                                        },
+                                        {
+                                          "id": "a0cfb933-0964-4432-805e-ccbef5fe7454",
+                                          "key": "artifactoryConnectionId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the Artifactory connection ID."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to delete an existing Artifactory connection.\n\nPermissions required: Edit IQ Elements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ee3ca177-20c9-49fe-9d0c-7b643c4cf7d4",
+                                      "name": "Artifactory connection deleted successfully.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "config",
+                                            "artifactoryConnection",
+                                            ":ownerType",
+                                            ":internalOwnerId",
+                                            ":artifactoryConnectionId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "internalOwnerId"
+                                            },
+                                            {
+                                              "key": "artifactoryConnectionId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T03:15:04.000Z",
+                                      "updatedAt": "2026-10-22T03:15:04.000Z",
+                                      "uid": "35240-ee3ca177-20c9-49fe-9d0c-7b643c4cf7d4"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-c72bbdc5-c51f-4588-a0b7-ec35cde6895f"
+                                },
+                                {
+                                  "name": "Get artifactory connection",
+                                  "id": "0c7424fc-23b3-4f2a-8dbd-f531ba8fd69b",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "artifactoryConnection",
+                                        ":ownerType",
+                                        ":internalOwnerId",
+                                        ":artifactoryConnectionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "2457c395-513a-4426-80d3-1d20931b67c1",
+                                          "key": "ownerType",
+                                          "value": "organization",
+                                          "description": "(Required) Select the owner type."
+                                        },
+                                        {
+                                          "id": "2fd4e7bd-2535-42ea-a94c-ce5912ce87a5",
+                                          "key": "internalOwnerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the internal ID of the owner."
+                                        },
+                                        {
+                                          "id": "2865fe51-f7e7-4637-b9d3-693cb19b69ed",
+                                          "key": "artifactoryConnectionId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the Artifactory connection ID."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to retrieve details for an Artifactory connection.\n\nPermissions required: View IQ Elements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "734cb84f-1e69-4b7f-b61a-8c678b5d7d0e",
+                                      "name": "The response contains the details of the requested Artifactory connection.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "config",
+                                            "artifactoryConnection",
+                                            ":ownerType",
+                                            ":internalOwnerId",
+                                            ":artifactoryConnectionId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "internalOwnerId"
+                                            },
+                                            {
+                                              "key": "artifactoryConnectionId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T03:15:04.000Z",
+                                      "updatedAt": "2026-10-22T03:15:04.000Z",
+                                      "uid": "35240-734cb84f-1e69-4b7f-b61a-8c678b5d7d0e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-0c7424fc-23b3-4f2a-8dbd-f531ba8fd69b"
+                                },
+                                {
+                                  "name": "Update artifactory connection",
+                                  "id": "c1820a55-9532-4f52-b14f-7907a120e5dd",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "artifactoryConnection",
+                                        ":ownerType",
+                                        ":internalOwnerId",
+                                        ":artifactoryConnectionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "4fd0ff21-8184-4aa9-948e-cfd9fc4027c9",
+                                          "key": "ownerType",
+                                          "value": "organization",
+                                          "description": "(Required) Specify the owner type."
+                                        },
+                                        {
+                                          "id": "4bbb57d2-c8f5-436c-8bdd-01565f2ac91b",
+                                          "key": "internalOwnerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the internal ID of the owner."
+                                        },
+                                        {
+                                          "id": "9f5bd4c2-942b-4425-939e-f371d8d16954",
+                                          "key": "artifactoryConnectionId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the Artifactory connection ID."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to update an existing Artifactory connection.\n\nPermissions required: Edit IQ Elements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a47162e4-ae0a-4dbb-b4cf-9496db31a45b",
+                                      "name": "The response contains the updated Artifactory connection details.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId/:artifactoryConnectionId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "config",
+                                            "artifactoryConnection",
+                                            ":ownerType",
+                                            ":internalOwnerId",
+                                            ":artifactoryConnectionId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "internalOwnerId"
+                                            },
+                                            {
+                                              "key": "artifactoryConnectionId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T03:15:04.000Z",
+                                      "updatedAt": "2026-10-22T03:15:04.000Z",
+                                      "uid": "35240-a47162e4-ae0a-4dbb-b4cf-9496db31a45b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-c1820a55-9532-4f52-b14f-7907a120e5dd"
+                                }
+                              ],
+                              "id": "3c3c4b93-8604-4823-abd7-87c188033124",
+                              "createdAt": "2026-10-22T03:15:04.000Z",
+                              "updatedAt": "2026-10-22T03:15:04.000Z",
+                              "uid": "35240-3c3c4b93-8604-4823-abd7-87c188033124"
+                            },
+                            {
+                              "name": "Get owner artifactory connection",
+                              "id": "62eb4031-950f-41f6-87a1-148a415a1a10",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId?inherit=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "artifactoryConnection",
+                                    ":ownerType",
+                                    ":internalOwnerId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Specify whether to include details from an inherited Artifactory connection.",
+                                      "key": "inherit",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "8b0cd1a4-871f-48db-8296-c5dfe2fd8057",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Select the owner type."
+                                    },
+                                    {
+                                      "id": "4ed12c73-b5ad-4f48-ad36-b6afe51f9286",
+                                      "key": "internalOwnerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the internal ID of the owner."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve Artifactory connection details by specifying the owner Id.\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "740395db-6524-4e58-bef7-fd985d497014",
+                                  "name": "The response contains the details of the Artifactory connection.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId?inherit=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "artifactoryConnection",
+                                        ":ownerType",
+                                        ":internalOwnerId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Specify whether to include details from an inherited Artifactory connection.",
+                                          "key": "inherit",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "internalOwnerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"artifactoryConnection\": {\n    \"artifactoryConnectionId\": \"<string>\",\n    \"baseUrl\": \"<string>\",\n    \"isAnonymous\": \"<boolean>\",\n    \"ownerId\": \"<string>\",\n    \"ownerType\": \"organization\",\n    \"password\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"artifactoryConnectionStatus\": {\n    \"allowChange\": \"<boolean>\",\n    \"allowOverride\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"inheritedFromOrgEnabled\": \"<boolean>\",\n    \"inheritedFromOrganizationId\": \"<string>\",\n    \"inheritedFromOrganizationName\": \"<string>\"\n  },\n  \"ownerDTO\": {\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerPublicId\": \"<string>\",\n    \"ownerType\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-740395db-6524-4e58-bef7-fd985d497014"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:15:04.000Z",
+                              "updatedAt": "2026-10-22T03:15:04.000Z",
+                              "uid": "35240-62eb4031-950f-41f6-87a1-148a415a1a10"
+                            },
+                            {
+                              "name": "Add artifactory connection",
+                              "id": "04ee9e21-3133-4f37-9308-3c68277d99d6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "artifactoryConnection",
+                                    ":ownerType",
+                                    ":internalOwnerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "5b96ab02-acb1-430c-9d00-16e862ba4354",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Select the owner type."
+                                    },
+                                    {
+                                      "id": "de86501c-4c1e-4d41-92bf-1c3eb329dc6e",
+                                      "key": "internalOwnerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the internal ID of the owner."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to add a new Artifactory connection.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "cf6c4ee3-67fe-4ca1-ad86-156d9c99c194",
+                                  "name": "The response contains the details of the added Artifactory connection.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "artifactoryConnection",
+                                        ":ownerType",
+                                        ":internalOwnerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "internalOwnerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"repository_container\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-cf6c4ee3-67fe-4ca1-ad86-156d9c99c194"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:15:04.000Z",
+                              "updatedAt": "2026-10-22T03:15:04.000Z",
+                              "uid": "35240-04ee9e21-3133-4f37-9308-3c68277d99d6"
+                            },
+                            {
+                              "name": "Update owner artifactory connection status",
+                              "id": "2956e675-5fe8-42ec-80f2-d89b3e2533db",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"allowOverride\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "artifactoryConnection",
+                                    ":ownerType",
+                                    ":internalOwnerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d1b9bdf8-de7d-43c9-95c5-4f1f75784c03",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Select the owner type."
+                                    },
+                                    {
+                                      "id": "a40caf40-8adb-4c2c-931a-7f40fe36c5d9",
+                                      "key": "internalOwnerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the internal ID of the owner."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to enable/disable an existing Artifactory connection for the specified owner.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "4d8a4834-57ab-4d95-9b83-d1de552cd4ab",
+                                  "name": "Artifactory connection status successfully updated.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"allowOverride\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/artifactoryConnection/:ownerType/:internalOwnerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "artifactoryConnection",
+                                        ":ownerType",
+                                        ":internalOwnerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "internalOwnerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:15:04.000Z",
+                                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                                  "uid": "35240-4d8a4834-57ab-4d95-9b83-d1de552cd4ab"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:15:04.000Z",
+                              "updatedAt": "2026-10-22T03:15:04.000Z",
+                              "uid": "35240-2956e675-5fe8-42ec-80f2-d89b3e2533db"
+                            }
+                          ],
+                          "id": "b95d0d92-fc9e-4935-9c16-29d491a1ff09",
+                          "createdAt": "2026-10-22T03:15:04.000Z",
+                          "updatedAt": "2026-10-22T03:15:04.000Z",
+                          "uid": "35240-b95d0d92-fc9e-4935-9c16-29d491a1ff09"
+                        }
+                      ],
+                      "id": "ed29731c-4ab3-48a8-87ce-a0dda08d5153",
+                      "createdAt": "2026-10-22T03:15:04.000Z",
+                      "updatedAt": "2026-10-22T03:15:04.000Z",
+                      "uid": "35240-ed29731c-4ab3-48a8-87ce-a0dda08d5153"
+                    }
+                  ],
+                  "id": "88dc4c00-9c98-4120-9f41-2f91cd57032e",
+                  "createdAt": "2026-10-22T03:15:04.000Z",
+                  "updatedAt": "2026-10-22T03:15:04.000Z",
+                  "uid": "35240-88dc4c00-9c98-4120-9f41-2f91cd57032e"
                 }
               ],
-              "body": "{\n  \"artifactoryConnection\": {\n    \"artifactoryConnectionId\": \"string\",\n    \"baseUrl\": \"string\",\n    \"isAnonymous\": true,\n    \"ownerId\": \"string\",\n    \"ownerType\": \"organization\",\n    \"password\": \"string\",\n    \"username\": \"string\"\n  },\n  \"artifactoryConnectionStatus\": {\n    \"allowChange\": false,\n    \"allowOverride\": true,\n    \"enabled\": false,\n    \"inheritedFromOrgEnabled\": true,\n    \"inheritedFromOrganizationId\": \"string\",\n    \"inheritedFromOrganizationName\": \"string\"\n  },\n  \"ownerDTO\": {\n    \"ownerId\": \"string\",\n    \"ownerName\": \"string\",\n    \"ownerPublicId\": \"string\",\n    \"ownerType\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "a196ed6a-6fbe-4b0a-b908-35904e591989",
+              "createdAt": "2026-10-22T03:15:04.000Z",
+              "updatedAt": "2026-10-22T03:15:04.000Z",
+              "uid": "35240-a196ed6a-6fbe-4b0a-b908-35904e591989"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0f324845-eaca-4873-b4b1-99917962e8a3",
-          "name": "add Artifactory Connection",
-          "request": {
-            "name": "add Artifactory Connection",
-            "description": {
-              "content": "Use this method to add a new Artifactory connection.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "11e49998-5264-4dc9-832d-c477fb676c4b",
-              "name": "The response contains the details of the added Artifactory connection.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7dfb844d-31f7-4260-bfac-53c99a7f8f60",
-          "name": "update Owner Artifactory Connection Status",
-          "request": {
-            "name": "update Owner Artifactory Connection Status",
-            "description": {
-              "content": "Use this method to enable/disable an existing Artifactory connection for the specified owner.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"allowOverride\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d4b0b40e-1351-4ad8-8324-f373d3a1a214",
-              "name": "Artifactory connection status successfully updated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"allowOverride\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ff1afaf9-bc8e-4bdb-bc23-a43ba7f1cad0",
-          "name": "test Artifactory Connection",
-          "request": {
-            "name": "test Artifactory Connection",
-            "description": {
-              "content": "Use this method to test an Artifactory connection for the specified owner.\n\nPermissons required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId",
-                "test"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "*/*"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}"
-            }
-          },
-          "response": [
-            {
-              "id": "b37df643-d943-476b-ba44-65d23bd3e2ff",
-              "name": "The response contains the `code` and `message` indicating the status of the connection.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId",
-                    "test"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}"
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1145,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "16308d13-e746-4425-8330-3d4a50fc6a0c",
-          "name": "delete Artifactory Connection",
-          "request": {
-            "name": "delete Artifactory Connection",
-            "description": {
-              "content": "Use this method to delete an existing Artifactory connection.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId",
-                ":artifactoryConnectionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "artifactoryConnectionId",
-                  "description": "(Required) Enter the Artifactory connection ID."
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d7a5b294-aff4-4ebf-b6c3-cf8be7aa5bfd",
-              "name": "Artifactory connection deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId",
-                    ":artifactoryConnectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "artifactoryConnectionId",
-                      "description": "(Required) Enter the Artifactory connection ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "756335e1-dd28-44c2-8632-bdf33cd183bf",
-          "name": "get Artifactory Connection",
-          "request": {
-            "name": "get Artifactory Connection",
-            "description": {
-              "content": "Use this method to retrieve details for an Artifactory connection.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId",
-                ":artifactoryConnectionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "artifactoryConnectionId",
-                  "description": "(Required) Enter the Artifactory connection ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0eedda9d-1a9c-4a3f-ad9c-b10b344cddd1",
-              "name": "The response contains the details of the requested Artifactory connection.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId",
-                    ":artifactoryConnectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "artifactoryConnectionId",
-                      "description": "(Required) Enter the Artifactory connection ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0fe3867d-5921-4625-9b25-edf27ff60385",
-          "name": "update Artifactory Connection",
-          "request": {
-            "name": "update Artifactory Connection",
-            "description": {
-              "content": "Use this method to update an existing Artifactory connection.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId",
-                ":artifactoryConnectionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Specify the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "artifactoryConnectionId",
-                  "description": "(Required) Enter the Artifactory connection ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a3c5e76d-a5ad-428f-93f1-578a8dab0d80",
-              "name": "The response contains the updated Artifactory connection details.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId",
-                    ":artifactoryConnectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Specify the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "artifactoryConnectionId",
-                      "description": "(Required) Enter the Artifactory connection ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"artifactoryConnectionId\": \"<string>\",\n  \"baseUrl\": \"<string>\",\n  \"isAnonymous\": \"<boolean>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "550f6dc9-6611-4ed3-9dd0-3e8551f5fbca",
-          "name": "test Artifactory Connection 1",
-          "request": {
-            "name": "test Artifactory Connection 1",
-            "description": {
-              "content": "Use this method to test an existing Artifactory connection using the connection ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "artifactoryConnection",
-                ":ownerType",
-                ":internalOwnerId",
-                ":artifactoryConnectionId",
-                "test"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the owner type."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Enter the internal ID of the owner."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "artifactoryConnectionId",
-                  "description": "(Required) Enter the Artifactory connection ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "86fcfab3-832c-41a4-97be-bc046acf6042",
-              "name": "The response contains the `code` and `message` indicating the status of the connection.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "artifactoryConnection",
-                    ":ownerType",
-                    ":internalOwnerId",
-                    ":artifactoryConnectionId",
-                    "test"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the owner type."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Enter the internal ID of the owner."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "artifactoryConnectionId",
-                      "description": "(Required) Enter the Artifactory connection ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1145,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "4ffad56c-92a4-426d-b34e-07e3cc22673b",
+          "createdAt": "2026-10-22T03:15:04.000Z",
+          "updatedAt": "2026-10-22T03:15:04.000Z",
+          "uid": "35240-4ffad56c-92a4-426d-b34e-07e3cc22673b"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "6cdbabd3-61d5-4e05-ae98-be88d5889673",
+      "createdAt": "2026-10-22T03:15:04.000Z",
+      "updatedAt": "2026-10-22T03:15:04.000Z",
+      "uid": "35240-6cdbabd3-61d5-4e05-ae98-be88d5889673"
     }
   ],
   "auth": {
@@ -1105,21 +1072,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "fef3a3e7-9a7d-4620-a0bc-beb98fe418db",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Configure Artifactory Connection API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "3863a37d-00f0-4039-9e24-c5cf580f499f",
+    "name": "Sonatype Lifecycle Public REST Reachability Evidence API",
+    "description": "Use this REST API to retrieve reachability evidence showing call paths to vulnerable methods for a hosted repository component.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:34.000Z",
+    "updatedAt": "2026-10-22T03:18:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3863a37d-00f0-4039-9e24-c5cf580f499f"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "applications",
+              "item": [
+                {
+                  "name": "{applicationPublicId}",
+                  "item": [
+                    {
+                      "name": "reports",
+                      "item": [
+                        {
+                          "name": "{reportId}",
+                          "item": [
+                            {
+                              "name": "vulnerabilities",
+                              "item": [
+                                {
+                                  "name": "{vulnerabilityId}",
+                                  "item": [
+                                    {
+                                      "name": "reachability-evidence",
+                                      "item": [
+                                        {
+                                          "name": "Get reachability evidence 1",
+                                          "id": "e624f92e-2e10-471c-9323-3524a68c0f32",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/:reportId/vulnerabilities/:vulnerabilityId/reachability-evidence",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "applications",
+                                                ":applicationPublicId",
+                                                "reports",
+                                                ":reportId",
+                                                "vulnerabilities",
+                                                ":vulnerabilityId",
+                                                "reachability-evidence"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "6d5d2261-4151-4613-8c8a-dd6c2a7cf7d6",
+                                                  "key": "applicationPublicId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) The public ID of the application"
+                                                },
+                                                {
+                                                  "id": "806c0540-53e8-40a8-adee-dbf204cf9bd9",
+                                                  "key": "reportId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) The report/scan ID"
+                                                },
+                                                {
+                                                  "id": "31e63b29-4cd3-49a2-baca-56485ca8acc0",
+                                                  "key": "vulnerabilityId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) The vulnerability ID (e.g., CVE-2023-35116)"
+                                                }
+                                              ]
+                                            },
+                                            "description": "Get reachability evidence for a specific vulnerability showing call paths from entry points to the vulnerable method.\\n\\nPermissions required: View IQ Elements"
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "3e3ac12c-63b9-451d-bad9-5d0040d51a3b",
+                                              "name": "Returns reachability evidence with call paths for the specified vulnerability.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: basic",
+                                                    "key": "Authorization",
+                                                    "value": "Basic <credentials>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/:reportId/vulnerabilities/:vulnerabilityId/reachability-evidence",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v2",
+                                                    "applications",
+                                                    ":applicationPublicId",
+                                                    "reports",
+                                                    ":reportId",
+                                                    "vulnerabilities",
+                                                    ":vulnerabilityId",
+                                                    "reachability-evidence"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "applicationPublicId"
+                                                    },
+                                                    {
+                                                      "key": "reportId"
+                                                    },
+                                                    {
+                                                      "key": "vulnerabilityId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"vulnerabilityId\": \"<string>\",\n  \"paths\": [\n    {\n      \"segments\": [\n        {\n          \"type\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"segments\": [\n        {\n          \"type\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"truncated\": \"<boolean>\"\n}",
+                                              "createdAt": "2026-10-22T03:18:35.000Z",
+                                              "updatedAt": "2026-10-22T03:18:35.000Z",
+                                              "uid": "35240-3e3ac12c-63b9-451d-bad9-5d0040d51a3b"
+                                            },
+                                            {
+                                              "id": "f95fdfb4-f402-4a18-acc8-9afe01c2e889",
+                                              "name": "Application, report, or vulnerability evidence not found.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: basic",
+                                                    "key": "Authorization",
+                                                    "value": "Basic <credentials>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v2/applications/:applicationPublicId/reports/:reportId/vulnerabilities/:vulnerabilityId/reachability-evidence",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v2",
+                                                    "applications",
+                                                    ":applicationPublicId",
+                                                    "reports",
+                                                    ":reportId",
+                                                    "vulnerabilities",
+                                                    ":vulnerabilityId",
+                                                    "reachability-evidence"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "applicationPublicId"
+                                                    },
+                                                    {
+                                                      "key": "reportId"
+                                                    },
+                                                    {
+                                                      "key": "vulnerabilityId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Not Found",
+                                              "code": 404,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-10-22T03:18:35.000Z",
+                                              "updatedAt": "2026-10-22T03:18:35.000Z",
+                                              "uid": "35240-f95fdfb4-f402-4a18-acc8-9afe01c2e889"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T03:18:35.000Z",
+                                          "updatedAt": "2026-10-22T03:18:35.000Z",
+                                          "uid": "35240-e624f92e-2e10-471c-9323-3524a68c0f32"
+                                        }
+                                      ],
+                                      "id": "2ae5058f-1b65-4799-b6f9-aeb5fe5c81c8",
+                                      "createdAt": "2026-10-22T03:18:35.000Z",
+                                      "updatedAt": "2026-10-22T03:18:35.000Z",
+                                      "uid": "35240-2ae5058f-1b65-4799-b6f9-aeb5fe5c81c8"
+                                    }
+                                  ],
+                                  "id": "08bce2ec-4a1e-48c4-bcf0-55fda84aebab",
+                                  "createdAt": "2026-10-22T03:18:35.000Z",
+                                  "updatedAt": "2026-10-22T03:18:35.000Z",
+                                  "uid": "35240-08bce2ec-4a1e-48c4-bcf0-55fda84aebab"
+                                }
+                              ],
+                              "id": "f849def5-8236-43f4-a16b-71ba5b5d0e24",
+                              "createdAt": "2026-10-22T03:18:35.000Z",
+                              "updatedAt": "2026-10-22T03:18:35.000Z",
+                              "uid": "35240-f849def5-8236-43f4-a16b-71ba5b5d0e24"
+                            }
+                          ],
+                          "id": "13772b12-b459-43d6-b4c8-6007c73b40e9",
+                          "createdAt": "2026-10-22T03:18:35.000Z",
+                          "updatedAt": "2026-10-22T03:18:35.000Z",
+                          "uid": "35240-13772b12-b459-43d6-b4c8-6007c73b40e9"
+                        }
+                      ],
+                      "id": "2a31ff9a-2c20-4746-b1c8-8aafe0d66544",
+                      "createdAt": "2026-10-22T03:18:35.000Z",
+                      "updatedAt": "2026-10-22T03:18:35.000Z",
+                      "uid": "35240-2a31ff9a-2c20-4746-b1c8-8aafe0d66544"
+                    }
+                  ],
+                  "id": "437765a2-6aa8-4ece-b570-fdae3eab127a",
+                  "createdAt": "2026-10-22T03:18:35.000Z",
+                  "updatedAt": "2026-10-22T03:18:35.000Z",
+                  "uid": "35240-437765a2-6aa8-4ece-b570-fdae3eab127a"
+                }
+              ],
+              "id": "b8c2f868-eff8-48bd-8c7d-36631a6c5fe6",
+              "createdAt": "2026-10-22T03:18:35.000Z",
+              "updatedAt": "2026-10-22T03:18:35.000Z",
+              "uid": "35240-b8c2f868-eff8-48bd-8c7d-36631a6c5fe6"
+            }
+          ],
+          "id": "07e62c89-c04c-40dd-9614-f3afc9a6136e",
+          "createdAt": "2026-10-22T03:18:35.000Z",
+          "updatedAt": "2026-10-22T03:18:35.000Z",
+          "uid": "35240-07e62c89-c04c-40dd-9614-f3afc9a6136e"
+        }
+      ],
+      "id": "97e99ebe-e306-4e02-9d53-85748b508f98",
+      "createdAt": "2026-10-22T03:18:35.000Z",
+      "updatedAt": "2026-10-22T03:18:35.000Z",
+      "uid": "35240-97e99ebe-e306-4e02-9d53-85748b508f98"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

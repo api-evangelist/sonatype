@@ -1,687 +1,679 @@
 {
+  "info": {
+    "_postman_id": "50cc577e-a3e5-4331-99ad-6fe9b709119a",
+    "name": "Sonatype User Token Configuration API",
+    "description": "Operations tagged User Token Configuration across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:17:58.000Z",
+    "updatedAt": "2026-10-22T03:17:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-50cc577e-a3e5-4331-99ad-6fe9b709119a"
+  },
   "item": [
     {
-      "id": "e8593e67-bda6-4dbc-a5f5-d1cd67ebdcd6",
-      "name": "User Token Configuration",
-      "description": {
-        "content": "Use this REST API to manage user token expiration configuration.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "7a9a746e-836c-4d4a-befc-a4ae9ce02352",
-          "name": "reset Configuration",
-          "request": {
-            "name": "reset Configuration",
-            "description": {
-              "content": "Use this method to reset user token configuration properties to system defaults. Returns the current configuration after reset.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "userTokens"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "property",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "property",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "fcb42ec1-41ef-4f18-8c98-56e80e8a3fb0",
-              "name": "Configuration reset successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "config",
+              "item": [
+                {
+                  "name": "userTokens",
+                  "item": [
                     {
-                      "key": "property",
-                      "value": "<string>"
+                      "name": "Reset configuration",
+                      "id": "305481ec-e175-45fd-a4ca-7c4e4151f646",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/userTokens?property=<string>&property=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "userTokens"
+                          ],
+                          "query": [
+                            {
+                              "key": "property",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "property",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Use this method to reset user token configuration properties to system defaults. Returns the current configuration after reset.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "e1f4d688-1661-49c2-b775-1b08deb173c1",
+                          "name": "Configuration reset successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens?property=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ],
+                              "query": [
+                                {
+                                  "key": "property",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-e1f4d688-1661-49c2-b775-1b08deb173c1"
+                        },
+                        {
+                          "id": "1dabca3a-9dc7-4309-ae11-de84d4172a55",
+                          "name": "No properties specified or invalid properties",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens?property=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ],
+                              "query": [
+                                {
+                                  "key": "property",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-1dabca3a-9dc7-4309-ae11-de84d4172a55"
+                        },
+                        {
+                          "id": "c3942630-5281-4205-8c38-d280694b0a4a",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens?property=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ],
+                              "query": [
+                                {
+                                  "key": "property",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-c3942630-5281-4205-8c38-d280694b0a4a"
+                        },
+                        {
+                          "id": "c354dfa3-3e47-4a07-bdee-bbace0c5229a",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens?property=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ],
+                              "query": [
+                                {
+                                  "key": "property",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-c354dfa3-3e47-4a07-bdee-bbace0c5229a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:17:59.000Z",
+                      "updatedAt": "2026-10-22T03:17:59.000Z",
+                      "uid": "35240-305481ec-e175-45fd-a4ca-7c4e4151f646"
+                    },
+                    {
+                      "name": "Get configuration 7",
+                      "id": "0c36b03e-f387-4e34-87d9-411b1f27a615",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "userTokens"
+                          ]
+                        },
+                        "description": "Use this method to retrieve user token configuration.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "1ca9b91f-5414-4b8a-a76b-6af0b33ef6ee",
+                          "name": "Current user token configuration",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-1ca9b91f-5414-4b8a-a76b-6af0b33ef6ee"
+                        },
+                        {
+                          "id": "dd609092-66a5-4707-a79e-c5e276952bc1",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-dd609092-66a5-4707-a79e-c5e276952bc1"
+                        },
+                        {
+                          "id": "a3bcddab-24c3-462c-9a27-2ccf2fd75078",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-a3bcddab-24c3-462c-9a27-2ccf2fd75078"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:17:59.000Z",
+                      "updatedAt": "2026-10-22T03:17:59.000Z",
+                      "uid": "35240-0c36b03e-f387-4e34-87d9-411b1f27a615"
+                    },
+                    {
+                      "name": "Update configuration",
+                      "id": "98d99ef7-46b6-4604-a20e-d60bc6ebd425",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "userTokens"
+                          ]
+                        },
+                        "description": "Use this method to update user token configuration. Null values are ignored (no change). Returns the current configuration after applying changes.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "73abca09-006f-46c8-9d19-91e0a47efd7a",
+                          "name": "Configuration updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-73abca09-006f-46c8-9d19-91e0a47efd7a"
+                        },
+                        {
+                          "id": "727f9a47-fa5b-41a9-874a-956ba2540636",
+                          "name": "Invalid configuration values",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-727f9a47-fa5b-41a9-874a-956ba2540636"
+                        },
+                        {
+                          "id": "ad83c689-a4d7-4fee-bb90-bab207c6e96c",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-ad83c689-a4d7-4fee-bb90-bab207c6e96c"
+                        },
+                        {
+                          "id": "3d2cecd8-4771-40c0-87de-f26a654f47ed",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/userTokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "userTokens"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:17:59.000Z",
+                          "updatedAt": "2026-10-22T03:17:59.000Z",
+                          "uid": "35240-3d2cecd8-4771-40c0-87de-f26a654f47ed"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:17:59.000Z",
+                      "updatedAt": "2026-10-22T03:17:59.000Z",
+                      "uid": "35240-98d99ef7-46b6-4604-a20e-d60bc6ebd425"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "3e181d28-58da-4a86-9884-50531e8d62b0",
+                  "createdAt": "2026-10-22T03:17:59.000Z",
+                  "updatedAt": "2026-10-22T03:17:59.000Z",
+                  "uid": "35240-3e181d28-58da-4a86-9884-50531e8d62b0"
                 }
               ],
-              "body": "{\n  \"userTokenDefaultExpirationDays\": 2929\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ffb7df0f-a940-4b41-93ca-26b879e78b96",
-              "name": "No properties specified or invalid properties",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "property",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "b767c0be-4ae1-46b8-a656-9a8b6cad71cb",
-              "name": "Authentication required",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "property",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ed809458-f219-42be-b39d-e2d7814d3f0b",
-              "name": "Insufficient permissions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "property",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "364e6c9b-a19d-4982-a19c-95ab59a450aa",
+              "createdAt": "2026-10-22T03:17:59.000Z",
+              "updatedAt": "2026-10-22T03:17:59.000Z",
+              "uid": "35240-364e6c9b-a19d-4982-a19c-95ab59a450aa"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "70d36f4a-ba63-4033-ae1c-d008cd2f5155",
-          "name": "get Configuration 7",
-          "request": {
-            "name": "get Configuration 7",
-            "description": {
-              "content": "Use this method to retrieve user token configuration.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "userTokens"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3d4b1203-db94-4cdb-b64d-f9b4faa586a6",
-              "name": "Current user token configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"userTokenDefaultExpirationDays\": 2929\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "df2ed423-d132-4ab4-9bda-bdcc3aedf12f",
-              "name": "Authentication required",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "da66a5a5-9ae4-443f-b9ff-50447f120f76",
-              "name": "Insufficient permissions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f910a2ae-4ce5-48cc-bdb7-8462a09bf2c8",
-          "name": "update Configuration",
-          "request": {
-            "name": "update Configuration",
-            "description": {
-              "content": "Use this method to update user token configuration. Null values are ignored (no change). Returns the current configuration after applying changes.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "userTokens"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "296fb277-1c24-496a-b53b-14876927815f",
-              "name": "Configuration updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "418c0c04-4ef5-4e28-b31f-8ddb1211f5ce",
-              "name": "Invalid configuration values",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "bb53eb8f-9021-4cba-81b5-975a10cbefda",
-              "name": "Authentication required",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "cd753d78-19aa-4a98-9517-1486b7d0d8d6",
-              "name": "Insufficient permissions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"userTokenDefaultExpirationDays\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f315ba2f-5cbf-402c-a7e6-966782c0bec4",
+          "createdAt": "2026-10-22T03:17:59.000Z",
+          "updatedAt": "2026-10-22T03:17:59.000Z",
+          "uid": "35240-f315ba2f-5cbf-402c-a7e6-966782c0bec4"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "3b449227-69ad-434c-a7b4-8d13e076ca0e",
+      "createdAt": "2026-10-22T03:17:59.000Z",
+      "updatedAt": "2026-10-22T03:17:59.000Z",
+      "uid": "35240-3b449227-69ad-434c-a7b4-8d13e076ca0e"
     }
   ],
   "auth": {
@@ -689,21 +681,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3fad27b0-c916-4b46-8d6e-8b4772c0c42a",
-    "name": "Sonatype Lifecycle Public REST Advanced Search User Token Configuration API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

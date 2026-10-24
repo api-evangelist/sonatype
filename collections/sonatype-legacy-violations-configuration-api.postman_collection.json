@@ -1,0 +1,327 @@
+{
+  "info": {
+    "_postman_id": "009e8b39-7184-415a-b4b5-9f36a75d6f03",
+    "name": "Sonatype Lifecycle Public REST Legacy Violations\u2026",
+    "description": "Use this REST API to view and update legacy-violation configuration for an application or organization.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:28.000Z",
+    "updatedAt": "2026-10-22T03:18:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-009e8b39-7184-415a-b4b5-9f36a75d6f03"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "legacyViolations",
+                  "item": [
+                    {
+                      "name": "{ownerType}",
+                      "item": [
+                        {
+                          "name": "{ownerId}",
+                          "item": [
+                            {
+                              "name": "Get config",
+                              "id": "53d5de84-9851-4b59-9fa2-ac396d0d260f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/legacyViolations/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "legacyViolations",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "db70dc5f-b5c3-4bac-a992-69af0e03ad10",
+                                      "key": "ownerType",
+                                      "value": "application",
+                                      "description": "(Required) Owner type. Allowed values: `application`, `organization`."
+                                    },
+                                    {
+                                      "id": "10921be4-dad6-4852-8192-63f557dfdbcf",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Public id of the application, or id of the organization."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve the legacy-violation configuration for an owner.\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "c75ac729-d8ce-4ae4-9c60-dcd1be944d65",
+                                  "name": "Successfully retrieved legacy-violation configuration.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/legacyViolations/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "legacyViolations",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"enabled\": \"<boolean>\",\n  \"enabledInParent\": \"<boolean>\",\n  \"inheritedFromOrganizationName\": \"<string>\",\n  \"allowOverride\": \"<boolean>\",\n  \"allowChange\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:28.000Z",
+                                  "updatedAt": "2026-10-22T03:18:28.000Z",
+                                  "uid": "35240-c75ac729-d8ce-4ae4-9c60-dcd1be944d65"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:28.000Z",
+                              "updatedAt": "2026-10-22T03:18:28.000Z",
+                              "uid": "35240-53d5de84-9851-4b59-9fa2-ac396d0d260f"
+                            },
+                            {
+                              "name": "Set config",
+                              "id": "f24c6d78-eee9-4f1a-94aa-fd5a0649ea59",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"enabledInParent\": \"<boolean>\",\n  \"inheritedFromOrganizationName\": \"<string>\",\n  \"allowOverride\": \"<boolean>\",\n  \"allowChange\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/legacyViolations/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "legacyViolations",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2be9c7fd-6087-4aa4-bf19-26102bee51cf",
+                                      "key": "ownerType",
+                                      "value": "application",
+                                      "description": "(Required) Owner type. Allowed values: `application`, `organization`."
+                                    },
+                                    {
+                                      "id": "87aeaa59-4790-4373-9fdc-a546a3506052",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Public id of the application, or id of the organization."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to update the legacy-violation configuration for an owner.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "1088a898-e76c-47e9-b61e-3a742d9530f5",
+                                  "name": "Successfully updated legacy-violation configuration.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"enabledInParent\": \"<boolean>\",\n  \"inheritedFromOrganizationName\": \"<string>\",\n  \"allowOverride\": \"<boolean>\",\n  \"allowChange\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/legacyViolations/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "legacyViolations",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"enabled\": \"<boolean>\",\n  \"enabledInParent\": \"<boolean>\",\n  \"inheritedFromOrganizationName\": \"<string>\",\n  \"allowOverride\": \"<boolean>\",\n  \"allowChange\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:28.000Z",
+                                  "updatedAt": "2026-10-22T03:18:28.000Z",
+                                  "uid": "35240-1088a898-e76c-47e9-b61e-3a742d9530f5"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:28.000Z",
+                              "updatedAt": "2026-10-22T03:18:28.000Z",
+                              "uid": "35240-f24c6d78-eee9-4f1a-94aa-fd5a0649ea59"
+                            }
+                          ],
+                          "id": "5f5b21da-96c3-49cb-a47c-ac5f7c4415e2",
+                          "createdAt": "2026-10-22T03:18:28.000Z",
+                          "updatedAt": "2026-10-22T03:18:28.000Z",
+                          "uid": "35240-5f5b21da-96c3-49cb-a47c-ac5f7c4415e2"
+                        }
+                      ],
+                      "id": "3eae0e8f-2b3b-4b16-b403-044d0091bb1d",
+                      "createdAt": "2026-10-22T03:18:28.000Z",
+                      "updatedAt": "2026-10-22T03:18:28.000Z",
+                      "uid": "35240-3eae0e8f-2b3b-4b16-b403-044d0091bb1d"
+                    }
+                  ],
+                  "id": "b52eb278-875b-474e-b052-f202c192375d",
+                  "createdAt": "2026-10-22T03:18:28.000Z",
+                  "updatedAt": "2026-10-22T03:18:28.000Z",
+                  "uid": "35240-b52eb278-875b-474e-b052-f202c192375d"
+                }
+              ],
+              "id": "e16b0a95-c836-4f0b-b36a-dc6f3338c85b",
+              "createdAt": "2026-10-22T03:18:28.000Z",
+              "updatedAt": "2026-10-22T03:18:28.000Z",
+              "uid": "35240-e16b0a95-c836-4f0b-b36a-dc6f3338c85b"
+            }
+          ],
+          "id": "175cdd88-f278-4dcc-93aa-a73e462f30c4",
+          "createdAt": "2026-10-22T03:18:28.000Z",
+          "updatedAt": "2026-10-22T03:18:28.000Z",
+          "uid": "35240-175cdd88-f278-4dcc-93aa-a73e462f30c4"
+        }
+      ],
+      "id": "b843b664-ce26-4e3e-88a9-ec247b15e166",
+      "createdAt": "2026-10-22T03:18:28.000Z",
+      "updatedAt": "2026-10-22T03:18:28.000Z",
+      "uid": "35240-b843b664-ce26-4e3e-88a9-ec247b15e166"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

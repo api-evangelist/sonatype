@@ -1,1079 +1,1249 @@
 {
+  "info": {
+    "_postman_id": "2cc942dd-6015-4766-a922-b2e0687f2a29",
+    "name": "Sonatype License Legal Metadata Report API",
+    "description": "Operations tagged License Legal Metadata Report across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:16:01.000Z",
+    "updatedAt": "2026-10-22T03:16:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2cc942dd-6015-4766-a922-b2e0687f2a29"
+  },
   "item": [
     {
-      "id": "fd444d60-712a-46a7-8455-8eaf9c107b28",
-      "name": "License Legal Metadata Report",
-      "description": {
-        "content": "Use this REST API to retrieve license legal metadata in raw or HTML format.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "028b42d8-e0cf-481c-99a5-8ba359ff41da",
-          "name": "get License Legal Application Report",
-          "request": {
-            "name": "get License Legal Application Report",
-            "description": {
-              "content": "Use this REST API to retrieve the raw license legal data for components in an application.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "application",
-                ":applicationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the application id or public id."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "1893935c-7aa8-4dbb-aa72-7886e5f03761",
-              "name": "The response contains a list of all components in the application and the corresponding license legal metadata. For each component, the response includes component data and license legal metadata.\n\n1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><li>`hash` is the truncated hash value and can be used in other REST API calls. It should not be used as a checksum.</li><li>`componentIdentifier` includes the component format and its coordinates.</li><li>`displayName` is the display name of the component.</li><li>`licenseLegalData` contains the legal data.</li><li>`stageScans` is a list and each element contains `stageName` at which the application was scanned, the `scanId` of the application scan, and the `scanDate`.</li></ul>2. The `licenseLegalMetaData` is used as a dictionary for legal data and for each license contains the license id(s), name, license text, obligations, license threat group, and whether or not it is multi license.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "application",
-                    ":applicationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "licenseLegalMetadata",
+              "item": [
+                {
+                  "name": "application",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application id or public id."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"2014-03-09T09:51:32.666Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"2015-07-08T06:58:45.692Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          }\n        ],\n        \"componentCopyrightId\": \"string\",\n        \"componentCopyrightLastUpdatedAt\": \"2007-03-15T06:46:07.517Z\",\n        \"componentCopyrightLastUpdatedByUsername\": \"string\",\n        \"componentCopyrightScopeOwnerId\": \"string\",\n        \"componentLicensesId\": \"string\",\n        \"componentLicensesLastUpdatedAt\": \"2003-08-17T21:15:50.234Z\",\n        \"componentLicensesLastUpdatedByUsername\": \"string\",\n        \"componentLicensesScopeOwnerId\": \"string\",\n        \"componentNoticesId\": \"string\",\n        \"componentNoticesLastUpdatedAt\": \"2019-08-14T12:54:39.654Z\",\n        \"componentNoticesLastUpdatedByUsername\": \"string\",\n        \"componentNoticesScopeOwnerId\": \"string\",\n        \"copyrights\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"effectiveLicenseStatus\": \"string\",\n        \"effectiveLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"string\",\n          \"licenseThreatGroupLevel\": 8968,\n          \"licenseThreatGroupName\": \"string\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"enabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1967-06-09T00:05:56.671Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"FLAGGED\"\n          },\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1964-12-25T14:26:54.405Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"IGNORED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"string\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"1987-08-06T15:54:54.348Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        },\n        {\n          \"scanDate\": \"1962-02-08T09:18:31.848Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        }\n      ]\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"2001-03-27T03:46:00.807Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"2026-07-16T11:01:45.455Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          }\n        ],\n        \"componentCopyrightId\": \"string\",\n        \"componentCopyrightLastUpdatedAt\": \"1964-12-29T10:11:19.058Z\",\n        \"componentCopyrightLastUpdatedByUsername\": \"string\",\n        \"componentCopyrightScopeOwnerId\": \"string\",\n        \"componentLicensesId\": \"string\",\n        \"componentLicensesLastUpdatedAt\": \"1951-01-19T11:49:14.440Z\",\n        \"componentLicensesLastUpdatedByUsername\": \"string\",\n        \"componentLicensesScopeOwnerId\": \"string\",\n        \"componentNoticesId\": \"string\",\n        \"componentNoticesLastUpdatedAt\": \"2022-05-05T12:42:28.170Z\",\n        \"componentNoticesLastUpdatedByUsername\": \"string\",\n        \"componentNoticesScopeOwnerId\": \"string\",\n        \"copyrights\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"enabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"effectiveLicenseStatus\": \"string\",\n        \"effectiveLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"string\",\n          \"licenseThreatGroupLevel\": 9900,\n          \"licenseThreatGroupName\": \"string\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1959-08-14T09:12:27.960Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"FLAGGED\"\n          },\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1947-04-13T08:59:18.609Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"IGNORED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"string\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"1960-08-17T17:48:19.272Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        },\n        {\n          \"scanDate\": \"1982-04-21T00:31:24.451Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"licenseLegalMetadata\": [\n    {\n      \"isMulti\": true,\n      \"licenseId\": \"string\",\n      \"licenseName\": \"string\",\n      \"licenseText\": \"string\",\n      \"obligations\": [\n        {\n          \"name\": \"string\",\n          \"obligationTexts\": [\n            \"string\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"string\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"string\",\n        \"threatLevel\": 8474\n      }\n    },\n    {\n      \"isMulti\": false,\n      \"licenseId\": \"string\",\n      \"licenseName\": \"string\",\n      \"licenseText\": \"string\",\n      \"obligations\": [\n        {\n          \"name\": \"string\",\n          \"obligationTexts\": [\n            \"string\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"string\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"string\",\n        \"threatLevel\": 6106\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "df773117-621d-4849-9ca3-be59663f07a7",
-          "name": "get License Legal Application Report 1",
-          "request": {
-            "name": "get License Legal Application Report 1",
-            "description": {
-              "content": "Use this method to retrieve the raw license legal data for components in an application based on the application scan at a specific stage.\n\nPermissions required: Review Legal Obligations For Components Licenses ",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "application",
-                ":applicationId",
-                "stage",
-                ":stageId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the application id or public id."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "stageId",
-                  "description": "(Required) Enter the stageId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fd54a606-8fe6-400b-8051-de0a82c0b3b7",
-              "name": "The response contains a list of all components in the application. For each component, the response includes component data and license legal metadata.\n\n1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><li>`hash` is the truncated hash value and can be used in other REST API calls. It should not be used as a checksum.</li><li>`componentIdentifier` includes the component format and its coordinates.</li><li>`displayName` is the display name of the component.</li><li>`licenseLegalData` contains the legal data.</li><li>`stageScans` is a list and each element contains `stageName` at which the application was scanned, the `scanId` of the application scan, and the `scanDate`.</li></ul>2. The `licenseLegalMetaData` is used as a dictionary for legal data and for each license contains the license id(s), name, license text, obligations, license threat group, and whether or not it is multi license.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "application",
-                    ":applicationId",
-                    "stage",
-                    ":stageId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application id or public id."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "stageId",
-                      "description": "(Required) Enter the stageId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1956-06-09T08:30:36.183Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"2008-06-09T16:28:56.154Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          }\n        ],\n        \"componentCopyrightId\": \"string\",\n        \"componentCopyrightLastUpdatedAt\": \"1994-04-23T11:44:32.181Z\",\n        \"componentCopyrightLastUpdatedByUsername\": \"string\",\n        \"componentCopyrightScopeOwnerId\": \"string\",\n        \"componentLicensesId\": \"string\",\n        \"componentLicensesLastUpdatedAt\": \"1992-07-11T18:08:41.561Z\",\n        \"componentLicensesLastUpdatedByUsername\": \"string\",\n        \"componentLicensesScopeOwnerId\": \"string\",\n        \"componentNoticesId\": \"string\",\n        \"componentNoticesLastUpdatedAt\": \"1985-07-06T16:18:25.793Z\",\n        \"componentNoticesLastUpdatedByUsername\": \"string\",\n        \"componentNoticesScopeOwnerId\": \"string\",\n        \"copyrights\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"enabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"effectiveLicenseStatus\": \"string\",\n        \"effectiveLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"string\",\n          \"licenseThreatGroupLevel\": 2115,\n          \"licenseThreatGroupName\": \"string\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"enabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"2013-05-27T08:02:22.154Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"IGNORED\"\n          },\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1993-05-16T01:25:56.000Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"FULFILLED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"enabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"string\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"1997-05-18T19:45:24.928Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        },\n        {\n          \"scanDate\": \"1978-10-01T14:02:54.428Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        }\n      ]\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"displayName\": \"string\",\n      \"hash\": \"string\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1983-05-11T02:46:18.502Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1959-06-12T03:25:17.144Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"obligationName\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\"\n          }\n        ],\n        \"componentCopyrightId\": \"string\",\n        \"componentCopyrightLastUpdatedAt\": \"1961-02-24T03:00:12.156Z\",\n        \"componentCopyrightLastUpdatedByUsername\": \"string\",\n        \"componentCopyrightScopeOwnerId\": \"string\",\n        \"componentLicensesId\": \"string\",\n        \"componentLicensesLastUpdatedAt\": \"2014-08-31T10:17:29.109Z\",\n        \"componentLicensesLastUpdatedByUsername\": \"string\",\n        \"componentLicensesScopeOwnerId\": \"string\",\n        \"componentNoticesId\": \"string\",\n        \"componentNoticesLastUpdatedAt\": \"2021-06-14T13:08:38.798Z\",\n        \"componentNoticesLastUpdatedByUsername\": \"string\",\n        \"componentNoticesScopeOwnerId\": \"string\",\n        \"copyrights\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"effectiveLicenseStatus\": \"string\",\n        \"effectiveLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"string\",\n          \"licenseThreatGroupLevel\": 9125,\n          \"licenseThreatGroupName\": \"string\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContentHash\": \"string\",\n            \"relPath\": \"string\",\n            \"status\": \"enabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1968-10-05T22:47:17.027Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"FLAGGED\"\n          },\n          {\n            \"comment\": \"string\",\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"lastUpdatedAt\": \"1955-06-17T09:19:14.407Z\",\n            \"lastUpdatedByUsername\": \"string\",\n            \"name\": \"string\",\n            \"ownerId\": \"string\",\n            \"packageUrl\": \"string\",\n            \"status\": \"IGNORED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"string\",\n            \"id\": \"string\",\n            \"originalContent\": \"string\",\n            \"status\": \"enabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"string\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"1961-02-23T02:23:28.568Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        },\n        {\n          \"scanDate\": \"1959-03-22T15:23:11.071Z\",\n          \"scanId\": \"string\",\n          \"stageName\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"licenseLegalMetadata\": [\n    {\n      \"isMulti\": true,\n      \"licenseId\": \"string\",\n      \"licenseName\": \"string\",\n      \"licenseText\": \"string\",\n      \"obligations\": [\n        {\n          \"name\": \"string\",\n          \"obligationTexts\": [\n            \"string\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"string\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"string\",\n        \"threatLevel\": 3425\n      }\n    },\n    {\n      \"isMulti\": true,\n      \"licenseId\": \"string\",\n      \"licenseName\": \"string\",\n      \"licenseText\": \"string\",\n      \"obligations\": [\n        {\n          \"name\": \"string\",\n          \"obligationTexts\": [\n            \"string\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"string\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"string\",\n        \"threatLevel\": 1975\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9e89f931-4226-4af1-bd0e-e89d9a853b73",
-          "name": "get License Legal Application HTML Report",
-          "request": {
-            "name": "get License Legal Application HTML Report",
-            "description": {
-              "content": "Use this method to retrieve the license legal data for components in an application at a specific stage, in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "application",
-                ":applicationId",
-                "stage",
-                ":stageId",
-                "report"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the application id or public id."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "stageId",
-                  "description": "(Required) Enter the stageId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "text/html"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8637c4ad-aa25-4d92-bf17-fe591211a4fe",
-              "name": "The response contains license legal data in HTML format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "application",
-                    ":applicationId",
-                    "stage",
-                    ":stageId",
-                    "report"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application id or public id."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "stageId",
-                      "description": "(Required) Enter the stageId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1a9316c2-2f85-47bf-b46d-4cd2048dbd75",
-          "name": "get License Legal Custom Application HTML Report",
-          "request": {
-            "name": "get License Legal Custom Application HTML Report",
-            "description": {
-              "content": "Use this method to retrieve and customize the license legal data for components in an application at a specific stage, in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "application",
-                ":applicationId",
-                "stage",
-                ":stageId",
-                "report"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the application id or public id."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "stageId",
-                  "description": "(Required) Enter the stageId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "text/html"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f1afb32c-fe49-4f93-9325-4d08500ade56",
-              "name": "The response contains the customized license legal report in HTML format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "application",
-                    ":applicationId",
-                    "stage",
-                    ":stageId",
-                    "report"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application id or public id."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "stageId",
-                      "description": "(Required) Enter the stageId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6e15ae4b-bb1e-4b67-9441-3cc6a842acf8",
-          "name": "get License Legal Custom Application HTML Report 1",
-          "request": {
-            "name": "get License Legal Custom Application HTML Report 1",
-            "description": {
-              "content": "Use this method to generate a license legal report in the specified HTML template format.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "application",
-                ":applicationId",
-                "stage",
-                ":stageId",
-                "report",
-                "templateId",
-                ":templateId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the application id or public id."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "stageId",
-                  "description": "(Required) Enter the stageId."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "templateId",
-                  "description": "(Required) Enter the templateId for the HTML report format."
-                }
-              ]
-            },
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a3d55f12-57e5-4d82-b8c0-720926ee1d31",
-              "name": "The response contains the license legal report for the specified application in HTML format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "application",
-                    ":applicationId",
-                    "stage",
-                    ":stageId",
-                    "report",
-                    "templateId",
-                    ":templateId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the application id or public id."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "stageId",
-                      "description": "(Required) Enter the stageId."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "templateId",
-                      "description": "(Required) Enter the templateId for the HTML report format."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0c091451-8bea-47c4-b974-b1ae19e64205",
-          "name": "get License Legal Multi Application Report From Active User Filter",
-          "request": {
-            "name": "get License Legal Multi Application Report From Active User Filter",
-            "description": {
-              "content": "Use this method to generate license legal data in HTML format for applications ,on which the logged in user has permissions.\n\nPermission required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "multiApplication",
-                "activeUserFilter",
-                "report",
-                "templateId",
-                ":templateId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "templateId",
-                  "description": "(Required) Enter the templateId for the license legal data."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "text/html"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "07419c70-41e8-4ebd-8682-527dd263df44",
-              "name": "The response contains license legal data in HTML format based on the specified template.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "multiApplication",
-                    "activeUserFilter",
-                    "report",
-                    "templateId",
-                    ":templateId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "templateId",
-                      "description": "(Required) Enter the templateId for the license legal data."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6b467a68-6bfa-4c20-87d3-08cf3130a195",
-          "name": "get License Legal Multi Application HTML Report",
-          "request": {
-            "name": "get License Legal Multi Application HTML Report",
-            "description": {
-              "content": "Use this method to generate license legal data in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "multiApplication",
-                "report"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "27c398e3-7e0b-4e4c-be9e-dd9e61f97cda",
-              "name": "License legal data in HTML format is generated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "multiApplication",
-                    "report"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6c3779a5-2e63-4b65-b5cd-07ec8b928463",
-          "name": "get License Legal Custom Multi Application HTML Report 1",
-          "request": {
-            "name": "get License Legal Custom Multi Application HTML Report 1",
-            "description": {
-              "content": "Use this method to generate license legal data for all applications in HTML format based on the given template.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "multiApplication",
-                "report",
-                "templateId",
-                ":templateId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "templateId",
-                  "description": "(Required) Enter the `templateId` for the HTML report."
-                }
-              ]
-            },
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "cb82a470-1a83-4c0e-b43d-1480531c554a",
-              "name": "The response contains license legal data in HTML format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "multiApplication",
-                    "report",
-                    "templateId",
-                    ":templateId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "templateId",
-                      "description": "(Required) Enter the `templateId` for the HTML report."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "21ba102c-a215-4dce-a805-2370349a2389",
-          "name": "get License Legal Component Report",
-          "request": {
-            "name": "get License Legal Component Report",
-            "description": {
-              "content": "Use this method to retrieve the raw license legal data for a component by specifying the component identifier or package URL or the component hash.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                ":ownerType",
-                ":ownerId",
-                "component"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "coordinates",
-                  "value": "{\"key_0\":\"<string>\"}",
-                  "description": "Enter the componentIdentifier consisting of format and coordinates."
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "<string>",
-                  "description": "Enter the componentIdentifier consisting of format and coordinates."
-                },
-                {
-                  "disabled": false,
-                  "key": "packageUrl",
-                  "value": "<string>",
-                  "description": "Enter the package URL."
-                },
-                {
-                  "disabled": false,
-                  "key": "hash",
-                  "value": "<string>",
-                  "description": "Enter the component hash."
-                },
-                {
-                  "disabled": false,
-                  "key": "identificationSource",
-                  "value": "<string>",
-                  "description": "Enter the identification source if a third party scan is used."
-                },
-                {
-                  "disabled": false,
-                  "key": "scanId",
-                  "value": "<string>",
-                  "description": "Enter the scanId for the report where the component was identified (required if identified by third party scan)."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the ownerId corresponding to the ownerType."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e05c0142-4756-4474-a110-666c9867d736",
-              "name": "The response contains the requested component data and the corresponding license legal metadata.\n\n1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><li>`hash` is the truncated hash value and can be used in other REST API calls. It should not be used as a checksum.</li><li>`componentIdentifier` includes the component format and its coordinates.</li><li>`displayName` is the display name of the component.</li><li>`licenseLegalData` contains the legal data.</li><li>`stageScans` is a list and each element contains `stageName` at which the application was scanned, the `scanId` of the application scan, and the `scanDate`.</li></ul>2. The `licenseLegalMetaData` is used as a dictionary for legal data and for each license contains the license id(s), name, license text, obligations, license threat group, and whether or not it is multi license.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    ":ownerType",
-                    ":ownerId",
-                    "component"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "coordinates",
-                      "value": "[object Object]"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "packageUrl",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "hash",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "identificationSource",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scanId",
-                      "value": "<string>"
+                      "name": "{applicationId}",
+                      "item": [
+                        {
+                          "name": "stage",
+                          "item": [
+                            {
+                              "name": "{stageId}",
+                              "item": [
+                                {
+                                  "name": "report",
+                                  "item": [
+                                    {
+                                      "name": "templateId",
+                                      "item": [
+                                        {
+                                          "name": "{templateId}",
+                                          "item": [
+                                            {
+                                              "name": "Get license legal custom application HTML report 1",
+                                              "id": "f531da41-c805-429d-b1c4-61bbfe63b37e",
+                                              "protocolProfileBehavior": {
+                                                "disableBodyPruning": true
+                                              },
+                                              "request": {
+                                                "method": "POST",
+                                                "header": [],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report/templateId/:templateId",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v2",
+                                                    "licenseLegalMetadata",
+                                                    "application",
+                                                    ":applicationId",
+                                                    "stage",
+                                                    ":stageId",
+                                                    "report",
+                                                    "templateId",
+                                                    ":templateId"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "id": "1cccab8d-c2cb-4786-8c8c-7c53029ccdf3",
+                                                      "key": "applicationId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Enter the application id or public id."
+                                                    },
+                                                    {
+                                                      "id": "de8ebc49-e9f2-4098-86de-eae4007246e8",
+                                                      "key": "stageId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Enter the stageId."
+                                                    },
+                                                    {
+                                                      "id": "e20c4029-89a6-4ad7-8d9d-fc9bac2c8bf0",
+                                                      "key": "templateId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Enter the templateId for the HTML report format."
+                                                    }
+                                                  ]
+                                                },
+                                                "description": "Use this method to generate a license legal report in the specified HTML template format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                                              },
+                                              "response": [
+                                                {
+                                                  "id": "088e7b6f-3275-40d0-8992-91f0a715d79d",
+                                                  "name": "The response contains the license legal report for the specified application in HTML format.",
+                                                  "originalRequest": {
+                                                    "method": "POST",
+                                                    "header": [
+                                                      {
+                                                        "description": "Added as a part of security scheme: basic",
+                                                        "key": "Authorization",
+                                                        "value": "Basic <credentials>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report/templateId/:templateId",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "v2",
+                                                        "licenseLegalMetadata",
+                                                        "application",
+                                                        ":applicationId",
+                                                        "stage",
+                                                        ":stageId",
+                                                        "report",
+                                                        "templateId",
+                                                        ":templateId"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "applicationId"
+                                                        },
+                                                        {
+                                                          "key": "stageId"
+                                                        },
+                                                        {
+                                                          "key": "templateId"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "OK",
+                                                  "code": 200,
+                                                  "_postman_previewlanguage": "text",
+                                                  "header": [],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": null,
+                                                  "createdAt": "2026-10-22T03:16:01.000Z",
+                                                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                                                  "uid": "35240-088e7b6f-3275-40d0-8992-91f0a715d79d"
+                                                }
+                                              ],
+                                              "createdAt": "2026-10-22T03:16:01.000Z",
+                                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                                              "uid": "35240-f531da41-c805-429d-b1c4-61bbfe63b37e"
+                                            }
+                                          ],
+                                          "id": "f1cc982d-5152-4d48-a707-c6a55bc294af",
+                                          "createdAt": "2026-10-22T03:16:01.000Z",
+                                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                                          "uid": "35240-f1cc982d-5152-4d48-a707-c6a55bc294af"
+                                        }
+                                      ],
+                                      "id": "4454573e-2f09-4a1b-a0c3-6b8e6081b0db",
+                                      "createdAt": "2026-10-22T03:16:01.000Z",
+                                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                                      "uid": "35240-4454573e-2f09-4a1b-a0c3-6b8e6081b0db"
+                                    },
+                                    {
+                                      "name": "Get license legal application HTML report",
+                                      "id": "ed1110e9-4d63-4aa9-9032-0a99b05a2932",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/html"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "licenseLegalMetadata",
+                                            "application",
+                                            ":applicationId",
+                                            "stage",
+                                            ":stageId",
+                                            "report"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "0cf2f2fb-0e4f-4bde-bb54-7f4c4184f8e7",
+                                              "key": "applicationId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the application id or public id."
+                                            },
+                                            {
+                                              "id": "5dce5ae3-aa0b-4cb5-9fe0-9ae71709416b",
+                                              "key": "stageId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the stageId."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to retrieve the license legal data for components in an application at a specific stage, in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "cbcf4a26-cf17-4bc6-9f93-9455ae169b32",
+                                          "name": "The response contains license legal data in HTML format.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "text/html"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "licenseLegalMetadata",
+                                                "application",
+                                                ":applicationId",
+                                                "stage",
+                                                ":stageId",
+                                                "report"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "applicationId"
+                                                },
+                                                {
+                                                  "key": "stageId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "text/html"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "<string>",
+                                          "createdAt": "2026-10-22T03:16:01.000Z",
+                                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                                          "uid": "35240-cbcf4a26-cf17-4bc6-9f93-9455ae169b32"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:16:01.000Z",
+                                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                                      "uid": "35240-ed1110e9-4d63-4aa9-9032-0a99b05a2932"
+                                    },
+                                    {
+                                      "name": "Get license legal custom application HTML report",
+                                      "id": "be5554d8-baef-429d-ac33-16a4833ac2b9",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/html"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "licenseLegalMetadata",
+                                            "application",
+                                            ":applicationId",
+                                            "stage",
+                                            ":stageId",
+                                            "report"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "fffc2081-70f2-4136-8f7c-f971248a4858",
+                                              "key": "applicationId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the application id or public id."
+                                            },
+                                            {
+                                              "id": "5dd45a77-b151-4583-999b-07deb0cf728f",
+                                              "key": "stageId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the stageId."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to retrieve and customize the license legal data for components in an application at a specific stage, in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "5b6c5ce4-febf-497b-a821-40317ae922a0",
+                                          "name": "The response contains the customized license legal report in HTML format.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "text/html"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId/report",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "licenseLegalMetadata",
+                                                "application",
+                                                ":applicationId",
+                                                "stage",
+                                                ":stageId",
+                                                "report"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "applicationId"
+                                                },
+                                                {
+                                                  "key": "stageId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "text/html"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "<string>",
+                                          "createdAt": "2026-10-22T03:16:01.000Z",
+                                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                                          "uid": "35240-5b6c5ce4-febf-497b-a821-40317ae922a0"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:16:01.000Z",
+                                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                                      "uid": "35240-be5554d8-baef-429d-ac33-16a4833ac2b9"
+                                    }
+                                  ],
+                                  "id": "b85d52f4-3a68-4df2-bc14-a3bccf9c5c93",
+                                  "createdAt": "2026-10-22T03:16:01.000Z",
+                                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                                  "uid": "35240-b85d52f4-3a68-4df2-bc14-a3bccf9c5c93"
+                                },
+                                {
+                                  "name": "Get license legal application report 1",
+                                  "id": "2b166318-8b11-4deb-a987-4685d774d16f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "licenseLegalMetadata",
+                                        "application",
+                                        ":applicationId",
+                                        "stage",
+                                        ":stageId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "624196a1-b4e8-466c-b1a5-2a7c17af52ee",
+                                          "key": "applicationId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the application id or public id."
+                                        },
+                                        {
+                                          "id": "ec930a43-0435-4991-bd82-b9aae244785e",
+                                          "key": "stageId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the stageId."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to retrieve the raw license legal data for components in an application based on the application scan at a specific stage.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "b30bfe81-325a-4db3-b3e0-3721d2a1099f",
+                                      "name": "The response contains a list of all components in the application. For each component, the response includes component data and license legal metadata.\n\n1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId/stage/:stageId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "licenseLegalMetadata",
+                                            "application",
+                                            ":applicationId",
+                                            "stage",
+                                            ":stageId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "stageId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"enim_8\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"reprehenderita4\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"minimf2\": \"<string>\",\n                \"cillumc0\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          }\n        ],\n        \"componentCopyrightId\": \"<string>\",\n        \"componentCopyrightLastUpdatedAt\": \"<dateTime>\",\n        \"componentCopyrightLastUpdatedByUsername\": \"<string>\",\n        \"componentCopyrightScopeOwnerId\": \"<string>\",\n        \"componentLicensesId\": \"<string>\",\n        \"componentLicensesLastUpdatedAt\": \"<dateTime>\",\n        \"componentLicensesLastUpdatedByUsername\": \"<string>\",\n        \"componentLicensesScopeOwnerId\": \"<string>\",\n        \"componentNoticesId\": \"<string>\",\n        \"componentNoticesLastUpdatedAt\": \"<dateTime>\",\n        \"componentNoticesLastUpdatedByUsername\": \"<string>\",\n        \"componentNoticesScopeOwnerId\": \"<string>\",\n        \"copyrights\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"enabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"effectiveLicenseStatus\": \"<string>\",\n        \"effectiveLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"<string>\",\n          \"licenseThreatGroupLevel\": \"<integer>\",\n          \"licenseThreatGroupName\": \"<string>\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"fugiat27_\": \"<string>\",\n                \"quis_73\": \"<string>\",\n                \"Excepteur628\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"FLAGGED\"\n          },\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"dolor__30\": \"<string>\",\n                \"esse0a4\": \"<string>\",\n                \"nostrud_bb0\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"FLAGGED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"enabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"<string>\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        },\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"qui_0f7\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"esse3e8\": \"<string>\",\n                \"laborisf\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"sedb\": \"<string>\",\n                \"voluptate_6\": \"<string>\",\n                \"officia_eb3\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          }\n        ],\n        \"componentCopyrightId\": \"<string>\",\n        \"componentCopyrightLastUpdatedAt\": \"<dateTime>\",\n        \"componentCopyrightLastUpdatedByUsername\": \"<string>\",\n        \"componentCopyrightScopeOwnerId\": \"<string>\",\n        \"componentLicensesId\": \"<string>\",\n        \"componentLicensesLastUpdatedAt\": \"<dateTime>\",\n        \"componentLicensesLastUpdatedByUsername\": \"<string>\",\n        \"componentLicensesScopeOwnerId\": \"<string>\",\n        \"componentNoticesId\": \"<string>\",\n        \"componentNoticesLastUpdatedAt\": \"<dateTime>\",\n        \"componentNoticesLastUpdatedByUsername\": \"<string>\",\n        \"componentNoticesScopeOwnerId\": \"<string>\",\n        \"copyrights\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"effectiveLicenseStatus\": \"<string>\",\n        \"effectiveLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"<string>\",\n          \"licenseThreatGroupLevel\": \"<integer>\",\n          \"licenseThreatGroupName\": \"<string>\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"quis_2\": \"<string>\",\n                \"Lorem_f\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"FLAGGED\"\n          },\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"nisib4\": \"<string>\",\n                \"sit_70_\": \"<string>\",\n                \"exercitation02\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"IGNORED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"<string>\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        },\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"licenseLegalMetadata\": [\n    {\n      \"isMulti\": \"<boolean>\",\n      \"licenseId\": \"<string>\",\n      \"licenseName\": \"<string>\",\n      \"licenseText\": \"<string>\",\n      \"obligations\": [\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"<string>\",\n        \"threatLevel\": \"<integer>\"\n      }\n    },\n    {\n      \"isMulti\": \"<boolean>\",\n      \"licenseId\": \"<string>\",\n      \"licenseName\": \"<string>\",\n      \"licenseText\": \"<string>\",\n      \"obligations\": [\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"<string>\",\n        \"threatLevel\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                                      "createdAt": "2026-10-22T03:16:01.000Z",
+                                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                                      "uid": "35240-b30bfe81-325a-4db3-b3e0-3721d2a1099f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:16:01.000Z",
+                                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                                  "uid": "35240-2b166318-8b11-4deb-a987-4685d774d16f"
+                                }
+                              ],
+                              "id": "ae0321e3-4ea0-40d7-8862-b58d7d2d895e",
+                              "createdAt": "2026-10-22T03:16:01.000Z",
+                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                              "uid": "35240-ae0321e3-4ea0-40d7-8862-b58d7d2d895e"
+                            }
+                          ],
+                          "id": "8a9401fe-4d73-4583-b46e-8f11a52e664a",
+                          "createdAt": "2026-10-22T03:16:01.000Z",
+                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                          "uid": "35240-8a9401fe-4d73-4583-b46e-8f11a52e664a"
+                        },
+                        {
+                          "name": "Get license legal application report",
+                          "id": "2ef980f4-193b-4e7c-b487-0bc7a186f066",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseLegalMetadata",
+                                "application",
+                                ":applicationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f17c2475-d4ec-4e46-8c33-a76f9a9c740a",
+                                  "key": "applicationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the application id or public id."
+                                }
+                              ]
+                            },
+                            "description": "Use this REST API to retrieve the raw license legal data for components in an application.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                          },
+                          "response": [
+                            {
+                              "id": "131f31f1-53ba-4c13-8099-fa0a0e2ffc21",
+                              "name": "The response contains a list of all components in the application and the corresponding license legal metadata. For each component, the response includes component data and license legal metadata.\n\n1. The component data includes:<ul><li>`packageURL` is th",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/application/:applicationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseLegalMetadata",
+                                    "application",
+                                    ":applicationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"enim_8\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"reprehenderita4\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"minimf2\": \"<string>\",\n                \"cillumc0\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          }\n        ],\n        \"componentCopyrightId\": \"<string>\",\n        \"componentCopyrightLastUpdatedAt\": \"<dateTime>\",\n        \"componentCopyrightLastUpdatedByUsername\": \"<string>\",\n        \"componentCopyrightScopeOwnerId\": \"<string>\",\n        \"componentLicensesId\": \"<string>\",\n        \"componentLicensesLastUpdatedAt\": \"<dateTime>\",\n        \"componentLicensesLastUpdatedByUsername\": \"<string>\",\n        \"componentLicensesScopeOwnerId\": \"<string>\",\n        \"componentNoticesId\": \"<string>\",\n        \"componentNoticesLastUpdatedAt\": \"<dateTime>\",\n        \"componentNoticesLastUpdatedByUsername\": \"<string>\",\n        \"componentNoticesScopeOwnerId\": \"<string>\",\n        \"copyrights\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"enabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"effectiveLicenseStatus\": \"<string>\",\n        \"effectiveLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"<string>\",\n          \"licenseThreatGroupLevel\": \"<integer>\",\n          \"licenseThreatGroupName\": \"<string>\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"fugiat27_\": \"<string>\",\n                \"quis_73\": \"<string>\",\n                \"Excepteur628\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"FLAGGED\"\n          },\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"dolor__30\": \"<string>\",\n                \"esse0a4\": \"<string>\",\n                \"nostrud_bb0\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"FLAGGED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"enabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"<string>\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        },\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"qui_0f7\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"licenseLegalData\": {\n        \"attributions\": [\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"esse3e8\": \"<string>\",\n                \"laborisf\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          },\n          {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"sedb\": \"<string>\",\n                \"voluptate_6\": \"<string>\",\n                \"officia_eb3\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"obligationName\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\"\n          }\n        ],\n        \"componentCopyrightId\": \"<string>\",\n        \"componentCopyrightLastUpdatedAt\": \"<dateTime>\",\n        \"componentCopyrightLastUpdatedByUsername\": \"<string>\",\n        \"componentCopyrightScopeOwnerId\": \"<string>\",\n        \"componentLicensesId\": \"<string>\",\n        \"componentLicensesLastUpdatedAt\": \"<dateTime>\",\n        \"componentLicensesLastUpdatedByUsername\": \"<string>\",\n        \"componentLicensesScopeOwnerId\": \"<string>\",\n        \"componentNoticesId\": \"<string>\",\n        \"componentNoticesLastUpdatedAt\": \"<dateTime>\",\n        \"componentNoticesLastUpdatedByUsername\": \"<string>\",\n        \"componentNoticesScopeOwnerId\": \"<string>\",\n        \"copyrights\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"declaredLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"effectiveLicenseStatus\": \"<string>\",\n        \"effectiveLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"highestEffectiveLicenseThreatGroup\": {\n          \"licenseThreatGroupCategory\": \"<string>\",\n          \"licenseThreatGroupLevel\": \"<integer>\",\n          \"licenseThreatGroupName\": \"<string>\"\n        },\n        \"licenseFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"noticeFiles\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContentHash\": \"<string>\",\n            \"relPath\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ],\n        \"obligations\": [\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"quis_2\": \"<string>\",\n                \"Lorem_f\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"FLAGGED\"\n          },\n          {\n            \"comment\": \"<string>\",\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"nisib4\": \"<string>\",\n                \"sit_70_\": \"<string>\",\n                \"exercitation02\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"id\": \"<string>\",\n            \"lastUpdatedAt\": \"<dateTime>\",\n            \"lastUpdatedByUsername\": \"<string>\",\n            \"name\": \"<string>\",\n            \"ownerId\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"status\": \"IGNORED\"\n          }\n        ],\n        \"observedLicenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sourceLinks\": [\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"enabled\"\n          },\n          {\n            \"content\": \"<string>\",\n            \"id\": \"<string>\",\n            \"originalContent\": \"<string>\",\n            \"status\": \"disabled\"\n          }\n        ]\n      },\n      \"packageUrl\": \"<string>\",\n      \"stageScans\": [\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        },\n        {\n          \"scanDate\": \"<dateTime>\",\n          \"scanId\": \"<string>\",\n          \"stageName\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"licenseLegalMetadata\": [\n    {\n      \"isMulti\": \"<boolean>\",\n      \"licenseId\": \"<string>\",\n      \"licenseName\": \"<string>\",\n      \"licenseText\": \"<string>\",\n      \"obligations\": [\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"<string>\",\n        \"threatLevel\": \"<integer>\"\n      }\n    },\n    {\n      \"isMulti\": \"<boolean>\",\n      \"licenseId\": \"<string>\",\n      \"licenseName\": \"<string>\",\n      \"licenseText\": \"<string>\",\n      \"obligations\": [\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"<string>\",\n        \"threatLevel\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T03:16:01.000Z",
+                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                              "uid": "35240-131f31f1-53ba-4c13-8099-fa0a0e2ffc21"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:01.000Z",
+                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                          "uid": "35240-2ef980f4-193b-4e7c-b487-0bc7a186f066"
+                        }
+                      ],
+                      "id": "d50656cc-7e01-4880-82a4-ab1f9e5de197",
+                      "createdAt": "2026-10-22T03:16:01.000Z",
+                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                      "uid": "35240-d50656cc-7e01-4880-82a4-ab1f9e5de197"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the ownerId corresponding to the ownerType."
-                    }
-                  ]
+                  "id": "5ff97b40-c721-4316-bdff-a0ab0bd50741",
+                  "createdAt": "2026-10-22T03:16:01.000Z",
+                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                  "uid": "35240-5ff97b40-c721-4316-bdff-a0ab0bd50741"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "multiApplication",
+                  "item": [
+                    {
+                      "name": "activeUserFilter",
+                      "item": [
+                        {
+                          "name": "report",
+                          "item": [
+                            {
+                              "name": "templateId",
+                              "item": [
+                                {
+                                  "name": "{templateId}",
+                                  "item": [
+                                    {
+                                      "name": "Get license legal multi application report from active user filter",
+                                      "id": "e9c6d245-8b05-403a-8011-e2b81c526718",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/html"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/activeUserFilter/report/templateId/:templateId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "licenseLegalMetadata",
+                                            "multiApplication",
+                                            "activeUserFilter",
+                                            "report",
+                                            "templateId",
+                                            ":templateId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "d2cb358d-84cb-4c48-baa2-968b5207d93f",
+                                              "key": "templateId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the templateId for the license legal data."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to generate license legal data in HTML format for applications ,on which the logged in user has permissions.\n\nPermission required: Review Legal Obligations For Components Licenses"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "da020005-f5ba-40ef-85a5-145209762cee",
+                                          "name": "The response contains license legal data in HTML format based on the specified template.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "text/html"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/activeUserFilter/report/templateId/:templateId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "licenseLegalMetadata",
+                                                "multiApplication",
+                                                "activeUserFilter",
+                                                "report",
+                                                "templateId",
+                                                ":templateId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "templateId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "text/html"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "<string>",
+                                          "createdAt": "2026-10-22T03:16:01.000Z",
+                                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                                          "uid": "35240-da020005-f5ba-40ef-85a5-145209762cee"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:16:01.000Z",
+                                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                                      "uid": "35240-e9c6d245-8b05-403a-8011-e2b81c526718"
+                                    }
+                                  ],
+                                  "id": "df5e59f6-65a0-48c9-abc8-1548ce9430b7",
+                                  "createdAt": "2026-10-22T03:16:01.000Z",
+                                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                                  "uid": "35240-df5e59f6-65a0-48c9-abc8-1548ce9430b7"
+                                }
+                              ],
+                              "id": "cef27390-9245-4c99-97dc-3ba0a1dba2e7",
+                              "createdAt": "2026-10-22T03:16:01.000Z",
+                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                              "uid": "35240-cef27390-9245-4c99-97dc-3ba0a1dba2e7"
+                            }
+                          ],
+                          "id": "2052cbb8-6860-4e07-b10f-aecb3f52aa94",
+                          "createdAt": "2026-10-22T03:16:01.000Z",
+                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                          "uid": "35240-2052cbb8-6860-4e07-b10f-aecb3f52aa94"
+                        }
+                      ],
+                      "id": "d79d4ece-0d76-4eed-9c3f-3d8cf9fa3697",
+                      "createdAt": "2026-10-22T03:16:01.000Z",
+                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                      "uid": "35240-d79d4ece-0d76-4eed-9c3f-3d8cf9fa3697"
+                    },
+                    {
+                      "name": "report",
+                      "item": [
+                        {
+                          "name": "templateId",
+                          "item": [
+                            {
+                              "name": "{templateId}",
+                              "item": [
+                                {
+                                  "name": "Get license legal custom multi application HTML report 1",
+                                  "id": "8678086f-c234-4b66-9242-606dd21b81f7",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/report/templateId/:templateId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "licenseLegalMetadata",
+                                        "multiApplication",
+                                        "report",
+                                        "templateId",
+                                        ":templateId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "5e2e6f62-6186-4825-a486-0629b1dabf74",
+                                          "key": "templateId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the `templateId` for the HTML report."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to generate license legal data for all applications in HTML format based on the given template.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a56f67c5-2f84-48a5-8ccd-035966b663a4",
+                                      "name": "The response contains license legal data in HTML format.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/report/templateId/:templateId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "licenseLegalMetadata",
+                                            "multiApplication",
+                                            "report",
+                                            "templateId",
+                                            ":templateId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "templateId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T03:16:01.000Z",
+                                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                                      "uid": "35240-a56f67c5-2f84-48a5-8ccd-035966b663a4"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:16:01.000Z",
+                                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                                  "uid": "35240-8678086f-c234-4b66-9242-606dd21b81f7"
+                                }
+                              ],
+                              "id": "fa669422-202d-4107-986e-d964cee3a3ab",
+                              "createdAt": "2026-10-22T03:16:01.000Z",
+                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                              "uid": "35240-fa669422-202d-4107-986e-d964cee3a3ab"
+                            }
+                          ],
+                          "id": "5661e18a-3196-4082-beeb-9fe8b75a2a18",
+                          "createdAt": "2026-10-22T03:16:01.000Z",
+                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                          "uid": "35240-5661e18a-3196-4082-beeb-9fe8b75a2a18"
+                        },
+                        {
+                          "name": "Get license legal multi application HTML report",
+                          "id": "13770a6d-9f72-4aea-8ae7-b6e56b5c6b9a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/report",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseLegalMetadata",
+                                "multiApplication",
+                                "report"
+                              ]
+                            },
+                            "description": "Use this method to generate license legal data in HTML format.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                          },
+                          "response": [
+                            {
+                              "id": "e9c81861-518a-400d-8e65-db9a9da3ccd8",
+                              "name": "License legal data in HTML format is generated.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/multiApplication/report",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseLegalMetadata",
+                                    "multiApplication",
+                                    "report"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:16:01.000Z",
+                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                              "uid": "35240-e9c81861-518a-400d-8e65-db9a9da3ccd8"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:01.000Z",
+                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                          "uid": "35240-13770a6d-9f72-4aea-8ae7-b6e56b5c6b9a"
+                        }
+                      ],
+                      "id": "1d475bb1-2148-43e3-b33e-002755360994",
+                      "createdAt": "2026-10-22T03:16:01.000Z",
+                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                      "uid": "35240-1d475bb1-2148-43e3-b33e-002755360994"
+                    }
+                  ],
+                  "id": "c5955bdd-5dcc-47f5-a913-1ffaf6243509",
+                  "createdAt": "2026-10-22T03:16:01.000Z",
+                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                  "uid": "35240-c5955bdd-5dcc-47f5-a913-1ffaf6243509"
+                },
+                {
+                  "name": "{ownerType}",
+                  "item": [
+                    {
+                      "name": "{ownerId}",
+                      "item": [
+                        {
+                          "name": "component",
+                          "item": [
+                            {
+                              "name": "Get license legal component report",
+                              "id": "257bd1ec-5c60-43e4-91eb-b2b4b7ab9f9b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/:ownerType/:ownerId/component?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>&identificationSource=<string>&scanId=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseLegalMetadata",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    "component"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Enter the componentIdentifier consisting of format and coordinates.",
+                                      "key": "coordinates",
+                                      "value": "[object Object]"
+                                    },
+                                    {
+                                      "description": "Enter the componentIdentifier consisting of format and coordinates.",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter the package URL.",
+                                      "key": "packageUrl",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter the component hash.",
+                                      "key": "hash",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter the identification source if a third party scan is used.",
+                                      "key": "identificationSource",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter the scanId for the report where the component was identified (required if identified by third party scan).",
+                                      "key": "scanId",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "34696b4e-e012-4b63-8e1d-fdecdd69bb63",
+                                      "key": "ownerType",
+                                      "value": "application",
+                                      "description": "(Required) Enter the ownerType"
+                                    },
+                                    {
+                                      "id": "1e9ab5e7-d69f-4594-9fc8-16b311d14d29",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the ownerId corresponding to the ownerType."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve the raw license legal data for a component by specifying the component identifier or package URL or the component hash.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                              },
+                              "response": [
+                                {
+                                  "id": "92a3c146-91e6-4cbf-8890-621474681088",
+                                  "name": "The response contains the requested component data and the corresponding license legal metadata.\n\n1. The component data includes:<ul><li>`packageURL` is the package URL or pURL of the component.</li><li>`hash` is the truncated hash value and can be used i",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/:ownerType/:ownerId/component?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>&identificationSource=<string>&scanId=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "licenseLegalMetadata",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "component"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Enter the componentIdentifier consisting of format and coordinates.",
+                                          "key": "coordinates",
+                                          "value": "[object Object]"
+                                        },
+                                        {
+                                          "description": "Enter the componentIdentifier consisting of format and coordinates.",
+                                          "key": "format",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the package URL.",
+                                          "key": "packageUrl",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the component hash.",
+                                          "key": "hash",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the identification source if a third party scan is used.",
+                                          "key": "identificationSource",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the scanId for the report where the component was identified (required if identified by third party scan).",
+                                          "key": "scanId",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"component\": {\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"incididunt_f3\": \"<string>\"\n      },\n      \"format\": \"<string>\"\n    },\n    \"displayName\": \"<string>\",\n    \"hash\": \"<string>\",\n    \"licenseLegalData\": {\n      \"attributions\": [\n        {\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"in759\": \"<string>\",\n              \"dolore_3\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"lastUpdatedAt\": \"<dateTime>\",\n          \"lastUpdatedByUsername\": \"<string>\",\n          \"obligationName\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"packageUrl\": \"<string>\"\n        },\n        {\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"et20_\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"lastUpdatedAt\": \"<dateTime>\",\n          \"lastUpdatedByUsername\": \"<string>\",\n          \"obligationName\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"packageUrl\": \"<string>\"\n        }\n      ],\n      \"componentCopyrightId\": \"<string>\",\n      \"componentCopyrightLastUpdatedAt\": \"<dateTime>\",\n      \"componentCopyrightLastUpdatedByUsername\": \"<string>\",\n      \"componentCopyrightScopeOwnerId\": \"<string>\",\n      \"componentLicensesId\": \"<string>\",\n      \"componentLicensesLastUpdatedAt\": \"<dateTime>\",\n      \"componentLicensesLastUpdatedByUsername\": \"<string>\",\n      \"componentLicensesScopeOwnerId\": \"<string>\",\n      \"componentNoticesId\": \"<string>\",\n      \"componentNoticesLastUpdatedAt\": \"<dateTime>\",\n      \"componentNoticesLastUpdatedByUsername\": \"<string>\",\n      \"componentNoticesScopeOwnerId\": \"<string>\",\n      \"copyrights\": [\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContentHash\": \"<string>\",\n          \"status\": \"enabled\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContentHash\": \"<string>\",\n          \"status\": \"enabled\"\n        }\n      ],\n      \"declaredLicenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"effectiveLicenseStatus\": \"<string>\",\n      \"effectiveLicenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"highestEffectiveLicenseThreatGroup\": {\n        \"licenseThreatGroupCategory\": \"<string>\",\n        \"licenseThreatGroupLevel\": \"<integer>\",\n        \"licenseThreatGroupName\": \"<string>\"\n      },\n      \"licenseFiles\": [\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContentHash\": \"<string>\",\n          \"relPath\": \"<string>\",\n          \"status\": \"disabled\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContentHash\": \"<string>\",\n          \"relPath\": \"<string>\",\n          \"status\": \"enabled\"\n        }\n      ],\n      \"noticeFiles\": [\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContentHash\": \"<string>\",\n          \"relPath\": \"<string>\",\n          \"status\": \"enabled\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContentHash\": \"<string>\",\n          \"relPath\": \"<string>\",\n          \"status\": \"enabled\"\n        }\n      ],\n      \"obligations\": [\n        {\n          \"comment\": \"<string>\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"dolor4\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"lastUpdatedAt\": \"<dateTime>\",\n          \"lastUpdatedByUsername\": \"<string>\",\n          \"name\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"packageUrl\": \"<string>\",\n          \"status\": \"IGNORED\"\n        },\n        {\n          \"comment\": \"<string>\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"dolor_12\": \"<string>\",\n              \"Lorem_e\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"lastUpdatedAt\": \"<dateTime>\",\n          \"lastUpdatedByUsername\": \"<string>\",\n          \"name\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"packageUrl\": \"<string>\",\n          \"status\": \"OPEN\"\n        }\n      ],\n      \"observedLicenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sourceLinks\": [\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContent\": \"<string>\",\n          \"status\": \"disabled\"\n        },\n        {\n          \"content\": \"<string>\",\n          \"id\": \"<string>\",\n          \"originalContent\": \"<string>\",\n          \"status\": \"enabled\"\n        }\n      ]\n    },\n    \"packageUrl\": \"<string>\",\n    \"stageScans\": [\n      {\n        \"scanDate\": \"<dateTime>\",\n        \"scanId\": \"<string>\",\n        \"stageName\": \"<string>\"\n      },\n      {\n        \"scanDate\": \"<dateTime>\",\n        \"scanId\": \"<string>\",\n        \"stageName\": \"<string>\"\n      }\n    ]\n  },\n  \"licenseLegalMetadata\": [\n    {\n      \"isMulti\": \"<boolean>\",\n      \"licenseId\": \"<string>\",\n      \"licenseName\": \"<string>\",\n      \"licenseText\": \"<string>\",\n      \"obligations\": [\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"<string>\",\n        \"threatLevel\": \"<integer>\"\n      }\n    },\n    {\n      \"isMulti\": \"<boolean>\",\n      \"licenseId\": \"<string>\",\n      \"licenseName\": \"<string>\",\n      \"licenseText\": \"<string>\",\n      \"obligations\": [\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"obligationTexts\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"<string>\",\n        \"threatLevel\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T03:16:01.000Z",
+                                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                                  "uid": "35240-92a3c146-91e6-4cbf-8890-621474681088"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:16:01.000Z",
+                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                              "uid": "35240-257bd1ec-5c60-43e4-91eb-b2b4b7ab9f9b"
+                            }
+                          ],
+                          "id": "0c1f89d9-65dc-46fe-91af-d7a58c43191f",
+                          "createdAt": "2026-10-22T03:16:01.000Z",
+                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                          "uid": "35240-0c1f89d9-65dc-46fe-91af-d7a58c43191f"
+                        }
+                      ],
+                      "id": "c83a502f-88aa-4ad0-a9f9-513eb8f158cc",
+                      "createdAt": "2026-10-22T03:16:01.000Z",
+                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                      "uid": "35240-c83a502f-88aa-4ad0-a9f9-513eb8f158cc"
+                    }
+                  ],
+                  "id": "774f1af2-0afb-4e5e-9014-13bafb3fbe9d",
+                  "createdAt": "2026-10-22T03:16:01.000Z",
+                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                  "uid": "35240-774f1af2-0afb-4e5e-9014-13bafb3fbe9d"
+                },
+                {
+                  "name": "customMultiApplication",
+                  "item": [
+                    {
+                      "name": "report",
+                      "item": [
+                        {
+                          "name": "Get license legal custom multi application HTML report",
+                          "id": "cacb2b5a-b973-4c36-a03e-4f19c9359359",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/customMultiApplication/report",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseLegalMetadata",
+                                "customMultiApplication",
+                                "report"
+                              ]
+                            },
+                            "description": "Use this method to generate license legal data in HTML format for all applications.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                          },
+                          "response": [
+                            {
+                              "id": "4a697eca-d43e-42ef-bbdd-95a2c2f7bfd8",
+                              "name": "The response contains license legal data in HTML format.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/html"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/customMultiApplication/report",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseLegalMetadata",
+                                    "customMultiApplication",
+                                    "report"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/html"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-10-22T03:16:01.000Z",
+                              "updatedAt": "2026-10-22T03:16:01.000Z",
+                              "uid": "35240-4a697eca-d43e-42ef-bbdd-95a2c2f7bfd8"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:01.000Z",
+                          "updatedAt": "2026-10-22T03:16:01.000Z",
+                          "uid": "35240-cacb2b5a-b973-4c36-a03e-4f19c9359359"
+                        }
+                      ],
+                      "id": "96bd466a-3a0e-4180-bce6-e4d37b6530f6",
+                      "createdAt": "2026-10-22T03:16:01.000Z",
+                      "updatedAt": "2026-10-22T03:16:01.000Z",
+                      "uid": "35240-96bd466a-3a0e-4180-bce6-e4d37b6530f6"
+                    }
+                  ],
+                  "id": "2deef7fe-5736-4b3b-b406-1f03197ac42c",
+                  "createdAt": "2026-10-22T03:16:01.000Z",
+                  "updatedAt": "2026-10-22T03:16:01.000Z",
+                  "uid": "35240-2deef7fe-5736-4b3b-b406-1f03197ac42c"
                 }
               ],
-              "body": "{\n  \"component\": {\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"displayName\": \"string\",\n    \"hash\": \"string\",\n    \"licenseLegalData\": {\n      \"attributions\": [\n        {\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"lastUpdatedAt\": \"1946-09-11T06:32:54.668Z\",\n          \"lastUpdatedByUsername\": \"string\",\n          \"obligationName\": \"string\",\n          \"ownerId\": \"string\",\n          \"packageUrl\": \"string\"\n        },\n        {\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"lastUpdatedAt\": \"1977-09-19T10:38:14.713Z\",\n          \"lastUpdatedByUsername\": \"string\",\n          \"obligationName\": \"string\",\n          \"ownerId\": \"string\",\n          \"packageUrl\": \"string\"\n        }\n      ],\n      \"componentCopyrightId\": \"string\",\n      \"componentCopyrightLastUpdatedAt\": \"1990-01-26T23:51:32.991Z\",\n      \"componentCopyrightLastUpdatedByUsername\": \"string\",\n      \"componentCopyrightScopeOwnerId\": \"string\",\n      \"componentLicensesId\": \"string\",\n      \"componentLicensesLastUpdatedAt\": \"1977-03-10T12:51:22.148Z\",\n      \"componentLicensesLastUpdatedByUsername\": \"string\",\n      \"componentLicensesScopeOwnerId\": \"string\",\n      \"componentNoticesId\": \"string\",\n      \"componentNoticesLastUpdatedAt\": \"1982-09-05T06:30:02.426Z\",\n      \"componentNoticesLastUpdatedByUsername\": \"string\",\n      \"componentNoticesScopeOwnerId\": \"string\",\n      \"copyrights\": [\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContentHash\": \"string\",\n          \"status\": \"enabled\"\n        },\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContentHash\": \"string\",\n          \"status\": \"disabled\"\n        }\n      ],\n      \"declaredLicenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"effectiveLicenseStatus\": \"string\",\n      \"effectiveLicenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"highestEffectiveLicenseThreatGroup\": {\n        \"licenseThreatGroupCategory\": \"string\",\n        \"licenseThreatGroupLevel\": 3355,\n        \"licenseThreatGroupName\": \"string\"\n      },\n      \"licenseFiles\": [\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContentHash\": \"string\",\n          \"relPath\": \"string\",\n          \"status\": \"enabled\"\n        },\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContentHash\": \"string\",\n          \"relPath\": \"string\",\n          \"status\": \"disabled\"\n        }\n      ],\n      \"noticeFiles\": [\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContentHash\": \"string\",\n          \"relPath\": \"string\",\n          \"status\": \"disabled\"\n        },\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContentHash\": \"string\",\n          \"relPath\": \"string\",\n          \"status\": \"disabled\"\n        }\n      ],\n      \"obligations\": [\n        {\n          \"comment\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"lastUpdatedAt\": \"1953-10-04T12:53:39.608Z\",\n          \"lastUpdatedByUsername\": \"string\",\n          \"name\": \"string\",\n          \"ownerId\": \"string\",\n          \"packageUrl\": \"string\",\n          \"status\": \"FLAGGED\"\n        },\n        {\n          \"comment\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"lastUpdatedAt\": \"1966-12-08T16:22:23.642Z\",\n          \"lastUpdatedByUsername\": \"string\",\n          \"name\": \"string\",\n          \"ownerId\": \"string\",\n          \"packageUrl\": \"string\",\n          \"status\": \"OPEN\"\n        }\n      ],\n      \"observedLicenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sourceLinks\": [\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContent\": \"string\",\n          \"status\": \"enabled\"\n        },\n        {\n          \"content\": \"string\",\n          \"id\": \"string\",\n          \"originalContent\": \"string\",\n          \"status\": \"disabled\"\n        }\n      ]\n    },\n    \"packageUrl\": \"string\",\n    \"stageScans\": [\n      {\n        \"scanDate\": \"2000-09-06T06:15:11.289Z\",\n        \"scanId\": \"string\",\n        \"stageName\": \"string\"\n      },\n      {\n        \"scanDate\": \"1960-05-07T19:11:31.829Z\",\n        \"scanId\": \"string\",\n        \"stageName\": \"string\"\n      }\n    ]\n  },\n  \"licenseLegalMetadata\": [\n    {\n      \"isMulti\": false,\n      \"licenseId\": \"string\",\n      \"licenseName\": \"string\",\n      \"licenseText\": \"string\",\n      \"obligations\": [\n        {\n          \"name\": \"string\",\n          \"obligationTexts\": [\n            \"string\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"string\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"string\",\n        \"threatLevel\": 2491\n      }\n    },\n    {\n      \"isMulti\": false,\n      \"licenseId\": \"string\",\n      \"licenseName\": \"string\",\n      \"licenseText\": \"string\",\n      \"obligations\": [\n        {\n          \"name\": \"string\",\n          \"obligationTexts\": [\n            \"string\"\n          ]\n        }\n      ],\n      \"singleLicenseIds\": [\n        \"string\"\n      ],\n      \"threatGroup\": {\n        \"name\": \"string\",\n        \"threatLevel\": 3757\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "831a2b6e-b9e7-4c9f-af3f-5484073c019d",
+              "createdAt": "2026-10-22T03:16:01.000Z",
+              "updatedAt": "2026-10-22T03:16:01.000Z",
+              "uid": "35240-831a2b6e-b9e7-4c9f-af3f-5484073c019d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "cf5e2284-919f-409d-826a-c8ff3357008d",
+          "createdAt": "2026-10-22T03:16:01.000Z",
+          "updatedAt": "2026-10-22T03:16:01.000Z",
+          "uid": "35240-cf5e2284-919f-409d-826a-c8ff3357008d"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "5bf11ef2-8bff-4608-b032-3a36648a499f",
+      "createdAt": "2026-10-22T03:16:01.000Z",
+      "updatedAt": "2026-10-22T03:16:01.000Z",
+      "uid": "35240-5bf11ef2-8bff-4608-b032-3a36648a499f"
     }
   ],
   "auth": {
@@ -1081,21 +1251,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3314e848-3d2e-4f24-9e90-f2ca8a88ac6e",
-    "name": "Sonatype Lifecycle Public REST Advanced Search License Legal Metadata Report API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

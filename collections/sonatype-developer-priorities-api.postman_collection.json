@@ -1,303 +1,329 @@
 {
+  "info": {
+    "_postman_id": "1bd2c308-e2f5-4a98-a12d-6031c484a2dc",
+    "name": "Sonatype Developer Priorities API",
+    "description": "Operations tagged Developer Priorities across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:15:28.000Z",
+    "updatedAt": "2026-10-22T03:15:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1bd2c308-e2f5-4a98-a12d-6031c484a2dc"
+  },
   "item": [
     {
-      "id": "dcf74ebb-6018-4494-b136-673510bb6739",
-      "name": "Developer Priorities",
-      "description": {
-        "content": "Use this REST API to export Sonatype Developer component priorities data, including security reachability data.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "851687f8-7887-4026-8590-34e89cf9ba16",
-          "name": "get Priorities",
-          "request": {
-            "name": "get Priorities",
-            "description": {
-              "content": "Use this method to retrieve all priorities by providing the application ID and scan ID.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "developer",
-                "priorities",
-                ":applicationId",
-                ":scanId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "includeRemediation",
-                  "value": "false",
-                  "description": "Whether to include remediation type and version for the component or not"
-                },
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1",
-                  "description": "Current page number."
-                },
-                {
-                  "disabled": false,
-                  "key": "pageSize",
-                  "value": "10",
-                  "description": "Enter the no. of results that should be visible per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "componentNameFilter",
-                  "value": "<string>",
-                  "description": "Component name to filter by"
-                },
-                {
-                  "disabled": false,
-                  "key": "filterOnPolicyActions",
-                  "value": "true",
-                  "description": "Whether to enable Fail/Warn policy action filter or not"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the applicationId."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scanId",
-                  "description": "(Required) Enter the scanId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "f304335f-5863-4b6f-8352-c19c7139f83a",
-              "name": "The response field `priorities` returns prioritized components for the specified\napplication ID and scan ID. Each result has relevant component information, reachability\ninformation, policy information, and a priority number, sorted by priority in descending order.\nPagination is supported, and the default page size is 10.\nThe parameter `includeRemediation` is required for the paginated result to\ninclude remediation information.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "developer",
-                    "priorities",
-                    ":applicationId",
-                    ":scanId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "includeRemediation",
-                      "value": "false"
-                    },
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "pageSize",
-                      "value": "10"
-                    },
-                    {
-                      "key": "componentNameFilter",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "filterOnPolicyActions",
-                      "value": "true"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the applicationId."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scanId",
-                      "description": "(Required) Enter the scanId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "developer",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "priorities",
+                  "item": [
+                    {
+                      "name": "{applicationId}",
+                      "item": [
+                        {
+                          "name": "{scanId}",
+                          "item": [
+                            {
+                              "name": "export",
+                              "item": [
+                                {
+                                  "name": "Get priorities export",
+                                  "id": "14315434-7c42-4297-93fe-968717e9d20a",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/developer/priorities/:applicationId/:scanId/export",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "developer",
+                                        "priorities",
+                                        ":applicationId",
+                                        ":scanId",
+                                        "export"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ecd66b7e-f1d1-4f69-87cc-e6d09a06008a",
+                                          "key": "applicationId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the applicationId."
+                                        },
+                                        {
+                                          "id": "9c4e137d-97ee-452c-b1c7-5e5a9776fe13",
+                                          "key": "scanId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the scanId."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to retrieve the priorities, by providing the applicationId and scanId.\n\nPermissions required: View IQ Elements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4acb411e-f968-4962-a345-d43ba6b23272",
+                                      "name": "The response is a CSV that contains all the prioritized components for the specified\napplicationId and scanId. Each line has all relevant component information, reachability\ninformation, policy information, and the priority assigned to it.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/developer/priorities/:applicationId/:scanId/export",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "developer",
+                                            "priorities",
+                                            ":applicationId",
+                                            ":scanId",
+                                            "export"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "scanId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T03:15:28.000Z",
+                                      "updatedAt": "2026-10-22T03:15:28.000Z",
+                                      "uid": "35240-4acb411e-f968-4962-a345-d43ba6b23272"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:15:28.000Z",
+                                  "updatedAt": "2026-10-22T03:15:28.000Z",
+                                  "uid": "35240-14315434-7c42-4297-93fe-968717e9d20a"
+                                }
+                              ],
+                              "id": "e71ba03c-285a-42ae-ba3d-dff784707771",
+                              "createdAt": "2026-10-22T03:15:28.000Z",
+                              "updatedAt": "2026-10-22T03:15:28.000Z",
+                              "uid": "35240-e71ba03c-285a-42ae-ba3d-dff784707771"
+                            },
+                            {
+                              "name": "Get priorities",
+                              "id": "1c457dce-9e6b-4a47-821c-dc3a30a1523a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/developer/priorities/:applicationId/:scanId?includeRemediation=false&page=1&pageSize=10&componentNameFilter=<string>&filterOnPolicyActions=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "developer",
+                                    "priorities",
+                                    ":applicationId",
+                                    ":scanId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Whether to include remediation type and version for the component or not",
+                                      "key": "includeRemediation",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Current page number.",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "Enter the no. of results that should be visible per page.",
+                                      "key": "pageSize",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Component name to filter by",
+                                      "key": "componentNameFilter",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether to enable Fail/Warn policy action filter or not",
+                                      "key": "filterOnPolicyActions",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2719f143-0b70-4624-b600-3f38635c419d",
+                                      "key": "applicationId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the applicationId."
+                                    },
+                                    {
+                                      "id": "de0a179c-dc1a-4b5f-b45d-4f79a96e2255",
+                                      "key": "scanId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the scanId."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve all priorities by providing the application ID and scan ID.\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "012f5499-ce32-4288-a84f-485947a0c059",
+                                  "name": "The response field `priorities` returns prioritized components for the specified\napplication ID and scan ID. Each result has relevant component information, reachability\ninformation, policy information, and a priority number, sorted by priority in descend",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/developer/priorities/:applicationId/:scanId?includeRemediation=false&page=1&pageSize=10&componentNameFilter=<string>&filterOnPolicyActions=true",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "developer",
+                                        "priorities",
+                                        ":applicationId",
+                                        ":scanId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Whether to include remediation type and version for the component or not",
+                                          "key": "includeRemediation",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Current page number.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "Enter the no. of results that should be visible per page.",
+                                          "key": "pageSize",
+                                          "value": "10"
+                                        },
+                                        {
+                                          "description": "Component name to filter by",
+                                          "key": "componentNameFilter",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Whether to enable Fail/Warn policy action filter or not",
+                                          "key": "filterOnPolicyActions",
+                                          "value": "true"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        },
+                                        {
+                                          "key": "scanId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"hasAutoWaiversConfigured\": \"<boolean>\",\n  \"priorities\": {\n    \"page\": \"<integer>\",\n    \"pageCount\": \"<long>\",\n    \"pageSize\": \"<integer>\",\n    \"results\": [\n      {\n        \"action\": \"<string>\",\n        \"componentHash\": \"<string>\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"adipisicing__4\": \"<string>\",\n            \"consecteture8\": \"<string>\",\n            \"laborum09\": \"<string>\",\n            \"aliquip_52\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"dependencyType\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"hasAutoWaiver\": \"<boolean>\",\n        \"hasExpiredWaiver\": \"<boolean>\",\n        \"hasFailActionOnComponent\": \"<boolean>\",\n        \"hasSameViolationsOnMain\": \"<boolean>\",\n        \"hasSoonToExpireWaiver\": \"<boolean>\",\n        \"highestReachableThreat\": \"<integer>\",\n        \"highestThreat\": \"<integer>\",\n        \"highestThreatPolicyConstraintName\": \"<string>\",\n        \"highestThreatPolicyName\": \"<string>\",\n        \"isAllViolationsWaived\": \"<boolean>\",\n        \"priority\": \"<integer>\",\n        \"remediationType\": \"next-non-failing-with-dependencies\",\n        \"remediationVersion\": \"<string>\",\n        \"securityReachable\": \"<boolean>\",\n        \"waivedViolationsCount\": \"<integer>\",\n        \"waiverExpirationDetails\": \"<string>\"\n      },\n      {\n        \"action\": \"<string>\",\n        \"componentHash\": \"<string>\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"enim4f\": \"<string>\",\n            \"ullamcofc3\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"dependencyType\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"hasAutoWaiver\": \"<boolean>\",\n        \"hasExpiredWaiver\": \"<boolean>\",\n        \"hasFailActionOnComponent\": \"<boolean>\",\n        \"hasSameViolationsOnMain\": \"<boolean>\",\n        \"hasSoonToExpireWaiver\": \"<boolean>\",\n        \"highestReachableThreat\": \"<integer>\",\n        \"highestThreat\": \"<integer>\",\n        \"highestThreatPolicyConstraintName\": \"<string>\",\n        \"highestThreatPolicyName\": \"<string>\",\n        \"isAllViolationsWaived\": \"<boolean>\",\n        \"priority\": \"<integer>\",\n        \"remediationType\": \"recommended-non-breaking-with-dependencies\",\n        \"remediationVersion\": \"<string>\",\n        \"securityReachable\": \"<boolean>\",\n        \"waivedViolationsCount\": \"<integer>\",\n        \"waiverExpirationDetails\": \"<string>\"\n      }\n    ],\n    \"total\": \"<long>\"\n  },\n  \"scanIdFromLatestBuildStageEvaluation\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T03:15:28.000Z",
+                                  "updatedAt": "2026-10-22T03:15:28.000Z",
+                                  "uid": "35240-012f5499-ce32-4288-a84f-485947a0c059"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:15:28.000Z",
+                              "updatedAt": "2026-10-22T03:15:28.000Z",
+                              "uid": "35240-1c457dce-9e6b-4a47-821c-dc3a30a1523a"
+                            }
+                          ],
+                          "id": "80674221-fdad-46e1-8700-4c4339590fbc",
+                          "createdAt": "2026-10-22T03:15:28.000Z",
+                          "updatedAt": "2026-10-22T03:15:28.000Z",
+                          "uid": "35240-80674221-fdad-46e1-8700-4c4339590fbc"
+                        }
+                      ],
+                      "id": "9ecc7157-309d-4a24-aa62-765f54847913",
+                      "createdAt": "2026-10-22T03:15:28.000Z",
+                      "updatedAt": "2026-10-22T03:15:28.000Z",
+                      "uid": "35240-9ecc7157-309d-4a24-aa62-765f54847913"
+                    }
+                  ],
+                  "id": "f96ab877-934b-4a39-9a4e-5bd5cbed04c7",
+                  "createdAt": "2026-10-22T03:15:28.000Z",
+                  "updatedAt": "2026-10-22T03:15:28.000Z",
+                  "uid": "35240-f96ab877-934b-4a39-9a4e-5bd5cbed04c7"
                 }
               ],
-              "body": "{\n  \"hasAutoWaiversConfigured\": false,\n  \"priorities\": {\n    \"page\": 5133,\n    \"pageCount\": 8079,\n    \"pageSize\": 3302,\n    \"results\": [\n      {\n        \"action\": \"string\",\n        \"componentHash\": \"string\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"dependencyType\": \"string\",\n        \"displayName\": \"string\",\n        \"hasAutoWaiver\": false,\n        \"hasExpiredWaiver\": true,\n        \"hasFailActionOnComponent\": true,\n        \"hasSameViolationsOnMain\": true,\n        \"hasSoonToExpireWaiver\": true,\n        \"highestReachableThreat\": 3416,\n        \"highestThreat\": 6792,\n        \"highestThreatPolicyConstraintName\": \"string\",\n        \"highestThreatPolicyName\": \"string\",\n        \"isAllViolationsWaived\": true,\n        \"priority\": 4357,\n        \"remediationType\": \"recommended-non-breaking\",\n        \"remediationVersion\": \"string\",\n        \"securityReachable\": true,\n        \"waivedViolationsCount\": 2718,\n        \"waiverExpirationDetails\": \"string\"\n      },\n      {\n        \"action\": \"string\",\n        \"componentHash\": \"string\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"string\"\n          },\n          \"format\": \"string\"\n        },\n        \"dependencyType\": \"string\",\n        \"displayName\": \"string\",\n        \"hasAutoWaiver\": false,\n        \"hasExpiredWaiver\": true,\n        \"hasFailActionOnComponent\": true,\n        \"hasSameViolationsOnMain\": true,\n        \"hasSoonToExpireWaiver\": true,\n        \"highestReachableThreat\": 7720,\n        \"highestThreat\": 3082,\n        \"highestThreatPolicyConstraintName\": \"string\",\n        \"highestThreatPolicyName\": \"string\",\n        \"isAllViolationsWaived\": true,\n        \"priority\": 1170,\n        \"remediationType\": \"inner-source-latest\",\n        \"remediationVersion\": \"string\",\n        \"securityReachable\": false,\n        \"waivedViolationsCount\": 333,\n        \"waiverExpirationDetails\": \"string\"\n      }\n    ],\n    \"total\": 6877\n  },\n  \"scanIdFromLatestBuildStageEvaluation\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "2246a262-b606-4368-b901-1ca1c6c2a3e6",
+              "createdAt": "2026-10-22T03:15:28.000Z",
+              "updatedAt": "2026-10-22T03:15:28.000Z",
+              "uid": "35240-2246a262-b606-4368-b901-1ca1c6c2a3e6"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "036798d6-0f6f-4562-acb0-9b702e348d18",
-          "name": "get Priorities Export",
-          "request": {
-            "name": "get Priorities Export",
-            "description": {
-              "content": "Use this method to retrieve the priorities, by providing the applicationId and scanId.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "developer",
-                "priorities",
-                ":applicationId",
-                ":scanId",
-                "export"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the applicationId."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scanId",
-                  "description": "(Required) Enter the scanId."
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "052b034e-6f9e-4d77-a326-78e3c3876c17",
-              "name": "The response is a CSV that contains all the prioritized components for the specified\napplicationId and scanId. Each line has all relevant component information, reachability\ninformation, policy information, and the priority assigned to it.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "developer",
-                    "priorities",
-                    ":applicationId",
-                    ":scanId",
-                    "export"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the applicationId."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scanId",
-                      "description": "(Required) Enter the scanId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "5f32a045-693c-44f2-bc01-439736b39c69",
+          "createdAt": "2026-10-22T03:15:28.000Z",
+          "updatedAt": "2026-10-22T03:15:28.000Z",
+          "uid": "35240-5f32a045-693c-44f2-bc01-439736b39c69"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "55cff714-239b-4803-bea5-61fa0ca6934b",
+      "createdAt": "2026-10-22T03:15:28.000Z",
+      "updatedAt": "2026-10-22T03:15:28.000Z",
+      "uid": "35240-55cff714-239b-4803-bea5-61fa0ca6934b"
     }
   ],
   "auth": {
@@ -305,21 +331,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "5bdc8993-fc4b-403c-a335-d4bda4999ef7",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Developer Priorities API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

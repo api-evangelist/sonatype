@@ -1,1483 +1,1463 @@
 {
+  "info": {
+    "_postman_id": "bf372a47-de98-4315-91b5-f29b53e3f62d",
+    "name": "Sonatype Policy Waivers API",
+    "description": "Operations tagged Policy Waivers across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:17:07.000Z",
+    "updatedAt": "2026-10-22T03:17:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bf372a47-de98-4315-91b5-f29b53e3f62d"
+  },
   "item": [
     {
-      "id": "70501efb-e9a9-4f38-96b5-4f43725e36e9",
-      "name": "Policy Waivers",
-      "description": {
-        "content": "Use this REST API to create and retrieve policy waivers.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "82c83f17-3455-4ae8-8859-bf6f927d76f1",
-          "name": "add Waiver To Transitive Policy Violations By Owner Stage Component",
-          "request": {
-            "name": "add Waiver To Transitive Policy Violations By Owner Stage Component",
-            "description": {
-              "content": "Use this method to add a waiver for all transitive violations for a given component, detected in the latest scan at the stage specified.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                "transitive",
-                ":ownerType",
-                ":ownerId",
-                "stages",
-                ":stageId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "coordinates",
-                  "value": "{\"key_0\":\"<string>\"}",
-                  "description": "Enter the component identifier and coordinates of the component for which you want to waive the transitive violations."
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "<string>",
-                  "description": "Enter the component identifier and coordinates of the component for which you want to waive the transitive violations."
-                },
-                {
-                  "disabled": false,
-                  "key": "packageUrl",
-                  "value": "<string>",
-                  "description": "Enter the package URL of the component for which you want to waive the transitive violations."
-                },
-                {
-                  "disabled": false,
-                  "key": "hash",
-                  "value": "<string>",
-                  "description": "Enter the hash for the component for which you want to waive the transitive violations "
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Indicates the scope of the waiver that will be created."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above. E.g. applicationId for ownerType 'application' or organizationId for ownerType 'organization'."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "stageId",
-                  "description": "(Required) Enter the stageId corresponding to the evaluation stage at which you want to create a waiver. Possible values are 'develop', 'source', 'build', 'stage-release', 'release' and 'operate'."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "47d85a46-a44b-485d-b9eb-9e53a31cd1d5",
-              "name": "Waiver created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    "transitive",
-                    ":ownerType",
-                    ":ownerId",
-                    "stages",
-                    ":stageId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "coordinates",
-                      "value": "[object Object]"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "packageUrl",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "hash",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Indicates the scope of the waiver that will be created."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above. E.g. applicationId for ownerType 'application' or organizationId for ownerType 'organization'."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "stageId",
-                      "description": "(Required) Enter the stageId corresponding to the evaluation stage at which you want to create a waiver. Possible values are 'develop', 'source', 'build', 'stage-release', 'release' and 'operate'."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
+              "name": "policyWaivers",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "transitive",
+                  "item": [
+                    {
+                      "name": "{ownerType}",
+                      "item": [
+                        {
+                          "name": "{ownerId}",
+                          "item": [
+                            {
+                              "name": "stages",
+                              "item": [
+                                {
+                                  "name": "{stageId}",
+                                  "item": [
+                                    {
+                                      "name": "Add waiver to transitive policy violations by owner stage component",
+                                      "id": "5666f4ec-ce2b-4b95-8d37-c3e22aa23bf1",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/stages/:stageId?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "policyWaivers",
+                                            "transitive",
+                                            ":ownerType",
+                                            ":ownerId",
+                                            "stages",
+                                            ":stageId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Enter the component identifier and coordinates of the component for which you want to waive the transitive violations.",
+                                              "key": "coordinates",
+                                              "value": "[object Object]"
+                                            },
+                                            {
+                                              "description": "Enter the component identifier and coordinates of the component for which you want to waive the transitive violations.",
+                                              "key": "format",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the package URL of the component for which you want to waive the transitive violations.",
+                                              "key": "packageUrl",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the hash for the component for which you want to waive the transitive violations ",
+                                              "key": "hash",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "131e183f-24a0-44be-9dd5-aa7e12964643",
+                                              "key": "ownerType",
+                                              "value": "application",
+                                              "description": "(Required) Indicates the scope of the waiver that will be created."
+                                            },
+                                            {
+                                              "id": "54796487-bb01-4172-a578-4fa132c29f10",
+                                              "key": "ownerId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the corresponding id for the ownerType specified above. E.g. applicationId for ownerType 'application' or organizationId for ownerType 'organization'."
+                                            },
+                                            {
+                                              "id": "58631355-1171-4954-aa21-124857125b8b",
+                                              "key": "stageId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the stageId corresponding to the evaluation stage at which you want to create a waiver. Possible values are 'develop', 'source', 'build', 'stage-release', 'release' and 'operate'."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to add a waiver for all transitive violations for a given component, detected in the latest scan at the stage specified.\n\nPermissions required: Waive Policy Violations"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "2e59728e-2239-4305-abab-908e76182ae6",
+                                          "name": "Waiver created successfully.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/stages/:stageId?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "policyWaivers",
+                                                "transitive",
+                                                ":ownerType",
+                                                ":ownerId",
+                                                "stages",
+                                                ":stageId"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "Enter the component identifier and coordinates of the component for which you want to waive the transitive violations.",
+                                                  "key": "coordinates",
+                                                  "value": "[object Object]"
+                                                },
+                                                {
+                                                  "description": "Enter the component identifier and coordinates of the component for which you want to waive the transitive violations.",
+                                                  "key": "format",
+                                                  "value": "<string>"
+                                                },
+                                                {
+                                                  "description": "Enter the package URL of the component for which you want to waive the transitive violations.",
+                                                  "key": "packageUrl",
+                                                  "value": "<string>"
+                                                },
+                                                {
+                                                  "description": "Enter the hash for the component for which you want to waive the transitive violations ",
+                                                  "key": "hash",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "ownerType"
+                                                },
+                                                {
+                                                  "key": "ownerId"
+                                                },
+                                                {
+                                                  "key": "stageId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T03:17:08.000Z",
+                                          "updatedAt": "2026-10-22T03:17:08.000Z",
+                                          "uid": "35240-2e59728e-2239-4305-abab-908e76182ae6"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:17:08.000Z",
+                                      "updatedAt": "2026-10-22T03:17:08.000Z",
+                                      "uid": "35240-5666f4ec-ce2b-4b95-8d37-c3e22aa23bf1"
+                                    }
+                                  ],
+                                  "id": "7ff58f90-d674-4247-bc01-5c0a72b68ef6",
+                                  "createdAt": "2026-10-22T03:17:08.000Z",
+                                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                                  "uid": "35240-7ff58f90-d674-4247-bc01-5c0a72b68ef6"
+                                }
+                              ],
+                              "id": "87bf90c0-12ee-44aa-bb39-69a82347a215",
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-87bf90c0-12ee-44aa-bb39-69a82347a215"
+                            },
+                            {
+                              "name": "{scanId}",
+                              "item": [
+                                {
+                                  "name": "Get transitive policy waivers by app scan component",
+                                  "id": "89794e00-6c22-4aee-9268-31e536f1d037",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/:scanId?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policyWaivers",
+                                        "transitive",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":scanId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                          "key": "coordinates",
+                                          "value": "[object Object]"
+                                        },
+                                        {
+                                          "description": "Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                          "key": "format",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the package URL for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                          "key": "packageUrl",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the hash for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                          "key": "hash",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "c28ae890-3826-4a04-8b62-2d1f921b84d2",
+                                          "key": "ownerType",
+                                          "value": "application",
+                                          "description": "(Required) Enter the ownerType to specify the scope. The response will contain the policy violations that are within the scope specified."
+                                        },
+                                        {
+                                          "id": "f740ef30-1b74-4862-8150-2daa32dfa226",
+                                          "key": "ownerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                        },
+                                        {
+                                          "id": "a276d84a-cec1-4438-8b1a-4ace4a9b99b9",
+                                          "key": "scanId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the scanId (reportId) of the scan for which you want to retrieve the waivers on transitive policy violations occurring due the dependencies of a component."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to retrieve all waivers on policy violations due to transitive dependencies for a specific component detected in a specific scan. Any one of the input parameters, i.e. componentIdentifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.\n\nPermissions required: View IQ Elements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1d38a208-bc9c-4014-b7ba-0978e7dbbaa8",
+                                      "name": "The response contains a list of waivers on transitive policy violations for the dependencies of the component specified, for the given scanId.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/:scanId?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "policyWaivers",
+                                            "transitive",
+                                            ":ownerType",
+                                            ":ownerId",
+                                            ":scanId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                              "key": "coordinates",
+                                              "value": "[object Object]"
+                                            },
+                                            {
+                                              "description": "Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                              "key": "format",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the package URL for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                              "key": "packageUrl",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the hash for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId.",
+                                              "key": "hash",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "ownerId"
+                                            },
+                                            {
+                                              "key": "scanId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"componentPolicyWaivers\": [\n    {\n      \"associatedPackageUrl\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"doloreee9\": \"<string>\",\n          \"nisi_15\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"componentName\": \"<string>\",\n      \"componentUpgradeAvailable\": \"<boolean>\",\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            },\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SAST_FINDING_ID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            }\n          ],\n          \"constraintId\": \"<string>\",\n          \"constraintName\": \"<string>\",\n          \"operatorName\": \"<string>\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SAST_FINDING_ID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            },\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SAST_FINDING_ID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            }\n          ],\n          \"constraintId\": \"<string>\",\n          \"constraintName\": \"<string>\",\n          \"operatorName\": \"<string>\"\n        }\n      ],\n      \"constraintFactsJson\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"creatorId\": \"<string>\",\n      \"creatorName\": \"<string>\",\n      \"displayName\": {\n        \"name\": \"<string>\",\n        \"parts\": [\n          {\n            \"field\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"field\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": \"<boolean>\",\n      \"expiryTime\": \"<dateTime>\",\n      \"forContainerImage\": \"<boolean>\",\n      \"forContainerImageComponent\": \"<boolean>\",\n      \"hash\": \"<string>\",\n      \"isObsolete\": \"<boolean>\",\n      \"matcherStrategy\": \"ALL_VERSIONS\",\n      \"policyId\": \"<string>\",\n      \"policyName\": \"<string>\",\n      \"policyViolationId\": \"<string>\",\n      \"policyWaiverId\": \"<string>\",\n      \"policyWaiverReasonId\": \"<string>\",\n      \"reasonText\": \"<string>\",\n      \"scopeOwnerId\": \"<string>\",\n      \"scopeOwnerName\": \"<string>\",\n      \"scopeOwnerType\": \"<string>\",\n      \"threatLevel\": \"<integer>\",\n      \"vulnerabilityId\": \"<string>\"\n    },\n    {\n      \"associatedPackageUrl\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"officia_33d\": \"<string>\",\n          \"laborum_b39\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"componentName\": \"<string>\",\n      \"componentUpgradeAvailable\": \"<boolean>\",\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            },\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            }\n          ],\n          \"constraintId\": \"<string>\",\n          \"constraintName\": \"<string>\",\n          \"operatorName\": \"<string>\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            },\n            {\n              \"conditionIndex\": \"<integer>\",\n              \"conditionTypeId\": \"<string>\",\n              \"reason\": \"<string>\",\n              \"reference\": {\n                \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                \"value\": \"<string>\"\n              },\n              \"summary\": \"<string>\",\n              \"triggerJson\": \"<string>\"\n            }\n          ],\n          \"constraintId\": \"<string>\",\n          \"constraintName\": \"<string>\",\n          \"operatorName\": \"<string>\"\n        }\n      ],\n      \"constraintFactsJson\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"creatorId\": \"<string>\",\n      \"creatorName\": \"<string>\",\n      \"displayName\": {\n        \"name\": \"<string>\",\n        \"parts\": [\n          {\n            \"field\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"field\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": \"<boolean>\",\n      \"expiryTime\": \"<dateTime>\",\n      \"forContainerImage\": \"<boolean>\",\n      \"forContainerImageComponent\": \"<boolean>\",\n      \"hash\": \"<string>\",\n      \"isObsolete\": \"<boolean>\",\n      \"matcherStrategy\": \"ALL_VERSIONS\",\n      \"policyId\": \"<string>\",\n      \"policyName\": \"<string>\",\n      \"policyViolationId\": \"<string>\",\n      \"policyWaiverId\": \"<string>\",\n      \"policyWaiverReasonId\": \"<string>\",\n      \"reasonText\": \"<string>\",\n      \"scopeOwnerId\": \"<string>\",\n      \"scopeOwnerName\": \"<string>\",\n      \"scopeOwnerType\": \"<string>\",\n      \"threatLevel\": \"<integer>\",\n      \"vulnerabilityId\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-10-22T03:17:08.000Z",
+                                      "updatedAt": "2026-10-22T03:17:08.000Z",
+                                      "uid": "35240-1d38a208-bc9c-4014-b7ba-0978e7dbbaa8"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:17:08.000Z",
+                                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                                  "uid": "35240-89794e00-6c22-4aee-9268-31e536f1d037"
+                                },
+                                {
+                                  "name": "Add waiver to transitive policy violations by app scan component",
+                                  "id": "0443e8bb-fcf6-45de-b63b-c5115e0eac24",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/:scanId?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policyWaivers",
+                                        "transitive",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":scanId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Enter the component identifier of the transitive component on which you want to create a policy waiver.",
+                                          "key": "coordinates",
+                                          "value": "[object Object]"
+                                        },
+                                        {
+                                          "description": "Enter the component identifier of the transitive component on which you want to create a policy waiver.",
+                                          "key": "format",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the package URL of the transitive component on which you want to create a policy waiver.",
+                                          "key": "packageUrl",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the hash of the transitive component on which you want to create a policy waiver.",
+                                          "key": "hash",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "202c9d4c-b42c-4ff8-b54d-55dce85c5e66",
+                                          "key": "ownerType",
+                                          "value": "application",
+                                          "description": "(Required) Indicates the scope of the waiver that will be created."
+                                        },
+                                        {
+                                          "id": "364a9f00-1ceb-4c12-b731-dea61a340c49",
+                                          "key": "ownerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                        },
+                                        {
+                                          "id": "912fe91a-95ea-4ccf-80d5-6567155efb47",
+                                          "key": "scanId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the scanId (reportId) of the evaluation report that shows the transitive component."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to create a policy waiver on a transitive component detected during the specified scan. NOTE: Any one of the input parameters, i.e. component identifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.\n\nPermissions required: Waive Policy Violations"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ec58c385-2c61-4c27-935e-a0f12b1db432",
+                                      "name": "No content. Indicates that the waiver has been created successfully.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/policyWaivers/transitive/:ownerType/:ownerId/:scanId?coordinates=[object Object]&format=<string>&packageUrl=<string>&hash=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "policyWaivers",
+                                            "transitive",
+                                            ":ownerType",
+                                            ":ownerId",
+                                            ":scanId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Enter the component identifier of the transitive component on which you want to create a policy waiver.",
+                                              "key": "coordinates",
+                                              "value": "[object Object]"
+                                            },
+                                            {
+                                              "description": "Enter the component identifier of the transitive component on which you want to create a policy waiver.",
+                                              "key": "format",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the package URL of the transitive component on which you want to create a policy waiver.",
+                                              "key": "packageUrl",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the hash of the transitive component on which you want to create a policy waiver.",
+                                              "key": "hash",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "ownerId"
+                                            },
+                                            {
+                                              "key": "scanId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T03:17:08.000Z",
+                                      "updatedAt": "2026-10-22T03:17:08.000Z",
+                                      "uid": "35240-ec58c385-2c61-4c27-935e-a0f12b1db432"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:17:08.000Z",
+                                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                                  "uid": "35240-0443e8bb-fcf6-45de-b63b-c5115e0eac24"
+                                }
+                              ],
+                              "id": "a8ef238a-a25b-4a5c-8d22-f5af63aa7c08",
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-a8ef238a-a25b-4a5c-8d22-f5af63aa7c08"
+                            }
+                          ],
+                          "id": "23964be8-4f76-452d-93f3-98760fbee99d",
+                          "createdAt": "2026-10-22T03:17:08.000Z",
+                          "updatedAt": "2026-10-22T03:17:08.000Z",
+                          "uid": "35240-23964be8-4f76-452d-93f3-98760fbee99d"
+                        }
+                      ],
+                      "id": "093cc694-19a8-49aa-b0c2-aa35c1f87b90",
+                      "createdAt": "2026-10-22T03:17:08.000Z",
+                      "updatedAt": "2026-10-22T03:17:08.000Z",
+                      "uid": "35240-093cc694-19a8-49aa-b0c2-aa35c1f87b90"
+                    }
+                  ],
+                  "id": "e586491c-4779-40f6-b8ab-320163ca8d8b",
+                  "createdAt": "2026-10-22T03:17:08.000Z",
+                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                  "uid": "35240-e586491c-4779-40f6-b8ab-320163ca8d8b"
+                },
+                {
+                  "name": "waiverRequests",
+                  "item": [
+                    {
+                      "name": "{policyViolationId}",
+                      "item": [
+                        {
+                          "name": "Request policy waiver",
+                          "id": "458853ac-f4fd-416a-93b8-184f88721849",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"addWaiverLink\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"policyViolationLink\": \"<string>\",\n  \"reasonId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/policyWaivers/waiverRequests/:policyViolationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "policyWaivers",
+                                "waiverRequests",
+                                ":policyViolationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "17ea669d-b4d7-4759-bcfb-84f064452565",
+                                  "key": "policyViolationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the policyViolationId for which you want to trigger the waiver request event."
+                                }
+                              ]
+                            },
+                            "description": "Deprecated since IQ Server 1.192. Triggers a 'Waiver Request' webhook event. Deprecated because the webhook event is now integrated into the policy waiver request process. Please use `api/v2/policyWaiverRequests{ownerType}/policyViolation/{policyViolationId}` instead. Scheduled for removal in December 2025."
+                          },
+                          "response": [
+                            {
+                              "id": "5cdfea85-167e-4a51-92c9-6b915057145e",
+                              "name": "Waiver request webhook triggered successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"addWaiverLink\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"policyViolationLink\": \"<string>\",\n  \"reasonId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policyWaivers/waiverRequests/:policyViolationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policyWaivers",
+                                    "waiverRequests",
+                                    ":policyViolationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "policyViolationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-5cdfea85-167e-4a51-92c9-6b915057145e"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:17:08.000Z",
+                          "updatedAt": "2026-10-22T03:17:08.000Z",
+                          "uid": "35240-458853ac-f4fd-416a-93b8-184f88721849"
+                        }
+                      ],
+                      "id": "ede6a7a9-5bf3-4b52-accf-30ff16fedc0d",
+                      "createdAt": "2026-10-22T03:17:08.000Z",
+                      "updatedAt": "2026-10-22T03:17:08.000Z",
+                      "uid": "35240-ede6a7a9-5bf3-4b52-accf-30ff16fedc0d"
+                    }
+                  ],
+                  "id": "9cb350f2-0abc-4074-b7ce-ed8d592faf3c",
+                  "createdAt": "2026-10-22T03:17:08.000Z",
+                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                  "uid": "35240-9cb350f2-0abc-4074-b7ce-ed8d592faf3c"
+                },
+                {
+                  "name": "{ownerType}",
+                  "item": [
+                    {
+                      "name": "{ownerId}",
+                      "item": [
+                        {
+                          "name": "{policyViolationId}",
+                          "item": [
+                            {
+                              "name": "Add policy waiver by policy violation id",
+                              "id": "6ac70ee2-67da-4809-936c-24c7af6b0989",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyViolationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":policyViolationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b91de300-1955-49bb-961a-749355eb38c0",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
+                                    },
+                                    {
+                                      "id": "b4d0576c-a710-4fd1-a3d0-adceae4fda61",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                                    },
+                                    {
+                                      "id": "a468e4e6-a386-498f-b44d-c97e50e08b77",
+                                      "key": "policyViolationId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the policyViolationId for the policy on which you want to create a waiver. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to create a policy waiver.\n\nPermissions required: Waive Policy Violations"
+                              },
+                              "response": [
+                                {
+                                  "id": "65a4e9c1-098d-4eba-8de1-b4f8fd914e5d",
+                                  "name": "No content. Indicates that the waiver has been created successfully.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyViolationId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":policyViolationId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "policyViolationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:17:08.000Z",
+                                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                                  "uid": "35240-65a4e9c1-098d-4eba-8de1-b4f8fd914e5d"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-6ac70ee2-67da-4809-936c-24c7af6b0989"
+                            }
+                          ],
+                          "id": "2132e6f6-03b4-4b53-bead-9999dc5ac349",
+                          "createdAt": "2026-10-22T03:17:08.000Z",
+                          "updatedAt": "2026-10-22T03:17:08.000Z",
+                          "uid": "35240-2132e6f6-03b4-4b53-bead-9999dc5ac349"
+                        },
+                        {
+                          "name": "{policyWaiverId}",
+                          "item": [
+                            {
+                              "name": "Delete policy waiver",
+                              "id": "3e227d78-0ac7-43d7-9c51-f67a39193a15",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":policyWaiverId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e3a4a953-0ca8-486e-b120-d2da63872a1b",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Enter the ownerType to specify the scope. A waiver corresponding to the policyWaiverId provided and within the scope specified will be deleted."
+                                    },
+                                    {
+                                      "id": "36cd08ba-1a2b-49ec-8a71-83d7df91ee0a",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                    },
+                                    {
+                                      "id": "10014282-6a39-43ab-b621-489dedf47700",
+                                      "key": "policyWaiverId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the policyWaiverId to be deleted."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to delete a waiver, specified by the policyWaiverId.\n\nPermissions required: Waive Policy Violations"
+                              },
+                              "response": [
+                                {
+                                  "id": "5f5720a5-1dcc-4628-a57a-3a6043841dd4",
+                                  "name": "Waiver has been deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":policyWaiverId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "policyWaiverId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:17:08.000Z",
+                                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                                  "uid": "35240-5f5720a5-1dcc-4628-a57a-3a6043841dd4"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-3e227d78-0ac7-43d7-9c51-f67a39193a15"
+                            },
+                            {
+                              "name": "Get policy waiver",
+                              "id": "c999bfda-fbad-4138-bddc-64a70b445df3",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":policyWaiverId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9e5ee0be-1af4-4940-9e68-0a85659dcedf",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+                                    },
+                                    {
+                                      "id": "c7b1e2b3-53ae-445e-a910-8ae2fa453c95",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                    },
+                                    {
+                                      "id": "93d09a5d-c730-4abb-9c88-768f7d6c2408",
+                                      "key": "policyWaiverId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the policyWaiverId for which you want to retrieve the waiver details."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve waiver details for the waiverId specified.\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "8120b94c-c800-4557-973d-d044b3956d4b",
+                                  "name": "The response contains waiver details corresponding to the policy waiverId specified.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":policyWaiverId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "policyWaiverId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"associatedPackageUrl\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"ut4d\": \"<string>\",\n      \"do5\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"componentName\": \"<string>\",\n  \"componentUpgradeAvailable\": \"<boolean>\",\n  \"constraintFacts\": [\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": \"<integer>\",\n          \"conditionTypeId\": \"<string>\",\n          \"reason\": \"<string>\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"<string>\"\n          },\n          \"summary\": \"<string>\",\n          \"triggerJson\": \"<string>\"\n        },\n        {\n          \"conditionIndex\": \"<integer>\",\n          \"conditionTypeId\": \"<string>\",\n          \"reason\": \"<string>\",\n          \"reference\": {\n            \"type\": \"SAST_FINDING_ID\",\n            \"value\": \"<string>\"\n          },\n          \"summary\": \"<string>\",\n          \"triggerJson\": \"<string>\"\n        }\n      ],\n      \"constraintId\": \"<string>\",\n      \"constraintName\": \"<string>\",\n      \"operatorName\": \"<string>\"\n    },\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": \"<integer>\",\n          \"conditionTypeId\": \"<string>\",\n          \"reason\": \"<string>\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"<string>\"\n          },\n          \"summary\": \"<string>\",\n          \"triggerJson\": \"<string>\"\n        },\n        {\n          \"conditionIndex\": \"<integer>\",\n          \"conditionTypeId\": \"<string>\",\n          \"reason\": \"<string>\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"<string>\"\n          },\n          \"summary\": \"<string>\",\n          \"triggerJson\": \"<string>\"\n        }\n      ],\n      \"constraintId\": \"<string>\",\n      \"constraintName\": \"<string>\",\n      \"operatorName\": \"<string>\"\n    }\n  ],\n  \"constraintFactsJson\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"displayName\": {\n    \"name\": \"<string>\",\n    \"parts\": [\n      {\n        \"field\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"forContainerImage\": \"<boolean>\",\n  \"forContainerImageComponent\": \"<boolean>\",\n  \"hash\": \"<string>\",\n  \"isObsolete\": \"<boolean>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"policyId\": \"<string>\",\n  \"policyName\": \"<string>\",\n  \"policyViolationId\": \"<string>\",\n  \"policyWaiverId\": \"<string>\",\n  \"policyWaiverReasonId\": \"<string>\",\n  \"reasonText\": \"<string>\",\n  \"scopeOwnerId\": \"<string>\",\n  \"scopeOwnerName\": \"<string>\",\n  \"scopeOwnerType\": \"<string>\",\n  \"threatLevel\": \"<integer>\",\n  \"vulnerabilityId\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T03:17:08.000Z",
+                                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                                  "uid": "35240-8120b94c-c800-4557-973d-d044b3956d4b"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-c999bfda-fbad-4138-bddc-64a70b445df3"
+                            },
+                            {
+                              "name": "Update policy waiver",
+                              "id": "7a4b5170-65ea-400a-9aa9-17880b91ed3a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":policyWaiverId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "df9c66df-7969-42d7-8e77-0c867067d3bb",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Indicates the scope of the policy waiver. Possible values are application, organization, repository, repository_manager, and repository_container."
+                                    },
+                                    {
+                                      "id": "5857fe00-5317-43b8-b159-bde0c18eae9c",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id for the `ownerType` provided above. E.g. `applicationId` if the `ownerType` is application."
+                                    },
+                                    {
+                                      "id": "82834c95-96ef-4b09-9bf8-ead9b1ab9bdf",
+                                      "key": "policyWaiverId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id for the policy waiver."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to update an existing policy waiver.\n\nPermissions required: Waive Policy Violations"
+                              },
+                              "response": [
+                                {
+                                  "id": "609631c9-434e-4139-a671-6c812c55090d",
+                                  "name": "The policy waiver was updated successfully.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"waiverReasonId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId/:policyWaiverId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":policyWaiverId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "policyWaiverId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:17:08.000Z",
+                                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                                  "uid": "35240-609631c9-434e-4139-a671-6c812c55090d"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-7a4b5170-65ea-400a-9aa9-17880b91ed3a"
+                            }
+                          ],
+                          "id": "588b3abc-3770-464b-a393-7cae621a0345",
+                          "createdAt": "2026-10-22T03:17:08.000Z",
+                          "updatedAt": "2026-10-22T03:17:08.000Z",
+                          "uid": "35240-588b3abc-3770-464b-a393-7cae621a0345"
+                        },
+                        {
+                          "name": "Get policy waivers",
+                          "id": "225cfcf8-3cd7-4a0b-9878-fca95f6a4bef",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "policyWaivers",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1822d3da-db10-4d7f-ab00-bc104d7c57a7",
+                                  "key": "ownerType",
+                                  "value": "organization",
+                                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
+                                },
+                                {
+                                  "id": "20306022-f82a-4150-aae0-d6962f92042d",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to retrieve waiver details for all policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "dc22e4c5-65c9-4cc2-a625-fec0df0c65b7",
+                              "name": "The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the policyWaiverId. The response field 'matcherStrategy' indicates whether the waiver applies to a specific component, or all components that exist ",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policyWaivers",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"associatedPackageUrl\": \"<string>\",\n    \"comment\": \"<string>\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"est_e\": \"<string>\"\n      },\n      \"format\": \"<string>\"\n    },\n    \"componentName\": \"<string>\",\n    \"componentUpgradeAvailable\": \"<boolean>\",\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SECURITY_VULNERABILITY_REFID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          },\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SECURITY_VULNERABILITY_REFID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          }\n        ],\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"operatorName\": \"<string>\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SAST_FINDING_ID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          },\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SECURITY_VULNERABILITY_REFID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          }\n        ],\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"operatorName\": \"<string>\"\n      }\n    ],\n    \"constraintFactsJson\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"displayName\": {\n      \"name\": \"<string>\",\n      \"parts\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"expireWhenRemediationAvailable\": \"<boolean>\",\n    \"expiryTime\": \"<dateTime>\",\n    \"forContainerImage\": \"<boolean>\",\n    \"forContainerImageComponent\": \"<boolean>\",\n    \"hash\": \"<string>\",\n    \"isObsolete\": \"<boolean>\",\n    \"matcherStrategy\": \"ALL_COMPONENTS\",\n    \"policyId\": \"<string>\",\n    \"policyName\": \"<string>\",\n    \"policyViolationId\": \"<string>\",\n    \"policyWaiverId\": \"<string>\",\n    \"policyWaiverReasonId\": \"<string>\",\n    \"reasonText\": \"<string>\",\n    \"scopeOwnerId\": \"<string>\",\n    \"scopeOwnerName\": \"<string>\",\n    \"scopeOwnerType\": \"<string>\",\n    \"threatLevel\": \"<integer>\",\n    \"vulnerabilityId\": \"<string>\"\n  },\n  {\n    \"associatedPackageUrl\": \"<string>\",\n    \"comment\": \"<string>\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"inc\": \"<string>\",\n        \"reprehenderitcc\": \"<string>\",\n        \"laborum4\": \"<string>\",\n        \"consequat_c71\": \"<string>\"\n      },\n      \"format\": \"<string>\"\n    },\n    \"componentName\": \"<string>\",\n    \"componentUpgradeAvailable\": \"<boolean>\",\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SAST_FINDING_ID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          },\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SAST_FINDING_ID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          }\n        ],\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"operatorName\": \"<string>\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SAST_FINDING_ID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          },\n          {\n            \"conditionIndex\": \"<integer>\",\n            \"conditionTypeId\": \"<string>\",\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"type\": \"SECURITY_VULNERABILITY_REFID\",\n              \"value\": \"<string>\"\n            },\n            \"summary\": \"<string>\",\n            \"triggerJson\": \"<string>\"\n          }\n        ],\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"operatorName\": \"<string>\"\n      }\n    ],\n    \"constraintFactsJson\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"displayName\": {\n      \"name\": \"<string>\",\n      \"parts\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"expireWhenRemediationAvailable\": \"<boolean>\",\n    \"expiryTime\": \"<dateTime>\",\n    \"forContainerImage\": \"<boolean>\",\n    \"forContainerImageComponent\": \"<boolean>\",\n    \"hash\": \"<string>\",\n    \"isObsolete\": \"<boolean>\",\n    \"matcherStrategy\": \"DEFAULT\",\n    \"policyId\": \"<string>\",\n    \"policyName\": \"<string>\",\n    \"policyViolationId\": \"<string>\",\n    \"policyWaiverId\": \"<string>\",\n    \"policyWaiverReasonId\": \"<string>\",\n    \"reasonText\": \"<string>\",\n    \"scopeOwnerId\": \"<string>\",\n    \"scopeOwnerName\": \"<string>\",\n    \"scopeOwnerType\": \"<string>\",\n    \"threatLevel\": \"<integer>\",\n    \"vulnerabilityId\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-dc22e4c5-65c9-4cc2-a625-fec0df0c65b7"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:17:08.000Z",
+                          "updatedAt": "2026-10-22T03:17:08.000Z",
+                          "uid": "35240-225cfcf8-3cd7-4a0b-9878-fca95f6a4bef"
+                        },
+                        {
+                          "name": "Add bulk policy waivers",
+                          "id": "562c58ee-a5ad-4d6f-8395-6c13d5e8ae2b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiWaiverOptionsDTO\": {\n    \"applyToAllComponents\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"expireWhenRemediationAvailable\": \"<boolean>\",\n    \"expiryTime\": \"<dateTime>\",\n    \"matcherStrategy\": \"EXACT_COMPONENT\",\n    \"waiverReasonId\": \"<string>\"\n  },\n  \"violationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "policyWaivers",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7af01390-6dfe-45b9-9b67-a1dc28b96fe0",
+                                  "key": "ownerType",
+                                  "value": "organization",
+                                  "description": "(Required) Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
+                                },
+                                {
+                                  "id": "37e2b7e4-61c7-4928-bcb6-85913f02dc28",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to create policy waivers for multiple policy violations.\n\nPermissions required: Waive Policy Violations"
+                          },
+                          "response": [
+                            {
+                              "id": "c4fa71d6-bfe3-4117-a969-0c5019fe718c",
+                              "name": "No content. Indicates that the waivers have been created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiWaiverOptionsDTO\": {\n    \"applyToAllComponents\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"expireWhenRemediationAvailable\": \"<boolean>\",\n    \"expiryTime\": \"<dateTime>\",\n    \"matcherStrategy\": \"EXACT_COMPONENT\",\n    \"waiverReasonId\": \"<string>\"\n  },\n  \"violationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policyWaivers/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policyWaivers",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:17:08.000Z",
+                              "updatedAt": "2026-10-22T03:17:08.000Z",
+                              "uid": "35240-c4fa71d6-bfe3-4117-a969-0c5019fe718c"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:17:08.000Z",
+                          "updatedAt": "2026-10-22T03:17:08.000Z",
+                          "uid": "35240-562c58ee-a5ad-4d6f-8395-6c13d5e8ae2b"
+                        }
+                      ],
+                      "id": "ff68a1dd-6b21-43d3-bdb8-8b6dbdab43b5",
+                      "createdAt": "2026-10-22T03:17:08.000Z",
+                      "updatedAt": "2026-10-22T03:17:08.000Z",
+                      "uid": "35240-ff68a1dd-6b21-43d3-bdb8-8b6dbdab43b5"
+                    }
+                  ],
+                  "id": "b489c4b4-c62f-4b1c-b3ed-654bddb5ca54",
+                  "createdAt": "2026-10-22T03:17:08.000Z",
+                  "updatedAt": "2026-10-22T03:17:08.000Z",
+                  "uid": "35240-b489c4b4-c62f-4b1c-b3ed-654bddb5ca54"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "469e492f-0b31-4cae-ae3d-38590ae46f2b",
+              "createdAt": "2026-10-22T03:17:08.000Z",
+              "updatedAt": "2026-10-22T03:17:08.000Z",
+              "uid": "35240-469e492f-0b31-4cae-ae3d-38590ae46f2b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1b04ab1f-5d85-4feb-b653-086eb6c910dd",
-          "name": "get Transitive Policy Waivers By App Scan Component",
-          "request": {
-            "name": "get Transitive Policy Waivers By App Scan Component",
-            "description": {
-              "content": "Use this method to retrieve all waivers on policy violations due to transitive dependencies for a specific component detected in a specific scan. Any one of the input parameters, i.e. componentIdentifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                "transitive",
-                ":ownerType",
-                ":ownerId",
-                ":scanId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "coordinates",
-                  "value": "{\"key_0\":\"<string>\"}",
-                  "description": "Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId."
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "<string>",
-                  "description": "Enter the component identifier for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId."
-                },
-                {
-                  "disabled": false,
-                  "key": "packageUrl",
-                  "value": "<string>",
-                  "description": "Enter the package URL for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId."
-                },
-                {
-                  "disabled": false,
-                  "key": "hash",
-                  "value": "<string>",
-                  "description": "Enter the hash for the component for which you want to retrieve the waivers on transitive policy violations, for the specified scanId."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain the policy violations that are within the scope specified."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scanId",
-                  "description": "(Required) Enter the scanId (reportId) of the scan for which you want to retrieve the waivers on transitive policy violations occurring due the dependencies of a component."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "961b1f01-287a-44a4-b07e-c403da70c2f8",
-              "name": "The response contains a list of waivers on transitive policy violations for the dependencies of the component specified, for the given scanId.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    "transitive",
-                    ":ownerType",
-                    ":ownerId",
-                    ":scanId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "coordinates",
-                      "value": "[object Object]"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "packageUrl",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "hash",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the policy violations that are within the scope specified."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scanId",
-                      "description": "(Required) Enter the scanId (reportId) of the scan for which you want to retrieve the waivers on transitive policy violations occurring due the dependencies of a component."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"componentPolicyWaivers\": [\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": false,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"createTime\": \"1958-03-09T17:25:23.118Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": true,\n      \"expiryTime\": \"1989-12-19T09:45:03.769Z\",\n      \"forContainerImage\": false,\n      \"forContainerImageComponent\": true,\n      \"hash\": \"string\",\n      \"isObsolete\": true,\n      \"matcherStrategy\": \"ALL_COMPONENTS\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"threatLevel\": 6261,\n      \"vulnerabilityId\": \"string\"\n    },\n    {\n      \"associatedPackageUrl\": \"string\",\n      \"comment\": \"string\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"format\": \"string\"\n      },\n      \"componentName\": \"string\",\n      \"componentUpgradeAvailable\": true,\n      \"constraintFacts\": [\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        },\n        {\n          \"conditionFacts\": [\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conditionIndex\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conditionTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reason\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"summary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"triggerJson\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"constraintId\": \"string\",\n          \"constraintName\": \"string\",\n          \"operatorName\": \"string\"\n        }\n      ],\n      \"constraintFactsJson\": \"string\",\n      \"createTime\": \"1973-04-23T01:56:23.759Z\",\n      \"creatorId\": \"string\",\n      \"creatorName\": \"string\",\n      \"displayName\": {\n        \"name\": \"string\",\n        \"parts\": [\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"field\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"expireWhenRemediationAvailable\": true,\n      \"expiryTime\": \"1971-06-02T20:30:50.070Z\",\n      \"forContainerImage\": true,\n      \"forContainerImageComponent\": true,\n      \"hash\": \"string\",\n      \"isObsolete\": false,\n      \"matcherStrategy\": \"EXACT_COMPONENT\",\n      \"policyId\": \"string\",\n      \"policyName\": \"string\",\n      \"policyViolationId\": \"string\",\n      \"policyWaiverId\": \"string\",\n      \"policyWaiverReasonId\": \"string\",\n      \"reasonText\": \"string\",\n      \"scopeOwnerId\": \"string\",\n      \"scopeOwnerName\": \"string\",\n      \"scopeOwnerType\": \"string\",\n      \"threatLevel\": 1274,\n      \"vulnerabilityId\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "81e9ccc4-ed18-4d90-b452-5366bab4bc5b",
-          "name": "add Waiver To Transitive Policy Violations By App Scan Component",
-          "request": {
-            "name": "add Waiver To Transitive Policy Violations By App Scan Component",
-            "description": {
-              "content": "Use this method to create a policy waiver on a transitive component detected during the specified scan. NOTE: Any one of the input parameters, i.e. component identifier, packageUrl or hash is required. If more than one is provided, the system will pick them in the order specified here.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                "transitive",
-                ":ownerType",
-                ":ownerId",
-                ":scanId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "coordinates",
-                  "value": "{\"key_0\":\"<string>\"}",
-                  "description": "Enter the component identifier of the transitive component on which you want to create a policy waiver."
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "<string>",
-                  "description": "Enter the component identifier of the transitive component on which you want to create a policy waiver."
-                },
-                {
-                  "disabled": false,
-                  "key": "packageUrl",
-                  "value": "<string>",
-                  "description": "Enter the package URL of the transitive component on which you want to create a policy waiver."
-                },
-                {
-                  "disabled": false,
-                  "key": "hash",
-                  "value": "<string>",
-                  "description": "Enter the hash of the transitive component on which you want to create a policy waiver."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Indicates the scope of the waiver that will be created."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scanId",
-                  "description": "(Required) Enter the scanId (reportId) of the evaluation report that shows the transitive component."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "5193347b-b9fb-4c63-b526-914202b7b258",
-              "name": "No content. Indicates that the waiver has been created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    "transitive",
-                    ":ownerType",
-                    ":ownerId",
-                    ":scanId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "coordinates",
-                      "value": "[object Object]"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "packageUrl",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "hash",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Indicates the scope of the waiver that will be created."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scanId",
-                      "description": "(Required) Enter the scanId (reportId) of the evaluation report that shows the transitive component."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e79dfd3a-a5e0-4c21-979d-97d40f648b95",
-          "name": "request Policy Waiver",
-          "request": {
-            "name": "request Policy Waiver",
-            "description": {
-              "content": "Deprecated since IQ Server 1.192. Triggers a 'Waiver Request' webhook event. Deprecated because the webhook event is now integrated into the policy waiver request process. Please use `api/v2/policyWaiverRequests{ownerType}/policyViolation/{policyViolationId}` instead. Scheduled for removal in December 2025.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                "waiverRequests",
-                ":policyViolationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "policyViolationId",
-                  "description": "(Required) Enter the policyViolationId for which you want to trigger the waiver request event."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"addWaiverLink\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"policyViolationLink\": \"<string>\",\n  \"reasonId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "6fb1c927-ada2-41a4-8cd1-d1f6cfe3aa5d",
-              "name": "Waiver request webhook triggered successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    "waiverRequests",
-                    ":policyViolationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "policyViolationId",
-                      "description": "(Required) Enter the policyViolationId for which you want to trigger the waiver request event."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"addWaiverLink\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"policyViolationLink\": \"<string>\",\n  \"reasonId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9de0ba4c-6bf2-496c-8c3a-8c7a95f9a2f8",
-          "name": "get Policy Waivers",
-          "request": {
-            "name": "get Policy Waivers",
-            "description": {
-              "content": "Use this method to retrieve waiver details for all policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a4c23407-e999-4c9f-93ce-6d5d7d8f03ac",
-              "name": "The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the policyWaiverId. The response field 'matcherStrategy' indicates whether the waiver applies to a specific component, or all components that exist at that level of hierarchy (root org, org application), or all versions of the component (past, present, and future). The response fields associatedPackageUrl, displayName, and componentIdentifier are null for waivers on all components and unknown components.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"associatedPackageUrl\": \"string\",\n    \"comment\": \"string\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"componentName\": \"string\",\n    \"componentUpgradeAvailable\": false,\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 3837,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 3232,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 1853,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 6744,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      }\n    ],\n    \"constraintFactsJson\": \"string\",\n    \"createTime\": \"1964-02-18T07:28:43.696Z\",\n    \"creatorId\": \"string\",\n    \"creatorName\": \"string\",\n    \"displayName\": {\n      \"name\": \"string\",\n      \"parts\": [\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    \"expireWhenRemediationAvailable\": false,\n    \"expiryTime\": \"2018-10-31T01:56:53.913Z\",\n    \"forContainerImage\": false,\n    \"forContainerImageComponent\": true,\n    \"hash\": \"string\",\n    \"isObsolete\": true,\n    \"matcherStrategy\": \"ALL_VERSIONS\",\n    \"policyId\": \"string\",\n    \"policyName\": \"string\",\n    \"policyViolationId\": \"string\",\n    \"policyWaiverId\": \"string\",\n    \"policyWaiverReasonId\": \"string\",\n    \"reasonText\": \"string\",\n    \"scopeOwnerId\": \"string\",\n    \"scopeOwnerName\": \"string\",\n    \"scopeOwnerType\": \"string\",\n    \"threatLevel\": 3806,\n    \"vulnerabilityId\": \"string\"\n  },\n  {\n    \"associatedPackageUrl\": \"string\",\n    \"comment\": \"string\",\n    \"componentIdentifier\": {\n      \"coordinates\": {\n        \"key_0\": \"string\"\n      },\n      \"format\": \"string\"\n    },\n    \"componentName\": \"string\",\n    \"componentUpgradeAvailable\": false,\n    \"constraintFacts\": [\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 874,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 7234,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      },\n      {\n        \"conditionFacts\": [\n          {\n            \"conditionIndex\": 9954,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          },\n          {\n            \"conditionIndex\": 414,\n            \"conditionTypeId\": \"string\",\n            \"reason\": \"string\",\n            \"reference\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"summary\": \"string\",\n            \"triggerJson\": \"string\"\n          }\n        ],\n        \"constraintId\": \"string\",\n        \"constraintName\": \"string\",\n        \"operatorName\": \"string\"\n      }\n    ],\n    \"constraintFactsJson\": \"string\",\n    \"createTime\": \"1957-05-19T13:20:35.885Z\",\n    \"creatorId\": \"string\",\n    \"creatorName\": \"string\",\n    \"displayName\": {\n      \"name\": \"string\",\n      \"parts\": [\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"field\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    \"expireWhenRemediationAvailable\": true,\n    \"expiryTime\": \"2018-05-24T07:02:29.676Z\",\n    \"forContainerImage\": false,\n    \"forContainerImageComponent\": false,\n    \"hash\": \"string\",\n    \"isObsolete\": true,\n    \"matcherStrategy\": \"ALL_COMPONENTS\",\n    \"policyId\": \"string\",\n    \"policyName\": \"string\",\n    \"policyViolationId\": \"string\",\n    \"policyWaiverId\": \"string\",\n    \"policyWaiverReasonId\": \"string\",\n    \"reasonText\": \"string\",\n    \"scopeOwnerId\": \"string\",\n    \"scopeOwnerName\": \"string\",\n    \"scopeOwnerType\": \"string\",\n    \"threatLevel\": 6633,\n    \"vulnerabilityId\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d17ce83b-1db0-4e38-b748-c0fead26916a",
-          "name": "add Bulk Policy Waivers",
-          "request": {
-            "name": "add Bulk Policy Waivers",
-            "description": {
-              "content": "Use this method to create policy waivers for multiple policy violations.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"apiWaiverOptionsDTO\": {\n    \"applyToAllComponents\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"expireWhenRemediationAvailable\": \"<boolean>\",\n    \"expiryTime\": \"<dateTime>\",\n    \"matcherStrategy\": \"<string>\",\n    \"waiverReasonId\": \"<string>\"\n  },\n  \"violationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0977852e-0dba-40ac-a705-c04960a3b3e8",
-              "name": "No content. Indicates that the waivers have been created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"apiWaiverOptionsDTO\": {\n    \"applyToAllComponents\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"expireWhenRemediationAvailable\": \"<boolean>\",\n    \"expiryTime\": \"<dateTime>\",\n    \"matcherStrategy\": \"<string>\",\n    \"waiverReasonId\": \"<string>\"\n  },\n  \"violationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "76165870-ac27-4446-ad69-76e51aa37861",
-          "name": "add Policy Waiver By Policy Violation Id",
-          "request": {
-            "name": "add Policy Waiver By Policy Violation Id",
-            "description": {
-              "content": "Use this method to create a policy waiver.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                ":ownerType",
-                ":ownerId",
-                ":policyViolationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "policyViolationId",
-                  "description": "(Required) Enter the policyViolationId for the policy on which you want to create a waiver. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "bcb15b31-c854-4b95-85f2-d65b98d2a5d3",
-              "name": "No content. Indicates that the waiver has been created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    ":policyViolationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Indicates the scope of the waiver. Possible values are application, organization, repository, repository_manager, repository_container."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id for the ownerType provided above. E.g. applicationId if the ownerType is application."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "policyViolationId",
-                      "description": "(Required) Enter the policyViolationId for the policy on which you want to create a waiver. Use the Policy Violation REST API or Reports REST API to obtain the policyViolationId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "348c5ab7-8951-4f3d-b1a7-075e1c0ed28d",
-          "name": "delete Policy Waiver",
-          "request": {
-            "name": "delete Policy Waiver",
-            "description": {
-              "content": "Use this method to delete a waiver, specified by the policyWaiverId.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                ":ownerType",
-                ":ownerId",
-                ":policyWaiverId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. A waiver corresponding to the policyWaiverId provided and within the scope specified will be deleted."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "policyWaiverId",
-                  "description": "(Required) Enter the policyWaiverId to be deleted."
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a6ced84e-ddcf-48bc-95c0-51cc8f6ceb0c",
-              "name": "Waiver has been deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    ":policyWaiverId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. A waiver corresponding to the policyWaiverId provided and within the scope specified will be deleted."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "policyWaiverId",
-                      "description": "(Required) Enter the policyWaiverId to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c20eaa22-add4-49d1-b20a-383b37cb2ea9",
-          "name": "get Policy Waiver",
-          "request": {
-            "name": "get Policy Waiver",
-            "description": {
-              "content": "Use this method to retrieve waiver details for the waiverId specified.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                ":ownerType",
-                ":ownerId",
-                ":policyWaiverId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "policyWaiverId",
-                  "description": "(Required) Enter the policyWaiverId for which you want to retrieve the waiver details."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "af989fd6-fbc8-4d0c-bbf9-93107c0af9bf",
-              "name": "The response contains waiver details corresponding to the policy waiverId specified.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    ":policyWaiverId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "policyWaiverId",
-                      "description": "(Required) Enter the policyWaiverId for which you want to retrieve the waiver details."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"associatedPackageUrl\": \"string\",\n  \"comment\": \"string\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"string\"\n    },\n    \"format\": \"string\"\n  },\n  \"componentName\": \"string\",\n  \"componentUpgradeAvailable\": true,\n  \"constraintFacts\": [\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 9789,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 3942,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    },\n    {\n      \"conditionFacts\": [\n        {\n          \"conditionIndex\": 9845,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        },\n        {\n          \"conditionIndex\": 1563,\n          \"conditionTypeId\": \"string\",\n          \"reason\": \"string\",\n          \"reference\": {\n            \"type\": \"SECURITY_VULNERABILITY_REFID\",\n            \"value\": \"string\"\n          },\n          \"summary\": \"string\",\n          \"triggerJson\": \"string\"\n        }\n      ],\n      \"constraintId\": \"string\",\n      \"constraintName\": \"string\",\n      \"operatorName\": \"string\"\n    }\n  ],\n  \"constraintFactsJson\": \"string\",\n  \"createTime\": \"1995-08-27T11:31:30.883Z\",\n  \"creatorId\": \"string\",\n  \"creatorName\": \"string\",\n  \"displayName\": {\n    \"name\": \"string\",\n    \"parts\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"expireWhenRemediationAvailable\": true,\n  \"expiryTime\": \"1975-07-17T11:53:03.497Z\",\n  \"forContainerImage\": true,\n  \"forContainerImageComponent\": true,\n  \"hash\": \"string\",\n  \"isObsolete\": false,\n  \"matcherStrategy\": \"ALL_VERSIONS\",\n  \"policyId\": \"string\",\n  \"policyName\": \"string\",\n  \"policyViolationId\": \"string\",\n  \"policyWaiverId\": \"string\",\n  \"policyWaiverReasonId\": \"string\",\n  \"reasonText\": \"string\",\n  \"scopeOwnerId\": \"string\",\n  \"scopeOwnerName\": \"string\",\n  \"scopeOwnerType\": \"string\",\n  \"threatLevel\": 3042,\n  \"vulnerabilityId\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7c9aa71e-ce5c-4b37-aa4e-45f6f5a40edb",
-          "name": "update Policy Waiver",
-          "request": {
-            "name": "update Policy Waiver",
-            "description": {
-              "content": "Use this method to update an existing policy waiver.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "policyWaivers",
-                ":ownerType",
-                ":ownerId",
-                ":policyWaiverId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Indicates the scope of the policy waiver. Possible values are application, organization, repository, repository_manager, and repository_container."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id for the `ownerType` provided above. E.g. `applicationId` if the `ownerType` is application."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "policyWaiverId",
-                  "description": "(Required) Enter the id for the policy waiver."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1b85374e-cc96-4825-889b-0861f79f777e",
-              "name": "The policy waiver was updated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "policyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    ":policyWaiverId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Indicates the scope of the policy waiver. Possible values are application, organization, repository, repository_manager, and repository_container."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id for the `ownerType` provided above. E.g. `applicationId` if the `ownerType` is application."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "policyWaiverId",
-                      "description": "(Required) Enter the id for the policy waiver."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"applyToAllComponents\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"expireWhenRemediationAvailable\": \"<boolean>\",\n  \"expiryTime\": \"<dateTime>\",\n  \"matcherStrategy\": \"<string>\",\n  \"waiverReasonId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "68c34487-61f9-44aa-ad9c-dad19e440be5",
+          "createdAt": "2026-10-22T03:17:08.000Z",
+          "updatedAt": "2026-10-22T03:17:08.000Z",
+          "uid": "35240-68c34487-61f9-44aa-ad9c-dad19e440be5"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "4d3803a5-97d5-4db2-b00e-92d90532a534",
+      "createdAt": "2026-10-22T03:17:08.000Z",
+      "updatedAt": "2026-10-22T03:17:08.000Z",
+      "uid": "35240-4d3803a5-97d5-4db2-b00e-92d90532a534"
     }
   ],
   "auth": {
@@ -1485,21 +1465,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f8de3ec6-8020-4d14-bdea-ebaae978ed1e",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Waivers API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

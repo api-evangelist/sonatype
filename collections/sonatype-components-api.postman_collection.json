@@ -1,676 +1,905 @@
 {
+  "info": {
+    "_postman_id": "9c5c87fe-a593-402e-b593-42ca2909739b",
+    "name": "Sonatype Components API",
+    "description": "Operations tagged Components across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:13:38.000Z",
+    "updatedAt": "2026-10-22T03:13:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9c5c87fe-a593-402e-b593-42ca2909739b"
+  },
   "item": [
     {
-      "id": "f601c0b3-cc14-4de8-9ae6-01cc4d21377a",
-      "name": "Components",
-      "description": {
-        "content": "Use this REST API to retrieve a component's security vulnerability data, license data, age and popularity.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "81e9cc0b-9654-49a5-baf7-a86dfa7059bb",
-          "name": "get Component Details",
-          "request": {
-            "name": "get Component Details",
-            "description": {
-              "content": "Use this method to retrieve data related to a component.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "components",
-                "details"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "91b1d356-cd6e-43e6-a28d-a7535ffed8aa",
-              "name": "The response contains a detailed description of the component. The hash value returned here is truncated and not intended to be used as a checksum. It can be used as an identifier to pass to other REST API calls.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "components",
-                    "details"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "components",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "details",
+                  "item": [
+                    {
+                      "name": "Get component details",
+                      "id": "fa5380be-2af1-4df2-917d-e8d817e0a901",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"culpa_3\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"tempor8\": \"<string>\",\n          \"eu_8\": \"<string>\",\n          \"adipisicinge_\": \"<string>\",\n          \"qui_f3a\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/components/details",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "components",
+                            "details"
+                          ]
+                        },
+                        "description": "Use this method to retrieve data related to a component."
+                      },
+                      "response": [
+                        {
+                          "id": "4ebbd9ee-fe83-4857-8d27-16f36807a494",
+                          "name": "The response contains a detailed description of the component. The hash value returned here is truncated and not intended to be used as a checksum. It can be used as an identifier to pass to other REST API calls.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"culpa_3\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"tempor8\": \"<string>\",\n          \"eu_8\": \"<string>\",\n          \"adipisicinge_\": \"<string>\",\n          \"qui_f3a\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/components/details",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "components",
+                                "details"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"componentDetails\": [\n    {\n      \"catalogDate\": \"<string>\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"amet_357\": \"<string>\",\n            \"Duis0\": \"<string>\",\n            \"laboruma\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string,null>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"<string,null>\",\n      \"integrityRating\": \"<string,null>\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"status\": \"<string>\"\n      },\n      \"matchState\": \"<string>\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"<dateTime>\",\n        \"lastReleaseDate\": \"<dateTime>\",\n        \"projectMetadata\": {\n          \"description\": \"<string>\",\n          \"organization\": \"<string>\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": \"<integer>\",\n            \"uniqueDevsPerMonth\": \"<integer>\"\n          },\n          \"scmMetadata\": {\n            \"forks\": \"<integer>\",\n            \"stars\": \"<integer>\"\n          },\n          \"scmUrl\": \"<string>\"\n        }\n      },\n      \"relativePopularity\": \"<integer,null>\",\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"catalogDate\": \"<string>\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"laborisdb\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string,null>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"<string,null>\",\n      \"integrityRating\": \"<string,null>\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"status\": \"<string>\"\n      },\n      \"matchState\": \"<string>\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"<dateTime>\",\n        \"lastReleaseDate\": \"<dateTime>\",\n        \"projectMetadata\": {\n          \"description\": \"<string>\",\n          \"organization\": \"<string>\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": \"<integer>\",\n            \"uniqueDevsPerMonth\": \"<integer>\"\n          },\n          \"scmMetadata\": {\n            \"forks\": \"<integer>\",\n            \"stars\": \"<integer>\"\n          },\n          \"scmUrl\": \"<string>\"\n        }\n      },\n      \"relativePopularity\": \"<integer,null>\",\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T03:13:39.000Z",
+                          "updatedAt": "2026-10-22T03:13:39.000Z",
+                          "uid": "35240-4ebbd9ee-fe83-4857-8d27-16f36807a494"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:13:39.000Z",
+                      "updatedAt": "2026-10-22T03:13:39.000Z",
+                      "uid": "35240-fa5380be-2af1-4df2-917d-e8d817e0a901"
+                    }
+                  ],
+                  "id": "f21a4258-d239-4250-b851-99d3d7450e94",
+                  "createdAt": "2026-10-22T03:13:39.000Z",
+                  "updatedAt": "2026-10-22T03:13:39.000Z",
+                  "uid": "35240-f21a4258-d239-4250-b851-99d3d7450e94"
+                },
+                {
+                  "name": "remediation",
+                  "item": [
+                    {
+                      "name": "{ownerType}",
+                      "item": [
+                        {
+                          "name": "{ownerId}",
+                          "item": [
+                            {
+                              "name": "bulk",
+                              "item": [
+                                {
+                                  "name": "Get suggested remediation for components",
+                                  "id": "e07a10bb-ea5b-46a3-a17e-ed5c52c0b624",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"components\": [\n    {\n      \"packageUrl\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"consequat_e\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"thirdParty\": \"<boolean>\",\n      \"originalPurl\": \"<string>\"\n    },\n    {\n      \"packageUrl\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"consectetur_85b\": \"<string>\",\n          \"aliquip2b\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"thirdParty\": \"<boolean>\",\n      \"originalPurl\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/components/remediation/:ownerType/:ownerId/bulk?stageId=<string>&identificationSource=<string>&scanId=<string>&includeParentRemediation=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "components",
+                                        "remediation",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "bulk"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Enter the stageId to obtain next-non-failing and next-non-failing-with-dependencies remediation types in the response. Possible values are develop, build, stage-release, release and operate.",
+                                          "key": "stageId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the identification source if you want the remediation result based on third-party scan information (non-Sonatype). The identification source can be obtained from the Component Details Page in the UI.",
+                                          "key": "identificationSource",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the scanId (reportId) if you want the remediation result based on third-party scan information (non-Sonatype).",
+                                          "key": "scanId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter true if you want to include parent remediation for transitive dependency in the response based on your application policy scan.",
+                                          "key": "includeParentRemediation",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "960fee59-f2fb-434b-a67c-4d213a72b1b7",
+                                          "key": "ownerType",
+                                          "value": "application",
+                                          "description": "(Required) Possible values: application, organization, repository. "
+                                        },
+                                        {
+                                          "id": "4561ac72-ca68-4d59-bcdf-df8dbc269b40",
+                                          "key": "ownerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Possible values: applicationId, organizationId or repositoryId."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Bulk variant of the component remediation endpoint. Accepts a list of components and returns a per-component result for each. This is intended for callers (such as the ServiceNow AppVR integration) that need remediations for many components against the same owner/stage and would otherwise have to make one call per component. The batch is capped at 200 components; larger requests return 400."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "2ce92956-8e44-43df-9a48-8360eb1572ee",
+                                      "name": "The response returns a list of results, one per input component, in the same order as the input. Each result echoes the input component and contains either a remediation payload (same shape as the single-component endpoint's response) or, for per-componen",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"components\": [\n    {\n      \"packageUrl\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"consequat_e\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"thirdParty\": \"<boolean>\",\n      \"originalPurl\": \"<string>\"\n    },\n    {\n      \"packageUrl\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"consectetur_85b\": \"<string>\",\n          \"aliquip2b\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"thirdParty\": \"<boolean>\",\n      \"originalPurl\": \"<string>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/components/remediation/:ownerType/:ownerId/bulk?stageId=<string>&identificationSource=<string>&scanId=<string>&includeParentRemediation=false",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "components",
+                                            "remediation",
+                                            ":ownerType",
+                                            ":ownerId",
+                                            "bulk"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Enter the stageId to obtain next-non-failing and next-non-failing-with-dependencies remediation types in the response. Possible values are develop, build, stage-release, release and operate.",
+                                              "key": "stageId",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the identification source if you want the remediation result based on third-party scan information (non-Sonatype). The identification source can be obtained from the Component Details Page in the UI.",
+                                              "key": "identificationSource",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter the scanId (reportId) if you want the remediation result based on third-party scan information (non-Sonatype).",
+                                              "key": "scanId",
+                                              "value": "<string>"
+                                            },
+                                            {
+                                              "description": "Enter true if you want to include parent remediation for transitive dependency in the response based on your application policy scan.",
+                                              "key": "includeParentRemediation",
+                                              "value": "false"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "ownerId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T03:13:39.000Z",
+                                      "updatedAt": "2026-10-22T03:13:39.000Z",
+                                      "uid": "35240-2ce92956-8e44-43df-9a48-8360eb1572ee"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:13:39.000Z",
+                                  "updatedAt": "2026-10-22T03:13:39.000Z",
+                                  "uid": "35240-e07a10bb-ea5b-46a3-a17e-ed5c52c0b624"
+                                }
+                              ],
+                              "id": "8029fe90-3e90-4894-be6f-5f92ac922f4a",
+                              "createdAt": "2026-10-22T03:13:39.000Z",
+                              "updatedAt": "2026-10-22T03:13:39.000Z",
+                              "uid": "35240-8029fe90-3e90-4894-be6f-5f92ac922f4a"
+                            },
+                            {
+                              "name": "Get suggested remediation for component",
+                              "id": "6b82ffab-cf4f-44d0-baa1-88503d18b561",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"mollit1a\": \"<string>\",\n      \"adipisicinga\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"hash\": \"<string,null>\",\n  \"originalPurl\": \"<string>\",\n  \"packageUrl\": \"<string>\",\n  \"proprietary\": \"<boolean>\",\n  \"sha256\": \"<string>\",\n  \"thirdParty\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/components/remediation/:ownerType/:ownerId?stageId=<string>&identificationSource=<string>&scanId=<string>&includeParentRemediation=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "components",
+                                    "remediation",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Enter the stageId to obtain next-non-failing and next-non-failing-with-dependencies remediation types in the response. Possible values are develop, build, stage-release, release and operate.",
+                                      "key": "stageId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter the identification source if you want the remediation result based on third-party scan information (non-Sonatype). The identification source can be obtained from the Component Details Page in the UI.",
+                                      "key": "identificationSource",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter the scanId (reportId) if you want the remediation result based on third-party scan information (non-Sonatype).",
+                                      "key": "scanId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter true if you want to include parent remediation for transitive dependency in the response based on your application policy scan.",
+                                      "key": "includeParentRemediation",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d920032a-2b1d-48bc-9435-6b3f982a6dab",
+                                      "key": "ownerType",
+                                      "value": "application",
+                                      "description": "(Required) Possible values: application, organization, repository. "
+                                    },
+                                    {
+                                      "id": "8cb51cf8-2259-48fe-a77e-ec70063371fe",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Possible values: applicationId, organizationId or repositoryId."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI."
+                              },
+                              "response": [
+                                {
+                                  "id": "383f7567-c718-4e34-bce1-bbc157120a7e",
+                                  "name": "Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"mollit1a\": \"<string>\",\n      \"adipisicinga\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"hash\": \"<string,null>\",\n  \"originalPurl\": \"<string>\",\n  \"packageUrl\": \"<string>\",\n  \"proprietary\": \"<boolean>\",\n  \"sha256\": \"<string>\",\n  \"thirdParty\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/components/remediation/:ownerType/:ownerId?stageId=<string>&identificationSource=<string>&scanId=<string>&includeParentRemediation=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "components",
+                                        "remediation",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Enter the stageId to obtain next-non-failing and next-non-failing-with-dependencies remediation types in the response. Possible values are develop, build, stage-release, release and operate.",
+                                          "key": "stageId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the identification source if you want the remediation result based on third-party scan information (non-Sonatype). The identification source can be obtained from the Component Details Page in the UI.",
+                                          "key": "identificationSource",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the scanId (reportId) if you want the remediation result based on third-party scan information (non-Sonatype).",
+                                          "key": "scanId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter true if you want to include parent remediation for transitive dependency in the response based on your application policy scan.",
+                                          "key": "includeParentRemediation",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"remediation\": {\n    \"suggestedVersionChange\": {\n      \"data\": {\n        \"component\": {\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"velit_d04\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"displayName\": \"<string>\",\n          \"hash\": \"<string,null>\",\n          \"originalPurl\": \"<string>\",\n          \"packageUrl\": \"<string>\",\n          \"proprietary\": \"<boolean>\",\n          \"sha256\": \"<string>\",\n          \"thirdParty\": \"<boolean>\"\n        }\n      },\n      \"directDependency\": \"<boolean>\",\n      \"directDependencyData\": [\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"elit371\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"displayName\": \"<string>\",\n            \"hash\": \"<string,null>\",\n            \"originalPurl\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"proprietary\": \"<boolean>\",\n            \"sha256\": \"<string>\",\n            \"thirdParty\": \"<boolean>\"\n          }\n        },\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"dolorea_\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"displayName\": \"<string>\",\n            \"hash\": \"<string,null>\",\n            \"originalPurl\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"proprietary\": \"<boolean>\",\n            \"sha256\": \"<string>\",\n            \"thirdParty\": \"<boolean>\"\n          }\n        }\n      ],\n      \"isGolden\": \"<boolean>\",\n      \"type\": \"inner-source-latest-non-breaking\"\n    },\n    \"versionChanges\": [\n      {\n        \"data\": {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"Excepteurea\": \"<string>\",\n                \"adipisicing5f5\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"displayName\": \"<string>\",\n            \"hash\": \"<string,null>\",\n            \"originalPurl\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"proprietary\": \"<boolean>\",\n            \"sha256\": \"<string>\",\n            \"thirdParty\": \"<boolean>\"\n          }\n        },\n        \"directDependency\": \"<boolean>\",\n        \"directDependencyData\": [\n          {\n            \"component\": {\n              \"componentIdentifier\": {\n                \"coordinates\": {\n                  \"consectetur0\": \"<string>\",\n                  \"non_8\": \"<string>\",\n                  \"aliquip_cf\": \"<string>\"\n                },\n                \"format\": \"<string>\"\n              },\n              \"displayName\": \"<string>\",\n              \"hash\": \"<string,null>\",\n              \"originalPurl\": \"<string>\",\n              \"packageUrl\": \"<string>\",\n              \"proprietary\": \"<boolean>\",\n              \"sha256\": \"<string>\",\n              \"thirdParty\": \"<boolean>\"\n            }\n          },\n          {\n            \"component\": {\n              \"componentIdentifier\": {\n                \"coordinates\": {\n                  \"cupidatat__df\": \"<string>\",\n                  \"laboris39_\": \"<string>\",\n                  \"cupidatat_0e\": \"<string>\"\n                },\n                \"format\": \"<string>\"\n              },\n              \"displayName\": \"<string>\",\n              \"hash\": \"<string,null>\",\n              \"originalPurl\": \"<string>\",\n              \"packageUrl\": \"<string>\",\n              \"proprietary\": \"<boolean>\",\n              \"sha256\": \"<string>\",\n              \"thirdParty\": \"<boolean>\"\n            }\n          }\n        ],\n        \"type\": \"next-non-failing-with-dependencies\"\n      },\n      {\n        \"data\": {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"coordinates\": {\n                \"exercitation1\": \"<string>\",\n                \"enim_3\": \"<string>\"\n              },\n              \"format\": \"<string>\"\n            },\n            \"displayName\": \"<string>\",\n            \"hash\": \"<string,null>\",\n            \"originalPurl\": \"<string>\",\n            \"packageUrl\": \"<string>\",\n            \"proprietary\": \"<boolean>\",\n            \"sha256\": \"<string>\",\n            \"thirdParty\": \"<boolean>\"\n          }\n        },\n        \"directDependency\": \"<boolean>\",\n        \"directDependencyData\": [\n          {\n            \"component\": {\n              \"componentIdentifier\": {\n                \"coordinates\": {\n                  \"ad_5\": \"<string>\",\n                  \"aliqua228\": \"<string>\"\n                },\n                \"format\": \"<string>\"\n              },\n              \"displayName\": \"<string>\",\n              \"hash\": \"<string,null>\",\n              \"originalPurl\": \"<string>\",\n              \"packageUrl\": \"<string>\",\n              \"proprietary\": \"<boolean>\",\n              \"sha256\": \"<string>\",\n              \"thirdParty\": \"<boolean>\"\n            }\n          },\n          {\n            \"component\": {\n              \"componentIdentifier\": {\n                \"coordinates\": {\n                  \"reprehenderit_7a4\": \"<string>\",\n                  \"labore_af1\": \"<string>\"\n                },\n                \"format\": \"<string>\"\n              },\n              \"displayName\": \"<string>\",\n              \"hash\": \"<string,null>\",\n              \"originalPurl\": \"<string>\",\n              \"packageUrl\": \"<string>\",\n              \"proprietary\": \"<boolean>\",\n              \"sha256\": \"<string>\",\n              \"thirdParty\": \"<boolean>\"\n            }\n          }\n        ],\n        \"type\": \"next-non-failing\"\n      }\n    ]\n  }\n}",
+                                  "createdAt": "2026-10-22T03:13:39.000Z",
+                                  "updatedAt": "2026-10-22T03:13:39.000Z",
+                                  "uid": "35240-383f7567-c718-4e34-bce1-bbc157120a7e"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:39.000Z",
+                              "updatedAt": "2026-10-22T03:13:39.000Z",
+                              "uid": "35240-6b82ffab-cf4f-44d0-baa1-88503d18b561"
+                            }
+                          ],
+                          "id": "40938b9b-6d45-4d80-a0b6-2505c7acd411",
+                          "createdAt": "2026-10-22T03:13:39.000Z",
+                          "updatedAt": "2026-10-22T03:13:39.000Z",
+                          "uid": "35240-40938b9b-6d45-4d80-a0b6-2505c7acd411"
+                        }
+                      ],
+                      "id": "122b016f-dad3-4ffd-8ee5-c172d3cce590",
+                      "createdAt": "2026-10-22T03:13:39.000Z",
+                      "updatedAt": "2026-10-22T03:13:39.000Z",
+                      "uid": "35240-122b016f-dad3-4ffd-8ee5-c172d3cce590"
+                    }
+                  ],
+                  "id": "4fcd4525-8b6a-4473-8107-d478d089f6bf",
+                  "createdAt": "2026-10-22T03:13:39.000Z",
+                  "updatedAt": "2026-10-22T03:13:39.000Z",
+                  "uid": "35240-4fcd4525-8b6a-4473-8107-d478d089f6bf"
+                },
+                {
+                  "name": "versions",
+                  "item": [
+                    {
+                      "name": "Get component versions",
+                      "id": "af1ec10c-6a58-491a-abf9-b011b5695c30",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"coordinates\": {\n    \"adipisicing__1\": \"<string>\"\n  },\n  \"format\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/components/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "components",
+                            "versions"
+                          ]
+                        },
+                        "description": "Use this method to retrieve all known versions of a component."
+                      },
+                      "response": [
+                        {
+                          "id": "03589476-1485-4d9d-ae88-6f5376c6d67b",
+                          "name": "Known versions of the component are returned in a string array of ascending order.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"coordinates\": {\n    \"adipisicing__1\": \"<string>\"\n  },\n  \"format\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/components/versions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "components",
+                                "versions"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "createdAt": "2026-10-22T03:13:39.000Z",
+                          "updatedAt": "2026-10-22T03:13:39.000Z",
+                          "uid": "35240-03589476-1485-4d9d-ae88-6f5376c6d67b"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:13:39.000Z",
+                      "updatedAt": "2026-10-22T03:13:39.000Z",
+                      "uid": "35240-af1ec10c-6a58-491a-abf9-b011b5695c30"
+                    }
+                  ],
+                  "id": "32cb5f2b-ca82-4cc1-b052-3e1af38f959c",
+                  "createdAt": "2026-10-22T03:13:39.000Z",
+                  "updatedAt": "2026-10-22T03:13:39.000Z",
+                  "uid": "35240-32cb5f2b-ca82-4cc1-b052-3e1af38f959c"
+                },
+                {
+                  "name": "{componentHash}",
+                  "item": [
+                    {
+                      "name": "labels",
+                      "item": [
+                        {
+                          "name": "{labelName}",
+                          "item": [
+                            {
+                              "name": "{ownerType}s",
+                              "item": [
+                                {
+                                  "name": "{internalOwnerId}",
+                                  "item": [
+                                    {
+                                      "name": "Delete component label",
+                                      "id": "6261d3f6-ad9b-4674-9e8e-991cd6791418",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/components/:componentHash/labels/:labelName/{{ownerType}}s/:internalOwnerId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "components",
+                                            ":componentHash",
+                                            "labels",
+                                            ":labelName",
+                                            "{{ownerType}}s",
+                                            ":internalOwnerId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "64d12fc4-e3b3-4a4e-8f03-aed9fb8ab78c",
+                                              "key": "componentHash",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the SHA1 hash of the component."
+                                            },
+                                            {
+                                              "id": "9f635c39-01d1-42ed-8456-1b9d6dc40399",
+                                              "key": "labelName",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the label name to un-assign from this component."
+                                            },
+                                            {
+                                              "id": "012bcc12-518c-4175-812e-7bcaad683141",
+                                              "key": "internalOwnerId",
+                                              "value": "<string>",
+                                              "description": "(Required) Possible values : applicationId or organizationId"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to un-assign a label from a component."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "9192a836-e605-41f1-90bf-4259cf9392a2",
+                                          "name": "Label un-assigned from component successfully.",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/components/:componentHash/labels/:labelName/{{ownerType}}s/:internalOwnerId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "components",
+                                                ":componentHash",
+                                                "labels",
+                                                ":labelName",
+                                                "{{ownerType}}s",
+                                                ":internalOwnerId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "componentHash"
+                                                },
+                                                {
+                                                  "key": "labelName"
+                                                },
+                                                {
+                                                  "key": "internalOwnerId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T03:13:39.000Z",
+                                          "updatedAt": "2026-10-22T03:13:39.000Z",
+                                          "uid": "35240-9192a836-e605-41f1-90bf-4259cf9392a2"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:13:39.000Z",
+                                      "updatedAt": "2026-10-22T03:13:39.000Z",
+                                      "uid": "35240-6261d3f6-ad9b-4674-9e8e-991cd6791418"
+                                    },
+                                    {
+                                      "name": "Set component label",
+                                      "id": "4b47fe72-3dfb-40a1-80d2-4003f9f24961",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/components/:componentHash/labels/:labelName/{{ownerType}}s/:internalOwnerId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "components",
+                                            ":componentHash",
+                                            "labels",
+                                            ":labelName",
+                                            "{{ownerType}}s",
+                                            ":internalOwnerId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "450b320d-b216-4353-a696-374ac52e528c",
+                                              "key": "componentHash",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the SHA1 hash of the component."
+                                            },
+                                            {
+                                              "id": "3c4d47a2-5e3c-41c2-9cdb-738f2c92d0a3",
+                                              "key": "labelName",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the label name to assign to this component."
+                                            },
+                                            {
+                                              "id": "899c07b9-49a7-4153-a243-260b7453f93a",
+                                              "key": "internalOwnerId",
+                                              "value": "<string>",
+                                              "description": "(Required) Possible values : applicationId or organizationId"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to assign an existing label to a component."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "6b5f18e3-89b6-44da-b112-6082b6c36399",
+                                          "name": "Component label assigned successfully.",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/components/:componentHash/labels/:labelName/{{ownerType}}s/:internalOwnerId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "components",
+                                                ":componentHash",
+                                                "labels",
+                                                ":labelName",
+                                                "{{ownerType}}s",
+                                                ":internalOwnerId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "componentHash"
+                                                },
+                                                {
+                                                  "key": "labelName"
+                                                },
+                                                {
+                                                  "key": "internalOwnerId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T03:13:39.000Z",
+                                          "updatedAt": "2026-10-22T03:13:39.000Z",
+                                          "uid": "35240-6b5f18e3-89b6-44da-b112-6082b6c36399"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:13:39.000Z",
+                                      "updatedAt": "2026-10-22T03:13:39.000Z",
+                                      "uid": "35240-4b47fe72-3dfb-40a1-80d2-4003f9f24961"
+                                    }
+                                  ],
+                                  "id": "4ab44d96-2bd7-4784-af22-7e7e671c06d2",
+                                  "createdAt": "2026-10-22T03:13:39.000Z",
+                                  "updatedAt": "2026-10-22T03:13:39.000Z",
+                                  "uid": "35240-4ab44d96-2bd7-4784-af22-7e7e671c06d2"
+                                }
+                              ],
+                              "id": "d4e4c92f-28a9-4eb4-8e1c-8e3493383484",
+                              "createdAt": "2026-10-22T03:13:39.000Z",
+                              "updatedAt": "2026-10-22T03:13:39.000Z",
+                              "uid": "35240-d4e4c92f-28a9-4eb4-8e1c-8e3493383484"
+                            }
+                          ],
+                          "id": "2919f203-35bf-4bfd-9c00-f715f46db722",
+                          "createdAt": "2026-10-22T03:13:39.000Z",
+                          "updatedAt": "2026-10-22T03:13:39.000Z",
+                          "uid": "35240-2919f203-35bf-4bfd-9c00-f715f46db722"
+                        }
+                      ],
+                      "id": "f626b26d-c3f5-4a25-bd09-72315e80016b",
+                      "createdAt": "2026-10-22T03:13:39.000Z",
+                      "updatedAt": "2026-10-22T03:13:39.000Z",
+                      "uid": "35240-f626b26d-c3f5-4a25-bd09-72315e80016b"
+                    }
+                  ],
+                  "id": "ad3d6456-502c-48d9-9375-36171a1528e1",
+                  "createdAt": "2026-10-22T03:13:39.000Z",
+                  "updatedAt": "2026-10-22T03:13:39.000Z",
+                  "uid": "35240-ad3d6456-502c-48d9-9375-36171a1528e1"
                 }
               ],
-              "body": "{\n  \"componentDetails\": [\n    {\n      \"catalogDate\": \"string\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"string\",\n      \"integrityRating\": \"string\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"status\": \"string\"\n      },\n      \"matchState\": \"string\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"1969-07-13T02:36:10.574Z\",\n            \"legacyViolationTime\": \"1953-09-15T20:20:11.880Z\",\n            \"openTime\": \"1990-11-30T05:46:52.861Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 7111,\n            \"waiveTime\": \"1974-10-07T05:06:24.918Z\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"2018-11-05T11:42:50.149Z\",\n            \"legacyViolationTime\": \"1993-10-21T05:35:20.673Z\",\n            \"openTime\": \"2015-09-25T15:21:44.058Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 4725,\n            \"waiveTime\": \"1969-06-20T12:51:40.536Z\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"2020-01-20T17:43:16.253Z\",\n        \"lastReleaseDate\": \"1949-03-27T14:31:18.700Z\",\n        \"projectMetadata\": {\n          \"description\": \"string\",\n          \"organization\": \"string\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueDevsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmMetadata\": {\n            \"forks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stars\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmUrl\": \"string\"\n        }\n      },\n      \"relativePopularity\": 5092,\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 8765.149994220703,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 9284.383329334778,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"catalogDate\": \"string\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"string\",\n      \"integrityRating\": \"string\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"status\": \"string\"\n      },\n      \"matchState\": \"string\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"1981-09-04T19:24:53.030Z\",\n            \"legacyViolationTime\": \"2010-06-14T21:44:38.198Z\",\n            \"openTime\": \"2021-12-26T15:06:26.067Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 950,\n            \"waiveTime\": \"1965-09-10T04:38:53.606Z\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"1985-03-22T06:25:25.013Z\",\n            \"legacyViolationTime\": \"1972-06-28T10:03:11.379Z\",\n            \"openTime\": \"1958-08-25T02:57:40.116Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 2823,\n            \"waiveTime\": \"1969-01-31T07:48:08.011Z\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"2023-03-22T05:53:03.215Z\",\n        \"lastReleaseDate\": \"2007-03-24T23:53:53.593Z\",\n        \"projectMetadata\": {\n          \"description\": \"string\",\n          \"organization\": \"string\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueDevsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmMetadata\": {\n            \"forks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stars\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmUrl\": \"string\"\n        }\n      },\n      \"relativePopularity\": 1873,\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 8775.907961217103,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 7780.247392695048,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "79ae3a6c-0bb5-4a3c-9a1d-343d956a1c37",
+              "createdAt": "2026-10-22T03:13:39.000Z",
+              "updatedAt": "2026-10-22T03:13:39.000Z",
+              "uid": "35240-79ae3a6c-0bb5-4a3c-9a1d-343d956a1c37"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "65ab1c46-b481-4388-af07-e82607e955de",
-          "name": "get Suggested Remediation For Component",
-          "request": {
-            "name": "get Suggested Remediation For Component",
-            "description": {
-              "content": "Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "components",
-                "remediation",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "stageId",
-                  "value": "<string>",
-                  "description": "Enter the stageId to obtain next-non-failing and next-non-failing-with-dependencies remediation types in the response. Possible values are develop, build, stage-release, release and operate."
-                },
-                {
-                  "disabled": false,
-                  "key": "identificationSource",
-                  "value": "<string>",
-                  "description": "Enter the identification source if you want the remediation result based on third-party scan information (non-Sonatype). The identification source can be obtained from the Component Details Page in the UI."
-                },
-                {
-                  "disabled": false,
-                  "key": "scanId",
-                  "value": "<string>",
-                  "description": "Enter the scanId (reportId) if you want the remediation result based on third-party scan information (non-Sonatype)."
-                },
-                {
-                  "disabled": false,
-                  "key": "includeParentRemediation",
-                  "value": "false",
-                  "description": "Enter true if you want to include parent remediation for transitive dependency in the response based on your application policy scan."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Possible values: application, organization, repository. "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Possible values: applicationId, organizationId or repositoryId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"hash\": \"<string>\",\n  \"originalPurl\": \"<string>\",\n  \"packageUrl\": \"<string>\",\n  \"proprietary\": \"<boolean>\",\n  \"sha256\": \"<string>\",\n  \"thirdParty\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8ca16840-77b7-42ec-9410-37c250591d71",
-              "name": "Use this method to obtain remediation suggestions for policy violations on a component basis. Remediations obtained from this method are same as those appearing on the Component Details Page in the UI.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "components",
-                    "remediation",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "stageId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "identificationSource",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scanId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "includeParentRemediation",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Possible values: application, organization, repository. "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Possible values: applicationId, organizationId or repositoryId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"displayName\": \"<string>\",\n  \"hash\": \"<string>\",\n  \"originalPurl\": \"<string>\",\n  \"packageUrl\": \"<string>\",\n  \"proprietary\": \"<boolean>\",\n  \"sha256\": \"<string>\",\n  \"thirdParty\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"remediation\": {\n    \"suggestedVersionChange\": {\n      \"data\": {\n        \"component\": {\n          \"componentIdentifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"displayName\": \"<string>\",\n          \"hash\": \"<string>\",\n          \"originalPurl\": \"<string>\",\n          \"packageUrl\": \"<string>\",\n          \"proprietary\": \"<boolean>\",\n          \"sha256\": \"<string>\",\n          \"thirdParty\": \"<boolean>\"\n        }\n      },\n      \"directDependency\": false,\n      \"directDependencyData\": [\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hash\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"originalPurl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"packageUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sha256\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thirdParty\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hash\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"originalPurl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"packageUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sha256\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thirdParty\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"isGolden\": true,\n      \"type\": \"next-no-violations\"\n    },\n    \"versionChanges\": [\n      {\n        \"data\": {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hash\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"originalPurl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"packageUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sha256\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thirdParty\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"directDependency\": true,\n        \"directDependencyData\": [\n          {\n            \"component\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"component\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"type\": \"inner-source-latest\"\n      },\n      {\n        \"data\": {\n          \"component\": {\n            \"componentIdentifier\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hash\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"originalPurl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"packageUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sha256\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thirdParty\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"directDependency\": false,\n        \"directDependencyData\": [\n          {\n            \"component\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"component\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"type\": \"next-no-violations\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "523b48bb-94de-4352-a523-9fe83e60127d",
-          "name": "get Component Versions",
-          "request": {
-            "name": "get Component Versions",
-            "description": {
-              "content": "Use this method to retrieve all known versions of a component.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "components",
-                "versions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"coordinates\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\",\n    \"key_4\": \"<string>\"\n  },\n  \"format\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b5db656d-cec1-44cc-a3c9-bcb7009b2198",
-              "name": "Known versions of the component are returned in a string array of ascending order.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "components",
-                    "versions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"coordinates\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"format\": \"<string>\",\n  \"packageUrl\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  \"string\",\n  \"string\"\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7d2fa2e2-bc26-4e36-a713-9b580bb7e117",
-          "name": "delete Component Label",
-          "request": {
-            "name": "delete Component Label",
-            "description": {
-              "content": "Use this method to un-assign a label from a component.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "components",
-                ":componentHash",
-                "labels",
-                ":labelName",
-                "{{ownerType}}s",
-                ":internalOwnerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Possible values : applicationId or organizationId"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "componentHash",
-                  "description": "(Required) Enter the SHA1 hash of the component."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "labelName",
-                  "description": "(Required) Enter the label name to un-assign from this component."
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1d010d8c-3174-4950-b6cb-c184f8ee4316",
-              "name": "Label un-assigned from component successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "components",
-                    ":componentHash",
-                    "labels",
-                    ":labelName",
-                    "{{ownerType}}s",
-                    ":internalOwnerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Possible values : applicationId or organizationId"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "componentHash",
-                      "description": "(Required) Enter the SHA1 hash of the component."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "labelName",
-                      "description": "(Required) Enter the label name to un-assign from this component."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6013c99c-62fe-4597-b98b-97cb80f99c4c",
-          "name": "set Component Label",
-          "request": {
-            "name": "set Component Label",
-            "description": {
-              "content": "Use this method to assign an existing label to a component.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "components",
-                ":componentHash",
-                "labels",
-                ":labelName",
-                "{{ownerType}}s",
-                ":internalOwnerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "internalOwnerId",
-                  "description": "(Required) Possible values : applicationId or organizationId"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "componentHash",
-                  "description": "(Required) Enter the SHA1 hash of the component."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "labelName",
-                  "description": "(Required) Enter the label name to assign to this component."
-                }
-              ]
-            },
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "98f7bc8c-b205-49e2-b0dc-337ff655e029",
-              "name": "Component label assigned successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "components",
-                    ":componentHash",
-                    "labels",
-                    ":labelName",
-                    "{{ownerType}}s",
-                    ":internalOwnerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "internalOwnerId",
-                      "description": "(Required) Possible values : applicationId or organizationId"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "componentHash",
-                      "description": "(Required) Enter the SHA1 hash of the component."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "labelName",
-                      "description": "(Required) Enter the label name to assign to this component."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b9b9532c-a194-4a0b-bc21-d9c81f7f13fd",
+          "createdAt": "2026-10-22T03:13:39.000Z",
+          "updatedAt": "2026-10-22T03:13:39.000Z",
+          "uid": "35240-b9b9532c-a194-4a0b-bc21-d9c81f7f13fd"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
-    },
-    {
-      "disabled": false,
-      "description": {
-        "content": "(Required) Possible values: application or organization",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "<string>",
-      "key": "ownerType"
+      "id": "bd620751-4736-423e-aeec-fa592039ec68",
+      "createdAt": "2026-10-22T03:13:39.000Z",
+      "updatedAt": "2026-10-22T03:13:39.000Z",
+      "uid": "35240-bd620751-4736-423e-aeec-fa592039ec68"
     }
   ],
   "auth": {
@@ -678,21 +907,24 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "7a0838ce-d162-4482-8a0d-8892c9b938c1",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Components API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    },
+    {
+      "key": "ownerType",
+      "value": "organization"
     }
-  }
+  ]
 }

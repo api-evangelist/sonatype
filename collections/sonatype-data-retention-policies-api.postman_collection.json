@@ -1,344 +1,367 @@
 {
+  "info": {
+    "_postman_id": "14b19739-5314-4251-8049-5464afd61751",
+    "name": "Sonatype Data Retention Policies API",
+    "description": "Operations tagged Data Retention Policies across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:15:22.000Z",
+    "updatedAt": "2026-10-22T03:15:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-14b19739-5314-4251-8049-5464afd61751"
+  },
   "item": [
     {
-      "id": "99d989a7-11ae-4bf6-8ecc-18645e19bb92",
-      "name": "Data Retention Policies",
-      "description": {
-        "content": "Set policies for automatic purging of obsolete application and Success Metrics reports. <p>Note that IQ Server has a preset limit of purging 5000 reports in one execution of its report purging job.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "a98ee977-7ec0-4fed-bfd0-a8ecc884d81f",
-          "name": "get Data Retention Policies",
-          "request": {
-            "name": "get Data Retention Policies",
-            "description": {
-              "content": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to inspect the retention policies that are in effect for an organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring in the response JSON<p>Permissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "dataRetentionPolicies",
-                "organizations",
-                ":organizationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organizationId",
-                  "description": "(Required) The organizationId assigned by IQ Server. Use the organization REST API to retrieve the organizationId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "118ba013-c3e4-456a-aeeb-36f459de3c5e",
-              "name": "The response JSON contains the policy settings for both applicationReports and successMetrics. Policy settings for application reports are shown for each stage of development. <ul><li>inheritPolicy IS a boolean flag indicating whether the policy is inherited from a parent organization.</li><li>enablePurging IS a boolean flag indicating if automatic purging is enabled or disabled.</li><li>maxCount IS the maximum no. of reports to retain.</li><li>maxAge IS the maximum age that a report is allowed to reach before it is purged. Possible values are days, weeks, months, years.</li></ul>The latest application report is always retained, regardless of its age.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "dataRetentionPolicies",
-                    "organizations",
-                    ":organizationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organizationId",
-                      "description": "(Required) The organizationId assigned by IQ Server. Use the organization REST API to retrieve the organizationId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "dataRetentionPolicies",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "organizations",
+                  "item": [
+                    {
+                      "name": "{organizationId}",
+                      "item": [
+                        {
+                          "name": "parent",
+                          "item": [
+                            {
+                              "name": "Get parent data retention policies",
+                              "id": "c9e6e619-1ed1-4c67-a3e7-afb37de94682",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId/parent",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "dataRetentionPolicies",
+                                    "organizations",
+                                    ":organizationId",
+                                    "parent"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "da5bb878-3d01-4514-9872-06512dcc6c63",
+                                      "key": "organizationId",
+                                      "value": "<string>",
+                                      "description": "(Required) The organizationId assigned by IQ Server. Use the organization REST API to retrieve the parent organizationId"
+                                    }
+                                  ]
+                                },
+                                "description": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to inspect the retention policies that are in effect for the parent organization of the given organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring.\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "f3821e35-675e-494c-89cd-fdb376157e53",
+                                  "name": "The response JSON contains the policy settings for both applicationReports and successMetrics. Policy settings for application reports are shown for each stage of development. <ul><li>inheritPolicy IS a boolean flag indicating whether the policy is inheri",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId/parent",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "dataRetentionPolicies",
+                                        "organizations",
+                                        ":organizationId",
+                                        "parent"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"esse_0\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"id_ab9\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"nisi1\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": \"<boolean>\",\n    \"inheritPolicy\": \"<boolean>\",\n    \"maxAge\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T03:15:22.000Z",
+                                  "updatedAt": "2026-10-22T03:15:22.000Z",
+                                  "uid": "35240-f3821e35-675e-494c-89cd-fdb376157e53"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:15:22.000Z",
+                              "updatedAt": "2026-10-22T03:15:22.000Z",
+                              "uid": "35240-c9e6e619-1ed1-4c67-a3e7-afb37de94682"
+                            }
+                          ],
+                          "id": "3b42fd14-0ba7-423e-ad2d-432c6fb8bbbf",
+                          "createdAt": "2026-10-22T03:15:22.000Z",
+                          "updatedAt": "2026-10-22T03:15:22.000Z",
+                          "uid": "35240-3b42fd14-0ba7-423e-ad2d-432c6fb8bbbf"
+                        },
+                        {
+                          "name": "Get data retention policies",
+                          "id": "ce50372d-f38e-42d6-b06b-aa9ef76bd0a6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "dataRetentionPolicies",
+                                "organizations",
+                                ":organizationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "02693440-d36f-4723-bb49-aa09137a1ec6",
+                                  "key": "organizationId",
+                                  "value": "<string>",
+                                  "description": "(Required) The organizationId assigned by IQ Server. Use the organization REST API to retrieve the organizationId."
+                                }
+                              ]
+                            },
+                            "description": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to inspect the retention policies that are in effect for an organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring in the response JSON\nPermissions required: View IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "dc8c91e4-cfb0-4822-ab99-0c5b51c64549",
+                              "name": "The response JSON contains the policy settings for both applicationReports and successMetrics. Policy settings for application reports are shown for each stage of development. <ul><li>inheritPolicy IS a boolean flag indicating whether the policy is inheri",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "dataRetentionPolicies",
+                                    "organizations",
+                                    ":organizationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"esse_0\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"id_ab9\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"nisi1\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": \"<boolean>\",\n    \"inheritPolicy\": \"<boolean>\",\n    \"maxAge\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T03:15:22.000Z",
+                              "updatedAt": "2026-10-22T03:15:22.000Z",
+                              "uid": "35240-dc8c91e4-cfb0-4822-ab99-0c5b51c64549"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:15:22.000Z",
+                          "updatedAt": "2026-10-22T03:15:22.000Z",
+                          "uid": "35240-ce50372d-f38e-42d6-b06b-aa9ef76bd0a6"
+                        },
+                        {
+                          "name": "Set data retention policies",
+                          "id": "c3c4ab19-dccf-4aba-bfbe-e54da365c843",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"esse_0\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"id_ab9\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"nisi1\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": \"<boolean>\",\n    \"inheritPolicy\": \"<boolean>\",\n    \"maxAge\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "dataRetentionPolicies",
+                                "organizations",
+                                ":organizationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "72c44559-f8cf-4c14-b937-d21d4ecc206c",
+                                  "key": "organizationId",
+                                  "value": "<string>",
+                                  "description": "(Required) The organizationId for the organization you want to set the data retention policy. Use the organization REST API to retrieve the organizationId."
+                                }
+                              ]
+                            },
+                            "description": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to set the retention policies for an organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring.\nPermissions required: Edit IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "6a72a6a6-bc4b-4c31-bbbb-b2c5338169b7",
+                              "name": "The data retention policy has been set successfully.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"esse_0\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"id_ab9\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      },\n      \"nisi1\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": \"<boolean>\",\n    \"inheritPolicy\": \"<boolean>\",\n    \"maxAge\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/dataRetentionPolicies/organizations/:organizationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "dataRetentionPolicies",
+                                    "organizations",
+                                    ":organizationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:15:22.000Z",
+                              "updatedAt": "2026-10-22T03:15:22.000Z",
+                              "uid": "35240-6a72a6a6-bc4b-4c31-bbbb-b2c5338169b7"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:15:22.000Z",
+                          "updatedAt": "2026-10-22T03:15:22.000Z",
+                          "uid": "35240-c3c4ab19-dccf-4aba-bfbe-e54da365c843"
+                        }
+                      ],
+                      "id": "c7ba0e03-cee3-4186-b181-0512b12fa6e7",
+                      "createdAt": "2026-10-22T03:15:22.000Z",
+                      "updatedAt": "2026-10-22T03:15:22.000Z",
+                      "uid": "35240-c7ba0e03-cee3-4186-b181-0512b12fa6e7"
+                    }
+                  ],
+                  "id": "407e9a0f-0c0d-4c59-a2dd-1736aa163894",
+                  "createdAt": "2026-10-22T03:15:22.000Z",
+                  "updatedAt": "2026-10-22T03:15:22.000Z",
+                  "uid": "35240-407e9a0f-0c0d-4c59-a2dd-1736aa163894"
                 }
               ],
-              "body": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"key_0\": {\n        \"enablePurging\": false,\n        \"inheritPolicy\": true,\n        \"maxAge\": \"string\",\n        \"maxCount\": 153\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": false,\n    \"inheritPolicy\": true,\n    \"maxAge\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "ba9f1b05-48e0-4b07-a318-7cb2b89d3620",
+              "createdAt": "2026-10-22T03:15:22.000Z",
+              "updatedAt": "2026-10-22T03:15:22.000Z",
+              "uid": "35240-ba9f1b05-48e0-4b07-a318-7cb2b89d3620"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "451fa00b-7783-4ee5-9d24-f76f87a22158",
-          "name": "set Data Retention Policies",
-          "request": {
-            "name": "set Data Retention Policies",
-            "description": {
-              "content": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to set the retention policies for an organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring.<p>Permissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "dataRetentionPolicies",
-                "organizations",
-                ":organizationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organizationId",
-                  "description": "(Required) The organizationId for the organization you want to set the data retention policy. Use the organization REST API to retrieve the organizationId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"key_0\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": \"<boolean>\",\n    \"inheritPolicy\": \"<boolean>\",\n    \"maxAge\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c861e77c-6fb3-403e-8686-4658508f400d",
-              "name": "The data retention policy has been set successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "dataRetentionPolicies",
-                    "organizations",
-                    ":organizationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organizationId",
-                      "description": "(Required) The organizationId for the organization you want to set the data retention policy. Use the organization REST API to retrieve the organizationId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"key_0\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": \"<boolean>\",\n    \"inheritPolicy\": \"<boolean>\",\n    \"maxAge\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f4504a0e-7157-440d-9914-579d610c294f",
-          "name": "get Parent Data Retention Policies",
-          "request": {
-            "name": "get Parent Data Retention Policies",
-            "description": {
-              "content": "Data retention policies help to limit the disk space consumption by removing obsolete data. Use this method to inspect the retention policies that are in effect for the parent organization of the given organization. Application reports created by continuous monitoring are not affected by the stage retention policy. They appear separately under the key continuous-monitoring.<p>Permissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "dataRetentionPolicies",
-                "organizations",
-                ":organizationId",
-                "parent"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organizationId",
-                  "description": "(Required) The organizationId assigned by IQ Server. Use the organization REST API to retrieve the parent organizationId"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fad7a17f-b07e-4510-80a5-b2f780afb1c7",
-              "name": "The response JSON contains the policy settings for both applicationReports and successMetrics. Policy settings for application reports are shown for each stage of development. <ul><li>inheritPolicy IS a boolean flag indicating whether the policy is inherited from a parent organization.</li><li>enablePurging IS a boolean flag indicating if automatic purging is enabled or disabled.</li><li>maxCount IS the maximum no. of reports to retain.</li><li>maxAge IS the maximum age that a report is allowed to reach before it is purged. Possible values are days, weeks, months, years.</li></ul>The latest application report is always retained, regardless of its age.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "dataRetentionPolicies",
-                    "organizations",
-                    ":organizationId",
-                    "parent"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organizationId",
-                      "description": "(Required) The organizationId assigned by IQ Server. Use the organization REST API to retrieve the parent organizationId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"applicationReports\": {\n    \"stages\": {\n      \"key_0\": {\n        \"enablePurging\": \"<boolean>\",\n        \"inheritPolicy\": \"<boolean>\",\n        \"maxAge\": \"<string>\",\n        \"maxCount\": \"<integer>\"\n      }\n    }\n  },\n  \"successMetrics\": {\n    \"enablePurging\": \"<boolean>\",\n    \"inheritPolicy\": \"<boolean>\",\n    \"maxAge\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "4d7b4812-3eb2-468f-8495-060205da6346",
+          "createdAt": "2026-10-22T03:15:22.000Z",
+          "updatedAt": "2026-10-22T03:15:22.000Z",
+          "uid": "35240-4d7b4812-3eb2-468f-8495-060205da6346"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "14720943-85e6-4d6e-9bb8-3c597457d485",
+      "createdAt": "2026-10-22T03:15:22.000Z",
+      "updatedAt": "2026-10-22T03:15:22.000Z",
+      "uid": "35240-14720943-85e6-4d6e-9bb8-3c597457d485"
     }
   ],
   "auth": {
@@ -346,21 +369,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "d56b57a0-0bf1-4811-8bae-dce2037dbd08",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Data Retention Policies API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

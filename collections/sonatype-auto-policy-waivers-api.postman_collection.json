@@ -1,1060 +1,1048 @@
 {
+  "info": {
+    "_postman_id": "cf69ded8-6d14-404b-ab29-4c540e1de596",
+    "name": "Sonatype Auto Policy Waivers API",
+    "description": "Operations tagged Auto Policy Waivers across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:13:11.000Z",
+    "updatedAt": "2026-10-22T03:13:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cf69ded8-6d14-404b-ab29-4c540e1de596"
+  },
   "item": [
     {
-      "id": "12f837a5-826d-4f42-826c-7797f515775d",
-      "name": "Auto Policy Waivers",
-      "description": {
-        "content": "Use this REST API to create, modify and retrieve auto policy waivers.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "a60c51a0-a0a5-444d-9f0b-71e8724983c8",
-          "name": "add Auto Policy Waivers",
-          "request": {
-            "name": "add Auto Policy Waivers",
-            "description": {
-              "content": "Use this method to create an auto policy waiver configuration. Only three configurations can  exist at a time for a given application or organization. With different combinations for reachable/pathForward\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                "v2",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "4806289c-1ef0-4576-94a1-e1d553a6697c",
-              "name": "Auto waiver has been created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    "v2",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "autoPolicyWaivers",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "v2",
+                  "item": [
+                    {
+                      "name": "{ownerType}",
+                      "item": [
+                        {
+                          "name": "{ownerId}",
+                          "item": [
+                            {
+                              "name": "applicableAutoWaivers",
+                              "item": [
+                                {
+                                  "name": "Get applicable auto waivers",
+                                  "id": "145398f1-e6ed-4d6a-b2bb-c5333fa95c7b",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/v2/:ownerType/:ownerId/applicableAutoWaivers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "autoPolicyWaivers",
+                                        "v2",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "applicableAutoWaivers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a9908af6-09dd-4bd2-a6a0-b828924679c8",
+                                          "key": "ownerType",
+                                          "value": "organization",
+                                          "description": "(Required) Enter the ownerType to specify the scope. The response will contain applicable auto policy waivers, if any, that are within the scope specified."
+                                        },
+                                        {
+                                          "id": "8130cb63-2a28-4ccb-ba53-c24d96a4bbd6",
+                                          "key": "ownerId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the corresponding id for the ownerType."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Use this method to retrieve all applicable auto waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "74626b83-1f96-4be9-a3dd-b8409c3e2bd2",
+                                      "name": "The response contains applicable auto policy waivers for the specified ownerType and the corresponding ownerId.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/v2/:ownerType/:ownerId/applicableAutoWaivers",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "autoPolicyWaivers",
+                                            "v2",
+                                            ":ownerType",
+                                            ":ownerId",
+                                            "applicableAutoWaivers"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "ownerType"
+                                            },
+                                            {
+                                              "key": "ownerId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"autoPolicyWaiverOwnerId\": \"<string>\",\n    \"autoPolicyWaiverOwnerName\": \"<string>\",\n    \"autoPolicyWaiverOwnerType\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"hasNoPathForward\": \"<boolean>\",\n    \"hasNotReachable\": \"<boolean>\",\n    \"isAutoWaiverEnabled\": \"<boolean>\",\n    \"isInherited\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"autoPolicyWaiverOwnerId\": \"<string>\",\n    \"autoPolicyWaiverOwnerName\": \"<string>\",\n    \"autoPolicyWaiverOwnerType\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"hasNoPathForward\": \"<boolean>\",\n    \"hasNotReachable\": \"<boolean>\",\n    \"isAutoWaiverEnabled\": \"<boolean>\",\n    \"isInherited\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
+                                      "createdAt": "2026-10-22T03:13:12.000Z",
+                                      "updatedAt": "2026-10-22T03:13:12.000Z",
+                                      "uid": "35240-74626b83-1f96-4be9-a3dd-b8409c3e2bd2"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:13:12.000Z",
+                                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                                  "uid": "35240-145398f1-e6ed-4d6a-b2bb-c5333fa95c7b"
+                                }
+                              ],
+                              "id": "f6e013ba-a2fe-4d4f-b894-e42b494c2e0c",
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-f6e013ba-a2fe-4d4f-b894-e42b494c2e0c"
+                            },
+                            {
+                              "name": "Add auto policy waivers",
+                              "id": "49a022b6-9b54-4930-8cba-b15c68b672fe",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/v2/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "autoPolicyWaivers",
+                                    "v2",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c5dc3c7d-08a5-4c6f-a71b-4ec63ff913ed",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+                                    },
+                                    {
+                                      "id": "5440815c-e368-4c4e-9975-c6b79070fb41",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to create an auto policy waiver configuration. Only three configurations can exist at a time for a given application or organization. With different combinations for reachable/pathForward\n\nPermissions required: Waive Policy Violations"
+                              },
+                              "response": [
+                                {
+                                  "id": "ede007ad-825d-430e-ba5d-28b83dd95675",
+                                  "name": "Auto waiver has been created successfully.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/v2/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "autoPolicyWaivers",
+                                        "v2",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
+                                  "createdAt": "2026-10-22T03:13:12.000Z",
+                                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                                  "uid": "35240-ede007ad-825d-430e-ba5d-28b83dd95675"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-49a022b6-9b54-4930-8cba-b15c68b672fe"
+                            }
+                          ],
+                          "id": "7ecf5de4-652c-4eaf-bcd3-87ba76dd4287",
+                          "createdAt": "2026-10-22T03:13:12.000Z",
+                          "updatedAt": "2026-10-22T03:13:12.000Z",
+                          "uid": "35240-7ecf5de4-652c-4eaf-bcd3-87ba76dd4287"
+                        }
+                      ],
+                      "id": "6742671e-aa89-40d2-a0b3-5d0ec6e5a545",
+                      "createdAt": "2026-10-22T03:13:12.000Z",
+                      "updatedAt": "2026-10-22T03:13:12.000Z",
+                      "uid": "35240-6742671e-aa89-40d2-a0b3-5d0ec6e5a545"
+                    }
+                  ],
+                  "id": "abb0523e-999c-4668-a65d-90ae831e2848",
+                  "createdAt": "2026-10-22T03:13:12.000Z",
+                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                  "uid": "35240-abb0523e-999c-4668-a65d-90ae831e2848"
+                },
+                {
+                  "name": "{ownerType}",
+                  "item": [
+                    {
+                      "name": "{ownerId}",
+                      "item": [
+                        {
+                          "name": "status",
+                          "item": [
+                            {
+                              "name": "Get auto policy waiver status",
+                              "id": "409398ea-b736-4469-97d7-516244b83884",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/status",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "autoPolicyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    "status"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2e911335-6144-4a50-834d-7533b776d280",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain status details for the active auto policy waiver, if any, that is within the scope specified."
+                                    },
+                                    {
+                                      "id": "f9e1cdbe-9c24-403b-8616-587e564bbdf9",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve status details for any auto policy waiver enabled for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "8d88b7ef-0927-47d8-a5e2-ce6bffee676e",
+                                  "name": "The response contains auto policy waiver status details for the specified ownerType and the corresponding ownerId.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/status",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "autoPolicyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "status"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"autoPolicyWaiverOwnerId\": \"<string>\",\n  \"autoPolicyWaiverOwnerName\": \"<string>\",\n  \"autoPolicyWaiverOwnerType\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"hasNoPathForward\": \"<boolean>\",\n  \"hasNotReachable\": \"<boolean>\",\n  \"isAutoWaiverEnabled\": \"<boolean>\",\n  \"isInherited\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T03:13:12.000Z",
+                                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                                  "uid": "35240-8d88b7ef-0927-47d8-a5e2-ce6bffee676e"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-409398ea-b736-4469-97d7-516244b83884"
+                            }
+                          ],
+                          "id": "5bfeaa3f-e25f-41fe-a251-0c6614e2bda4",
+                          "createdAt": "2026-10-22T03:13:12.000Z",
+                          "updatedAt": "2026-10-22T03:13:12.000Z",
+                          "uid": "35240-5bfeaa3f-e25f-41fe-a251-0c6614e2bda4"
+                        },
+                        {
+                          "name": "{autoPolicyWaiverId}",
+                          "item": [
+                            {
+                              "name": "Delete auto policy waiver",
+                              "id": "aa5e0e27-4a53-4aaa-9e25-f5d14d8e14ab",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "autoPolicyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":autoPolicyWaiverId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b653aa77-6fe5-4da8-a287-6527a3fb8a15",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Enter the ownerType to specify the scope. A waiver corresponding to the autoPolicyWaiverId provided and within the scope specified will be deleted."
+                                    },
+                                    {
+                                      "id": "62ec23c1-e902-4b47-8e98-43210a062302",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                    },
+                                    {
+                                      "id": "fa806b72-e8c0-4216-885a-fd3f4c2fd4b8",
+                                      "key": "autoPolicyWaiverId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the autoPolicyWaiverId to be deleted"
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to delete an auto policy waiver, specified by the autoPolicyWaiverId.\n\nPermissions required: Waive Policy Violations"
+                              },
+                              "response": [
+                                {
+                                  "id": "62956416-8b53-420e-84b1-9a9e6059972f",
+                                  "name": "Auto Policy Waiver has been deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "autoPolicyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":autoPolicyWaiverId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "autoPolicyWaiverId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:13:12.000Z",
+                                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                                  "uid": "35240-62956416-8b53-420e-84b1-9a9e6059972f"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-aa5e0e27-4a53-4aaa-9e25-f5d14d8e14ab"
+                            },
+                            {
+                              "name": "Get auto policy waiver",
+                              "id": "bd90f1da-1f33-463b-91c4-0f078fc0ed64",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "autoPolicyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":autoPolicyWaiverId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c3e0059f-d1d3-40bc-8d23-74fe29b80733",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+                                    },
+                                    {
+                                      "id": "606a3fc0-15c9-4e46-b2a9-1c224ed06c44",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                    },
+                                    {
+                                      "id": "95cd71d5-93f6-46c9-8139-5a81155a9d82",
+                                      "key": "autoPolicyWaiverId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the autoPolicyWaiverId for which you want to retrieve the auto policy waiver details."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve auto policy waiver details for the autoPolicyWaiverId specified.\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "48a1307d-5c5b-4d48-8f01-87a4cc633324",
+                                  "name": "The response contains waiver details corresponding to the auto policy waiver id specified.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "autoPolicyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":autoPolicyWaiverId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "autoPolicyWaiverId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T03:13:12.000Z",
+                                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                                  "uid": "35240-48a1307d-5c5b-4d48-8f01-87a4cc633324"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-bd90f1da-1f33-463b-91c4-0f078fc0ed64"
+                            },
+                            {
+                              "name": "Update auto policy waiver",
+                              "id": "9184cf8a-da16-4d8c-9baf-426184f6d818",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "autoPolicyWaivers",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":autoPolicyWaiverId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6aefe830-fee7-46c8-9625-6a4673f2a86e",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+                                    },
+                                    {
+                                      "id": "a49be43e-3d54-4fbc-8b23-109ac0bc494c",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                    },
+                                    {
+                                      "id": "88a6f274-79f9-45f0-b998-914554679c23",
+                                      "key": "autoPolicyWaiverId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the autoPolicyWaiverId to be updated."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to update an auto policy waiver, specified by the autoPolicyWaiverId.\n\nPermissions required: Write IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "05bd785c-5924-4dfe-ac23-50352bbf8ef7",
+                                  "name": "Auto Policy Waiver has been updated successfully.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId/:autoPolicyWaiverId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "autoPolicyWaivers",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":autoPolicyWaiverId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "autoPolicyWaiverId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T03:13:12.000Z",
+                                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                                  "uid": "35240-05bd785c-5924-4dfe-ac23-50352bbf8ef7"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-9184cf8a-da16-4d8c-9baf-426184f6d818"
+                            }
+                          ],
+                          "id": "14c14760-66b9-4e75-8b01-6eb706a86a75",
+                          "createdAt": "2026-10-22T03:13:12.000Z",
+                          "updatedAt": "2026-10-22T03:13:12.000Z",
+                          "uid": "35240-14c14760-66b9-4e75-8b01-6eb706a86a75"
+                        },
+                        {
+                          "name": "Get auto policy waivers",
+                          "id": "0b5f51e9-e6c5-4189-8e42-a0f6f3bff3db",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "autoPolicyWaivers",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8ca20343-731d-4ad7-a255-c3ab07aa70e6",
+                                  "key": "ownerType",
+                                  "value": "organization",
+                                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
+                                },
+                                {
+                                  "id": "7641014e-b491-48a1-ac53-c85ff8052676",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to retrieve waiver details for all auto policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "f1887154-889e-4c1e-85a5-310f19f7c34b",
+                              "name": "The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the autoPolicyWaiverId.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "autoPolicyWaivers",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-f1887154-889e-4c1e-85a5-310f19f7c34b"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:13:12.000Z",
+                          "updatedAt": "2026-10-22T03:13:12.000Z",
+                          "uid": "35240-0b5f51e9-e6c5-4189-8e42-a0f6f3bff3db"
+                        },
+                        {
+                          "name": "Add auto policy waiver",
+                          "id": "f22f2672-7b4b-49c6-83dd-51069b482006",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "autoPolicyWaivers",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5658bab5-a595-4043-9455-72cc507f3783",
+                                  "key": "ownerType",
+                                  "value": "organization",
+                                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
+                                },
+                                {
+                                  "id": "2d5177e7-28b4-45a2-8742-38acb2d9d93d",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to create an auto policy waiver configuration. Only one configuration can exist at a time for a given application or organization.\n\nPermissions required: Waive Policy Violations"
+                          },
+                          "response": [
+                            {
+                              "id": "3a253b84-8559-4093-b7d4-51cb6b2f4519",
+                              "name": "Auto waiver has been created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/autoPolicyWaivers/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "autoPolicyWaivers",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
+                              "createdAt": "2026-10-22T03:13:12.000Z",
+                              "updatedAt": "2026-10-22T03:13:12.000Z",
+                              "uid": "35240-3a253b84-8559-4093-b7d4-51cb6b2f4519"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:13:12.000Z",
+                          "updatedAt": "2026-10-22T03:13:12.000Z",
+                          "uid": "35240-f22f2672-7b4b-49c6-83dd-51069b482006"
+                        }
+                      ],
+                      "id": "c8898f19-194c-416a-ae34-5fa4b7e8bbf3",
+                      "createdAt": "2026-10-22T03:13:12.000Z",
+                      "updatedAt": "2026-10-22T03:13:12.000Z",
+                      "uid": "35240-c8898f19-194c-416a-ae34-5fa4b7e8bbf3"
+                    }
+                  ],
+                  "id": "1bde5b81-c317-44b9-90f4-e05cc3b1c4a2",
+                  "createdAt": "2026-10-22T03:13:12.000Z",
+                  "updatedAt": "2026-10-22T03:13:12.000Z",
+                  "uid": "35240-1bde5b81-c317-44b9-90f4-e05cc3b1c4a2"
                 }
               ],
-              "body": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "2fd5ce87-5ae3-412b-b71f-035cc3ac45a8",
+              "createdAt": "2026-10-22T03:13:12.000Z",
+              "updatedAt": "2026-10-22T03:13:12.000Z",
+              "uid": "35240-2fd5ce87-5ae3-412b-b71f-035cc3ac45a8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9ccbd619-72cd-43c2-b9f2-3f235ff66841",
-          "name": "get Applicable Auto Waivers",
-          "request": {
-            "name": "get Applicable Auto Waivers",
-            "description": {
-              "content": "Use this method to retrieve all applicable auto waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                "v2",
-                ":ownerType",
-                ":ownerId",
-                "applicableAutoWaivers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain applicable auto policy waivers, if any, that are within the scope specified."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9c4ba18c-8645-42dd-8ac4-13e5b4ea08b0",
-              "name": "The response contains applicable auto policy waivers for the specified ownerType and the corresponding ownerId.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    "v2",
-                    ":ownerType",
-                    ":ownerId",
-                    "applicableAutoWaivers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain applicable auto policy waivers, if any, that are within the scope specified."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"autoPolicyWaiverId\": \"string\",\n    \"autoPolicyWaiverOwnerId\": \"string\",\n    \"autoPolicyWaiverOwnerName\": \"string\",\n    \"autoPolicyWaiverOwnerType\": \"string\",\n    \"createTime\": \"1949-12-18T01:11:43.633Z\",\n    \"hasNoPathForward\": false,\n    \"hasNotReachable\": false,\n    \"isAutoWaiverEnabled\": false,\n    \"isInherited\": true,\n    \"scopesOperatorAny\": false,\n    \"threatLevel\": 7491\n  },\n  {\n    \"autoPolicyWaiverId\": \"string\",\n    \"autoPolicyWaiverOwnerId\": \"string\",\n    \"autoPolicyWaiverOwnerName\": \"string\",\n    \"autoPolicyWaiverOwnerType\": \"string\",\n    \"createTime\": \"2014-06-24T05:21:28.125Z\",\n    \"hasNoPathForward\": false,\n    \"hasNotReachable\": true,\n    \"isAutoWaiverEnabled\": true,\n    \"isInherited\": true,\n    \"scopesOperatorAny\": false,\n    \"threatLevel\": 5507\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "94978b35-9fde-4ca4-af9b-45a7622c2b10",
-          "name": "get Auto Policy Waivers",
-          "request": {
-            "name": "get Auto Policy Waivers",
-            "description": {
-              "content": "Use this method to retrieve waiver details for all auto policy waivers for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fc8d5929-bc93-41b9-8198-51dd7d217ad6",
-              "name": "The response contains waiver details for the specified ownerType and the corresponding ownerId, grouped by the autoPolicyWaiverId.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain waivers that are within the scope specified."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  },\n  {\n    \"autoPolicyWaiverId\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"creatorId\": \"<string>\",\n    \"creatorName\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"ownerType\": \"<string>\",\n    \"pathForward\": \"<boolean>\",\n    \"publicId\": \"<string>\",\n    \"reachability\": \"<boolean>\",\n    \"scopesOperatorAny\": \"<boolean>\",\n    \"threatLevel\": \"<integer>\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "624a5ef7-fd80-4561-88e9-f5365a427f5f",
-          "name": "add Auto Policy Waiver",
-          "request": {
-            "name": "add Auto Policy Waiver",
-            "description": {
-              "content": "Use this method to create an auto policy waiver configuration. Only one configuration can exist at a time for a given application or organization.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "82ba0ed5-5836-4e71-8a54-4a17ce7bb883",
-              "name": "Auto waiver has been created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3796cb37-b92e-4b80-8606-32c05bbb9093",
-          "name": "get Auto Policy Waiver Status",
-          "request": {
-            "name": "get Auto Policy Waiver Status",
-            "description": {
-              "content": "Use this method to retrieve status details for any auto policy waiver enabled for the scope specified. You can specify the scope by using the parameters ownerType and ownerId.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                ":ownerType",
-                ":ownerId",
-                "status"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain status details for the active auto policy waiver, if any, that is within the scope specified."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c91e0350-1dc6-4c52-9098-9c63b3b7c739",
-              "name": "The response contains auto policy waiver status details for the specified ownerType and the corresponding ownerId.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain status details for the active auto policy waiver, if any, that is within the scope specified."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"autoPolicyWaiverId\": \"string\",\n  \"autoPolicyWaiverOwnerId\": \"string\",\n  \"autoPolicyWaiverOwnerName\": \"string\",\n  \"autoPolicyWaiverOwnerType\": \"string\",\n  \"createTime\": \"1984-09-19T17:33:35.428Z\",\n  \"hasNoPathForward\": false,\n  \"hasNotReachable\": true,\n  \"isAutoWaiverEnabled\": false,\n  \"isInherited\": true,\n  \"scopesOperatorAny\": true,\n  \"threatLevel\": 8360\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4a7e194e-43db-4823-b1e3-1230c01794e4",
-          "name": "delete Auto Policy Waiver",
-          "request": {
-            "name": "delete Auto Policy Waiver",
-            "description": {
-              "content": "Use this method to delete an auto policy waiver, specified by the autoPolicyWaiverId.\n\nPermissions required: Waive Policy Violations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                ":ownerType",
-                ":ownerId",
-                ":autoPolicyWaiverId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. A waiver corresponding to the autoPolicyWaiverId provided and within the scope specified will be deleted."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "autoPolicyWaiverId",
-                  "description": "(Required) Enter the autoPolicyWaiverId to be deleted"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f6189d1e-5432-4bf4-84d9-bf2df1d07979",
-              "name": "Auto Policy Waiver has been deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    ":autoPolicyWaiverId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. A waiver corresponding to the autoPolicyWaiverId provided and within the scope specified will be deleted."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "autoPolicyWaiverId",
-                      "description": "(Required) Enter the autoPolicyWaiverId to be deleted"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "60acb1a9-d041-4365-9053-364adda197d1",
-          "name": "get Auto Policy Waiver",
-          "request": {
-            "name": "get Auto Policy Waiver",
-            "description": {
-              "content": "Use this method to retrieve auto policy waiver details for the autoPolicyWaiverId specified.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                ":ownerType",
-                ":ownerId",
-                ":autoPolicyWaiverId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "autoPolicyWaiverId",
-                  "description": "(Required) Enter the autoPolicyWaiverId for which you want to retrieve the auto policy waiver details."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a84d109f-5efd-4913-860b-9ea0fa1068fd",
-              "name": "The response contains waiver details corresponding to the auto policy waiver id specified.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    ":autoPolicyWaiverId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "autoPolicyWaiverId",
-                      "description": "(Required) Enter the autoPolicyWaiverId for which you want to retrieve the auto policy waiver details."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "843a7a04-c451-425a-b540-eea68416ad74",
-          "name": "update Auto Policy Waiver",
-          "request": {
-            "name": "update Auto Policy Waiver",
-            "description": {
-              "content": "Use this method to update an auto policy waiver, specified by the autoPolicyWaiverId.\n\nPermissions required: Write IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "autoPolicyWaivers",
-                ":ownerType",
-                ":ownerId",
-                ":autoPolicyWaiverId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "autoPolicyWaiverId",
-                  "description": "(Required) Enter the autoPolicyWaiverId to be updated."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "838b65e7-11e1-4f74-8428-d3f018515ae0",
-              "name": "Auto Policy Waiver has been updated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "autoPolicyWaivers",
-                    ":ownerType",
-                    ":ownerId",
-                    ":autoPolicyWaiverId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Enter the ownerType to specify the scope. The response will contain the details for waivers within the scope."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the corresponding id for the ownerType specified above."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "autoPolicyWaiverId",
-                      "description": "(Required) Enter the autoPolicyWaiverId to be updated."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"autoPolicyWaiverId\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"creatorId\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"ownerType\": \"<string>\",\n  \"pathForward\": \"<boolean>\",\n  \"publicId\": \"<string>\",\n  \"reachability\": \"<boolean>\",\n  \"scopesOperatorAny\": \"<boolean>\",\n  \"threatLevel\": \"<integer>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "58a9516b-43b2-420f-8f86-a3ad3dcded61",
+          "createdAt": "2026-10-22T03:13:12.000Z",
+          "updatedAt": "2026-10-22T03:13:12.000Z",
+          "uid": "35240-58a9516b-43b2-420f-8f86-a3ad3dcded61"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "5347762a-b478-4b98-9c83-1bd364a4ff4f",
+      "createdAt": "2026-10-22T03:13:12.000Z",
+      "updatedAt": "2026-10-22T03:13:12.000Z",
+      "uid": "35240-5347762a-b478-4b98-9c83-1bd364a4ff4f"
     }
   ],
   "auth": {
@@ -1062,21 +1050,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "447b33b7-c761-41f3-9bf9-d377c8755339",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Auto Policy Waivers API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

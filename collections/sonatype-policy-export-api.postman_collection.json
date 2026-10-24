@@ -1,0 +1,314 @@
+{
+  "info": {
+    "_postman_id": "31147cf5-ea1a-4b24-8a71-b1395bb6a047",
+    "name": "Sonatype Lifecycle Public REST Policy Export API",
+    "description": "Export policy configurations for organizations, applications, and repositories",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:31.000Z",
+    "updatedAt": "2026-10-22T03:18:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-31147cf5-ea1a-4b24-8a71-b1395bb6a047"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "policy",
+              "item": [
+                {
+                  "name": "{ownerType}",
+                  "item": [
+                    {
+                      "name": "{ownerId}",
+                      "item": [
+                        {
+                          "name": "export",
+                          "item": [
+                            {
+                              "name": "Export policy configuration",
+                              "id": "54ed011b-9980-452d-9ca4-7e9dd71d245b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/policy/:ownerType/:ownerId/export?includeInherited=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "policy",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    "export"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, include policies from parent levels in the hierarchy. For repositories, includes policies from the repository, RepositoryManager, RepositoryContainer, and parent organization. For applications, includes policies from the application and parent organization(s). For organizations, includes policies from the organization and any parent organizations. Default: false (direct policies only)",
+                                      "key": "includeInherited",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4b37e8a7-8ab9-4f51-820c-bfa6ecc5561f",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) Type of owner (organization, application, or repository)"
+                                    },
+                                    {
+                                      "id": "beff4f43-7087-42a6-9ace-982eb1f9d418",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Internal ID of the owner"
+                                    }
+                                  ]
+                                },
+                                "description": "Exports policy configurations including policy rules, conditions, labels, license threat groups,\nand tags for the specified owner (organization, application, or repository).\nUse the `includeInherited` parameter to include policies from parent levels in the hierarchy.\n\n**Permissions required**: View IQ Elements (READ permission on the specified owner)\n\n**Export scope**:\n- Policy rules and conditions\n- Policy assignments (via ownerId on each policy)\n- Component labels\n- License threat groups\n- Application categories (tags) for organizations\n\n**Note**: Waivers are not included in the export."
+                              },
+                              "response": [
+                                {
+                                  "id": "94d698d5-8dae-4858-9779-7664e2ae2819",
+                                  "name": "Policy configuration exported successfully. The response includes policies, labels, license threat groups, and (for organizations) tags. When includeInherited=true, policies from parent levels are included with their original ownerId preserved.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policy/:ownerType/:ownerId/export?includeInherited=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policy",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "export"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If true, include policies from parent levels in the hierarchy. For repositories, includes policies from the repository, RepositoryManager, RepositoryContainer, and parent organization. For applications, includes policies from the application and parent organization(s). For organizations, includes policies from the organization and any parent organizations. Default: false (direct policies only)",
+                                          "key": "includeInherited",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"policies\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"threatLevel\": \"<integer>\",\n      \"legacyViolationAllowed\": \"<boolean>\",\n      \"constraints\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"operator\": \"OR\",\n          \"conditions\": [\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            },\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"operator\": \"AND\",\n          \"conditions\": [\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            },\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            }\n          ]\n        }\n      ],\n      \"actions\": {\n        \"ad9\": \"<string>\",\n        \"utf31\": \"<string>\",\n        \"eu40_\": \"<string>\"\n      },\n      \"notifications\": {\n        \"userNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"emailAddress\": \"<string>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"emailAddress\": \"<string>\"\n          }\n        ],\n        \"roleNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"roleId\": \"<string>\",\n            \"roleName\": \"<string>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"roleId\": \"<string>\",\n            \"roleName\": \"<string>\"\n          }\n        ],\n        \"jiraNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"projectKey\": \"<string>\",\n            \"issueTypeId\": \"<long>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"projectKey\": \"<string>\",\n            \"issueTypeId\": \"<long>\"\n          }\n        ],\n        \"webhookNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"webhookId\": \"<string>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"webhookId\": \"<string>\"\n          }\n        ]\n      },\n      \"policyActionsOverrideAllowed\": \"<boolean>\",\n      \"policyActionsOverrides\": {\n        \"aute_b75\": {\n          \"ea_be\": \"<string>\",\n          \"reprehenderit4\": \"<string>\"\n        }\n      },\n      \"policyNotificationsOverrideAllowed\": \"<boolean>\",\n      \"policyNotificationsOverrides\": {\n        \"esse_8\": {\n          \"userNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            }\n          ],\n          \"roleNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            }\n          ],\n          \"jiraNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            }\n          ],\n          \"webhookNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"policyViolationGrandfatheringAllowed\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"threatLevel\": \"<integer>\",\n      \"legacyViolationAllowed\": \"<boolean>\",\n      \"constraints\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"operator\": \"OR\",\n          \"conditions\": [\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            },\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"operator\": \"AND\",\n          \"conditions\": [\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            },\n            {\n              \"conditionTypeId\": \"<string>\",\n              \"operator\": \"<string>\",\n              \"value\": \"<string>\",\n              \"conditionIndex\": \"<integer>\"\n            }\n          ]\n        }\n      ],\n      \"actions\": {\n        \"fugiat_2a7\": \"<string>\"\n      },\n      \"notifications\": {\n        \"userNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"emailAddress\": \"<string>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"emailAddress\": \"<string>\"\n          }\n        ],\n        \"roleNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"roleId\": \"<string>\",\n            \"roleName\": \"<string>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"roleId\": \"<string>\",\n            \"roleName\": \"<string>\"\n          }\n        ],\n        \"jiraNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"projectKey\": \"<string>\",\n            \"issueTypeId\": \"<long>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"projectKey\": \"<string>\",\n            \"issueTypeId\": \"<long>\"\n          }\n        ],\n        \"webhookNotifications\": [\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"webhookId\": \"<string>\"\n          },\n          {\n            \"stageIds\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"webhookId\": \"<string>\"\n          }\n        ]\n      },\n      \"policyActionsOverrideAllowed\": \"<boolean>\",\n      \"policyActionsOverrides\": {\n        \"dolor_e4a\": {\n          \"mollit19\": \"<string>\",\n          \"eu_80\": \"<string>\"\n        },\n        \"nisic\": {\n          \"qui_0d\": \"<string>\"\n        }\n      },\n      \"policyNotificationsOverrideAllowed\": \"<boolean>\",\n      \"policyNotificationsOverrides\": {\n        \"amet_1da\": {\n          \"userNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            }\n          ],\n          \"roleNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            }\n          ],\n          \"jiraNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            }\n          ],\n          \"webhookNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            }\n          ]\n        },\n        \"laboris_82d\": {\n          \"userNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            }\n          ],\n          \"roleNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            }\n          ],\n          \"jiraNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            }\n          ],\n          \"webhookNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            }\n          ]\n        },\n        \"enim_fa9\": {\n          \"userNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"emailAddress\": \"<string>\"\n            }\n          ],\n          \"roleNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"roleId\": \"<string>\",\n              \"roleName\": \"<string>\"\n            }\n          ],\n          \"jiraNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"projectKey\": \"<string>\",\n              \"issueTypeId\": \"<long>\"\n            }\n          ],\n          \"webhookNotifications\": [\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            },\n            {\n              \"stageIds\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"webhookId\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"policyViolationGrandfatheringAllowed\": \"<boolean>\"\n    }\n  ],\n  \"labels\": [\n    {\n      \"id\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"label\": \"<string>\",\n      \"labelLowercase\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"light-blue\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"label\": \"<string>\",\n      \"labelLowercase\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"dark-blue\"\n    }\n  ],\n  \"licenseThreatGroups\": [\n    {\n      \"name\": \"<string>\",\n      \"nameLowercaseNoWhitespace\": \"<string>\",\n      \"id\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"threatLevel\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"nameLowercaseNoWhitespace\": \"<string>\",\n      \"id\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"threatLevel\": \"<integer>\"\n    }\n  ],\n  \"licenseThreatGroupLicenses\": [\n    {\n      \"id\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"licenseThreatGroupId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"ownerId\": \"<string>\",\n      \"licenseThreatGroupId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"nameLowercaseNoWhitespace\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"orange\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"nameLowercaseNoWhitespace\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"green\"\n    }\n  ],\n  \"policyTags\": [\n    {\n      \"id\": \"<string>\",\n      \"policyId\": \"<string>\",\n      \"tagId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"policyId\": \"<string>\",\n      \"tagId\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T03:18:31.000Z",
+                                  "updatedAt": "2026-10-22T03:18:31.000Z",
+                                  "uid": "35240-94d698d5-8dae-4858-9779-7664e2ae2819"
+                                },
+                                {
+                                  "id": "111c7ff6-e444-49fc-83cf-18c429b3a4bb",
+                                  "name": "User does not have READ permission on the specified owner",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policy/:ownerType/:ownerId/export?includeInherited=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policy",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "export"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If true, include policies from parent levels in the hierarchy. For repositories, includes policies from the repository, RepositoryManager, RepositoryContainer, and parent organization. For applications, includes policies from the application and parent organization(s). For organizations, includes policies from the organization and any parent organizations. Default: false (direct policies only)",
+                                          "key": "includeInherited",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:18:31.000Z",
+                                  "updatedAt": "2026-10-22T03:18:31.000Z",
+                                  "uid": "35240-111c7ff6-e444-49fc-83cf-18c429b3a4bb"
+                                },
+                                {
+                                  "id": "305a063a-0f7a-4f4c-b0ba-25228ed7361b",
+                                  "name": "Organization, application, or repository not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/policy/:ownerType/:ownerId/export?includeInherited=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "policy",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "export"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If true, include policies from parent levels in the hierarchy. For repositories, includes policies from the repository, RepositoryManager, RepositoryContainer, and parent organization. For applications, includes policies from the application and parent organization(s). For organizations, includes policies from the organization and any parent organizations. Default: false (direct policies only)",
+                                          "key": "includeInherited",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:18:31.000Z",
+                                  "updatedAt": "2026-10-22T03:18:31.000Z",
+                                  "uid": "35240-305a063a-0f7a-4f4c-b0ba-25228ed7361b"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:31.000Z",
+                              "updatedAt": "2026-10-22T03:18:31.000Z",
+                              "uid": "35240-54ed011b-9980-452d-9ca4-7e9dd71d245b"
+                            }
+                          ],
+                          "id": "a2213e34-fe66-4e43-a127-f09f73d1e613",
+                          "createdAt": "2026-10-22T03:18:31.000Z",
+                          "updatedAt": "2026-10-22T03:18:31.000Z",
+                          "uid": "35240-a2213e34-fe66-4e43-a127-f09f73d1e613"
+                        }
+                      ],
+                      "id": "89ac3df4-3c69-4e90-96aa-a6d692430651",
+                      "createdAt": "2026-10-22T03:18:31.000Z",
+                      "updatedAt": "2026-10-22T03:18:31.000Z",
+                      "uid": "35240-89ac3df4-3c69-4e90-96aa-a6d692430651"
+                    }
+                  ],
+                  "id": "43f6c6ca-0c23-4f2b-8856-352e7888ff77",
+                  "createdAt": "2026-10-22T03:18:31.000Z",
+                  "updatedAt": "2026-10-22T03:18:31.000Z",
+                  "uid": "35240-43f6c6ca-0c23-4f2b-8856-352e7888ff77"
+                }
+              ],
+              "id": "fd9b9ca9-4bb3-4a9f-9564-d156efb88da3",
+              "createdAt": "2026-10-22T03:18:31.000Z",
+              "updatedAt": "2026-10-22T03:18:31.000Z",
+              "uid": "35240-fd9b9ca9-4bb3-4a9f-9564-d156efb88da3"
+            }
+          ],
+          "id": "3dbbda64-58b4-412b-9acb-03fba86b2ef0",
+          "createdAt": "2026-10-22T03:18:31.000Z",
+          "updatedAt": "2026-10-22T03:18:31.000Z",
+          "uid": "35240-3dbbda64-58b4-412b-9acb-03fba86b2ef0"
+        }
+      ],
+      "id": "38d59a56-1c18-4dc4-b3cf-42b676fce614",
+      "createdAt": "2026-10-22T03:18:31.000Z",
+      "updatedAt": "2026-10-22T03:18:31.000Z",
+      "uid": "35240-38d59a56-1c18-4dc4-b3cf-42b676fce614"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

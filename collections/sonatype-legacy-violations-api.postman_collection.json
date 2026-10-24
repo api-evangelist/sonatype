@@ -1,0 +1,408 @@
+{
+  "info": {
+    "_postman_id": "341a2433-87e9-4c0a-a353-485f20e0f77e",
+    "name": "Sonatype Lifecycle Public REST Legacy Violations API",
+    "description": "Use this REST API to list, grant, and revoke legacy status for policy violations of an application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:24.000Z",
+    "updatedAt": "2026-10-22T03:18:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-341a2433-87e9-4c0a-a353-485f20e0f77e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "legacyViolations",
+              "item": [
+                {
+                  "name": "application",
+                  "item": [
+                    {
+                      "name": "{applicationPublicId}",
+                      "item": [
+                        {
+                          "name": "grant",
+                          "item": [
+                            {
+                              "name": "Grant",
+                              "id": "afe12419-4402-47b5-aa34-10ab3bf3f617",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/legacyViolations/application/:applicationPublicId/grant",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "legacyViolations",
+                                    "application",
+                                    ":applicationPublicId",
+                                    "grant"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "5a62803f-0fa0-4407-829d-1a2e74327723",
+                                      "key": "applicationPublicId",
+                                      "value": "<string>",
+                                      "description": "(Required) The public id of the application."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to grant legacy status to all eligible policy violations of an application.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "d0b1d935-d632-4cce-b52f-c1c701512e5e",
+                                  "name": "Successfully granted legacy status.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/legacyViolations/application/:applicationPublicId/grant",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "legacyViolations",
+                                        "application",
+                                        ":applicationPublicId",
+                                        "grant"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationPublicId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"changedPolicyViolationCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:25.000Z",
+                                  "updatedAt": "2026-10-22T03:18:25.000Z",
+                                  "uid": "35240-d0b1d935-d632-4cce-b52f-c1c701512e5e"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:25.000Z",
+                              "updatedAt": "2026-10-22T03:18:25.000Z",
+                              "uid": "35240-afe12419-4402-47b5-aa34-10ab3bf3f617"
+                            }
+                          ],
+                          "id": "e8745375-a22e-45d3-b882-df8b18d17f12",
+                          "createdAt": "2026-10-22T03:18:25.000Z",
+                          "updatedAt": "2026-10-22T03:18:25.000Z",
+                          "uid": "35240-e8745375-a22e-45d3-b882-df8b18d17f12"
+                        },
+                        {
+                          "name": "revoke",
+                          "item": [
+                            {
+                              "name": "Revoke",
+                              "id": "f7801f3a-e449-4eab-a712-dafe60c104a3",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/legacyViolations/application/:applicationPublicId/revoke",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "legacyViolations",
+                                    "application",
+                                    ":applicationPublicId",
+                                    "revoke"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ee31dd83-0bae-45e8-99b2-c18684a6b226",
+                                      "key": "applicationPublicId",
+                                      "value": "<string>",
+                                      "description": "(Required) The public id of the application."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to revoke legacy status from all legacy policy violations of an application.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "c421a28e-dbf7-4a40-b0ae-0074a32403c3",
+                                  "name": "Successfully revoked legacy status.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/legacyViolations/application/:applicationPublicId/revoke",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "legacyViolations",
+                                        "application",
+                                        ":applicationPublicId",
+                                        "revoke"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationPublicId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"changedPolicyViolationCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:25.000Z",
+                                  "updatedAt": "2026-10-22T03:18:25.000Z",
+                                  "uid": "35240-c421a28e-dbf7-4a40-b0ae-0074a32403c3"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:25.000Z",
+                              "updatedAt": "2026-10-22T03:18:25.000Z",
+                              "uid": "35240-f7801f3a-e449-4eab-a712-dafe60c104a3"
+                            }
+                          ],
+                          "id": "ed9058fe-9eeb-4c41-bd16-65b0fc1bea24",
+                          "createdAt": "2026-10-22T03:18:25.000Z",
+                          "updatedAt": "2026-10-22T03:18:25.000Z",
+                          "uid": "35240-ed9058fe-9eeb-4c41-bd16-65b0fc1bea24"
+                        },
+                        {
+                          "name": "List legacy violations",
+                          "id": "ddba97f0-b097-4f97-a190-e17a76794286",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/legacyViolations/application/:applicationPublicId?policyId=<string>&componentIdentifier=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "legacyViolations",
+                                "application",
+                                ":applicationPublicId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional policy id filter.",
+                                  "key": "policyId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Optional component identifier filter, expressed as a package URL (purl).",
+                                  "key": "componentIdentifier",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "309549c9-5660-4fc3-8965-ce76f3e8b141",
+                                  "key": "applicationPublicId",
+                                  "value": "<string>",
+                                  "description": "(Required) The public id of the application."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to retrieve all legacy policy violations for an application.\n\nPermissions required: View IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "cc32f97d-519d-4844-af19-27f01c4b5bda",
+                              "name": "Successfully retrieved legacy violations.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/legacyViolations/application/:applicationPublicId?policyId=<string>&componentIdentifier=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "legacyViolations",
+                                    "application",
+                                    ":applicationPublicId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional policy id filter.",
+                                      "key": "policyId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Optional component identifier filter, expressed as a package URL (purl).",
+                                      "key": "componentIdentifier",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationPublicId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"policyId\": \"<string>\",\n    \"policyName\": \"<string>\",\n    \"policyViolationId\": \"<string>\",\n    \"openTime\": \"<dateTime>\",\n    \"waiveTime\": \"<dateTime>\",\n    \"fixTime\": \"<dateTime>\",\n    \"legacyViolationTime\": \"<dateTime>\",\n    \"threatLevel\": \"<integer>\",\n    \"constraintViolations\": [\n      {\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"reasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SAST_FINDING_ID\"\n            }\n          },\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SECURITY_VULNERABILITY_REFID\"\n            }\n          }\n        ]\n      },\n      {\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"reasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SAST_FINDING_ID\"\n            }\n          },\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SECURITY_VULNERABILITY_REFID\"\n            }\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"policyId\": \"<string>\",\n    \"policyName\": \"<string>\",\n    \"policyViolationId\": \"<string>\",\n    \"openTime\": \"<dateTime>\",\n    \"waiveTime\": \"<dateTime>\",\n    \"fixTime\": \"<dateTime>\",\n    \"legacyViolationTime\": \"<dateTime>\",\n    \"threatLevel\": \"<integer>\",\n    \"constraintViolations\": [\n      {\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"reasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SECURITY_VULNERABILITY_REFID\"\n            }\n          },\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SAST_FINDING_ID\"\n            }\n          }\n        ]\n      },\n      {\n        \"constraintId\": \"<string>\",\n        \"constraintName\": \"<string>\",\n        \"reasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SAST_FINDING_ID\"\n            }\n          },\n          {\n            \"reason\": \"<string>\",\n            \"reference\": {\n              \"value\": \"<string>\",\n              \"type\": \"SAST_FINDING_ID\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n]",
+                              "createdAt": "2026-10-22T03:18:25.000Z",
+                              "updatedAt": "2026-10-22T03:18:25.000Z",
+                              "uid": "35240-cc32f97d-519d-4844-af19-27f01c4b5bda"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:18:25.000Z",
+                          "updatedAt": "2026-10-22T03:18:25.000Z",
+                          "uid": "35240-ddba97f0-b097-4f97-a190-e17a76794286"
+                        }
+                      ],
+                      "id": "8792aae7-7989-40dd-b76b-238c99dc7de7",
+                      "createdAt": "2026-10-22T03:18:25.000Z",
+                      "updatedAt": "2026-10-22T03:18:25.000Z",
+                      "uid": "35240-8792aae7-7989-40dd-b76b-238c99dc7de7"
+                    }
+                  ],
+                  "id": "1991d5d4-0296-4562-bd56-8cf03ca8d741",
+                  "createdAt": "2026-10-22T03:18:25.000Z",
+                  "updatedAt": "2026-10-22T03:18:25.000Z",
+                  "uid": "35240-1991d5d4-0296-4562-bd56-8cf03ca8d741"
+                }
+              ],
+              "id": "80e8e09f-6cb0-45fb-b87a-4f93105930ce",
+              "createdAt": "2026-10-22T03:18:25.000Z",
+              "updatedAt": "2026-10-22T03:18:25.000Z",
+              "uid": "35240-80e8e09f-6cb0-45fb-b87a-4f93105930ce"
+            }
+          ],
+          "id": "d76491cc-fcc8-4d9b-91b5-51593c2beba5",
+          "createdAt": "2026-10-22T03:18:25.000Z",
+          "updatedAt": "2026-10-22T03:18:25.000Z",
+          "uid": "35240-d76491cc-fcc8-4d9b-91b5-51593c2beba5"
+        }
+      ],
+      "id": "9f336e97-6645-49ca-b08b-cc8abcdaba95",
+      "createdAt": "2026-10-22T03:18:25.000Z",
+      "updatedAt": "2026-10-22T03:18:25.000Z",
+      "uid": "35240-9f336e97-6645-49ca-b08b-cc8abcdaba95"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

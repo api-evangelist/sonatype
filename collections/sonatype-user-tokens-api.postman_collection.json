@@ -1,788 +1,809 @@
 {
+  "info": {
+    "_postman_id": "f4c085c3-28e9-4e62-aeb7-95bcfcbd6be5",
+    "name": "Sonatype User Tokens API",
+    "description": "Operations tagged User Tokens across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:01.000Z",
+    "updatedAt": "2026-10-22T03:18:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f4c085c3-28e9-4e62-aeb7-95bcfcbd6be5"
+  },
   "item": [
     {
-      "id": "ae2f051e-da2a-4b3e-a484-7e4174534804",
-      "name": "User Tokens",
-      "description": {
-        "content": "Use this REST API to manage user tokens.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "72faa397-aa00-4048-80d2-0194f8e6b068",
-          "name": "get User Tokens By Created Between And Realm Id",
-          "request": {
-            "name": "get User Tokens By Created Between And Realm Id",
-            "description": {
-              "content": "Use this method to retrieve user tokens created within a date range, in the supported IQ Server realms.\n\nPermissions required: Edit System Configuration and Users.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "createdAfter",
-                  "value": "<string>",
-                  "description": "Enter the start date for the date range in `yyyy-mm-dd` format."
-                },
-                {
-                  "disabled": false,
-                  "key": "createdBefore",
-                  "value": "<string>",
-                  "description": "Enter the end date for the date range in `yyyy-mm-dd` format."
-                },
-                {
-                  "disabled": false,
-                  "key": "realm",
-                  "value": "Internal",
-                  "description": "Enter the `realmId`. Possible values are `Internal`, `SAML` , `OAUTH2`, and `Crowd`."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "3b626900-69d5-48c7-8044-e81ef9315172",
-              "name": "The response contains a list of user tokens, each containing a `userCode`, `username` and the name of the IQ server `realm`.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "userTokens",
+              "item": [
+                {
+                  "name": "currentUser",
+                  "item": [
                     {
-                      "key": "createdAfter",
-                      "value": "<string>"
+                      "name": "createTime",
+                      "item": [
+                        {
+                          "name": "Get current user token create time",
+                          "id": "32a4bef2-fd2a-4f96-aa9d-b6d10078c586",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/userTokens/currentUser/createTime",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "userTokens",
+                                "currentUser",
+                                "createTime"
+                              ]
+                            },
+                            "description": "Use this method to retrieve the creation time of the user token for the currently logged in user.\n\nPermissions required: None"
+                          },
+                          "response": [
+                            {
+                              "id": "a0b8117b-2c09-4c9d-900d-37743eb43124",
+                              "name": "The response contains the token creation time in ISO format.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/userTokens/currentUser/createTime",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "userTokens",
+                                    "currentUser",
+                                    "createTime"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-10-22T03:18:02.000Z",
+                              "updatedAt": "2026-10-22T03:18:02.000Z",
+                              "uid": "35240-a0b8117b-2c09-4c9d-900d-37743eb43124"
+                            },
+                            {
+                              "id": "2265f330-15ec-4d7a-811f-d7eef20465e2",
+                              "name": "User token does not exist for the current user.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/userTokens/currentUser/createTime",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "userTokens",
+                                    "currentUser",
+                                    "createTime"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:18:02.000Z",
+                              "updatedAt": "2026-10-22T03:18:02.000Z",
+                              "uid": "35240-2265f330-15ec-4d7a-811f-d7eef20465e2"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:18:02.000Z",
+                          "updatedAt": "2026-10-22T03:18:02.000Z",
+                          "uid": "35240-32a4bef2-fd2a-4f96-aa9d-b6d10078c586"
+                        }
+                      ],
+                      "id": "8ca1af66-43ae-4098-84d2-7458171ae86b",
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-8ca1af66-43ae-4098-84d2-7458171ae86b"
                     },
                     {
-                      "key": "createdBefore",
-                      "value": "<string>"
+                      "name": "hasToken",
+                      "item": [
+                        {
+                          "name": "Get user token exists for current user",
+                          "id": "998d2764-e030-4851-8a38-9bb5af03ee57",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/userTokens/currentUser/hasToken",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "userTokens",
+                                "currentUser",
+                                "hasToken"
+                              ]
+                            },
+                            "description": "Use this method to check if a user token has been issued to the logged in user.\n\nPermissions required: None"
+                          },
+                          "response": [
+                            {
+                              "id": "e35089e7-9e06-4890-8723-61a46a1e725d",
+                              "name": "The response contains a `userTokenExists` field.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/userTokens/currentUser/hasToken",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "userTokens",
+                                    "currentUser",
+                                    "hasToken"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"userTokenExists\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T03:18:02.000Z",
+                              "updatedAt": "2026-10-22T03:18:02.000Z",
+                              "uid": "35240-e35089e7-9e06-4890-8723-61a46a1e725d"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:18:02.000Z",
+                          "updatedAt": "2026-10-22T03:18:02.000Z",
+                          "uid": "35240-998d2764-e030-4851-8a38-9bb5af03ee57"
+                        }
+                      ],
+                      "id": "df45dcfa-b713-4fdf-8d58-5d91b8f86a64",
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-df45dcfa-b713-4fdf-8d58-5d91b8f86a64"
                     },
                     {
-                      "key": "realm",
-                      "value": "Internal"
+                      "name": "Delete current user token",
+                      "id": "ba27a7dc-3bbc-41b7-9be2-7d50e28efe99",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/userTokens/currentUser",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "userTokens",
+                            "currentUser"
+                          ]
+                        },
+                        "description": "Use this method to delete an existing user token for the currently logged in user.\n\nPermissions required: None"
+                      },
+                      "response": [
+                        {
+                          "id": "625772c3-1ffb-42c8-9a62-a7abfc6efb17",
+                          "name": "User token deleted successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/userTokens/currentUser",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "userTokens",
+                                "currentUser"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:02.000Z",
+                          "updatedAt": "2026-10-22T03:18:02.000Z",
+                          "uid": "35240-625772c3-1ffb-42c8-9a62-a7abfc6efb17"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-ba27a7dc-3bbc-41b7-9be2-7d50e28efe99"
+                    },
+                    {
+                      "name": "Create user token",
+                      "id": "d14643cb-2742-4406-8b43-c6e2de302f02",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/userTokens/currentUser",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "userTokens",
+                            "currentUser"
+                          ]
+                        },
+                        "description": "Use this method to generate a user token for the currently logged in user.\n\nPermissions required: None"
+                      },
+                      "response": [
+                        {
+                          "id": "c438cd55-97e8-44fd-a563-d8b95fde2038",
+                          "name": "The response contains the generated user token consisting of `userCode`, `username` `passCode`, and the IQ Server `realm`.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/userTokens/currentUser",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "userTokens",
+                                "currentUser"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"createTime\": \"<string>\",\n  \"expirationDate\": \"<dateTime>\",\n  \"lastAccessTime\": \"<string>\",\n  \"passCode\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"userCode\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T03:18:02.000Z",
+                          "updatedAt": "2026-10-22T03:18:02.000Z",
+                          "uid": "35240-c438cd55-97e8-44fd-a563-d8b95fde2038"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-d14643cb-2742-4406-8b43-c6e2de302f02"
                     }
                   ],
-                  "variable": []
+                  "id": "bcdacc76-2996-4720-bdc5-25da537f5f29",
+                  "createdAt": "2026-10-22T03:18:02.000Z",
+                  "updatedAt": "2026-10-22T03:18:02.000Z",
+                  "uid": "35240-bcdacc76-2996-4720-bdc5-25da537f5f29"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"createTime\": \"string\",\n    \"expirationDate\": \"1991-09-26T03:02:20.612Z\",\n    \"lastAccessTime\": \"string\",\n    \"passCode\": \"string\",\n    \"realm\": \"string\",\n    \"userCode\": \"string\",\n    \"username\": \"string\"\n  },\n  {\n    \"createTime\": \"string\",\n    \"expirationDate\": \"2008-09-23T12:38:24.018Z\",\n    \"lastAccessTime\": \"string\",\n    \"passCode\": \"string\",\n    \"realm\": \"string\",\n    \"userCode\": \"string\",\n    \"username\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ead61642-9e21-48e3-9a48-63a13dbf92dd",
-          "name": "delete Current User Token",
-          "request": {
-            "name": "delete Current User Token",
-            "description": {
-              "content": "Use this method to delete an existing user token for the currently logged in user.\n\nPermissions required: None",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens",
-                "currentUser"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e3af718a-83fc-499b-8681-74ac6285c6ca",
-              "name": "User token deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    "currentUser"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fb96b2fd-a26f-4b83-b33d-e17db0062dba",
-          "name": "create User Token",
-          "request": {
-            "name": "create User Token",
-            "description": {
-              "content": "Use this method to generate a user token for the currently logged in user.\n\nPermissions required: None",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens",
-                "currentUser"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "4284563a-2bdd-471e-b829-5641f4297eff",
-              "name": "The response contains the generated user token consisting of `userCode`, `username` `passCode`, and the IQ Server `realm`.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    "currentUser"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"createTime\": \"string\",\n  \"expirationDate\": \"1998-06-04T23:19:30.624Z\",\n  \"lastAccessTime\": \"string\",\n  \"passCode\": \"string\",\n  \"realm\": \"string\",\n  \"userCode\": \"string\",\n  \"username\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "394d96d8-4855-4da6-8e2b-443351793fbb",
-          "name": "get Current User Token Create Time",
-          "request": {
-            "name": "get Current User Token Create Time",
-            "description": {
-              "content": "Use this method to retrieve the creation time of the user token for the currently logged in user.\n\nPermissions required: None",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens",
-                "currentUser",
-                "createTime"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "5e4aec5a-f939-45e4-a370-9a9619c5b233",
-              "name": "The response contains the token creation time in ISO format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    "currentUser",
-                    "createTime"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "\"string\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f3b78f69-d685-4e57-b5e0-a722766bbadc",
-              "name": "User token does not exist for the current user.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    "currentUser",
-                    "createTime"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bd00cf57-1bca-49e7-a2e8-5882e1f6d1d1",
-          "name": "get User Token Exists For Current User",
-          "request": {
-            "name": "get User Token Exists For Current User",
-            "description": {
-              "content": "Use this method to check if a user token has been issued to the logged in user.\n\nPermissions required: None ",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens",
-                "currentUser",
-                "hasToken"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f808c550-5f6b-4448-b701-f5f04af0ac8f",
-              "name": "The response contains a `userTokenExists` field.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    "currentUser",
-                    "hasToken"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"userTokenExists\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5d35971f-21ac-4c59-94f2-0f83b67d143c",
-          "name": "purge User Tokens",
-          "request": {
-            "name": "purge User Tokens",
-            "description": {
-              "content": "Use this method to delete all existing LDAP user tokens.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens",
-                "purge"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8ce7c583-6709-457a-8e21-6bc9106015c2",
-              "name": "User tokens purged successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    "purge"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "39c37d78-c0b9-4989-9e33-2f9658b32c74",
-          "name": "delete User Token By User Code",
-          "request": {
-            "name": "delete User Token By User Code",
-            "description": {
-              "content": "Use this method to delete an existing user token by specifying the userCode.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens",
-                "userCode",
-                ":userCode"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userCode",
-                  "description": "(Required) Enter the `userCode` to be deleted."
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f642f176-8531-412f-9c14-fe106857460c",
-              "name": "User token deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    "userCode",
-                    ":userCode"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "purge",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userCode",
-                      "description": "(Required) Enter the `userCode` to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ee9bcbb4-8687-4432-a32d-05c62212720d",
-          "name": "get User Token By Username And Realm Id",
-          "request": {
-            "name": "get User Token By Username And Realm Id",
-            "description": {
-              "content": "Use this method to retrieve a user token by specifying a username and realmId.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "userTokens",
-                ":username"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "realm",
-                  "value": "Internal",
-                  "description": "Enter the realmId. Possible values are `Internal`, `SAML` , `OAUTH2` , and `Crowd`."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "username",
-                  "description": "(Required) Enter the username."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1b147caa-c3d7-4419-b142-ff5fc90ad30a",
-              "name": "The response contains the `userCode`, `username` and the name of the IQ server `realm`.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "userTokens",
-                    ":username"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "realm",
-                      "value": "Internal"
+                      "name": "Purge user tokens",
+                      "id": "6fa70008-22ee-4897-9274-c4d6e4dc6618",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/userTokens/purge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "userTokens",
+                            "purge"
+                          ]
+                        },
+                        "description": "Use this method to delete all existing LDAP user tokens.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "b9eef844-75aa-41c4-97ae-74be1d011bbc",
+                          "name": "User tokens purged successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/userTokens/purge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "userTokens",
+                                "purge"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:02.000Z",
+                          "updatedAt": "2026-10-22T03:18:02.000Z",
+                          "uid": "35240-b9eef844-75aa-41c4-97ae-74be1d011bbc"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-6fa70008-22ee-4897-9274-c4d6e4dc6618"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "username",
-                      "description": "(Required) Enter the username."
-                    }
-                  ]
+                  "id": "baa68272-9596-4c76-8a8d-7a3dc018333e",
+                  "createdAt": "2026-10-22T03:18:02.000Z",
+                  "updatedAt": "2026-10-22T03:18:02.000Z",
+                  "uid": "35240-baa68272-9596-4c76-8a8d-7a3dc018333e"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "userCode",
+                  "item": [
+                    {
+                      "name": "{userCode}",
+                      "item": [
+                        {
+                          "name": "Delete user token by user code",
+                          "id": "1287e020-41a7-4bda-8b33-be5a792dd04e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/userTokens/userCode/:userCode",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "userTokens",
+                                "userCode",
+                                ":userCode"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e14f2603-ef78-4181-8eb7-817adeddf08b",
+                                  "key": "userCode",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the `userCode` to be deleted."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to delete an existing user token by specifying the userCode.\n\nPermissions required: Edit System Configuration and Users"
+                          },
+                          "response": [
+                            {
+                              "id": "c268efa7-c6d2-4194-95ff-cd0cd6d41616",
+                              "name": "User token deleted successfully.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/userTokens/userCode/:userCode",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "userTokens",
+                                    "userCode",
+                                    ":userCode"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userCode"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:18:02.000Z",
+                              "updatedAt": "2026-10-22T03:18:02.000Z",
+                              "uid": "35240-c268efa7-c6d2-4194-95ff-cd0cd6d41616"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:18:02.000Z",
+                          "updatedAt": "2026-10-22T03:18:02.000Z",
+                          "uid": "35240-1287e020-41a7-4bda-8b33-be5a792dd04e"
+                        }
+                      ],
+                      "id": "d5b2c16f-1707-426d-80e1-bf72486da172",
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-d5b2c16f-1707-426d-80e1-bf72486da172"
+                    }
+                  ],
+                  "id": "7c8c4793-725e-4f5a-9a19-37c61acf5273",
+                  "createdAt": "2026-10-22T03:18:02.000Z",
+                  "updatedAt": "2026-10-22T03:18:02.000Z",
+                  "uid": "35240-7c8c4793-725e-4f5a-9a19-37c61acf5273"
+                },
+                {
+                  "name": "{username}",
+                  "item": [
+                    {
+                      "name": "Get user token by username and realm id",
+                      "id": "d094a895-7d41-44a1-8635-a536c760e645",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/userTokens/:username?realm=Internal",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "userTokens",
+                            ":username"
+                          ],
+                          "query": [
+                            {
+                              "description": "Enter the realmId. Possible values are `Internal`, `SAML` , `OAUTH2` , and `Crowd`.",
+                              "key": "realm",
+                              "value": "Internal"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "47834c59-5578-4580-8fcf-d1026aa059bb",
+                              "key": "username",
+                              "value": "<string>",
+                              "description": "(Required) Enter the username."
+                            }
+                          ]
+                        },
+                        "description": "Use this method to retrieve a user token by specifying a username and realmId.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "65a9ed34-c350-4f30-88f1-39511f01e884",
+                          "name": "The response contains the `userCode`, `username` and the name of the IQ server `realm`.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/userTokens/:username?realm=Internal",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "userTokens",
+                                ":username"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Enter the realmId. Possible values are `Internal`, `SAML` , `OAUTH2` , and `Crowd`.",
+                                  "key": "realm",
+                                  "value": "Internal"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"createTime\": \"<string>\",\n  \"expirationDate\": \"<dateTime>\",\n  \"lastAccessTime\": \"<string>\",\n  \"passCode\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"userCode\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T03:18:02.000Z",
+                          "updatedAt": "2026-10-22T03:18:02.000Z",
+                          "uid": "35240-65a9ed34-c350-4f30-88f1-39511f01e884"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-d094a895-7d41-44a1-8635-a536c760e645"
+                    }
+                  ],
+                  "id": "5e20c158-be05-4a6c-af01-2197a47de0a4",
+                  "createdAt": "2026-10-22T03:18:02.000Z",
+                  "updatedAt": "2026-10-22T03:18:02.000Z",
+                  "uid": "35240-5e20c158-be05-4a6c-af01-2197a47de0a4"
+                },
+                {
+                  "name": "Get user tokens by created between and realm id",
+                  "id": "882c5b3c-371b-4cfb-a6cf-323e96a990a8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/userTokens?createdAfter=<string>&createdBefore=<string>&realm=Internal",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "userTokens"
+                      ],
+                      "query": [
+                        {
+                          "description": "Enter the start date for the date range in `yyyy-mm-dd` format.",
+                          "key": "createdAfter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Enter the end date for the date range in `yyyy-mm-dd` format.",
+                          "key": "createdBefore",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Enter the `realmId`. Possible values are `Internal`, `SAML` , `OAUTH2`, and `Crowd`.",
+                          "key": "realm",
+                          "value": "Internal"
+                        }
+                      ]
+                    },
+                    "description": "Use this method to retrieve user tokens created within a date range, in the supported IQ Server realms.\n\nPermissions required: Edit System Configuration and Users."
+                  },
+                  "response": [
+                    {
+                      "id": "7ac484cb-3a7d-4d0c-a1dc-9fe1aa8ae52c",
+                      "name": "The response contains a list of user tokens, each containing a `userCode`, `username` and the name of the IQ server `realm`.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/userTokens?createdAfter=<string>&createdBefore=<string>&realm=Internal",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "userTokens"
+                          ],
+                          "query": [
+                            {
+                              "description": "Enter the start date for the date range in `yyyy-mm-dd` format.",
+                              "key": "createdAfter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Enter the end date for the date range in `yyyy-mm-dd` format.",
+                              "key": "createdBefore",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Enter the `realmId`. Possible values are `Internal`, `SAML` , `OAUTH2`, and `Crowd`.",
+                              "key": "realm",
+                              "value": "Internal"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"createTime\": \"<string>\",\n    \"expirationDate\": \"<dateTime>\",\n    \"lastAccessTime\": \"<string>\",\n    \"passCode\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"userCode\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  {\n    \"createTime\": \"<string>\",\n    \"expirationDate\": \"<dateTime>\",\n    \"lastAccessTime\": \"<string>\",\n    \"passCode\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"userCode\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-10-22T03:18:02.000Z",
+                      "updatedAt": "2026-10-22T03:18:02.000Z",
+                      "uid": "35240-7ac484cb-3a7d-4d0c-a1dc-9fe1aa8ae52c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T03:18:02.000Z",
+                  "updatedAt": "2026-10-22T03:18:02.000Z",
+                  "uid": "35240-882c5b3c-371b-4cfb-a6cf-323e96a990a8"
                 }
               ],
-              "body": "{\n  \"createTime\": \"string\",\n  \"expirationDate\": \"1998-06-04T23:19:30.624Z\",\n  \"lastAccessTime\": \"string\",\n  \"passCode\": \"string\",\n  \"realm\": \"string\",\n  \"userCode\": \"string\",\n  \"username\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fb57d052-34d4-4fc1-91cf-73bf9a163d0a",
+              "createdAt": "2026-10-22T03:18:02.000Z",
+              "updatedAt": "2026-10-22T03:18:02.000Z",
+              "uid": "35240-fb57d052-34d4-4fc1-91cf-73bf9a163d0a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c53c3372-21b2-46fa-9eb2-bcb8cd07dddf",
+          "createdAt": "2026-10-22T03:18:02.000Z",
+          "updatedAt": "2026-10-22T03:18:02.000Z",
+          "uid": "35240-c53c3372-21b2-46fa-9eb2-bcb8cd07dddf"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "2c7a01f2-1e66-4122-9800-4710798c080d",
+      "createdAt": "2026-10-22T03:18:02.000Z",
+      "updatedAt": "2026-10-22T03:18:02.000Z",
+      "uid": "35240-2c7a01f2-1e66-4122-9800-4710798c080d"
     }
   ],
   "auth": {
@@ -790,21 +811,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "53bea823-32ec-40b6-b96f-52117b330d2e",
-    "name": "Sonatype Lifecycle Public REST Advanced Search User Tokens API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

@@ -1,696 +1,744 @@
 {
+  "info": {
+    "_postman_id": "2cf138b7-dd91-4433-8433-3111e29b6b61",
+    "name": "Sonatype Policy Evaluation API",
+    "description": "Operations tagged Policy Evaluation across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:16:41.000Z",
+    "updatedAt": "2026-10-22T03:16:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2cf138b7-dd91-4433-8433-3111e29b6b61"
+  },
   "item": [
     {
-      "id": "0eafd46a-22ca-4701-9d0a-3946b4fb7c63",
-      "name": "Policy Evaluation",
-      "description": {
-        "content": "Use this REST API to perform an application policy evaluation. Policy evaluations are executed asynchronously.<p>This is a 2-step process that involves: \n1. Requesting a policy evaluation (POST) \n2. Checking the status and response of the evaluation request (GET)",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "d527a5e4-3e72-4e26-ac72-d64f13a4db79",
-          "name": "evaluate Components",
-          "request": {
-            "name": "evaluate Components",
-            "description": {
-              "content": "Use this method to request a component evaluation. This is step 1 of the 2 step policy evaluation for components process.\n\nPermissions Required: Evaluate Components",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "evaluation",
-                "applications",
-                ":applicationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "0cd79c31-a36c-4c92-b893-7fba7d5bac83",
-              "name": "The JSON response contains resultId that will be assigned to the evaluation results, timestamp when the component evaluation was requested, the applicationId of the component and the results URL. The resultId obtained from here can be used to retrieve the evaluation result using the REST API or the result URL can be used in cURL. ",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "evaluation",
-                    "applications",
-                    ":applicationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"key_0\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "evaluation",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "applications",
+                  "item": [
+                    {
+                      "name": "{applicationId}",
+                      "item": [
+                        {
+                          "name": "promoteScan",
+                          "item": [
+                            {
+                              "name": "Promote scan",
+                              "id": "c01aeb10-245d-44d9-a501-10c13a56602d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"scanId\": \"<string>\",\n  \"sourceStageId\": \"<string>\",\n  \"targetStageId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/promoteScan",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "evaluation",
+                                    "applications",
+                                    ":applicationId",
+                                    "promoteScan"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "da5978f0-d428-43a0-a2a1-56d1c22bb6f1",
+                                      "key": "applicationId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to rescan older scans. This is done when the binaries of a previous build are now moving to a new stage in the production pipeline. Using this method, you can avoid rebuilding the application and reuse the scan metadata at the newer stage. This new evaluation will evaluate the most recent security and license data against your current policies.\n\nPermissions Required: Evaluate Applications"
+                              },
+                              "response": [
+                                {
+                                  "id": "8838764e-9e62-4efd-bd73-c9893a0d91be",
+                                  "name": "The response will contain the statusUrl to view the evaluation result using the GET method (step 2)",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"scanId\": \"<string>\",\n  \"sourceStageId\": \"<string>\",\n  \"targetStageId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/promoteScan",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "evaluation",
+                                        "applications",
+                                        ":applicationId",
+                                        "promoteScan"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"statusUrl\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T03:16:41.000Z",
+                                  "updatedAt": "2026-10-22T03:16:41.000Z",
+                                  "uid": "35240-8838764e-9e62-4efd-bd73-c9893a0d91be"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:16:41.000Z",
+                              "updatedAt": "2026-10-22T03:16:41.000Z",
+                              "uid": "35240-c01aeb10-245d-44d9-a501-10c13a56602d"
+                            }
+                          ],
+                          "id": "4c7696b9-4bb9-450e-884f-fb542dee8195",
+                          "createdAt": "2026-10-22T03:16:41.000Z",
+                          "updatedAt": "2026-10-22T03:16:41.000Z",
+                          "uid": "35240-4c7696b9-4bb9-450e-884f-fb542dee8195"
+                        },
+                        {
+                          "name": "results",
+                          "item": [
+                            {
+                              "name": "{resultId}",
+                              "item": [
+                                {
+                                  "name": "Get component evaluation",
+                                  "id": "4105928c-77ea-4885-9638-56a8a00d424d",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/results/:resultId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "evaluation",
+                                        "applications",
+                                        ":applicationId",
+                                        "results",
+                                        ":resultId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "5d91f2af-9055-47c3-a6bd-94eff736ef64",
+                                          "key": "applicationId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the internal applicationId (same as that sent in the POST request (step 1))"
+                                        },
+                                        {
+                                          "id": "5eef46c7-5d2a-47ef-9cca-99631ff05a45",
+                                          "key": "resultId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the resultId obtained from the POST response (step 1) used for component evaluation."
+                                        }
+                                      ]
+                                    },
+                                    "description": "This is step 2 of the policy evaluation process for components. Use the resultId obtained from the POST response for the corresponding applicationId.\n\nPermissions Required: Evaluate Components"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "2cb4b755-9644-46b7-bec3-548c078774d9",
+                                      "name": "The response contains details for the policy evaluation request including submitted date, evaluation date, applicationId and the results of the evaluation for the component(s).",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/results/:resultId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "evaluation",
+                                            "applications",
+                                            ":applicationId",
+                                            "results",
+                                            ":resultId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "resultId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"applicationId\": \"<string>\",\n  \"errorMessage\": \"<string,null>\",\n  \"evaluationDate\": \"<dateTime>\",\n  \"isError\": \"<boolean>\",\n  \"results\": [\n    {\n      \"catalogDate\": \"<string>\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"laborum_a\": \"<string>\",\n            \"enim_2\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string,null>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"<string,null>\",\n      \"integrityRating\": \"<string,null>\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"status\": \"<string>\"\n      },\n      \"matchState\": \"<string>\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"<dateTime>\",\n        \"lastReleaseDate\": \"<dateTime>\",\n        \"projectMetadata\": {\n          \"description\": \"<string>\",\n          \"organization\": \"<string>\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": \"<integer>\",\n            \"uniqueDevsPerMonth\": \"<integer>\"\n          },\n          \"scmMetadata\": {\n            \"forks\": \"<integer>\",\n            \"stars\": \"<integer>\"\n          },\n          \"scmUrl\": \"<string>\"\n        }\n      },\n      \"relativePopularity\": \"<integer,null>\",\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"catalogDate\": \"<string>\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"deserunt16\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string,null>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"<string,null>\",\n      \"integrityRating\": \"<string,null>\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          },\n          {\n            \"licenseId\": \"<string>\",\n            \"licenseName\": \"<string>\"\n          }\n        ],\n        \"status\": \"<string>\"\n      },\n      \"matchState\": \"<string>\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"constraintId\": \"<string>\",\n                \"constraintName\": \"<string>\",\n                \"reasons\": [\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SECURITY_VULNERABILITY_REFID\",\n                      \"value\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"reason\": \"<string>\",\n                    \"reference\": {\n                      \"type\": \"SAST_FINDING_ID\",\n                      \"value\": \"<string>\"\n                    }\n                  }\n                ]\n              }\n            ],\n            \"fixTime\": \"<dateTime>\",\n            \"legacyViolationTime\": \"<dateTime>\",\n            \"openTime\": \"<dateTime>\",\n            \"policyId\": \"<string>\",\n            \"policyName\": \"<string>\",\n            \"policyViolationId\": \"<string>\",\n            \"threatLevel\": \"<integer>\",\n            \"waiveTime\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"<dateTime>\",\n        \"lastReleaseDate\": \"<dateTime>\",\n        \"projectMetadata\": {\n          \"description\": \"<string>\",\n          \"organization\": \"<string>\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": \"<integer>\",\n            \"uniqueDevsPerMonth\": \"<integer>\"\n          },\n          \"scmMetadata\": {\n            \"forks\": \"<integer>\",\n            \"stars\": \"<integer>\"\n          },\n          \"scmUrl\": \"<string>\"\n        }\n      },\n      \"relativePopularity\": \"<integer,null>\",\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"analysis\": {\n              \"detail\": \"<string>\",\n              \"justification\": \"<string>\",\n              \"response\": \"<string>\",\n              \"state\": \"<string>\"\n            },\n            \"cvssVector\": \"<string>\",\n            \"cvssVectorSource\": \"<string>\",\n            \"cwe\": \"<string>\",\n            \"reference\": \"<string>\",\n            \"severity\": \"<float>\",\n            \"source\": \"<string>\",\n            \"status\": \"<string>\",\n            \"threatCategory\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"submittedDate\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-10-22T03:16:41.000Z",
+                                      "updatedAt": "2026-10-22T03:16:41.000Z",
+                                      "uid": "35240-2cb4b755-9644-46b7-bec3-548c078774d9"
+                                    },
+                                    {
+                                      "id": "99aa33db-2bc6-4cb7-8fa2-70cdf784c210",
+                                      "name": "Response not ready ",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/results/:resultId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "evaluation",
+                                            "applications",
+                                            ":applicationId",
+                                            "results",
+                                            ":resultId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "resultId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T03:16:41.000Z",
+                                      "updatedAt": "2026-10-22T03:16:41.000Z",
+                                      "uid": "35240-99aa33db-2bc6-4cb7-8fa2-70cdf784c210"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:16:41.000Z",
+                                  "updatedAt": "2026-10-22T03:16:41.000Z",
+                                  "uid": "35240-4105928c-77ea-4885-9638-56a8a00d424d"
+                                }
+                              ],
+                              "id": "3760e207-a413-4275-8ccb-c4d7bd281b5f",
+                              "createdAt": "2026-10-22T03:16:41.000Z",
+                              "updatedAt": "2026-10-22T03:16:41.000Z",
+                              "uid": "35240-3760e207-a413-4275-8ccb-c4d7bd281b5f"
+                            }
+                          ],
+                          "id": "636c2c7c-efe3-45d5-945d-fbd71c9ddd0b",
+                          "createdAt": "2026-10-22T03:16:41.000Z",
+                          "updatedAt": "2026-10-22T03:16:41.000Z",
+                          "uid": "35240-636c2c7c-efe3-45d5-945d-fbd71c9ddd0b"
+                        },
+                        {
+                          "name": "sourceControlEvaluation",
+                          "item": [
+                            {
+                              "name": "Evaluate source control",
+                              "id": "0ba04b97-ee90-4b53-98fa-b1e0c144dabd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"branchName\": \"<string>\",\n  \"scanTargets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/sourceControlEvaluation",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "evaluation",
+                                    "applications",
+                                    ":applicationId",
+                                    "sourceControlEvaluation"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "40ded2cd-6fe6-4f24-b665-e89d759a1d61",
+                                      "key": "applicationId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to request a source control evaluation for a specific application. This is step 1 of the 2 step source control evaluation process.\n\nPermissions Required: Evaluate Applications"
+                              },
+                              "response": [
+                                {
+                                  "id": "58b54a0c-c902-42cf-bfd1-837362d3ff6d",
+                                  "name": "The response contains statusUrl. Use this statusUrl to check the evaluation status using the GET method (step 2 of the evaluation process). ",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"branchName\": \"<string>\",\n  \"scanTargets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/sourceControlEvaluation",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "evaluation",
+                                        "applications",
+                                        ":applicationId",
+                                        "sourceControlEvaluation"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"statusUrl\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T03:16:41.000Z",
+                                  "updatedAt": "2026-10-22T03:16:41.000Z",
+                                  "uid": "35240-58b54a0c-c902-42cf-bfd1-837362d3ff6d"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:16:41.000Z",
+                              "updatedAt": "2026-10-22T03:16:41.000Z",
+                              "uid": "35240-0ba04b97-ee90-4b53-98fa-b1e0c144dabd"
+                            }
+                          ],
+                          "id": "31784729-7e22-40d2-8408-afc36ab0915a",
+                          "createdAt": "2026-10-22T03:16:41.000Z",
+                          "updatedAt": "2026-10-22T03:16:41.000Z",
+                          "uid": "35240-31784729-7e22-40d2-8408-afc36ab0915a"
+                        },
+                        {
+                          "name": "status",
+                          "item": [
+                            {
+                              "name": "{statusId}",
+                              "item": [
+                                {
+                                  "name": "Get application evaluation status",
+                                  "id": "9fb1b0d9-d631-4644-92db-094fe1fd1a85",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/status/:statusId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "evaluation",
+                                        "applications",
+                                        ":applicationId",
+                                        "status",
+                                        ":statusId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "5417f023-5764-4887-abfb-47764b192bb3",
+                                          "key": "applicationId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the applicationId, for the which policy evaluation was requested."
+                                        },
+                                        {
+                                          "id": "21b6b87b-9dab-4657-8e9e-b695defaf4ea",
+                                          "key": "statusId",
+                                          "value": "<string>",
+                                          "description": "(Required) Enter the statusId value obtained as response of the POST call in step 1."
+                                        }
+                                      ]
+                                    },
+                                    "description": "This is step 2 of the policy evaluation process. Use the statusUrl obtained from the POST response for the corresponding applicationId.\n\nPermissions Required: Evaluate Applications"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "5b9a931d-9549-4aaf-8ad8-32ebdafbd86e",
+                                      "name": "The response will include one of the 3 possible status values: PENDING (indicates that the evaluation is still in progress), FAILED or COMPLETED. For completed evaluations, the response will contain the URLs for evaluation report to view the evaluation re",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId/status/:statusId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "evaluation",
+                                            "applications",
+                                            ":applicationId",
+                                            "status",
+                                            ":statusId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "applicationId"
+                                            },
+                                            {
+                                              "key": "statusId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"embeddableReportHtmlUrl\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"reportDataUrl\": \"<string>\",\n  \"reportHtmlUrl\": \"<string>\",\n  \"reportPdfUrl\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T03:16:41.000Z",
+                                      "updatedAt": "2026-10-22T03:16:41.000Z",
+                                      "uid": "35240-5b9a931d-9549-4aaf-8ad8-32ebdafbd86e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:16:41.000Z",
+                                  "updatedAt": "2026-10-22T03:16:41.000Z",
+                                  "uid": "35240-9fb1b0d9-d631-4644-92db-094fe1fd1a85"
+                                }
+                              ],
+                              "id": "a9d1b460-ba55-42cf-8e89-1a0e61c17d25",
+                              "createdAt": "2026-10-22T03:16:41.000Z",
+                              "updatedAt": "2026-10-22T03:16:41.000Z",
+                              "uid": "35240-a9d1b460-ba55-42cf-8e89-1a0e61c17d25"
+                            }
+                          ],
+                          "id": "b017c4dc-f4c3-435c-9bfb-a771e41c25ec",
+                          "createdAt": "2026-10-22T03:16:41.000Z",
+                          "updatedAt": "2026-10-22T03:16:41.000Z",
+                          "uid": "35240-b017c4dc-f4c3-435c-9bfb-a771e41c25ec"
+                        },
+                        {
+                          "name": "Evaluate components",
+                          "id": "622f2661-7e3a-4187-af37-9aa33ffb93db",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"veniam2\": \"<string>\",\n          \"Duis4e9\": \"<string>\",\n          \"doa2\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"elit4e\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "evaluation",
+                                "applications",
+                                ":applicationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f2161fa6-588d-4b4f-a33f-b71c8ce23417",
+                                  "key": "applicationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to request a component evaluation. This is step 1 of the 2 step policy evaluation for components process.\n\nPermissions Required: Evaluate Components"
+                          },
+                          "response": [
+                            {
+                              "id": "ddd14bb5-8980-476c-9585-394a6eb09371",
+                              "name": "The JSON response contains resultId that will be assigned to the evaluation results, timestamp when the component evaluation was requested, the applicationId of the component and the results URL. The resultId obtained from here can be used to retrieve the",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"components\": [\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"veniam2\": \"<string>\",\n          \"Duis4e9\": \"<string>\",\n          \"doa2\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    },\n    {\n      \"componentIdentifier\": {\n        \"coordinates\": {\n          \"elit4e\": \"<string>\"\n        },\n        \"format\": \"<string>\"\n      },\n      \"displayName\": \"<string>\",\n      \"hash\": \"<string,null>\",\n      \"originalPurl\": \"<string>\",\n      \"packageUrl\": \"<string>\",\n      \"proprietary\": \"<boolean>\",\n      \"sha256\": \"<string>\",\n      \"thirdParty\": \"<boolean>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/evaluation/applications/:applicationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "evaluation",
+                                    "applications",
+                                    ":applicationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"applicationId\": \"<string>\",\n  \"resultId\": \"<string>\",\n  \"resultsUrl\": \"<string>\",\n  \"submittedDate\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-10-22T03:16:41.000Z",
+                              "updatedAt": "2026-10-22T03:16:41.000Z",
+                              "uid": "35240-ddd14bb5-8980-476c-9585-394a6eb09371"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:41.000Z",
+                          "updatedAt": "2026-10-22T03:16:41.000Z",
+                          "uid": "35240-622f2661-7e3a-4187-af37-9aa33ffb93db"
+                        }
+                      ],
+                      "id": "fa9f86c0-4f82-4406-9109-e2d6e84d3dd6",
+                      "createdAt": "2026-10-22T03:16:41.000Z",
+                      "updatedAt": "2026-10-22T03:16:41.000Z",
+                      "uid": "35240-fa9f86c0-4f82-4406-9109-e2d6e84d3dd6"
+                    }
+                  ],
+                  "id": "21f06c5b-51af-4c36-bdd6-3bc4eb345761",
+                  "createdAt": "2026-10-22T03:16:41.000Z",
+                  "updatedAt": "2026-10-22T03:16:41.000Z",
+                  "uid": "35240-21f06c5b-51af-4c36-bdd6-3bc4eb345761"
                 }
               ],
-              "body": "{\n  \"applicationId\": \"string\",\n  \"resultId\": \"string\",\n  \"resultsUrl\": \"string\",\n  \"submittedDate\": \"1966-10-01T19:42:04.405Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b8271b5f-f30d-4dae-b916-e0d801f66b14",
+              "createdAt": "2026-10-22T03:16:41.000Z",
+              "updatedAt": "2026-10-22T03:16:41.000Z",
+              "uid": "35240-b8271b5f-f30d-4dae-b916-e0d801f66b14"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3a3f1805-7625-4f5a-af24-8f34283d3b86",
-          "name": "promote Scan",
-          "request": {
-            "name": "promote Scan",
-            "description": {
-              "content": "Use this method to rescan older scans. This is done when the binaries of a previous build are now moving to a new stage in the production pipeline. Using this method, you can avoid rebuilding the application and reuse the scan metadata at the newer stage. This new evaluation will evaluate the most recent security and license data against your current policies. \n\nPermissions Required: Evaluate Applications",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "evaluation",
-                "applications",
-                ":applicationId",
-                "promoteScan"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"scanId\": \"<string>\",\n  \"sourceStageId\": \"<string>\",\n  \"targetStageId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1044f079-6989-425f-876c-7d08b1fe16f6",
-              "name": "The response will contain the statusUrl to view the evaluation result using the GET method (step 2)",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "evaluation",
-                    "applications",
-                    ":applicationId",
-                    "promoteScan"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"scanId\": \"<string>\",\n  \"sourceStageId\": \"<string>\",\n  \"targetStageId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusUrl\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f6e7ed4c-d458-4678-addb-a3efda74d85d",
-          "name": "get Component Evaluation",
-          "request": {
-            "name": "get Component Evaluation",
-            "description": {
-              "content": "This is step 2 of the policy evaluation process for components. Use the resultId obtained from the POST response for the corresponding applicationId. \n\nPermissions Required: Evaluate Components ",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "evaluation",
-                "applications",
-                ":applicationId",
-                "results",
-                ":resultId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the internal applicationId (same as that sent in the POST request (step 1))"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resultId",
-                  "description": "(Required) Enter the resultId obtained from the POST response (step 1) used for component evaluation."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "bb6b6d32-df37-48d5-a876-51ffcc1bde61",
-              "name": "The response contains details for the policy evaluation request including submitted date, evaluation date, applicationId and the results of the evaluation for the component(s).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "evaluation",
-                    "applications",
-                    ":applicationId",
-                    "results",
-                    ":resultId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the internal applicationId (same as that sent in the POST request (step 1))"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resultId",
-                      "description": "(Required) Enter the resultId obtained from the POST response (step 1) used for component evaluation."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"applicationId\": \"string\",\n  \"errorMessage\": \"string\",\n  \"evaluationDate\": \"2015-05-10T16:39:31.110Z\",\n  \"isError\": true,\n  \"results\": [\n    {\n      \"catalogDate\": \"string\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"string\",\n      \"integrityRating\": \"string\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"status\": \"string\"\n      },\n      \"matchState\": \"string\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"1955-03-12T17:56:47.593Z\",\n            \"legacyViolationTime\": \"2006-04-11T16:40:20.256Z\",\n            \"openTime\": \"1958-12-13T03:10:02.388Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 3253,\n            \"waiveTime\": \"1980-11-16T13:57:52.966Z\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"1993-07-11T17:06:57.454Z\",\n            \"legacyViolationTime\": \"2011-01-29T23:08:56.224Z\",\n            \"openTime\": \"1999-09-07T21:29:21.963Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 3093,\n            \"waiveTime\": \"1965-09-16T12:29:47.952Z\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"1967-04-20T14:56:42.296Z\",\n        \"lastReleaseDate\": \"2024-02-05T09:57:48.935Z\",\n        \"projectMetadata\": {\n          \"description\": \"string\",\n          \"organization\": \"string\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueDevsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmMetadata\": {\n            \"forks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stars\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmUrl\": \"string\"\n        }\n      },\n      \"relativePopularity\": 1826,\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 5229.574470769736,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 1554.8688659525344,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"catalogDate\": \"string\",\n      \"component\": {\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"displayName\": \"<string>\",\n        \"hash\": \"<string>\",\n        \"originalPurl\": \"<string>\",\n        \"packageUrl\": \"<string>\",\n        \"proprietary\": \"<boolean>\",\n        \"sha256\": \"<string>\",\n        \"thirdParty\": \"<boolean>\"\n      },\n      \"hygieneRating\": \"string\",\n      \"integrityRating\": \"string\",\n      \"licenseData\": {\n        \"declaredLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"effectiveLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"observedLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"overriddenLicenses\": [\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          },\n          {\n            \"licenseId\": \"string\",\n            \"licenseName\": \"string\"\n          }\n        ],\n        \"status\": \"string\"\n      },\n      \"matchState\": \"string\",\n      \"policyData\": {\n        \"policyViolations\": [\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"1956-11-10T12:50:14.942Z\",\n            \"legacyViolationTime\": \"2016-09-01T14:28:54.684Z\",\n            \"openTime\": \"1962-01-11T13:24:49.872Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 7450,\n            \"waiveTime\": \"1953-06-03T11:09:25.998Z\"\n          },\n          {\n            \"constraintViolations\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fixTime\": \"2018-09-01T23:58:08.776Z\",\n            \"legacyViolationTime\": \"2000-04-04T07:10:15.609Z\",\n            \"openTime\": \"1961-07-14T17:55:02.998Z\",\n            \"policyId\": \"string\",\n            \"policyName\": \"string\",\n            \"policyViolationId\": \"string\",\n            \"threatLevel\": 6994,\n            \"waiveTime\": \"1974-03-19T21:20:48.841Z\"\n          }\n        ]\n      },\n      \"projectData\": {\n        \"firstReleaseDate\": \"1986-11-19T11:14:17.248Z\",\n        \"lastReleaseDate\": \"2003-11-23T05:12:10.465Z\",\n        \"projectMetadata\": {\n          \"description\": \"string\",\n          \"organization\": \"string\"\n        },\n        \"sourceControlManagement\": {\n          \"scmDetails\": {\n            \"commitsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueDevsPerMonth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmMetadata\": {\n            \"forks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stars\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"scmUrl\": \"string\"\n        }\n      },\n      \"relativePopularity\": 7112,\n      \"securityData\": {\n        \"securityIssues\": [\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 8535.754288043136,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"analysis\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cvssVector\": \"string\",\n            \"cvssVectorSource\": \"string\",\n            \"cwe\": \"string\",\n            \"reference\": \"string\",\n            \"severity\": 7718.301327329459,\n            \"source\": \"string\",\n            \"status\": \"string\",\n            \"threatCategory\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      }\n    }\n  ],\n  \"submittedDate\": \"1957-09-09T02:51:20.813Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9bfc7cf3-f087-4f38-b010-c92bdb857528",
-              "name": "Response not ready ",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "evaluation",
-                    "applications",
-                    ":applicationId",
-                    "results",
-                    ":resultId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the internal applicationId (same as that sent in the POST request (step 1))"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resultId",
-                      "description": "(Required) Enter the resultId obtained from the POST response (step 1) used for component evaluation."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "68e86730-2512-46aa-b071-afabd7233ab7",
-          "name": "evaluate Source Control",
-          "request": {
-            "name": "evaluate Source Control",
-            "description": {
-              "content": "Use this method to request a source control evaluation for a specific application. This is step 1 of the 2 step source control evaluation process. \n\nPermissions Required: Evaluate Applications",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "evaluation",
-                "applications",
-                ":applicationId",
-                "sourceControlEvaluation"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"branchName\": \"<string>\",\n  \"scanTargets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "33390303-6abe-40b3-9894-e6885902c194",
-              "name": "The response contains statusUrl. Use this statusUrl to check the evaluation status using the GET method (step 2 of the evaluation process). ",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "evaluation",
-                    "applications",
-                    ":applicationId",
-                    "sourceControlEvaluation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the internal applicationId. Use the Applications REST API to retrieve the internal applicationId."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"branchName\": \"<string>\",\n  \"scanTargets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusUrl\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "94e2f7ad-bb39-4872-b995-21439b3aa321",
-          "name": "get Application Evaluation Status",
-          "request": {
-            "name": "get Application Evaluation Status",
-            "description": {
-              "content": "This is step 2 of the policy evaluation process. Use the statusUrl obtained from the POST response for the corresponding applicationId. \n\nPermissions Required: Evaluate Applications",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "evaluation",
-                "applications",
-                ":applicationId",
-                "status",
-                ":statusId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "applicationId",
-                  "description": "(Required) Enter the applicationId, for the which policy evaluation was requested."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "statusId",
-                  "description": "(Required) Enter the statusId value obtained as response of the POST call in step 1."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "87a59407-bfb1-43a4-9b35-e71e41e27c6b",
-              "name": "The response will include one of the 3 possible status values: PENDING (indicates that the evaluation is still in progress), FAILED or COMPLETED. For completed evaluations, the response will contain the URLs for evaluation report to view the evaluation results.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "evaluation",
-                    "applications",
-                    ":applicationId",
-                    "status",
-                    ":statusId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "applicationId",
-                      "description": "(Required) Enter the applicationId, for the which policy evaluation was requested."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "statusId",
-                      "description": "(Required) Enter the statusId value obtained as response of the POST call in step 1."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"embeddableReportHtmlUrl\": \"string\",\n  \"reason\": \"string\",\n  \"reportDataUrl\": \"string\",\n  \"reportHtmlUrl\": \"string\",\n  \"reportPdfUrl\": \"string\",\n  \"status\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "27a2c476-d802-4492-8e64-844fd5a04645",
+          "createdAt": "2026-10-22T03:16:41.000Z",
+          "updatedAt": "2026-10-22T03:16:41.000Z",
+          "uid": "35240-27a2c476-d802-4492-8e64-844fd5a04645"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "f56990d0-5acd-496c-b631-695d4df65a16",
+      "createdAt": "2026-10-22T03:16:41.000Z",
+      "updatedAt": "2026-10-22T03:16:41.000Z",
+      "uid": "35240-f56990d0-5acd-496c-b631-695d4df65a16"
     }
   ],
   "auth": {
@@ -698,21 +746,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3f7f7752-5393-4707-aa27-9eefac88520d",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Policy Evaluation API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

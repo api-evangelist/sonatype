@@ -1,0 +1,723 @@
+{
+  "info": {
+    "_postman_id": "d15447fc-b6ad-4820-8bfd-5c247f0bcbc2",
+    "name": "Sonatype Lifecycle Public REST GitHub App API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:21.000Z",
+    "updatedAt": "2026-10-22T03:18:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d15447fc-b6ad-4820-8bfd-5c247f0bcbc2"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "githubApp",
+              "item": [
+                {
+                  "name": "{githubAppId}",
+                  "item": [
+                    {
+                      "name": "Delete a GitHub App",
+                      "id": "a9c7dda9-d1d2-4c2f-a0ea-58f57c6c26f3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/githubApp/:githubAppId?ownerId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "githubApp",
+                            ":githubAppId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Owner (organization/application) ID",
+                              "key": "ownerId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "5e63472e-f209-41e6-b647-e97223fcd91f",
+                              "key": "githubAppId",
+                              "value": "<string>",
+                              "description": "(Required) GitHub App ID"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a specific GitHub App by its ID. Validates ownership before deletion. Best-effort cleanup of the GitHub installation via API.\n\n**Permissions Required:** Configure System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "90617f03-f0cd-48fc-af07-f3d75ea6341e",
+                          "name": "GitHub App deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/:githubAppId?ownerId=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                ":githubAppId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Owner (organization/application) ID",
+                                  "key": "ownerId",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "githubAppId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-90617f03-f0cd-48fc-af07-f3d75ea6341e"
+                        },
+                        {
+                          "id": "7b7bac08-3087-4015-819c-1d6c9822b3af",
+                          "name": "GitHub App not found for specified owner",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/:githubAppId?ownerId=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                ":githubAppId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Owner (organization/application) ID",
+                                  "key": "ownerId",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "githubAppId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-7b7bac08-3087-4015-819c-1d6c9822b3af"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:22.000Z",
+                      "updatedAt": "2026-10-22T03:18:22.000Z",
+                      "uid": "35240-a9c7dda9-d1d2-4c2f-a0ea-58f57c6c26f3"
+                    }
+                  ],
+                  "id": "4823ae51-e8c0-48fe-b6e5-b71cf4a91e5d",
+                  "createdAt": "2026-10-22T03:18:22.000Z",
+                  "updatedAt": "2026-10-22T03:18:22.000Z",
+                  "uid": "35240-4823ae51-e8c0-48fe-b6e5-b71cf4a91e5d"
+                },
+                {
+                  "name": "manifest",
+                  "item": [
+                    {
+                      "name": "Generate GitHub App manifest",
+                      "id": "8f4f8fd5-261f-4b4c-b3c7-1430b653f44f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/githubApp/manifest?ownerId=<string>&organizationName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "githubApp",
+                            "manifest"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Owner (organization/application) ID",
+                              "key": "ownerId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "GitHub organization name",
+                              "key": "organizationName",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Generate a GitHub App manifest for registration. Returns manifest JSON with a state token for CSRF protection. The state token is cryptographically secure, single-use, and expires after 10 minutes. Submit the manifest to GitHub's app creation flow, which will redirect back to IQ Server with the state token for validation.\n\n**Permissions Required:** Configure System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "715ced25-1f19-4c85-a0a0-155a63479ded",
+                          "name": "Manifest generated successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/manifest?ownerId=<string>&organizationName=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                "manifest"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Owner (organization/application) ID",
+                                  "key": "ownerId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "GitHub organization name",
+                                  "key": "organizationName",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-715ced25-1f19-4c85-a0a0-155a63479ded"
+                        },
+                        {
+                          "id": "b4f2f43e-e704-4a49-9e1d-8f9a6d578c29",
+                          "name": "Missing owner id or organization name",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/manifest?ownerId=<string>&organizationName=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                "manifest"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Owner (organization/application) ID",
+                                  "key": "ownerId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "GitHub organization name",
+                                  "key": "organizationName",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-b4f2f43e-e704-4a49-9e1d-8f9a6d578c29"
+                        },
+                        {
+                          "id": "42935ca5-b27f-492b-946b-1cbf48650ca3",
+                          "name": "Base URL not configured or invalid request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/manifest?ownerId=<string>&organizationName=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                "manifest"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Owner (organization/application) ID",
+                                  "key": "ownerId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "GitHub organization name",
+                                  "key": "organizationName",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-42935ca5-b27f-492b-946b-1cbf48650ca3"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:22.000Z",
+                      "updatedAt": "2026-10-22T03:18:22.000Z",
+                      "uid": "35240-8f4f8fd5-261f-4b4c-b3c7-1430b653f44f"
+                    }
+                  ],
+                  "id": "ede21e3c-dcf3-4cd0-970e-7e9b4c494623",
+                  "createdAt": "2026-10-22T03:18:22.000Z",
+                  "updatedAt": "2026-10-22T03:18:22.000Z",
+                  "uid": "35240-ede21e3c-dcf3-4cd0-970e-7e9b4c494623"
+                },
+                {
+                  "name": "redirect",
+                  "item": [
+                    {
+                      "name": "GitHub App registration redirect callback",
+                      "id": "dd5f3dff-28eb-4f1c-b07e-061748a703fa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/githubApp/redirect?code=<string>&state=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "githubApp",
+                            "redirect"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Temporary manifest conversion code from GitHub",
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "OAuth state token for CSRF protection",
+                              "key": "state",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Handles redirect from GitHub after manifest submission. Exchanges temporary code for permanent app credentials. The user's browser is automatically redirected here by GitHub - not intended for direct use. **Permissions Required:** Configure System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "920bb2d2-8453-4778-aee2-2ffc8ae921ee",
+                          "name": "Successfully registered GitHub App, redirecting to settings page",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/redirect?code=<string>&state=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                "redirect"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Temporary manifest conversion code from GitHub",
+                                  "key": "code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OAuth state token for CSRF protection",
+                                  "key": "state",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "See Other",
+                          "code": 303,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-920bb2d2-8453-4778-aee2-2ffc8ae921ee"
+                        },
+                        {
+                          "id": "1f778bc3-1d26-489a-b992-cb6bd93231cb",
+                          "name": "Invalid or expired code",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/redirect?code=<string>&state=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                "redirect"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Temporary manifest conversion code from GitHub",
+                                  "key": "code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OAuth state token for CSRF protection",
+                                  "key": "state",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-1f778bc3-1d26-489a-b992-cb6bd93231cb"
+                        },
+                        {
+                          "id": "06ed66a1-d454-42ad-a398-48b971504f2b",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/redirect?code=<string>&state=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                "redirect"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Temporary manifest conversion code from GitHub",
+                                  "key": "code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OAuth state token for CSRF protection",
+                                  "key": "state",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-06ed66a1-d454-42ad-a398-48b971504f2b"
+                        },
+                        {
+                          "id": "66c6d6b7-1579-446b-95c7-6046a81edea7",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/githubApp/redirect?code=<string>&state=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "githubApp",
+                                "redirect"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Temporary manifest conversion code from GitHub",
+                                  "key": "code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OAuth state token for CSRF protection",
+                                  "key": "state",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:18:22.000Z",
+                          "updatedAt": "2026-10-22T03:18:22.000Z",
+                          "uid": "35240-66c6d6b7-1579-446b-95c7-6046a81edea7"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:22.000Z",
+                      "updatedAt": "2026-10-22T03:18:22.000Z",
+                      "uid": "35240-dd5f3dff-28eb-4f1c-b07e-061748a703fa"
+                    }
+                  ],
+                  "id": "62d603c4-a026-47ad-a085-e82a62548c0f",
+                  "createdAt": "2026-10-22T03:18:22.000Z",
+                  "updatedAt": "2026-10-22T03:18:22.000Z",
+                  "uid": "35240-62d603c4-a026-47ad-a085-e82a62548c0f"
+                },
+                {
+                  "name": "List GitHub Apps for an owner",
+                  "id": "53fd8185-bffb-4890-bc60-baa5a42e715e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/githubApp?ownerId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "githubApp"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Owner (organization/application) ID",
+                          "key": "ownerId",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Returns all GitHub Apps directly registered at this owner level. Does not include inherited apps from parent organizations.\n\n**Permissions Required:** View IQ Elements"
+                  },
+                  "response": [
+                    {
+                      "id": "02e1eced-d17c-4ddc-85b2-324c1d2ac9a4",
+                      "name": "List of GitHub Apps",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/githubApp?ownerId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "githubApp"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Owner (organization/application) ID",
+                              "key": "ownerId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:18:22.000Z",
+                      "updatedAt": "2026-10-22T03:18:22.000Z",
+                      "uid": "35240-02e1eced-d17c-4ddc-85b2-324c1d2ac9a4"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T03:18:22.000Z",
+                  "updatedAt": "2026-10-22T03:18:22.000Z",
+                  "uid": "35240-53fd8185-bffb-4890-bc60-baa5a42e715e"
+                }
+              ],
+              "id": "48cbb6c4-9242-4c3c-a02f-f9c9497bba20",
+              "createdAt": "2026-10-22T03:18:22.000Z",
+              "updatedAt": "2026-10-22T03:18:22.000Z",
+              "uid": "35240-48cbb6c4-9242-4c3c-a02f-f9c9497bba20"
+            }
+          ],
+          "id": "c42bcb6b-ff33-46fc-82d6-c5aab4f28342",
+          "createdAt": "2026-10-22T03:18:22.000Z",
+          "updatedAt": "2026-10-22T03:18:22.000Z",
+          "uid": "35240-c42bcb6b-ff33-46fc-82d6-c5aab4f28342"
+        }
+      ],
+      "id": "ea0b8bb1-ee42-44fe-94f4-0e79696756f5",
+      "createdAt": "2026-10-22T03:18:22.000Z",
+      "updatedAt": "2026-10-22T03:18:22.000Z",
+      "uid": "35240-ea0b8bb1-ee42-44fe-94f4-0e79696756f5"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

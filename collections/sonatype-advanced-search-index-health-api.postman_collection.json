@@ -1,0 +1,708 @@
+{
+  "info": {
+    "_postman_id": "bc5e850d-bf11-4c43-95e6-d4779810586b",
+    "name": "Sonatype Lifecycle Public REST Advanced Search Index Health\u2026",
+    "description": "Index Analyze status and rebuild/cleanup job control.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:14.000Z",
+    "updatedAt": "2026-10-22T03:18:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bc5e850d-bf11-4c43-95e6-d4779810586b"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "search",
+              "item": [
+                {
+                  "name": "advanced",
+                  "item": [
+                    {
+                      "name": "index",
+                      "item": [
+                        {
+                          "name": "analyze",
+                          "item": [
+                            {
+                              "name": "Analyze",
+                              "id": "8198a750-86d2-4e6d-9a0e-ec59e6e113ef",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/search/advanced/index/analyze",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "search",
+                                    "advanced",
+                                    "index",
+                                    "analyze"
+                                  ]
+                                },
+                                "description": "Return current index health (green/yellow/red), recommendation, and estate snapshot. Works on precomputed CURRENT rows in a constant number of round trips, refreshing the stored derived status as it goes."
+                              },
+                              "response": [
+                                {
+                                  "id": "8ba0a857-1140-42e2-9bd7-8eff2a2f3cd5",
+                                  "name": "Analyze status",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/index/analyze",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "index",
+                                        "analyze"
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"healthStatus\": \"<string>\",\n  \"recommendedOp\": \"<string>\",\n  \"queueLagSeconds\": \"<long>\",\n  \"pendingChangeCount\": \"<long>\",\n  \"failedChangeCount\": \"<long>\",\n  \"nouxUnlockState\": \"<string>\",\n  \"activeJobId\": \"<string>\",\n  \"servingGenerationId\": \"<string>\",\n  \"buildingGenerationId\": \"<string>\",\n  \"lastSuccessfulCutoverAt\": \"<dateTime>\",\n  \"lastCleanupAt\": \"<dateTime>\",\n  \"applicationCount\": \"<long>\",\n  \"violationCount\": \"<long>\",\n  \"componentCount\": \"<long>\",\n  \"etaLowMinutes\": \"<integer>\",\n  \"etaHighMinutes\": \"<integer>\",\n  \"advancedSearchEnabled\": \"<boolean>\",\n  \"estateCapturedAt\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:15.000Z",
+                                  "updatedAt": "2026-10-22T03:18:15.000Z",
+                                  "uid": "35240-8ba0a857-1140-42e2-9bd7-8eff2a2f3cd5"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:15.000Z",
+                              "updatedAt": "2026-10-22T03:18:15.000Z",
+                              "uid": "35240-8198a750-86d2-4e6d-9a0e-ec59e6e113ef"
+                            }
+                          ],
+                          "id": "d3083f2a-bd14-41bf-a3d4-b99a96711195",
+                          "createdAt": "2026-10-22T03:18:15.000Z",
+                          "updatedAt": "2026-10-22T03:18:15.000Z",
+                          "uid": "35240-d3083f2a-bd14-41bf-a3d4-b99a96711195"
+                        },
+                        {
+                          "name": "jobs",
+                          "item": [
+                            {
+                              "name": "cancel",
+                              "item": [
+                                {
+                                  "name": "Cancel active job",
+                                  "id": "9d14df8c-c5b4-47ab-992c-e9111af9f7ad",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/cancel",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "index",
+                                        "jobs",
+                                        "cancel"
+                                      ]
+                                    },
+                                    "description": "Cancel the active job; Lucene keeps serving the blue index."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "2fa3f13d-7cf4-4247-8018-ff4f271aa88f",
+                                      "name": "default response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "search",
+                                            "advanced",
+                                            "index",
+                                            "jobs",
+                                            "cancel"
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<string>\",\n  \"jobType\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"status\": \"<string>\",\n  \"activeSlot\": \"<string>\",\n  \"progressPercent\": \"<integer>\",\n  \"phase\": \"<string>\",\n  \"etaFinishAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"cancelRequestedAt\": \"<dateTime>\",\n  \"buildingGenerationId\": \"<string>\",\n  \"servingGenerationIdAtStart\": \"<string>\",\n  \"recommendedOp\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"createdByUserId\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"active\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T03:18:15.000Z",
+                                      "updatedAt": "2026-10-22T03:18:15.000Z",
+                                      "uid": "35240-2fa3f13d-7cf4-4247-8018-ff4f271aa88f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:18:15.000Z",
+                                  "updatedAt": "2026-10-22T03:18:15.000Z",
+                                  "uid": "35240-9d14df8c-c5b4-47ab-992c-e9111af9f7ad"
+                                }
+                              ],
+                              "id": "d4cea4a0-a4b8-4e13-9f34-d4ec4103b00e",
+                              "createdAt": "2026-10-22T03:18:15.000Z",
+                              "updatedAt": "2026-10-22T03:18:15.000Z",
+                              "uid": "35240-d4cea4a0-a4b8-4e13-9f34-d4ec4103b00e"
+                            },
+                            {
+                              "name": "active",
+                              "item": [
+                                {
+                                  "name": "Get active job",
+                                  "id": "10fa95cd-a82f-4f44-893d-9e17a53adff0",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/active",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "index",
+                                        "jobs",
+                                        "active"
+                                      ]
+                                    },
+                                    "description": "Return the active index job, if any."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1cfc0eef-01f8-4d3d-922e-c92c7aed97aa",
+                                      "name": "default response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/active",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "search",
+                                            "advanced",
+                                            "index",
+                                            "jobs",
+                                            "active"
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<string>\",\n  \"jobType\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"status\": \"<string>\",\n  \"activeSlot\": \"<string>\",\n  \"progressPercent\": \"<integer>\",\n  \"phase\": \"<string>\",\n  \"etaFinishAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"cancelRequestedAt\": \"<dateTime>\",\n  \"buildingGenerationId\": \"<string>\",\n  \"servingGenerationIdAtStart\": \"<string>\",\n  \"recommendedOp\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"createdByUserId\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"active\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T03:18:15.000Z",
+                                      "updatedAt": "2026-10-22T03:18:15.000Z",
+                                      "uid": "35240-1cfc0eef-01f8-4d3d-922e-c92c7aed97aa"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:18:15.000Z",
+                                  "updatedAt": "2026-10-22T03:18:15.000Z",
+                                  "uid": "35240-10fa95cd-a82f-4f44-893d-9e17a53adff0"
+                                }
+                              ],
+                              "id": "4f8f55e8-8db7-455c-9a2a-f31c25fd34c8",
+                              "createdAt": "2026-10-22T03:18:15.000Z",
+                              "updatedAt": "2026-10-22T03:18:15.000Z",
+                              "uid": "35240-4f8f55e8-8db7-455c-9a2a-f31c25fd34c8"
+                            },
+                            {
+                              "name": "{jobId}",
+                              "item": [
+                                {
+                                  "name": "events",
+                                  "item": [
+                                    {
+                                      "name": "Get job events",
+                                      "id": "29a51904-a54e-4042-9f45-7dc27536aca8",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/:jobId/events?limit=100",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "search",
+                                            "advanced",
+                                            "index",
+                                            "jobs",
+                                            ":jobId",
+                                            "events"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "limit",
+                                              "value": "100"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "fc0361ea-7ef4-426a-aac0-a0153a6c72ee",
+                                              "key": "jobId",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Return structured job events (activity log)."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "0773682a-2fbc-4bdf-a822-28359efe164c",
+                                          "name": "default response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/:jobId/events?limit=100",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "search",
+                                                "advanced",
+                                                "index",
+                                                "jobs",
+                                                ":jobId",
+                                                "events"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "key": "limit",
+                                                  "value": "100"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "jobId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"searchIndexJobId\": \"<string>\",\n    \"seq\": \"<long>\",\n    \"severity\": \"<string>\",\n    \"eventCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"createdAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"searchIndexJobId\": \"<string>\",\n    \"seq\": \"<long>\",\n    \"severity\": \"<string>\",\n    \"eventCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"createdAt\": \"<dateTime>\"\n  }\n]",
+                                          "createdAt": "2026-10-22T03:18:15.000Z",
+                                          "updatedAt": "2026-10-22T03:18:15.000Z",
+                                          "uid": "35240-0773682a-2fbc-4bdf-a822-28359efe164c"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:18:15.000Z",
+                                      "updatedAt": "2026-10-22T03:18:15.000Z",
+                                      "uid": "35240-29a51904-a54e-4042-9f45-7dc27536aca8"
+                                    }
+                                  ],
+                                  "id": "df01b9f0-5ab8-4eb2-aa98-406b41f19665",
+                                  "createdAt": "2026-10-22T03:18:15.000Z",
+                                  "updatedAt": "2026-10-22T03:18:15.000Z",
+                                  "uid": "35240-df01b9f0-5ab8-4eb2-aa98-406b41f19665"
+                                },
+                                {
+                                  "name": "Get job",
+                                  "id": "6bf45ee1-cc01-415a-a02d-438065a92a5f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/:jobId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "index",
+                                        "jobs",
+                                        ":jobId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "f39fc584-08a2-4908-a3d8-53e08d13fe29",
+                                          "key": "jobId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Return a job by id."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a2f5ec5d-2c7e-4866-988e-d527e5341b07",
+                                      "name": "default response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs/:jobId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "search",
+                                            "advanced",
+                                            "index",
+                                            "jobs",
+                                            ":jobId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "jobId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<string>\",\n  \"jobType\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"status\": \"<string>\",\n  \"activeSlot\": \"<string>\",\n  \"progressPercent\": \"<integer>\",\n  \"phase\": \"<string>\",\n  \"etaFinishAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"cancelRequestedAt\": \"<dateTime>\",\n  \"buildingGenerationId\": \"<string>\",\n  \"servingGenerationIdAtStart\": \"<string>\",\n  \"recommendedOp\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"createdByUserId\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"active\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T03:18:15.000Z",
+                                      "updatedAt": "2026-10-22T03:18:15.000Z",
+                                      "uid": "35240-a2f5ec5d-2c7e-4866-988e-d527e5341b07"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T03:18:15.000Z",
+                                  "updatedAt": "2026-10-22T03:18:15.000Z",
+                                  "uid": "35240-6bf45ee1-cc01-415a-a02d-438065a92a5f"
+                                }
+                              ],
+                              "id": "89a79aac-8e68-4731-977d-e1f420232577",
+                              "createdAt": "2026-10-22T03:18:15.000Z",
+                              "updatedAt": "2026-10-22T03:18:15.000Z",
+                              "uid": "35240-89a79aac-8e68-4731-977d-e1f420232577"
+                            },
+                            {
+                              "name": "Start job",
+                              "id": "555fc23e-1f62-4877-ba20-e9d0c7cf8be8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"jobType\": \"<string>\",\n  \"trigger\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "search",
+                                    "advanced",
+                                    "index",
+                                    "jobs"
+                                  ]
+                                },
+                                "description": "Start an index job (FULL_REBUILD or FIRST_TIME_INDEX)."
+                              },
+                              "response": [
+                                {
+                                  "id": "16771bf0-074f-4f42-bca2-0988999a690c",
+                                  "name": "Created job",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"jobType\": \"<string>\",\n  \"trigger\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/index/jobs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "index",
+                                        "jobs"
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"jobType\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"status\": \"<string>\",\n  \"activeSlot\": \"<string>\",\n  \"progressPercent\": \"<integer>\",\n  \"phase\": \"<string>\",\n  \"etaFinishAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"cancelRequestedAt\": \"<dateTime>\",\n  \"buildingGenerationId\": \"<string>\",\n  \"servingGenerationIdAtStart\": \"<string>\",\n  \"recommendedOp\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"createdByUserId\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"active\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:15.000Z",
+                                  "updatedAt": "2026-10-22T03:18:15.000Z",
+                                  "uid": "35240-16771bf0-074f-4f42-bca2-0988999a690c"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:15.000Z",
+                              "updatedAt": "2026-10-22T03:18:15.000Z",
+                              "uid": "35240-555fc23e-1f62-4877-ba20-e9d0c7cf8be8"
+                            }
+                          ],
+                          "id": "7f1ffaa1-d93e-44f6-ad60-0d0ff46ecb14",
+                          "createdAt": "2026-10-22T03:18:15.000Z",
+                          "updatedAt": "2026-10-22T03:18:15.000Z",
+                          "uid": "35240-7f1ffaa1-d93e-44f6-ad60-0d0ff46ecb14"
+                        }
+                      ],
+                      "id": "fe37f4bb-d517-4643-90b1-c20e88470a50",
+                      "createdAt": "2026-10-22T03:18:15.000Z",
+                      "updatedAt": "2026-10-22T03:18:15.000Z",
+                      "uid": "35240-fe37f4bb-d517-4643-90b1-c20e88470a50"
+                    }
+                  ],
+                  "id": "41a08642-bd41-4416-9b57-174341421e1d",
+                  "createdAt": "2026-10-22T03:18:15.000Z",
+                  "updatedAt": "2026-10-22T03:18:15.000Z",
+                  "uid": "35240-41a08642-bd41-4416-9b57-174341421e1d"
+                }
+              ],
+              "id": "eefd72bb-aa95-46a0-9de5-49edf6109d08",
+              "createdAt": "2026-10-22T03:18:15.000Z",
+              "updatedAt": "2026-10-22T03:18:15.000Z",
+              "uid": "35240-eefd72bb-aa95-46a0-9de5-49edf6109d08"
+            }
+          ],
+          "id": "49f8eeaf-54ca-4170-9dfc-ca8b2e8cefb1",
+          "createdAt": "2026-10-22T03:18:15.000Z",
+          "updatedAt": "2026-10-22T03:18:15.000Z",
+          "uid": "35240-49f8eeaf-54ca-4170-9dfc-ca8b2e8cefb1"
+        }
+      ],
+      "id": "9d325b6a-86a9-4ae7-92cd-2c95ed57ec0d",
+      "createdAt": "2026-10-22T03:18:15.000Z",
+      "updatedAt": "2026-10-22T03:18:15.000Z",
+      "uid": "35240-9d325b6a-86a9-4ae7-92cd-2c95ed57ec0d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,524 @@
+{
+  "info": {
+    "_postman_id": "87c216ac-5837-4404-96d9-0e5576cc956c",
+    "name": "Sonatype Lifecycle Public REST Scan Health Configuration API",
+    "description": "Use this REST API to manage Scan Health configuration. This includes settings for\nfailing scans with zero components detected. Configurations can be set at organization\nor application level and are inherited from the organization hierarchy.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:37.000Z",
+    "updatedAt": "2026-10-22T03:18:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-87c216ac-5837-4404-96d9-0e5576cc956c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "scanHealth",
+                  "item": [
+                    {
+                      "name": "{ownerType}",
+                      "item": [
+                        {
+                          "name": "{ownerId}",
+                          "item": [
+                            {
+                              "name": "Get configuration 6",
+                              "id": "5341b40e-86d9-471b-85d9-2beea9a2da3b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "scanHealth",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fa6cd771-2e01-4a6c-a623-8e60192cb1b3",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) The owner type (application or organization)"
+                                    },
+                                    {
+                                      "id": "07338920-e33d-4f83-808d-ee1cb9c839fb",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) The internal ID of the owner"
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve Scan Health configuration for the specified owner.\n\nThe response includes the `failOnZeroComponents` setting. A null value indicates\nthe setting is inherited from the parent organization (or default disabled if no\nparent configuration exists).\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "24ba4529-2475-497e-be65-5e6892a4e115",
+                                  "name": "The Scan Health configuration for the specified owner.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "scanHealth",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"failOnZeroComponents\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:38.000Z",
+                                  "updatedAt": "2026-10-22T03:18:38.000Z",
+                                  "uid": "35240-24ba4529-2475-497e-be65-5e6892a4e115"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:38.000Z",
+                              "updatedAt": "2026-10-22T03:18:38.000Z",
+                              "uid": "35240-5341b40e-86d9-471b-85d9-2beea9a2da3b"
+                            },
+                            {
+                              "name": "Save configuration",
+                              "id": "71ef7cb7-a27d-4d49-94b1-463d9eb3341e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"failOnZeroComponents\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "scanHealth",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b4045433-4f38-4e7d-8031-7158edda19be",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) The owner type (application or organization)"
+                                    },
+                                    {
+                                      "id": "4dc131c8-ae65-48ab-8c42-9ed7ab2f27a0",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) The internal ID of the owner"
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to create or update Scan Health configuration for the specified owner.\n\nSet `failOnZeroComponents` to `true` to fail scans that detect zero components.\nSet to `false` to explicitly disable this check. Set to `null` to inherit from\nthe parent organization.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "2db244c9-47fe-4456-b8d7-4abfe535f423",
+                                  "name": "Scan Health configuration was saved successfully.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"failOnZeroComponents\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "scanHealth",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"failOnZeroComponents\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T03:18:38.000Z",
+                                  "updatedAt": "2026-10-22T03:18:38.000Z",
+                                  "uid": "35240-2db244c9-47fe-4456-b8d7-4abfe535f423"
+                                },
+                                {
+                                  "id": "00df35d2-6721-4ebf-aa75-0ffbe78670e5",
+                                  "name": "Owner not found.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"failOnZeroComponents\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "scanHealth",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:18:38.000Z",
+                                  "updatedAt": "2026-10-22T03:18:38.000Z",
+                                  "uid": "35240-00df35d2-6721-4ebf-aa75-0ffbe78670e5"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:38.000Z",
+                              "updatedAt": "2026-10-22T03:18:38.000Z",
+                              "uid": "35240-71ef7cb7-a27d-4d49-94b1-463d9eb3341e"
+                            },
+                            {
+                              "name": "Delete configuration 6",
+                              "id": "67e656e3-67f1-4822-9c33-16dac9b4168f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "scanHealth",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "73d54647-de0b-49f7-8b7a-194212f65f1f",
+                                      "key": "ownerType",
+                                      "value": "organization",
+                                      "description": "(Required) The owner type (application or organization)"
+                                    },
+                                    {
+                                      "id": "7cbd7730-f0a7-4fc1-ab95-5aa551d99643",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) The internal ID of the owner"
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to delete Scan Health configuration for the specified owner.\nAfter deletion, the configuration will be inherited from the parent organization\nor default to disabled.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "713b51f6-37d5-44d3-a0fc-aa93a0b8a90a",
+                                  "name": "Scan Health configuration was deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "scanHealth",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:18:38.000Z",
+                                  "updatedAt": "2026-10-22T03:18:38.000Z",
+                                  "uid": "35240-713b51f6-37d5-44d3-a0fc-aa93a0b8a90a"
+                                },
+                                {
+                                  "id": "5319b54f-fa6b-439b-aae7-9dbf4a73f2e4",
+                                  "name": "Scan Health configuration not found for the specified owner.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/scanHealth/:ownerType/:ownerId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "scanHealth",
+                                        ":ownerType",
+                                        ":ownerId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:18:38.000Z",
+                                  "updatedAt": "2026-10-22T03:18:38.000Z",
+                                  "uid": "35240-5319b54f-fa6b-439b-aae7-9dbf4a73f2e4"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:18:38.000Z",
+                              "updatedAt": "2026-10-22T03:18:38.000Z",
+                              "uid": "35240-67e656e3-67f1-4822-9c33-16dac9b4168f"
+                            }
+                          ],
+                          "id": "5e4b1414-b651-4dec-9a52-142cb75faf20",
+                          "createdAt": "2026-10-22T03:18:38.000Z",
+                          "updatedAt": "2026-10-22T03:18:38.000Z",
+                          "uid": "35240-5e4b1414-b651-4dec-9a52-142cb75faf20"
+                        }
+                      ],
+                      "id": "29ea0fec-c2cb-4539-8631-4351c0bb5487",
+                      "createdAt": "2026-10-22T03:18:38.000Z",
+                      "updatedAt": "2026-10-22T03:18:38.000Z",
+                      "uid": "35240-29ea0fec-c2cb-4539-8631-4351c0bb5487"
+                    }
+                  ],
+                  "id": "08daedf3-61bf-43ef-907b-45a1dfb38aa5",
+                  "createdAt": "2026-10-22T03:18:38.000Z",
+                  "updatedAt": "2026-10-22T03:18:38.000Z",
+                  "uid": "35240-08daedf3-61bf-43ef-907b-45a1dfb38aa5"
+                }
+              ],
+              "id": "18e7fe5f-d5ea-4fe4-9488-17fafdf4bcb6",
+              "createdAt": "2026-10-22T03:18:38.000Z",
+              "updatedAt": "2026-10-22T03:18:38.000Z",
+              "uid": "35240-18e7fe5f-d5ea-4fe4-9488-17fafdf4bcb6"
+            }
+          ],
+          "id": "9cdb9dc6-97b7-49e8-82e4-67415f452fc0",
+          "createdAt": "2026-10-22T03:18:38.000Z",
+          "updatedAt": "2026-10-22T03:18:38.000Z",
+          "uid": "35240-9cdb9dc6-97b7-49e8-82e4-67415f452fc0"
+        }
+      ],
+      "id": "f14477ec-9bb6-4593-9025-9b1d669f1a32",
+      "createdAt": "2026-10-22T03:18:38.000Z",
+      "updatedAt": "2026-10-22T03:18:38.000Z",
+      "uid": "35240-f14477ec-9bb6-4593-9025-9b1d669f1a32"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

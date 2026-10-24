@@ -1,406 +1,419 @@
 {
+  "info": {
+    "_postman_id": "9914acaf-c5b2-42dc-bb08-9c3aeac90a10",
+    "name": "Sonatype License Legal Metadata Template API",
+    "description": "Operations tagged License Legal Metadata Template across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:16:09.000Z",
+    "updatedAt": "2026-10-22T03:16:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9914acaf-c5b2-42dc-bb08-9c3aeac90a10"
+  },
   "item": [
     {
-      "id": "f11eba62-82a8-4749-b16c-1fbb155cdd23",
-      "name": "License Legal Metadata Template",
-      "description": {
-        "content": "Use this REST API to manage and customize templates for the license legal metadata generated in HTML format.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "65de91bd-c337-435c-92ff-5ed6f4ffb47f",
-          "name": "get All Attribution Report Templates",
-          "request": {
-            "name": "get All Attribution Report Templates",
-            "description": {
-              "content": "Use this method to retrieve templates for all reports.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "report-template"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "d0be026b-975d-4b2b-9959-fc1c3d0e2263",
-              "name": "The response contains the stored template details for all reports. For each template:<ul><li>`id` is the template id.</li><li>`templateName` indicates the name of the stored template.</li><li>`documentTitle` is the title that is displayed at the top of the report.</li><li>`header` is the text that will be displayed above the `documentTitle`.</li><li>`footer` is the text that will be displayed at the bottom of the report.<li><li>`includeTableOfContents` is `true` if a table of contents containing links to the components and their licenses will be added to the report.<li>`includeAppendix` is `true` if standard license text will be grouped in the report appendix.</li><li>`includeStandardLicenseTexts` is `true` if the standard license text will be displayed for components with no license files.</li><li>`includeSonatypeSpecialLicenses` is `true` if Sonatype Special Licenses (e.g. Generic-Copyleft-Clause, Generic-Liberal-Clause, See-License-Clause, Identity-Clause etc.) will be included in the report.</li><li>`lastUpdatedAt` indicates the time the template was last updated.</li><li>`includeInnerSource` is `true` if InnerSource components will be included in the report.</li></ul>",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "report-template"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "licenseLegalMetadata",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"documentTitle\": \"string\",\n    \"footer\": \"string\",\n    \"header\": \"string\",\n    \"id\": \"string\",\n    \"includeAppendix\": false,\n    \"includeInnerSource\": true,\n    \"includeSonatypeSpecialLicenses\": false,\n    \"includeStandardLicenseTexts\": true,\n    \"includeTableOfContents\": false,\n    \"lastUpdatedAt\": \"1965-03-29T09:12:11.906Z\",\n    \"templateName\": \"string\"\n  },\n  {\n    \"documentTitle\": \"string\",\n    \"footer\": \"string\",\n    \"header\": \"string\",\n    \"id\": \"string\",\n    \"includeAppendix\": true,\n    \"includeInnerSource\": true,\n    \"includeSonatypeSpecialLicenses\": false,\n    \"includeStandardLicenseTexts\": true,\n    \"includeTableOfContents\": false,\n    \"lastUpdatedAt\": \"1965-02-14T21:13:09.041Z\",\n    \"templateName\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "338f9685-6a45-419e-8e5d-a1ac3bb02387",
-          "name": "save Attribution Report Template",
-          "request": {
-            "name": "save Attribution Report Template",
-            "description": {
-              "content": "Use this method to create or update a template.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "report-template"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ed39c2e5-e334-4fe2-917d-04c3d0b0b00b",
-              "name": "The response contains the details of the template created or updated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "report-template"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "18993166-c93d-40d5-9aeb-89c6c34a2b9e",
-          "name": "delete Attribution Report Template",
-          "request": {
-            "name": "delete Attribution Report Template",
-            "description": {
-              "content": "Use this method to delete an existing template.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "report-template",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Enter the template id for the template to be deleted."
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6dbe213c-7316-4179-a857-611b964ddf2e",
-              "name": "Template deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "report-template",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "report-template",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Enter the template id for the template to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Delete attribution report template",
+                          "id": "a659462d-c398-402d-b3ea-08b05ac723c8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseLegalMetadata",
+                                "report-template",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "11d9507d-bdbe-4f76-b01f-20224874d8b6",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the template id for the template to be deleted."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to delete an existing template.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization"
+                          },
+                          "response": [
+                            {
+                              "id": "84590d1b-86fb-44fb-8f55-a3f473ce9d60",
+                              "name": "Template deleted successfully.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseLegalMetadata",
+                                    "report-template",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:16:09.000Z",
+                              "updatedAt": "2026-10-22T03:16:09.000Z",
+                              "uid": "35240-84590d1b-86fb-44fb-8f55-a3f473ce9d60"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:09.000Z",
+                          "updatedAt": "2026-10-22T03:16:09.000Z",
+                          "uid": "35240-a659462d-c398-402d-b3ea-08b05ac723c8"
+                        },
+                        {
+                          "name": "Get attribution report template by id",
+                          "id": "c45a62ae-7f74-4d98-b8c4-394902a533e2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseLegalMetadata",
+                                "report-template",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "001caaff-cd82-4b72-b06d-8435052122d8",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the templateId for the report."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to retrieve a template for license legal metadata.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization."
+                          },
+                          "response": [
+                            {
+                              "id": "22a13a46-1e8d-450b-a7d4-d87bc5caf74b",
+                              "name": "The response contains the stored template corresponding to the `id` provided:<ul><li>`id` is the template id.</li><li>`templateName` indicates the name of the stored template.</li><li>`documentTitle` is the title that is displayed at the top of the report",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseLegalMetadata",
+                                    "report-template",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T03:16:09.000Z",
+                              "updatedAt": "2026-10-22T03:16:09.000Z",
+                              "uid": "35240-22a13a46-1e8d-450b-a7d4-d87bc5caf74b"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:09.000Z",
+                          "updatedAt": "2026-10-22T03:16:09.000Z",
+                          "uid": "35240-c45a62ae-7f74-4d98-b8c4-394902a533e2"
+                        }
+                      ],
+                      "id": "fa7a7a6c-74ab-44d6-afca-04ecb08bc960",
+                      "createdAt": "2026-10-22T03:16:09.000Z",
+                      "updatedAt": "2026-10-22T03:16:09.000Z",
+                      "uid": "35240-fa7a7a6c-74ab-44d6-afca-04ecb08bc960"
                     },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b2e9597f-c503-4727-bcea-37e19872731d",
-          "name": "get Attribution Report Template By Id",
-          "request": {
-            "name": "get Attribution Report Template By Id",
-            "description": {
-              "content": "Use this method to retrieve a template for license legal metadata.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseLegalMetadata",
-                "report-template",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Enter the templateId for the report."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "13273acd-0798-4ab1-9923-75cc40e8aebc",
-              "name": "The response contains the stored template corresponding to the `id` provided:<ul><li>`id` is the template id.</li><li>`templateName` indicates the name of the stored template.</li><li>`documentTitle` is the title that is displayed at the top of the report.</li><li>`header` is the text that will be displayed above the `documentTitle`.</li><li>`footer` is the text that will be displayed at the bottom of the report.<li><li>`includeTableOfContents` is `true` if a table of contents containing links to the components and their licenses will be added to the report.<li>`includeAppendix` is `true` if standard license text will be grouped in the report appendix.</li><li>`includeStandardLicenseTexts` is `true` if the standard license text will be displayed for components with no license files.</li><li>`includeSonatypeSpecialLicenses` is `true` if Sonatype Special Licenses (e.g. Generic-Copyleft-Clause, Generic-Liberal-Clause, See-License-Clause, Identity-Clause etc.) will be included in the report.</li><li>`lastUpdatedAt` indicates the time the template was last updated.</li><li>`includeInnerSource` is `true` if InnerSource components will be included in the report.</li></ul>",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseLegalMetadata",
-                    "report-template",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Enter the templateId for the report."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
+                      "name": "Get all attribution report templates",
+                      "id": "0aed13a8-34af-4cc5-b471-630a26f412b0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "licenseLegalMetadata",
+                            "report-template"
+                          ]
+                        },
+                        "description": "Use this method to retrieve templates for all reports.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization"
+                      },
+                      "response": [
+                        {
+                          "id": "0ff6c08a-cf11-42e3-9cb1-87e9c1995772",
+                          "name": "The response contains the stored template details for all reports. For each template:<ul><li>`id` is the template id.</li><li>`templateName` indicates the name of the stored template.</li><li>`documentTitle` is the title that is displayed at the top of th",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseLegalMetadata",
+                                "report-template"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"documentTitle\": \"<string>\",\n    \"footer\": \"<string>\",\n    \"header\": \"<string>\",\n    \"id\": \"<string>\",\n    \"includeAppendix\": \"<boolean>\",\n    \"includeInnerSource\": \"<boolean>\",\n    \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n    \"includeStandardLicenseTexts\": \"<boolean>\",\n    \"includeTableOfContents\": \"<boolean>\",\n    \"lastUpdatedAt\": \"<dateTime>\",\n    \"templateName\": \"<string>\"\n  },\n  {\n    \"documentTitle\": \"<string>\",\n    \"footer\": \"<string>\",\n    \"header\": \"<string>\",\n    \"id\": \"<string>\",\n    \"includeAppendix\": \"<boolean>\",\n    \"includeInnerSource\": \"<boolean>\",\n    \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n    \"includeStandardLicenseTexts\": \"<boolean>\",\n    \"includeTableOfContents\": \"<boolean>\",\n    \"lastUpdatedAt\": \"<dateTime>\",\n    \"templateName\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-10-22T03:16:09.000Z",
+                          "updatedAt": "2026-10-22T03:16:09.000Z",
+                          "uid": "35240-0ff6c08a-cf11-42e3-9cb1-87e9c1995772"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:16:09.000Z",
+                      "updatedAt": "2026-10-22T03:16:09.000Z",
+                      "uid": "35240-0aed13a8-34af-4cc5-b471-630a26f412b0"
                     },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                    {
+                      "name": "Save attribution report template",
+                      "id": "b27f5ade-7d22-4f53-8a0c-d715a413981a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "licenseLegalMetadata",
+                            "report-template"
+                          ]
+                        },
+                        "description": "Use this method to create or update a template.\n\nPermissions required: Review Legal Obligations For Components Licenses for the root organization"
+                      },
+                      "response": [
+                        {
+                          "id": "c2daf8c7-ae16-4d7e-b8b4-7c4f0f10fd18",
+                          "name": "The response contains the details of the template created or updated.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseLegalMetadata/report-template",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseLegalMetadata",
+                                "report-template"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T03:16:09.000Z",
+                          "updatedAt": "2026-10-22T03:16:09.000Z",
+                          "uid": "35240-c2daf8c7-ae16-4d7e-b8b4-7c4f0f10fd18"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:16:09.000Z",
+                      "updatedAt": "2026-10-22T03:16:09.000Z",
+                      "uid": "35240-b27f5ade-7d22-4f53-8a0c-d715a413981a"
+                    }
+                  ],
+                  "id": "fb36079c-eec7-420d-9432-c5629ce1b9a5",
+                  "createdAt": "2026-10-22T03:16:09.000Z",
+                  "updatedAt": "2026-10-22T03:16:09.000Z",
+                  "uid": "35240-fb36079c-eec7-420d-9432-c5629ce1b9a5"
                 }
               ],
-              "body": "{\n  \"documentTitle\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"header\": \"<string>\",\n  \"id\": \"<string>\",\n  \"includeAppendix\": \"<boolean>\",\n  \"includeInnerSource\": \"<boolean>\",\n  \"includeSonatypeSpecialLicenses\": \"<boolean>\",\n  \"includeStandardLicenseTexts\": \"<boolean>\",\n  \"includeTableOfContents\": \"<boolean>\",\n  \"lastUpdatedAt\": \"<dateTime>\",\n  \"templateName\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "7c31ac97-0b61-442e-82bc-3069814b2bd7",
+              "createdAt": "2026-10-22T03:16:09.000Z",
+              "updatedAt": "2026-10-22T03:16:09.000Z",
+              "uid": "35240-7c31ac97-0b61-442e-82bc-3069814b2bd7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6086460a-5dc8-4663-8c83-d6af519a174a",
+          "createdAt": "2026-10-22T03:16:09.000Z",
+          "updatedAt": "2026-10-22T03:16:09.000Z",
+          "uid": "35240-6086460a-5dc8-4663-8c83-d6af519a174a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "f2117a4a-636c-4724-86ea-30ba26f89241",
+      "createdAt": "2026-10-22T03:16:09.000Z",
+      "updatedAt": "2026-10-22T03:16:09.000Z",
+      "uid": "35240-f2117a4a-636c-4724-86ea-30ba26f89241"
     }
   ],
   "auth": {
@@ -408,21 +421,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "04d8a656-33b3-45a9-95e7-859839745b7d",
-    "name": "Sonatype Lifecycle Public REST Advanced Search License Legal Metadata Template API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

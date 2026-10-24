@@ -1,119 +1,143 @@
 {
+  "info": {
+    "_postman_id": "c4bf04c8-d1e3-49cf-b759-fdd9b9b29411",
+    "name": "Sonatype Solutions API",
+    "description": "Operations tagged Solutions across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:17:39.000Z",
+    "updatedAt": "2026-10-22T03:17:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4bf04c8-d1e3-49cf-b759-fdd9b9b29411"
+  },
   "item": [
     {
-      "id": "89f54afc-f427-44df-9780-6a2582564d3d",
-      "name": "Solutions",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "72d4981b-a9f8-4538-be29-3cbc3add971c",
-          "name": "get Licensed Solutions",
-          "request": {
-            "name": "get Licensed Solutions",
-            "description": {
-              "content": "Retrieves a list of licensed solutions. The base URL must be set to get results unless relative URLs are allowed.\n\nPermissions required: None ",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "solutions",
-                "licensed"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "allowRelativeUrls",
-                  "value": "false",
-                  "description": "Whether or not relative URLs should be allowed."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "3c2743a3-08e2-4523-9e9c-806a8fad9686",
-              "name": "Successfully retrieved the list of licensed solutions.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "solutions",
-                    "licensed"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "solutions",
+              "item": [
+                {
+                  "name": "licensed",
+                  "item": [
                     {
-                      "key": "allowRelativeUrls",
-                      "value": "false"
+                      "name": "Get licensed solutions",
+                      "id": "d846e8d9-8ef2-4e61-bf7b-1395ffe5e213",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/solutions/licensed?allowRelativeUrls=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "solutions",
+                            "licensed"
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether or not relative URLs should be allowed.",
+                              "key": "allowRelativeUrls",
+                              "value": "false"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of licensed solutions. The base URL must be set to get results unless relative URLs are allowed.\n\nPermissions required: None"
+                      },
+                      "response": [
+                        {
+                          "id": "25ca935c-49a7-4418-b268-8d38b4762f4b",
+                          "name": "Successfully retrieved the list of licensed solutions.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/solutions/licensed?allowRelativeUrls=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "solutions",
+                                "licensed"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Whether or not relative URLs should be allowed.",
+                                  "key": "allowRelativeUrls",
+                                  "value": "false"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-10-22T03:17:40.000Z",
+                          "updatedAt": "2026-10-22T03:17:40.000Z",
+                          "uid": "35240-25ca935c-49a7-4418-b268-8d38b4762f4b"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:17:40.000Z",
+                      "updatedAt": "2026-10-22T03:17:40.000Z",
+                      "uid": "35240-d846e8d9-8ef2-4e61-bf7b-1395ffe5e213"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "e17946ee-4a00-408f-9d85-70ab79449ef4",
+                  "createdAt": "2026-10-22T03:17:39.000Z",
+                  "updatedAt": "2026-10-22T03:17:39.000Z",
+                  "uid": "35240-e17946ee-4a00-408f-9d85-70ab79449ef4"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"url\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "a3ab9ea2-8f7c-453e-a624-2a382d6a21e7",
+              "createdAt": "2026-10-22T03:17:39.000Z",
+              "updatedAt": "2026-10-22T03:17:39.000Z",
+              "uid": "35240-a3ab9ea2-8f7c-453e-a624-2a382d6a21e7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "7e248988-7ef2-4e52-8ae2-371faeea0685",
+          "createdAt": "2026-10-22T03:17:39.000Z",
+          "updatedAt": "2026-10-22T03:17:39.000Z",
+          "uid": "35240-7e248988-7ef2-4e52-8ae2-371faeea0685"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "9d17272a-fd8e-47cf-a696-58a721d19d6e",
+      "createdAt": "2026-10-22T03:17:39.000Z",
+      "updatedAt": "2026-10-22T03:17:39.000Z",
+      "uid": "35240-9d17272a-fd8e-47cf-a696-58a721d19d6e"
     }
   ],
   "auth": {
@@ -121,21 +145,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "fd586a08-baa3-470b-8048-b6a9a1b1c803",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Solutions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

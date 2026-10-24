@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "6cfc4a06-495c-4ba9-890e-c3f0eebfa435",
+    "name": "Sonatype Lifecycle Public REST Waiver Expiration\u2026",
+    "description": "Configure when and to whom notifications are sent before waivers expire.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:40.000Z",
+    "updatedAt": "2026-10-22T03:18:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6cfc4a06-495c-4ba9-890e-c3f0eebfa435"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "waiverExpirationNotificationConfig",
+              "item": [
+                {
+                  "name": "{ownerType}",
+                  "item": [
+                    {
+                      "name": "{ownerId}",
+                      "item": [
+                        {
+                          "name": "Get config 1",
+                          "id": "b25bdbc5-e84a-4310-b7a8-c56b988607f4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/waiverExpirationNotificationConfig/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "waiverExpirationNotificationConfig",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "26928c74-b73b-414e-9646-8417965b024a",
+                                  "key": "ownerType",
+                                  "value": "repository_container",
+                                  "description": "(Required) The owner type (organization, repository_manager, or repository_container)."
+                                },
+                                {
+                                  "id": "43182c82-32ff-4238-9ffc-b69567391bf8",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) The internal owner ID assigned by IQ Server."
+                                }
+                              ]
+                            },
+                            "description": "Returns the effective waiver expiration notification configuration for the given owner. If the owner has no custom configuration, the inherited configuration from the parent is returned with inheritConfig=true.\nPermissions required: View IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "36b71a3d-2431-43ca-a92f-2e23e6f46a93",
+                              "name": "The effective notification configuration.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/waiverExpirationNotificationConfig/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "waiverExpirationNotificationConfig",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"inheritConfig\": \"<boolean>\",\n  \"notificationDays\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"recipientType\": \"<string>\",\n  \"directEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-10-22T03:18:41.000Z",
+                              "updatedAt": "2026-10-22T03:18:41.000Z",
+                              "uid": "35240-36b71a3d-2431-43ca-a92f-2e23e6f46a93"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:18:41.000Z",
+                          "updatedAt": "2026-10-22T03:18:41.000Z",
+                          "uid": "35240-b25bdbc5-e84a-4310-b7a8-c56b988607f4"
+                        },
+                        {
+                          "name": "Save config",
+                          "id": "9ba7a1d6-c6e2-44d0-97a7-91929eb62dea",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"inheritConfig\": \"<boolean>\",\n  \"notificationDays\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"recipientType\": \"<string>\",\n  \"directEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/waiverExpirationNotificationConfig/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "waiverExpirationNotificationConfig",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ab274ac4-5468-4d7c-bccf-3e8e2e148b7c",
+                                  "key": "ownerType",
+                                  "value": "repository_container",
+                                  "description": "(Required) The owner type (organization, repository_manager, or repository_container)."
+                                },
+                                {
+                                  "id": "8aece5a0-1a61-42e7-bbcb-e358b148714d",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) The internal owner ID assigned by IQ Server."
+                                }
+                              ]
+                            },
+                            "description": "Sets the waiver expiration notification configuration for the given owner. Set inheritConfig=true to inherit the configuration from the parent.\nPermissions required: Edit IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "b72be93e-a893-44fa-b8d1-ea95c117c269",
+                              "name": "Configuration saved successfully.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"inheritConfig\": \"<boolean>\",\n  \"notificationDays\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"recipientType\": \"<string>\",\n  \"directEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/waiverExpirationNotificationConfig/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "waiverExpirationNotificationConfig",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:18:41.000Z",
+                              "updatedAt": "2026-10-22T03:18:41.000Z",
+                              "uid": "35240-b72be93e-a893-44fa-b8d1-ea95c117c269"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:18:41.000Z",
+                          "updatedAt": "2026-10-22T03:18:41.000Z",
+                          "uid": "35240-9ba7a1d6-c6e2-44d0-97a7-91929eb62dea"
+                        }
+                      ],
+                      "id": "5d54ce18-2c4a-4814-bfe3-0e555cc3c754",
+                      "createdAt": "2026-10-22T03:18:41.000Z",
+                      "updatedAt": "2026-10-22T03:18:41.000Z",
+                      "uid": "35240-5d54ce18-2c4a-4814-bfe3-0e555cc3c754"
+                    }
+                  ],
+                  "id": "3a95e727-1b31-4e56-88e0-831cbf16d1fd",
+                  "createdAt": "2026-10-22T03:18:41.000Z",
+                  "updatedAt": "2026-10-22T03:18:41.000Z",
+                  "uid": "35240-3a95e727-1b31-4e56-88e0-831cbf16d1fd"
+                }
+              ],
+              "id": "7476d196-64cd-44bb-b4a1-77c02decaafd",
+              "createdAt": "2026-10-22T03:18:41.000Z",
+              "updatedAt": "2026-10-22T03:18:41.000Z",
+              "uid": "35240-7476d196-64cd-44bb-b4a1-77c02decaafd"
+            }
+          ],
+          "id": "e45565c8-25d6-4532-b374-7a271335439e",
+          "createdAt": "2026-10-22T03:18:41.000Z",
+          "updatedAt": "2026-10-22T03:18:41.000Z",
+          "uid": "35240-e45565c8-25d6-4532-b374-7a271335439e"
+        }
+      ],
+      "id": "1935b141-b13c-41d3-bb24-5861e564a1c5",
+      "createdAt": "2026-10-22T03:18:41.000Z",
+      "updatedAt": "2026-10-22T03:18:41.000Z",
+      "uid": "35240-1935b141-b13c-41d3-bb24-5861e564a1c5"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

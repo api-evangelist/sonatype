@@ -1,801 +1,797 @@
 {
+  "info": {
+    "_postman_id": "28513ab6-2b3f-4c4c-9a49-601001e39093",
+    "name": "Sonatype Component Labels API",
+    "description": "Operations tagged Component Labels across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:13:28.000Z",
+    "updatedAt": "2026-10-22T03:13:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-28513ab6-2b3f-4c4c-9a49-601001e39093"
+  },
   "item": [
     {
-      "id": "a8aac8ef-1b7a-46f6-9591-f2a5f9ba3c74",
-      "name": "Component Labels",
-      "description": {
-        "content": "Use this REST API to manage component labels for applications, organizations and repositories.\n\nComponent Labels can be used as attributes of a component at the time of creating policies. A policy violation can be triggered based on the component label.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "43f02e38-f5c9-453f-83e5-f8b90f484fa6",
-          "name": "get Labels",
-          "request": {
-            "name": "get Labels",
-            "description": {
-              "content": "Use this method to retrieve the details for component labels for an application, organization or a repository.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "labels",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "inherit",
-                  "value": "false",
-                  "description": "Set to `true` to retrieve inherited component labels."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the `ownerType` for which you want to retrieve the component label information."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id of the application, organization or the repository."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "87c14cdf-b9ec-4b98-b744-73049867a936",
-              "name": "The response contains an array of component label descriptions for the application, organization or repository, as selected in the request. Each label description contains:<ul><li>`id` is the internal identifier assigned to the label.</li><li>`label` is the identifying name of the label, for e.g. 'Architecture-Deprecated'.</li><li>`description` is additional information describing the label.</li><li>`color` is the color assigned to the component label.</li><li>`ownerId` is the identifier for the ownerType selected in the request.</li><li>`ownerType` indicates if the label is for the application, organization or repository,  as selected in the request.</li></ul>If the request parameter `inherit` is set to `true` the response contains a description of component labels that are inherited from the parent. The inherited labels can be identified by the value of `ownerId` and `ownerType`.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "labels",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "inherit",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the `ownerType` for which you want to retrieve the component label information."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id of the application, organization or the repository."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "labels",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{ownerType}",
+                  "item": [
+                    {
+                      "name": "{ownerId}",
+                      "item": [
+                        {
+                          "name": "applicable",
+                          "item": [
+                            {
+                              "name": "context",
+                              "item": [
+                                {
+                                  "name": "{labelId}",
+                                  "item": [
+                                    {
+                                      "name": "Get applicable contexts",
+                                      "id": "694b3522-79a2-4382-87a7-1c750d94fcb9",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/applicable/context/:labelId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "labels",
+                                            ":ownerType",
+                                            ":ownerId",
+                                            "applicable",
+                                            "context",
+                                            ":labelId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "e3f5eddf-bc15-4473-8b83-6c734a96c328",
+                                              "key": "ownerType",
+                                              "value": "repository_manager",
+                                              "description": "(Required) Select the ownerType."
+                                            },
+                                            {
+                                              "id": "079eb1b2-774b-4641-be59-08bc6946d66b",
+                                              "key": "ownerId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the ownerId"
+                                            },
+                                            {
+                                              "id": "60b45087-4349-4c18-849d-d9f7b0f98a42",
+                                              "key": "labelId",
+                                              "value": "<string>",
+                                              "description": "(Required) Enter the labelId"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Use this method to retrieve the hierarchy of owners (applications, organizations, repositories) in which the label can be applied.\n\nPermissions required: Edit IQ Elements"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "ba11bae3-020a-48df-8f19-1991e120a761",
+                                          "name": "The response contains:<ul><li>`id` is the id of the selected owner.</li><li>`name` is the name of the selected owner.</li><li>`type` is the type of the selected owner e.g. application, organization or repository.</li><li>`children` is an array of the chil",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: basic",
+                                                "key": "Authorization",
+                                                "value": "Basic <credentials>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/applicable/context/:labelId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "labels",
+                                                ":ownerType",
+                                                ":ownerId",
+                                                "applicable",
+                                                "context",
+                                                ":labelId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "ownerType"
+                                                },
+                                                {
+                                                  "key": "ownerId"
+                                                },
+                                                {
+                                                  "key": "labelId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"children\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/ApplicableContext detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/ApplicableContext detected>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"global\"\n}",
+                                          "createdAt": "2026-10-22T03:13:28.000Z",
+                                          "updatedAt": "2026-10-22T03:13:28.000Z",
+                                          "uid": "35240-ba11bae3-020a-48df-8f19-1991e120a761"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T03:13:28.000Z",
+                                      "updatedAt": "2026-10-22T03:13:28.000Z",
+                                      "uid": "35240-694b3522-79a2-4382-87a7-1c750d94fcb9"
+                                    }
+                                  ],
+                                  "id": "877d6994-5331-4532-9a12-9666faab40c9",
+                                  "createdAt": "2026-10-22T03:13:28.000Z",
+                                  "updatedAt": "2026-10-22T03:13:28.000Z",
+                                  "uid": "35240-877d6994-5331-4532-9a12-9666faab40c9"
+                                }
+                              ],
+                              "id": "f98cb78a-8f4f-4c8b-9bbc-9ceaf1abef76",
+                              "createdAt": "2026-10-22T03:13:28.000Z",
+                              "updatedAt": "2026-10-22T03:13:28.000Z",
+                              "uid": "35240-f98cb78a-8f4f-4c8b-9bbc-9ceaf1abef76"
+                            },
+                            {
+                              "name": "Get applicable labels",
+                              "id": "8d8f8b3f-867a-4c06-918b-359e76fd727c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/applicable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "labels",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    "applicable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "53102e50-a5c1-4e25-949c-097134b98396",
+                                      "key": "ownerType",
+                                      "value": "repository_manager",
+                                      "description": "(Required) Select the ownerType to retrieve the component label information for."
+                                    },
+                                    {
+                                      "id": "4e204ab2-062c-4783-9d5a-bd4e14e0d45f",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id for the application, organization or repository"
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve all component labels that are applicable to the specified application, organization or repository.\n\nPermissions required: View IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "3ca2feef-3800-4c00-b2e8-289630b76c67",
+                                  "name": "The response contains descriptions for all component labels that are applicable to the specified owner. These include all component labels that are assigned and inherited. The response includes:<ul><li>`ownerId` is the identifier for the owner.</li><li>`o",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/applicable",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "labels",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "applicable"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"labelsByOwner\": [\n    {\n      \"labels\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        }\n      ],\n      \"ownerId\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"ownerType\": \"organization\"\n    },\n    {\n      \"labels\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        }\n      ],\n      \"ownerId\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"ownerType\": \"global\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T03:13:28.000Z",
+                                  "updatedAt": "2026-10-22T03:13:28.000Z",
+                                  "uid": "35240-3ca2feef-3800-4c00-b2e8-289630b76c67"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:28.000Z",
+                              "updatedAt": "2026-10-22T03:13:28.000Z",
+                              "uid": "35240-8d8f8b3f-867a-4c06-918b-359e76fd727c"
+                            }
+                          ],
+                          "id": "5537c1a8-38b2-42d1-b6e1-4d010855785d",
+                          "createdAt": "2026-10-22T03:13:28.000Z",
+                          "updatedAt": "2026-10-22T03:13:28.000Z",
+                          "uid": "35240-5537c1a8-38b2-42d1-b6e1-4d010855785d"
+                        },
+                        {
+                          "name": "{labelId}",
+                          "item": [
+                            {
+                              "name": "Delete label",
+                              "id": "541dcc7b-465e-4504-927f-200c6312d2e6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/:labelId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "labels",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":labelId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2fe23383-a7d7-42a3-a1b9-4987d9c9310f",
+                                      "key": "ownerType",
+                                      "value": "repository_manager",
+                                      "description": "(Required) Select the ownerType for which the label will be deleted."
+                                    },
+                                    {
+                                      "id": "9caf1bed-86e2-4e2b-a208-7c6242a6d49d",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id for the selected ownerType."
+                                    },
+                                    {
+                                      "id": "321f577b-a272-4e5c-b16d-af4ec07bee37",
+                                      "key": "labelId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id for the label to be deleted."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to delete an existing component label.\n\nPermissions required: Edit IQ Elements"
+                              },
+                              "response": [
+                                {
+                                  "id": "738c7182-da34-49b3-a0bd-863746814b85",
+                                  "name": "Component label deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId/:labelId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "labels",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":labelId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "labelId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:13:28.000Z",
+                                  "updatedAt": "2026-10-22T03:13:28.000Z",
+                                  "uid": "35240-738c7182-da34-49b3-a0bd-863746814b85"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:13:28.000Z",
+                              "updatedAt": "2026-10-22T03:13:28.000Z",
+                              "uid": "35240-541dcc7b-465e-4504-927f-200c6312d2e6"
+                            }
+                          ],
+                          "id": "ee09ad4d-f9af-439f-8d08-92412a3d111a",
+                          "createdAt": "2026-10-22T03:13:28.000Z",
+                          "updatedAt": "2026-10-22T03:13:28.000Z",
+                          "uid": "35240-ee09ad4d-f9af-439f-8d08-92412a3d111a"
+                        },
+                        {
+                          "name": "Get labels",
+                          "id": "03b81f7b-1c9e-462d-98fd-0b7c1d8dd0a3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId?inherit=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "labels",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Set to `true` to retrieve inherited component labels.",
+                                  "key": "inherit",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "11184026-67b8-47aa-9ce6-51db7adb41ba",
+                                  "key": "ownerType",
+                                  "value": "repository_manager",
+                                  "description": "(Required) Select the `ownerType` for which you want to retrieve the component label information."
+                                },
+                                {
+                                  "id": "d1044007-1250-4f23-901f-2392ac315ced",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the id of the application, organization or the repository."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to retrieve the details for component labels for an application, organization or a repository.\n\nPermissions required: View IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "ea571df3-a23e-4c2a-ab0a-073b28ddf6d8",
+                              "name": "The response contains an array of component label descriptions for the application, organization or repository, as selected in the request. Each label description contains:<ul><li>`id` is the internal identifier assigned to the label.</li><li>`label` is t",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId?inherit=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "labels",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Set to `true` to retrieve inherited component labels.",
+                                      "key": "inherit",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"color\": \"<string>\",\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"label\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerType\": \"<string>\"\n  },\n  {\n    \"color\": \"<string>\",\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"label\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"ownerType\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-10-22T03:13:28.000Z",
+                              "updatedAt": "2026-10-22T03:13:28.000Z",
+                              "uid": "35240-ea571df3-a23e-4c2a-ab0a-073b28ddf6d8"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:13:28.000Z",
+                          "updatedAt": "2026-10-22T03:13:28.000Z",
+                          "uid": "35240-03b81f7b-1c9e-462d-98fd-0b7c1d8dd0a3"
+                        },
+                        {
+                          "name": "Add label",
+                          "id": "c091e401-eddc-4e71-b988-47009c0de2b6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "labels",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d6b5f1c0-6d7e-4325-ab31-d79f2bf6e387",
+                                  "key": "ownerType",
+                                  "value": "repository_manager",
+                                  "description": "(Required) Select the ownerType to which the label will be assigned."
+                                },
+                                {
+                                  "id": "b239f99b-50f5-426a-aad5-dade0494f759",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the id for the selected ownerType."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to create and assign a component label to an application, organization or repository.\n\nPermissions required: Edit IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "69001c33-d942-4caa-916e-fb55e9c3cd79",
+                              "name": "The response contains label details sent in the request and the `id` for the label created.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "labels",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T03:13:28.000Z",
+                              "updatedAt": "2026-10-22T03:13:28.000Z",
+                              "uid": "35240-69001c33-d942-4caa-916e-fb55e9c3cd79"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:13:28.000Z",
+                          "updatedAt": "2026-10-22T03:13:28.000Z",
+                          "uid": "35240-c091e401-eddc-4e71-b988-47009c0de2b6"
+                        },
+                        {
+                          "name": "Update label",
+                          "id": "3c996db5-6545-4479-8e88-ce380eb52e3d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "labels",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a86b5c95-a543-46bb-9292-830c911783e5",
+                                  "key": "ownerType",
+                                  "value": "repository_manager",
+                                  "description": "(Required) Select the ownerType for which the label will be updated."
+                                },
+                                {
+                                  "id": "f3142ac0-7c24-428c-ba7d-f3fb5b7f1dfe",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the id for the selected ownerType."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to update an existing component label for an application, organization or repository.\n\nPermissions required: Edit IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "08a8356d-e2b6-4ae1-a042-f869b0f392a6",
+                              "name": "The response contains the label details sent in the update request.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/labels/:ownerType/:ownerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "labels",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T03:13:28.000Z",
+                              "updatedAt": "2026-10-22T03:13:28.000Z",
+                              "uid": "35240-08a8356d-e2b6-4ae1-a042-f869b0f392a6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:13:28.000Z",
+                          "updatedAt": "2026-10-22T03:13:28.000Z",
+                          "uid": "35240-3c996db5-6545-4479-8e88-ce380eb52e3d"
+                        }
+                      ],
+                      "id": "3823b5e0-4d16-4058-923f-206c1fb93dee",
+                      "createdAt": "2026-10-22T03:13:28.000Z",
+                      "updatedAt": "2026-10-22T03:13:28.000Z",
+                      "uid": "35240-3823b5e0-4d16-4058-923f-206c1fb93dee"
+                    }
+                  ],
+                  "id": "68bae83c-95fa-4ed2-a853-47dc7d4372e8",
+                  "createdAt": "2026-10-22T03:13:28.000Z",
+                  "updatedAt": "2026-10-22T03:13:28.000Z",
+                  "uid": "35240-68bae83c-95fa-4ed2-a853-47dc7d4372e8"
                 }
               ],
-              "body": "[\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"label\": \"string\",\n    \"ownerId\": \"string\",\n    \"ownerType\": \"string\"\n  },\n  {\n    \"color\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"label\": \"string\",\n    \"ownerId\": \"string\",\n    \"ownerType\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fb7a3687-9cf2-48a8-8ed7-02b9540ea7ac",
+              "createdAt": "2026-10-22T03:13:28.000Z",
+              "updatedAt": "2026-10-22T03:13:28.000Z",
+              "uid": "35240-fb7a3687-9cf2-48a8-8ed7-02b9540ea7ac"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ad61efa2-0d01-4454-a7d8-88977d322409",
-          "name": "add Label",
-          "request": {
-            "name": "add Label",
-            "description": {
-              "content": "Use this method to create and assign a component label to an application, organization or repository.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "labels",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the ownerType to which the label will be assigned."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id for the selected ownerType."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c4061715-ceaa-4e00-a785-848fc4314c0d",
-              "name": "The response contains label details sent in the request and the `id` for the label created.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "labels",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the ownerType to which the label will be assigned."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id for the selected ownerType."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6b5f1fe1-2427-4934-97ea-fcdc54958585",
-          "name": "update Label",
-          "request": {
-            "name": "update Label",
-            "description": {
-              "content": "Use this method to update an existing component label for an application, organization or repository.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "labels",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the ownerType for which the label will be updated."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id for the selected ownerType."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "e921f462-deca-4438-af17-78cca349618e",
-              "name": "The response contains the label details sent in the update request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "labels",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the ownerType for which the label will be updated."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id for the selected ownerType."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"label\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"ownerType\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8450a7e6-4496-4e52-986d-437e34a1b7c8",
-          "name": "get Applicable Labels",
-          "request": {
-            "name": "get Applicable Labels",
-            "description": {
-              "content": "Use this method to retrieve all component labels that are applicable to the specified application, organization or repository.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "labels",
-                ":ownerType",
-                ":ownerId",
-                "applicable"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the ownerType to retrieve the component label information for."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id for the application, organization or repository"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8de382c8-3ce7-47e8-88d3-c2466a2add08",
-              "name": "The response contains descriptions for all component labels that are applicable to the specified owner. These include all component labels that are assigned and inherited. The response includes:<ul><li>`ownerId` is the identifier for the owner.</li><li>`ownerName` is the name for the owner.</li><li>`ownerType` indicates if the labels are for an application, organization or repository.</li> <li>`labels` is the component labels for this owner.</li></ul>Each label includes <ul><li>`id` is the internal identifier assigned to the label.</li><li>`label` is the identifying name of the label, for e.g. 'Architecture-Deprecated'.</li><li>`description` is additional information describing the label.</li><li>`color` is the color assigned to the component label.</li><li>`ownerId` is the identifier for the ownerType selected in the request.</li><li>`ownerType` indicates if the label is for the application, organization or repository, as selected in the request.</li></ul>",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "labels",
-                    ":ownerType",
-                    ":ownerId",
-                    "applicable"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the ownerType to retrieve the component label information for."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id for the application, organization or repository"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"labelsByOwner\": [\n    {\n      \"labels\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_manager\"\n    },\n    {\n      \"labels\": [\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        },\n        {\n          \"color\": \"<string>\",\n          \"description\": \"<string>\",\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"ownerId\": \"<string>\",\n          \"ownerType\": \"<string>\"\n        }\n      ],\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_manager\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3dd4c91b-1767-4080-871a-f2cbe56cfddc",
-          "name": "get Applicable Contexts",
-          "request": {
-            "name": "get Applicable Contexts",
-            "description": {
-              "content": "Use this method to retrieve the hierarchy of owners (applications, organizations, repositories) in which the label can be applied.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "labels",
-                ":ownerType",
-                ":ownerId",
-                "applicable",
-                "context",
-                ":labelId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the ownerType."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the ownerId"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "labelId",
-                  "description": "(Required) Enter the labelId"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9f4dd983-b36f-4670-b9f5-4feb4f5f5024",
-              "name": "The response contains:<ul><li>`id` is the id of the selected owner.</li><li>`name` is the name of the selected owner.</li><li>`type` is the type of the selected owner e.g. application, organization or repository.</li><li>`children` is an array of the child owners in the hierarchy.</li>",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "labels",
-                    ":ownerType",
-                    ":ownerId",
-                    "applicable",
-                    "context",
-                    ":labelId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the ownerType."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the ownerId"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "labelId",
-                      "description": "(Required) Enter the labelId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"children\": [\n    {\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ApplicableContext detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ApplicableContext detected>\"\n        }\n      ],\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"repository_manager\"\n    },\n    {\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ApplicableContext detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ApplicableContext detected>\"\n        }\n      ],\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"repository_manager\"\n    }\n  ],\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"repository_manager\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3938810a-1cb6-40ec-81ba-d2f665add152",
-          "name": "delete Label",
-          "request": {
-            "name": "delete Label",
-            "description": {
-              "content": "Use this method to delete an existing component label.\n\nPermissions required: Edit IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "labels",
-                ":ownerType",
-                ":ownerId",
-                ":labelId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the ownerType for which the label will be deleted."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id for the selected ownerType."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "labelId",
-                  "description": "(Required) Enter the id for the label to be deleted."
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f9f5a2f2-db3d-4cdc-800e-417d08f33940",
-              "name": "Component label deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "labels",
-                    ":ownerType",
-                    ":ownerId",
-                    ":labelId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the ownerType for which the label will be deleted."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id for the selected ownerType."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "labelId",
-                      "description": "(Required) Enter the id for the label to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1bbf81e2-08d8-4c39-9666-cf958e872f29",
+          "createdAt": "2026-10-22T03:13:28.000Z",
+          "updatedAt": "2026-10-22T03:13:28.000Z",
+          "uid": "35240-1bbf81e2-08d8-4c39-9666-cf958e872f29"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "d292c7b4-8cfe-47fd-9ed3-2a15551e7373",
+      "createdAt": "2026-10-22T03:13:28.000Z",
+      "updatedAt": "2026-10-22T03:13:28.000Z",
+      "uid": "35240-d292c7b4-8cfe-47fd-9ed3-2a15551e7373"
     }
   ],
   "auth": {
@@ -803,21 +799,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "b574fe33-9595-485b-92e1-3c391ac3f217",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Component Labels API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

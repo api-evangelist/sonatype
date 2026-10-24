@@ -1,582 +1,588 @@
 {
+  "info": {
+    "_postman_id": "b69fb62c-75a4-49b1-a265-a50fb534d5f9",
+    "name": "Sonatype License Overrides API",
+    "description": "Operations tagged License Overrides across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:16:16.000Z",
+    "updatedAt": "2026-10-22T03:16:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b69fb62c-75a4-49b1-a265-a50fb534d5f9"
+  },
   "item": [
     {
-      "id": "6529eb37-3d26-46f3-adfd-f8d5c71e07fa",
-      "name": "License Overrides",
-      "description": {
-        "content": "Use this REST API to manage license overrides for components in your applicationsorganizations and repositories.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "2d72f693-8ced-42a4-9234-34e0f4ec1e06",
-          "name": "get Applied License Overrides",
-          "request": {
-            "name": "get Applied License Overrides",
-            "description": {
-              "content": "Use this method to retrieve the applied license overrides for a component.\n\nPermissions required: View IQ Elements",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseOverrides",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "coordinates",
-                  "value": "{\"key_0\":\"<string>\"}",
-                  "description": "(Required) Enter the componentIdentifier consisting of format and coordinates as a JSON e.g., `?componentIdentifier={\"format\":\"maven\",\"coordinates\":\"{...}}\"}"
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "<string>",
-                  "description": "(Required) Enter the componentIdentifier consisting of format and coordinates as a JSON e.g., `?componentIdentifier={\"format\":\"maven\",\"coordinates\":\"{...}}\"}"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the `ownerType` for which you want to retrieve the applied license overrides."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id of the application, organization or the repository."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "d1a52e94-d5bd-4a57-b766-238f8d21a7ad",
-              "name": "The response contains the license overrides for the component.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseOverrides",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "coordinates",
-                      "value": "[object Object]"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the `ownerType` for which you want to retrieve the applied license overrides."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id of the application, organization or the repository."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "licenseOverrides",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{ownerType}",
+                  "item": [
+                    {
+                      "name": "{ownerId}",
+                      "item": [
+                        {
+                          "name": "legalReviewer",
+                          "item": [
+                            {
+                              "name": "Get applied license overrides for legal reviewer",
+                              "id": "c6edf5f8-bcf7-4632-91a4-45f0bc45c80e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId/legalReviewer?coordinates=[object Object]&format=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseOverrides",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    "legalReviewer"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Enter the component format and coordinates.",
+                                      "key": "coordinates",
+                                      "value": "[object Object]"
+                                    },
+                                    {
+                                      "description": "(Required) Enter the component format and coordinates.",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ef93124d-61e7-416d-a6af-163478959f81",
+                                      "key": "ownerType",
+                                      "value": "repository_manager",
+                                      "description": "(Required) Select the `ownerType` for which you want to retrieve the applied license overrides."
+                                    },
+                                    {
+                                      "id": "5fd21f11-4b19-4710-a736-0d74e75973df",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id of the owner."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to retrieve the applied license overrides for a given component and owner.\n\nPermissions required: Review Legal Obligations For Components Licenses"
+                              },
+                              "response": [
+                                {
+                                  "id": "de4af02b-e14d-4545-9085-2a161ad5ee26",
+                                  "name": "Successfully retrieved the applied license overrides.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId/legalReviewer?coordinates=[object Object]&format=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "licenseOverrides",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        "legalReviewer"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Enter the component format and coordinates.",
+                                          "key": "coordinates",
+                                          "value": "[object Object]"
+                                        },
+                                        {
+                                          "description": "(Required) Enter the component format and coordinates.",
+                                          "key": "format",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"licenseOverridesByOwner\": [\n    {\n      \"licenseOverride\": {\n        \"comment\": \"<string>\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"do_0\": \"<string>\",\n            \"nostrud__\": \"<string>\",\n            \"eiusmod_cd\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"licenseIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"ownerId\": \"<string>\",\n        \"status\": \"OPEN\"\n      },\n      \"ownerId\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"ownerType\": \"global\"\n    },\n    {\n      \"licenseOverride\": {\n        \"comment\": \"<string>\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"laboris086\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"licenseIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"ownerId\": \"<string>\",\n        \"status\": \"OVERRIDDEN\"\n      },\n      \"ownerId\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"ownerType\": \"global\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T03:16:17.000Z",
+                                  "updatedAt": "2026-10-22T03:16:17.000Z",
+                                  "uid": "35240-de4af02b-e14d-4545-9085-2a161ad5ee26"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:16:17.000Z",
+                              "updatedAt": "2026-10-22T03:16:17.000Z",
+                              "uid": "35240-c6edf5f8-bcf7-4632-91a4-45f0bc45c80e"
+                            }
+                          ],
+                          "id": "7a314c08-54fd-48c7-91c3-a878257f2f5d",
+                          "createdAt": "2026-10-22T03:16:16.000Z",
+                          "updatedAt": "2026-10-22T03:16:16.000Z",
+                          "uid": "35240-7a314c08-54fd-48c7-91c3-a878257f2f5d"
+                        },
+                        {
+                          "name": "{licenseOverrideId}",
+                          "item": [
+                            {
+                              "name": "Delete license override",
+                              "id": "d811b6e1-b9a3-433e-b836-f99b49d25851",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId/:licenseOverrideId?where=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseOverrides",
+                                    ":ownerType",
+                                    ":ownerId",
+                                    ":licenseOverrideId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "where",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b2276dfb-7295-47ef-84c4-18c9b472a2d8",
+                                      "key": "ownerType",
+                                      "value": "repository_manager",
+                                      "description": "(Required) Select the `ownerType` scope for which you want to delete license override"
+                                    },
+                                    {
+                                      "id": "e9c0140e-d8df-41f7-92f5-66cb0d2251df",
+                                      "key": "ownerId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id of the application, organization or the repository."
+                                    },
+                                    {
+                                      "id": "46e6b886-82dc-415d-b3e9-77978a5f48ec",
+                                      "key": "licenseOverrideId",
+                                      "value": "<string>",
+                                      "description": "(Required) Enter the id of the license override you want to delete."
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to delete a license override for a component.\n\nPermissions required: Change Licenses"
+                              },
+                              "response": [
+                                {
+                                  "id": "f37efb39-29a1-4a17-b8e4-7ae0c67b9d67",
+                                  "name": "The license override was deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId/:licenseOverrideId?where=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "licenseOverrides",
+                                        ":ownerType",
+                                        ":ownerId",
+                                        ":licenseOverrideId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "where",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "ownerType"
+                                        },
+                                        {
+                                          "key": "ownerId"
+                                        },
+                                        {
+                                          "key": "licenseOverrideId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:16:17.000Z",
+                                  "updatedAt": "2026-10-22T03:16:17.000Z",
+                                  "uid": "35240-f37efb39-29a1-4a17-b8e4-7ae0c67b9d67"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:16:17.000Z",
+                              "updatedAt": "2026-10-22T03:16:17.000Z",
+                              "uid": "35240-d811b6e1-b9a3-433e-b836-f99b49d25851"
+                            }
+                          ],
+                          "id": "9a775c96-2906-43ab-a6da-558b06a0d82d",
+                          "createdAt": "2026-10-22T03:16:16.000Z",
+                          "updatedAt": "2026-10-22T03:16:16.000Z",
+                          "uid": "35240-9a775c96-2906-43ab-a6da-558b06a0d82d"
+                        },
+                        {
+                          "name": "Get applied license overrides",
+                          "id": "6fdeddc7-6e4c-4fac-bc94-4b764a84ac46",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId?coordinates=[object Object]&format=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseOverrides",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Enter the componentIdentifier consisting of format and coordinates as a JSON e.g., `?componentIdentifier={\"format\":\"maven\",\"coordinates\":\"{...}}\"}",
+                                  "key": "coordinates",
+                                  "value": "[object Object]"
+                                },
+                                {
+                                  "description": "(Required) Enter the componentIdentifier consisting of format and coordinates as a JSON e.g., `?componentIdentifier={\"format\":\"maven\",\"coordinates\":\"{...}}\"}",
+                                  "key": "format",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "70c23d3c-899b-40d7-8456-fee4b37148b6",
+                                  "key": "ownerType",
+                                  "value": "repository_manager",
+                                  "description": "(Required) Select the `ownerType` for which you want to retrieve the applied license overrides."
+                                },
+                                {
+                                  "id": "78d525cf-b7c6-493a-a1d1-4c8e5fcca7d6",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the id of the application, organization or the repository."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to retrieve the applied license overrides for a component.\n\nPermissions required: View IQ Elements"
+                          },
+                          "response": [
+                            {
+                              "id": "60cf7a6d-bd2d-45da-bc9e-dd73fa60065b",
+                              "name": "The response contains the license overrides for the component.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId?coordinates=[object Object]&format=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseOverrides",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Enter the componentIdentifier consisting of format and coordinates as a JSON e.g., `?componentIdentifier={\"format\":\"maven\",\"coordinates\":\"{...}}\"}",
+                                      "key": "coordinates",
+                                      "value": "[object Object]"
+                                    },
+                                    {
+                                      "description": "(Required) Enter the componentIdentifier consisting of format and coordinates as a JSON e.g., `?componentIdentifier={\"format\":\"maven\",\"coordinates\":\"{...}}\"}",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"licenseOverridesByOwner\": [\n    {\n      \"licenseOverride\": {\n        \"comment\": \"<string>\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"do_0\": \"<string>\",\n            \"nostrud__\": \"<string>\",\n            \"eiusmod_cd\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"licenseIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"ownerId\": \"<string>\",\n        \"status\": \"OPEN\"\n      },\n      \"ownerId\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"ownerType\": \"global\"\n    },\n    {\n      \"licenseOverride\": {\n        \"comment\": \"<string>\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"laboris086\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"licenseIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"ownerId\": \"<string>\",\n        \"status\": \"OVERRIDDEN\"\n      },\n      \"ownerId\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"ownerType\": \"global\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T03:16:17.000Z",
+                              "updatedAt": "2026-10-22T03:16:17.000Z",
+                              "uid": "35240-60cf7a6d-bd2d-45da-bc9e-dd73fa60065b"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:17.000Z",
+                          "updatedAt": "2026-10-22T03:16:17.000Z",
+                          "uid": "35240-6fdeddc7-6e4c-4fac-bc94-4b764a84ac46"
+                        },
+                        {
+                          "name": "Add license override",
+                          "id": "92006805-3d2a-494c-879e-0bd44aa408ce",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"ada97\": \"<string>\",\n      \"ullamcof\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"licenseIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ownerId\": \"<string>\",\n  \"status\": \"ACKNOWLEDGED\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId?where=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "licenseOverrides",
+                                ":ownerType",
+                                ":ownerId"
+                              ],
+                              "query": [
+                                {
+                                  "key": "where",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "055f5330-1af2-4c7b-b5ee-7326839d4192",
+                                  "key": "ownerType",
+                                  "value": "repository_manager",
+                                  "description": "(Required) Select the `ownerType` scope for which you want to add or update a license override"
+                                },
+                                {
+                                  "id": "5cdf9811-8fd0-427c-9d25-1fc04340b478",
+                                  "key": "ownerId",
+                                  "value": "<string>",
+                                  "description": "(Required) Enter the id of the application, organization or the repository."
+                                }
+                              ]
+                            },
+                            "description": "Use this method to add or update a license override to a component for a given owner scope.\n\nPermissions required: Change Licenses"
+                          },
+                          "response": [
+                            {
+                              "id": "767473ce-81ee-4cd0-9233-5acd529092b5",
+                              "name": "The response contains the same license override information that was added.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"ada97\": \"<string>\",\n      \"ullamcof\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"licenseIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ownerId\": \"<string>\",\n  \"status\": \"ACKNOWLEDGED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/licenseOverrides/:ownerType/:ownerId?where=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "licenseOverrides",
+                                    ":ownerType",
+                                    ":ownerId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "where",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "ownerType"
+                                    },
+                                    {
+                                      "key": "ownerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"ada97\": \"<string>\",\n      \"ullamcof\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"licenseIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ownerId\": \"<string>\",\n  \"status\": \"ACKNOWLEDGED\"\n}",
+                              "createdAt": "2026-10-22T03:16:17.000Z",
+                              "updatedAt": "2026-10-22T03:16:17.000Z",
+                              "uid": "35240-767473ce-81ee-4cd0-9233-5acd529092b5"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:16:17.000Z",
+                          "updatedAt": "2026-10-22T03:16:17.000Z",
+                          "uid": "35240-92006805-3d2a-494c-879e-0bd44aa408ce"
+                        }
+                      ],
+                      "id": "4d5a725b-3dd1-45cf-ad16-ab799f1731e6",
+                      "createdAt": "2026-10-22T03:16:16.000Z",
+                      "updatedAt": "2026-10-22T03:16:16.000Z",
+                      "uid": "35240-4d5a725b-3dd1-45cf-ad16-ab799f1731e6"
+                    }
+                  ],
+                  "id": "95c26ab2-bf11-40e0-9bb2-f4ee15936423",
+                  "createdAt": "2026-10-22T03:16:16.000Z",
+                  "updatedAt": "2026-10-22T03:16:16.000Z",
+                  "uid": "35240-95c26ab2-bf11-40e0-9bb2-f4ee15936423"
                 }
               ],
-              "body": "{\n  \"licenseOverridesByOwner\": [\n    {\n      \"licenseOverride\": {\n        \"comment\": \"string\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\",\n            \"key_3\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"string\",\n        \"licenseIds\": [\n          \"string\"\n        ],\n        \"ownerId\": \"string\",\n        \"status\": \"SELECTED\"\n      },\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_manager\"\n    },\n    {\n      \"licenseOverride\": {\n        \"comment\": \"string\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"string\",\n        \"licenseIds\": [\n          \"string\"\n        ],\n        \"ownerId\": \"string\",\n        \"status\": \"ACKNOWLEDGED\"\n      },\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_container\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fc695745-edef-4e04-bb5c-0b85b5fc684a",
+              "createdAt": "2026-10-22T03:16:16.000Z",
+              "updatedAt": "2026-10-22T03:16:16.000Z",
+              "uid": "35240-fc695745-edef-4e04-bb5c-0b85b5fc684a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d1c0ed5a-7b1c-4a37-99df-976f71454101",
-          "name": "add License Override",
-          "request": {
-            "name": "add License Override",
-            "description": {
-              "content": "Use this method to add or update a license override to a component for a given owner scope.\n\nPermissions required: Change Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseOverrides",
-                ":ownerType",
-                ":ownerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "where",
-                  "value": "<string>"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the `ownerType` scope for which you want to add or update a license override"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id of the application, organization or the repository."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"licenseIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ownerId\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b855dbd4-b63a-40ed-8c14-399c824fb682",
-              "name": "The response contains the same license override information that was added.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseOverrides",
-                    ":ownerType",
-                    ":ownerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "where",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the `ownerType` scope for which you want to add or update a license override"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id of the application, organization or the repository."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"licenseIds\": [\n    \"<string>\"\n  ],\n  \"ownerId\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"comment\": \"<string>\",\n  \"componentIdentifier\": {\n    \"coordinates\": {\n      \"key_0\": \"<string>\"\n    },\n    \"format\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"licenseIds\": [\n    \"<string>\"\n  ],\n  \"ownerId\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "303d5242-bfcc-4f93-b330-ca88fe9d0bcd",
-          "name": "get Applied License Overrides For Legal Reviewer",
-          "request": {
-            "name": "get Applied License Overrides For Legal Reviewer",
-            "description": {
-              "content": "Use this method to retrieve the applied license overrides for a given component and owner.\n\nPermissions required: Review Legal Obligations For Components Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseOverrides",
-                ":ownerType",
-                ":ownerId",
-                "legalReviewer"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "coordinates",
-                  "value": "{\"key_0\":\"<string>\"}",
-                  "description": "(Required) Enter the component format and coordinates."
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "<string>",
-                  "description": "(Required) Enter the component format and coordinates."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the `ownerType` for which you want to retrieve the applied license overrides."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id of the owner."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "42c11e50-6164-49ef-b042-0414800ea9e1",
-              "name": "Successfully retrieved the applied license overrides.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseOverrides",
-                    ":ownerType",
-                    ":ownerId",
-                    "legalReviewer"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "coordinates",
-                      "value": "[object Object]"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the `ownerType` for which you want to retrieve the applied license overrides."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id of the owner."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"licenseOverridesByOwner\": [\n    {\n      \"licenseOverride\": {\n        \"comment\": \"string\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"string\",\n        \"licenseIds\": [\n          \"string\"\n        ],\n        \"ownerId\": \"string\",\n        \"status\": \"SELECTED\"\n      },\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_container\"\n    },\n    {\n      \"licenseOverride\": {\n        \"comment\": \"string\",\n        \"componentIdentifier\": {\n          \"coordinates\": {\n            \"key_0\": \"<string>\"\n          },\n          \"format\": \"<string>\"\n        },\n        \"id\": \"string\",\n        \"licenseIds\": [\n          \"string\"\n        ],\n        \"ownerId\": \"string\",\n        \"status\": \"CONFIRMED\"\n      },\n      \"ownerId\": \"string\",\n      \"ownerName\": \"string\",\n      \"ownerType\": \"repository_manager\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "192289d7-d383-482f-92dc-fc26c8ab7a1a",
-          "name": "delete License Override",
-          "request": {
-            "name": "delete License Override",
-            "description": {
-              "content": "Use this method to delete a license override for a component.\n\nPermissions required: Change Licenses",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "licenseOverrides",
-                ":ownerType",
-                ":ownerId",
-                ":licenseOverrideId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "where",
-                  "value": "<string>"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerType",
-                  "description": "(Required) Select the `ownerType` scope for which you want to delete license override"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ownerId",
-                  "description": "(Required) Enter the id of the application, organization or the repository."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "licenseOverrideId",
-                  "description": "(Required) Enter the id of the license override you want to delete."
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7fc7ab69-964e-4f7c-ad0f-58279adfef10",
-              "name": "The license override was deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "licenseOverrides",
-                    ":ownerType",
-                    ":ownerId",
-                    ":licenseOverrideId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "where",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerType",
-                      "description": "(Required) Select the `ownerType` scope for which you want to delete license override"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ownerId",
-                      "description": "(Required) Enter the id of the application, organization or the repository."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "licenseOverrideId",
-                      "description": "(Required) Enter the id of the license override you want to delete."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "7d49dd6b-28d6-4299-967e-4ac933974963",
+          "createdAt": "2026-10-22T03:16:16.000Z",
+          "updatedAt": "2026-10-22T03:16:16.000Z",
+          "uid": "35240-7d49dd6b-28d6-4299-967e-4ac933974963"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "b46fc218-0e80-4153-88fe-7a32328e8e2e",
+      "createdAt": "2026-10-22T03:16:16.000Z",
+      "updatedAt": "2026-10-22T03:16:16.000Z",
+      "uid": "35240-b46fc218-0e80-4153-88fe-7a32328e8e2e"
     }
   ],
   "auth": {
@@ -584,21 +590,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "9b2b2078-c18a-4bdc-9fbc-25a2aae50634",
-    "name": "Sonatype Lifecycle Public REST Advanced Search License Overrides API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

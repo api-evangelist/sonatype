@@ -1,491 +1,600 @@
 {
+  "info": {
+    "_postman_id": "ab483624-e314-436e-875d-fa4834bd4227",
+    "name": "Sonatype Advanced Search API",
+    "description": "Operations tagged Advanced Search across 2 of this provider's published API definitions: sonatype-lifecycle-openapi.yml, sonatype-iq-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:12:32.000Z",
+    "updatedAt": "2026-10-22T03:12:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ab483624-e314-436e-875d-fa4834bd4227"
+  },
   "item": [
     {
-      "id": "da551418-feb8-4a9a-92fe-d50d5f9f45b4",
-      "name": "Advanced Search",
-      "description": {
-        "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "8708cff3-19e8-475c-bb08-548697721682",
-          "name": "search Index",
-          "request": {
-            "name": "search Index",
-            "description": {
-              "content": "Use this method to perform an Advanced Search. ",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "search",
-                "advanced"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "Enter your search query here"
-                },
-                {
-                  "disabled": false,
-                  "key": "pageSize",
-                  "value": "10",
-                  "description": "Enter the no. of results that should be visible per page"
-                },
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "<integer>",
-                  "description": "Enter the page no. for the page containing results"
-                },
-                {
-                  "disabled": false,
-                  "key": "allComponents",
-                  "value": "false",
-                  "description": "Set to `true` to retrieve results that include components with no violations"
-                },
-                {
-                  "disabled": false,
-                  "key": "mode",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "b9b71524-b811-4d37-9f8d-6cb2fdcb1b9f",
-              "name": "Response JSON containing the search query sent in the API call, and other response fields as follows: \n1. searchQuery: search query sent in the request \n2. page: page number of search results requested \n3. pageSize: requested number of results per page \n4. totalNumberOfHits: total number of results returned \n5. isExactTotalNumberOfHits \n    * `true` indicates that the search results in the JSON is the same no. of search results that logically      match the search query. \n    * `false` indicates that the search results in the JSON are lower bound because fetching all results is     too expensive to compute. \n6. groupingByDTOS: array of search results grouped on a field name \n7. groupIdentifier: field name that the search results have been grouped by \n8. groupBy: field value that the search results have been grouped by \n9. additionalInfo: shared information between groups, e.g. info if grouped by a security vulnerability \n10. searchResultItemDTOS: array of search results with each element containing an itemType, field names and values \n11. resultIndex: indicating the relevance of the search result w.r.t. the query",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "search",
-                    "advanced"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "search",
+              "item": [
+                {
+                  "name": "advanced",
+                  "item": [
                     {
-                      "key": "query",
-                      "value": "<string>"
+                      "name": "export",
+                      "item": [
+                        {
+                          "name": "csv",
+                          "item": [
+                            {
+                              "name": "Get export results",
+                              "id": "e1c7cdc5-d317-4d82-8d58-476735411408",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/search/advanced/export/csv?query=<string>&pageSize=<integer>&page=<integer>&allComponents=false&mode=sbomManager",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "search",
+                                    "advanced",
+                                    "export",
+                                    "csv"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) A well-formed search query.",
+                                      "key": "query",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Enter the no. of results that should be visible per page, unset gives all results",
+                                      "key": "pageSize",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Enter the page no. for the page containing results",
+                                      "key": "page",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Set to `true` to retrieve results that include components with no violations.",
+                                      "key": "allComponents",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "key": "mode",
+                                      "value": "sbomManager"
+                                    }
+                                  ]
+                                },
+                                "description": "Use this method to generate a csv file containing your search results. The default delimiter in the generated file is comma. Use the advancedSearchCSVExportDelimiter property of the Configuration REST API to change the delimiter in the generated file."
+                              },
+                              "response": [
+                                {
+                                  "id": "c0be8f0c-b71b-454a-a686-218e1d706ef4",
+                                  "name": "Downloadable csv file generated successfully.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/export/csv?query=<string>&pageSize=<integer>&page=<integer>&allComponents=false&mode=sbomManager",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "export",
+                                        "csv"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) A well-formed search query.",
+                                          "key": "query",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the no. of results that should be visible per page, unset gives all results",
+                                          "key": "pageSize",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Enter the page no. for the page containing results",
+                                          "key": "page",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Set to `true` to retrieve results that include components with no violations.",
+                                          "key": "allComponents",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "key": "mode",
+                                          "value": "sbomManager"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:12:33.000Z",
+                                  "updatedAt": "2026-10-22T03:12:33.000Z",
+                                  "uid": "35240-c0be8f0c-b71b-454a-a686-218e1d706ef4"
+                                },
+                                {
+                                  "id": "1c85840f-fc6a-499d-97a5-ac14fbd66080",
+                                  "name": "Search index does not exist or is unreadable.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/export/csv?query=<string>&pageSize=<integer>&page=<integer>&allComponents=false&mode=sbomManager",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "export",
+                                        "csv"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) A well-formed search query.",
+                                          "key": "query",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Enter the no. of results that should be visible per page, unset gives all results",
+                                          "key": "pageSize",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Enter the page no. for the page containing results",
+                                          "key": "page",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Set to `true` to retrieve results that include components with no violations.",
+                                          "key": "allComponents",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "key": "mode",
+                                          "value": "sbomManager"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Conflict",
+                                  "code": 409,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:12:33.000Z",
+                                  "updatedAt": "2026-10-22T03:12:33.000Z",
+                                  "uid": "35240-1c85840f-fc6a-499d-97a5-ac14fbd66080"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:12:33.000Z",
+                              "updatedAt": "2026-10-22T03:12:33.000Z",
+                              "uid": "35240-e1c7cdc5-d317-4d82-8d58-476735411408"
+                            }
+                          ],
+                          "id": "555654ad-ee78-4ff1-94b0-83fa1ccc3724",
+                          "createdAt": "2026-10-22T03:12:32.000Z",
+                          "updatedAt": "2026-10-22T03:12:32.000Z",
+                          "uid": "35240-555654ad-ee78-4ff1-94b0-83fa1ccc3724"
+                        }
+                      ],
+                      "id": "37fb139c-fb56-4572-82c6-daff3747884f",
+                      "createdAt": "2026-10-22T03:12:32.000Z",
+                      "updatedAt": "2026-10-22T03:12:32.000Z",
+                      "uid": "35240-37fb139c-fb56-4572-82c6-daff3747884f"
                     },
                     {
-                      "key": "pageSize",
-                      "value": "10"
+                      "name": "index",
+                      "item": [
+                        {
+                          "name": "cancel",
+                          "item": [
+                            {
+                              "name": "Cancel search index rebuild",
+                              "id": "81442542-cc62-4ac5-b487-2d5f4dd52cc8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/search/advanced/index/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "search",
+                                    "advanced",
+                                    "index",
+                                    "cancel"
+                                  ]
+                                },
+                                "description": "Request cancellation of an in-flight Advanced Search index rebuild. On a Lucene-backed deployment the previous complete index continues to serve search results. Cancellation is not supported on OpenSearch-backed deployments, where the rebuild runs to completion. Use the status method to confirm whether a rebuild is still in progress.\n\nPermissions required: Edit System Configuration and Users"
+                              },
+                              "response": [
+                                {
+                                  "id": "3cd499fa-64bd-4e8d-bf5d-79d347c55515",
+                                  "name": "Cancel requested.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/search/advanced/index/cancel",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "search",
+                                        "advanced",
+                                        "index",
+                                        "cancel"
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:12:33.000Z",
+                                  "updatedAt": "2026-10-22T03:12:33.000Z",
+                                  "uid": "35240-3cd499fa-64bd-4e8d-bf5d-79d347c55515"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:12:33.000Z",
+                              "updatedAt": "2026-10-22T03:12:33.000Z",
+                              "uid": "35240-81442542-cc62-4ac5-b487-2d5f4dd52cc8"
+                            }
+                          ],
+                          "id": "4b798de2-3fff-4461-a403-dba92b18e3e9",
+                          "createdAt": "2026-10-22T03:12:32.000Z",
+                          "updatedAt": "2026-10-22T03:12:32.000Z",
+                          "uid": "35240-4b798de2-3fff-4461-a403-dba92b18e3e9"
+                        },
+                        {
+                          "name": "Create search index async",
+                          "id": "87758a52-34de-451d-80fb-8c3165b62969",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/search/advanced/index",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "search",
+                                "advanced",
+                                "index"
+                              ]
+                            },
+                            "description": "Use this method to create or rebuild the index for Advanced Search. This is a resource intensive operation. Avoid creating indexes during peak usage hours.\n\nPermissions required: Edit System Configuration and Users"
+                          },
+                          "response": [
+                            {
+                              "id": "024b9dc7-fc7d-4305-8917-14ca46b52974",
+                              "name": "Index created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/search/advanced/index",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "search",
+                                    "advanced",
+                                    "index"
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:12:33.000Z",
+                              "updatedAt": "2026-10-22T03:12:33.000Z",
+                              "uid": "35240-024b9dc7-fc7d-4305-8917-14ca46b52974"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:12:33.000Z",
+                          "updatedAt": "2026-10-22T03:12:33.000Z",
+                          "uid": "35240-87758a52-34de-451d-80fb-8c3165b62969"
+                        }
+                      ],
+                      "id": "cd4e1780-553d-4e76-9b72-7850e2d64bfb",
+                      "createdAt": "2026-10-22T03:12:32.000Z",
+                      "updatedAt": "2026-10-22T03:12:32.000Z",
+                      "uid": "35240-cd4e1780-553d-4e76-9b72-7850e2d64bfb"
                     },
                     {
-                      "key": "page",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "allComponents",
-                      "value": "false"
-                    },
-                    {
-                      "key": "mode",
-                      "value": "<string>"
+                      "name": "Search index",
+                      "id": "7184445c-593c-43bf-bdc6-4c017c92b538",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/search/advanced?query=<string>&pageSize=10&page=<integer>&allComponents=false&mode=sbomManager",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "search",
+                            "advanced"
+                          ],
+                          "query": [
+                            {
+                              "description": "Enter your search query here",
+                              "key": "query",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Enter the no. of results that should be visible per page",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Enter the page no. for the page containing results",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Set to `true` to retrieve results that include components with no violations",
+                              "key": "allComponents",
+                              "value": "false"
+                            },
+                            {
+                              "key": "mode",
+                              "value": "sbomManager"
+                            }
+                          ]
+                        },
+                        "description": "Use this method to perform an Advanced Search."
+                      },
+                      "response": [
+                        {
+                          "id": "b1215f51-0298-457b-b644-fe1a273d3890",
+                          "name": "Response JSON containing the search query sent in the API call, and other response fields as follows: \n1. searchQuery: search query sent in the request \n2. page: page number of search results requested \n3. pageSize: requested number of results per page \n4",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/search/advanced?query=<string>&pageSize=10&page=<integer>&allComponents=false&mode=sbomManager",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "search",
+                                "advanced"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Enter your search query here",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Enter the no. of results that should be visible per page",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Enter the page no. for the page containing results",
+                                  "key": "page",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Set to `true` to retrieve results that include components with no violations",
+                                  "key": "allComponents",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "mode",
+                                  "value": "sbomManager"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"groupingByDTOS\": [\n    {\n      \"additionalInfo\": \"<string>\",\n      \"groupBy\": \"<string>\",\n      \"groupIdentifier\": \"componentHash\",\n      \"searchResultItemDTOS\": [\n        {\n          \"applicationCategoryColor\": \"<string>\",\n          \"applicationCategoryDescription\": \"<string>\",\n          \"applicationCategoryId\": \"<string>\",\n          \"applicationCategoryName\": \"<string>\",\n          \"applicationId\": \"<string>\",\n          \"applicationName\": \"<string>\",\n          \"applicationPublicId\": \"<string>\",\n          \"applicationVersion\": \"<string>\",\n          \"componentHash\": \"<string>\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"et0e\": \"<string>\",\n              \"in2_d\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"componentLabelColor\": \"<string>\",\n          \"componentLabelDescription\": \"<string>\",\n          \"componentLabelId\": \"<string>\",\n          \"componentLabelName\": \"<string>\",\n          \"componentName\": \"<string>\",\n          \"itemType\": \"<string>\",\n          \"organizationId\": \"<string>\",\n          \"organizationName\": \"<string>\",\n          \"policyEvaluationStage\": \"<string>\",\n          \"policyId\": \"<string>\",\n          \"policyName\": \"<string>\",\n          \"policyThreatCategory\": \"<string>\",\n          \"policyThreatLevel\": \"<integer>\",\n          \"reportId\": \"<string>\",\n          \"resultIndex\": \"<integer>\",\n          \"sbomSpecification\": \"<string>\",\n          \"vulnerabilityDescription\": \"<string>\",\n          \"vulnerabilityId\": \"<string>\",\n          \"vulnerabilityStatus\": \"<string>\"\n        },\n        {\n          \"applicationCategoryColor\": \"<string>\",\n          \"applicationCategoryDescription\": \"<string>\",\n          \"applicationCategoryId\": \"<string>\",\n          \"applicationCategoryName\": \"<string>\",\n          \"applicationId\": \"<string>\",\n          \"applicationName\": \"<string>\",\n          \"applicationPublicId\": \"<string>\",\n          \"applicationVersion\": \"<string>\",\n          \"componentHash\": \"<string>\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"minim_f\": \"<string>\",\n              \"nostrud67\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"componentLabelColor\": \"<string>\",\n          \"componentLabelDescription\": \"<string>\",\n          \"componentLabelId\": \"<string>\",\n          \"componentLabelName\": \"<string>\",\n          \"componentName\": \"<string>\",\n          \"itemType\": \"<string>\",\n          \"organizationId\": \"<string>\",\n          \"organizationName\": \"<string>\",\n          \"policyEvaluationStage\": \"<string>\",\n          \"policyId\": \"<string>\",\n          \"policyName\": \"<string>\",\n          \"policyThreatCategory\": \"<string>\",\n          \"policyThreatLevel\": \"<integer>\",\n          \"reportId\": \"<string>\",\n          \"resultIndex\": \"<integer>\",\n          \"sbomSpecification\": \"<string>\",\n          \"vulnerabilityDescription\": \"<string>\",\n          \"vulnerabilityId\": \"<string>\",\n          \"vulnerabilityStatus\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"additionalInfo\": \"<string>\",\n      \"groupBy\": \"<string>\",\n      \"groupIdentifier\": \"organizationName\",\n      \"searchResultItemDTOS\": [\n        {\n          \"applicationCategoryColor\": \"<string>\",\n          \"applicationCategoryDescription\": \"<string>\",\n          \"applicationCategoryId\": \"<string>\",\n          \"applicationCategoryName\": \"<string>\",\n          \"applicationId\": \"<string>\",\n          \"applicationName\": \"<string>\",\n          \"applicationPublicId\": \"<string>\",\n          \"applicationVersion\": \"<string>\",\n          \"componentHash\": \"<string>\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"officiaef\": \"<string>\",\n              \"aute_70\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"componentLabelColor\": \"<string>\",\n          \"componentLabelDescription\": \"<string>\",\n          \"componentLabelId\": \"<string>\",\n          \"componentLabelName\": \"<string>\",\n          \"componentName\": \"<string>\",\n          \"itemType\": \"<string>\",\n          \"organizationId\": \"<string>\",\n          \"organizationName\": \"<string>\",\n          \"policyEvaluationStage\": \"<string>\",\n          \"policyId\": \"<string>\",\n          \"policyName\": \"<string>\",\n          \"policyThreatCategory\": \"<string>\",\n          \"policyThreatLevel\": \"<integer>\",\n          \"reportId\": \"<string>\",\n          \"resultIndex\": \"<integer>\",\n          \"sbomSpecification\": \"<string>\",\n          \"vulnerabilityDescription\": \"<string>\",\n          \"vulnerabilityId\": \"<string>\",\n          \"vulnerabilityStatus\": \"<string>\"\n        },\n        {\n          \"applicationCategoryColor\": \"<string>\",\n          \"applicationCategoryDescription\": \"<string>\",\n          \"applicationCategoryId\": \"<string>\",\n          \"applicationCategoryName\": \"<string>\",\n          \"applicationId\": \"<string>\",\n          \"applicationName\": \"<string>\",\n          \"applicationPublicId\": \"<string>\",\n          \"applicationVersion\": \"<string>\",\n          \"componentHash\": \"<string>\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"veniam_8a\": \"<string>\",\n              \"reprehenderit_b6e\": \"<string>\",\n              \"sit4\": \"<string>\",\n              \"sit73\": \"<string>\",\n              \"magnaf\": \"<string>\"\n            },\n            \"format\": \"<string>\"\n          },\n          \"componentLabelColor\": \"<string>\",\n          \"componentLabelDescription\": \"<string>\",\n          \"componentLabelId\": \"<string>\",\n          \"componentLabelName\": \"<string>\",\n          \"componentName\": \"<string>\",\n          \"itemType\": \"<string>\",\n          \"organizationId\": \"<string>\",\n          \"organizationName\": \"<string>\",\n          \"policyEvaluationStage\": \"<string>\",\n          \"policyId\": \"<string>\",\n          \"policyName\": \"<string>\",\n          \"policyThreatCategory\": \"<string>\",\n          \"policyThreatLevel\": \"<integer>\",\n          \"reportId\": \"<string>\",\n          \"resultIndex\": \"<integer>\",\n          \"sbomSpecification\": \"<string>\",\n          \"vulnerabilityDescription\": \"<string>\",\n          \"vulnerabilityId\": \"<string>\",\n          \"vulnerabilityStatus\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"isExactTotalNumberOfHits\": \"<boolean>\",\n  \"page\": \"<integer>\",\n  \"pageSize\": \"<integer>\",\n  \"searchAfter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchQuery\": \"<string>\",\n  \"totalNumberOfHits\": \"<long>\"\n}",
+                          "createdAt": "2026-10-22T03:12:33.000Z",
+                          "updatedAt": "2026-10-22T03:12:33.000Z",
+                          "uid": "35240-b1215f51-0298-457b-b644-fe1a273d3890"
+                        },
+                        {
+                          "id": "495affb1-e10c-4a04-9518-a836266044fd",
+                          "name": "Search index not found. The Advanced Search index is unavailable or has not been created yet. Re-indexing is required before results can be returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/search/advanced?query=<string>&pageSize=10&page=<integer>&allComponents=false&mode=sbomManager",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "search",
+                                "advanced"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Enter your search query here",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Enter the no. of results that should be visible per page",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Enter the page no. for the page containing results",
+                                  "key": "page",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Set to `true` to retrieve results that include components with no violations",
+                                  "key": "allComponents",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "mode",
+                                  "value": "sbomManager"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:12:33.000Z",
+                          "updatedAt": "2026-10-22T03:12:33.000Z",
+                          "uid": "35240-495affb1-e10c-4a04-9518-a836266044fd"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:12:33.000Z",
+                      "updatedAt": "2026-10-22T03:12:33.000Z",
+                      "uid": "35240-7184445c-593c-43bf-bdc6-4c017c92b538"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "da0aab06-2f93-4e3b-85ec-eeb35fc75963",
+                  "createdAt": "2026-10-22T03:12:32.000Z",
+                  "updatedAt": "2026-10-22T03:12:32.000Z",
+                  "uid": "35240-da0aab06-2f93-4e3b-85ec-eeb35fc75963"
                 }
               ],
-              "body": "{\n  \"groupingByDTOS\": [\n    {\n      \"additionalInfo\": \"string\",\n      \"groupBy\": \"string\",\n      \"groupIdentifier\": \"policyId\",\n      \"searchResultItemDTOS\": [\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 4404,\n          \"reportId\": \"string\",\n          \"resultIndex\": 1117,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        },\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 4098,\n          \"reportId\": \"string\",\n          \"resultIndex\": 277,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        }\n      ]\n    },\n    {\n      \"additionalInfo\": \"string\",\n      \"groupBy\": \"string\",\n      \"groupIdentifier\": \"sbomSpecification\",\n      \"searchResultItemDTOS\": [\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 3796,\n          \"reportId\": \"string\",\n          \"resultIndex\": 8920,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        },\n        {\n          \"applicationCategoryColor\": \"string\",\n          \"applicationCategoryDescription\": \"string\",\n          \"applicationCategoryId\": \"string\",\n          \"applicationCategoryName\": \"string\",\n          \"applicationId\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationPublicId\": \"string\",\n          \"applicationVersion\": \"string\",\n          \"componentHash\": \"string\",\n          \"componentIdentifier\": {\n            \"coordinates\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"format\": \"string\"\n          },\n          \"componentLabelColor\": \"string\",\n          \"componentLabelDescription\": \"string\",\n          \"componentLabelId\": \"string\",\n          \"componentLabelName\": \"string\",\n          \"componentName\": \"string\",\n          \"itemType\": \"string\",\n          \"organizationId\": \"string\",\n          \"organizationName\": \"string\",\n          \"policyEvaluationStage\": \"string\",\n          \"policyId\": \"string\",\n          \"policyName\": \"string\",\n          \"policyThreatCategory\": \"string\",\n          \"policyThreatLevel\": 4436,\n          \"reportId\": \"string\",\n          \"resultIndex\": 3392,\n          \"sbomSpecification\": \"string\",\n          \"vulnerabilityDescription\": \"string\",\n          \"vulnerabilityId\": \"string\",\n          \"vulnerabilityStatus\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"isExactTotalNumberOfHits\": false,\n  \"page\": 9506,\n  \"pageSize\": 7844,\n  \"searchAfter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"searchQuery\": \"string\",\n  \"totalNumberOfHits\": 4572\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "03dc6d32-ae37-4843-88a7-dbcfa48b9828",
-              "name": "Search index not found. The Advanced Search index is unavailable or has not been created yet. Re-indexing is required before results can be returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "search",
-                    "advanced"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pageSize",
-                      "value": "10"
-                    },
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "allComponents",
-                      "value": "false"
-                    },
-                    {
-                      "key": "mode",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Conflict",
-              "code": 409,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "ed45e3da-b70f-4927-96de-5cb089bd5c23",
+              "createdAt": "2026-10-22T03:12:32.000Z",
+              "updatedAt": "2026-10-22T03:12:32.000Z",
+              "uid": "35240-ed45e3da-b70f-4927-96de-5cb089bd5c23"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8d99c1cd-a735-401c-b684-ecf2334f1f01",
-          "name": "get Export Results",
-          "request": {
-            "name": "get Export Results",
-            "description": {
-              "content": "Use this method to generate a csv file containing your search results. The default delimiter in the generated file is comma. Use the advancedSearchCSVExportDelimiter property of the Configuration REST API to change the delimiter in the generated file.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "search",
-                "advanced",
-                "export",
-                "csv"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "(Required) A well-formed search query."
-                },
-                {
-                  "disabled": false,
-                  "key": "pageSize",
-                  "value": "<integer>",
-                  "description": "Enter the no. of results that should be visible per page, unset gives all results"
-                },
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "<integer>",
-                  "description": "Enter the page no. for the page containing results"
-                },
-                {
-                  "disabled": false,
-                  "key": "allComponents",
-                  "value": "false",
-                  "description": "Set to `true` to retrieve results that include components with no violations."
-                },
-                {
-                  "disabled": false,
-                  "key": "mode",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9fba6d1d-da28-40fa-b31a-f2fe0c4158fd",
-              "name": "Downloadable csv file generated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "search",
-                    "advanced",
-                    "export",
-                    "csv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pageSize",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "allComponents",
-                      "value": "false"
-                    },
-                    {
-                      "key": "mode",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "44e29897-6a52-4f4e-853d-0ef2efc9ef97",
-              "name": "Search index does not exist or is unreadable.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "search",
-                    "advanced",
-                    "export",
-                    "csv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pageSize",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "allComponents",
-                      "value": "false"
-                    },
-                    {
-                      "key": "mode",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Conflict",
-              "code": 409,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bee2d2b5-03aa-459b-9b96-9dc934ef166b",
-          "name": "create Search Index Async",
-          "request": {
-            "name": "create Search Index Async",
-            "description": {
-              "content": "Use this method to create or rebuild the index for Advanced Search. This is a resource intensive operation. Avoid creating indexes during peak usage hours.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "search",
-                "advanced",
-                "index"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6eb2a529-3624-4f98-916e-44c1a85eadbc",
-              "name": "Index created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "search",
-                    "advanced",
-                    "index"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "bf2b12c6-a63e-4a59-91ab-95708099c1c1",
+          "createdAt": "2026-10-22T03:12:32.000Z",
+          "updatedAt": "2026-10-22T03:12:32.000Z",
+          "uid": "35240-bf2b12c6-a63e-4a59-91ab-95708099c1c1"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "08967fc2-9754-4c32-a30d-f5a9f0cd2b88",
+      "createdAt": "2026-10-22T03:12:32.000Z",
+      "updatedAt": "2026-10-22T03:12:32.000Z",
+      "uid": "35240-08967fc2-9754-4c32-a30d-f5a9f0cd2b88"
     }
   ],
   "auth": {
@@ -493,21 +602,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "50fa6769-0a6a-4816-9d73-d020dd2693fe",
-    "name": "Sonatype Lifecycle Public REST Advanced Search API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }

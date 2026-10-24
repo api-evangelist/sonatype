@@ -1,0 +1,226 @@
+{
+  "info": {
+    "_postman_id": "e4e34f14-4a78-4dc1-8bc5-b3a82f838bd2",
+    "name": "Sonatype Lifecycle Public REST Ai - Developer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:18:18.000Z",
+    "updatedAt": "2026-10-22T03:18:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e4e34f14-4a78-4dc1-8bc5-b3a82f838bd2"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "ai-developer",
+              "item": [
+                {
+                  "name": "opt-in",
+                  "item": [
+                    {
+                      "name": "Get opt in",
+                      "id": "72d4aa9c-616b-4176-b10c-451ad5582b77",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/ai-developer/opt-in",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "ai-developer",
+                            "opt-in"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "6cb2b177-e2cb-4203-a93d-ad60a3984036",
+                          "name": "default response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/ai-developer/opt-in",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "ai-developer",
+                                "opt-in"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"optedIn\": \"<boolean>\",\n  \"optedInBy\": \"<string>\",\n  \"optedInAt\": \"<string>\",\n  \"externalDatabaseRequired\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T03:18:19.000Z",
+                          "updatedAt": "2026-10-22T03:18:19.000Z",
+                          "uid": "35240-6cb2b177-e2cb-4203-a93d-ad60a3984036"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:19.000Z",
+                      "updatedAt": "2026-10-22T03:18:19.000Z",
+                      "uid": "35240-72d4aa9c-616b-4176-b10c-451ad5582b77"
+                    },
+                    {
+                      "name": "Opt in",
+                      "id": "8885fe90-b45d-4aed-ab4a-d0ec64a12c36",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/ai-developer/opt-in",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "ai-developer",
+                            "opt-in"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "eb0c428d-acb2-4974-997f-f0f7a734ad26",
+                          "name": "default response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/ai-developer/opt-in",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "ai-developer",
+                                "opt-in"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"optedIn\": \"<boolean>\",\n  \"optedInBy\": \"<string>\",\n  \"optedInAt\": \"<string>\",\n  \"externalDatabaseRequired\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T03:18:19.000Z",
+                          "updatedAt": "2026-10-22T03:18:19.000Z",
+                          "uid": "35240-eb0c428d-acb2-4974-997f-f0f7a734ad26"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:18:19.000Z",
+                      "updatedAt": "2026-10-22T03:18:19.000Z",
+                      "uid": "35240-8885fe90-b45d-4aed-ab4a-d0ec64a12c36"
+                    }
+                  ],
+                  "id": "e2d98c5a-bf3a-4ba4-8241-ba398945a911",
+                  "createdAt": "2026-10-22T03:18:19.000Z",
+                  "updatedAt": "2026-10-22T03:18:19.000Z",
+                  "uid": "35240-e2d98c5a-bf3a-4ba4-8241-ba398945a911"
+                }
+              ],
+              "id": "307a90a8-3cae-493c-955b-470b9d0fba18",
+              "createdAt": "2026-10-22T03:18:19.000Z",
+              "updatedAt": "2026-10-22T03:18:19.000Z",
+              "uid": "35240-307a90a8-3cae-493c-955b-470b9d0fba18"
+            }
+          ],
+          "id": "7b7a554c-5a05-4083-8dff-9f3b9fb169d3",
+          "createdAt": "2026-10-22T03:18:19.000Z",
+          "updatedAt": "2026-10-22T03:18:19.000Z",
+          "uid": "35240-7b7a554c-5a05-4083-8dff-9f3b9fb169d3"
+        }
+      ],
+      "id": "e88addd2-3874-43d4-ac6c-49d19de795ae",
+      "createdAt": "2026-10-22T03:18:19.000Z",
+      "updatedAt": "2026-10-22T03:18:19.000Z",
+      "uid": "35240-e88addd2-3874-43d4-ac6c-49d19de795ae"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

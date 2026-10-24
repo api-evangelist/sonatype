@@ -1,1171 +1,1127 @@
 {
+  "info": {
+    "_postman_id": "4517f150-e2d6-4c04-a81d-91aa1a56dd9d",
+    "name": "Sonatype Lifecycle Public REST Config Zscaler API",
+    "description": "Use this REST API to manage the configuration of a Zscaler service.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:14:47.000Z",
+    "updatedAt": "2026-10-22T03:14:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4517f150-e2d6-4c04-a81d-91aa1a56dd9d"
+  },
   "item": [
     {
-      "id": "50e4b81b-254b-4951-94c4-2b8fa41ff788",
-      "name": "Config Zscaler",
-      "description": {
-        "content": "Use this REST API to manage the configuration of a Zscaler service.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "f70a86a3-8038-4cab-91ec-d5f868985226",
-          "name": "delete Configuration 7",
-          "request": {
-            "name": "delete Configuration 7",
-            "description": {
-              "content": "Use this method to disable or remove the Zscaler configuration.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "dd86db38-63ba-4f2a-a5ff-6e54940d5e1c",
-              "name": "Zscaler configuration was removed successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
+              "name": "config",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "de4bb48a-a2c7-479c-a925-18600b520ba0",
-              "name": "Zscaler server configuration does not exist.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "64e113ea-ebcf-4859-9fa4-fe3a1e080853",
-          "name": "get Configuration 8",
-          "request": {
-            "name": "get Configuration 8",
-            "description": {
-              "content": "Use this method to review the configuration for a Zscaler server.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "ee39d4d5-8523-4cf8-80a3-2e5631dcbd70",
-              "name": "The response contains:<ul><li>`username` is the username to authenticate with the Zscaler server.</li><li>`password` is always null, never included for security purposes for this method.</Li><li>`hostname` is the hostname or IP address of the Zscaler server.</li><li>`apiKey` is the apiKey used for communicating with the Zscaler service.</li></ul>",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"apiKey\": \"string\",\n  \"eulaAgreed\": true,\n  \"hostname\": \"string\",\n  \"mavenFormatEnabled\": false,\n  \"npmFormatEnabled\": true,\n  \"nugetFormatEnabled\": true,\n  \"password\": \"string\",\n  \"pypiFormatEnabled\": false,\n  \"username\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "54cb7bcd-220d-4347-86c9-f6ed282e7d28",
-              "name": "No Zscaler server is currently configured with the IQ Server.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "54056078-2420-44c8-89e9-e8ef718eb38a",
-          "name": "set Configuration 7",
-          "request": {
-            "name": "set Configuration 7",
-            "description": {
-              "content": "Use this method to configure or update an existing Zscaler server configuration.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "text/html"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a8ccab0d-ff99-4938-bd37-bb5fa75a0c33",
-              "name": "Zscaler server configuration was updated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "58ee11ab-9e2b-48a3-baa9-10700bbc66cf",
-              "name": "Missing or invalid values provided.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0fd65b6c-288a-4d34-b5b7-9e8ee717e91a",
-          "name": "test Configuration 1",
-          "request": {
-            "name": "test Configuration 1",
-            "description": {
-              "content": "Use this method to test Zscaler server configuration.\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler",
-                "testConfig"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "*/*"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}"
-            }
-          },
-          "response": [
-            {
-              "id": "a0402de7-5832-4508-b84b-48a765f3f3dd",
-              "name": "Test Zscaler server configuration was successful.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "testConfig"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}"
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "a705a1e7-b8bb-4995-8029-c6c46ccbfdad",
-              "name": "Missing or invalid values provided.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "testConfig"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}"
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e065fca4-184d-4183-ba62-211d6afb4eda",
-          "name": "delete All Categories",
-          "request": {
-            "name": "delete All Categories",
-            "description": {
-              "content": "Use this endpoint to delete all configured formats from your Zscaler instance\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler",
-                "update"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a1544407-12c7-4b8e-a32e-ed851f45612d",
-              "name": "Zscaler deleted custom urls.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "df270ea2-cd88-4e41-b463-d32944bc1dd1",
-              "name": "Zscaler unable to remove custom urls",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2c24f1a4-71ff-4cbf-8786-4a6ab5d5dd67",
-          "name": "trigger Update All",
-          "request": {
-            "name": "trigger Update All",
-            "description": {
-              "content": "Use this endpoint to trigger an update of all configured formats to your Zscaler instance\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler",
-                "update"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1af456a2-cbd9-458f-9c7a-3c824ce5dc8d",
-              "name": "Zscaler updated custom urls successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5fa15037-6de8-4f7e-ae7f-6c551ca0df57",
-              "name": "Zscaler unable to update custom urls",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "988cd059-590a-4a1b-9328-af0bb79698aa",
-          "name": "delete Category",
-          "request": {
-            "name": "delete Category",
-            "description": {
-              "content": "Use this endpoint to delete a specific format from your Zscaler instance\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler",
-                "update",
-                ":format"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "format",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e4a190f3-24c0-4627-908f-480e405b6f50",
-              "name": "Zscaler updating a format was successful.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update",
-                    ":format"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "zscaler",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "format",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
+                      "name": "testConfig",
+                      "item": [
+                        {
+                          "name": "Test configuration 1",
+                          "id": "ddca33dc-b3a2-42e8-aab9-42214bdb3590",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "*/*"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler/testConfig",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler",
+                                "testConfig"
+                              ]
+                            },
+                            "description": "Use this method to test Zscaler server configuration.\n\nPermissions required: Edit System Configuration and Users"
+                          },
+                          "response": [
+                            {
+                              "id": "12ca407c-e45d-4424-82ae-bff9f96b403c",
+                              "name": "Test Zscaler server configuration was successful.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}"
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/testConfig",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "testConfig"
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-12ca407c-e45d-4424-82ae-bff9f96b403c"
+                            },
+                            {
+                              "id": "91229e99-3c8a-4522-b08f-0bbb53e510d6",
+                              "name": "Missing or invalid values provided.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}"
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/testConfig",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "testConfig"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-91229e99-3c8a-4522-b08f-0bbb53e510d6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-ddca33dc-b3a2-42e8-aab9-42214bdb3590"
+                        }
+                      ],
+                      "id": "6d773fb9-bd11-4283-bfb9-a0b921719650",
+                      "createdAt": "2026-10-22T03:14:48.000Z",
+                      "updatedAt": "2026-10-22T03:14:48.000Z",
+                      "uid": "35240-6d773fb9-bd11-4283-bfb9-a0b921719650"
                     },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "dda93db8-259c-4a84-9038-230280ead259",
-              "name": "Zscaler updating a format was not successful",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update",
-                    ":format"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "format",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
+                      "name": "update",
+                      "item": [
+                        {
+                          "name": "{format}",
+                          "item": [
+                            {
+                              "name": "Delete category",
+                              "id": "7b2362f2-93ff-41a4-9710-db5a3c710175",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "update",
+                                    ":format"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "78da1789-e311-4083-a2c5-c4309619e687",
+                                      "key": "format",
+                                      "value": "PYPI",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Use this endpoint to delete a specific format from your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+                              },
+                              "response": [
+                                {
+                                  "id": "a82e516a-993f-4cfa-9627-50e4c75ba3a0",
+                                  "name": "Zscaler updating a format was successful.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "zscaler",
+                                        "update",
+                                        ":format"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "format"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:14:48.000Z",
+                                  "updatedAt": "2026-10-22T03:14:48.000Z",
+                                  "uid": "35240-a82e516a-993f-4cfa-9627-50e4c75ba3a0"
+                                },
+                                {
+                                  "id": "56a55148-e098-4094-baf7-749066b1a300",
+                                  "name": "Zscaler updating a format was not successful",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "zscaler",
+                                        "update",
+                                        ":format"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "format"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:14:48.000Z",
+                                  "updatedAt": "2026-10-22T03:14:48.000Z",
+                                  "uid": "35240-56a55148-e098-4094-baf7-749066b1a300"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-7b2362f2-93ff-41a4-9710-db5a3c710175"
+                            },
+                            {
+                              "name": "Trigger update",
+                              "id": "cc3ee29a-debf-48fe-ad6c-8ce2c3496921",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "update",
+                                    ":format"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fcfdc11f-9b77-422b-97b6-554447f3d6b8",
+                                      "key": "format",
+                                      "value": "PYPI",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Use this endpoint to trigger an update to your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+                              },
+                              "response": [
+                                {
+                                  "id": "695d393c-2e6a-4bdb-8ba7-c5151c8ce55b",
+                                  "name": "Zscaler updated custom urls for format.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "zscaler",
+                                        "update",
+                                        ":format"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "format"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:14:48.000Z",
+                                  "updatedAt": "2026-10-22T03:14:48.000Z",
+                                  "uid": "35240-695d393c-2e6a-4bdb-8ba7-c5151c8ce55b"
+                                },
+                                {
+                                  "id": "254c3fce-0e5a-44d1-8517-8eb4604914c5",
+                                  "name": "Zscaler unable to update custom urls for format.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/config/zscaler/update/:format",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "config",
+                                        "zscaler",
+                                        "update",
+                                        ":format"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "format"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T03:14:48.000Z",
+                                  "updatedAt": "2026-10-22T03:14:48.000Z",
+                                  "uid": "35240-254c3fce-0e5a-44d1-8517-8eb4604914c5"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-cc3ee29a-debf-48fe-ad6c-8ce2c3496921"
+                            }
+                          ],
+                          "id": "24497e2a-8e50-4082-a1c6-2716f69e1321",
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-24497e2a-8e50-4082-a1c6-2716f69e1321"
+                        },
+                        {
+                          "name": "Delete all categories",
+                          "id": "912ff35f-cb16-4fd5-8622-4889594cd0de",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler/update",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler",
+                                "update"
+                              ]
+                            },
+                            "description": "Use this endpoint to delete all configured formats from your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+                          },
+                          "response": [
+                            {
+                              "id": "80f1cdee-c709-41fd-ba50-3c41b9dbc829",
+                              "name": "Zscaler deleted custom urls.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/update",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "update"
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-80f1cdee-c709-41fd-ba50-3c41b9dbc829"
+                            },
+                            {
+                              "id": "40ca02e7-8d54-4d9c-8411-cb5748908b84",
+                              "name": "Zscaler unable to remove custom urls",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/update",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "update"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-40ca02e7-8d54-4d9c-8411-cb5748908b84"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-912ff35f-cb16-4fd5-8622-4889594cd0de"
+                        },
+                        {
+                          "name": "Trigger update all",
+                          "id": "7da71dfb-995c-46c2-9861-4b77e6126592",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler/update",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler",
+                                "update"
+                              ]
+                            },
+                            "description": "Use this endpoint to trigger an update of all configured formats to your Zscaler instance\n\nPermissions required: Edit System Configuration and Users"
+                          },
+                          "response": [
+                            {
+                              "id": "da9c85d2-4102-4362-bcff-8935e48577d8",
+                              "name": "Zscaler updated custom urls successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/update",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "update"
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-da9c85d2-4102-4362-bcff-8935e48577d8"
+                            },
+                            {
+                              "id": "c177ecc5-3fd5-4828-a834-11f725417dd3",
+                              "name": "Zscaler unable to update custom urls",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/update",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "update"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-c177ecc5-3fd5-4828-a834-11f725417dd3"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-7da71dfb-995c-46c2-9861-4b77e6126592"
+                        }
+                      ],
+                      "id": "f89e3730-c7bf-45f5-9d09-98ee116a3267",
+                      "createdAt": "2026-10-22T03:14:48.000Z",
+                      "updatedAt": "2026-10-22T03:14:48.000Z",
+                      "uid": "35240-f89e3730-c7bf-45f5-9d09-98ee116a3267"
                     },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                    {
+                      "name": "zscalerLimits",
+                      "item": [
+                        {
+                          "name": "Get quota",
+                          "id": "beee29ac-165e-49f5-a87f-3b091366b9b4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler/zscalerLimits",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler",
+                                "zscalerLimits"
+                              ]
+                            },
+                            "description": "Returns the current Zscaler quota.\n\nPermissions required: None"
+                          },
+                          "response": [
+                            {
+                              "id": "7f08171b-316a-4501-83e5-ebbd4afe711d",
+                              "name": "Successfully retrieved the Zscaler quota.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/config/zscaler/zscalerLimits",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "config",
+                                    "zscaler",
+                                    "zscalerLimits"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"remainingUrls\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"totalAllowedUrls\": \"<integer>\"\n}",
+                              "createdAt": "2026-10-22T03:14:48.000Z",
+                              "updatedAt": "2026-10-22T03:14:48.000Z",
+                              "uid": "35240-7f08171b-316a-4501-83e5-ebbd4afe711d"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-beee29ac-165e-49f5-a87f-3b091366b9b4"
+                        }
+                      ],
+                      "id": "e96a043d-9dc4-4544-afbe-6bbd95c9f2ad",
+                      "createdAt": "2026-10-22T03:14:48.000Z",
+                      "updatedAt": "2026-10-22T03:14:48.000Z",
+                      "uid": "35240-e96a043d-9dc4-4544-afbe-6bbd95c9f2ad"
+                    },
+                    {
+                      "name": "Delete configuration 7",
+                      "id": "4fc8d295-6bc8-4552-bf31-5ccd4efe7073",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "zscaler"
+                          ]
+                        },
+                        "description": "Use this method to disable or remove the Zscaler configuration.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "fe81deba-5eac-4fe2-a26f-26dda92f6649",
+                          "name": "Zscaler configuration was removed successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-fe81deba-5eac-4fe2-a26f-26dda92f6649"
+                        },
+                        {
+                          "id": "d408f479-ceb1-4457-b253-1b287d6775bf",
+                          "name": "Zscaler server configuration does not exist.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-d408f479-ceb1-4457-b253-1b287d6775bf"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:14:48.000Z",
+                      "updatedAt": "2026-10-22T03:14:48.000Z",
+                      "uid": "35240-4fc8d295-6bc8-4552-bf31-5ccd4efe7073"
+                    },
+                    {
+                      "name": "Get configuration 8",
+                      "id": "3b26cee7-9b54-4f15-bca3-b06afc4a4cd6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "zscaler"
+                          ]
+                        },
+                        "description": "Use this method to review the configuration for a Zscaler server.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "ea40f3bb-0622-42c6-a2c7-ff8aac6d0b63",
+                          "name": "The response contains:<ul><li>`username` is the username to authenticate with the Zscaler server.</li><li>`password` is always null, never included for security purposes for this method.</Li><li>`hostname` is the hostname or IP address of the Zscaler serv",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-ea40f3bb-0622-42c6-a2c7-ff8aac6d0b63"
+                        },
+                        {
+                          "id": "3053e960-a295-4bf4-ab7c-975c3fdf7c9d",
+                          "name": "No Zscaler server is currently configured with the IQ Server.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-3053e960-a295-4bf4-ab7c-975c3fdf7c9d"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:14:48.000Z",
+                      "updatedAt": "2026-10-22T03:14:48.000Z",
+                      "uid": "35240-3b26cee7-9b54-4f15-bca3-b06afc4a4cd6"
+                    },
+                    {
+                      "name": "Set configuration 7",
+                      "id": "6f163662-3ba7-4832-af4b-813060c81074",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/html"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "config",
+                            "zscaler"
+                          ]
+                        },
+                        "description": "Use this method to configure or update an existing Zscaler server configuration.\n\nPermissions required: Edit System Configuration and Users"
+                      },
+                      "response": [
+                        {
+                          "id": "56b6757f-2bac-430a-a752-fba7739fdf54",
+                          "name": "Zscaler server configuration was updated successfully.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-56b6757f-2bac-430a-a752-fba7739fdf54"
+                        },
+                        {
+                          "id": "da48fd18-c253-4747-8080-2b05ca80d3d6",
+                          "name": "Missing or invalid values provided.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKey\": \"<string>\",\n  \"eulaAgreed\": \"<boolean>\",\n  \"hostname\": \"<string>\",\n  \"mavenFormatEnabled\": \"<boolean>\",\n  \"npmFormatEnabled\": \"<boolean>\",\n  \"nugetFormatEnabled\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"pypiFormatEnabled\": \"<boolean>\",\n  \"username\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/config/zscaler",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "config",
+                                "zscaler"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:14:48.000Z",
+                          "updatedAt": "2026-10-22T03:14:48.000Z",
+                          "uid": "35240-da48fd18-c253-4747-8080-2b05ca80d3d6"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:14:48.000Z",
+                      "updatedAt": "2026-10-22T03:14:48.000Z",
+                      "uid": "35240-6f163662-3ba7-4832-af4b-813060c81074"
+                    }
+                  ],
+                  "id": "14b45b9d-655e-4483-86b0-c0038df3f5c1",
+                  "createdAt": "2026-10-22T03:14:48.000Z",
+                  "updatedAt": "2026-10-22T03:14:48.000Z",
+                  "uid": "35240-14b45b9d-655e-4483-86b0-c0038df3f5c1"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "b154c7a2-416a-4f48-bed7-4e7891bd8c32",
+              "createdAt": "2026-10-22T03:14:48.000Z",
+              "updatedAt": "2026-10-22T03:14:48.000Z",
+              "uid": "35240-b154c7a2-416a-4f48-bed7-4e7891bd8c32"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fc637ae5-c19f-4a16-8634-ec65b8b9c37a",
-          "name": "trigger Update",
-          "request": {
-            "name": "trigger Update",
-            "description": {
-              "content": "Use this endpoint to trigger an update to your Zscaler instance\n\nPermissions required: Edit System Configuration and Users",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler",
-                "update",
-                ":format"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "format",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "ea5818c1-3fb3-449a-8129-00172e7bdb5b",
-              "name": "Zscaler updated custom urls for format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update",
-                    ":format"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "format",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "44c8ff13-1bec-4ada-9a2f-3f9ae383308f",
-              "name": "Zscaler unable to update custom urls for format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "update",
-                    ":format"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "format",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "35b38be0-aa47-45e1-b646-d2dc1499450c",
-          "name": "get Quota",
-          "request": {
-            "name": "get Quota",
-            "description": {
-              "content": "Returns the current Zscaler quota.\n\nPermissions required: None",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "config",
-                "zscaler",
-                "zscalerLimits"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "4c705cae-2658-4622-a898-95670e9bb933",
-              "name": "Successfully retrieved the Zscaler quota.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "config",
-                    "zscaler",
-                    "zscalerLimits"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"remainingUrls\": 5586,\n  \"status\": \"string\",\n  \"totalAllowedUrls\": 2127\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "81634294-3749-4a7f-85e9-9762d580b5a9",
+          "createdAt": "2026-10-22T03:14:48.000Z",
+          "updatedAt": "2026-10-22T03:14:48.000Z",
+          "uid": "35240-81634294-3749-4a7f-85e9-9762d580b5a9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
+      "id": "c34e6203-8573-4270-a544-a4769130d55c",
+      "createdAt": "2026-10-22T03:14:48.000Z",
+      "updatedAt": "2026-10-22T03:14:48.000Z",
+      "uid": "35240-c34e6203-8573-4270-a544-a4769130d55c"
     }
   ],
   "auth": {
@@ -1173,21 +1129,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6850de8f-60ee-43dc-8c0d-b84e3e50d963",
-    "name": "Sonatype Lifecycle Public REST Advanced Search Config Zscaler API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Advanced Search REST API to perform searches on Lifecycle application scan reports.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
     }
-  }
+  ]
 }
